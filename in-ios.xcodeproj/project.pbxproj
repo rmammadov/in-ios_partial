@@ -143,8 +143,6 @@
 				F33658AB20D3196C00B18CEC /* util */,
 				F33658AA20D3196500B18CEC /* helper */,
 				F336587C20D318C300B18CEC /* AppDelegate.swift */,
-				F336587E20D318C300B18CEC /* BaseViewController.swift */,
-				F336588020D318C300B18CEC /* Main.storyboard */,
 				F336588320D318CA00B18CEC /* Assets.xcassets */,
 				F336588520D318CA00B18CEC /* LaunchScreen.storyboard */,
 				F336588820D318CA00B18CEC /* Info.plist */,
@@ -188,6 +186,7 @@
 		F33658AC20D3197100B18CEC /* view */ = {
 			isa = PBXGroup;
 			children = (
+				F336588020D318C300B18CEC /* Main.storyboard */,
 				F33658B020D319A200B18CEC /* viewmodel */,
 				F33658AF20D3199A00B18CEC /* viewcontroller */,
 			);
@@ -204,6 +203,7 @@
 		F33658B020D319A200B18CEC /* viewmodel */ = {
 			isa = PBXGroup;
 			children = (
+				F336587E20D318C300B18CEC /* BaseViewController.swift */,
 			);
 			path = viewmodel;
 			sourceTree = "<group>";
