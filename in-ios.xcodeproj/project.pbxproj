@@ -18,6 +18,7 @@
 		F336589220D318CB00B18CEC /* in_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336589120D318CB00B18CEC /* in_iosTests.swift */; };
 		F336589D20D318CB00B18CEC /* in_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336589C20D318CB00B18CEC /* in_iosUITests.swift */; };
 		F33658AE20D3198000B18CEC /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33658AD20D3198000B18CEC /* Constant.swift */; };
+		F352854E20D3CED500E973C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F352854D20D3CED500E973C8 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		F336589C20D318CB00B18CEC /* in_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = in_iosUITests.swift; sourceTree = "<group>"; };
 		F336589E20D318CB00B18CEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F33658AD20D3198000B18CEC /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		F352854D20D3CED500E973C8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 				F336588320D318CA00B18CEC /* Assets.xcassets */,
 				F336588520D318CA00B18CEC /* LaunchScreen.storyboard */,
 				F336588820D318CA00B18CEC /* Info.plist */,
+				F352854D20D3CED500E973C8 /* GoogleService-Info.plist */,
 			);
 			path = "in-ios";
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F336588720D318CA00B18CEC /* LaunchScreen.storyboard in Resources */,
+				F352854E20D3CED500E973C8 /* GoogleService-Info.plist in Resources */,
 				F336588420D318CA00B18CEC /* Assets.xcassets in Resources */,
 				F336588220D318C300B18CEC /* Main.storyboard in Resources */,
 			);
@@ -351,13 +355,17 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-in-ios/Pods-in-ios-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

@@ -5,6 +5,9 @@ target 'in-ios' do
   use_frameworks!
   pod 'RxSwift',    '~> 4.0'
   pod 'RxCocoa',    '~> 4.0'
+  pod 'Firebase/Core'
+  pod 'Fabric', '~> 1.7.7'
+  pod 'Crashlytics', '~> 3.10.2'
 
   # Pods for in-ios
 
