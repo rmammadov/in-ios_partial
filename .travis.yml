@@ -14,5 +14,5 @@ env:
 
 script:
   - set -o pipefail
-  - xcodebuild clean test -workspace in-ios.xcworkspace -scheme in-ios_1 -destination 'platform=iOS Simulator,name=iPhone 7' CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+  - xcodebuild clean test -workspace in-ios.xcworkspace -scheme in-ios_1 -destination 'platform=iOS Simulator,name=iPhone 7' CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO | xcpretty -c
   - swiftlint
