@@ -1,18 +1,17 @@
+
 language: objective-c
-osx_image: xcode9.4.1
+osx_image: xcode9.4
+xcode_workspace: in-ios.xcodeproj
+xcode_scheme: Test
+xcode_sdk: iphonesimulator11.4
 
 branches:
-  only:
-    - dev
-    - master
+    only:
+        - dev
+        - master
 env:
-  - LC_CTYPE=en_US.UTF-8 LANG=en_US.UTF-8
-before_install:
-  - rvm install ruby-2.3.3
-  - gem install cocoapods
-  - gem install xcpretty -N
-  - brew update
-  - brew install swiftlint || true
+    - LC_CTYPE=en_US.UTF-8 LANG=en_US.UTF-8
+
 script:
   - set -o pipefail
   - xcodebuild clean test -workspace in-ios.xcworkspace -scheme in-ios_1 -destination 'platform=iOS Simulator,name=iPhone 7' CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
