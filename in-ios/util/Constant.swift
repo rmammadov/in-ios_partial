@@ -10,4 +10,7 @@ import Foundation
 
 struct Constant {
     
+    struct defaultSettings {
+        static let DEFAULT_HOST_FOR_NETWORK_CHECKING = "www.google.com"
+    }
 }
