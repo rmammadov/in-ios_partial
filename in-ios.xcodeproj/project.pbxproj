@@ -10,7 +10,6 @@
 		23E291C13E78A2F83C54C6F4 /* Pods_in_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9CD77B098164679AB204054 /* Pods_in_iosUITests.framework */; };
 		8CAFC82E627D3F45A9F99A10 /* Pods_in_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7750D16B30BABD1BA3229619 /* Pods_in_iosTests.framework */; };
 		EBB9649107BA3B79B3DEADC2 /* Pods_in_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34F1CB61519AF79B98BDA34B /* Pods_in_ios.framework */; };
-		F3216B5220F4E8AB008D6EFD /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3216B5120F4E8AB008D6EFD /* Reachability.swift */; };
 		F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3216B5520F4EA15008D6EFD /* HomeViewController.swift */; };
 		F336587D20D318C300B18CEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336587C20D318C300B18CEC /* AppDelegate.swift */; };
 		F336587F20D318C300B18CEC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336587E20D318C300B18CEC /* BaseViewController.swift */; };
@@ -22,6 +21,7 @@
 		F33658AE20D3198000B18CEC /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33658AD20D3198000B18CEC /* Constant.swift */; };
 		F34B909B20D46FA100800FCD /* DisplayHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34B909A20D46FA100800FCD /* DisplayHelper.swift */; };
 		F352854E20D3CED500E973C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F352854D20D3CED500E973C8 /* GoogleService-Info.plist */; };
+		F3DC2DAB20F8ADBA00CC276F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DC2DAA20F8ADBA00CC276F /* Reachability.swift */; };
 		F3F4148C20F5F82000CF101D /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F4148B20F5F82000CF101D /* ReachabilityManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,7 +52,6 @@
 		97EBADFBD905220359FFC456 /* Pods-in-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-in-iosTests/Pods-in-iosTests.release.xcconfig"; sourceTree = "<group>"; };
 		C9CD77B098164679AB204054 /* Pods_in_iosUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_in_iosUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD04B635ED8D31675FC0A57D /* Pods-in-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-in-ios/Pods-in-ios.debug.xcconfig"; sourceTree = "<group>"; };
-		F3216B5120F4E8AB008D6EFD /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		F3216B5520F4EA15008D6EFD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = "in-ios/helper/HomeViewController.swift"; sourceTree = SOURCE_ROOT; };
 		F336587920D318C300B18CEC /* in-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "in-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F336587C20D318C300B18CEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +69,7 @@
 		F33658AD20D3198000B18CEC /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		F34B909A20D46FA100800FCD /* DisplayHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayHelper.swift; sourceTree = "<group>"; };
 		F352854D20D3CED500E973C8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F3DC2DAA20F8ADBA00CC276F /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		F3F4148B20F5F82000CF101D /* ReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -182,8 +182,8 @@
 			isa = PBXGroup;
 			children = (
 				F34B909A20D46FA100800FCD /* DisplayHelper.swift */,
-				F3216B5120F4E8AB008D6EFD /* Reachability.swift */,
 				F3F4148B20F5F82000CF101D /* ReachabilityManager.swift */,
+				F3DC2DAA20F8ADBA00CC276F /* Reachability.swift */,
 			);
 			path = helper;
 			sourceTree = "<group>";
@@ -235,7 +235,6 @@
 				F336587620D318C300B18CEC /* Frameworks */,
 				F336587720D318C300B18CEC /* Resources */,
 				0ADA9E5D8330B8476C4C749F /* [CP] Embed Pods Frameworks */,
-				295DA3C975892BE34A32985B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -254,8 +253,6 @@
 				F336588920D318CB00B18CEC /* Sources */,
 				F336588A20D318CB00B18CEC /* Frameworks */,
 				F336588B20D318CB00B18CEC /* Resources */,
-				11DE963A937570308A898DA3 /* [CP] Embed Pods Frameworks */,
-				9B16097AC5F41767477178B4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -275,8 +272,6 @@
 				F336589420D318CB00B18CEC /* Sources */,
 				F336589520D318CB00B18CEC /* Frameworks */,
 				F336589620D318CB00B18CEC /* Resources */,
-				A6ACE96E3F14C1B756C09B6F /* [CP] Embed Pods Frameworks */,
-				28FF2F416C890BD83B0354F3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -367,6 +362,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-in-ios/Pods-in-ios-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
@@ -374,6 +370,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -382,81 +379,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-in-ios/Pods-in-ios-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		11DE963A937570308A898DA3 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-in-iosTests/Pods-in-iosTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		28FF2F416C890BD83B0354F3 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-in-iosUITests/Pods-in-iosUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		295DA3C975892BE34A32985B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-in-ios/Pods-in-ios-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9B16097AC5F41767477178B4 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-in-iosTests/Pods-in-iosTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A6ACE96E3F14C1B756C09B6F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-in-iosUITests/Pods-in-iosUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D1BFD9A5E9DE7CD3C08CC105 /* [CP] Check Pods Manifest.lock */ = {
@@ -520,11 +442,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3DC2DAB20F8ADBA00CC276F /* Reachability.swift in Sources */,
 				F34B909B20D46FA100800FCD /* DisplayHelper.swift in Sources */,
 				F336587F20D318C300B18CEC /* BaseViewController.swift in Sources */,
 				F3F4148C20F5F82000CF101D /* ReachabilityManager.swift in Sources */,
 				F336587D20D318C300B18CEC /* AppDelegate.swift in Sources */,
-				F3216B5220F4E8AB008D6EFD /* Reachability.swift in Sources */,
 				F33658AE20D3198000B18CEC /* Constant.swift in Sources */,
 				F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */,
 			);

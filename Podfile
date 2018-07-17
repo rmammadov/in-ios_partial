@@ -8,6 +8,7 @@ target 'in-ios' do
   pod 'Firebase/Core'
   pod 'Fabric', '~> 1.7.7'
   pod 'Crashlytics', '~> 3.10.2'
+  pod 'Alamofire', '~> 4.7'
 
   # Pods for in-ios
 

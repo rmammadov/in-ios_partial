@@ -45,12 +45,5 @@ class ReachabilityManager: NSObject {
             debugPrint("Could not start reachability notifier")
         }
     }
-    
-    // Stops monitoring the network availability status
-    func stopMonitoring(){
-        reachability.stopNotifier()
-        NotificationCenter.default.removeObserver(self,
-                                                  name: Notification.Name.reachabilityChanged,
-                                                  object: reachability)
-    }
+
 }

@@ -2,7 +2,7 @@
 //  Reachability.swift
 //  in-ios
 //
-//  Created by Rahman Mammadov on 7/10/18.
+//  Created by Rahman Mammadov on 7/13/18.
 //  Copyright © 2018 com.innodemneurosciences. All rights reserved.
 //
 
