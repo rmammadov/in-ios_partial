@@ -12,6 +12,7 @@
 		EBB9649107BA3B79B3DEADC2 /* Pods_in_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34F1CB61519AF79B98BDA34B /* Pods_in_ios.framework */; };
 		F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3216B5520F4EA15008D6EFD /* HomeViewController.swift */; };
 		F334ADBC2104E7970056824A /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334ADBB2104E7970056824A /* CameraManager.swift */; };
+		F334ADBE2105DA4A0056824A /* SpeechHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334ADBD2105DA490056824A /* SpeechHelper.swift */; };
 		F336587D20D318C300B18CEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336587C20D318C300B18CEC /* AppDelegate.swift */; };
 		F336587F20D318C300B18CEC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336587E20D318C300B18CEC /* BaseViewController.swift */; };
 		F336588220D318C300B18CEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F336588020D318C300B18CEC /* Main.storyboard */; };
@@ -55,6 +56,7 @@
 		CD04B635ED8D31675FC0A57D /* Pods-in-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-in-ios/Pods-in-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		F3216B5520F4EA15008D6EFD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = "in-ios/helper/HomeViewController.swift"; sourceTree = SOURCE_ROOT; };
 		F334ADBB2104E7970056824A /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
+		F334ADBD2105DA490056824A /* SpeechHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechHelper.swift; sourceTree = "<group>"; };
 		F336587920D318C300B18CEC /* in-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "in-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F336587C20D318C300B18CEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F336587E20D318C300B18CEC /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				F3F4148B20F5F82000CF101D /* ReachabilityManager.swift */,
 				F3DC2DAA20F8ADBA00CC276F /* Reachability.swift */,
 				F334ADBB2104E7970056824A /* CameraManager.swift */,
+				F334ADBD2105DA490056824A /* SpeechHelper.swift */,
 			);
 			path = helper;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 			files = (
 				F3DC2DAB20F8ADBA00CC276F /* Reachability.swift in Sources */,
 				F34B909B20D46FA100800FCD /* DisplayHelper.swift in Sources */,
+				F334ADBE2105DA4A0056824A /* SpeechHelper.swift in Sources */,
 				F336587F20D318C300B18CEC /* BaseViewController.swift in Sources */,
 				F3F4148C20F5F82000CF101D /* ReachabilityManager.swift in Sources */,
 				F336587D20D318C300B18CEC /* AppDelegate.swift in Sources */,
