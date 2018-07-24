@@ -8,6 +8,19 @@
 
 import Foundation
 
+
+public enum CameraState {
+    case ready, accessDenied, noDeviceFound, notDetermined
+}
+
+public enum CameraDevice {
+    case front, back
+}
+
+public enum CameraOutputQuality: Int {
+    case low, medium, high
+}
+
 class CameraManager: NSObject {
     
 }

@@ -13,6 +13,7 @@
 		F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3216B5520F4EA15008D6EFD /* HomeViewController.swift */; };
 		F334ADBC2104E7970056824A /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334ADBB2104E7970056824A /* CameraManager.swift */; };
 		F334ADBE2105DA4A0056824A /* SpeechHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334ADBD2105DA490056824A /* SpeechHelper.swift */; };
+		F334ADC02106E86F0056824A /* NavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334ADBF2106E86E0056824A /* NavigationHelper.swift */; };
 		F336587D20D318C300B18CEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336587C20D318C300B18CEC /* AppDelegate.swift */; };
 		F336587F20D318C300B18CEC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336587E20D318C300B18CEC /* BaseViewController.swift */; };
 		F336588220D318C300B18CEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F336588020D318C300B18CEC /* Main.storyboard */; };
@@ -57,6 +58,7 @@
 		F3216B5520F4EA15008D6EFD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = "in-ios/helper/HomeViewController.swift"; sourceTree = SOURCE_ROOT; };
 		F334ADBB2104E7970056824A /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		F334ADBD2105DA490056824A /* SpeechHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechHelper.swift; sourceTree = "<group>"; };
+		F334ADBF2106E86E0056824A /* NavigationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHelper.swift; sourceTree = "<group>"; };
 		F336587920D318C300B18CEC /* in-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "in-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F336587C20D318C300B18CEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F336587E20D318C300B18CEC /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				F3DC2DAA20F8ADBA00CC276F /* Reachability.swift */,
 				F334ADBB2104E7970056824A /* CameraManager.swift */,
 				F334ADBD2105DA490056824A /* SpeechHelper.swift */,
+				F334ADBF2106E86E0056824A /* NavigationHelper.swift */,
 			);
 			path = helper;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				F33658AE20D3198000B18CEC /* Constant.swift in Sources */,
 				F334ADBC2104E7970056824A /* CameraManager.swift in Sources */,
 				F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */,
+				F334ADC02106E86F0056824A /* NavigationHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
