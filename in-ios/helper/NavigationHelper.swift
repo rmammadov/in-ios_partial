@@ -10,8 +10,8 @@ import UIKit
 
 class NavigationHelper {
     
-    static func getCurrentVC() -> UIViewController {
-        guard let topController = UIApplication.shared.keyWindow?.rootViewController else {return}
+    static func getCurrentVC() -> UIViewController? {
+        let topController = UIApplication.shared.keyWindow?.rootViewController
         
         return topController
     }

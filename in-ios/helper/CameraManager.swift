@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 public enum CameraState {
     case ready, accessDenied, noDeviceFound, notDetermined
 }
