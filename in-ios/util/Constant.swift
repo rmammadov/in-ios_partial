@@ -10,7 +10,13 @@ import Foundation
 
 struct Constant {
     
-    struct defaultSettings {
-        static let DEFAULT_HOST_FOR_NETWORK_CHECKING = "www.google.com"
+    struct defaultSetting {
+
+    }
+    
+    struct url {
+        static let HOST_API_BETA = "http://api-beta1.innodem-neurosciences.com/"
+        static let URL_EXTENSION_API = "api/"
+        static let URL_EXTENSION_MENU_ITEMS = "menu-items"
     }
 }
