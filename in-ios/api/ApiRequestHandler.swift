@@ -18,7 +18,7 @@ class ApiRequestHandler {
         session = URLSession(configuration: config)
     }
     
-    func getMenuItems() {
+    func requestMenuItems() {
         let url = URL(string: Constant.url.HOST_API_BETA + Constant.url.URL_EXTENSION_API + Constant.url.URL_EXTENSION_MENU_ITEMS)!
         
         let task = self.session.dataTask(with: url) { data, response, error in
@@ -40,16 +40,14 @@ class ApiRequestHandler {
                 return
             }
 
-            print("gotten json response dictionary is \n \(json)")
-            // update UI using the response here
             do {
-                let menuItems = try JSONDecoder().decode([MenuItemModel].self, from: data!)
+                let menuItems = try JSONDecoder().decode([MenuItem].self, from: content)
                 print(menuItems)
             } catch let jsonErr {
                 print("Error serializing json",  jsonErr)
             }
         }
-        
+
         task.resume()
     }
 }

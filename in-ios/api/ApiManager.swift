@@ -10,4 +10,9 @@ import Foundation
 
 class ApiManager {
     
+    let requestHandler = ApiRequestHandler()
+    
+    func getMenuItems() {
+        self.requestHandler.requestMenuItems()
+    }
 }

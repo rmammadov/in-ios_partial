@@ -10,10 +10,10 @@ import Foundation
 
 class HomeViewModel: NSObject {
     
-    let requestHandler = ApiRequestHandler()
+    let apiManager = ApiManager()
     
     func getMenuItems() {
-        self.requestHandler.getMenuItems()
+        self.apiManager.getMenuItems()
     }
     
     func textToSpech() {

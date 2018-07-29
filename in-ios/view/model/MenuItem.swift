@@ -10,10 +10,11 @@ import Foundation
 
 struct MenuItem: Decodable {
     
-    let subMenuItemIds: Array<Int>
-    let translatoions: [String: [String: String]]
+    let sub_menu_item_item_ids: Array<Int>
+    let translations: [TranslationItem]
+    let disable_text_to_speech: Bool
     let id: Int
     let name: String
-    let icon: [String: String]
+//    let icon: IconItem
     let roles: Array<String>
 }

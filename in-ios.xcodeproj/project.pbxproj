@@ -16,7 +16,7 @@
 		F334ADC02106E86F0056824A /* NavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334ADBF2106E86E0056824A /* NavigationHelper.swift */; };
 		F334ADC3210B35EE0056824A /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334ADC2210B35EE0056824A /* ApiManager.swift */; };
 		F334ADC5210B3BC00056824A /* ApiRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334ADC4210B3BC00056824A /* ApiRequestHandler.swift */; };
-		F334ADC8210D7A370056824A /* MenuItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334ADC7210D7A370056824A /* MenuItemModel.swift */; };
+		F334ADC8210D7A370056824A /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334ADC7210D7A370056824A /* MenuItem.swift */; };
 		F334ADCA210D7F890056824A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334ADC9210D7F890056824A /* HomeViewModel.swift */; };
 		F336587D20D318C300B18CEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336587C20D318C300B18CEC /* AppDelegate.swift */; };
 		F336587F20D318C300B18CEC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336587E20D318C300B18CEC /* BaseViewController.swift */; };
@@ -28,6 +28,8 @@
 		F33658AE20D3198000B18CEC /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33658AD20D3198000B18CEC /* Constant.swift */; };
 		F34B909B20D46FA100800FCD /* DisplayHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34B909A20D46FA100800FCD /* DisplayHelper.swift */; };
 		F352854E20D3CED500E973C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F352854D20D3CED500E973C8 /* GoogleService-Info.plist */; };
+		F3C48CBB210E282D00742855 /* TranslationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C48CBA210E282D00742855 /* TranslationItem.swift */; };
+		F3C48CBD210E283D00742855 /* IconItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C48CBC210E283D00742855 /* IconItem.swift */; };
 		F3DC2DAB20F8ADBA00CC276F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DC2DAA20F8ADBA00CC276F /* Reachability.swift */; };
 		F3F4148C20F5F82000CF101D /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F4148B20F5F82000CF101D /* ReachabilityManager.swift */; };
 /* End PBXBuildFile section */
@@ -65,7 +67,7 @@
 		F334ADBF2106E86E0056824A /* NavigationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHelper.swift; sourceTree = "<group>"; };
 		F334ADC2210B35EE0056824A /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		F334ADC4210B3BC00056824A /* ApiRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequestHandler.swift; sourceTree = "<group>"; };
-		F334ADC7210D7A370056824A /* MenuItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemModel.swift; sourceTree = "<group>"; };
+		F334ADC7210D7A370056824A /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		F334ADC9210D7F890056824A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		F336587920D318C300B18CEC /* in-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "in-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F336587C20D318C300B18CEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,8 @@
 		F33658AD20D3198000B18CEC /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		F34B909A20D46FA100800FCD /* DisplayHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayHelper.swift; sourceTree = "<group>"; };
 		F352854D20D3CED500E973C8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F3C48CBA210E282D00742855 /* TranslationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationItem.swift; sourceTree = "<group>"; };
+		F3C48CBC210E283D00742855 /* IconItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconItem.swift; sourceTree = "<group>"; };
 		F3DC2DAA20F8ADBA00CC276F /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		F3F4148B20F5F82000CF101D /* ReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,7 +154,9 @@
 		F334ADC6210D793B0056824A /* model */ = {
 			isa = PBXGroup;
 			children = (
-				F334ADC7210D7A370056824A /* MenuItemModel.swift */,
+				F334ADC7210D7A370056824A /* MenuItem.swift */,
+				F3C48CBA210E282D00742855 /* TranslationItem.swift */,
+				F3C48CBC210E283D00742855 /* IconItem.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -480,13 +486,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3DC2DAB20F8ADBA00CC276F /* Reachability.swift in Sources */,
+				F3C48CBD210E283D00742855 /* IconItem.swift in Sources */,
 				F34B909B20D46FA100800FCD /* DisplayHelper.swift in Sources */,
 				F334ADBE2105DA4A0056824A /* SpeechHelper.swift in Sources */,
 				F334ADC5210B3BC00056824A /* ApiRequestHandler.swift in Sources */,
 				F336587F20D318C300B18CEC /* BaseViewController.swift in Sources */,
 				F3F4148C20F5F82000CF101D /* ReachabilityManager.swift in Sources */,
-				F334ADC8210D7A370056824A /* MenuItemModel.swift in Sources */,
+				F334ADC8210D7A370056824A /* MenuItem.swift in Sources */,
 				F336587D20D318C300B18CEC /* AppDelegate.swift in Sources */,
+				F3C48CBB210E282D00742855 /* TranslationItem.swift in Sources */,
 				F334ADC3210B35EE0056824A /* ApiManager.swift in Sources */,
 				F334ADCA210D7F890056824A /* HomeViewModel.swift in Sources */,
 				F33658AE20D3198000B18CEC /* Constant.swift in Sources */,
