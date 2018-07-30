@@ -9,9 +9,12 @@
 import UIKit
 
 class HomeViewController: BaseViewController {
+
+    @IBOutlet weak var collectionTopMenu: UICollectionView!
+    @IBOutlet weak var collectionMenu: UICollectionView!
     
     let viewModel = HomeViewModel()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,6 +27,15 @@ class HomeViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.hideNavigationBar()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.showNavigationBar()
+    }
 
     /*
     // MARK: - Navigation
