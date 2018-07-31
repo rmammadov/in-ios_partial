@@ -18,3 +18,16 @@ struct MenuItem: Decodable {
     let icon: IconItem?
     let roles: Array<String>
 }
+
+struct TranslationItem: Decodable {
+    
+    var locale: String?
+    var label: String?
+    var label_text_to_speech: String?
+}
+
+struct IconItem: Decodable {
+    
+    var id: Int?
+    var url: String?
+}

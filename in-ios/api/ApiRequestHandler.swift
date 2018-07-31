@@ -7,11 +7,16 @@
 //
 
 import Foundation
+import RxSwift
 
 class ApiRequestHandler {
     
+    var status = Variable<Int>(0)
+    
     fileprivate let config: URLSessionConfiguration
     fileprivate let session: URLSession
+    
+    fileprivate var menuItems: Array<MenuItem>?
     
     init() {
         config = URLSessionConfiguration.default
@@ -35,19 +40,23 @@ class ApiRequestHandler {
             }
 
             // serialise the data / NSData object into Dictionary [String : Any]
-            guard let json = (try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? Array<Any> else {
+            guard ((try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? Array<Any>) != nil else {
                 print("Not containing JSON")
                 return
             }
 
             do {
-                let menuItems = try JSONDecoder().decode([MenuItem].self, from: content)
-                print(menuItems)
+                self.menuItems = try JSONDecoder().decode([MenuItem].self, from: content)
+                self.status.value = 1
             } catch let jsonErr {
                 print("Error serializing json",  jsonErr)
             }
         }
 
         task.resume()
+    }
+    
+    func getMenuItems() -> Array<MenuItem>? {
+        return self.menuItems
     }
 }

@@ -7,10 +7,13 @@
 //
 
 import Foundation
+import RxSwift
 
 class ApiManager {
     
-    let requestHandler = ApiRequestHandler()
+    fileprivate let requestHandler = ApiRequestHandler()
+    
+    fileprivate var menuItems: Array<MenuItem>?
     
     func getMenuItems() {
         self.requestHandler.requestMenuItems()

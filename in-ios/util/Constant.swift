@@ -19,4 +19,8 @@ struct Constant {
         static let URL_EXTENSION_API = "api/"
         static let URL_EXTENSION_MENU_ITEMS = "menu-items"
     }
+    
+    struct menuConfiguration {
+        static let NAME_TOP_MENU_ITEM = "root"
+    }
 }

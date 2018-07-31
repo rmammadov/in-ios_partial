@@ -16,7 +16,7 @@ class HomeViewController: BaseViewController {
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var containerViewSubMenu: UIView!
     
-    let viewModel = HomeViewModel()
+    fileprivate let viewModel = HomeViewModel()
     
     fileprivate var vcSubMenu: SubMenuViewController?
     
@@ -24,7 +24,7 @@ class HomeViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.viewModel.getMenuItems()
+        self.setupViewModel()
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,5 +53,12 @@ class HomeViewController: BaseViewController {
             }
         }
     }
+}
 
+extension HomeViewController {
+    
+    func setupViewModel() {
+        self.viewModel.setSubscribers()
+        self.viewModel.getMenuItems()
+    }
 }
