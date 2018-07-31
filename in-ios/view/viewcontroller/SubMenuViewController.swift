@@ -46,7 +46,10 @@ class SubMenuViewController: BaseViewController {
         self.collectionView.delegate = self
         self.collectionView.register(UINib.init(nibName: nibNameSubMenuItem, bundle: nil), forCellWithReuseIdentifier:reuseIdentifier)
     }
-
+    
+    func getParentViewController() -> HomeViewController {
+        return  self.presentingViewController as! HomeViewController
+    }
 }
 
 extension SubMenuViewController: UICollectionViewDelegate, UICollectionViewDataSource {

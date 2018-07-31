@@ -35,7 +35,7 @@
                                         <rect key="frame" x="48" y="16" width="279" height="554"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <segue destination="S2T-3t-DPL" kind="embed" id="5Ve-4T-gwY"/>
+                                            <segue destination="S2T-3t-DPL" kind="embed" identifier="segueSubMenu" id="5Ve-4T-gwY"/>
                                         </connections>
                                     </containerView>
                                 </subviews>
@@ -103,7 +103,9 @@
                     <navigationItem key="navigationItem" id="dMC-7J-0Qy"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="btnBack" destination="Ewn-fj-3ue" id="ojz-Ti-8XN"/>
                         <outlet property="collectionTopMenu" destination="vSO-2M-N7o" id="CP8-O9-2fY"/>
+                        <outlet property="containerViewSubMenu" destination="iiL-Mh-1hh" id="5Kc-sz-wnE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

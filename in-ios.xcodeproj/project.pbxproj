@@ -30,7 +30,6 @@
 		F352854E20D3CED500E973C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F352854D20D3CED500E973C8 /* GoogleService-Info.plist */; };
 		F39059BA210F09C800CAA292 /* SubMenuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059B8210F09C800CAA292 /* SubMenuItemCollectionViewCell.swift */; };
 		F39059BB210F09C800CAA292 /* SubMenuItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F39059B9210F09C800CAA292 /* SubMenuItemCollectionViewCell.xib */; };
-		F39059BD210F160700CAA292 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059BC210F160700CAA292 /* CollectionViewController.swift */; };
 		F39059BF210F254C00CAA292 /* AnimationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059BE210F254C00CAA292 /* AnimationUtil.swift */; };
 		F39059C1210F290F00CAA292 /* SubMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059C0210F290F00CAA292 /* SubMenuViewModel.swift */; };
 		F3C48CBB210E282D00742855 /* TranslationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C48CBA210E282D00742855 /* TranslationItem.swift */; };
@@ -93,7 +92,6 @@
 		F352854D20D3CED500E973C8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F39059B8210F09C800CAA292 /* SubMenuItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMenuItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		F39059B9210F09C800CAA292 /* SubMenuItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubMenuItemCollectionViewCell.xib; sourceTree = "<group>"; };
-		F39059BC210F160700CAA292 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		F39059BE210F254C00CAA292 /* AnimationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationUtil.swift; sourceTree = "<group>"; };
 		F39059C0210F290F00CAA292 /* SubMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMenuViewModel.swift; sourceTree = "<group>"; };
 		F3C48CBA210E282D00742855 /* TranslationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationItem.swift; sourceTree = "<group>"; };
@@ -270,7 +268,6 @@
 				F336587E20D318C300B18CEC /* BaseViewController.swift */,
 				F3216B5520F4EA15008D6EFD /* HomeViewController.swift */,
 				F3C48CCA210F018200742855 /* SubMenuViewController.swift */,
-				F39059BC210F160700CAA292 /* CollectionViewController.swift */,
 			);
 			path = viewcontroller;
 			sourceTree = "<group>";
@@ -534,7 +531,6 @@
 				F334ADC3210B35EE0056824A /* ApiManager.swift in Sources */,
 				F39059BA210F09C800CAA292 /* SubMenuItemCollectionViewCell.swift in Sources */,
 				F39059C1210F290F00CAA292 /* SubMenuViewModel.swift in Sources */,
-				F39059BD210F160700CAA292 /* CollectionViewController.swift in Sources */,
 				F334ADCA210D7F890056824A /* HomeViewModel.swift in Sources */,
 				F3C48CCB210F018200742855 /* SubMenuViewController.swift in Sources */,
 				F33658AE20D3198000B18CEC /* Constant.swift in Sources */,

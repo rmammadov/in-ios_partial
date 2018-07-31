@@ -15,6 +15,6 @@ struct MenuItem: Decodable {
     let disable_text_to_speech: Bool
     let id: Int
     let name: String
-//    let icon: IconItem
+    let icon: IconItem?
     let roles: Array<String>
 }
