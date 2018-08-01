@@ -11,11 +11,6 @@ import UIKit
 private let nibNameSubMenuItem = "SubMenuItemCollectionViewCell"
 private let reuseIdentifier = "cellSubMenuItem"
 
-enum SubMenuStatus: Int {
-    case notLoaded = 0
-    case topMenuShown = 1
-    case subMenuShown = 2
-}
 
 class SubMenuViewController: BaseViewController {
     

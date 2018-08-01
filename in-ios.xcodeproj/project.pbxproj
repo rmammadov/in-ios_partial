@@ -69,7 +69,7 @@
 		97EBADFBD905220359FFC456 /* Pods-in-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-in-iosTests/Pods-in-iosTests.release.xcconfig"; sourceTree = "<group>"; };
 		C9CD77B098164679AB204054 /* Pods_in_iosUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_in_iosUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD04B635ED8D31675FC0A57D /* Pods-in-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-in-ios/Pods-in-ios.debug.xcconfig"; sourceTree = "<group>"; };
-		F3216B5520F4EA15008D6EFD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = "in-ios/helper/HomeViewController.swift"; sourceTree = SOURCE_ROOT; };
+		F3216B5520F4EA15008D6EFD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = "in-ios/view/home/HomeViewController.swift"; sourceTree = SOURCE_ROOT; };
 		F32D99C521117E79007AAA8D /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		F32D99C721117E8A007AAA8D /* SubMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMenuModel.swift; sourceTree = "<group>"; };
 		F32D99C921117EC7007AAA8D /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
@@ -158,6 +158,26 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F32D99CD211189D9007AAA8D /* home */ = {
+			isa = PBXGroup;
+			children = (
+				F3216B5520F4EA15008D6EFD /* HomeViewController.swift */,
+				F334ADC9210D7F890056824A /* HomeViewModel.swift */,
+				F32D99C521117E79007AAA8D /* HomeModel.swift */,
+			);
+			path = home;
+			sourceTree = "<group>";
+		};
+		F32D99CE21118A09007AAA8D /* submenu */ = {
+			isa = PBXGroup;
+			children = (
+				F3C48CCA210F018200742855 /* SubMenuViewController.swift */,
+				F39059C0210F290F00CAA292 /* SubMenuViewModel.swift */,
+				F32D99C721117E8A007AAA8D /* SubMenuModel.swift */,
+			);
+			path = submenu;
+			sourceTree = "<group>";
+		};
 		F334ADC1210B35570056824A /* api */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,9 +192,6 @@
 			children = (
 				F334ADC7210D7A370056824A /* MenuItem.swift */,
 				F39059C22110473D00CAA292 /* MenuItems.swift */,
-				F32D99C521117E79007AAA8D /* HomeModel.swift */,
-				F32D99C721117E8A007AAA8D /* SubMenuModel.swift */,
-				F32D99CB21117EE8007AAA8D /* BaseModel.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -263,31 +280,14 @@
 				F3C48CBE210ED61000742855 /* customview */,
 				F336588020D318C300B18CEC /* Main.storyboard */,
 				F336588520D318CA00B18CEC /* LaunchScreen.storyboard */,
+				F336587E20D318C300B18CEC /* BaseViewController.swift */,
+				F32D99C921117EC7007AAA8D /* BaseViewModel.swift */,
+				F32D99CB21117EE8007AAA8D /* BaseModel.swift */,
 				F334ADC6210D793B0056824A /* model */,
-				F33658B020D319A200B18CEC /* viewmodel */,
-				F33658AF20D3199A00B18CEC /* viewcontroller */,
+				F32D99CD211189D9007AAA8D /* home */,
+				F32D99CE21118A09007AAA8D /* submenu */,
 			);
 			path = view;
-			sourceTree = "<group>";
-		};
-		F33658AF20D3199A00B18CEC /* viewcontroller */ = {
-			isa = PBXGroup;
-			children = (
-				F336587E20D318C300B18CEC /* BaseViewController.swift */,
-				F3216B5520F4EA15008D6EFD /* HomeViewController.swift */,
-				F3C48CCA210F018200742855 /* SubMenuViewController.swift */,
-			);
-			path = viewcontroller;
-			sourceTree = "<group>";
-		};
-		F33658B020D319A200B18CEC /* viewmodel */ = {
-			isa = PBXGroup;
-			children = (
-				F334ADC9210D7F890056824A /* HomeViewModel.swift */,
-				F39059C0210F290F00CAA292 /* SubMenuViewModel.swift */,
-				F32D99C921117EC7007AAA8D /* BaseViewModel.swift */,
-			);
-			path = viewmodel;
 			sourceTree = "<group>";
 		};
 		F3C48CBE210ED61000742855 /* customview */ = {

@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-class HomeViewModel: NSObject {
+class HomeViewModel: BaseViewModel {
     
     var status = Variable<Int>(0)
     
@@ -53,8 +53,8 @@ class HomeViewModel: NSObject {
         return (self.menuItems?.getTopMenuItems())
     }
     
-    func textToSpech() {
-         SpeechHelper.play(text: "You can omit the rate property entirely to have a natural-speed voice, or change the language to (English, American accent)(English, Australian accent) or whichever other accents Apple chooses to add in the future.", language: "en-US")
+    func textToSpech(text: String) {
+         SpeechHelper.play(text: text, language: "en-US")
     }
     
     func setSubMenuVC(vcSubMenu: SubMenuViewController) {
@@ -71,5 +71,9 @@ class HomeViewModel: NSObject {
     
     func getBackButtonStatus() -> Bool {
         return self.isBackButtonHidden
+    }
+    
+    func onClickBackButton() {
+        self.getSubMenuVC()?.viewModel.getBack()
     }
 }

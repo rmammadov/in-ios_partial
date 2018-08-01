@@ -9,7 +9,13 @@
 import UIKit
 import RxSwift
 
-class SubMenuViewModel: NSObject {
+enum SubMenuStatus: Int {
+    case notLoaded = 0
+    case topMenuShown = 1
+    case subMenuShown = 2
+}
+
+class SubMenuViewModel: BaseViewModel {
     
     var status = Variable<Int>(0)
     
@@ -35,5 +41,9 @@ class SubMenuViewModel: NSObject {
     
     func textToSpech() {
         SpeechHelper.play(text: "You can omit the rate property entirely to have a natural-speed voice, or change the language to (English, American accent)(English, Australian accent) or whichever other accents Apple chooses to add in the future.", language: "en-US")
+    }
+    
+    func getBack() {
+        self.status.value = SubMenuStatus.topMenuShown.rawValue
     }
 }

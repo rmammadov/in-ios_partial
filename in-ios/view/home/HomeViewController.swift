@@ -55,7 +55,7 @@ class HomeViewController: BaseViewController {
     }
     
     @IBAction func onClickBackBtn(_ sender: Any) {
-
+        self.viewModel.onClickBackButton()
     }
 }
 

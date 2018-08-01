@@ -1,5 +1,5 @@
 //
-//  BaseModel.swift
+//  BaseViewModel.swift
 //  in-ios
 //
 //  Created by Rahman Mammadov on 8/1/18.
@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+class BaseViewModel: NSObject {
+    
+}
