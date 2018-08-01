@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '11.0'
+platform :ios, '10.0'
 
 target 'in-ios' do
   use_frameworks!
@@ -8,7 +8,6 @@ target 'in-ios' do
   pod 'Firebase/Core'
   pod 'Fabric', '~> 1.7.7'
   pod 'Crashlytics', '~> 3.10.2'
-  pod 'Kingfisher', '~> 4.0'
 
   # Pods for in-ios
 

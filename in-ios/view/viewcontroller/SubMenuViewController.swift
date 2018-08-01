@@ -7,10 +7,15 @@
 //
 
 import UIKit
-import Kingfisher
 
 private let nibNameSubMenuItem = "SubMenuItemCollectionViewCell"
 private let reuseIdentifier = "cellSubMenuItem"
+
+enum SubMenuStatus: Int {
+    case notLoaded = 0
+    case topMenuShown = 1
+    case subMenuShown = 2
+}
 
 class SubMenuViewController: BaseViewController {
     
@@ -80,7 +85,7 @@ extension SubMenuViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         AnimationUtil.cancelSubMenuSelection(imageView: self.getCellForIndexPath(indexPath: viewModel.getPreviousSelection()).ivStatusIcon)
         AnimationUtil.animateSubMenuSelection(imageView: self.getCellForIndexPath(indexPath: indexPath).ivStatusIcon)
-        self.viewModel.setPreviousSelection(indexPath: indexPath)
+        self.viewModel.onItemClicked(indexPath: indexPath)
     }
     
     func getCellForIndexPath(indexPath: IndexPath) -> SubMenuItemCollectionViewCell {

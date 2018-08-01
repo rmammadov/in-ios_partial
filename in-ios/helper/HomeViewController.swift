@@ -18,13 +18,13 @@ class HomeViewController: BaseViewController {
     
     fileprivate let viewModel = HomeViewModel()
     
-    fileprivate var vcSubMenu: SubMenuViewController?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.setupViewModel()
+        self.setViewModel()
+        self.setSubscribers()
+        self.setUi()
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,16 +49,35 @@ class HomeViewController: BaseViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueIdentifier {
             if let vc = segue.destination as? SubMenuViewController {
-                self.vcSubMenu = vc
+                self.viewModel.setSubMenuVC(vcSubMenu: vc)
             }
         }
+    }
+    
+    @IBAction func onClickBackBtn(_ sender: Any) {
+
     }
 }
 
 extension HomeViewController {
     
-    func setupViewModel() {
+    func setViewModel() {
         self.viewModel.setSubscribers()
         self.viewModel.getMenuItems()
+    }
+    
+    func setSubscribers() {
+        self.viewModel.status.asObservable().subscribe(onNext: {
+            event in
+           self.setUi()
+        })
+    }
+    
+    func setUi() {
+        self.setBackButtonStatus()
+    }
+    
+    func setBackButtonStatus() {
+        self.btnBack.isHidden = self.viewModel.getBackButtonStatus()
     }
 }
