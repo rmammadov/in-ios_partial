@@ -11,8 +11,8 @@ import RxSwift
 
 enum SubMenuStatus: Int {
     case notLoaded = 0
-    case topMenuShown = 1
-    case subMenuShown = 2
+    case firstPhaseLoaded = 1
+    case secondPhaseLoaded = 2
 }
 
 class SubMenuViewModel: BaseViewModel {
@@ -21,18 +21,46 @@ class SubMenuViewModel: BaseViewModel {
     
     var status = Variable<Int>(0)
     
-    fileprivate var parentMenuItem: MenuItem?
+    fileprivate var parentVC: HomeViewController?
+    fileprivate var subMenuItems: [MenuItem] = []
     fileprivate var indexPathPerviousSelection: IndexPath = IndexPath(row: 0, section: 0)
     
-//    init(parentMenuItem: MenuItem) {
-//        self.parentMenuItem = parentMenuItem
-//    }
+    func setSubscribers() {
+        self.parentVC?.viewModel.status.asObservable().subscribe(onNext: {
+            event in
+            if self.parentVC?.viewModel.status.value == TopMenuStatus.loaded.rawValue {
+                self.setSubMenuItems()
+                self.status.value = SubMenuStatus.firstPhaseLoaded.rawValue
+            }
+        })
+    }
     
-    // FIXME: Fix and update 
+    func setParentVC(vc: HomeViewController) {
+        self.parentVC = vc
+    }
+    
+    func setSubMenuItems() {
+        self.subMenuItems = (self.parentVC?.viewModel.getSubMenuItemsOfSelection())!
+    }
+    
+    func getSubMenuItems() -> [MenuItem]? {
+        return self.subMenuItems
+    }
+    
+    // FIXME: Fix and update
     
     func onItemClicked(indexPath: IndexPath) {
+        let menuItem = self.getSubMenuItems()![indexPath.row]
         self.setPreviousSelection(indexPath: indexPath)
-        self.textToSpech()
+        if !menuItem.disable_text_to_speech {
+            self.textToSpech(text: menuItem.translations[0].label_text_to_speech!)
+        }
+    }
+    
+    // FIXME: Remove hardcode language type
+    
+    func textToSpech(text: String) {
+        SpeechHelper.play(text: text, language: "en-US")
     }
     
     func setPreviousSelection(indexPath: IndexPath) {
@@ -44,6 +72,6 @@ class SubMenuViewModel: BaseViewModel {
     }
     
     func getBack() {
-        self.status.value = SubMenuStatus.topMenuShown.rawValue
+     
     }
 }

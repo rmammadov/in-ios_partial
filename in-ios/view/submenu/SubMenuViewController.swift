@@ -22,7 +22,17 @@ class SubMenuViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.setupCollectionView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.setViewModel()
+        self.setCollectionView()
+        self.setSubscribers()
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,36 +51,46 @@ class SubMenuViewController: BaseViewController {
     }
     */
     
-    func setupCollectionView() {
+}
+
+extension SubMenuViewController {
+    
+    func setViewModel() {
+        self.viewModel.setParentVC(vc: self.getParentViewController())
+        self.viewModel.setSubscribers()
+    }
+    
+    func setCollectionView() {
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         self.collectionView.register(UINib.init(nibName: nibNameSubMenuItem, bundle: nil), forCellWithReuseIdentifier:reuseIdentifier)
     }
     
+    func setSubscribers() {
+        self.viewModel.status.asObservable().subscribe(onNext: {
+            event in
+            self.collectionView.reloadData()
+        })
+    }
+    
     func getParentViewController() -> HomeViewController {
-        return  self.presentingViewController as! HomeViewController
+        return self.parent as! HomeViewController
     }
 }
+
 
 extension SubMenuViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     // MARK: UICollectionViewDataSource
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-    
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 10
+        return self.viewModel.getSubMenuItems()!.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! SubMenuItemCollectionViewCell
-        
-        // Configure the cell
+
+        cell.labelTitle.text = self.viewModel.getSubMenuItems()![indexPath.row].name
         
         return cell
     }

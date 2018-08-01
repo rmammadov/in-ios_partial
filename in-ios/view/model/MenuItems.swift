@@ -20,13 +20,17 @@ extension MenuItems {
     }
     
     func getTopMenuItems() -> Array<MenuItem>? {
-        var topMenuItems: Array<MenuItem> = []
         let menuItemTop = self.items?.filter{$0.name == Constant.menuConfiguration.NAME_TOP_MENU_ITEM}.first
         
-        for id in (menuItemTop?.sub_menu_item_item_ids)! {
-            topMenuItems.append((self.items?.filter{$0.id == id}.first)!)
+        return self.getSubMenuOf(item: menuItemTop!)
+    }
+    
+    func getSubMenuOf(item: MenuItem) -> Array<MenuItem>? {
+        var menuItems: Array<MenuItem> = []
+        for id in (item.sub_menu_item_item_ids) {
+            menuItems.append((self.items?.filter{$0.id == id}.first)!)
         }
         
-        return topMenuItems
+        return menuItems
     }
 }

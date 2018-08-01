@@ -9,6 +9,11 @@
 import Foundation
 import RxSwift
 
+enum TopMenuStatus: Int {
+    case notLoaded = 0
+    case loaded = 1
+}
+
 class HomeViewModel: BaseViewModel {
     
     // TODO: Get data types from model class
@@ -17,7 +22,7 @@ class HomeViewModel: BaseViewModel {
     
     fileprivate let requestHandler = ApiRequestHandler()
     fileprivate var menuItems: MenuItems?
-    fileprivate var vcSubMenu: SubMenuViewController?
+    fileprivate var menuItemSelectedIndex: Int = 0
     fileprivate var isBackButtonHidden = true
     
     // TODO: Update this method
@@ -27,21 +32,8 @@ class HomeViewModel: BaseViewModel {
             event in
             if self.requestHandler.getMenuItems() != nil {
                 self.menuItems = MenuItems(items: self.requestHandler.getMenuItems())
+                self.status.value = TopMenuStatus.loaded.rawValue
             }
-        })
-        
-        self.getSubMenuVC()?.viewModel.status.asObservable().subscribe(onNext: {
-            event in
-            switch self.getSubMenuVC()?.viewModel.status.value {
-            case SubMenuStatus.topMenuShown.rawValue:
-                self.setBackButtonStatus(status: true)
-            case SubMenuStatus.subMenuShown.rawValue:
-                self.setBackButtonStatus(status: false)
-            default:
-                self.setBackButtonStatus(status: true)
-            }
-            
-            self.status.value = (self.getSubMenuVC()?.viewModel.status.value)!
         })
     }
     
@@ -54,21 +46,20 @@ class HomeViewModel: BaseViewModel {
     }
     
     func getTopMenuItems() -> Array<MenuItem>? {
-        return (self.menuItems?.getTopMenuItems())
+        return self.menuItems?.getTopMenuItems()
     }
     
-    // FIXME: Remove hardcode language type
-    
-    func textToSpech(text: String) {
-         SpeechHelper.play(text: text, language: "en-US")
+    func onTopMenuItemSelected(index: Int) {
+        self.menuItemSelectedIndex = index
     }
     
-    func setSubMenuVC(vcSubMenu: SubMenuViewController) {
-        self.vcSubMenu = vcSubMenu
+    func getTopMenuItemSelected() -> Int {
+        return self.menuItemSelectedIndex
     }
     
-    func getSubMenuVC() -> SubMenuViewController? {
-        return self.vcSubMenu
+    func getSubMenuItemsOfSelection() -> Array<MenuItem>? {
+        let menuItemSelected = self.getTopMenuItems()![0]
+        return self.menuItems?.getSubMenuOf(item: menuItemSelected)
     }
     
     func setBackButtonStatus(status: Bool) {
@@ -80,6 +71,12 @@ class HomeViewModel: BaseViewModel {
     }
     
     func onClickBackButton() {
-        self.getSubMenuVC()?.viewModel.getBack()
+
+    }
+    
+    // FIXME: Remove hardcode language type
+    
+    func textToSpech(text: String) {
+        SpeechHelper.play(text: text, language: "en-US")
     }
 }

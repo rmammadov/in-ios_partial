@@ -8,7 +8,7 @@
 
 import UIKit
 
-private let segueIdentifier = "segueSubMenu"
+private let segueIdentifierSubMenu = "segueSubMenu"
 
 class HomeViewController: BaseViewController {
 
@@ -16,7 +16,7 @@ class HomeViewController: BaseViewController {
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var containerViewSubMenu: UIView!
     
-    fileprivate let viewModel = HomeViewModel()
+    let viewModel = HomeViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,9 +47,9 @@ class HomeViewController: BaseViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == segueIdentifier {
+        if segue.identifier == segueIdentifierSubMenu {
             if let vc = segue.destination as? SubMenuViewController {
-                self.viewModel.setSubMenuVC(vcSubMenu: vc)
+          
             }
         }
     }
@@ -63,7 +63,7 @@ extension HomeViewController {
     
     func setViewModel() {
         self.viewModel.setSubscribers()
-        self.viewModel.getMenuItems()
+        self.viewModel.requestData()
     }
     
     func setSubscribers() {
