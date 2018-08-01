@@ -17,6 +17,8 @@ enum SubMenuStatus: Int {
 
 class SubMenuViewModel: BaseViewModel {
     
+    // TODO: Get data types from model class
+    
     var status = Variable<Int>(0)
     
     fileprivate var parentMenuItem: MenuItem?
@@ -25,6 +27,8 @@ class SubMenuViewModel: BaseViewModel {
 //    init(parentMenuItem: MenuItem) {
 //        self.parentMenuItem = parentMenuItem
 //    }
+    
+    // FIXME: Fix and update 
     
     func onItemClicked(indexPath: IndexPath) {
         self.setPreviousSelection(indexPath: indexPath)
@@ -37,10 +41,6 @@ class SubMenuViewModel: BaseViewModel {
     
     func getPreviousSelection() -> IndexPath {
         return self.indexPathPerviousSelection
-    }
-    
-    func textToSpech() {
-        SpeechHelper.play(text: "You can omit the rate property entirely to have a natural-speed voice, or change the language to (English, American accent)(English, Australian accent) or whichever other accents Apple chooses to add in the future.", language: "en-US")
     }
     
     func getBack() {

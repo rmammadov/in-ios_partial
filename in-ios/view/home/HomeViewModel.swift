@@ -11,6 +11,8 @@ import RxSwift
 
 class HomeViewModel: BaseViewModel {
     
+    // TODO: Get data types from model class
+    
     var status = Variable<Int>(0)
     
     fileprivate let requestHandler = ApiRequestHandler()
@@ -18,6 +20,8 @@ class HomeViewModel: BaseViewModel {
     fileprivate var vcSubMenu: SubMenuViewController?
     fileprivate var isBackButtonHidden = true
     
+    // TODO: Update this method
+
     func setSubscribers() {
         self.requestHandler.status.asObservable().subscribe(onNext: {
             event in
@@ -52,6 +56,8 @@ class HomeViewModel: BaseViewModel {
     func getTopMenuItems() -> Array<MenuItem>? {
         return (self.menuItems?.getTopMenuItems())
     }
+    
+    // FIXME: Remove hardcode language type
     
     func textToSpech(text: String) {
          SpeechHelper.play(text: text, language: "en-US")
