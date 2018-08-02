@@ -22,10 +22,10 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ARu-G6-UEK">
-                                <rect key="frame" x="0.0" y="81" width="375" height="586"/>
+                                <rect key="frame" x="0.0" y="63" width="375" height="604"/>
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ewn-fj-3ue">
-                                        <rect key="frame" x="0.0" y="229" width="32" height="67"/>
+                                        <rect key="frame" x="0.0" y="247" width="32" height="67"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="67" id="ZXH-eD-WsK"/>
                                             <constraint firstAttribute="width" constant="32" id="iBv-AQ-9JD"/>
@@ -36,7 +36,7 @@
                                         </connections>
                                     </button>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iiL-Mh-1hh">
-                                        <rect key="frame" x="48" y="16" width="279" height="554"/>
+                                        <rect key="frame" x="48" y="16" width="279" height="572"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <segue destination="S2T-3t-DPL" kind="embed" identifier="segueSubMenu" id="5Ve-4T-gwY"/>
@@ -54,30 +54,33 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Zq-RT-v6y">
-                                <rect key="frame" x="0.0" y="20" width="375" height="61"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="43"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_gradient" translatesAutoresizingMaskIntoConstraints="NO" id="cVS-2f-YlA">
-                                        <rect key="frame" x="0.0" y="60" width="375" height="1"/>
+                                        <rect key="frame" x="0.0" y="42" width="375" height="1"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="fak-2b-WJf"/>
                                         </constraints>
                                     </imageView>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vSO-2M-N7o">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" scrollEnabled="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vSO-2M-N7o">
+                                        <rect key="frame" x="35.5" y="0.0" width="304" height="42"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gTo-7c-7Dk">
-                                            <size key="itemSize" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="304" id="E0J-wR-J6B"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="1" id="gTo-7c-7Dk">
+                                            <size key="itemSize" width="128" height="42"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="KAp-1p-gqh">
-                                                <rect key="frame" x="0.0" y="5" width="50" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="128" height="42"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="42"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </view>
                                             </collectionViewCell>
@@ -87,14 +90,13 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="vSO-2M-N7o" firstAttribute="leading" secondItem="9Zq-RT-v6y" secondAttribute="leading" id="09W-yR-Rwx"/>
                                     <constraint firstAttribute="trailing" secondItem="cVS-2f-YlA" secondAttribute="trailing" id="0Fq-Rk-L5v"/>
-                                    <constraint firstItem="cVS-2f-YlA" firstAttribute="top" secondItem="vSO-2M-N7o" secondAttribute="bottom" id="3iO-ae-We6"/>
-                                    <constraint firstItem="vSO-2M-N7o" firstAttribute="top" secondItem="9Zq-RT-v6y" secondAttribute="top" id="CdD-ov-9qz"/>
+                                    <constraint firstItem="vSO-2M-N7o" firstAttribute="top" secondItem="9Zq-RT-v6y" secondAttribute="top" id="1YJ-t6-Yy3"/>
                                     <constraint firstItem="cVS-2f-YlA" firstAttribute="leading" secondItem="9Zq-RT-v6y" secondAttribute="leading" id="S19-9y-9bK"/>
-                                    <constraint firstAttribute="trailing" secondItem="vSO-2M-N7o" secondAttribute="trailing" id="auu-jd-7Z4"/>
-                                    <constraint firstAttribute="height" constant="61" id="lRk-Gg-euU"/>
+                                    <constraint firstItem="vSO-2M-N7o" firstAttribute="centerX" secondItem="9Zq-RT-v6y" secondAttribute="centerX" id="jUg-sr-J6T"/>
+                                    <constraint firstAttribute="height" constant="43" id="lRk-Gg-euU"/>
                                     <constraint firstAttribute="bottom" secondItem="cVS-2f-YlA" secondAttribute="bottom" id="vog-9I-Qhy"/>
+                                    <constraint firstItem="cVS-2f-YlA" firstAttribute="top" secondItem="vSO-2M-N7o" secondAttribute="bottom" id="zdj-rI-uLF"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -132,11 +134,36 @@
             <objects>
                 <viewController id="S2T-3t-DPL" customClass="SubMenuViewController" customModule="in_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pYb-cg-l6j">
-                        <rect key="frame" x="0.0" y="0.0" width="279" height="554"/>
+                        <rect key="frame" x="0.0" y="0.0" width="279" height="572"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7J2-te-iIE">
-                                <rect key="frame" x="0.0" y="0.0" width="279" height="554"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XaZ-W9-mL8" userLabel="ViewStatus">
+                                <rect key="frame" x="0.0" y="0.0" width="279" height="572"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_circle_gradient_loading" translatesAutoresizingMaskIntoConstraints="NO" id="KT5-Rg-Bsv">
+                                        <rect key="frame" x="107" y="253.5" width="64" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="64" id="Nga-BB-h8P"/>
+                                            <constraint firstAttribute="height" constant="64" id="Vda-un-TDQ"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OcF-in-4aL">
+                                        <rect key="frame" x="112.5" y="333.5" width="54" height="17"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="OcF-in-4aL" firstAttribute="centerX" secondItem="XaZ-W9-mL8" secondAttribute="centerX" id="4er-0d-f8Q"/>
+                                    <constraint firstItem="KT5-Rg-Bsv" firstAttribute="centerX" secondItem="XaZ-W9-mL8" secondAttribute="centerX" id="K0T-f1-tCR"/>
+                                    <constraint firstItem="OcF-in-4aL" firstAttribute="top" secondItem="KT5-Rg-Bsv" secondAttribute="bottom" constant="16" id="d82-RB-JLI"/>
+                                    <constraint firstItem="KT5-Rg-Bsv" firstAttribute="centerY" secondItem="XaZ-W9-mL8" secondAttribute="centerY" id="g2F-Ob-ZoP"/>
+                                </constraints>
+                            </view>
+                            <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7J2-te-iIE">
+                                <rect key="frame" x="0.0" y="0.0" width="279" height="572"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tnq-cQ-evR">
@@ -162,18 +189,25 @@
                         <constraints>
                             <constraint firstItem="7J2-te-iIE" firstAttribute="bottom" secondItem="Pen-im-3Ef" secondAttribute="bottom" id="Ilj-Ny-OHT"/>
                             <constraint firstItem="7J2-te-iIE" firstAttribute="trailing" secondItem="Pen-im-3Ef" secondAttribute="trailing" id="R2F-Ns-rmT"/>
+                            <constraint firstItem="XaZ-W9-mL8" firstAttribute="leading" secondItem="Pen-im-3Ef" secondAttribute="leading" id="XX6-E5-a0F"/>
                             <constraint firstItem="7J2-te-iIE" firstAttribute="leading" secondItem="Pen-im-3Ef" secondAttribute="leading" id="hUs-Ls-2HC"/>
+                            <constraint firstItem="Pen-im-3Ef" firstAttribute="bottom" secondItem="XaZ-W9-mL8" secondAttribute="bottom" id="jyF-3j-6VX"/>
                             <constraint firstItem="7J2-te-iIE" firstAttribute="top" secondItem="pYb-cg-l6j" secondAttribute="top" id="pbS-RW-XHL"/>
+                            <constraint firstItem="XaZ-W9-mL8" firstAttribute="top" secondItem="pYb-cg-l6j" secondAttribute="top" id="si7-GS-WzL"/>
+                            <constraint firstItem="Pen-im-3Ef" firstAttribute="trailing" secondItem="XaZ-W9-mL8" secondAttribute="trailing" id="uBu-V2-0gz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Pen-im-3Ef"/>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="7J2-te-iIE" id="Ua0-bJ-UIO"/>
+                        <outlet property="icStatusIcon" destination="KT5-Rg-Bsv" id="mgu-0Q-CHn"/>
+                        <outlet property="labelStatus" destination="OcF-in-4aL" id="QLY-Ck-E0R"/>
+                        <outlet property="viewStatus" destination="XaZ-W9-mL8" id="Bdt-qg-X0C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jnl-Y4-UGu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1024.8" y="125.93703148425789"/>
+            <point key="canvasLocation" x="1024.8" y="125.4872563718141"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2n2-08-Obo">
@@ -193,6 +227,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_circle_gradient_loading" width="145" height="145"/>
         <image name="ic_side_btn" width="83" height="176"/>
         <image name="img_background" width="1366" height="1024"/>
         <image name="line_gradient" width="1367" height="3"/>

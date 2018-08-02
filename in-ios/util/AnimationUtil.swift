@@ -7,8 +7,16 @@
 //
 
 import UIKit
+import RxSwift
+
+enum AnimationStatus: Int {
+    case cancled = 0
+    case completed = 1
+}
 
 class AnimationUtil {
+    
+    static var status = Variable<Int>(0)
     
     static func animateSubMenuSelection(imageView: UIImageView) {
         imageView.image = #imageLiteral(resourceName: "ic_circle_gradient_loading")
@@ -16,6 +24,7 @@ class AnimationUtil {
         CATransaction.begin()
         CATransaction.setCompletionBlock({
             imageView.image = #imageLiteral(resourceName: "ic_circle_gradient_fill")
+            self.status.value += 1
         })
         let rotationAnimation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
         rotationAnimation.toValue = NSNumber(value: .pi * 2.0)
@@ -25,9 +34,26 @@ class AnimationUtil {
         imageView.layer.add(rotationAnimation, forKey: "rotationAnimation")
         CATransaction.commit()
     }
+
     
     static func cancelSubMenuSelection(imageView: UIImageView) {
         imageView.layer.removeAllAnimations()
         imageView.image = #imageLiteral(resourceName: "ic_circle_gradient")
+    }
+    
+    static func animateLoading(imageView: UIImageView) {
+        imageView.image = #imageLiteral(resourceName: "ic_circle_gradient_loading")
+        
+        CATransaction.begin()
+        CATransaction.setCompletionBlock({
+            
+        })
+        let rotationAnimation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotationAnimation.toValue = NSNumber(value: .pi * 2.0)
+        rotationAnimation.duration = 0.5;
+        rotationAnimation.isCumulative = true;
+        rotationAnimation.repeatCount = .infinity;
+        imageView.layer.add(rotationAnimation, forKey: "rotationAnimation")
+        CATransaction.commit()
     }
 }

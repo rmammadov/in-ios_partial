@@ -24,13 +24,20 @@ class SubMenuViewModel: BaseViewModel {
     fileprivate var parentVC: HomeViewController?
     fileprivate var subMenuItems: [MenuItem] = []
     fileprivate var indexPathPerviousSelection: IndexPath = IndexPath(row: 0, section: 0)
+    fileprivate var isBackBtnHidden = true
     
     func setSubscribers() {
         self.parentVC?.viewModel.status.asObservable().subscribe(onNext: {
             event in
             if self.parentVC?.viewModel.status.value == TopMenuStatus.loaded.rawValue {
-                self.setSubMenuItems()
-                self.status.value = SubMenuStatus.firstPhaseLoaded.rawValue
+                self.loadInitalMenuItems()
+            }
+        })
+        
+        self.parentVC?.viewModel.isBackBtnClicked.asObservable().subscribe(onNext: {
+            event in
+            if self.parentVC?.viewModel.status.value == TopMenuStatus.loaded.rawValue {
+                self.loadInitalMenuItems()
             }
         })
     }
@@ -39,8 +46,30 @@ class SubMenuViewModel: BaseViewModel {
         self.parentVC = vc
     }
     
-    func setSubMenuItems() {
-        self.subMenuItems = (self.parentVC?.viewModel.getSubMenuItemsOfSelection())!
+    func getParentVC() -> HomeViewController? {
+        return self.parentVC
+    }
+    
+    func loadInitalMenuItems() {
+        let selectedTopMenuItemIndex = self.parentVC?.viewModel.getTopMenuItemSelected().row
+        let selectedTopMenuItem = self.parentVC?.viewModel.getTopMenuItems()![selectedTopMenuItemIndex!]
+        self.loadSubMenuItemsOf(menuItem: selectedTopMenuItem!, topMenuClicked: true)
+        self.status.value = SubMenuStatus.firstPhaseLoaded.rawValue
+    }
+    
+    func loadSubMenuItemsOf(menuItem: MenuItem, topMenuClicked: Bool) {
+        let items = (self.parentVC?.viewModel.getSubMenuItemsOfSelected(menuItem: menuItem))!
+        if items.count != 0 || topMenuClicked {
+            self.setSubMenuItems(items: items)
+        } else {
+            if !menuItem.disable_text_to_speech {
+                self.textToSpech(text: menuItem.translations[0].label_text_to_speech!)
+            }
+        }
+    }
+    
+    func setSubMenuItems(items: [MenuItem]) {
+        self.subMenuItems = items
     }
     
     func getSubMenuItems() -> [MenuItem]? {
@@ -50,11 +79,10 @@ class SubMenuViewModel: BaseViewModel {
     // FIXME: Fix and update
     
     func onItemClicked(indexPath: IndexPath) {
-        let menuItem = self.getSubMenuItems()![indexPath.row]
         self.setPreviousSelection(indexPath: indexPath)
-        if !menuItem.disable_text_to_speech {
-            self.textToSpech(text: menuItem.translations[0].label_text_to_speech!)
-        }
+        let menuItem = self.getSubMenuItems()![indexPath.row]
+        self.loadSubMenuItemsOf(menuItem: menuItem, topMenuClicked: false)
+//        self.status.value = SubMenuStatus.secondPhaseLoaded.rawValue
     }
     
     // FIXME: Remove hardcode language type
@@ -71,7 +99,16 @@ class SubMenuViewModel: BaseViewModel {
         return self.indexPathPerviousSelection
     }
     
-    func getBack() {
-     
+    func getIsBackBtnHidden() -> Bool {
+        switch self.status.value {
+        case SubMenuStatus.firstPhaseLoaded.rawValue:
+            self.isBackBtnHidden = true
+        case SubMenuStatus.secondPhaseLoaded.rawValue:
+            self.isBackBtnHidden = false
+        default:
+            self.isBackBtnHidden = true
+        }
+        
+        return self.isBackBtnHidden
     }
 }

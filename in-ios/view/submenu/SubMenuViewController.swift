@@ -8,12 +8,15 @@
 
 import UIKit
 
-private let nibNameSubMenuItem = "SubMenuItemCollectionViewCell"
+private let nibSubMenuItem = "SubMenuItemCollectionViewCell"
 private let reuseIdentifier = "cellSubMenuItem"
 
 
 class SubMenuViewController: BaseViewController {
     
+    @IBOutlet weak var viewStatus: UIView!
+    @IBOutlet weak var icStatusIcon: UIImageView!
+    @IBOutlet weak var labelStatus: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
     let viewModel = SubMenuViewModel()
@@ -26,13 +29,12 @@ class SubMenuViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.onViewLoad()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.setViewModel()
-        self.setCollectionView()
-        self.setSubscribers()
+    
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,21 +57,44 @@ class SubMenuViewController: BaseViewController {
 
 extension SubMenuViewController {
     
+    func setLoadingScreen() {
+        self.labelStatus.text = "Loading"
+        AnimationUtil.animateLoading(imageView: self.icStatusIcon)
+    }
+    
+    func hideLoadingScreen() {
+        self.viewStatus.isHidden = true
+        self.collectionView.isHidden = false
+    }
+    
+    func onViewLoad() {
+        self.setLoadingScreen()
+        self.setViewModel()
+        self.setCollectionView()
+        self.setSubscribers()
+    }
+    
     func setViewModel() {
         self.viewModel.setParentVC(vc: self.getParentViewController())
         self.viewModel.setSubscribers()
     }
     
     func setCollectionView() {
+        self.collectionView.register(UINib.init(nibName: nibSubMenuItem, bundle: nil), forCellWithReuseIdentifier:reuseIdentifier)
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
-        self.collectionView.register(UINib.init(nibName: nibNameSubMenuItem, bundle: nil), forCellWithReuseIdentifier:reuseIdentifier)
     }
     
     func setSubscribers() {
         self.viewModel.status.asObservable().subscribe(onNext: {
             event in
-            self.collectionView.reloadData()
+            if self.viewModel.getParentVC()?.viewModel.status.value == TopMenuStatus.loaded.rawValue {
+                DispatchQueue.main.async {
+                    self.hideLoadingScreen()
+                    self.collectionView.reloadData()
+                    self.viewModel.getParentVC()?.viewModel.setBackButtonStatus(status: self.viewModel.getIsBackBtnHidden())
+                }
+            }
         })
     }
     

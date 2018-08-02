@@ -19,10 +19,12 @@ class HomeViewModel: BaseViewModel {
     // TODO: Get data types from model class
     
     var status = Variable<Int>(0)
+    var isBackBtnClicked = Variable<Int>(0)
     
     fileprivate let requestHandler = ApiRequestHandler()
     fileprivate var menuItems: MenuItems?
-    fileprivate var menuItemSelectedIndex: Int = 0
+    fileprivate var topMenuItems: [MenuItem] = []
+    fileprivate var topMenuItemSelectedIndex: IndexPath = IndexPath(row: 0, section: 0)
     fileprivate var isBackButtonHidden = true
     
     // TODO: Update this method
@@ -30,8 +32,11 @@ class HomeViewModel: BaseViewModel {
     func setSubscribers() {
         self.requestHandler.status.asObservable().subscribe(onNext: {
             event in
+             print("Printing JSON 0")
             if self.requestHandler.getMenuItems() != nil {
+                print("Printing JSON 1")
                 self.menuItems = MenuItems(items: self.requestHandler.getMenuItems())
+                self.setTopMenuItems()
                 self.status.value = TopMenuStatus.loaded.rawValue
             }
         })
@@ -45,21 +50,25 @@ class HomeViewModel: BaseViewModel {
         return self.menuItems?.getMenuItems()
     }
     
+    func setTopMenuItems() {
+        self.topMenuItems = (self.menuItems?.getTopMenuItems())!
+    }
+    
     func getTopMenuItems() -> Array<MenuItem>? {
-        return self.menuItems?.getTopMenuItems()
+        return self.topMenuItems
     }
     
-    func onTopMenuItemSelected(index: Int) {
-        self.menuItemSelectedIndex = index
+    func onTopMenuItemSelected(indexPath: IndexPath) {
+        self.topMenuItemSelectedIndex = indexPath
+        self.status.value = TopMenuStatus.loaded.rawValue
     }
     
-    func getTopMenuItemSelected() -> Int {
-        return self.menuItemSelectedIndex
+    func getTopMenuItemSelected() -> IndexPath {
+        return self.topMenuItemSelectedIndex
     }
     
-    func getSubMenuItemsOfSelection() -> Array<MenuItem>? {
-        let menuItemSelected = self.getTopMenuItems()![0]
-        return self.menuItems?.getSubMenuOf(item: menuItemSelected)
+    func getSubMenuItemsOfSelected(menuItem: MenuItem) -> Array<MenuItem>? {
+        return self.menuItems?.getSubMenuOf(item: menuItem)
     }
     
     func setBackButtonStatus(status: Bool) {
@@ -71,7 +80,7 @@ class HomeViewModel: BaseViewModel {
     }
     
     func onClickBackButton() {
-
+        self.isBackBtnClicked.value += 1
     }
     
     // FIXME: Remove hardcode language type

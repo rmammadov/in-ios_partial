@@ -51,6 +51,8 @@ class ApiRequestHandler {
             } catch let jsonErr {
                 print("Error serializing json",  jsonErr)
             }
+            
+            print("Printing JSON")
         }
 
         task.resume()
