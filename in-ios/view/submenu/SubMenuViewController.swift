@@ -96,6 +96,13 @@ extension SubMenuViewController {
                 }
             }
         })
+        
+        AnimationUtil.status.asObservable().subscribe(onNext: {
+            event in
+            if AnimationUtil.status.value == AnimationStatus.completed.rawValue {
+                self.viewModel.onItemLoadRequest(indexPath: self.viewModel.getSelection())
+            }
+        })
     }
     
     func getParentViewController() -> HomeViewController {
@@ -131,9 +138,9 @@ extension SubMenuViewController: UICollectionViewDelegate, UICollectionViewDataS
     // MARK: UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        AnimationUtil.cancelSubMenuSelection(imageView: self.getCellForIndexPath(indexPath: viewModel.getPreviousSelection()).ivStatusIcon)
+        AnimationUtil.cancelSubMenuSelection(imageView: self.getCellForIndexPath(indexPath: viewModel.getSelection()).ivStatusIcon)
         AnimationUtil.animateSubMenuSelection(imageView: self.getCellForIndexPath(indexPath: indexPath).ivStatusIcon)
-        self.viewModel.onItemClicked(indexPath: indexPath)
+        self.viewModel.setSelection(indexPath: indexPath)
     }
     
     func getCellForIndexPath(indexPath: IndexPath) -> SubMenuItemCollectionViewCell {

@@ -61,8 +61,10 @@ class SubMenuViewModel: BaseViewModel {
         let items = (self.parentVC?.viewModel.getSubMenuItemsOfSelected(menuItem: menuItem))!
         if items.count != 0 || topMenuClicked {
             self.setSubMenuItems(items: items)
+            print("LOADS ITEMS")
         } else {
             if !menuItem.disable_text_to_speech {
+                print("TEXT TO SPEECH")
                 self.textToSpech(text: menuItem.translations[0].label_text_to_speech!)
             }
         }
@@ -78,8 +80,7 @@ class SubMenuViewModel: BaseViewModel {
     
     // FIXME: Fix and update
     
-    func onItemClicked(indexPath: IndexPath) {
-        self.setPreviousSelection(indexPath: indexPath)
+    func onItemLoadRequest(indexPath: IndexPath) {
         let menuItem = self.getSubMenuItems()![indexPath.row]
         self.loadSubMenuItemsOf(menuItem: menuItem, topMenuClicked: false)
 //        self.status.value = SubMenuStatus.secondPhaseLoaded.rawValue
@@ -91,11 +92,11 @@ class SubMenuViewModel: BaseViewModel {
         SpeechHelper.play(text: text, language: "en-US")
     }
     
-    func setPreviousSelection(indexPath: IndexPath) {
+    func setSelection(indexPath: IndexPath) {
         self.indexPathPerviousSelection = indexPath
     }
     
-    func getPreviousSelection() -> IndexPath {
+    func getSelection() -> IndexPath {
         return self.indexPathPerviousSelection
     }
     
