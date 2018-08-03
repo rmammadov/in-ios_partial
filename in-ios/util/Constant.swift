@@ -10,17 +10,22 @@ import Foundation
 
 struct Constant {
     
-    struct defaultSetting {
+    struct DefaultConfig {
 
     }
     
-    struct url {
-        static let HOST_API_BETA = "http://api-beta1.innodem-neurosciences.com/"
-        static let URL_EXTENSION_API = "api/"
-        static let URL_EXTENSION_MENU_ITEMS = "menu-items"
+    struct Url {
+        static let HOST_API_BETA: String = "http://api-beta1.innodem-neurosciences.com/"
+        static let URL_EXTENSION_API: String = "api/"
+        static let URL_EXTENSION_MENU_ITEMS: String = "menu-items"
     }
     
-    struct menuConfiguration {
-        static let NAME_TOP_MENU_ITEM = "root"
+    struct MenuConfig {
+        static let NAME_TOP_MENU_ITEM: String = "root"
+    }
+    
+    struct AnimationConfig {
+        static let MENU_ITEM_ANIMATION_DURATION: Double = 4.0
+        static let MENU_ITEM_ANIMATION_COUNT: Float = 1.0
     }
 }

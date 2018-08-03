@@ -24,7 +24,7 @@ class ApiRequestHandler {
     }
     
     func requestMenuItems() {
-        let url = URL(string: Constant.url.HOST_API_BETA + Constant.url.URL_EXTENSION_API + Constant.url.URL_EXTENSION_MENU_ITEMS)!
+        let url = URL(string: Constant.Url.HOST_API_BETA + Constant.Url.URL_EXTENSION_API + Constant.Url.URL_EXTENSION_MENU_ITEMS)!
         
         let task = self.session.dataTask(with: url) { data, response, error in
             // ensure there is no error for this HTTP response

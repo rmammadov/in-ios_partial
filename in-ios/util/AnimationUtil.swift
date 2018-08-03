@@ -28,9 +28,9 @@ class AnimationUtil {
         })
         let rotationAnimation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
         rotationAnimation.toValue = NSNumber(value: .pi * 2.0)
-        rotationAnimation.duration = 0.5;
-        rotationAnimation.isCumulative = true;
-        rotationAnimation.repeatCount = 8;
+        rotationAnimation.duration = Constant.AnimationConfig.MENU_ITEM_ANIMATION_DURATION
+        rotationAnimation.isCumulative = true
+        rotationAnimation.repeatCount = Constant.AnimationConfig.MENU_ITEM_ANIMATION_COUNT
         imageView.layer.add(rotationAnimation, forKey: "rotationAnimation")
         CATransaction.commit()
     }

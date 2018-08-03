@@ -113,7 +113,7 @@ extension SubMenuViewController {
 }
 
 
-extension SubMenuViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension SubMenuViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // MARK: UICollectionViewDataSource
     
@@ -135,6 +135,15 @@ extension SubMenuViewController: UICollectionViewDelegate, UICollectionViewDataS
         cell.labelTitle.text = menuItem.name
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let cellWidth = self.collectionView.frame.size.width / 5
+        let cellHeight = self.collectionView.frame.size.height / 4
+        
+        return CGSize(width: cellWidth, height: cellHeight)
+        
     }
     
     // MARK: UICollectionViewDelegate

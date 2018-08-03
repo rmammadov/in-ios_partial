@@ -20,7 +20,7 @@ extension MenuItems {
     }
     
     func getTopMenuItems() -> Array<MenuItem>? {
-        let menuItemTop = self.items?.filter{$0.name == Constant.menuConfiguration.NAME_TOP_MENU_ITEM}.first
+        let menuItemTop = self.items?.filter{$0.name == Constant.MenuConfig.NAME_TOP_MENU_ITEM}.first
         
         return self.getSubMenuOf(item: menuItemTop!)
     }
