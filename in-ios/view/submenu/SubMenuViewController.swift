@@ -115,7 +115,15 @@ extension SubMenuViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! SubMenuItemCollectionViewCell
 
-        cell.labelTitle.text = self.viewModel.getSubMenuItems()![indexPath.row].name
+        let menuItem = self.viewModel.getSubMenuItems()![indexPath.row]
+        
+        if menuItem.icon != nil {
+            let url = URL(string: (menuItem.icon?.url)!)
+            cell.ivIcon.kf.indicatorType = .activity
+            cell.ivIcon.kf.setImage(with: url)
+        }
+        
+        cell.labelTitle.text = menuItem.name
         
         return cell
     }

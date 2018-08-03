@@ -17,6 +17,7 @@
 		F32D99CC21117EE8007AAA8D /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D99CB21117EE8007AAA8D /* BaseModel.swift */; };
 		F331EA7F211303880000B4E6 /* TopMenuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331EA7D211303880000B4E6 /* TopMenuItemCollectionViewCell.swift */; };
 		F331EA80211303880000B4E6 /* TopMenuItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F331EA7E211303880000B4E6 /* TopMenuItemCollectionViewCell.xib */; };
+		F331EA8221136F4F0000B4E6 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331EA8121136F4F0000B4E6 /* UIImageView.swift */; };
 		F334ADBC2104E7970056824A /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334ADBB2104E7970056824A /* CameraManager.swift */; };
 		F334ADBE2105DA4A0056824A /* SpeechHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334ADBD2105DA490056824A /* SpeechHelper.swift */; };
 		F334ADC02106E86F0056824A /* NavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334ADBF2106E86E0056824A /* NavigationHelper.swift */; };
@@ -78,6 +79,7 @@
 		F32D99CB21117EE8007AAA8D /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
 		F331EA7D211303880000B4E6 /* TopMenuItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		F331EA7E211303880000B4E6 /* TopMenuItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopMenuItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		F331EA8121136F4F0000B4E6 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		F334ADBB2104E7970056824A /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		F334ADBD2105DA490056824A /* SpeechHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechHelper.swift; sourceTree = "<group>"; };
 		F334ADBF2106E86E0056824A /* NavigationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHelper.swift; sourceTree = "<group>"; };
@@ -182,6 +184,14 @@
 			path = submenu;
 			sourceTree = "<group>";
 		};
+		F331EA8321136F5C0000B4E6 /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				F331EA8121136F4F0000B4E6 /* UIImageView.swift */,
+			);
+			path = extension;
+			sourceTree = "<group>";
+		};
 		F334ADC1210B35570056824A /* api */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +235,7 @@
 		F336587B20D318C300B18CEC /* in-ios */ = {
 			isa = PBXGroup;
 			children = (
+				F331EA8321136F5C0000B4E6 /* extension */,
 				F33658AC20D3197100B18CEC /* view */,
 				F33658AB20D3196C00B18CEC /* util */,
 				F33658AA20D3196500B18CEC /* helper */,
@@ -454,6 +465,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-in-ios/Pods-in-ios-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -461,6 +473,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -537,6 +550,7 @@
 				F334ADBE2105DA4A0056824A /* SpeechHelper.swift in Sources */,
 				F39059BF210F254C00CAA292 /* AnimationUtil.swift in Sources */,
 				F334ADC5210B3BC00056824A /* ApiRequestHandler.swift in Sources */,
+				F331EA8221136F4F0000B4E6 /* UIImageView.swift in Sources */,
 				F336587F20D318C300B18CEC /* BaseViewController.swift in Sources */,
 				F3F4148C20F5F82000CF101D /* ReachabilityManager.swift in Sources */,
 				F334ADC8210D7A370056824A /* MenuItem.swift in Sources */,

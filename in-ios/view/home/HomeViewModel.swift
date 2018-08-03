@@ -32,9 +32,7 @@ class HomeViewModel: BaseViewModel {
     func setSubscribers() {
         self.requestHandler.status.asObservable().subscribe(onNext: {
             event in
-             print("Printing JSON 0")
             if self.requestHandler.getMenuItems() != nil {
-                print("Printing JSON 1")
                 self.menuItems = MenuItems(items: self.requestHandler.getMenuItems())
                 self.setTopMenuItems()
                 self.status.value = TopMenuStatus.loaded.rawValue

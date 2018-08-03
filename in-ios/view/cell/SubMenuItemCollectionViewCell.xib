@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -30,8 +31,12 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_icon_draft" translatesAutoresizingMaskIntoConstraints="NO" id="6MF-pU-T87">
-                        <rect key="frame" x="12" y="12" width="40" height="40"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_search" translatesAutoresizingMaskIntoConstraints="NO" id="6MF-pU-T87">
+                        <rect key="frame" x="16" y="16" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="32" id="RPS-kH-iom"/>
+                            <constraint firstAttribute="height" constant="32" id="tFu-vy-xfa"/>
+                        </constraints>
                     </imageView>
                 </subviews>
             </view>
@@ -41,14 +46,12 @@
                 <constraint firstItem="M3Q-0P-NaS" firstAttribute="top" secondItem="EJV-8z-gLK" secondAttribute="bottom" id="9lp-MZ-P2k"/>
                 <constraint firstItem="M3Q-0P-NaS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="B9P-yl-6Im"/>
                 <constraint firstItem="EJV-8z-gLK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Cp2-s1-10c"/>
+                <constraint firstItem="6MF-pU-T87" firstAttribute="centerX" secondItem="EJV-8z-gLK" secondAttribute="centerX" id="HcC-7y-j6M"/>
                 <constraint firstAttribute="trailing" secondItem="M3Q-0P-NaS" secondAttribute="trailing" id="PJz-aE-2gX"/>
                 <constraint firstAttribute="trailing" secondItem="EJV-8z-gLK" secondAttribute="trailing" id="UyK-Dy-Jun"/>
                 <constraint firstItem="EJV-8z-gLK" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="WCc-6q-DF0"/>
-                <constraint firstItem="6MF-pU-T87" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="12" id="lpv-fS-NP6"/>
-                <constraint firstItem="M3Q-0P-NaS" firstAttribute="top" secondItem="6MF-pU-T87" secondAttribute="bottom" constant="12" id="oRi-tj-bME"/>
+                <constraint firstItem="6MF-pU-T87" firstAttribute="centerY" secondItem="EJV-8z-gLK" secondAttribute="centerY" id="hgu-AS-H0X"/>
                 <constraint firstAttribute="bottom" secondItem="M3Q-0P-NaS" secondAttribute="bottom" id="q3D-jU-maD"/>
-                <constraint firstAttribute="trailing" secondItem="6MF-pU-T87" secondAttribute="trailing" constant="12" id="r66-b7-Ojp"/>
-                <constraint firstItem="6MF-pU-T87" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="12" id="zmh-K3-4bY"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>
@@ -60,6 +63,6 @@
     </objects>
     <resources>
         <image name="ic_circle_gradient" width="176" height="176"/>
-        <image name="ic_icon_draft" width="84" height="63"/>
+        <image name="ic_search" width="31" height="31"/>
     </resources>
 </document>

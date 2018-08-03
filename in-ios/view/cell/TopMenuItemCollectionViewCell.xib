@@ -51,11 +51,11 @@
                                             <constraint firstAttribute="width" constant="26" id="c1U-8b-4lr"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_top_menu_draft" translatesAutoresizingMaskIntoConstraints="NO" id="sbk-bo-uQx">
-                                        <rect key="frame" x="5" y="2" width="16" height="16"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_search" translatesAutoresizingMaskIntoConstraints="NO" id="sbk-bo-uQx">
+                                        <rect key="frame" x="6.5" y="3.5" width="13" height="13"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="16" id="de6-2v-dal"/>
-                                            <constraint firstAttribute="height" constant="16" id="do5-R3-onC"/>
+                                            <constraint firstAttribute="width" constant="13" id="de6-2v-dal"/>
+                                            <constraint firstAttribute="height" constant="13" id="do5-R3-onC"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
@@ -107,7 +107,7 @@
     </objects>
     <resources>
         <image name="ic_circle_gradient_fill" width="145" height="145"/>
-        <image name="ic_top_menu_draft" width="31" height="31"/>
+        <image name="ic_search" width="31" height="31"/>
         <image name="line_blue_highlight" width="325" height="7"/>
     </resources>
 </document>

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 private let segueIdentifierSubMenu = "segueSubMenu"
 private let nibTopMenuItem = "TopMenuItemCollectionViewCell"
@@ -107,6 +108,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         let menuItem = self.viewModel.getTopMenuItems()![indexPath.row]
         
+        if menuItem.icon != nil {
+            let url = URL(string: (menuItem.icon?.url)!)
+            cell.ivIcon.kf.indicatorType = .activity
+            cell.ivIcon.kf.setImage(with: url)
+        }
+        
         cell.labelPassive.text = menuItem.name
         cell.labelActive.text = menuItem.name
         
@@ -141,6 +148,25 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let currentActiveCell = self.getCellForIndexPath(indexPath: indexPath)
         currentActiveCell.labelPassive.isHidden = true
         currentActiveCell.viewActive.isHidden = false
+    }
+    
+    func drawPDFfromURL(url: URL) -> UIImage? {
+        guard let document = CGPDFDocument(url as CFURL) else { return nil }
+        guard let page = document.page(at: 1) else { return nil }
+        
+        let pageRect = page.getBoxRect(.mediaBox)
+        let renderer = UIGraphicsImageRenderer(size: pageRect.size)
+        let img = renderer.image { ctx in
+            UIColor.white.set()
+            ctx.fill(pageRect)
+            
+            ctx.cgContext.translateBy(x: 0.0, y: pageRect.size.height)
+            ctx.cgContext.scaleBy(x: 1.0, y: -1.0)
+            
+            ctx.cgContext.drawPDFPage(page)
+        }
+        
+        return img
     }
 }
 
