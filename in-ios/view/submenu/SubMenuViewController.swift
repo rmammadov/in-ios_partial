@@ -57,8 +57,10 @@ class SubMenuViewController: BaseViewController {
 
 extension SubMenuViewController {
     
+    // TODO: Put strings in resource file
+    
     func setLoadingScreen() {
-        self.labelStatus.text = "Loading"
+        self.labelStatus.text = "Loading content..."
         AnimationUtil.animateLoading(imageView: self.icStatusIcon)
     }
     

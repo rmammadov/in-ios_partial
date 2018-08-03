@@ -61,10 +61,11 @@ class SubMenuViewModel: BaseViewModel {
         let items = (self.parentVC?.viewModel.getSubMenuItemsOfSelected(menuItem: menuItem))!
         if items.count != 0 || topMenuClicked {
             self.setSubMenuItems(items: items)
-            print("LOADS ITEMS")
+            if !topMenuClicked {
+                self.status.value = SubMenuStatus.secondPhaseLoaded.rawValue
+            }
         } else {
             if !menuItem.disable_text_to_speech {
-                print("TEXT TO SPEECH")
                 self.textToSpech(text: menuItem.translations[0].label_text_to_speech!)
             }
         }
@@ -83,7 +84,6 @@ class SubMenuViewModel: BaseViewModel {
     func onItemLoadRequest(indexPath: IndexPath) {
         let menuItem = self.getSubMenuItems()![indexPath.row]
         self.loadSubMenuItemsOf(menuItem: menuItem, topMenuClicked: false)
-//        self.status.value = SubMenuStatus.secondPhaseLoaded.rawValue
     }
     
     // FIXME: Remove hardcode language type
