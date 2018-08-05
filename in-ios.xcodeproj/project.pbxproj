@@ -43,6 +43,7 @@
 		F3C48CCB210F018200742855 /* SubMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C48CCA210F018200742855 /* SubMenuViewController.swift */; };
 		F3DC2DAB20F8ADBA00CC276F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DC2DAA20F8ADBA00CC276F /* Reachability.swift */; };
 		F3F4148C20F5F82000CF101D /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F4148B20F5F82000CF101D /* ReachabilityManager.swift */; };
+		F3F8648321175BEE00B7CAA8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3F8648221175BEE00B7CAA8 /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		F3C48CCA210F018200742855 /* SubMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMenuViewController.swift; sourceTree = "<group>"; };
 		F3DC2DAA20F8ADBA00CC276F /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		F3F4148B20F5F82000CF101D /* ReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
+		F3F8648221175BEE00B7CAA8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +244,7 @@
 				F334ADC1210B35570056824A /* api */,
 				F336587C20D318C300B18CEC /* AppDelegate.swift */,
 				F336588320D318CA00B18CEC /* Assets.xcassets */,
+				F3F8648221175BEE00B7CAA8 /* Colors.xcassets */,
 				F336588820D318CA00B18CEC /* Info.plist */,
 				F352854D20D3CED500E973C8 /* GoogleService-Info.plist */,
 			);
@@ -437,6 +440,7 @@
 				F336588420D318CA00B18CEC /* Assets.xcassets in Resources */,
 				F331EA80211303880000B4E6 /* TopMenuItemCollectionViewCell.xib in Resources */,
 				F336588220D318C300B18CEC /* Main.storyboard in Resources */,
+				F3F8648321175BEE00B7CAA8 /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
