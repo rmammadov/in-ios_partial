@@ -17,6 +17,8 @@ class HomeViewController: BaseViewController {
 
     @IBOutlet weak var collectionTopMenu: UICollectionView!
     @IBOutlet weak var btnBack: UIButton!
+    @IBOutlet weak var btnSpeak: UIButton!
+    @IBOutlet weak var labelSubMenuTitle: UILabel!
     @IBOutlet weak var containerViewSubMenu: UIView!
     
     let viewModel = HomeViewModel()
@@ -57,6 +59,10 @@ class HomeViewController: BaseViewController {
     
     @IBAction func onClickBackBtn(_ sender: Any) {
         self.viewModel.onClickBackButton()
+    }
+    
+    @IBAction func onClickSpeakBtn(_ sender: Any) {
+        
     }
 }
 

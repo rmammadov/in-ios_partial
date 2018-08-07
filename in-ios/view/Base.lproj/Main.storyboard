@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,32 +27,55 @@
                                 <rect key="frame" x="0.0" y="86" width="1112" height="748"/>
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ewn-fj-3ue">
-                                        <rect key="frame" x="0.0" y="307.5" width="32" height="67"/>
+                                        <rect key="frame" x="0.0" y="274" width="63" height="134"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="67" id="ZXH-eD-WsK"/>
-                                            <constraint firstAttribute="width" constant="32" id="iBv-AQ-9JD"/>
+                                            <constraint firstAttribute="width" secondItem="Ewn-fj-3ue" secondAttribute="height" multiplier="83:176" id="JDz-V6-LtC"/>
                                         </constraints>
-                                        <state key="normal" image="ic_side_btn"/>
+                                        <state key="normal" image="ic_side_btn_back"/>
                                         <connections>
                                             <action selector="onClickBackBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VjG-Sq-ok3"/>
                                         </connections>
                                     </button>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iiL-Mh-1hh">
-                                        <rect key="frame" x="48" y="16" width="1016" height="716"/>
+                                        <rect key="frame" x="79" y="32" width="954" height="700"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <segue destination="S2T-3t-DPL" kind="embed" identifier="segueSubMenu" id="5Ve-4T-gwY"/>
                                         </connections>
                                     </containerView>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="68a-c1-ZZ7">
+                                        <rect key="frame" x="1049" y="277.5" width="63" height="127"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="68a-c1-ZZ7" secondAttribute="height" multiplier="87:175" id="Bcq-IZ-FOV"/>
+                                        </constraints>
+                                        <state key="normal" image="ic_side_btn_speak"/>
+                                        <connections>
+                                            <action selector="onClickSpeakBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qb5-54-Wka"/>
+                                        </connections>
+                                    </button>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bk-Kg-mh9">
+                                        <rect key="frame" x="543.5" y="4" width="25" height="12"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="12" id="Oen-Z0-Gzx"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="iiL-Mh-1hh" secondAttribute="trailing" constant="48" id="4BI-Yl-Dd5"/>
                                     <constraint firstItem="iiL-Mh-1hh" firstAttribute="leading" secondItem="Ewn-fj-3ue" secondAttribute="trailing" constant="16" id="DdN-cM-Kj3"/>
-                                    <constraint firstItem="iiL-Mh-1hh" firstAttribute="top" secondItem="ARu-G6-UEK" secondAttribute="top" constant="16" id="Gnm-KL-zbo"/>
+                                    <constraint firstAttribute="trailing" secondItem="68a-c1-ZZ7" secondAttribute="trailing" id="INt-WT-QBt"/>
+                                    <constraint firstItem="iiL-Mh-1hh" firstAttribute="top" secondItem="9bk-Kg-mh9" secondAttribute="bottom" constant="16" id="Nzr-C5-B6y"/>
+                                    <constraint firstItem="9bk-Kg-mh9" firstAttribute="centerX" secondItem="ARu-G6-UEK" secondAttribute="centerX" id="O0v-tM-P7L"/>
+                                    <constraint firstItem="9bk-Kg-mh9" firstAttribute="top" secondItem="ARu-G6-UEK" secondAttribute="top" constant="4" id="OjQ-RK-feD"/>
                                     <constraint firstAttribute="bottom" secondItem="iiL-Mh-1hh" secondAttribute="bottom" constant="16" id="YKa-FC-Tpj"/>
+                                    <constraint firstItem="68a-c1-ZZ7" firstAttribute="width" secondItem="iiL-Mh-1hh" secondAttribute="width" multiplier="0.066" id="jVr-qo-cKq"/>
                                     <constraint firstItem="Ewn-fj-3ue" firstAttribute="leading" secondItem="ARu-G6-UEK" secondAttribute="leading" id="qaB-Nl-OV5"/>
+                                    <constraint firstItem="Ewn-fj-3ue" firstAttribute="width" secondItem="iiL-Mh-1hh" secondAttribute="width" multiplier="0.066" id="wR2-vZ-iug"/>
+                                    <constraint firstItem="68a-c1-ZZ7" firstAttribute="leading" secondItem="iiL-Mh-1hh" secondAttribute="trailing" constant="16" id="wfW-jl-ilS"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Zq-RT-v6y">
@@ -113,6 +138,7 @@
                             <constraint firstItem="9Zq-RT-v6y" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="MYs-3E-TEq"/>
                             <constraint firstItem="ARu-G6-UEK" firstAttribute="top" secondItem="9Zq-RT-v6y" secondAttribute="bottom" id="OJQ-mz-qsD"/>
                             <constraint firstItem="9Zq-RT-v6y" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Sdg-Gn-UZa"/>
+                            <constraint firstItem="68a-c1-ZZ7" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="gTs-ub-HWA"/>
                             <constraint firstItem="9Zq-RT-v6y" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gsY-rl-6Ug"/>
                             <constraint firstItem="8sU-uA-xuD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="k27-B1-hAf"/>
                         </constraints>
@@ -122,34 +148,36 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="btnBack" destination="Ewn-fj-3ue" id="b1s-gi-MoJ"/>
+                        <outlet property="btnSpeak" destination="68a-c1-ZZ7" id="SeO-EX-fR8"/>
                         <outlet property="collectionTopMenu" destination="vSO-2M-N7o" id="CP8-O9-2fY"/>
                         <outlet property="containerViewSubMenu" destination="iiL-Mh-1hh" id="5Kc-sz-wnE"/>
+                        <outlet property="labelSubMenuTitle" destination="9bk-Kg-mh9" id="Rls-Xo-Apq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="232.80000000000001" y="125.4872563718141"/>
+            <point key="canvasLocation" x="232.55395683453239" y="125.17985611510792"/>
         </scene>
         <!--Sub Menu View Controller-->
         <scene sceneID="f0M-vB-Icx">
             <objects>
                 <viewController id="S2T-3t-DPL" customClass="SubMenuViewController" customModule="in_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pYb-cg-l6j">
-                        <rect key="frame" x="0.0" y="0.0" width="1016" height="716"/>
+                        <rect key="frame" x="0.0" y="0.0" width="954" height="700"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XaZ-W9-mL8" userLabel="ViewStatus">
-                                <rect key="frame" x="0.0" y="0.0" width="1016" height="716"/>
+                                <rect key="frame" x="0.0" y="0.0" width="954" height="700"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_circle_gradient_loading" translatesAutoresizingMaskIntoConstraints="NO" id="KT5-Rg-Bsv">
-                                        <rect key="frame" x="475.5" y="325.5" width="64" height="64"/>
+                                        <rect key="frame" x="445" y="317.5" width="64" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="64" id="Nga-BB-h8P"/>
                                             <constraint firstAttribute="height" constant="64" id="Vda-un-TDQ"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OcF-in-4aL">
-                                        <rect key="frame" x="481" y="405.5" width="54" height="17"/>
+                                        <rect key="frame" x="450.5" y="397.5" width="54" height="17"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -164,7 +192,7 @@
                                 </constraints>
                             </view>
                             <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7J2-te-iIE">
-                                <rect key="frame" x="0.0" y="0.0" width="1016" height="716"/>
+                                <rect key="frame" x="0.0" y="0.0" width="954" height="700"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="tnq-cQ-evR">
@@ -229,7 +257,8 @@
     </scenes>
     <resources>
         <image name="ic_circle_gradient_loading" width="145" height="145"/>
-        <image name="ic_side_btn" width="83" height="176"/>
+        <image name="ic_side_btn_back" width="83" height="176"/>
+        <image name="ic_side_btn_speak" width="87" height="175"/>
         <image name="line_gradient" width="1367" height="3"/>
     </resources>
 </document>
