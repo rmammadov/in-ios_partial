@@ -9,16 +9,13 @@
 import UIKit
 import Kingfisher
 
-private let segueIdentifierSubMenu = "segueSubMenu"
+private let segueIdentifierMenu = "segueMenu"
 private let nibTopMenuItem = "TopMenuItemCollectionViewCell"
 private let reuseIdentifier = "cellTopMenuItem"
 
 class HomeViewController: BaseViewController {
 
     @IBOutlet weak var collectionTopMenu: UICollectionView!
-    @IBOutlet weak var btnBack: UIButton!
-    @IBOutlet weak var btnSpeak: UIButton!
-    @IBOutlet weak var labelSubMenuTitle: UILabel!
     @IBOutlet weak var containerViewSubMenu: UIView!
     
     let viewModel = HomeViewModel()
@@ -27,9 +24,7 @@ class HomeViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.setViewModel()
-        self.setCollectionView()
-        self.setSubscribers()
+        self.setUi()
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,7 +34,6 @@ class HomeViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.hideNavigationBar()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -52,25 +46,20 @@ class HomeViewController: BaseViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == segueIdentifierSubMenu {
-          
-        }
-    }
-    
-    @IBAction func onClickBackBtn(_ sender: Any) {
-        self.viewModel.onClickBackButton()
-    }
-    
-    @IBAction func onClickSpeakBtn(_ sender: Any) {
-        
+
     }
 }
 
 extension HomeViewController {
 
+    func setUi() {
+        self.setViewModel()
+        self.setCollectionView()
+        self.setSubscribers()
+    }
+    
     func setViewModel() {
-        self.viewModel.setSubscribers()
-        self.viewModel.requestData()
+        self.viewModel.setData()
     }
     
     func setCollectionView() {
@@ -85,19 +74,14 @@ extension HomeViewController {
             event in
             if self.viewModel.status.value == TopMenuStatus.loaded.rawValue {
                 DispatchQueue.main.async {
-                    self.setUi()
+                    self.updateUi()
                 }
             }
         })
     }
     
-    func setUi() {
+    func updateUi() {
         self.collectionTopMenu.reloadData()
-        self.setBackButtonStatus()
-    }
-    
-    func setBackButtonStatus() {
-        self.btnBack.isHidden = self.viewModel.getBackButtonStatus()
     }
 }
 

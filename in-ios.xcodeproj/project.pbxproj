@@ -12,7 +12,7 @@
 		EBB9649107BA3B79B3DEADC2 /* Pods_in_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34F1CB61519AF79B98BDA34B /* Pods_in_ios.framework */; };
 		F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3216B5520F4EA15008D6EFD /* HomeViewController.swift */; };
 		F32D99C621117E79007AAA8D /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D99C521117E79007AAA8D /* HomeModel.swift */; };
-		F32D99C821117E8A007AAA8D /* SubMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D99C721117E8A007AAA8D /* SubMenuModel.swift */; };
+		F32D99C821117E8A007AAA8D /* MenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D99C721117E8A007AAA8D /* MenuModel.swift */; };
 		F32D99CA21117EC7007AAA8D /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D99C921117EC7007AAA8D /* BaseViewModel.swift */; };
 		F32D99CC21117EE8007AAA8D /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D99CB21117EE8007AAA8D /* BaseModel.swift */; };
 		F331EA7F211303880000B4E6 /* TopMenuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331EA7D211303880000B4E6 /* TopMenuItemCollectionViewCell.swift */; };
@@ -21,10 +21,14 @@
 		F334ADBC2104E7970056824A /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334ADBB2104E7970056824A /* CameraManager.swift */; };
 		F334ADBE2105DA4A0056824A /* SpeechHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334ADBD2105DA490056824A /* SpeechHelper.swift */; };
 		F334ADC02106E86F0056824A /* NavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334ADBF2106E86E0056824A /* NavigationHelper.swift */; };
-		F334ADC3210B35EE0056824A /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334ADC2210B35EE0056824A /* ApiManager.swift */; };
 		F334ADC5210B3BC00056824A /* ApiRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334ADC4210B3BC00056824A /* ApiRequestHandler.swift */; };
 		F334ADC8210D7A370056824A /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334ADC7210D7A370056824A /* MenuItem.swift */; };
 		F334ADCA210D7F890056824A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334ADC9210D7F890056824A /* HomeViewModel.swift */; };
+		F3355CE82121E04F009AF602 /* InputScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3355CE72121E04F009AF602 /* InputScreen.swift */; };
+		F3355CEA2122BE79009AF602 /* InputScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3355CE92122BE79009AF602 /* InputScreens.swift */; };
+		F3355CED2122E88C009AF602 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3355CEC2122E88C009AF602 /* LoadingViewController.swift */; };
+		F3355CEF2122E8F3009AF602 /* LoadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3355CEE2122E8F3009AF602 /* LoadingViewModel.swift */; };
+		F3355CF12122E904009AF602 /* LoadingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3355CF02122E904009AF602 /* LoadingModel.swift */; };
 		F336587D20D318C300B18CEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336587C20D318C300B18CEC /* AppDelegate.swift */; };
 		F336587F20D318C300B18CEC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336587E20D318C300B18CEC /* BaseViewController.swift */; };
 		F336588220D318C300B18CEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F336588020D318C300B18CEC /* Main.storyboard */; };
@@ -33,15 +37,25 @@
 		F336589220D318CB00B18CEC /* in_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336589120D318CB00B18CEC /* in_iosTests.swift */; };
 		F336589D20D318CB00B18CEC /* in_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336589C20D318CB00B18CEC /* in_iosUITests.swift */; };
 		F33658AE20D3198000B18CEC /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33658AD20D3198000B18CEC /* Constant.swift */; };
+		F33F0BCF2121B11C002E31B9 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33F0BCE2121B11C002E31B9 /* DataManager.swift */; };
 		F34B909B20D46FA100800FCD /* DisplayHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34B909A20D46FA100800FCD /* DisplayHelper.swift */; };
 		F352854E20D3CED500E973C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F352854D20D3CED500E973C8 /* GoogleService-Info.plist */; };
-		F39059BA210F09C800CAA292 /* SubMenuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059B8210F09C800CAA292 /* SubMenuItemCollectionViewCell.swift */; };
-		F39059BB210F09C800CAA292 /* SubMenuItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F39059B9210F09C800CAA292 /* SubMenuItemCollectionViewCell.xib */; };
+		F39059BB210F09C800CAA292 /* MenuItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F39059B9210F09C800CAA292 /* MenuItemCollectionViewCell.xib */; };
 		F39059BF210F254C00CAA292 /* AnimationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059BE210F254C00CAA292 /* AnimationUtil.swift */; };
-		F39059C1210F290F00CAA292 /* SubMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059C0210F290F00CAA292 /* SubMenuViewModel.swift */; };
+		F39059C1210F290F00CAA292 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059C0210F290F00CAA292 /* MenuViewModel.swift */; };
 		F39059C32110473D00CAA292 /* MenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059C22110473D00CAA292 /* MenuItems.swift */; };
-		F3C48CCB210F018200742855 /* SubMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C48CCA210F018200742855 /* SubMenuViewController.swift */; };
+		F3C48CCB210F018200742855 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C48CCA210F018200742855 /* MenuViewController.swift */; };
 		F3DC2DAB20F8ADBA00CC276F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DC2DAA20F8ADBA00CC276F /* Reachability.swift */; };
+		F3E19CA6211B10FF00ADE838 /* HomeContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E19CA5211B10FF00ADE838 /* HomeContainerViewController.swift */; };
+		F3E19CAA211C3CDB00ADE838 /* HomeContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E19CA9211C3CDB00ADE838 /* HomeContainerViewModel.swift */; };
+		F3E19CAC211C3CEE00ADE838 /* HomeContainerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E19CAB211C3CEE00ADE838 /* HomeContainerModel.swift */; };
+		F3E19CAE211C3D6400ADE838 /* InputAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E19CAD211C3D6400ADE838 /* InputAViewController.swift */; };
+		F3E19CB0211C3DA500ADE838 /* InputAViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E19CAF211C3DA500ADE838 /* InputAViewModel.swift */; };
+		F3E19CB2211C3DB400ADE838 /* InputAModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E19CB1211C3DB400ADE838 /* InputAModel.swift */; };
+		F3E19CB6211D827000ADE838 /* MenuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E19CB5211D827000ADE838 /* MenuItemCollectionViewCell.swift */; };
+		F3E19CB9211D835500ADE838 /* SubMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E19CB8211D835500ADE838 /* SubMenuViewController.swift */; };
+		F3E19CBB211D836B00ADE838 /* SubMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E19CBA211D836B00ADE838 /* SubMenuViewModel.swift */; };
+		F3E19CBD211D837900ADE838 /* SubMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E19CBC211D837900ADE838 /* SubMenuModel.swift */; };
 		F3F4148C20F5F82000CF101D /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F4148B20F5F82000CF101D /* ReachabilityManager.swift */; };
 		F3F8648321175BEE00B7CAA8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3F8648221175BEE00B7CAA8 /* Colors.xcassets */; };
 /* End PBXBuildFile section */
@@ -75,7 +89,7 @@
 		CD04B635ED8D31675FC0A57D /* Pods-in-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-in-ios/Pods-in-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		F3216B5520F4EA15008D6EFD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = "in-ios/view/home/HomeViewController.swift"; sourceTree = SOURCE_ROOT; };
 		F32D99C521117E79007AAA8D /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
-		F32D99C721117E8A007AAA8D /* SubMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMenuModel.swift; sourceTree = "<group>"; };
+		F32D99C721117E8A007AAA8D /* MenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuModel.swift; sourceTree = "<group>"; };
 		F32D99C921117EC7007AAA8D /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		F32D99CB21117EE8007AAA8D /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
 		F331EA7D211303880000B4E6 /* TopMenuItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuItemCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -84,10 +98,14 @@
 		F334ADBB2104E7970056824A /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		F334ADBD2105DA490056824A /* SpeechHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechHelper.swift; sourceTree = "<group>"; };
 		F334ADBF2106E86E0056824A /* NavigationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHelper.swift; sourceTree = "<group>"; };
-		F334ADC2210B35EE0056824A /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		F334ADC4210B3BC00056824A /* ApiRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequestHandler.swift; sourceTree = "<group>"; };
 		F334ADC7210D7A370056824A /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		F334ADC9210D7F890056824A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		F3355CE72121E04F009AF602 /* InputScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputScreen.swift; sourceTree = "<group>"; };
+		F3355CE92122BE79009AF602 /* InputScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputScreens.swift; sourceTree = "<group>"; };
+		F3355CEC2122E88C009AF602 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		F3355CEE2122E8F3009AF602 /* LoadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewModel.swift; sourceTree = "<group>"; };
+		F3355CF02122E904009AF602 /* LoadingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingModel.swift; sourceTree = "<group>"; };
 		F336587920D318C300B18CEC /* in-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "in-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F336587C20D318C300B18CEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F336587E20D318C300B18CEC /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -102,15 +120,25 @@
 		F336589C20D318CB00B18CEC /* in_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = in_iosUITests.swift; sourceTree = "<group>"; };
 		F336589E20D318CB00B18CEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F33658AD20D3198000B18CEC /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		F33F0BCE2121B11C002E31B9 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		F34B909A20D46FA100800FCD /* DisplayHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayHelper.swift; sourceTree = "<group>"; };
 		F352854D20D3CED500E973C8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		F39059B8210F09C800CAA292 /* SubMenuItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMenuItemCollectionViewCell.swift; sourceTree = "<group>"; };
-		F39059B9210F09C800CAA292 /* SubMenuItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubMenuItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		F39059B9210F09C800CAA292 /* MenuItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		F39059BE210F254C00CAA292 /* AnimationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationUtil.swift; sourceTree = "<group>"; };
-		F39059C0210F290F00CAA292 /* SubMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMenuViewModel.swift; sourceTree = "<group>"; };
+		F39059C0210F290F00CAA292 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		F39059C22110473D00CAA292 /* MenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItems.swift; sourceTree = "<group>"; };
-		F3C48CCA210F018200742855 /* SubMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMenuViewController.swift; sourceTree = "<group>"; };
+		F3C48CCA210F018200742855 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		F3DC2DAA20F8ADBA00CC276F /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		F3E19CA5211B10FF00ADE838 /* HomeContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerViewController.swift; sourceTree = "<group>"; };
+		F3E19CA9211C3CDB00ADE838 /* HomeContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerViewModel.swift; sourceTree = "<group>"; };
+		F3E19CAB211C3CEE00ADE838 /* HomeContainerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerModel.swift; sourceTree = "<group>"; };
+		F3E19CAD211C3D6400ADE838 /* InputAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputAViewController.swift; sourceTree = "<group>"; };
+		F3E19CAF211C3DA500ADE838 /* InputAViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputAViewModel.swift; sourceTree = "<group>"; };
+		F3E19CB1211C3DB400ADE838 /* InputAModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputAModel.swift; sourceTree = "<group>"; };
+		F3E19CB5211D827000ADE838 /* MenuItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		F3E19CB8211D835500ADE838 /* SubMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMenuViewController.swift; sourceTree = "<group>"; };
+		F3E19CBA211D836B00ADE838 /* SubMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMenuViewModel.swift; sourceTree = "<group>"; };
+		F3E19CBC211D837900ADE838 /* SubMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMenuModel.swift; sourceTree = "<group>"; };
 		F3F4148B20F5F82000CF101D /* ReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
 		F3F8648221175BEE00B7CAA8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -176,14 +204,14 @@
 			path = home;
 			sourceTree = "<group>";
 		};
-		F32D99CE21118A09007AAA8D /* submenu */ = {
+		F32D99CE21118A09007AAA8D /* menu */ = {
 			isa = PBXGroup;
 			children = (
-				F3C48CCA210F018200742855 /* SubMenuViewController.swift */,
-				F39059C0210F290F00CAA292 /* SubMenuViewModel.swift */,
-				F32D99C721117E8A007AAA8D /* SubMenuModel.swift */,
+				F3C48CCA210F018200742855 /* MenuViewController.swift */,
+				F39059C0210F290F00CAA292 /* MenuViewModel.swift */,
+				F32D99C721117E8A007AAA8D /* MenuModel.swift */,
 			);
-			path = submenu;
+			path = menu;
 			sourceTree = "<group>";
 		};
 		F331EA8321136F5C0000B4E6 /* extension */ = {
@@ -197,7 +225,6 @@
 		F334ADC1210B35570056824A /* api */ = {
 			isa = PBXGroup;
 			children = (
-				F334ADC2210B35EE0056824A /* ApiManager.swift */,
 				F334ADC4210B3BC00056824A /* ApiRequestHandler.swift */,
 			);
 			path = api;
@@ -208,8 +235,20 @@
 			children = (
 				F334ADC7210D7A370056824A /* MenuItem.swift */,
 				F39059C22110473D00CAA292 /* MenuItems.swift */,
+				F3355CE72121E04F009AF602 /* InputScreen.swift */,
+				F3355CE92122BE79009AF602 /* InputScreens.swift */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		F3355CEB2122E83D009AF602 /* loading */ = {
+			isa = PBXGroup;
+			children = (
+				F3355CEC2122E88C009AF602 /* LoadingViewController.swift */,
+				F3355CEE2122E8F3009AF602 /* LoadingViewModel.swift */,
+				F3355CF02122E904009AF602 /* LoadingModel.swift */,
+			);
+			path = loading;
 			sourceTree = "<group>";
 		};
 		F336587020D318C300B18CEC = {
@@ -241,6 +280,7 @@
 				F33658AC20D3197100B18CEC /* view */,
 				F33658AB20D3196C00B18CEC /* util */,
 				F33658AA20D3196500B18CEC /* helper */,
+				F33F0BCD2121B0E7002E31B9 /* dao */,
 				F334ADC1210B35570056824A /* api */,
 				F336587C20D318C300B18CEC /* AppDelegate.swift */,
 				F336588320D318CA00B18CEC /* Assets.xcassets */,
@@ -302,10 +342,22 @@
 				F32D99C921117EC7007AAA8D /* BaseViewModel.swift */,
 				F32D99CB21117EE8007AAA8D /* BaseModel.swift */,
 				F334ADC6210D793B0056824A /* model */,
+				F3355CEB2122E83D009AF602 /* loading */,
 				F32D99CD211189D9007AAA8D /* home */,
-				F32D99CE21118A09007AAA8D /* submenu */,
+				F3E19CA7211C3C3A00ADE838 /* homecontainer */,
+				F32D99CE21118A09007AAA8D /* menu */,
+				F3E19CB7211D832F00ADE838 /* submenu */,
+				F3E19CA8211C3C6D00ADE838 /* inputscreen */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		F33F0BCD2121B0E7002E31B9 /* dao */ = {
+			isa = PBXGroup;
+			children = (
+				F33F0BCE2121B11C002E31B9 /* DataManager.swift */,
+			);
+			path = dao;
 			sourceTree = "<group>";
 		};
 		F3C48CBE210ED61000742855 /* customview */ = {
@@ -320,10 +372,40 @@
 			children = (
 				F331EA7D211303880000B4E6 /* TopMenuItemCollectionViewCell.swift */,
 				F331EA7E211303880000B4E6 /* TopMenuItemCollectionViewCell.xib */,
-				F39059B8210F09C800CAA292 /* SubMenuItemCollectionViewCell.swift */,
-				F39059B9210F09C800CAA292 /* SubMenuItemCollectionViewCell.xib */,
+				F3E19CB5211D827000ADE838 /* MenuItemCollectionViewCell.swift */,
+				F39059B9210F09C800CAA292 /* MenuItemCollectionViewCell.xib */,
 			);
 			path = cell;
+			sourceTree = "<group>";
+		};
+		F3E19CA7211C3C3A00ADE838 /* homecontainer */ = {
+			isa = PBXGroup;
+			children = (
+				F3E19CA5211B10FF00ADE838 /* HomeContainerViewController.swift */,
+				F3E19CA9211C3CDB00ADE838 /* HomeContainerViewModel.swift */,
+				F3E19CAB211C3CEE00ADE838 /* HomeContainerModel.swift */,
+			);
+			path = homecontainer;
+			sourceTree = "<group>";
+		};
+		F3E19CA8211C3C6D00ADE838 /* inputscreen */ = {
+			isa = PBXGroup;
+			children = (
+				F3E19CAD211C3D6400ADE838 /* InputAViewController.swift */,
+				F3E19CAF211C3DA500ADE838 /* InputAViewModel.swift */,
+				F3E19CB1211C3DB400ADE838 /* InputAModel.swift */,
+			);
+			path = inputscreen;
+			sourceTree = "<group>";
+		};
+		F3E19CB7211D832F00ADE838 /* submenu */ = {
+			isa = PBXGroup;
+			children = (
+				F3E19CB8211D835500ADE838 /* SubMenuViewController.swift */,
+				F3E19CBA211D836B00ADE838 /* SubMenuViewModel.swift */,
+				F3E19CBC211D837900ADE838 /* SubMenuModel.swift */,
+			);
+			path = submenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -435,7 +517,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F336588720D318CA00B18CEC /* LaunchScreen.storyboard in Resources */,
-				F39059BB210F09C800CAA292 /* SubMenuItemCollectionViewCell.xib in Resources */,
+				F39059BB210F09C800CAA292 /* MenuItemCollectionViewCell.xib in Resources */,
 				F352854E20D3CED500E973C8 /* GoogleService-Info.plist in Resources */,
 				F336588420D318CA00B18CEC /* Assets.xcassets in Resources */,
 				F331EA80211303880000B4E6 /* TopMenuItemCollectionViewCell.xib in Resources */,
@@ -556,23 +638,37 @@
 				F334ADC5210B3BC00056824A /* ApiRequestHandler.swift in Sources */,
 				F331EA8221136F4F0000B4E6 /* UIImageView.swift in Sources */,
 				F336587F20D318C300B18CEC /* BaseViewController.swift in Sources */,
+				F3355CEA2122BE79009AF602 /* InputScreens.swift in Sources */,
+				F3355CED2122E88C009AF602 /* LoadingViewController.swift in Sources */,
+				F3E19CAE211C3D6400ADE838 /* InputAViewController.swift in Sources */,
+				F3E19CB0211C3DA500ADE838 /* InputAViewModel.swift in Sources */,
 				F3F4148C20F5F82000CF101D /* ReachabilityManager.swift in Sources */,
 				F334ADC8210D7A370056824A /* MenuItem.swift in Sources */,
 				F32D99C621117E79007AAA8D /* HomeModel.swift in Sources */,
 				F336587D20D318C300B18CEC /* AppDelegate.swift in Sources */,
-				F334ADC3210B35EE0056824A /* ApiManager.swift in Sources */,
 				F331EA7F211303880000B4E6 /* TopMenuItemCollectionViewCell.swift in Sources */,
-				F39059BA210F09C800CAA292 /* SubMenuItemCollectionViewCell.swift in Sources */,
-				F39059C1210F290F00CAA292 /* SubMenuViewModel.swift in Sources */,
+				F3355CE82121E04F009AF602 /* InputScreen.swift in Sources */,
+				F39059C1210F290F00CAA292 /* MenuViewModel.swift in Sources */,
 				F334ADCA210D7F890056824A /* HomeViewModel.swift in Sources */,
-				F3C48CCB210F018200742855 /* SubMenuViewController.swift in Sources */,
+				F3C48CCB210F018200742855 /* MenuViewController.swift in Sources */,
+				F3355CF12122E904009AF602 /* LoadingModel.swift in Sources */,
+				F3E19CAA211C3CDB00ADE838 /* HomeContainerViewModel.swift in Sources */,
+				F3E19CB9211D835500ADE838 /* SubMenuViewController.swift in Sources */,
 				F39059C32110473D00CAA292 /* MenuItems.swift in Sources */,
+				F3E19CB6211D827000ADE838 /* MenuItemCollectionViewCell.swift in Sources */,
+				F3E19CAC211C3CEE00ADE838 /* HomeContainerModel.swift in Sources */,
+				F3E19CA6211B10FF00ADE838 /* HomeContainerViewController.swift in Sources */,
+				F3E19CBD211D837900ADE838 /* SubMenuModel.swift in Sources */,
 				F33658AE20D3198000B18CEC /* Constant.swift in Sources */,
 				F334ADBC2104E7970056824A /* CameraManager.swift in Sources */,
-				F32D99C821117E8A007AAA8D /* SubMenuModel.swift in Sources */,
+				F3E19CB2211C3DB400ADE838 /* InputAModel.swift in Sources */,
+				F3E19CBB211D836B00ADE838 /* SubMenuViewModel.swift in Sources */,
+				F32D99C821117E8A007AAA8D /* MenuModel.swift in Sources */,
+				F33F0BCF2121B11C002E31B9 /* DataManager.swift in Sources */,
 				F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */,
 				F32D99CC21117EE8007AAA8D /* BaseModel.swift in Sources */,
 				F334ADC02106E86F0056824A /* NavigationHelper.swift in Sources */,
+				F3355CEF2122E8F3009AF602 /* LoadingViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

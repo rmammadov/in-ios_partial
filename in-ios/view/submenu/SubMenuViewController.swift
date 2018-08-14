@@ -2,22 +2,22 @@
 //  SubMenuViewController.swift
 //  in-ios
 //
-//  Created by Rahman Mammadov on 7/30/18.
+//  Created by Rahman Mammadov on 8/10/18.
 //  Copyright © 2018 com.innodemneurosciences. All rights reserved.
 //
 
 import UIKit
+import RxSwift
 
-private let nibSubMenuItem = "SubMenuItemCollectionViewCell"
-private let reuseIdentifier = "cellSubMenuItem"
-
+private let nibMenuItem = "MenuItemCollectionViewCell"
+private let reuseIdentifier = "cellMenuItem"
 
 class SubMenuViewController: BaseViewController {
-    
-    @IBOutlet weak var viewStatus: UIView!
-    @IBOutlet weak var icStatusIcon: UIImageView!
-    @IBOutlet weak var labelStatus: UILabel!
+
+    @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var btnBack: UIButton!
+    @IBOutlet weak var btnSpeak: UIButton!
     
     let viewModel = SubMenuViewModel()
     
@@ -25,16 +25,8 @@ class SubMenuViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.onViewLoad()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    
+        self.setTitle()
+        self.setCollectionView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,7 +34,6 @@ class SubMenuViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -53,36 +44,26 @@ class SubMenuViewController: BaseViewController {
     }
     */
     
+    @IBAction func onClickBackBtn(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func onClickSpeakBtn(_ sender: Any) {
+        
+    }
 }
 
 extension SubMenuViewController {
     
-    // TODO: Put strings in resource file
-    
-    func setLoadingScreen() {
-        self.labelStatus.text = "Loading content..."
-        AnimationUtil.animateLoading(imageView: self.icStatusIcon)
-    }
-    
-    func hideLoadingScreen() {
-        self.viewStatus.isHidden = true
-        self.collectionView.isHidden = false
-    }
-    
-    func onViewLoad() {
-        self.setLoadingScreen()
-        self.setViewModel()
-        self.setCollectionView()
-        self.setSubscribers()
+    func setTitle() {
+        self.labelTitle.text = self.viewModel.getTitle()
     }
     
     func setViewModel() {
-        self.viewModel.setParentVC(vc: self.getParentViewController())
-        self.viewModel.setSubscribers()
     }
     
     func setCollectionView() {
-        self.collectionView.register(UINib.init(nibName: nibSubMenuItem, bundle: nil), forCellWithReuseIdentifier:reuseIdentifier)
+        self.collectionView.register(UINib.init(nibName: nibMenuItem, bundle: nil), forCellWithReuseIdentifier:reuseIdentifier)
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
     }
@@ -90,49 +71,39 @@ extension SubMenuViewController {
     func setSubscribers() {
         self.viewModel.status.asObservable().subscribe(onNext: {
             event in
-            if self.viewModel.getParentVC()?.viewModel.status.value == TopMenuStatus.loaded.rawValue {
+            if self.viewModel.status.value == TopMenuStatus.loaded.rawValue {
                 DispatchQueue.main.async {
-                    self.hideLoadingScreen()
-                    self.collectionView.reloadData()
-                    self.viewModel.getParentVC()?.viewModel.setBackButtonStatus(status: self.viewModel.getIsBackBtnHidden())
+                    self.setUi()
                 }
-            }
-        })
-        
-        AnimationUtil.status.asObservable().subscribe(onNext: {
-            event in
-            if AnimationUtil.status.value == AnimationStatus.completed.rawValue {
-                self.viewModel.onItemLoadRequest(indexPath: self.viewModel.getSelection())
             }
         })
     }
     
-    func getParentViewController() -> HomeViewController {
-        return self.parent as! HomeViewController
+    func setUi() {
+        self.collectionView.reloadData()
     }
 }
-
 
 extension SubMenuViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // MARK: UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.viewModel.getSubMenuItems()!.count
+        return self.viewModel.getItmes().count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! SubMenuItemCollectionViewCell
-
-        let menuItem = self.viewModel.getSubMenuItems()![indexPath.row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MenuItemCollectionViewCell
         
-        if menuItem.icon != nil {
-            let url = URL(string: (menuItem.icon?.url)!)
+        let item = self.viewModel.getItmes()[indexPath.row]
+        
+        if item.icon != nil {
+            let url = URL(string: (item.icon?.url)!)
             cell.ivIcon.kf.indicatorType = .activity
             cell.ivIcon.kf.setImage(with: url)
         }
         
-        cell.labelTitle.text = menuItem.name
+        cell.labelTitle.text = item.name
         
         return cell
     }
@@ -143,7 +114,6 @@ extension SubMenuViewController: UICollectionViewDelegate, UICollectionViewDataS
         let cellHeight = self.collectionView.frame.size.height / 4
         
         return CGSize(width: cellWidth, height: cellHeight)
-        
     }
     
     // MARK: UICollectionViewDelegate
@@ -154,8 +124,8 @@ extension SubMenuViewController: UICollectionViewDelegate, UICollectionViewDataS
         self.viewModel.setSelection(indexPath: indexPath)
     }
     
-    func getCellForIndexPath(indexPath: IndexPath) -> SubMenuItemCollectionViewCell {
-        let cell: SubMenuItemCollectionViewCell = self.collectionView.cellForItem(at: indexPath) as! SubMenuItemCollectionViewCell
+    func getCellForIndexPath(indexPath: IndexPath) -> MenuItemCollectionViewCell {
+        let cell: MenuItemCollectionViewCell = self.collectionView.cellForItem(at: indexPath) as! MenuItemCollectionViewCell
         
         return cell
     }

@@ -53,14 +53,14 @@
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_search" translatesAutoresizingMaskIntoConstraints="NO" id="sbk-bo-uQx">
-                                        <rect key="frame" x="9.5" y="9.5" width="19.5" height="19.5"/>
+                                        <rect key="frame" x="6.5" y="6.5" width="25.5" height="25.5"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="sbk-bo-uQx" firstAttribute="height" secondItem="blZ-DL-NQ0" secondAttribute="height" multiplier="0.5" id="357-3i-sqT"/>
+                                    <constraint firstItem="sbk-bo-uQx" firstAttribute="height" secondItem="blZ-DL-NQ0" secondAttribute="height" multiplier="0.66" id="357-3i-sqT"/>
                                     <constraint firstAttribute="trailing" secondItem="QiS-ys-C90" secondAttribute="trailing" id="ESr-dh-HnD"/>
-                                    <constraint firstItem="sbk-bo-uQx" firstAttribute="width" secondItem="blZ-DL-NQ0" secondAttribute="width" multiplier="0.5" id="I15-ah-c6u"/>
+                                    <constraint firstItem="sbk-bo-uQx" firstAttribute="width" secondItem="blZ-DL-NQ0" secondAttribute="width" multiplier="0.66" id="I15-ah-c6u"/>
                                     <constraint firstItem="sbk-bo-uQx" firstAttribute="centerY" secondItem="blZ-DL-NQ0" secondAttribute="centerY" id="NZ2-kL-gir"/>
                                     <constraint firstItem="blZ-DL-NQ0" firstAttribute="centerY" secondItem="mBn-Kf-l1L" secondAttribute="centerY" id="NmJ-vu-eJW"/>
                                     <constraint firstItem="QiS-ys-C90" firstAttribute="centerY" secondItem="mBn-Kf-l1L" secondAttribute="centerY" id="S4a-Jb-bc0"/>

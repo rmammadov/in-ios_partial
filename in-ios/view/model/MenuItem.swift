@@ -14,20 +14,20 @@ struct MenuItem: Decodable {
     let disable_text_to_speech: Bool
     let id: Int
     let name: String
-    let icon: IconItem?
+    let icon: IconMenuItem?
     let input_screen_id: Int?
     let roles: Array<String>
-    let translations: [TranslationItem]
+    let translations: [TranslationMenuItem]
 }
 
-struct TranslationItem: Decodable {
+struct TranslationMenuItem: Decodable {
     
     var locale: String?
     var label: String?
     var label_text_to_speech: String?
 }
 
-struct IconItem: Decodable {
+struct IconMenuItem: Decodable {
     
     var id: Int?
     var url: String?

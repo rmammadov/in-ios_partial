@@ -18,6 +18,7 @@ struct Constant {
         static let HOST_API_BETA: String = "http://api-beta1.innodem-neurosciences.com/"
         static let URL_EXTENSION_API: String = "api/"
         static let URL_EXTENSION_MENU_ITEMS: String = "menu-items"
+        static let URL_EXTENSION_INPUT_SCREENS: String = "input-screens"
     }
     
     struct MenuConfig {

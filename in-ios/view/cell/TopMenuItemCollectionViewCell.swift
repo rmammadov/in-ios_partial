@@ -20,5 +20,4 @@ class TopMenuItemCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
 }

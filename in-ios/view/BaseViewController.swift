@@ -18,6 +18,7 @@ class BaseViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.hideNavigationBar()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
