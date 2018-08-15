@@ -16,9 +16,6 @@ private let segueIdentifierInput = "segueInputA"
 
 class MenuViewController: BaseViewController {
     
-    @IBOutlet weak var viewStatus: UIView!
-    @IBOutlet weak var icStatusIcon: UIImageView!
-    @IBOutlet weak var labelStatus: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
     let viewModel = MenuViewModel()
@@ -64,18 +61,7 @@ extension MenuViewController {
     
     // TODO: Put strings in resource file
     
-    func setLoadingScreen() {
-        self.labelStatus.text = "Loading content..."
-        AnimationUtil.animateLoading(imageView: self.icStatusIcon)
-    }
-    
-    func hideLoadingScreen() {
-        self.viewStatus.isHidden = true
-        self.collectionView.isHidden = false
-    }
-    
     func onViewLoad() {
-        self.setLoadingScreen()
         self.setViewModel()
         self.setCollectionView()
         self.setSubscribers()
@@ -100,7 +86,6 @@ extension MenuViewController {
                     self.performSegue(withIdentifier: segueIdentifierSubMenu, sender: self)
                     AnimationUtil.cancelSubMenuSelection(imageView: self.getCellForIndexPath(indexPath: self.viewModel.getSelection()).ivStatusIcon)
                 } else {
-                    self.hideLoadingScreen()
                     self.collectionView.reloadData()
                 }
             }

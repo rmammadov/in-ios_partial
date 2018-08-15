@@ -15,6 +15,9 @@ enum RequestStatus: Int {
     case requestCompleted = 2
 }
 
+
+// FIXME: RequestStatus should be updated to properly
+
 class ApiRequestHandler {
     
     var status = Variable<Int>(0)
@@ -31,8 +34,6 @@ class ApiRequestHandler {
     }
     
     func requestMenuItems() {
-        self.status.value = RequestStatus.requested.rawValue
-        
         let url = URL(string: Constant.Url.HOST_API_BETA + Constant.Url.URL_EXTENSION_API + Constant.Url.URL_EXTENSION_MENU_ITEMS)!
         
         let task = self.session.dataTask(with: url) { data, response, error in
@@ -70,8 +71,6 @@ class ApiRequestHandler {
     }
     
     func requestInputScreens() {
-        self.status.value = RequestStatus.requested.rawValue
-        
         let url = URL(string: Constant.Url.HOST_API_BETA + Constant.Url.URL_EXTENSION_API + Constant.Url.URL_EXTENSION_MENU_ITEMS)!
         
         let task = self.session.dataTask(with: url) { data, response, error in

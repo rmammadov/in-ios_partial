@@ -21,7 +21,6 @@ class LoadingViewModel: BaseViewModel {
     // TODO: Update this method
     
     func setSubscribers() {
-        DataManager.setSubscribers()
         DataManager.status.asObservable().subscribe(onNext: {
             event in
             if DataManager.status.value == DataStatus.dataLoadingCompleted.rawValue {
@@ -31,6 +30,7 @@ class LoadingViewModel: BaseViewModel {
     }
     
     func requestData() {
-        DataManager.loadMenuItems()
+        DataManager.setSubscribers()
+        DataManager.loadRequiredData()
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 
 struct InputScreens {
     
-    let screens: Array<InputScreen>?
+    let screens: Array<InputScreen>
 }
 
 

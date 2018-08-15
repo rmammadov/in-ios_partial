@@ -29,6 +29,8 @@
 		F3355CED2122E88C009AF602 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3355CEC2122E88C009AF602 /* LoadingViewController.swift */; };
 		F3355CEF2122E8F3009AF602 /* LoadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3355CEE2122E8F3009AF602 /* LoadingViewModel.swift */; };
 		F3355CF12122E904009AF602 /* LoadingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3355CF02122E904009AF602 /* LoadingModel.swift */; };
+		F3355CF421240F6C009AF602 /* TopMenuItemExpandedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3355CF221240F6C009AF602 /* TopMenuItemExpandedCollectionViewCell.swift */; };
+		F3355CF521240F6D009AF602 /* TopMenuItemExpandedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3355CF321240F6C009AF602 /* TopMenuItemExpandedCollectionViewCell.xib */; };
 		F336587D20D318C300B18CEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336587C20D318C300B18CEC /* AppDelegate.swift */; };
 		F336587F20D318C300B18CEC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336587E20D318C300B18CEC /* BaseViewController.swift */; };
 		F336588220D318C300B18CEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F336588020D318C300B18CEC /* Main.storyboard */; };
@@ -106,6 +108,8 @@
 		F3355CEC2122E88C009AF602 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		F3355CEE2122E8F3009AF602 /* LoadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewModel.swift; sourceTree = "<group>"; };
 		F3355CF02122E904009AF602 /* LoadingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingModel.swift; sourceTree = "<group>"; };
+		F3355CF221240F6C009AF602 /* TopMenuItemExpandedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuItemExpandedCollectionViewCell.swift; sourceTree = "<group>"; };
+		F3355CF321240F6C009AF602 /* TopMenuItemExpandedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopMenuItemExpandedCollectionViewCell.xib; sourceTree = "<group>"; };
 		F336587920D318C300B18CEC /* in-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "in-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F336587C20D318C300B18CEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F336587E20D318C300B18CEC /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -374,6 +378,8 @@
 				F331EA7E211303880000B4E6 /* TopMenuItemCollectionViewCell.xib */,
 				F3E19CB5211D827000ADE838 /* MenuItemCollectionViewCell.swift */,
 				F39059B9210F09C800CAA292 /* MenuItemCollectionViewCell.xib */,
+				F3355CF221240F6C009AF602 /* TopMenuItemExpandedCollectionViewCell.swift */,
+				F3355CF321240F6C009AF602 /* TopMenuItemExpandedCollectionViewCell.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -517,6 +523,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F336588720D318CA00B18CEC /* LaunchScreen.storyboard in Resources */,
+				F3355CF521240F6D009AF602 /* TopMenuItemExpandedCollectionViewCell.xib in Resources */,
 				F39059BB210F09C800CAA292 /* MenuItemCollectionViewCell.xib in Resources */,
 				F352854E20D3CED500E973C8 /* GoogleService-Info.plist in Resources */,
 				F336588420D318CA00B18CEC /* Assets.xcassets in Resources */,
@@ -667,6 +674,7 @@
 				F33F0BCF2121B11C002E31B9 /* DataManager.swift in Sources */,
 				F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */,
 				F32D99CC21117EE8007AAA8D /* BaseModel.swift in Sources */,
+				F3355CF421240F6C009AF602 /* TopMenuItemExpandedCollectionViewCell.swift in Sources */,
 				F334ADC02106E86F0056824A /* NavigationHelper.swift in Sources */,
 				F3355CEF2122E8F3009AF602 /* LoadingViewModel.swift in Sources */,
 			);

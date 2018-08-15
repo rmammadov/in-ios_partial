@@ -21,6 +21,7 @@ class InputAViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.setUi()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -59,7 +60,7 @@ extension InputAViewController {
     }
     
     func setViewModel() {
-        self.viewModel.setScreen()
+        self.viewModel.loadScreen()
     }
     
     func setTitle() {
@@ -67,6 +68,6 @@ extension InputAViewController {
     }
     
     func setSpeakButtonStatus() {
-        self.btnBack.isHidden = !self.viewModel.getSpeakButtonStatus()!
+        self.btnSpeak.isHidden = !self.viewModel.getSpeakButtonStatus()!
     }
 }

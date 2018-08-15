@@ -11,7 +11,7 @@ import Foundation
 struct InputScreen: Decodable {
     
     let disable_text_to_speech: Bool?
-    let translations: [TranslationInputScreen]?
+    let translations: [TranslationInputScreen]
     let buttons: [ButtonInputScreen]?
     let background: String?
     let background_transparency: Int?

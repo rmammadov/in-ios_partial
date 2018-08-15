@@ -58,8 +58,8 @@ extension LoadingViewController {
     func setSubscribers() {
         self.viewModel.status.asObservable().subscribe(onNext: {
             event in
-            DispatchQueue.main.async {
-                if self.viewModel.status.value == LoadingStatus.completed.rawValue {
+            if self.viewModel.status.value == LoadingStatus.completed.rawValue {
+                DispatchQueue.main.async {
                     self.showHome()
                 }
             }

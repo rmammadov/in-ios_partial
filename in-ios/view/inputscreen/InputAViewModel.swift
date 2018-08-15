@@ -14,19 +14,18 @@ class InputAViewModel: BaseViewModel {
     var status = Variable<Int>(0)
     
     fileprivate var screen: InputScreen?
-    
     fileprivate var parentMenuItem: MenuItem?
     
     func setParentMenuItem(item: MenuItem) {
         self.parentMenuItem = item
     }
     
-    func setScreen() {
-        self.screen = DataManager.getInputScreens().screens![0]
+    func loadScreen() {
+        self.screen = DataManager.getInputScreens().screens[0]
     }
     
     func getTitle() -> String? {
-        return self.screen?.translations![0].title
+        return self.screen?.translations[0].title
     }
     
     func getSpeakButtonStatus() -> Bool? {

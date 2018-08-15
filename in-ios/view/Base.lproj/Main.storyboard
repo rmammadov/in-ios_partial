@@ -43,6 +43,7 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="304" id="E0J-wR-J6B"/>
+                                            <constraint firstAttribute="height" constant="64" id="xgB-ko-Zjy"/>
                                         </constraints>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="1" id="gTo-7c-7Dk">
                                             <size key="itemSize" width="156" height="64"/>
@@ -69,7 +70,6 @@
                                     <constraint firstItem="vSO-2M-N7o" firstAttribute="top" secondItem="9Zq-RT-v6y" secondAttribute="top" id="1YJ-t6-Yy3"/>
                                     <constraint firstItem="cVS-2f-YlA" firstAttribute="leading" secondItem="9Zq-RT-v6y" secondAttribute="leading" id="S19-9y-9bK"/>
                                     <constraint firstItem="vSO-2M-N7o" firstAttribute="centerX" secondItem="9Zq-RT-v6y" secondAttribute="centerX" id="jUg-sr-J6T"/>
-                                    <constraint firstAttribute="height" constant="66" id="lRk-Gg-euU"/>
                                     <constraint firstAttribute="bottom" secondItem="cVS-2f-YlA" secondAttribute="bottom" id="vog-9I-Qhy"/>
                                     <constraint firstItem="cVS-2f-YlA" firstAttribute="top" secondItem="vSO-2M-N7o" secondAttribute="bottom" id="zdj-rI-uLF"/>
                                 </constraints>
@@ -93,6 +93,7 @@
                             <constraint firstItem="8sU-uA-xuD" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Dtu-Dk-fGd"/>
                             <constraint firstItem="iiL-Mh-1hh" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="GfP-99-pMm"/>
                             <constraint firstItem="8sU-uA-xuD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Jlm-rP-pgT"/>
+                            <constraint firstItem="9Zq-RT-v6y" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Lk2-tF-9wt"/>
                             <constraint firstItem="9Zq-RT-v6y" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="MYs-3E-TEq"/>
                             <constraint firstItem="ARu-G6-UEK" firstAttribute="top" secondItem="9Zq-RT-v6y" secondAttribute="bottom" id="OJQ-mz-qsD"/>
                             <constraint firstItem="iiL-Mh-1hh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="P9D-lb-fma"/>
@@ -100,6 +101,7 @@
                             <constraint firstItem="9Zq-RT-v6y" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gsY-rl-6Ug"/>
                             <constraint firstItem="8sU-uA-xuD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="k27-B1-hAf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="iiL-Mh-1hh" secondAttribute="bottom" id="n2I-Jn-LeE"/>
+                            <constraint firstItem="ARu-G6-UEK" firstAttribute="top" secondItem="9Zq-RT-v6y" secondAttribute="bottom" id="uNK-ei-6in"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -108,6 +110,7 @@
                     <connections>
                         <outlet property="collectionTopMenu" destination="vSO-2M-N7o" id="CP8-O9-2fY"/>
                         <outlet property="containerViewSubMenu" destination="iiL-Mh-1hh" id="5Kc-sz-wnE"/>
+                        <outlet property="viewTopMenu" destination="9Zq-RT-v6y" id="xp1-7q-d0w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -122,32 +125,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1112" height="748"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XaZ-W9-mL8" userLabel="ViewStatus">
-                                <rect key="frame" x="0.0" y="0.0" width="1112" height="699"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_circle_gradient_loading" translatesAutoresizingMaskIntoConstraints="NO" id="KT5-Rg-Bsv">
-                                        <rect key="frame" x="524" y="317" width="64" height="64"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="64" id="Nga-BB-h8P"/>
-                                            <constraint firstAttribute="height" constant="64" id="Vda-un-TDQ"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OcF-in-4aL">
-                                        <rect key="frame" x="529.5" y="397" width="54" height="17"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="OcF-in-4aL" firstAttribute="centerX" secondItem="XaZ-W9-mL8" secondAttribute="centerX" id="4er-0d-f8Q"/>
-                                    <constraint firstItem="KT5-Rg-Bsv" firstAttribute="centerX" secondItem="XaZ-W9-mL8" secondAttribute="centerX" id="K0T-f1-tCR"/>
-                                    <constraint firstItem="OcF-in-4aL" firstAttribute="top" secondItem="KT5-Rg-Bsv" secondAttribute="bottom" constant="16" id="d82-RB-JLI"/>
-                                    <constraint firstItem="KT5-Rg-Bsv" firstAttribute="centerY" secondItem="XaZ-W9-mL8" secondAttribute="centerY" id="g2F-Ob-ZoP"/>
-                                </constraints>
-                            </view>
-                            <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7J2-te-iIE">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7J2-te-iIE">
                                 <rect key="frame" x="48" y="32" width="1016" height="651"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -173,13 +151,9 @@
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Pen-im-3Ef" firstAttribute="trailing" secondItem="7J2-te-iIE" secondAttribute="trailing" constant="48" id="IHe-Kk-XFb"/>
-                            <constraint firstItem="XaZ-W9-mL8" firstAttribute="leading" secondItem="Pen-im-3Ef" secondAttribute="leading" id="XX6-E5-a0F"/>
                             <constraint firstItem="7J2-te-iIE" firstAttribute="leading" secondItem="Pen-im-3Ef" secondAttribute="leading" constant="48" id="hUs-Ls-2HC"/>
-                            <constraint firstItem="Pen-im-3Ef" firstAttribute="bottom" secondItem="XaZ-W9-mL8" secondAttribute="bottom" id="jyF-3j-6VX"/>
                             <constraint firstItem="Pen-im-3Ef" firstAttribute="bottom" secondItem="7J2-te-iIE" secondAttribute="bottom" constant="16" id="pS8-N6-D4h"/>
                             <constraint firstItem="7J2-te-iIE" firstAttribute="top" secondItem="pYb-cg-l6j" secondAttribute="top" constant="32" id="pbS-RW-XHL"/>
-                            <constraint firstItem="XaZ-W9-mL8" firstAttribute="top" secondItem="pYb-cg-l6j" secondAttribute="top" id="si7-GS-WzL"/>
-                            <constraint firstItem="Pen-im-3Ef" firstAttribute="trailing" secondItem="XaZ-W9-mL8" secondAttribute="trailing" id="uBu-V2-0gz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Pen-im-3Ef"/>
                     </view>
@@ -187,9 +161,6 @@
                     <navigationItem key="navigationItem" id="Ky5-EY-8QG"/>
                     <connections>
                         <outlet property="collectionView" destination="7J2-te-iIE" id="Ua0-bJ-UIO"/>
-                        <outlet property="icStatusIcon" destination="KT5-Rg-Bsv" id="mgu-0Q-CHn"/>
-                        <outlet property="labelStatus" destination="OcF-in-4aL" id="QLY-Ck-E0R"/>
-                        <outlet property="viewStatus" destination="XaZ-W9-mL8" id="Bdt-qg-X0C"/>
                         <segue destination="8cA-NZ-a1n" kind="show" identifier="segueInputA" id="j06-im-ScO"/>
                         <segue destination="Wb7-DE-qh2" kind="show" identifier="segueSubMenu" id="diH-Lc-Qha"/>
                     </connections>

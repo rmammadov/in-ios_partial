@@ -15,6 +15,8 @@ private let reuseIdentifier = "cellTopMenuItem"
 
 class HomeViewController: BaseViewController {
 
+    @IBOutlet weak var viewTopMenu: UIView!
+    @IBOutlet weak var constraintTopMenuHeight: NSLayoutConstraint!
     @IBOutlet weak var collectionTopMenu: UICollectionView!
     @IBOutlet weak var containerViewSubMenu: UIView!
     
@@ -82,6 +84,7 @@ extension HomeViewController {
     
     func updateUi() {
         self.collectionTopMenu.reloadData()
+        self.collectionTopMenu.layoutIfNeeded()
     }
 }
 

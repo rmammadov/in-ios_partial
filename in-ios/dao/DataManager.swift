@@ -30,8 +30,8 @@ class DataManager {
             if self.requestHandler.status.value == RequestStatus.requestCompleted.rawValue {
                 if self.requestHandler.getMenuItems().count != 0 && self.status.value == DataStatus.notLoaded.rawValue {
                     self.menuItems = MenuItems(items: self.requestHandler.getMenuItems())
-                    self.status.value = DataStatus.menuItemsLoaded.rawValue
                     self.loadInputScreens()
+                    self.status.value = DataStatus.menuItemsLoaded.rawValue
                 } else if self.requestHandler.getInputScreens().count != 0 {
                     self.inputScreens = InputScreens(screens: self.requestHandler.getInputScreens())
                     self.status.value = DataStatus.dataLoadingCompleted.rawValue
