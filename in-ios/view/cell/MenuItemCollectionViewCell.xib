@@ -27,7 +27,7 @@
                             <constraint firstAttribute="width" secondItem="EJV-8z-gLK" secondAttribute="height" id="Sin-30-SOy"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_search" translatesAutoresizingMaskIntoConstraints="NO" id="6MF-pU-T87">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6MF-pU-T87">
                         <rect key="frame" x="65" y="16.5" width="83.5" height="95"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M3Q-0P-NaS">
@@ -64,6 +64,5 @@
     </objects>
     <resources>
         <image name="ic_circle_gradient" width="176" height="176"/>
-        <image name="ic_search" width="31" height="31"/>
     </resources>
 </document>

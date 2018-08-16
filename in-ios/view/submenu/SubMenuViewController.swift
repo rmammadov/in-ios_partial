@@ -25,8 +25,7 @@ class SubMenuViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.setTitle()
-        self.setCollectionView()
+        self.setUi()
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,6 +54,17 @@ class SubMenuViewController: BaseViewController {
 
 extension SubMenuViewController {
     
+    func setUi() {
+        self.setViewModel()
+        self.setTitle()
+        self.setCollectionView()
+        self.setSubscribers()
+    }
+    
+    func updateUi() {
+        self.collectionView.reloadData()
+    }
+    
     func setTitle() {
         self.labelTitle.text = self.viewModel.getTitle()
     }
@@ -73,14 +83,10 @@ extension SubMenuViewController {
             event in
             if self.viewModel.status.value == TopMenuStatus.loaded.rawValue {
                 DispatchQueue.main.async {
-                    self.setUi()
+                    self.updateUi()
                 }
             }
         })
-    }
-    
-    func setUi() {
-        self.collectionView.reloadData()
     }
 }
 
@@ -98,15 +104,15 @@ extension SubMenuViewController: UICollectionViewDelegate, UICollectionViewDataS
         let item = self.viewModel.getItmes()[indexPath.row]
         
         if item.icon != nil {
-            let url = URL(string: (item.icon?.url)!)
-            cell.ivIcon.kf.indicatorType = .activity
-            cell.ivIcon.kf.setImage(with: url)
+            cell.setIcon(url: (item.icon?.url))
         }
         
         cell.labelTitle.text = item.name
         
         return cell
     }
+    
+    // FIXME: Remove the hardcode
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
@@ -120,7 +126,7 @@ extension SubMenuViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         AnimationUtil.cancelMenuSelection(imageView: self.getCellForIndexPath(indexPath: viewModel.getSelection()).ivStatusIcon)
-        AnimationUtil.animateMenuSelection(imageView: self.getCellForIndexPath(indexPath: indexPath).ivStatusIcon)
+        AnimationUtil.animateMenuSelection(imageView: self.getCellForIndexPath(indexPath: indexPath).ivStatusIcon, fingerTouch: true)
         self.viewModel.setSelection(indexPath: indexPath)
     }
     

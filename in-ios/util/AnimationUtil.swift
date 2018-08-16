@@ -18,21 +18,25 @@ class AnimationUtil {
     
     static var status = Variable<Int>(0)
     
-    static func animateMenuSelection(imageView: UIImageView) {
+    static func animateMenuSelection(imageView: UIImageView, fingerTouch: Bool) {
         imageView.image = #imageLiteral(resourceName: "ic_circle_gradient_loading")
-        
-        CATransaction.begin()
-        CATransaction.setCompletionBlock({
+        if fingerTouch {
             self.setMenuSelection(imageView: imageView)
             self.status.value += AnimationStatus.completed.rawValue
-        })
-        let rotationAnimation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
-        rotationAnimation.toValue = NSNumber(value: .pi * 2.0)
-        rotationAnimation.duration = Constant.AnimationConfig.MENU_ITEM_ANIMATION_DURATION
-        rotationAnimation.isCumulative = true
-        rotationAnimation.repeatCount = Constant.AnimationConfig.MENU_ITEM_ANIMATION_COUNT
-        imageView.layer.add(rotationAnimation, forKey: "rotationAnimation")
-        CATransaction.commit()
+        } else {
+            CATransaction.begin()
+            CATransaction.setCompletionBlock({
+                self.setMenuSelection(imageView: imageView)
+                self.status.value += AnimationStatus.completed.rawValue
+            })
+            let rotationAnimation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+            rotationAnimation.toValue = NSNumber(value: .pi * 2.0)
+            rotationAnimation.duration = Constant.AnimationConfig.MENU_ITEM_ANIMATION_DURATION
+            rotationAnimation.isCumulative = true
+            rotationAnimation.repeatCount = Constant.AnimationConfig.MENU_ITEM_ANIMATION_COUNT
+            imageView.layer.add(rotationAnimation, forKey: "rotationAnimation")
+            CATransaction.commit()
+        }
     }
 
     static func setMenuSelection(imageView: UIImageView) {

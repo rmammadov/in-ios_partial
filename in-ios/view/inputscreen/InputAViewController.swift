@@ -9,11 +9,15 @@
 import UIKit
 import RxSwift
 
+private let nibMenuItem = "MenuItemCollectionViewCell"
+private let reuseIdentifier = "cellMenuItem"
+
 class InputAViewController: BaseViewController {
 
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var btnSpeak: UIButton!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     let viewModel = InputAViewModel()
     
@@ -57,6 +61,12 @@ extension InputAViewController {
         self.setViewModel()
         self.setTitle()
         self.setSpeakButtonStatus()
+        self.setCollectionView()
+        self.setSubscribers()
+    }
+    
+    func updateUi() {
+        self.collectionView.reloadData()
     }
     
     func setViewModel() {
@@ -68,6 +78,65 @@ extension InputAViewController {
     }
     
     func setSpeakButtonStatus() {
-        self.btnSpeak.isHidden = !self.viewModel.getSpeakButtonStatus()!
+        self.btnSpeak.isHidden = self.viewModel.getSpeakButtonStatus()!
+    }
+    
+    func setCollectionView() {
+        self.collectionView.register(UINib.init(nibName: nibMenuItem, bundle: nil), forCellWithReuseIdentifier:reuseIdentifier)
+        self.collectionView.dataSource = self
+        self.collectionView.delegate = self
+    }
+    
+    func setSubscribers() {
+        self.viewModel.status.asObservable().subscribe(onNext: {
+            event in
+            if self.viewModel.status.value == InputAStatus.loaded.rawValue {
+                DispatchQueue.main.async {
+                    self.updateUi()
+                }
+            }
+        })
     }
 }
+
+extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    // MARK: UICollectionViewDataSource
+    
+    // FIXME: Fix the hardcode and update collection data properly
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 17
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MenuItemCollectionViewCell
+        
+        return cell
+    }
+    
+    // FIXME: Remove the hardcode
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let cellWidth = self.collectionView.frame.size.width / 5
+        let cellHeight = self.collectionView.frame.size.height / 4
+        
+        return CGSize(width: cellWidth, height: cellHeight)
+    }
+    
+    // MARK: UICollectionViewDelegate
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        AnimationUtil.cancelMenuSelection(imageView: self.getCellForIndexPath(indexPath: viewModel.getSelection()).ivStatusIcon)
+//        AnimationUtil.animateMenuSelection(imageView: self.getCellForIndexPath(indexPath: indexPath).ivStatusIcon)
+//        self.viewModel.setSelection(indexPath: indexPath)
+    }
+    
+    func getCellForIndexPath(indexPath: IndexPath) -> MenuItemCollectionViewCell {
+        let cell: MenuItemCollectionViewCell = self.collectionView.cellForItem(at: indexPath) as! MenuItemCollectionViewCell
+        
+        return cell
+    }
+}
+

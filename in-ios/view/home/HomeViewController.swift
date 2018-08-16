@@ -118,7 +118,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifierExpanded, for: indexPath as IndexPath) as! TopMenuItemExpandedCollectionViewCell
             
             if menuItem.icon != nil {
-                cell.setIcon(url: (menuItem.icon?.url)!)
+                cell.setIcon(url: menuItem.icon?.url)
             }
             
             cell.label.text = menuItem.name
@@ -134,7 +134,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! TopMenuItemCollectionViewCell
             
             if menuItem.icon != nil {
-                cell.setIcon(url: (menuItem.icon?.url)!)
+                cell.setIcon(url: menuItem.icon?.url)
             }
             
             cell.labelPassive.text = menuItem.name

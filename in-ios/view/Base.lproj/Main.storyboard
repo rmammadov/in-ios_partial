@@ -311,7 +311,35 @@
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LNC-Qm-PPp">
                                 <rect key="frame" x="79.5" y="52" width="953" height="631"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hvn-EK-XJK">
+                                        <rect key="frame" x="0.0" y="0.0" width="953" height="631"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8Xe-L6-vxs">
+                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Nf2-Nt-a18">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </view>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="hvn-EK-XJK" secondAttribute="bottom" id="LaJ-lc-ReC"/>
+                                    <constraint firstItem="hvn-EK-XJK" firstAttribute="top" secondItem="LNC-Qm-PPp" secondAttribute="top" id="MRj-39-66x"/>
+                                    <constraint firstAttribute="trailing" secondItem="hvn-EK-XJK" secondAttribute="trailing" id="QxJ-Cq-ijo"/>
+                                    <constraint firstItem="hvn-EK-XJK" firstAttribute="leading" secondItem="LNC-Qm-PPp" secondAttribute="leading" id="q1G-NX-RZk"/>
+                                </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UIu-s7-iiK">
                                 <rect key="frame" x="1048.5" y="292.5" width="63.5" height="134"/>
@@ -355,6 +383,7 @@
                     <connections>
                         <outlet property="btnBack" destination="fH3-UL-IDN" id="Kbz-Zl-zCg"/>
                         <outlet property="btnSpeak" destination="UIu-s7-iiK" id="DMC-C6-SNP"/>
+                        <outlet property="collectionView" destination="hvn-EK-XJK" id="oNT-nm-mLR"/>
                         <outlet property="labelTitle" destination="Vop-x4-5ls" id="9cs-PL-blj"/>
                     </connections>
                 </viewController>

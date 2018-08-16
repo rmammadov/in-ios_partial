@@ -86,6 +86,8 @@ extension MenuViewController {
                     self.performSegue(withIdentifier: segueIdentifierSubMenu, sender: self)
                     AnimationUtil.cancelMenuSelection(imageView: self.getCellForIndexPath(indexPath: self.viewModel.getSelection()).ivStatusIcon)
                 } else {
+                    // Dissmis all view controllers which overlapping main view
+                    self.navigationController?.popToRootViewController(animated: true)
                     self.collectionView.reloadData()
                 }
             }
@@ -129,9 +131,7 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let menuItem = self.viewModel.getMenuItems()![indexPath.row]
         
         if menuItem.icon != nil {
-            let url = URL(string: (menuItem.icon?.url)!)
-            cell.ivIcon.kf.indicatorType = .activity
-            cell.ivIcon.kf.setImage(with: url)
+            cell.setIcon(url: (menuItem.icon?.url))
         }
         
         cell.labelTitle.text = menuItem.name
@@ -145,7 +145,7 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return cell
     }
     
-    // TODO: Hardcode should be removed
+    // TODO: Hardcode must be removed
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
@@ -158,7 +158,7 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
     // MARK: UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        AnimationUtil.animateMenuSelection(imageView: self.getCellForIndexPath(indexPath: indexPath).ivStatusIcon)
+        AnimationUtil.animateMenuSelection(imageView: self.getCellForIndexPath(indexPath: indexPath).ivStatusIcon, fingerTouch: true)
         self.viewModel.setSelection(indexPath: indexPath)
     }
     

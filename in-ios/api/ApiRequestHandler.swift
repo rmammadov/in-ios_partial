@@ -71,7 +71,7 @@ class ApiRequestHandler {
     }
     
     func requestInputScreens() {
-        let url = URL(string: Constant.Url.HOST_API_BETA + Constant.Url.URL_EXTENSION_API + Constant.Url.URL_EXTENSION_MENU_ITEMS)!
+        let url = URL(string: Constant.Url.HOST_API_BETA + Constant.Url.URL_EXTENSION_API + Constant.Url.URL_EXTENSION_INPUT_SCREENS)!
         
         let task = self.session.dataTask(with: url) { data, response, error in
             // ensure there is no error for this HTTP response

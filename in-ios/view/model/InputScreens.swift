@@ -10,10 +10,13 @@ import Foundation
 
 struct InputScreens {
     
-    let screens: Array<InputScreen>
+    let screens: [InputScreen]
 }
 
 
-extension InputScreen {
+extension InputScreens {
     
+    func getInputScreenA() -> InputScreen {
+        return screens[0]
+    }
 }

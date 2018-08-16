@@ -18,4 +18,10 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    func setIcon(url: String?) {
+        guard let url = URL(string: url!) else {return}
+        self.ivIcon.kf.indicatorType = .activity
+        self.ivIcon.kf.setImage(with: url)
+    }
 }
