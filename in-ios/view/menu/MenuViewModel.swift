@@ -61,6 +61,10 @@ class MenuViewModel: BaseViewModel {
             }
     }
     
+    func getIAMItem() -> Int {
+        return DataManager.getMenuItems().getIAMItemIndex()
+    }
+    
     func getSubItemsOf(item: MenuItem) -> [MenuItem] {
         return DataManager.getMenuItems().getSubMenuOf(item: item)!
     }

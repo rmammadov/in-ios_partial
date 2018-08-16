@@ -28,7 +28,7 @@
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_search" translatesAutoresizingMaskIntoConstraints="NO" id="6MF-pU-T87">
-                        <rect key="frame" x="65" y="22" width="83.5" height="84"/>
+                        <rect key="frame" x="65" y="16.5" width="83.5" height="95"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M3Q-0P-NaS">
                         <rect key="frame" x="21" y="143" width="170" height="17"/>
@@ -50,7 +50,7 @@
                 <constraint firstItem="M3Q-0P-NaS" firstAttribute="top" secondItem="EJV-8z-gLK" secondAttribute="bottom" constant="16" id="egy-hu-gP8"/>
                 <constraint firstItem="EJV-8z-gLK" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="0.6" id="iBW-09-bPu"/>
                 <constraint firstItem="M3Q-0P-NaS" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="m3l-kS-S1S"/>
-                <constraint firstItem="6MF-pU-T87" firstAttribute="height" secondItem="EJV-8z-gLK" secondAttribute="height" multiplier="0.66" id="mNy-dJ-uac"/>
+                <constraint firstItem="6MF-pU-T87" firstAttribute="height" secondItem="EJV-8z-gLK" secondAttribute="height" multiplier="0.75" id="mNy-dJ-uac"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="212" height="232"/>

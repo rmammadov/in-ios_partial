@@ -376,10 +376,10 @@
 			children = (
 				F331EA7D211303880000B4E6 /* TopMenuItemCollectionViewCell.swift */,
 				F331EA7E211303880000B4E6 /* TopMenuItemCollectionViewCell.xib */,
-				F3E19CB5211D827000ADE838 /* MenuItemCollectionViewCell.swift */,
-				F39059B9210F09C800CAA292 /* MenuItemCollectionViewCell.xib */,
 				F3355CF221240F6C009AF602 /* TopMenuItemExpandedCollectionViewCell.swift */,
 				F3355CF321240F6C009AF602 /* TopMenuItemExpandedCollectionViewCell.xib */,
+				F3E19CB5211D827000ADE838 /* MenuItemCollectionViewCell.swift */,
+				F39059B9210F09C800CAA292 /* MenuItemCollectionViewCell.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";

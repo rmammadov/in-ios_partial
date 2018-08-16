@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class TopMenuItemCollectionViewCell: UICollectionViewCell {
     
@@ -19,5 +20,21 @@ class TopMenuItemCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    func setIcon(url: String) {
+        let url = URL(string: url)
+        self.ivIcon.kf.indicatorType = .activity
+        self.ivIcon.kf.setImage(with: url)
+    }
+    
+    func setSelected(isSelected: Bool) {
+        if isSelected {
+            self.labelPassive.isHidden = true
+            self.viewActive.isHidden = false
+        } else {
+            self.viewActive.isHidden = true
+            self.labelPassive.isHidden = false
+        }
     }
 }

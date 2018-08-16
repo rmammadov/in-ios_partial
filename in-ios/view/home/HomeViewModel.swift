@@ -23,6 +23,7 @@ class HomeViewModel: BaseViewModel {
     fileprivate var topMenuItems: [MenuItem] = []
     fileprivate var topMenuItemSelectedIndex: IndexPath = IndexPath(row: 0, section: 0)
     fileprivate var topMenuItemSelected: MenuItem?
+    fileprivate var isMenuExpanded: Bool = true
     
     // TODO: Update this method
 
@@ -55,6 +56,10 @@ class HomeViewModel: BaseViewModel {
     
     func getTopMenuItemSelected() -> MenuItem? {
         return self.topMenuItemSelected
+    }
+    
+    func getIsMenuExpanded() -> Bool {
+        return self.isMenuExpanded
     }
     
     // FIXME: Remove hardcode language type

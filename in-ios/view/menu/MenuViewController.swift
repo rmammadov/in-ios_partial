@@ -84,7 +84,7 @@ extension MenuViewController {
             DispatchQueue.main.async {
                 if self.viewModel.status.value == MenuStatus.secondPhaseLoaded.rawValue {
                     self.performSegue(withIdentifier: segueIdentifierSubMenu, sender: self)
-                    AnimationUtil.cancelSubMenuSelection(imageView: self.getCellForIndexPath(indexPath: self.viewModel.getSelection()).ivStatusIcon)
+                    AnimationUtil.cancelMenuSelection(imageView: self.getCellForIndexPath(indexPath: self.viewModel.getSelection()).ivStatusIcon)
                 } else {
                     self.collectionView.reloadData()
                 }
@@ -96,7 +96,7 @@ extension MenuViewController {
             DispatchQueue.main.async {
                 if self.viewModel.statusInput.value == InputScreenId.inputScreen0.rawValue {
                     self.performSegue(withIdentifier: segueIdentifierInput, sender: self)
-                    AnimationUtil.cancelSubMenuSelection(imageView: self.getCellForIndexPath(indexPath: self.viewModel.getSelection()).ivStatusIcon)
+                    AnimationUtil.cancelMenuSelection(imageView: self.getCellForIndexPath(indexPath: self.viewModel.getSelection()).ivStatusIcon)
                 }
             }
         })
@@ -136,8 +136,16 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         cell.labelTitle.text = menuItem.name
         
+        if indexPath.row == self.viewModel.getIAMItem() {
+            AnimationUtil.setMenuSelection(imageView: cell.ivStatusIcon)
+        } else {
+            AnimationUtil.cancelMenuSelection(imageView: cell.ivStatusIcon)
+        }
+        
         return cell
     }
+    
+    // TODO: Hardcode should be removed
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
@@ -145,13 +153,12 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let cellHeight = self.collectionView.frame.size.height / 4
         
         return CGSize(width: cellWidth, height: cellHeight)
-        
     }
     
     // MARK: UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        AnimationUtil.animateSubMenuSelection(imageView: self.getCellForIndexPath(indexPath: indexPath).ivStatusIcon)
+        AnimationUtil.animateMenuSelection(imageView: self.getCellForIndexPath(indexPath: indexPath).ivStatusIcon)
         self.viewModel.setSelection(indexPath: indexPath)
     }
     

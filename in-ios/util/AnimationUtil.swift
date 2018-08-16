@@ -18,12 +18,12 @@ class AnimationUtil {
     
     static var status = Variable<Int>(0)
     
-    static func animateSubMenuSelection(imageView: UIImageView) {
+    static func animateMenuSelection(imageView: UIImageView) {
         imageView.image = #imageLiteral(resourceName: "ic_circle_gradient_loading")
         
         CATransaction.begin()
         CATransaction.setCompletionBlock({
-            imageView.image = #imageLiteral(resourceName: "ic_circle_gradient_fill")
+            self.setMenuSelection(imageView: imageView)
             self.status.value += AnimationStatus.completed.rawValue
         })
         let rotationAnimation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
@@ -35,8 +35,11 @@ class AnimationUtil {
         CATransaction.commit()
     }
 
+    static func setMenuSelection(imageView: UIImageView) {
+         imageView.image = #imageLiteral(resourceName: "ic_circle_gradient_fill")
+    }
     
-    static func cancelSubMenuSelection(imageView: UIImageView) {
+    static func cancelMenuSelection(imageView: UIImageView) {
         imageView.layer.removeAllAnimations()
         imageView.image = #imageLiteral(resourceName: "ic_circle_gradient")
         self.status.value = AnimationStatus.cancled.rawValue
