@@ -27,6 +27,10 @@ struct Constant {
         static let IAM_NOT_FOUND_INDEX: Int = 999
     }
     
+    struct InputScreen {
+        static let TYPE_A: String = "InputScreenA"
+    }
+    
     struct AnimationConfig {
         static let MENU_ITEM_ANIMATION_DURATION: Double = 4.0
         static let MENU_ITEM_ANIMATION_COUNT: Float = 1.0

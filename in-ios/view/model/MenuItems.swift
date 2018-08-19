@@ -27,7 +27,7 @@ extension MenuItems {
     
     func getSubMenuOf(item: MenuItem) -> Array<MenuItem>? {
         var menuItems: Array<MenuItem> = []
-        for id in (item.sub_menu_item_item_ids) {
+        for id in (item.subMenuItemIds) {
             menuItems.append((self.items?.filter{$0.id == id}.first)!)
         }
         

@@ -32,11 +32,11 @@ class InputAViewModel: BaseViewModel {
     }
     
     func getTitle() -> String? {
-        return self.screen?.translations![0].title
+        return self.screen?.translations[0].title
     }
     
     func getSpeakButtonStatus() -> Bool? {
-        return self.screen?.disable_text_to_speech
+        return self.screen?.disableTextToSpeech
     }
     
     func setItems(buttons: [ButtonInputScreen]?) {

@@ -78,11 +78,11 @@ class MenuViewModel: BaseViewModel {
                 self.setMenuItems(items: items)
             }
         } else {
-            if menuItem.input_screen_id != nil {
+            if menuItem.inputScreenId != nil {
                 self.statusInput.value = InputScreenId.inputScreen0.rawValue
             } else {
-                if !menuItem.disable_text_to_speech {
-                    self.textToSpech(text: menuItem.translations[0].label_text_to_speech!)
+                if !menuItem.disableTextToSpeech {
+                    self.textToSpech(text: menuItem.translations[0].labelTextToSpeech!)
                 }
             }
         }
