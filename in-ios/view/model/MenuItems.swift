@@ -33,11 +33,4 @@ extension MenuItems {
         
         return menuItems
     }
-    
-    // FIXME: Fix this method and remove hardcode
-    
-    func getIAMItemIndex() -> Int {
-        guard let index = self.items?.index(where: {$0.name == Constant.MenuConfig.NAME_IAM_MENU_ITEM}) else {return Constant.MenuConfig.IAM_NOT_FOUND_INDEX}
-        return 3
-    }
 }

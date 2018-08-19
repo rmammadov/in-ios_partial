@@ -62,7 +62,8 @@ class MenuViewModel: BaseViewModel {
     }
     
     func getIAMItem() -> Int {
-        return DataManager.getMenuItems().getIAMItemIndex()
+        guard let index = self.items.index(where: {$0.name == Constant.MenuConfig.NAME_IAM_MENU_ITEM}) else {return Constant.MenuConfig.IAM_NOT_FOUND_INDEX}
+        return index
     }
     
     func getSubItemsOf(item: MenuItem) -> [MenuItem] {
