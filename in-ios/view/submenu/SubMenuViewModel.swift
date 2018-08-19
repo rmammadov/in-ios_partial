@@ -15,6 +15,7 @@ class SubMenuViewModel: NSObject {
     
     fileprivate var parentMenuItem: MenuItem?
     fileprivate var items: Array<MenuItem> = []
+    fileprivate var item: MenuItem?
     fileprivate var indexSelectedItem: IndexPath = IndexPath(row: 0, section: 0)
     
     func setSubscribers() {
@@ -35,6 +36,18 @@ class SubMenuViewModel: NSObject {
     
     func getItmes() -> [MenuItem] {
         return self.items
+    }
+    
+    func setItem(index: Int) {
+        self.item = self.items[index]
+    }
+    
+    func getItemTitle() -> String? {
+        return self.item?.translations[0].label
+    }
+    
+    func getItemIcon() -> String? {
+        return self.item?.icon?.url
     }
     
     func setSelection(indexPath: IndexPath) {

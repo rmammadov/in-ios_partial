@@ -21,6 +21,7 @@ class InputAViewModel: BaseViewModel {
     fileprivate var screen: InputScreen?
     fileprivate var parentMenuItem: MenuItem?
     fileprivate var items: Array<ButtonInputScreen> = []
+    fileprivate var button: ButtonInputScreen?
     fileprivate var indexSelectedItem: IndexPath = IndexPath(row: 0, section: 0)
     
     func setParentMenuItem(item: MenuItem) {
@@ -29,6 +30,9 @@ class InputAViewModel: BaseViewModel {
     
     func loadScreen() {
         self.screen = DataManager.getInputScreens().getInputScreenA()
+        if (self.screen?.buttons?.count)! > 0 {
+            self.items = (self.screen?.buttons)!
+        }
     }
     
     func getTitle() -> String? {
@@ -47,6 +51,18 @@ class InputAViewModel: BaseViewModel {
     
     func getItmes() -> [ButtonInputScreen] {
         return self.items
+    }
+
+    func setItem(index: Int) {
+        self.button = self.items[index]
+    }
+    
+    func getItemTitle() -> String? {
+        return self.button?.translations![0].label
+    }
+    
+    func getItemIcon() -> String? {
+        return self.button?.icon?.url
     }
     
     func setSelection(indexPath: IndexPath) {
