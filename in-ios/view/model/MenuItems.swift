@@ -27,17 +27,10 @@ extension MenuItems {
     
     func getSubMenuOf(item: MenuItem) -> Array<MenuItem>? {
         var menuItems: Array<MenuItem> = []
-        for id in (item.sub_menu_item_item_ids) {
+        for id in (item.subMenuItemIds) {
             menuItems.append((self.items?.filter{$0.id == id}.first)!)
         }
         
         return menuItems
-    }
-    
-    // FIXME: Fix this method and remove hardcode
-    
-    func getIAMItemIndex() -> Int {
-        guard let index = self.items?.index(where: {$0.name == Constant.MenuConfig.NAME_IAM_MENU_ITEM}) else {return Constant.MenuConfig.IAM_NOT_FOUND_INDEX}
-        return 3
     }
 }

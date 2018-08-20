@@ -21,6 +21,7 @@ class HomeViewModel: BaseViewModel {
     var status = Variable<Int>(0)
     
     fileprivate var topMenuItems: [MenuItem] = []
+    fileprivate var topMenuItem: MenuItem?
     fileprivate var topMenuItemSelectedIndex: IndexPath = IndexPath(row: 0, section: 0)
     fileprivate var topMenuItemSelected: MenuItem?
     fileprivate var isMenuExpanded: Bool = true
@@ -42,6 +43,18 @@ class HomeViewModel: BaseViewModel {
     
     func getTopMenuItems() -> Array<MenuItem>? {
         return self.topMenuItems
+    }
+    
+    func setItem(index: Int) {
+        self.topMenuItem = self.topMenuItems[index]
+    }
+    
+    func getItemTitle() -> String? {
+        return self.topMenuItem?.translations[0].label
+    }
+    
+    func getItemIcon() -> String? {
+        return self.topMenuItem?.icon?.url
     }
     
     func onTopMenuItemSelected(indexPath: IndexPath) {

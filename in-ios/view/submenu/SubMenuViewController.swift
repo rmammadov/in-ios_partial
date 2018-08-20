@@ -101,13 +101,9 @@ extension SubMenuViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MenuItemCollectionViewCell
         
-        let item = self.viewModel.getItmes()[indexPath.row]
-        
-        if item.icon != nil {
-            cell.setIcon(url: (item.icon?.url))
-        }
-        
-        cell.labelTitle.text = item.name
+        self.viewModel.setItem(index: indexPath.row)
+        cell.labelTitle.text = self.viewModel.getItemTitle()
+        cell.setIcon(url: self.viewModel.getItemIcon())
         
         return cell
     }

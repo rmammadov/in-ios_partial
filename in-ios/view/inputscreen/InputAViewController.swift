@@ -106,11 +106,15 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
     // FIXME: Fix the hardcode and update collection data properly
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 17
+        return self.viewModel.getItmes().count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MenuItemCollectionViewCell
+        
+        self.viewModel.setItem(index: indexPath.row)
+        cell.labelTitle.text = self.viewModel.getItemTitle()
+        cell.setIcon(url: self.viewModel.getItemIcon())
         
         return cell
     }
@@ -128,9 +132,7 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
     // MARK: UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        AnimationUtil.cancelMenuSelection(imageView: self.getCellForIndexPath(indexPath: viewModel.getSelection()).ivStatusIcon)
-//        AnimationUtil.animateMenuSelection(imageView: self.getCellForIndexPath(indexPath: indexPath).ivStatusIcon)
-//        self.viewModel.setSelection(indexPath: indexPath)
+
     }
     
     func getCellForIndexPath(indexPath: IndexPath) -> MenuItemCollectionViewCell {
