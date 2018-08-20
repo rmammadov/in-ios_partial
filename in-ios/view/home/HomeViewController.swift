@@ -114,14 +114,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let menuItem = self.viewModel.getTopMenuItems()![indexPath.row]
         
+        self.viewModel.setItem(index: indexPath.row)
+        
         if self.viewModel.getIsMenuExpanded() {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifierExpanded, for: indexPath as IndexPath) as! TopMenuItemExpandedCollectionViewCell
             
-            if menuItem.icon != nil {
-                cell.setIcon(url: menuItem.icon?.url)
-            }
-            
-            cell.label.text = menuItem.name
+            cell.setIcon(url: self.viewModel.getItemIcon())
+            cell.label.text = self.viewModel.getItemTitle()
             
             if indexPath == self.viewModel.getTopMenuItemSelected() {
                 cell.setSelected(isSelected: true)
@@ -133,12 +132,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! TopMenuItemCollectionViewCell
             
-            if menuItem.icon != nil {
-                cell.setIcon(url: menuItem.icon?.url)
-            }
-            
-            cell.labelPassive.text = menuItem.name
-            cell.labelActive.text = menuItem.name
+            cell.setIcon(url: self.viewModel.getItemIcon())
+            cell.labelPassive.text = self.viewModel.getItemTitle()
+            cell.labelActive.text = self.viewModel.getItemTitle()
             
             if indexPath == self.viewModel.getTopMenuItemSelected() {
                 cell.setSelected(isSelected: true)

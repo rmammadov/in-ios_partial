@@ -127,14 +127,11 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MenuItemCollectionViewCell
-
-        let menuItem = self.viewModel.getMenuItems()![indexPath.row]
         
-        if menuItem.icon != nil {
-            cell.setIcon(url: (menuItem.icon?.url))
-        }
+        self.viewModel.setItem(index: indexPath.row)
         
-        cell.labelTitle.text = menuItem.name
+        cell.setIcon(url: self.viewModel.getItemIcon())
+        cell.labelTitle.text = self.viewModel.getItemTitle()
         
         if indexPath.row == self.viewModel.getIAMItem() {
             AnimationUtil.setMenuSelection(imageView: cell.ivStatusIcon)

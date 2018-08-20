@@ -31,6 +31,7 @@ class MenuViewModel: BaseViewModel {
     fileprivate var parentMenuItem: MenuItem?
     fileprivate var parentVC: HomeViewController?
     fileprivate var items: [MenuItem] = []
+    fileprivate var item: MenuItem?
     fileprivate var indexSelectedItem: IndexPath = IndexPath(row: 0, section: 0)
     fileprivate var selectedItem: MenuItem?
     
@@ -109,6 +110,18 @@ class MenuViewModel: BaseViewModel {
     
     func textToSpech(text: String) {
         SpeechHelper.play(text: text, language: "en-US")
+    }
+    
+    func setItem(index: Int) {
+        self.item = self.items[index]
+    }
+    
+    func getItemTitle() -> String? {
+        return self.item?.translations[0].label
+    }
+    
+    func getItemIcon() -> String? {
+        return self.item?.icon?.url
     }
     
     func setSelection(indexPath: IndexPath) {
