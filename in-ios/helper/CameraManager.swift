@@ -61,16 +61,18 @@ class CameraManager: NSObject {
 extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
     
     func setupCamera() {
-        self.captureSession = AVCaptureSession()
-        if let inputs = self.captureSession?.inputs as? [AVCaptureDeviceInput] {
-            for input in inputs {
-                self.captureSession?.removeInput(input)
+        if canLoadCamera() {
+            self.captureSession = AVCaptureSession()
+            if let inputs = self.captureSession?.inputs as? [AVCaptureDeviceInput] {
+                for input in inputs {
+                    self.captureSession?.removeInput(input)
+                }
             }
+            
+            guard let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: cameraPosition) else {return}
+            guard let input = try? AVCaptureDeviceInput(device: captureDevice) else {return}
+            self.captureSession?.addInput(input)
         }
-        
-        guard let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: cameraPosition) else {return}
-        guard let input = try? AVCaptureDeviceInput(device: captureDevice) else {return}
-        self.captureSession?.addInput(input)
     }
     
     func startSession() {
@@ -123,7 +125,8 @@ extension CameraManager {
     }
     
     fileprivate func checkIfCameraIsAvailable() -> CameraState {
-        let deviceHasCamera = UIImagePickerController.isCameraDeviceAvailable(UIImagePickerControllerCameraDevice.rear) || UIImagePickerController.isCameraDeviceAvailable(UIImagePickerControllerCameraDevice.front)
+//        let deviceHasCamera = UIImagePickerController.isCameraDeviceAvailable(UIImagePickerControllerCameraDevice.rear) || UIImagePickerController.isCameraDeviceAvailable(UIImagePickerControllerCameraDevice.front)
+        let deviceHasCamera = hasFrontCamera
         if deviceHasCamera {
             let authorizationStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
             let userAgreedToUseIt = authorizationStatus == .authorized

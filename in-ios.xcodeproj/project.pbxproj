@@ -78,6 +78,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F33289D52132F20000D99B3A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		34F1CB61519AF79B98BDA34B /* Pods_in_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_in_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		381E93D26B9E7C969D36FF7F /* Pods-in-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in-iosUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-in-iosUITests/Pods-in-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -196,6 +209,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F3283D70213013BA004B4FBE /* in-eye-gaze */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "in-eye-gaze";
+			sourceTree = "<group>";
+		};
 		F32D99CD211189D9007AAA8D /* home */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,6 +297,7 @@
 		F336587B20D318C300B18CEC /* in-ios */ = {
 			isa = PBXGroup;
 			children = (
+				F3283D70213013BA004B4FBE /* in-eye-gaze */,
 				F331EA8321136F5C0000B4E6 /* extension */,
 				F33658AC20D3197100B18CEC /* view */,
 				F33658AB20D3196C00B18CEC /* util */,
@@ -415,6 +436,7 @@
 				F336587620D318C300B18CEC /* Frameworks */,
 				F336587720D318C300B18CEC /* Resources */,
 				0ADA9E5D8330B8476C4C749F /* [CP] Embed Pods Frameworks */,
+				F33289D52132F20000D99B3A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -546,7 +568,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-in-ios/Pods-in-ios-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
@@ -554,7 +576,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -843,6 +865,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 954DRPZZ57;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/in-ios",
+				);
 				INFOPLIST_FILE = "in-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -865,6 +892,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 954DRPZZ57;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/in-ios",
+				);
 				INFOPLIST_FILE = "in-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
