@@ -33,46 +33,46 @@ class HomeViewModel: BaseViewModel {
     }
     
     func setData() {
-        self.setTopMenuItems(items: DataManager.getMenuItems().getTopMenuItems()!)
-        self.onTopMenuItemSelected(indexPath: self.topMenuItemSelectedIndex)
+        setTopMenuItems(items: DataManager.getMenuItems().getTopMenuItems()!)
+        onTopMenuItemSelected(indexPath: topMenuItemSelectedIndex)
     }
     
     func setTopMenuItems(items: [MenuItem]) {
-        self.topMenuItems = items
+        topMenuItems = items
     }
     
     func getTopMenuItems() -> Array<MenuItem>? {
-        return self.topMenuItems
+        return topMenuItems
     }
     
     func setItem(index: Int) {
-        self.topMenuItem = self.topMenuItems[index]
+        topMenuItem = topMenuItems[index]
     }
     
     func getItemTitle() -> String? {
-        return self.topMenuItem?.translations[0].label
+        return topMenuItem?.translations[0].label
     }
     
     func getItemIcon() -> String? {
-        return self.topMenuItem?.icon?.url
+        return topMenuItem?.icon?.url
     }
     
     func onTopMenuItemSelected(indexPath: IndexPath) {
-        self.topMenuItemSelected = self.getTopMenuItems()?[indexPath.row]
-        self.topMenuItemSelectedIndex = indexPath
-        self.status.value = TopMenuStatus.loaded.rawValue
+        topMenuItemSelected = getTopMenuItems()?[indexPath.row]
+        topMenuItemSelectedIndex = indexPath
+        status.value = TopMenuStatus.loaded.rawValue
     }
     
     func getTopMenuItemSelected() -> IndexPath {
-        return self.topMenuItemSelectedIndex
+        return topMenuItemSelectedIndex
     }
     
     func getTopMenuItemSelected() -> MenuItem? {
-        return self.topMenuItemSelected
+        return topMenuItemSelected
     }
     
     func getIsMenuExpanded() -> Bool {
-        return self.isMenuExpanded
+        return isMenuExpanded
     }
     
     // FIXME: Remove hardcode language type
