@@ -12,7 +12,6 @@ import Accelerate
 import CoreML
 import Surge
 
-@available(iOS 11.0, *)
 public class GazeTracker: FaceFinderDelegate {
     
     let model = GazeEstimator()
@@ -24,10 +23,36 @@ public class GazeTracker: FaceFinderDelegate {
                                      0.0, 1.0, 0.0]
     let AVERAGING_FILTER: [Float] = Array(repeating: 1.0/49.0, count: 49)
     
+    //Width and height of the screen of various apple devices, in millimeters.
+    let DEVICES = ["iPhone 6s":                 ["width": 58.0, "height": 100.0],
+                   "iPhone 6s Plus":            ["width": 58.0, "height": 100.0],
+                   "iPhone SE":                 ["width": 48.0, "height": 89.0],
+                   "iPhone 7":                  ["width": 58.0, "height": 100.0],
+                   "iPhone 7 Plus":             ["width": 58.0, "height": 100.0],
+                   "iPhone 8":                  ["width": 58.0, "height": 100.0],
+                   "iPhone 8 Plus":             ["width": 58.0, "height": 100.0],
+                   "iPhone X":                  ["width": 62.0, "height": 135.0],
+                   "iPad Air":                  ["width": 150.0, "height": 200.0],
+                   "iPad Air 2":                ["width": 150.0, "height": 200.0],
+                   "iPad 5":                    ["width": 150.0, "height": 200.0],
+                   "iPad 6":                    ["width": 150.0, "height": 200.0],
+                   "iPad Mini 2":               ["width": 120.0, "height": 160.0],
+                   "iPad Mini 3":               ["width": 120.0, "height": 160.0],
+                   "iPad Mini 4":               ["width": 120.0, "height": 160.0],
+                   "iPad Pro (9.7-inch)":       ["width": 150.0, "height": 200.0],
+                   "iPad Pro (12.9-inch)":      ["width": 198.0, "height": 264.0],
+                   "iPad Pro (12.9-inch) 2":    ["width": 198.0, "height": 264.0],
+                   "iPad Pro (10.5-inch)":      ["width": 162.0, "height": 216.0]]
+    
     var detector: FaceFinder? = nil
     var mainFace: VisionFace? = nil
     var gazeEstimation: MLMultiArray? = nil
     var predictionDelegate: GazePredictionDelegate? = nil
+    
+    var deviceName: String = ""
+    var screenWidthMil: Double = 0, screenHeightMil: Double = 0
+    var screenWidthPix: Double = 0, screenHeightPix: Double = 0
+    var PPCM: [Double] = [0.0, 0.0]
     
     /**
      Initializer
@@ -36,6 +61,14 @@ public class GazeTracker: FaceFinderDelegate {
         self.detector = FaceFinder()
         self.detector?.delegate = self
         self.predictionDelegate = delegate
+        
+        self.deviceName = UIDevice.current.name
+        self.screenWidthMil = self.DEVICES[self.deviceName]!["width"]!
+        self.screenHeightMil = self.DEVICES[self.deviceName]!["height"]!
+        self.screenWidthPix = Double(UIScreen.main.fixedCoordinateSpace.bounds.size.width)
+        self.screenHeightPix = Double(UIScreen.main.fixedCoordinateSpace.bounds.size.height)
+        self.PPCM = [self.screenWidthPix/(self.screenWidthMil/10.0),
+                     self.screenHeightPix/(self.screenHeightMil/10.0)]
     }
     
     static func deg2rad(degrees: Double) -> Double {return degrees * .pi / 180}
@@ -62,6 +95,47 @@ public class GazeTracker: FaceFinderDelegate {
         guard let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext() else { return nil }
         UIGraphicsEndImageContext()
         return newImage
+    }
+    
+    /**
+     Converts the coordinates of the gaze estimate from centimeters from the camera to pixels from screen center.
+     
+     - Parameter gazeX: the X position of the gaze as estimated by the model.
+     - Parameter gazeY: the Y position of the gaze as estimated by the model.
+     - Parameter camX: the horizontal position of the camera relative to the center of the device when in portrait mode, in centimeters.
+     - Parameter camY: the vertical position of the camera relative to the center of the device when in portrait mode, in centimeters.
+     - Parameter PPC: Pixels Per Centimeter, the screen resolution of the device. Must contain two values, one for the horizontal and one for the vertical, both given when the device is in portrait mode.
+     - Parameter orientation: The current orientation of the device.
+     */
+    func cm2pixels(gazeX: Double, gazeY: Double, camX: Double, camY: Double, orientation: UIDeviceOrientation) -> (gazeX: Int, gazeY: Int) {
+        
+        var gazeXFromCenter: Double = 0, gazeYFromCenter: Double = 0 //Distance of gaze from center in centimenters
+        var pixelsX: Int = 0, pixelsY: Int = 0 //Distance of gaze from center in pixels
+        
+        switch orientation {
+        case .portraitUpsideDown:
+            gazeXFromCenter = gazeX - camX
+            gazeYFromCenter = gazeY - camY
+            pixelsX = Int(gazeXFromCenter * self.PPCM[0])
+            pixelsY = Int(gazeYFromCenter * self.PPCM[1])
+        case .landscapeLeft:
+            gazeXFromCenter = gazeX - camY
+            gazeYFromCenter = gazeY + camX
+            pixelsX = Int(gazeXFromCenter * self.PPCM[1])
+            pixelsY = Int(gazeYFromCenter * self.PPCM[0])
+        case .landscapeRight:
+            gazeXFromCenter = gazeX + camY
+            gazeYFromCenter = gazeY - camX
+            pixelsX = Int(gazeXFromCenter * self.PPCM[1])
+            pixelsY = Int(gazeYFromCenter * self.PPCM[0])
+        default:
+            gazeXFromCenter = gazeX + camX
+            gazeYFromCenter = gazeY + camY
+            pixelsX = Int(gazeXFromCenter * self.PPCM[0])
+            pixelsY = Int(gazeYFromCenter * self.PPCM[1])
+        }
+        
+        return (pixelsX, pixelsY)
     }
     
     /**
@@ -97,37 +171,34 @@ public class GazeTracker: FaceFinderDelegate {
     }
     
     public func didFindFaces(scene: UIImage) {
-        print("Face found")
-        self.predictionDelegate?.didUpdatePrediction() // TODO: Should be deleted after tests
+        getMainFace()
+        let facialFeatures: MLMultiArray = self.getFacialFeatures()
+        let eyes = self.getEyes(image: scene)
+        guard let leftEye = eyes.leftEYe, let rightEye = eyes.rightEye else{
+            self.gazeEstimation = nil
+            self.predictionDelegate?.didUpdatePrediction()
+            return
+        }
+        guard let eyesImage = self.concatenateEyes(leftEye: leftEye, rightEye: rightEye) else {
+            self.gazeEstimation = nil
+            self.predictionDelegate?.didUpdatePrediction()
+            return
+        }
         
-//        getMainFace()
-//        let facialFeatures: MLMultiArray = self.getFacialFeatures()
-//        let eyes = self.getEyes(image: scene)
-//        guard let leftEye = eyes.leftEYe, let rightEye = eyes.rightEye else{
-//            self.gazeEstimation = nil
-//            self.predictionDelegate?.didUpdatePrediction()
-//            return
-//        }
-//        guard let eyesImage = self.concatenateEyes(leftEye: leftEye, rightEye: rightEye) else {
-//            self.gazeEstimation = nil
-//            self.predictionDelegate?.didUpdatePrediction()
-//            return
-//        }
-//
-//        guard let eyeChannels = self.channels2MLMultiArray(image: eyesImage) else {
-//            self.gazeEstimation = nil
-//            self.predictionDelegate?.didUpdatePrediction()
-//            return
-//        }
-//        guard let illuminant = self.estimateIlluminant(image: scene) else {
-//            self.gazeEstimation = nil
-//            self.predictionDelegate?.didUpdatePrediction()
-//            return
-//        }
-//
-//        let pred = self.predictGaze(eyesB: eyeChannels.blueChannel, eyesG: eyeChannels.greenChannel, eyesR: eyeChannels.redChannel, illuminant: illuminant, headPose: facialFeatures)
-//        self.gazeEstimation = pred
-//        self.predictionDelegate?.didUpdatePrediction()
+        guard let eyeChannels = self.channels2MLMultiArray(image: eyesImage) else {
+            self.gazeEstimation = nil
+            self.predictionDelegate?.didUpdatePrediction()
+            return
+        }
+        guard let illuminant = self.estimateIlluminant(image: scene) else {
+            self.gazeEstimation = nil
+            self.predictionDelegate?.didUpdatePrediction()
+            return
+        }
+        
+        let pred = self.predictGaze(eyesB: eyeChannels.blueChannel, eyesG: eyeChannels.greenChannel, eyesR: eyeChannels.redChannel, illuminant: illuminant, headPose: facialFeatures)
+        self.gazeEstimation = pred
+        self.predictionDelegate?.didUpdatePrediction()
     }
     
     private func getMainFace() {
@@ -426,8 +497,8 @@ public class GazeTracker: FaceFinderDelegate {
         var P: [Float] = Array<Float>(repeating: 0.0, count: width*height)
         for i in 0..<count {
             let innerSum: [Float] = [pow(SDN[0][i] - aSDN[i], 2.0)/aSDN[i],
-                                     pow(SDN[2][i] - aSDN[i], 2.0)/aSDN[i],
-                                     pow(SDN[3][i] - aSDN[i], 2.0)/aSDN[i]]
+                                     pow(SDN[1][i] - aSDN[i], 2.0)/aSDN[i],
+                                     pow(SDN[2][i] - aSDN[i], 2.0)/aSDN[i]]
             P[i] = sqrtf(innerSum.reduce(0, +)/Float(innerSum.count))
         }
         
@@ -469,11 +540,15 @@ public class GazeTracker: FaceFinderDelegate {
         return illuminant
     }
     
-    private func predictGaze(eyesB: MLMultiArray, eyesG: MLMultiArray, eyesR: MLMultiArray, illuminant: MLMultiArray, headPose: MLMultiArray) -> MLMultiArray{
-        guard let modelOutput = try? model.prediction(eyesB: eyesB, eyesG: eyesG, eyesR: eyesR, illum: illuminant, pose: headPose) else {
-            fatalError("Unexpected error at inference time")
+    private func predictGaze(eyesB: MLMultiArray, eyesG: MLMultiArray, eyesR: MLMultiArray, illuminant: MLMultiArray, headPose: MLMultiArray) -> MLMultiArray? {
+        do {
+            let modelOutput = try model.prediction(eyesB: eyesB, eyesG: eyesG, eyesR: eyesR, illum: illuminant, pose: headPose)
+            let gaze = modelOutput.gazeXY
+            return gaze
+        } catch {
+            print(error)
+            return nil
         }
-        let gaze = modelOutput.gazeXY
-        return gaze
     }
+    
 }
