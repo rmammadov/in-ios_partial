@@ -6,4 +6,20 @@
 //  Copyright © 2018 com.innodemneurosciences. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import AVFoundation
+
+extension CMSampleBuffer {
+    func image(orientation: UIImageOrientation = .up,
+               scale: CGFloat = 1.0) -> UIImage? {
+        if let buffer = CMSampleBufferGetImageBuffer(self) {
+            let ciImage = CIImage(cvPixelBuffer: buffer)
+            
+            return UIImage(ciImage: ciImage,
+                           scale: scale,
+                           orientation: orientation)
+        }
+        
+        return nil
+    }
+}

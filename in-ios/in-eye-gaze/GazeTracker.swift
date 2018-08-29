@@ -12,6 +12,7 @@ import Accelerate
 import CoreML
 import Surge
 
+@available(iOS 11.0, *)
 public class GazeTracker: FaceFinderDelegate {
     
     let model = GazeEstimator()
@@ -96,34 +97,37 @@ public class GazeTracker: FaceFinderDelegate {
     }
     
     public func didFindFaces(scene: UIImage) {
-        getMainFace()
-        let facialFeatures: MLMultiArray = self.getFacialFeatures()
-        let eyes = self.getEyes(image: scene)
-        guard let leftEye = eyes.leftEYe, let rightEye = eyes.rightEye else{
-            self.gazeEstimation = nil
-            self.predictionDelegate?.didUpdatePrediction()
-            return
-        }
-        guard let eyesImage = self.concatenateEyes(leftEye: leftEye, rightEye: rightEye) else {
-            self.gazeEstimation = nil
-            self.predictionDelegate?.didUpdatePrediction()
-            return
-        }
+        print("Face found")
+        self.predictionDelegate?.didUpdatePrediction() // TODO: Should be deleted after tests
         
-        guard let eyeChannels = self.channels2MLMultiArray(image: eyesImage) else {
-            self.gazeEstimation = nil
-            self.predictionDelegate?.didUpdatePrediction()
-            return
-        }
-        guard let illuminant = self.estimateIlluminant(image: scene) else {
-            self.gazeEstimation = nil
-            self.predictionDelegate?.didUpdatePrediction()
-            return
-        }
-        
-        let pred = self.predictGaze(eyesB: eyeChannels.blueChannel, eyesG: eyeChannels.greenChannel, eyesR: eyeChannels.redChannel, illuminant: illuminant, headPose: facialFeatures)
-        self.gazeEstimation = pred
-        self.predictionDelegate?.didUpdatePrediction()
+//        getMainFace()
+//        let facialFeatures: MLMultiArray = self.getFacialFeatures()
+//        let eyes = self.getEyes(image: scene)
+//        guard let leftEye = eyes.leftEYe, let rightEye = eyes.rightEye else{
+//            self.gazeEstimation = nil
+//            self.predictionDelegate?.didUpdatePrediction()
+//            return
+//        }
+//        guard let eyesImage = self.concatenateEyes(leftEye: leftEye, rightEye: rightEye) else {
+//            self.gazeEstimation = nil
+//            self.predictionDelegate?.didUpdatePrediction()
+//            return
+//        }
+//
+//        guard let eyeChannels = self.channels2MLMultiArray(image: eyesImage) else {
+//            self.gazeEstimation = nil
+//            self.predictionDelegate?.didUpdatePrediction()
+//            return
+//        }
+//        guard let illuminant = self.estimateIlluminant(image: scene) else {
+//            self.gazeEstimation = nil
+//            self.predictionDelegate?.didUpdatePrediction()
+//            return
+//        }
+//
+//        let pred = self.predictGaze(eyesB: eyeChannels.blueChannel, eyesG: eyeChannels.greenChannel, eyesR: eyeChannels.redChannel, illuminant: illuminant, headPose: facialFeatures)
+//        self.gazeEstimation = pred
+//        self.predictionDelegate?.didUpdatePrediction()
     }
     
     private func getMainFace() {

@@ -101,6 +101,7 @@
                         <outlet property="collectionTopMenu" destination="vSO-2M-N7o" id="CP8-O9-2fY"/>
                         <outlet property="constraintCollectionViewHeight" destination="iwl-ON-eS9" id="EOb-8F-32G"/>
                         <outlet property="containerViewSubMenu" destination="iiL-Mh-1hh" id="5Kc-sz-wnE"/>
+                        <outlet property="ivBackground" destination="8sU-uA-xuD" id="ygg-IQ-fju"/>
                         <outlet property="viewTopMenu" destination="9Zq-RT-v6y" id="xp1-7q-d0w"/>
                     </connections>
                 </viewController>

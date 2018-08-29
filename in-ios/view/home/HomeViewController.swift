@@ -17,6 +17,7 @@ private let reuseIdentifierExpanded = "cellTopMenuItemExpanded"
 
 class HomeViewController: BaseViewController {
 
+    @IBOutlet weak var ivBackground: UIImageView!
     @IBOutlet weak var viewTopMenu: UIView!
     @IBOutlet weak var collectionTopMenu: UICollectionView!
     @IBOutlet weak var constraintCollectionViewHeight: NSLayoutConstraint!
@@ -24,11 +25,23 @@ class HomeViewController: BaseViewController {
     
     let viewModel = HomeViewModel()
     
+    let cameraManager: CameraManager = CameraManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         setUi()
+        
+        // TODO: should be removed and reimplemented after tests
+        cameraManager.askUserForCameraPermission { (status) in
+            if status {
+                self.cameraManager.setPrediction()
+                self.cameraManager.setupCamera(cameraView: self.ivBackground)
+                self.cameraManager.startSession()
+//                self.cameraManager.predicate(frame: UIImage(named:"test_image")!)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

@@ -27,7 +27,9 @@ class CameraManager: NSObject {
     fileprivate var deviceOrientation: UIDeviceOrientation = .portrait
     fileprivate var cameraIsSetup = false
     fileprivate var cameraIsObservingDeviceOrientation = false
-    var cameraPosition = AVCaptureDevice.Position.front
+    fileprivate var cameraPosition = AVCaptureDevice.Position.front
+    fileprivate var gazeTracker: Any?
+    fileprivate var cameraView: UIView? // For the test purpose
 
     open var cameraIsReady: Bool {
         get {
@@ -60,7 +62,9 @@ class CameraManager: NSObject {
 
 extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
     
-    func setupCamera() {
+    func setupCamera(cameraView: UIView) {
+        // TODO: Remove after tests
+        self.cameraView = cameraView // For the test purpose
         if canLoadCamera() {
             self.captureSession = AVCaptureSession()
             if let inputs = self.captureSession?.inputs as? [AVCaptureDeviceInput] {
@@ -76,12 +80,20 @@ extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
     }
     
     func startSession() {
-        self.captureSession?.sessionPreset = .medium
-        self.captureSession?.startRunning()
+        if self.captureSession != nil {
+            self.captureSession?.sessionPreset = .medium
+            self.captureSession?.startRunning()
 
-        let dataOutput = AVCaptureVideoDataOutput()
-        dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "Video Queue"))
-        self.captureSession?.addOutput(dataOutput)
+            // TODO: Remove this after tests
+            let previewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession!)
+            previewLayer.connection?.videoOrientation = .landscapeLeft
+            self.cameraView?.layer.addSublayer(previewLayer)
+            previewLayer.frame = (self.cameraView?.frame)!
+            
+            let dataOutput = AVCaptureVideoDataOutput()
+            dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "Video Queue"))
+            self.captureSession?.addOutput(dataOutput)
+        }
     }
 
     func stopCaptureSession() {
@@ -104,6 +116,7 @@ extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         print("Camera was able to capture frame")
+        predicate(frame: sampleBuffer.image()!)
     }
 }
 
@@ -116,16 +129,13 @@ extension CameraManager {
 
     open func askUserForCameraPermission(_ completion: @escaping (Bool) -> Void) {
         AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: { (allowedAccess) -> Void in
-            AVCaptureDevice.requestAccess(for: AVMediaType.audio, completionHandler: { (allowedAccess) -> Void in
-                DispatchQueue.main.async(execute: { () -> Void in
-                    completion(allowedAccess)
-                })
+            DispatchQueue.main.async(execute: { () -> Void in
+                completion(allowedAccess)
             })
         })
     }
     
     fileprivate func checkIfCameraIsAvailable() -> CameraState {
-//        let deviceHasCamera = UIImagePickerController.isCameraDeviceAvailable(UIImagePickerControllerCameraDevice.rear) || UIImagePickerController.isCameraDeviceAvailable(UIImagePickerControllerCameraDevice.front)
         let deviceHasCamera = hasFrontCamera
         if deviceHasCamera {
             let authorizationStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
@@ -149,6 +159,40 @@ extension CameraManager {
             DispatchQueue.main.async(execute: { () -> Void in
                 self.showErrorBlock(title, message)
             })
+        }
+    }
+}
+
+extension CameraManager: GazePredictionDelegate {
+    
+    func setPrediction() {
+        if #available(iOS 11.0, *)  {
+            gazeTracker = GazeTracker(delegate: self)
+        } else {
+            return
+        }
+    }
+    
+    func predicate(frame: UIImage) {
+        if #available(iOS 11.0, *)  {
+            let gazeTracker: GazeTracker = self.gazeTracker as! GazeTracker
+            gazeTracker.startPrediction(scene: frame)
+        } else {
+            return
+        }
+    }
+    
+    func didUpdatePrediction() {
+        isFaceDetected(status: true)
+    }
+    
+    func isFaceDetected(status: Bool) {
+        if status {
+            self.cameraView?.layer.borderWidth = 10
+            self.cameraView?.layer.borderColor = UIColor.red.cgColor
+        } else {
+            self.cameraView?.layer.borderWidth = 0
+            self.cameraView?.layer.borderColor = UIColor.black.cgColor
         }
     }
 }

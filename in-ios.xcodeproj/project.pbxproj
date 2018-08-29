@@ -57,6 +57,13 @@
 		F3E19CB9211D835500ADE838 /* SubMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E19CB8211D835500ADE838 /* SubMenuViewController.swift */; };
 		F3E19CBB211D836B00ADE838 /* SubMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E19CBA211D836B00ADE838 /* SubMenuViewModel.swift */; };
 		F3E19CBD211D837900ADE838 /* SubMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E19CBC211D837900ADE838 /* SubMenuModel.swift */; };
+		F3E200C22135EC5E00902A33 /* FaceFinderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E200BE2135EC5D00902A33 /* FaceFinderDelegate.swift */; };
+		F3E200C32135EC5E00902A33 /* GazeTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E200BF2135EC5D00902A33 /* GazeTracker.swift */; };
+		F3E200C42135EC5E00902A33 /* FaceFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E200C02135EC5D00902A33 /* FaceFinder.swift */; };
+		F3E200C52135EC5E00902A33 /* GazePredictionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E200C12135EC5E00902A33 /* GazePredictionDelegate.swift */; };
+		F3E200C72135EC6500902A33 /* GazeEstimator.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F3E200C62135EC6500902A33 /* GazeEstimator.mlmodel */; };
+		F3E200C92135F2D500902A33 /* UIApplication+getPresentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E200C82135F2D500902A33 /* UIApplication+getPresentedViewController.swift */; };
+		F3E200CD213664C700902A33 /* CMSampleBuffer+image.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E200CC213664C700902A33 /* CMSampleBuffer+image.swift */; };
 		F3F4148C20F5F82000CF101D /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F4148B20F5F82000CF101D /* ReachabilityManager.swift */; };
 		F3F8648321175BEE00B7CAA8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3F8648221175BEE00B7CAA8 /* Colors.xcassets */; };
 /* End PBXBuildFile section */
@@ -154,6 +161,13 @@
 		F3E19CB8211D835500ADE838 /* SubMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMenuViewController.swift; sourceTree = "<group>"; };
 		F3E19CBA211D836B00ADE838 /* SubMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMenuViewModel.swift; sourceTree = "<group>"; };
 		F3E19CBC211D837900ADE838 /* SubMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMenuModel.swift; sourceTree = "<group>"; };
+		F3E200BE2135EC5D00902A33 /* FaceFinderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceFinderDelegate.swift; sourceTree = "<group>"; };
+		F3E200BF2135EC5D00902A33 /* GazeTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GazeTracker.swift; sourceTree = "<group>"; };
+		F3E200C02135EC5D00902A33 /* FaceFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceFinder.swift; sourceTree = "<group>"; };
+		F3E200C12135EC5E00902A33 /* GazePredictionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GazePredictionDelegate.swift; sourceTree = "<group>"; };
+		F3E200C62135EC6500902A33 /* GazeEstimator.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = GazeEstimator.mlmodel; path = "../../../../../in-eye-gaze-master/GazeEstimator.mlmodel"; sourceTree = "<group>"; };
+		F3E200C82135F2D500902A33 /* UIApplication+getPresentedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+getPresentedViewController.swift"; sourceTree = "<group>"; };
+		F3E200CC213664C700902A33 /* CMSampleBuffer+image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMSampleBuffer+image.swift"; sourceTree = "<group>"; };
 		F3F4148B20F5F82000CF101D /* ReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
 		F3F8648221175BEE00B7CAA8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -212,6 +226,11 @@
 		F3283D70213013BA004B4FBE /* in-eye-gaze */ = {
 			isa = PBXGroup;
 			children = (
+				F3E200C62135EC6500902A33 /* GazeEstimator.mlmodel */,
+				F3E200BF2135EC5D00902A33 /* GazeTracker.swift */,
+				F3E200C02135EC5D00902A33 /* FaceFinder.swift */,
+				F3E200BE2135EC5D00902A33 /* FaceFinderDelegate.swift */,
+				F3E200C12135EC5E00902A33 /* GazePredictionDelegate.swift */,
 			);
 			path = "in-eye-gaze";
 			sourceTree = "<group>";
@@ -239,6 +258,8 @@
 		F331EA8321136F5C0000B4E6 /* extension */ = {
 			isa = PBXGroup;
 			children = (
+				F3E200C82135F2D500902A33 /* UIApplication+getPresentedViewController.swift */,
+				F3E200CC213664C700902A33 /* CMSampleBuffer+image.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -681,6 +702,7 @@
 				F32D99CA21117EC7007AAA8D /* BaseViewModel.swift in Sources */,
 				F34B909B20D46FA100800FCD /* DisplayHelper.swift in Sources */,
 				F334ADBE2105DA4A0056824A /* SpeechHelper.swift in Sources */,
+				F3E200C42135EC5E00902A33 /* FaceFinder.swift in Sources */,
 				F39059BF210F254C00CAA292 /* AnimationUtil.swift in Sources */,
 				F334ADC5210B3BC00056824A /* ApiRequestHandler.swift in Sources */,
 				F336587F20D318C300B18CEC /* BaseViewController.swift in Sources */,
@@ -691,6 +713,7 @@
 				F3F4148C20F5F82000CF101D /* ReachabilityManager.swift in Sources */,
 				F334ADC8210D7A370056824A /* MenuItem.swift in Sources */,
 				F32D99C621117E79007AAA8D /* HomeModel.swift in Sources */,
+				F3E200C32135EC5E00902A33 /* GazeTracker.swift in Sources */,
 				F336587D20D318C300B18CEC /* AppDelegate.swift in Sources */,
 				F331EA7F211303880000B4E6 /* TopMenuItemCollectionViewCell.swift in Sources */,
 				F3355CE82121E04F009AF602 /* InputScreen.swift in Sources */,
@@ -698,6 +721,7 @@
 				F334ADCA210D7F890056824A /* HomeViewModel.swift in Sources */,
 				F3C48CCB210F018200742855 /* MenuViewController.swift in Sources */,
 				F3355CF12122E904009AF602 /* LoadingModel.swift in Sources */,
+				F3E200C92135F2D500902A33 /* UIApplication+getPresentedViewController.swift in Sources */,
 				F3E19CAA211C3CDB00ADE838 /* HomeContainerViewModel.swift in Sources */,
 				F3E19CB9211D835500ADE838 /* SubMenuViewController.swift in Sources */,
 				F39059C32110473D00CAA292 /* MenuItems.swift in Sources */,
@@ -705,6 +729,7 @@
 				F3E19CAC211C3CEE00ADE838 /* HomeContainerModel.swift in Sources */,
 				F3E19CA6211B10FF00ADE838 /* HomeContainerViewController.swift in Sources */,
 				F3E19CBD211D837900ADE838 /* SubMenuModel.swift in Sources */,
+				F3E200C52135EC5E00902A33 /* GazePredictionDelegate.swift in Sources */,
 				F33658AE20D3198000B18CEC /* Constant.swift in Sources */,
 				F334ADBC2104E7970056824A /* CameraManager.swift in Sources */,
 				F3E19CB2211C3DB400ADE838 /* InputAModel.swift in Sources */,
@@ -714,6 +739,9 @@
 				F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */,
 				F32D99CC21117EE8007AAA8D /* BaseModel.swift in Sources */,
 				F3355CF421240F6C009AF602 /* TopMenuItemExpandedCollectionViewCell.swift in Sources */,
+				F3E200CD213664C700902A33 /* CMSampleBuffer+image.swift in Sources */,
+				F3E200C72135EC6500902A33 /* GazeEstimator.mlmodel in Sources */,
+				F3E200C22135EC5E00902A33 /* FaceFinderDelegate.swift in Sources */,
 				F334ADC02106E86F0056824A /* NavigationHelper.swift in Sources */,
 				F3355CEF2122E8F3009AF602 /* LoadingViewModel.swift in Sources */,
 			);
@@ -821,7 +849,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -876,7 +904,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -900,7 +928,7 @@
 					"$(PROJECT_DIR)/in-ios",
 				);
 				INFOPLIST_FILE = "in-ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -927,7 +955,7 @@
 					"$(PROJECT_DIR)/in-ios",
 				);
 				INFOPLIST_FILE = "in-ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
