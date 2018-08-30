@@ -12,7 +12,6 @@ import Accelerate
 import CoreML
 import Surge
 
-@available(iOS 11.0, *)
 public class GazeTracker: FaceFinderDelegate {
     
     let model = GazeEstimator()
@@ -64,8 +63,8 @@ public class GazeTracker: FaceFinderDelegate {
         self.predictionDelegate = delegate
         
         self.deviceName = UIDevice.current.name
-        self.screenWidthMil =  150.0 // self.DEVICES[self.deviceName]!["width"]!
-        self.screenHeightMil = 200.0 //self.DEVICES[self.deviceName]!["height"]!
+        self.screenWidthMil = self.DEVICES[self.deviceName]!["width"]!
+        self.screenHeightMil = self.DEVICES[self.deviceName]!["height"]!
         self.screenWidthPix = Double(UIScreen.main.fixedCoordinateSpace.bounds.size.width)
         self.screenHeightPix = Double(UIScreen.main.fixedCoordinateSpace.bounds.size.height)
         self.PPCM = [self.screenWidthPix/(self.screenWidthMil/10.0),
@@ -180,15 +179,12 @@ public class GazeTracker: FaceFinderDelegate {
             self.predictionDelegate?.didUpdatePrediction()
             return
         }
-        print("Left eye image size: \(leftEye.width)x\(leftEye.height)")
-        print("Right eye image size: \(rightEye.width)x\(rightEye.height)")
         
         guard let eyesImage = self.concatenateEyes(leftEye: leftEye, rightEye: rightEye) else {
             self.gazeEstimation = nil
             self.predictionDelegate?.didUpdatePrediction()
             return
         }
-        print("Concatenated eye image size: \(eyesImage.width)x\(eyesImage.height)")
         
         guard let eyeChannels = self.channels2MLMultiArray(image: eyesImage) else {
             self.gazeEstimation = nil
@@ -386,7 +382,7 @@ public class GazeTracker: FaceFinderDelegate {
         guard let redChannel = try? MLMultiArray(shape: [1, height as NSNumber, width as NSNumber], dataType: MLMultiArrayDataType.double) else {
             fatalError("Unexpected runtime error. MLMultiArray")
         }
-        guard let greenChannel = try? MLMultiArray(shape: [1, height as NSNumber, height as NSNumber], dataType: MLMultiArrayDataType.double) else {
+        guard let greenChannel = try? MLMultiArray(shape: [1, height as NSNumber, width as NSNumber], dataType: MLMultiArrayDataType.double) else {
             fatalError("Unexpected runtime error. MLMultiArray")
         }
         guard let blueChannel = try? MLMultiArray(shape: [1, height as NSNumber, width as NSNumber], dataType: MLMultiArrayDataType.double) else {
