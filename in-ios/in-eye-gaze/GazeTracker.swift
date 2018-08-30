@@ -179,17 +179,22 @@ public class GazeTracker: FaceFinderDelegate {
             self.predictionDelegate?.didUpdatePrediction()
             return
         }
+        print("Left eye image size: \(leftEye.width)x\(leftEye.height)")
+        print("Right eye image size: \(rightEye.width)x\(rightEye.height)")
+        
         guard let eyesImage = self.concatenateEyes(leftEye: leftEye, rightEye: rightEye) else {
             self.gazeEstimation = nil
             self.predictionDelegate?.didUpdatePrediction()
             return
         }
+        print("Concatenated eye image size: \(eyesImage.width)x\(eyesImage.height)")
         
         guard let eyeChannels = self.channels2MLMultiArray(image: eyesImage) else {
             self.gazeEstimation = nil
             self.predictionDelegate?.didUpdatePrediction()
             return
         }
+        
         guard let illuminant = self.estimateIlluminant(image: scene) else {
             self.gazeEstimation = nil
             self.predictionDelegate?.didUpdatePrediction()
@@ -355,7 +360,7 @@ public class GazeTracker: FaceFinderDelegate {
                                       width: 2 * self.EYE_RESIZE_HEIGHT,
                                       height: self.EYE_RESIZE_HEIGHT,
                                       bitsPerComponent: leftEye.bitsPerComponent,
-                                      bytesPerRow: leftEye.bytesPerRow,
+                                      bytesPerRow: leftEye.bytesPerRow + rightEye.bytesPerRow,
                                       space: colorSpace,
                                       bitmapInfo: leftEye.alphaInfo.rawValue) else { return nil }
         
@@ -363,7 +368,8 @@ public class GazeTracker: FaceFinderDelegate {
         context.draw(leftEye, in: CGRect(x: 0, y: 0, width: EYE_RESIZE_HEIGHT, height: EYE_RESIZE_HEIGHT))
         context.draw(rightEye, in: CGRect(x: EYE_RESIZE_HEIGHT, y: 0, width: EYE_RESIZE_HEIGHT, height: EYE_RESIZE_HEIGHT))
         
-        return context.makeImage()
+        let newImage = context.makeImage()
+        return newImage
     }
     
     /**
@@ -535,8 +541,6 @@ public class GazeTracker: FaceFinderDelegate {
             illuminant[i] = e_i[i] as NSNumber
         }
         
-        data.deallocate()
-        egiPointer.deallocate()
         return illuminant
     }
     
