@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 
 extension CMSampleBuffer {
+    
     func image(orientation: UIImageOrientation = .up,
                scale: CGFloat = 1.0) -> UIImage? {
         if let buffer = CMSampleBufferGetImageBuffer(self) {

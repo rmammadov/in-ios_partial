@@ -12,6 +12,7 @@ import Accelerate
 import CoreML
 import Surge
 
+@available(iOS 11.0, *)
 public class GazeTracker: FaceFinderDelegate {
     
     let model = GazeEstimator()
@@ -63,8 +64,8 @@ public class GazeTracker: FaceFinderDelegate {
         self.predictionDelegate = delegate
         
         self.deviceName = UIDevice.current.name
-        self.screenWidthMil = self.DEVICES[self.deviceName]!["width"]!
-        self.screenHeightMil = self.DEVICES[self.deviceName]!["height"]!
+        self.screenWidthMil =  150.0 // self.DEVICES[self.deviceName]!["width"]!
+        self.screenHeightMil = 200.0 //self.DEVICES[self.deviceName]!["height"]!
         self.screenWidthPix = Double(UIScreen.main.fixedCoordinateSpace.bounds.size.width)
         self.screenHeightPix = Double(UIScreen.main.fixedCoordinateSpace.bounds.size.height)
         self.PPCM = [self.screenWidthPix/(self.screenWidthMil/10.0),

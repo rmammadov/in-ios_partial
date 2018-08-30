@@ -116,7 +116,7 @@ extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         print("Camera was able to capture frame")
-        predicate(frame: sampleBuffer.image()!)
+        predicate(frame: sampleBuffer.image(orientation: .down, scale: 1.0)!)
     }
 }
 
@@ -176,14 +176,16 @@ extension CameraManager: GazePredictionDelegate {
     func predicate(frame: UIImage) {
         if #available(iOS 11.0, *)  {
             let gazeTracker: GazeTracker = self.gazeTracker as! GazeTracker
-            gazeTracker.startPrediction(scene: frame)
+            gazeTracker.startPrediction(scene: frame.fixedOrientation())
         } else {
             return
         }
     }
     
     func didUpdatePrediction() {
-        isFaceDetected(status: true)
+        DispatchQueue.main.async {
+            self.isFaceDetected(status: true)
+        }
     }
     
     func isFaceDetected(status: Bool) {
