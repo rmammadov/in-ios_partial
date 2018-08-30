@@ -183,8 +183,14 @@ extension CameraManager: GazePredictionDelegate {
     }
     
     func didUpdatePrediction() {
-        DispatchQueue.main.async {
-            self.isFaceDetected(status: true)
+        if #available(iOS 11.0, *) {
+            DispatchQueue.main.async {
+                self.isFaceDetected(status: true)
+                    let gazeTracker: GazeTracker = self.gazeTracker as! GazeTracker
+                    print(gazeTracker.gazeEstimation)
+            }
+        } else {
+            // Fallback on earlier versions
         }
     }
     

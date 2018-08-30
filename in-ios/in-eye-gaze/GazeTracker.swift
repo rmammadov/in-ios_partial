@@ -12,6 +12,7 @@ import Accelerate
 import CoreML
 import Surge
 
+@available(iOS 11.0, *)
 public class GazeTracker: FaceFinderDelegate {
     
     let model = GazeEstimator()

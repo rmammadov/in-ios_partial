@@ -39,7 +39,7 @@ class HomeViewController: BaseViewController {
                 self.cameraManager.setPrediction()
                 self.cameraManager.setupCamera(cameraView: self.ivBackground)
                 self.cameraManager.startSession()
-                self.cameraManager.predicate(frame: UIImage(named:"test_image")!)
+//                self.cameraManager.predicate(frame: UIImage(named:"test_image")!)
             }
         }
     }
