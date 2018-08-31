@@ -175,7 +175,7 @@ extension CameraManager: GazePredictionDelegate {
     }
     
     func predicate(frame: UIImage) {
-        self.gazeTrackingCompleted {
+        if self.gazeTrackingCompleted {
             if #available(iOS 11.0, *)  {
                 self.gazeTrackingCompleted = false
                 let gazeTracker: GazeTracker = self.gazeTracker as! GazeTracker

@@ -39,7 +39,7 @@ class HomeViewController: BaseViewController {
                 self.cameraManager.setPrediction()
                 self.cameraManager.setupCamera(cameraView: self.ivBackground)
                 self.cameraManager.startSession()
-//                self.cameraManager.predicate(frame: UIImage(named:"test_image")!)
+                self.cameraManager.predicate(frame: UIImage(named:"test_image")!)
             }
         }
     }
@@ -123,9 +123,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return (viewModel.getTopMenuItems()?.count)!
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let menuItem = self.viewModel.getTopMenuItems()![indexPath.row]
-        
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {        
         viewModel.setItem(index: indexPath.row)
         
         if viewModel.getIsMenuExpanded() {
@@ -173,6 +171,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let cellHeight: CGFloat = 116
         
         return CGSize(width: cellWidth, height: cellHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        let cellWidth : CGFloat = self.collectionTopMenu.frame.size.width / 3
+        let edgeInsets = (self.collectionTopMenu.frame.size.width - (CGFloat(self.collectionTopMenu.numberOfItems(inSection: self.collectionTopMenu.numberOfSections - 1)) * cellWidth)) / 2
+        
+        return UIEdgeInsetsMake(0, edgeInsets, 0, edgeInsets)
     }
     
     func getCellForIndexPath(indexPath: IndexPath) -> UICollectionViewCell? {
