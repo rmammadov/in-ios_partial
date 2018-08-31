@@ -175,9 +175,19 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         let cellWidth : CGFloat = self.collectionTopMenu.frame.size.width / 3
-        let edgeInsets = (self.collectionTopMenu.frame.size.width - (CGFloat(self.collectionTopMenu.numberOfItems(inSection: self.collectionTopMenu.numberOfSections - 1)) * cellWidth)) / 2
         
-        return UIEdgeInsetsMake(0, edgeInsets, 0, edgeInsets)
+        switch self.collectionTopMenu.numberOfItems(inSection: self.collectionTopMenu.numberOfSections - 1) {
+            case 1:
+                return UIEdgeInsetsMake(0, cellWidth, 0, cellWidth)
+            case 2:
+                if self.viewModel.getTopMenuItemSelected().row == 0 {
+                    return UIEdgeInsetsMake(0, cellWidth, 0, 0)
+                } else {
+                    return UIEdgeInsetsMake(0, 0, 0, cellWidth)
+                }
+            default:
+                return UIEdgeInsetsMake(0, 0, 0, 0)
+        }
     }
     
     func getCellForIndexPath(indexPath: IndexPath) -> UICollectionViewCell? {
