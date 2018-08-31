@@ -29,6 +29,7 @@ class CameraManager: NSObject {
     fileprivate var cameraIsObservingDeviceOrientation = false
     fileprivate var cameraPosition = AVCaptureDevice.Position.front
     fileprivate var gazeTracker: Any?
+    fileprivate var gazeTrackingCompleted: Bool = true
     fileprivate var cameraView: UIView? // For the test purpose
 
     open var cameraIsReady: Bool {
@@ -174,11 +175,14 @@ extension CameraManager: GazePredictionDelegate {
     }
     
     func predicate(frame: UIImage) {
-        if #available(iOS 11.0, *)  {
-            let gazeTracker: GazeTracker = self.gazeTracker as! GazeTracker
-            gazeTracker.startPrediction(scene: frame.fixedOrientation())
-        } else {
-            return
+        self.gazeTrackingCompleted {
+            if #available(iOS 11.0, *)  {
+                self.gazeTrackingCompleted = false
+                let gazeTracker: GazeTracker = self.gazeTracker as! GazeTracker
+                gazeTracker.startPrediction(scene: frame.fixedOrientation())
+            } else {
+                return
+            }
         }
     }
     
@@ -192,6 +196,8 @@ extension CameraManager: GazePredictionDelegate {
         } else {
             // Fallback on earlier versions
         }
+        
+        self.gazeTrackingCompleted = true
     }
     
     func isFaceDetected(status: Bool) {
