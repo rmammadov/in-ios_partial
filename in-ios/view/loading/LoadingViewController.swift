@@ -59,19 +59,21 @@ extension LoadingViewController {
         self.viewModel.status.asObservable().subscribe(onNext: {
             event in
             if self.viewModel.status.value == LoadingStatus.completed.rawValue {
-                DispatchQueue.main.async {
-                    self.showHome()
-                }
+                self.showHome()
             }
         })
     }
     
     func setLoadingScreen() {
-        self.labelStatus.text = "Loading content..."
-        AnimationUtil.animateLoading(imageView: self.ivProgressbar)
+        DispatchQueue.main.async {
+            self.labelStatus.text = "Loading content..."
+            AnimationUtil.animateLoading(imageView: self.ivProgressbar)
+        }
     }
     
     func showHome() {
-        self.performSegue(withIdentifier: segueIdentifierHome, sender: self)
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: segueIdentifierHome, sender: self)
+        }
     }
 }

@@ -26,10 +26,13 @@ class ReachabilityManager: NSObject {
         switch reachability.connection {
         case .none:
             debugPrint("Network became unreachable")
+            reachabilityStatus = .none
         case .wifi:
             debugPrint("Network reachable through WiFi")
+            reachabilityStatus = .wifi
         case .cellular:
             debugPrint("Network reachable through Cellular Data")
+            reachabilityStatus = .cellular
         }
     }
     
