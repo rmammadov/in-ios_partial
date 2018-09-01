@@ -54,11 +54,12 @@ public class GazeTracker: FaceFinderDelegate {
     var screenWidthMil: Double = 0, screenHeightMil: Double = 0
     var screenWidthPix: Double = 0, screenHeightPix: Double = 0
     var PPCM: [Double] = [0.0, 0.0]
+    var illumResizeRatio: Double = 1.0
     
     /**
      Initializer
      */
-    init(delegate: GazePredictionDelegate?) {
+    init(delegate: GazePredictionDelegate?, illumResizeRatio: Double = 1.0) {
         self.detector = FaceFinder()
         self.detector?.delegate = self
         self.predictionDelegate = delegate
@@ -70,6 +71,7 @@ public class GazeTracker: FaceFinderDelegate {
         self.screenHeightPix = Double(UIScreen.main.fixedCoordinateSpace.bounds.size.height)
         self.PPCM = [self.screenWidthPix/(self.screenWidthMil/10.0),
                      self.screenHeightPix/(self.screenHeightMil/10.0)]
+        self.illumResizeRatio = illumResizeRatio
     }
     
     static func deg2rad(degrees: Double) -> Double {return degrees * .pi / 180}
@@ -105,7 +107,6 @@ public class GazeTracker: FaceFinderDelegate {
      - Parameter gazeY: the Y position of the gaze as estimated by the model.
      - Parameter camX: the horizontal position of the camera relative to the center of the device when in portrait mode, in centimeters.
      - Parameter camY: the vertical position of the camera relative to the center of the device when in portrait mode, in centimeters.
-     - Parameter PPC: Pixels Per Centimeter, the screen resolution of the device. Must contain two values, one for the horizontal and one for the vertical, both given when the device is in portrait mode.
      - Parameter orientation: The current orientation of the device.
      */
     func cm2pixels(gazeX: Double, gazeY: Double, camX: Double, camY: Double, orientation: UIDeviceOrientation) -> (gazeX: Int, gazeY: Int) {
@@ -169,6 +170,29 @@ public class GazeTracker: FaceFinderDelegate {
         
         guard let image = rotatedImage else { return }
         self.detector?.getFaces(scene: image)
+    }
+    
+    /**
+     Runs the gaze estimation in the background
+    */
+    public func startPredictionInBackground(scene: UIImage) {
+        DispatchQueue.global(qos: .background).async {
+            var rotatedImage: UIImage?
+            
+            switch scene.imageOrientation {
+            case .left:
+                rotatedImage = GazeTracker.rotateImage(image: scene, degrees: -90)
+            case .down:
+                rotatedImage = GazeTracker.rotateImage(image: scene, degrees: 180)
+            case .right:
+                rotatedImage = GazeTracker.rotateImage(image: scene, degrees: 90)
+            default:
+                rotatedImage = scene
+            }
+            
+            guard let image = rotatedImage else { return }
+            self.detector?.getFaces(scene: image)
+        }
     }
     
     public func didFindFaces(scene: UIImage) {
@@ -404,9 +428,13 @@ public class GazeTracker: FaceFinderDelegate {
         for y in 0..<height {
             for x in 0..<width {
                 let offset = 4 * (y * width + x)
-                let red: Double = Double(data[offset+1])/255.0
-                let green: Double = Double(data[offset+2])/255.0
-                let blue: Double = Double(data[offset+3])/255.0
+                var red: Double = Double(data[offset+1])/255.0
+                var green: Double = Double(data[offset+2])/255.0
+                var blue: Double = Double(data[offset+3])/255.0
+                
+//                if red.isNaN { red = 0.0 }
+//                if green.isNaN { green = 0.0 }
+//                if blue.isNaN { blue = 0.0 }
                 
                 redChannel[y * width + x] = red as NSNumber
                 greenChannel[y * width + x] = green as NSNumber
@@ -422,6 +450,7 @@ public class GazeTracker: FaceFinderDelegate {
      Estimates the illuminant values of a scene.
      
      - Parameter image: the image whose illuminant will be evaluated.
+     - Parameter resizeRatio: the ratio by which to resize the image prior to processing. This is meant to make the algorithm faster, and so the value should be less than or equal to 1.0.
      
      - Returns: An MLMultiArray containing three Double values, one for each color channel of the image.
      */
@@ -429,22 +458,23 @@ public class GazeTracker: FaceFinderDelegate {
         guard
             let cgImage = image.cgImage,
             let sourceColorSpace = cgImage.colorSpace else { return nil }
-        let width = cgImage.width
-        let height = cgImage.height
+        
+        let width = Int(Double(cgImage.width) * self.illumResizeRatio)
+        let height = Int(Double(cgImage.height) * self.illumResizeRatio)
         let count = width*height
         let nGrey: Int = Int(0.1 * Float(count))
+        
+        let bytesPerRow: Int = width * cgImage.bytesPerRow/cgImage.width
         
         guard let context = CGContext(data: nil,
                                       width: width,
                                       height: height,
                                       bitsPerComponent: cgImage.bitsPerComponent,
-                                      bytesPerRow: cgImage.bytesPerRow,
+                                      bytesPerRow: bytesPerRow,
                                       space: sourceColorSpace,
                                       bitmapInfo: cgImage.alphaInfo.rawValue) else { return nil }
         context.draw(cgImage, in: CGRect(x: 0, y:0, width: width, height: height))
         let data = UnsafePointer<UInt8>(context.data?.assumingMemoryBound(to: UInt8.self))!
-        
-        //Optional: resize image
         
         //Separate color channels, normalize values to [0,1] and add infinitesimal
         //Average over the channels, keep as variable (L)
@@ -530,6 +560,12 @@ public class GazeTracker: FaceFinderDelegate {
         }
         
         e_i = e_i.map {$0/e_i.max()!}
+        
+        //Catch any NaN and replace it by 1.0
+//        e_i = e_i.map {
+//            if $0.isNaN { return 1.0 }
+//            return $0
+//        }
         
         //Create the MLMultiArray, populate it and return it
         guard let illuminant = try? MLMultiArray(shape: [3], dataType: MLMultiArrayDataType.double) else {
