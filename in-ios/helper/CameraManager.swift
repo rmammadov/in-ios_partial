@@ -59,14 +59,18 @@ class CameraManager: NSObject {
         
         NavigationHelper.getCurrentVC()?.present(alertController, animated: true, completion:nil)
     }
+    
+    init(cameraView: UIView) {
+        super.init()
+        // TODO: Remove after tests
+        self.cameraView = cameraView // For the test purpose
+    }
 }
 
 extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
-    
-    func setupCamera(cameraView: UIView) {
-        // TODO: Remove after tests
-        self.cameraView = cameraView // For the test purpose
-        if canLoadCamera() {
+
+    func setCamera() {
+        if self.canLoadCamera() {
             self.captureSession = AVCaptureSession()
             if let inputs = self.captureSession?.inputs as? [AVCaptureDeviceInput] {
                 for input in inputs {
@@ -74,26 +78,30 @@ extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
                 }
             }
             
-            guard let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: cameraPosition) else {return}
+            guard let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: self.cameraPosition) else {return}
             guard let input = try? AVCaptureDeviceInput(device: captureDevice) else {return}
             self.captureSession?.addInput(input)
         }
     }
     
     func startSession() {
-        if self.captureSession != nil {
-            self.captureSession?.sessionPreset = .medium
-            self.captureSession?.startRunning()
+        DispatchQueue.global(qos: .background).async {
+            if self.captureSession != nil {
+                self.captureSession?.sessionPreset = .medium
+                self.captureSession?.startRunning()
 
-            // TODO: Remove this after tests
-            let previewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession!)
-            previewLayer.connection?.videoOrientation = .landscapeLeft
-            self.cameraView?.layer.addSublayer(previewLayer)
-            previewLayer.frame = (self.cameraView?.frame)!
-            
-            let dataOutput = AVCaptureVideoDataOutput()
-            dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "Video Queue"))
-            self.captureSession?.addOutput(dataOutput)
+                DispatchQueue.main.async {
+                    // TODO: Remove this after tests
+                    let previewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession!)
+                    previewLayer.connection?.videoOrientation = .landscapeLeft
+                    self.cameraView?.layer.addSublayer(previewLayer)
+                    previewLayer.frame = (self.cameraView?.frame)!
+                }
+                
+                let dataOutput = AVCaptureVideoDataOutput()
+                dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "Video Queue"))
+                self.captureSession?.addOutput(dataOutput)
+            }
         }
     }
 
@@ -190,14 +198,14 @@ extension CameraManager: GazePredictionDelegate {
         if #available(iOS 11.0, *) {
             DispatchQueue.main.async {
                 self.isFaceDetected(status: true)
-                    let gazeTracker: GazeTracker = self.gazeTracker as! GazeTracker
-                    print(gazeTracker.gazeEstimation)
             }
+            let gazeTracker: GazeTracker = self.gazeTracker as! GazeTracker
+            print(gazeTracker.gazeEstimation)
+            
+            self.gazeTrackingCompleted = true
         } else {
             // Fallback on earlier versions
         }
-        
-        self.gazeTrackingCompleted = true
     }
     
     func isFaceDetected(status: Bool) {

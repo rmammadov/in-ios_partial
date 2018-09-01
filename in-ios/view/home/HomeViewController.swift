@@ -25,23 +25,12 @@ class HomeViewController: BaseViewController {
     
     let viewModel = HomeViewModel()
     
-    let cameraManager: CameraManager = CameraManager()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         setUi()
-        
-        // TODO: should be removed and reimplemented after tests
-        cameraManager.askUserForCameraPermission { (status) in
-            if status {
-                self.cameraManager.setPrediction()
-                self.cameraManager.setupCamera(cameraView: self.ivBackground)
-                self.cameraManager.startSession()
-//                self.cameraManager.predicate(frame: UIImage(named:"test_image")!)
-            }
-        }
+        setCamera()
     }
 
     override func didReceiveMemoryWarning() {
@@ -112,6 +101,20 @@ extension HomeViewController {
         }
         self.collectionTopMenu.layoutIfNeeded()
         self.collectionTopMenu.reloadData()
+    }
+    
+    func setCamera() {
+        // TODO: should be removed and reimplemented after tests
+        let cameraManager: CameraManager = CameraManager(cameraView: self.ivBackground)
+        
+        cameraManager.askUserForCameraPermission { (status) in
+            if status {
+                cameraManager.setPrediction()
+                cameraManager.setCamera()
+                cameraManager.startSession()
+//                cameraManager.predicate(frame: UIImage(named:"test_image")!)
+            }
+        }
     }
 }
 

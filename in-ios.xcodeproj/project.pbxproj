@@ -42,13 +42,13 @@
 		F34B909B20D46FA100800FCD /* DisplayHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34B909A20D46FA100800FCD /* DisplayHelper.swift */; };
 		F352854E20D3CED500E973C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F352854D20D3CED500E973C8 /* GoogleService-Info.plist */; };
 		F35E76C5213779E100E8B57E /* UIImage+fixedOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35E76C4213779E100E8B57E /* UIImage+fixedOrientation.swift */; };
-		F37724B321387F36002EA81E /* GazeTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37724B121387F35002EA81E /* GazeTracker.swift */; };
-		F37724B421387F36002EA81E /* FaceFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37724B221387F36002EA81E /* FaceFinder.swift */; };
 		F39059BB210F09C800CAA292 /* MenuItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F39059B9210F09C800CAA292 /* MenuItemCollectionViewCell.xib */; };
 		F39059BF210F254C00CAA292 /* AnimationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059BE210F254C00CAA292 /* AnimationUtil.swift */; };
 		F39059C1210F290F00CAA292 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059C0210F290F00CAA292 /* MenuViewModel.swift */; };
 		F39059C32110473D00CAA292 /* MenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059C22110473D00CAA292 /* MenuItems.swift */; };
 		F3C48CCB210F018200742855 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C48CCA210F018200742855 /* MenuViewController.swift */; };
+		F3C96AF7213A80A100FD59A4 /* GazeTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C96AF5213A80A000FD59A4 /* GazeTracker.swift */; };
+		F3C96AF8213A80A100FD59A4 /* FaceFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C96AF6213A80A000FD59A4 /* FaceFinder.swift */; };
 		F3DC2DAB20F8ADBA00CC276F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DC2DAA20F8ADBA00CC276F /* Reachability.swift */; };
 		F3E19CA6211B10FF00ADE838 /* HomeContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E19CA5211B10FF00ADE838 /* HomeContainerViewController.swift */; };
 		F3E19CAA211C3CDB00ADE838 /* HomeContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E19CA9211C3CDB00ADE838 /* HomeContainerViewModel.swift */; };
@@ -147,13 +147,13 @@
 		F34B909A20D46FA100800FCD /* DisplayHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayHelper.swift; sourceTree = "<group>"; };
 		F352854D20D3CED500E973C8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F35E76C4213779E100E8B57E /* UIImage+fixedOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+fixedOrientation.swift"; sourceTree = "<group>"; };
-		F37724B121387F35002EA81E /* GazeTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GazeTracker.swift; sourceTree = "<group>"; };
-		F37724B221387F36002EA81E /* FaceFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceFinder.swift; sourceTree = "<group>"; };
 		F39059B9210F09C800CAA292 /* MenuItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		F39059BE210F254C00CAA292 /* AnimationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationUtil.swift; sourceTree = "<group>"; };
 		F39059C0210F290F00CAA292 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		F39059C22110473D00CAA292 /* MenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItems.swift; sourceTree = "<group>"; };
 		F3C48CCA210F018200742855 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		F3C96AF5213A80A000FD59A4 /* GazeTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GazeTracker.swift; sourceTree = "<group>"; };
+		F3C96AF6213A80A000FD59A4 /* FaceFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceFinder.swift; sourceTree = "<group>"; };
 		F3DC2DAA20F8ADBA00CC276F /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		F3E19CA5211B10FF00ADE838 /* HomeContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerViewController.swift; sourceTree = "<group>"; };
 		F3E19CA9211C3CDB00ADE838 /* HomeContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerViewModel.swift; sourceTree = "<group>"; };
@@ -229,8 +229,8 @@
 			isa = PBXGroup;
 			children = (
 				F3E200D22136981100902A33 /* GazeEstimator.mlmodel */,
-				F37724B221387F36002EA81E /* FaceFinder.swift */,
-				F37724B121387F35002EA81E /* GazeTracker.swift */,
+				F3C96AF6213A80A000FD59A4 /* FaceFinder.swift */,
+				F3C96AF5213A80A000FD59A4 /* GazeTracker.swift */,
 				F3E200BE2135EC5D00902A33 /* FaceFinderDelegate.swift */,
 				F3E200C12135EC5E00902A33 /* GazePredictionDelegate.swift */,
 			);
@@ -706,7 +706,7 @@
 				F34B909B20D46FA100800FCD /* DisplayHelper.swift in Sources */,
 				F334ADBE2105DA4A0056824A /* SpeechHelper.swift in Sources */,
 				F39059BF210F254C00CAA292 /* AnimationUtil.swift in Sources */,
-				F37724B321387F36002EA81E /* GazeTracker.swift in Sources */,
+				F3C96AF7213A80A100FD59A4 /* GazeTracker.swift in Sources */,
 				F334ADC5210B3BC00056824A /* ApiRequestHandler.swift in Sources */,
 				F336587F20D318C300B18CEC /* BaseViewController.swift in Sources */,
 				F3355CEA2122BE79009AF602 /* InputScreens.swift in Sources */,
@@ -744,7 +744,7 @@
 				F32D99CC21117EE8007AAA8D /* BaseModel.swift in Sources */,
 				F3355CF421240F6C009AF602 /* TopMenuItemExpandedCollectionViewCell.swift in Sources */,
 				F3E200CD213664C700902A33 /* CMSampleBuffer+image.swift in Sources */,
-				F37724B421387F36002EA81E /* FaceFinder.swift in Sources */,
+				F3C96AF8213A80A100FD59A4 /* FaceFinder.swift in Sources */,
 				F3E200C22135EC5E00902A33 /* FaceFinderDelegate.swift in Sources */,
 				F334ADC02106E86F0056824A /* NavigationHelper.swift in Sources */,
 				F3355CEF2122E8F3009AF602 /* LoadingViewModel.swift in Sources */,
