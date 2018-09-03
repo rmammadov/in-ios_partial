@@ -10,7 +10,6 @@ import Foundation
 import Firebase
 import Accelerate
 import CoreML
-import Surge
 
 @available(iOS 11.0, *)
 public class GazeTracker: FaceFinderDelegate {
@@ -23,6 +22,7 @@ public class GazeTracker: FaceFinderDelegate {
                                      1.0, -4.0, 1.0,
                                      0.0, 1.0, 0.0]
     let AVERAGING_FILTER: [Float] = Array(repeating: 1.0/49.0, count: 49)
+    let PREDICTION_OPTIONS = MLPredictionOptions()
     
     //Width and height of the screen of various apple devices, in millimeters.
     let DEVICES = ["iPhone 6s":                 ["width": 58.0, "height": 100.0],
@@ -63,6 +63,8 @@ public class GazeTracker: FaceFinderDelegate {
         self.detector = FaceFinder()
         self.detector?.delegate = self
         self.predictionDelegate = delegate
+        
+        self.PREDICTION_OPTIONS.usesCPUOnly = true
         
         self.deviceName = UIDevice.current.name
         self.screenWidthMil = self.DEVICES[self.deviceName]!["width"]!
@@ -428,9 +430,9 @@ public class GazeTracker: FaceFinderDelegate {
         for y in 0..<height {
             for x in 0..<width {
                 let offset = 4 * (y * width + x)
-                var red: Double = Double(data[offset+1])/255.0
-                var green: Double = Double(data[offset+2])/255.0
-                var blue: Double = Double(data[offset+3])/255.0
+                let red: Double = Double(data[offset+1])/255.0
+                let green: Double = Double(data[offset+2])/255.0
+                let blue: Double = Double(data[offset+3])/255.0
                 
 //                if red.isNaN { red = 0.0 }
 //                if green.isNaN { green = 0.0 }
@@ -580,9 +582,8 @@ public class GazeTracker: FaceFinderDelegate {
     
     private func predictGaze(eyesB: MLMultiArray, eyesG: MLMultiArray, eyesR: MLMultiArray, illuminant: MLMultiArray, headPose: MLMultiArray) -> MLMultiArray? {
         do {
-            let modelOutput = try model.prediction(eyesB: eyesB, eyesG: eyesG, eyesR: eyesR, illum: illuminant, pose: headPose)
-            let gaze = modelOutput.gazeXY
-            return gaze
+            let modelOutput = try model.prediction(input: GazeEstimatorInput(eyesB: eyesB, eyesG: eyesG, eyesR: eyesR, illum: illuminant, pose: headPose), options: self.PREDICTION_OPTIONS)
+            return modelOutput.gazeXY
         } catch {
             print(error)
             return nil
