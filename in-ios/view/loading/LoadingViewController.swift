@@ -8,6 +8,7 @@
 
 import UIKit
 
+private let segueIdentifierIntro = "segueIntro"
 private let segueIdentifierHome = "segueHome"
 
 class LoadingViewController: BaseViewController {
@@ -59,7 +60,7 @@ extension LoadingViewController {
         self.viewModel.status.asObservable().subscribe(onNext: {
             event in
             if self.viewModel.status.value == LoadingStatus.completed.rawValue {
-                self.showHome()
+                self.showIntro()
             }
         })
     }
@@ -68,6 +69,13 @@ extension LoadingViewController {
         DispatchQueue.main.async {
             self.labelStatus.text = "Loading content..."
             AnimationUtil.animateLoading(imageView: self.ivProgressbar)
+        }
+    }
+    
+    
+    func showIntro() {
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: segueIdentifierIntro, sender: self)
         }
     }
     
