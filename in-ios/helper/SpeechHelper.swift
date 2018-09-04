@@ -28,7 +28,7 @@ class SpeechHelper {
     
     static func handleSilentMode() {
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category(rawValue: convertFromAVAudioSessionCategory(AVAudioSession.Category.playback)), mode: .default)
         }
         catch let error as NSError {
             print("Error: Could not set audio category: \(error), \(error.userInfo)")
@@ -45,11 +45,16 @@ class SpeechHelper {
     static func setAudioSession() {
         let audioSession = AVAudioSession.sharedInstance()
         do {
-            try audioSession.setCategory(AVAudioSessionCategorySoloAmbient)
-            try audioSession.setMode(AVAudioSessionModeSpokenAudio)
-            try audioSession.setActive(true, with: .notifyOthersOnDeactivation)
+            try audioSession.setCategory(AVAudioSession.Category(rawValue: convertFromAVAudioSessionCategory(AVAudioSession.Category.soloAmbient)), mode: .default)
+            try audioSession.setMode(AVAudioSession.Mode.spokenAudio)
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
         } catch {
             print("audioSession properties weren't set because of an error.")
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
+	return input.rawValue
 }

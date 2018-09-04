@@ -67,6 +67,7 @@ public class GazeTracker: FaceFinderDelegate {
         self.PREDICTION_OPTIONS.usesCPUOnly = true
         
         self.deviceName = UIDevice.current.name
+        print("Device \(UIDevice.current.name)")
         self.screenWidthMil = self.DEVICES[self.deviceName]!["width"]!
         self.screenHeightMil = self.DEVICES[self.deviceName]!["height"]!
         self.screenWidthPix = Double(UIScreen.main.fixedCoordinateSpace.bounds.size.width)
@@ -582,9 +583,8 @@ public class GazeTracker: FaceFinderDelegate {
     
     private func predictGaze(eyesB: MLMultiArray, eyesG: MLMultiArray, eyesR: MLMultiArray, illuminant: MLMultiArray, headPose: MLMultiArray) -> MLMultiArray? {
         do {
-//            let modelOutput = try model.prediction(input: GazeEstimatorInput(eyesB: eyesB, eyesG: eyesG, eyesR: eyesR, illum: illuminant, pose: headPose), options: self.PREDICTION_OPTIONS)
-//            return modelOutput.gazeXY
-            return nil
+            let modelOutput = try model.prediction(input: GazeEstimatorInput(eyesB: eyesB, eyesG: eyesG, eyesR: eyesR, illum: illuminant, pose: headPose), options: self.PREDICTION_OPTIONS)
+            return modelOutput.gazeXY
         } catch {
             print(error)
             return nil

@@ -181,15 +181,15 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         switch self.collectionTopMenu.numberOfItems(inSection: self.collectionTopMenu.numberOfSections - 1) {
             case 1:
-                return UIEdgeInsetsMake(0, cellWidth, 0, cellWidth)
+                return UIEdgeInsets.init(top: 0, left: cellWidth, bottom: 0, right: cellWidth)
             case 2:
                 if self.viewModel.getTopMenuItemSelected().row == 0 {
-                    return UIEdgeInsetsMake(0, cellWidth, 0, 0)
+                    return UIEdgeInsets.init(top: 0, left: cellWidth, bottom: 0, right: 0)
                 } else {
-                    return UIEdgeInsetsMake(0, 0, 0, cellWidth)
+                    return UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: cellWidth)
                 }
             default:
-                return UIEdgeInsetsMake(0, 0, 0, 0)
+                return UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
         }
     }
     

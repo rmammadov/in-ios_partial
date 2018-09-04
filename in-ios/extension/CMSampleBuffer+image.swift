@@ -11,7 +11,7 @@ import AVFoundation
 
 extension CMSampleBuffer {
     
-    func image(orientation: UIImageOrientation = .up,
+    func image(orientation: UIImage.Orientation = .up,
                scale: CGFloat = 1.0) -> UIImage? {
         if let buffer = CMSampleBufferGetImageBuffer(self) {
             let ciImage = CIImage(cvPixelBuffer: buffer)

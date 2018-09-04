@@ -55,7 +55,7 @@ class CameraManager: NSObject {
     
     open var showErrorBlock:(_ erTitle: String, _ erMessage: String) -> Void = { (erTitle: String, erMessage: String) -> Void in
         var alertController = UIAlertController(title: erTitle, message: erMessage, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (alertAction) -> Void in  }))
+        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (alertAction) -> Void in  }))
         
         NavigationHelper.getCurrentVC()?.present(alertController, animated: true, completion:nil)
     }
@@ -187,7 +187,7 @@ extension CameraManager: GazePredictionDelegate {
             if #available(iOS 11.0, *)  {
                 self.gazeTrackingCompleted = false
                 let gazeTracker: GazeTracker = self.gazeTracker as! GazeTracker
-                gazeTracker.startPrediction(scene: frame.fixedOrientation())
+                gazeTracker.startPredictionInBackground(scene: frame.fixedOrientation())
             } else {
                 return
             }
@@ -200,8 +200,7 @@ extension CameraManager: GazePredictionDelegate {
                 self.isFaceDetected(status: true)
             }
             let gazeTracker: GazeTracker = self.gazeTracker as! GazeTracker
-            print(gazeTracker.gazeEstimation)
-            
+            print("Values: \(gazeTracker.gazeEstimation)")
             self.gazeTrackingCompleted = true
         } else {
             // Fallback on earlier versions
