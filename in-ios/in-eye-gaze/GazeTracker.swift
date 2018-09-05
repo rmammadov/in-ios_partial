@@ -35,6 +35,7 @@ public class GazeTracker: FaceFinderDelegate {
                    "iPhone X":                  ["width": 62.0, "height": 135.0],
                    "iPad Air":                  ["width": 150.0, "height": 200.0],
                    "iPad Air 2":                ["width": 150.0, "height": 200.0],
+                   "iPad 4":                    ["width": 150.0, "height": 200.0],
                    "iPad 5":                    ["width": 150.0, "height": 200.0],
                    "iPad 6":                    ["width": 150.0, "height": 200.0],
                    "iPad Mini 2":               ["width": 120.0, "height": 160.0],
@@ -66,8 +67,7 @@ public class GazeTracker: FaceFinderDelegate {
         
         self.PREDICTION_OPTIONS.usesCPUOnly = true
         
-        self.deviceName = UIDevice.current.name
-        print("Device \(UIDevice.current.name)")
+        self.deviceName = UIDevice.current.modelName
         self.screenWidthMil = self.DEVICES[self.deviceName]!["width"]!
         self.screenHeightMil = self.DEVICES[self.deviceName]!["height"]!
         self.screenWidthPix = Double(UIScreen.main.fixedCoordinateSpace.bounds.size.width)
@@ -181,17 +181,17 @@ public class GazeTracker: FaceFinderDelegate {
     public func startPredictionInBackground(scene: UIImage) {
         DispatchQueue.global(qos: .background).async {
             var rotatedImage: UIImage?
-            
-            switch scene.imageOrientation {
-            case .left:
-                rotatedImage = GazeTracker.rotateImage(image: scene, degrees: -90)
-            case .down:
-                rotatedImage = GazeTracker.rotateImage(image: scene, degrees: 180)
-            case .right:
-                rotatedImage = GazeTracker.rotateImage(image: scene, degrees: 90)
-            default:
-                rotatedImage = scene
-            }
+            rotatedImage = scene
+//            switch scene.imageOrientation {
+//            case .left:
+//                rotatedImage = GazeTracker.rotateImage(image: scene, degrees: -90)
+//            case .down:
+//                rotatedImage = GazeTracker.rotateImage(image: scene, degrees: 180)
+//            case .right:
+//                rotatedImage = GazeTracker.rotateImage(image: scene, degrees: 90)
+//            default:
+//                rotatedImage = scene
+//            }
             
             guard let image = rotatedImage else { return }
             self.detector?.getFaces(scene: image)

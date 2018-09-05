@@ -30,7 +30,7 @@ class CameraManager: NSObject {
     fileprivate var cameraPosition = AVCaptureDevice.Position.front
     fileprivate var gazeTracker: Any?
     fileprivate var gazeTrackingCompleted: Bool = true
-    fileprivate var cameraView: UIView? // For the test purpose
+    fileprivate var cameraView: UIImageView? // For the test purpose
 
     open var cameraIsReady: Bool {
         get {
@@ -60,7 +60,17 @@ class CameraManager: NSObject {
         NavigationHelper.getCurrentVC()?.present(alertController, animated: true, completion:nil)
     }
     
-    init(cameraView: UIView) {
+    open var shouldRespondToOrientationChanges = true {
+        didSet {
+            if shouldRespondToOrientationChanges {
+                _startFollowingDeviceOrientation()
+            } else {
+//                _stopFollowingDeviceOrientation()
+            }
+        }
+    }
+    
+    init(cameraView: UIImageView) {
         super.init()
         // TODO: Remove after tests
         self.cameraView = cameraView // For the test purpose
@@ -87,15 +97,15 @@ extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
     func startSession() {
         DispatchQueue.global(qos: .background).async {
             if self.captureSession != nil {
-                self.captureSession?.sessionPreset = .medium
+                self.captureSession?.sessionPreset = .low
                 self.captureSession?.startRunning()
-
+                
                 DispatchQueue.main.async {
                     // TODO: Remove this after tests
-                    let previewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession!)
-                    previewLayer.connection?.videoOrientation = .landscapeLeft
-                    self.cameraView?.layer.addSublayer(previewLayer)
-                    previewLayer.frame = (self.cameraView?.frame)!
+//                    let previewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession!)
+//                    previewLayer.connection?.videoOrientation = .landscapeLeft
+//                    self.cameraView?.layer.addSublayer(previewLayer)
+//                    previewLayer.frame = (self.cameraView?.frame)!
                 }
                 
                 let dataOutput = AVCaptureVideoDataOutput()
@@ -124,8 +134,15 @@ extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
     }
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        print("Camera was able to capture frame")
-        predicate(frame: sampleBuffer.image(orientation: .down, scale: 1.0)!)
+        if self.gazeTrackingCompleted {
+            let image = sampleBuffer.image(orientation: .leftMirrored, scale: 1.0)?.rotate(radians: 0)
+            DispatchQueue.main.async {
+                self.cameraView?.image = image
+            }
+            predicate(frame: image!)
+    //        predicate(frame: UIImage(named:"test_image")!)
+        }
+        self.gazeTrackingCompleted = !self.gazeTrackingCompleted
     }
 }
 
@@ -183,38 +200,113 @@ extension CameraManager: GazePredictionDelegate {
     }
     
     func predicate(frame: UIImage) {
-        if self.gazeTrackingCompleted {
-            if #available(iOS 11.0, *)  {
-                self.gazeTrackingCompleted = false
-                let gazeTracker: GazeTracker = self.gazeTracker as! GazeTracker
-                gazeTracker.startPredictionInBackground(scene: frame.fixedOrientation())
-            } else {
-                return
-            }
+        if #available(iOS 11.0, *)  {
+            self.gazeTrackingCompleted = false
+            let gazeTracker: GazeTracker = self.gazeTracker as! GazeTracker
+            gazeTracker.startPredictionInBackground(scene: frame)
+        } else {
+            return
         }
     }
     
     func didUpdatePrediction() {
         if #available(iOS 11.0, *) {
-            DispatchQueue.main.async {
-                self.isFaceDetected(status: true)
-            }
+            self.isFaceDetected(status: true)
             let gazeTracker: GazeTracker = self.gazeTracker as! GazeTracker
             print("Values: \(gazeTracker.gazeEstimation)")
-            self.gazeTrackingCompleted = true
         } else {
             // Fallback on earlier versions
         }
     }
     
     func isFaceDetected(status: Bool) {
-        if status {
-            self.cameraView?.layer.borderWidth = 10
-            self.cameraView?.layer.borderColor = UIColor.red.cgColor
-        } else {
-            self.cameraView?.layer.borderWidth = 0
-            self.cameraView?.layer.borderColor = UIColor.black.cgColor
+         DispatchQueue.main.async {
+            if status {
+                self.cameraView?.layer.borderWidth = 10
+                self.cameraView?.layer.borderColor = UIColor.red.cgColor
+            } else {
+                self.cameraView?.layer.borderWidth = 0
+                self.cameraView?.layer.borderColor = UIColor.black.cgColor
+            }
         }
+    }
+    
+    
+    fileprivate func _startFollowingDeviceOrientation() {
+        if shouldRespondToOrientationChanges && !cameraIsObservingDeviceOrientation {
+            coreMotionManager = CMMotionManager()
+            coreMotionManager.accelerometerUpdateInterval = 0.005
+            
+            if coreMotionManager.isAccelerometerAvailable {
+                coreMotionManager.startAccelerometerUpdates(to: OperationQueue(), withHandler:
+                    {data, error in
+                        
+                        guard let acceleration: CMAcceleration = data?.acceleration  else{
+                            return
+                        }
+                        
+                        let scaling: CGFloat = CGFloat(1) / CGFloat(( abs(acceleration.x) + abs(acceleration.y)))
+                        
+                        let x: CGFloat = CGFloat(acceleration.x) * scaling
+                        let y: CGFloat = CGFloat(acceleration.y) * scaling
+                        
+                        if acceleration.z < Double(-0.75) {
+                            self.deviceOrientation = .faceUp
+                        } else if acceleration.z > Double(0.75) {
+                            self.deviceOrientation = .faceDown
+                        } else if x < CGFloat(-0.5) {
+                            self.deviceOrientation = .landscapeLeft
+                        } else if x > CGFloat(0.5) {
+                            self.deviceOrientation = .landscapeRight
+                        } else if y > CGFloat(0.5) {
+                            self.deviceOrientation = .portraitUpsideDown
+                        }
+                        
+//                        self._orientationChanged()
+                })
+                
+                cameraIsObservingDeviceOrientation = true
+            } else {
+                cameraIsObservingDeviceOrientation = false
+            }
+        }
+    }
+    
+    
+    fileprivate func _imageOrientation(forDeviceOrientation deviceOrientation: UIDeviceOrientation, isMirrored: Bool) -> UIImage.Orientation {
+        
+        switch deviceOrientation {
+        case .landscapeLeft:
+            return isMirrored ? .upMirrored : .up
+        case .landscapeRight:
+            return isMirrored ? .downMirrored : .down
+        default:
+            break
+        }
+        
+        return isMirrored ? .leftMirrored : .right
+    }
+    
+    fileprivate func fixOrientation(withImage image: UIImage) -> UIImage {
+        guard let cgImage = image.cgImage else { return image }
+        
+        var isMirrored = false
+        let orientation = image.imageOrientation
+        if orientation == .rightMirrored
+            || orientation == .leftMirrored
+            || orientation == .upMirrored
+            || orientation == .downMirrored {
+            
+            isMirrored = true
+        }
+        
+        let newOrientation = _imageOrientation(forDeviceOrientation: deviceOrientation, isMirrored: isMirrored)
+        
+        if image.imageOrientation != newOrientation {
+            return UIImage(cgImage: cgImage, scale: image.scale, orientation: newOrientation)
+        }
+        
+        return image
     }
 }
 

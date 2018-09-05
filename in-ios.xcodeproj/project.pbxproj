@@ -39,6 +39,7 @@
 		F336589D20D318CB00B18CEC /* in_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336589C20D318CB00B18CEC /* in_iosUITests.swift */; };
 		F33658AE20D3198000B18CEC /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33658AD20D3198000B18CEC /* Constant.swift */; };
 		F33F0BCF2121B11C002E31B9 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33F0BCE2121B11C002E31B9 /* DataManager.swift */; };
+		F3428A80213F0F7700787296 /* UIDevice+modelName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3428A7F213F0F7700787296 /* UIDevice+modelName.swift */; };
 		F34B909B20D46FA100800FCD /* DisplayHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34B909A20D46FA100800FCD /* DisplayHelper.swift */; };
 		F352854E20D3CED500E973C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F352854D20D3CED500E973C8 /* GoogleService-Info.plist */; };
 		F35DA94E213CE4D500EE1D8F /* GazeTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35DA94C213CE4D400EE1D8F /* GazeTracker.swift */; };
@@ -147,6 +148,7 @@
 		F336589E20D318CB00B18CEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F33658AD20D3198000B18CEC /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		F33F0BCE2121B11C002E31B9 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		F3428A7F213F0F7700787296 /* UIDevice+modelName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+modelName.swift"; sourceTree = "<group>"; };
 		F34B909A20D46FA100800FCD /* DisplayHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayHelper.swift; sourceTree = "<group>"; };
 		F352854D20D3CED500E973C8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F35DA94C213CE4D400EE1D8F /* GazeTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GazeTracker.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				F35DA94C213CE4D400EE1D8F /* GazeTracker.swift */,
 				F3E200BE2135EC5D00902A33 /* FaceFinderDelegate.swift */,
 				F3E200C12135EC5E00902A33 /* GazePredictionDelegate.swift */,
+				F3428A7F213F0F7700787296 /* UIDevice+modelName.swift */,
 			);
 			path = "in-eye-gaze";
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 				0ADA9E5D8330B8476C4C749F /* [CP] Embed Pods Frameworks */,
 				F33289D52132F20000D99B3A /* Embed Frameworks */,
 				68F545D9C4B6BAEA41CA62F3 /* [CP] Copy Pods Resources */,
+				F3428A84214012BA00787296 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -694,6 +698,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F3428A84214012BA00787296 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/Fabric/run\"\n";
+		};
 		F5511E0E24CBC16F6C93B2EC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -761,6 +782,7 @@
 				F3E19CBB211D836B00ADE838 /* SubMenuViewModel.swift in Sources */,
 				F32D99C821117E8A007AAA8D /* MenuModel.swift in Sources */,
 				F33F0BCF2121B11C002E31B9 /* DataManager.swift in Sources */,
+				F3428A80213F0F7700787296 /* UIDevice+modelName.swift in Sources */,
 				F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */,
 				F32D99CC21117EE8007AAA8D /* BaseModel.swift in Sources */,
 				F3355CF421240F6C009AF602 /* TopMenuItemExpandedCollectionViewCell.swift in Sources */,
