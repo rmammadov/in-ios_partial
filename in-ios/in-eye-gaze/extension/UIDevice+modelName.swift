@@ -50,7 +50,7 @@ public extension UIDevice {
         case "iPad5,1", "iPad5,2":                      return "iPad Mini 4"
         case "iPad6,3", "iPad6,4":                      return "iPad Pro 9.7 Inch"
         case "iPad6,7", "iPad6,8":                      return "iPad Pro 12.9 Inch"
-        case "iPad7,1", "iPad7,2":                      return "iPad Pro 12.9 Inch 2. Generation"
+        case "iPad7,1", "iPad7,2":                      return "iPad Pro 12.9 Inch 2"
         case "iPad7,3", "iPad7,4":                      return "iPad Pro 10.5 Inch"
         case "AppleTV5,3":                              return "Apple TV"
         case "AppleTV6,2":                              return "Apple TV 4K"

@@ -28,7 +28,7 @@ class CameraManager: NSObject {
     fileprivate var cameraIsSetup = false
     fileprivate var cameraIsObservingDeviceOrientation = false
     fileprivate var cameraPosition = AVCaptureDevice.Position.front
-    fileprivate var gazeTracker: Any?
+    fileprivate var gazeTracker: GazeTracker?
     fileprivate var gazeTrackingCompleted: Bool = true
     fileprivate var cameraView: UIImageView? // For the test purpose
 
@@ -192,31 +192,19 @@ extension CameraManager {
 extension CameraManager: GazePredictionDelegate {
     
     func setPrediction() {
-        if #available(iOS 11.0, *)  {
-            gazeTracker = GazeTracker(delegate: self)
-        } else {
-            return
-        }
+        gazeTracker = GazeTracker(delegate: self)
     }
     
     func predicate(frame: UIImage) {
-        if #available(iOS 11.0, *)  {
-            self.gazeTrackingCompleted = false
-            let gazeTracker: GazeTracker = self.gazeTracker as! GazeTracker
-            gazeTracker.startPredictionInBackground(scene: frame)
-        } else {
-            return
-        }
+        self.gazeTrackingCompleted = false
+        let gazeTracker: GazeTracker = self.gazeTracker!
+        gazeTracker.startPredictionInBackground(scene: frame)
     }
     
     func didUpdatePrediction() {
-        if #available(iOS 11.0, *) {
-            self.isFaceDetected(status: true)
-            let gazeTracker: GazeTracker = self.gazeTracker as! GazeTracker
-            print("Values: \(gazeTracker.gazeEstimation)")
-        } else {
-            // Fallback on earlier versions
-        }
+        self.isFaceDetected(status: true)
+        let gazeTracker: GazeTracker = self.gazeTracker!
+        print("Values: \(gazeTracker.gazeEstimation)")
     }
     
     func isFaceDetected(status: Bool) {

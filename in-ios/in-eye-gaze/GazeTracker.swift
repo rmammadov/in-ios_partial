@@ -11,7 +11,6 @@ import Firebase
 import Accelerate
 import CoreML
 
-@available(iOS 11.0, *)
 public class GazeTracker: FaceFinderDelegate {
     
     let model = GazeEstimator()
@@ -35,16 +34,15 @@ public class GazeTracker: FaceFinderDelegate {
                    "iPhone X":                  ["width": 62.0, "height": 135.0],
                    "iPad Air":                  ["width": 150.0, "height": 200.0],
                    "iPad Air 2":                ["width": 150.0, "height": 200.0],
-                   "iPad 4":                    ["width": 150.0, "height": 200.0],
                    "iPad 5":                    ["width": 150.0, "height": 200.0],
                    "iPad 6":                    ["width": 150.0, "height": 200.0],
                    "iPad Mini 2":               ["width": 120.0, "height": 160.0],
                    "iPad Mini 3":               ["width": 120.0, "height": 160.0],
                    "iPad Mini 4":               ["width": 120.0, "height": 160.0],
-                   "iPad Pro (9.7-inch)":       ["width": 150.0, "height": 200.0],
-                   "iPad Pro (12.9-inch)":      ["width": 198.0, "height": 264.0],
-                   "iPad Pro (12.9-inch) 2":    ["width": 198.0, "height": 264.0],
-                   "iPad Pro (10.5-inch)":      ["width": 162.0, "height": 216.0]]
+                   "iPad Pro 9.7 Inch":         ["width": 150.0, "height": 200.0],
+                   "iPad Pro 12.9 Inch":        ["width": 198.0, "height": 264.0],
+                   "iPad Pro 12.9 Inch 2":      ["width": 198.0, "height": 264.0],
+                   "iPad Pro 10.5 Inch":        ["width": 162.0, "height": 216.0]]
     
     var detector: FaceFinder? = nil
     var mainFace: VisionFace? = nil
@@ -177,21 +175,21 @@ public class GazeTracker: FaceFinderDelegate {
     
     /**
      Runs the gaze estimation in the background
-    */
+     */
     public func startPredictionInBackground(scene: UIImage) {
         DispatchQueue.global(qos: .background).async {
             var rotatedImage: UIImage?
-            rotatedImage = scene
-//            switch scene.imageOrientation {
-//            case .left:
-//                rotatedImage = GazeTracker.rotateImage(image: scene, degrees: -90)
-//            case .down:
-//                rotatedImage = GazeTracker.rotateImage(image: scene, degrees: 180)
-//            case .right:
-//                rotatedImage = GazeTracker.rotateImage(image: scene, degrees: 90)
-//            default:
-//                rotatedImage = scene
-//            }
+            
+            switch scene.imageOrientation {
+            case .left:
+                rotatedImage = GazeTracker.rotateImage(image: scene, degrees: -90)
+            case .down:
+                rotatedImage = GazeTracker.rotateImage(image: scene, degrees: 180)
+            case .right:
+                rotatedImage = GazeTracker.rotateImage(image: scene, degrees: 90)
+            default:
+                rotatedImage = scene
+            }
             
             guard let image = rotatedImage else { return }
             self.detector?.getFaces(scene: image)
@@ -314,7 +312,7 @@ public class GazeTracker: FaceFinderDelegate {
         }
         
         guard let mlFeatures = try? MLMultiArray(shape:[16], dataType:MLMultiArrayDataType.double) else {
-                fatalError("Unexpected runtime error. MLMultiArray")
+            fatalError("Unexpected runtime error. MLMultiArray")
         }
         
         for (index, element) in features.enumerated() {
@@ -435,9 +433,9 @@ public class GazeTracker: FaceFinderDelegate {
                 let green: Double = Double(data[offset+2])/255.0
                 let blue: Double = Double(data[offset+3])/255.0
                 
-//                if red.isNaN { red = 0.0 }
-//                if green.isNaN { green = 0.0 }
-//                if blue.isNaN { blue = 0.0 }
+                //                if red.isNaN { red = 0.0 }
+                //                if green.isNaN { green = 0.0 }
+                //                if blue.isNaN { blue = 0.0 }
                 
                 redChannel[y * width + x] = red as NSNumber
                 greenChannel[y * width + x] = green as NSNumber
@@ -565,10 +563,10 @@ public class GazeTracker: FaceFinderDelegate {
         e_i = e_i.map {$0/e_i.max()!}
         
         //Catch any NaN and replace it by 1.0
-//        e_i = e_i.map {
-//            if $0.isNaN { return 1.0 }
-//            return $0
-//        }
+        //        e_i = e_i.map {
+        //            if $0.isNaN { return 1.0 }
+        //            return $0
+        //        }
         
         //Create the MLMultiArray, populate it and return it
         guard let illuminant = try? MLMultiArray(shape: [3], dataType: MLMultiArrayDataType.double) else {

@@ -241,7 +241,7 @@
 				F35DA94C213CE4D400EE1D8F /* GazeTracker.swift */,
 				F3E200BE2135EC5D00902A33 /* FaceFinderDelegate.swift */,
 				F3E200C12135EC5E00902A33 /* GazePredictionDelegate.swift */,
-				F3428A7F213F0F7700787296 /* UIDevice+modelName.swift */,
+				F3E97E552141B5B000379B4A /* extension */,
 			);
 			path = "in-eye-gaze";
 			sourceTree = "<group>";
@@ -468,6 +468,14 @@
 			path = submenu;
 			sourceTree = "<group>";
 		};
+		F3E97E552141B5B000379B4A /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				F3428A7F213F0F7700787296 /* UIDevice+modelName.swift */,
+			);
+			path = extension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -615,6 +623,8 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-in-ios/Pods-in-ios-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
@@ -626,6 +636,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -649,9 +660,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-in-ios/Pods-in-ios-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/GoogleMobileVision/GoogleMVFaceDetectorResources.bundle",
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -706,6 +720,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
 			outputFileListPaths = (
 			);
@@ -984,7 +999,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1011,7 +1026,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
