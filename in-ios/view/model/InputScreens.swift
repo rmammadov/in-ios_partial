@@ -16,7 +16,7 @@ struct InputScreens {
 
 extension InputScreens {
     
-    func getInputScreenA() -> InputScreen {
-        return screens[0]
+    func getInputScreen(title: String) -> InputScreen {
+        return screens.filter{ ($0.translations.first?.title)! == title}.first!
     }
 }

@@ -11,7 +11,7 @@ import UIKit
 class NavigationHelper {
     
     static func getCurrentVC() -> UIViewController? {
-        let topController = UIApplication.shared.keyWindow?.rootViewController
+        let topController = UIApplication.getPresentedViewController()
         
         return topController
     }

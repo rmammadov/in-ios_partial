@@ -10,8 +10,9 @@ import UIKit
 import RxSwift
 
 enum LoadingStatus: Int {
-    case failed = 0
-    case completed = 1
+    case noInternetConnection = 0
+    case failed = 1
+    case completed = 2
 }
 
 class LoadingViewModel: BaseViewModel {

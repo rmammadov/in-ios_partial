@@ -9,6 +9,10 @@ target 'in-ios' do
   pod 'Fabric', '~> 1.7.7'
   pod 'Crashlytics', '~> 3.10.2'
   pod 'Kingfisher', '~> 4.0'
+  pod 'Firebase/Core'
+  pod 'Firebase/MLVision'
+  pod 'Firebase/MLVisionFaceModel'
+  pod 'Surge', '~> 2.0.0'
 
   # Pods for in-ios
 
