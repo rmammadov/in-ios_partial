@@ -31,6 +31,7 @@ class CameraManager: NSObject {
     fileprivate var gazeTracker: GazeTracker?
     fileprivate var gazeTrackingCompleted: Bool = true
     fileprivate var cameraView: UIImageView? // For the test purpose
+    fileprivate var label: UILabel?
 
     open var cameraIsReady: Bool {
         get {
@@ -74,8 +75,67 @@ class CameraManager: NSObject {
         super.init()
         // TODO: Remove after tests
         self.cameraView = cameraView // For the test purpose
+        addLabel();
     }
+    
 }
+
+extension CameraManager {
+    
+    fileprivate func canLoadCamera() -> Bool {
+        let currentCameraState = checkIfCameraIsAvailable()
+        return currentCameraState == .ready || (currentCameraState == .notDetermined && showAccessPermissionPopupAutomatically)
+    }
+    
+    open func askUserForCameraPermission(_ completion: @escaping (Bool) -> Void) {
+        AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: { (allowedAccess) -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
+                completion(allowedAccess)
+            })
+        })
+    }
+    
+    fileprivate func checkIfCameraIsAvailable() -> CameraState {
+        let deviceHasCamera = hasFrontCamera
+        if deviceHasCamera {
+            let authorizationStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
+            let userAgreedToUseIt = authorizationStatus == .authorized
+            if userAgreedToUseIt {
+                return .ready
+            } else if authorizationStatus == AVAuthorizationStatus.notDetermined {
+                return .notDetermined
+            } else {
+                self.show(NSLocalizedString("Camera access denied", comment:""), message:NSLocalizedString("You need to go to settings app and grant acces to the camera device to use it.", comment:""))
+                return .accessDenied
+            }
+        } else {
+            self.show(NSLocalizedString("Camera unavailable", comment:""), message:NSLocalizedString("The device does not have a camera.", comment:""))
+            return .noDeviceFound
+        }
+    }
+    
+    fileprivate func show(_ title: String, message: String) {
+        if showErrorsToUsers {
+            DispatchQueue.main.async(execute: { () -> Void in
+                self.showErrorBlock(title, message)
+            })
+        }
+    }
+    
+    fileprivate func addLabel() {
+        label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 24))
+        let centerX = label!.bounds.width / 2 + 48
+        let centerY = (self.cameraView?.bounds.height)! - label!.bounds.height / 2 - 32.0
+        label?.center = CGPoint(x: centerX, y: centerY)
+        label?.textAlignment = .left
+        label?.textColor = .red
+        label?.font = UIFont(name:"HelveticaNeue-Bold", size: 18.0)
+        label?.text = "Coordinates"
+        self.cameraView?.addSubview(label!)
+    }
+    
+}
+
 
 extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
 
@@ -140,53 +200,11 @@ extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
                 self.cameraView?.image = image
             }
             predicate(frame: image!)
-    //        predicate(frame: UIImage(named:"test_image")!)
+//            predicate(frame: UIImage(named:"test_image")!)
         }
         self.gazeTrackingCompleted = !self.gazeTrackingCompleted
     }
-}
-
-extension CameraManager {
     
-    fileprivate func canLoadCamera() -> Bool {
-        let currentCameraState = checkIfCameraIsAvailable()
-        return currentCameraState == .ready || (currentCameraState == .notDetermined && showAccessPermissionPopupAutomatically)
-    }
-
-    open func askUserForCameraPermission(_ completion: @escaping (Bool) -> Void) {
-        AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: { (allowedAccess) -> Void in
-            DispatchQueue.main.async(execute: { () -> Void in
-                completion(allowedAccess)
-            })
-        })
-    }
-    
-    fileprivate func checkIfCameraIsAvailable() -> CameraState {
-        let deviceHasCamera = hasFrontCamera
-        if deviceHasCamera {
-            let authorizationStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
-            let userAgreedToUseIt = authorizationStatus == .authorized
-            if userAgreedToUseIt {
-                return .ready
-            } else if authorizationStatus == AVAuthorizationStatus.notDetermined {
-                return .notDetermined
-            } else {
-                self.show(NSLocalizedString("Camera access denied", comment:""), message:NSLocalizedString("You need to go to settings app and grant acces to the camera device to use it.", comment:""))
-                return .accessDenied
-            }
-        } else {
-            self.show(NSLocalizedString("Camera unavailable", comment:""), message:NSLocalizedString("The device does not have a camera.", comment:""))
-            return .noDeviceFound
-        }
-    }
-    
-    fileprivate func show(_ title: String, message: String) {
-        if showErrorsToUsers {
-            DispatchQueue.main.async(execute: { () -> Void in
-                self.showErrorBlock(title, message)
-            })
-        }
-    }
 }
 
 extension CameraManager: GazePredictionDelegate {
@@ -205,10 +223,15 @@ extension CameraManager: GazePredictionDelegate {
         self.isFaceDetected(status: true)
         let gazeTracker: GazeTracker = self.gazeTracker!
         print("Values: \(gazeTracker.gazeEstimation)")
+        if gazeTracker.gazeEstimation == nil {
+            self.label?.text = "nil"
+        } else {
+            self.label?.text = "nil"
+        }
     }
     
     func isFaceDetected(status: Bool) {
-         DispatchQueue.main.async {
+        DispatchQueue.main.async {
             if status {
                 self.cameraView?.layer.borderWidth = 10
                 self.cameraView?.layer.borderColor = UIColor.red.cgColor
@@ -219,6 +242,10 @@ extension CameraManager: GazePredictionDelegate {
         }
     }
     
+}
+
+
+extension CameraManager {
     
     fileprivate func _startFollowingDeviceOrientation() {
         if shouldRespondToOrientationChanges && !cameraIsObservingDeviceOrientation {
@@ -250,7 +277,7 @@ extension CameraManager: GazePredictionDelegate {
                             self.deviceOrientation = .portraitUpsideDown
                         }
                         
-//                        self._orientationChanged()
+                        //                        self._orientationChanged()
                 })
                 
                 cameraIsObservingDeviceOrientation = true

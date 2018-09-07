@@ -110,7 +110,6 @@ extension HomeViewController {
         cameraManager.askUserForCameraPermission { (status) in
             if status {
                 cameraManager.setPrediction()
-                cameraManager.shouldRespondToOrientationChanges = true
                 cameraManager.setCamera()
                 cameraManager.startSession()
             }

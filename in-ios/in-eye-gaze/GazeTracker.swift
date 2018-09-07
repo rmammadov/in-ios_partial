@@ -11,6 +11,7 @@ import Firebase
 import Accelerate
 import CoreML
 
+@available(iOS 11.0, *)
 public class GazeTracker: FaceFinderDelegate {
     
     let model = GazeEstimator()
@@ -175,7 +176,7 @@ public class GazeTracker: FaceFinderDelegate {
     
     /**
      Runs the gaze estimation in the background
-     */
+    */
     public func startPredictionInBackground(scene: UIImage) {
         DispatchQueue.global(qos: .background).async {
             var rotatedImage: UIImage?
@@ -211,7 +212,7 @@ public class GazeTracker: FaceFinderDelegate {
             self.predictionDelegate?.didUpdatePrediction()
             return
         }
-        
+
         guard let eyeChannels = self.channels2MLMultiArray(image: eyesImage) else {
             self.gazeEstimation = nil
             self.predictionDelegate?.didUpdatePrediction()
@@ -312,7 +313,7 @@ public class GazeTracker: FaceFinderDelegate {
         }
         
         guard let mlFeatures = try? MLMultiArray(shape:[16], dataType:MLMultiArrayDataType.double) else {
-            fatalError("Unexpected runtime error. MLMultiArray")
+                fatalError("Unexpected runtime error. MLMultiArray")
         }
         
         for (index, element) in features.enumerated() {
@@ -433,9 +434,9 @@ public class GazeTracker: FaceFinderDelegate {
                 let green: Double = Double(data[offset+2])/255.0
                 let blue: Double = Double(data[offset+3])/255.0
                 
-                //                if red.isNaN { red = 0.0 }
-                //                if green.isNaN { green = 0.0 }
-                //                if blue.isNaN { blue = 0.0 }
+//                if red.isNaN { red = 0.0 }
+//                if green.isNaN { green = 0.0 }
+//                if blue.isNaN { blue = 0.0 }
                 
                 redChannel[y * width + x] = red as NSNumber
                 greenChannel[y * width + x] = green as NSNumber
@@ -563,10 +564,10 @@ public class GazeTracker: FaceFinderDelegate {
         e_i = e_i.map {$0/e_i.max()!}
         
         //Catch any NaN and replace it by 1.0
-        //        e_i = e_i.map {
-        //            if $0.isNaN { return 1.0 }
-        //            return $0
-        //        }
+//        e_i = e_i.map {
+//            if $0.isNaN { return 1.0 }
+//            return $0
+//        }
         
         //Create the MLMultiArray, populate it and return it
         guard let illuminant = try? MLMultiArray(shape: [3], dataType: MLMultiArrayDataType.double) else {

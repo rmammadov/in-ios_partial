@@ -1,9 +1,9 @@
 //
 //  UIDevice+modelName.swift
-//  in-ios
+//  INGazeTracking
 //
 //  Created by Rahman Mammadov on 9/4/18.
-//  Copyright © 2018 com.innodemneurosciences. All rights reserved.
+//  Copyright © 2018 innodem-neurosciences. All rights reserved.
 //
 
 import UIKit

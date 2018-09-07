@@ -39,11 +39,8 @@
 		F336589D20D318CB00B18CEC /* in_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336589C20D318CB00B18CEC /* in_iosUITests.swift */; };
 		F33658AE20D3198000B18CEC /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33658AD20D3198000B18CEC /* Constant.swift */; };
 		F33F0BCF2121B11C002E31B9 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33F0BCE2121B11C002E31B9 /* DataManager.swift */; };
-		F3428A80213F0F7700787296 /* UIDevice+modelName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3428A7F213F0F7700787296 /* UIDevice+modelName.swift */; };
 		F34B909B20D46FA100800FCD /* DisplayHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34B909A20D46FA100800FCD /* DisplayHelper.swift */; };
 		F352854E20D3CED500E973C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F352854D20D3CED500E973C8 /* GoogleService-Info.plist */; };
-		F35DA94E213CE4D500EE1D8F /* GazeTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35DA94C213CE4D400EE1D8F /* GazeTracker.swift */; };
-		F35DA94F213CE4D500EE1D8F /* FaceFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35DA94D213CE4D500EE1D8F /* FaceFinder.swift */; };
 		F35E76C5213779E100E8B57E /* UIImage+fixedOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35E76C4213779E100E8B57E /* UIImage+fixedOrientation.swift */; };
 		F39059BB210F09C800CAA292 /* MenuItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F39059B9210F09C800CAA292 /* MenuItemCollectionViewCell.xib */; };
 		F39059BF210F254C00CAA292 /* AnimationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059BE210F254C00CAA292 /* AnimationUtil.swift */; };
@@ -69,6 +66,9 @@
 		F3E200C52135EC5E00902A33 /* GazePredictionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E200C12135EC5E00902A33 /* GazePredictionDelegate.swift */; };
 		F3E200C92135F2D500902A33 /* UIApplication+getPresentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E200C82135F2D500902A33 /* UIApplication+getPresentedViewController.swift */; };
 		F3E200CD213664C700902A33 /* CMSampleBuffer+image.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E200CC213664C700902A33 /* CMSampleBuffer+image.swift */; };
+		F3E97E5721422F3C00379B4A /* UIDevice+modelName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E97E5621422F3C00379B4A /* UIDevice+modelName.swift */; };
+		F3E97E5921422F4800379B4A /* GazeTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E97E5821422F4800379B4A /* GazeTracker.swift */; };
+		F3E97E5B21422F4F00379B4A /* FaceFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E97E5A21422F4E00379B4A /* FaceFinder.swift */; };
 		F3F4148C20F5F82000CF101D /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F4148B20F5F82000CF101D /* ReachabilityManager.swift */; };
 		F3F8648321175BEE00B7CAA8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3F8648221175BEE00B7CAA8 /* Colors.xcassets */; };
 /* End PBXBuildFile section */
@@ -148,11 +148,8 @@
 		F336589E20D318CB00B18CEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F33658AD20D3198000B18CEC /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		F33F0BCE2121B11C002E31B9 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		F3428A7F213F0F7700787296 /* UIDevice+modelName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+modelName.swift"; sourceTree = "<group>"; };
 		F34B909A20D46FA100800FCD /* DisplayHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayHelper.swift; sourceTree = "<group>"; };
 		F352854D20D3CED500E973C8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		F35DA94C213CE4D400EE1D8F /* GazeTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GazeTracker.swift; sourceTree = "<group>"; };
-		F35DA94D213CE4D500EE1D8F /* FaceFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceFinder.swift; sourceTree = "<group>"; };
 		F35E76C4213779E100E8B57E /* UIImage+fixedOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+fixedOrientation.swift"; sourceTree = "<group>"; };
 		F39059B9210F09C800CAA292 /* MenuItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		F39059BE210F254C00CAA292 /* AnimationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationUtil.swift; sourceTree = "<group>"; };
@@ -178,6 +175,9 @@
 		F3E200C12135EC5E00902A33 /* GazePredictionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GazePredictionDelegate.swift; sourceTree = "<group>"; };
 		F3E200C82135F2D500902A33 /* UIApplication+getPresentedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+getPresentedViewController.swift"; sourceTree = "<group>"; };
 		F3E200CC213664C700902A33 /* CMSampleBuffer+image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMSampleBuffer+image.swift"; sourceTree = "<group>"; };
+		F3E97E5621422F3C00379B4A /* UIDevice+modelName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+modelName.swift"; sourceTree = "<group>"; };
+		F3E97E5821422F4800379B4A /* GazeTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GazeTracker.swift; sourceTree = "<group>"; };
+		F3E97E5A21422F4E00379B4A /* FaceFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceFinder.swift; sourceTree = "<group>"; };
 		F3F4148B20F5F82000CF101D /* ReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
 		F3F8648221175BEE00B7CAA8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -237,8 +237,8 @@
 			isa = PBXGroup;
 			children = (
 				F3CE691C213D70E6004F6756 /* GazeEstimator.mlmodel */,
-				F35DA94D213CE4D500EE1D8F /* FaceFinder.swift */,
-				F35DA94C213CE4D400EE1D8F /* GazeTracker.swift */,
+				F3E97E5821422F4800379B4A /* GazeTracker.swift */,
+				F3E97E5A21422F4E00379B4A /* FaceFinder.swift */,
 				F3E200BE2135EC5D00902A33 /* FaceFinderDelegate.swift */,
 				F3E200C12135EC5E00902A33 /* GazePredictionDelegate.swift */,
 				F3E97E552141B5B000379B4A /* extension */,
@@ -471,7 +471,7 @@
 		F3E97E552141B5B000379B4A /* extension */ = {
 			isa = PBXGroup;
 			children = (
-				F3428A7F213F0F7700787296 /* UIDevice+modelName.swift */,
+				F3E97E5621422F3C00379B4A /* UIDevice+modelName.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -756,12 +756,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3CE6922213DB367004F6756 /* IntroFirstViewModel.swift in Sources */,
+				F3E97E5B21422F4F00379B4A /* FaceFinder.swift in Sources */,
 				F3DC2DAB20F8ADBA00CC276F /* Reachability.swift in Sources */,
 				F32D99CA21117EC7007AAA8D /* BaseViewModel.swift in Sources */,
 				F34B909B20D46FA100800FCD /* DisplayHelper.swift in Sources */,
 				F334ADBE2105DA4A0056824A /* SpeechHelper.swift in Sources */,
 				F39059BF210F254C00CAA292 /* AnimationUtil.swift in Sources */,
-				F35DA94E213CE4D500EE1D8F /* GazeTracker.swift in Sources */,
 				F334ADC5210B3BC00056824A /* ApiRequestHandler.swift in Sources */,
 				F336587F20D318C300B18CEC /* BaseViewController.swift in Sources */,
 				F3355CEA2122BE79009AF602 /* InputScreens.swift in Sources */,
@@ -783,8 +783,10 @@
 				F3E200C92135F2D500902A33 /* UIApplication+getPresentedViewController.swift in Sources */,
 				F3E19CAA211C3CDB00ADE838 /* HomeContainerViewModel.swift in Sources */,
 				F3E19CB9211D835500ADE838 /* SubMenuViewController.swift in Sources */,
+				F3E97E5921422F4800379B4A /* GazeTracker.swift in Sources */,
 				F39059C32110473D00CAA292 /* MenuItems.swift in Sources */,
 				F3CE6924213DB385004F6756 /* IntroFirstModel.swift in Sources */,
+				F3E97E5721422F3C00379B4A /* UIDevice+modelName.swift in Sources */,
 				F3CE6920213DB318004F6756 /* IntroFirstViewController.swift in Sources */,
 				F3E19CB6211D827000ADE838 /* MenuItemCollectionViewCell.swift in Sources */,
 				F3E19CAC211C3CEE00ADE838 /* HomeContainerModel.swift in Sources */,
@@ -797,12 +799,10 @@
 				F3E19CBB211D836B00ADE838 /* SubMenuViewModel.swift in Sources */,
 				F32D99C821117E8A007AAA8D /* MenuModel.swift in Sources */,
 				F33F0BCF2121B11C002E31B9 /* DataManager.swift in Sources */,
-				F3428A80213F0F7700787296 /* UIDevice+modelName.swift in Sources */,
 				F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */,
 				F32D99CC21117EE8007AAA8D /* BaseModel.swift in Sources */,
 				F3355CF421240F6C009AF602 /* TopMenuItemExpandedCollectionViewCell.swift in Sources */,
 				F3E200CD213664C700902A33 /* CMSampleBuffer+image.swift in Sources */,
-				F35DA94F213CE4D500EE1D8F /* FaceFinder.swift in Sources */,
 				F3E200C22135EC5E00902A33 /* FaceFinderDelegate.swift in Sources */,
 				F334ADC02106E86F0056824A /* NavigationHelper.swift in Sources */,
 				F3355CEF2122E8F3009AF602 /* LoadingViewModel.swift in Sources */,
