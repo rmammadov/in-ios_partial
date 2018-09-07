@@ -29,7 +29,7 @@ class InputAViewModel: BaseViewModel {
     }
     
     func loadScreen() {
-        self.screen = DataManager.getInputScreens().getInputScreenA()
+        self.screen = DataManager.getInputScreens().getInputScreen(title: (parentMenuItem?.name)!)
         if (self.screen?.buttons?.count)! > 0 {
             self.items = (self.screen?.buttons)!
         }

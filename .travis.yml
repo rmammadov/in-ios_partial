@@ -16,4 +16,5 @@ env:
 
 script:
   - set -o pipefail
+  - pod update
   - xcodebuild -workspace in-ios.xcworkspace -scheme in-ios_test -destination 'platform=iOS Simulator,name=iPhone 7' CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO | xcpretty -c
