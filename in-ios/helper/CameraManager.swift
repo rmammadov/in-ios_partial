@@ -32,6 +32,7 @@ class CameraManager: NSObject {
     fileprivate var gazeTrackingCompleted: Bool = true
     fileprivate var cameraView: UIImageView? // For the test purpose
     fileprivate var label: UILabel?
+    fileprivate var previewLayer: UIView?
 
     open var cameraIsReady: Bool {
         get {
@@ -75,6 +76,7 @@ class CameraManager: NSObject {
         super.init()
         // TODO: Remove after tests
         self.cameraView = cameraView // For the test purpose
+        addPreviewLayer()
         addLabel();
     }
     
@@ -122,9 +124,14 @@ extension CameraManager {
         }
     }
     
+    fileprivate func addPreviewLayer() {
+        self.previewLayer = UIView(frame: CGRect(x: 10, y: (self.cameraView?.bounds.height)! - 600.0, width: 350.0, height: 600.0))
+        self.cameraView?.addSubview(self.previewLayer!)
+    }
+    
     fileprivate func addLabel() {
-        label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 24))
-        let centerX = label!.bounds.width / 2 + 48
+        label = UILabel(frame: CGRect(x: 0, y: 0, width: 200.0, height: 24.0))
+        let centerX = label!.bounds.width / 2 + 48.0
         let centerY = (self.cameraView?.bounds.height)! - label!.bounds.height / 2 - 32.0
         label?.center = CGPoint(x: centerX, y: centerY)
         label?.textAlignment = .left
@@ -162,10 +169,10 @@ extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
                 
                 DispatchQueue.main.async {
                     // TODO: Remove this after tests
-//                    let previewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession!)
+                    let previewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession!)
 //                    previewLayer.connection?.videoOrientation = .landscapeLeft
-//                    self.cameraView?.layer.addSublayer(previewLayer)
-//                    previewLayer.frame = (self.cameraView?.frame)!
+                    self.previewLayer?.layer.addSublayer(previewLayer)
+                    previewLayer.frame = (self.previewLayer?.frame)!
                 }
                 
                 let dataOutput = AVCaptureVideoDataOutput()
@@ -196,9 +203,9 @@ extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         if self.gazeTrackingCompleted {
             let image = sampleBuffer.image(orientation: .leftMirrored, scale: 1.0)?.rotate(radians: 0)
-            DispatchQueue.main.async {
-                self.cameraView?.image = image
-            }
+//            DispatchQueue.main.async {
+//                self.cameraView?.image = image
+//            }
             predicate(frame: image!)
 //            predicate(frame: UIImage(named:"test_image")!)
         }
@@ -222,11 +229,10 @@ extension CameraManager: GazePredictionDelegate {
     func didUpdatePrediction() {
         self.isFaceDetected(status: true)
         let gazeTracker: GazeTracker = self.gazeTracker!
-        print("Values: \(gazeTracker.gazeEstimation)")
         if gazeTracker.gazeEstimation == nil {
             self.label?.text = "nil"
         } else {
-            self.label?.text = "nil"
+            self.label?.text = "Values: \(gazeTracker.gazeEstimation)"
         }
     }
     
@@ -277,7 +283,7 @@ extension CameraManager {
                             self.deviceOrientation = .portraitUpsideDown
                         }
                         
-                        //                        self._orientationChanged()
+                        // self._orientationChanged()
                 })
                 
                 cameraIsObservingDeviceOrientation = true
