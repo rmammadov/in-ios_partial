@@ -130,7 +130,7 @@ extension CameraManager {
     }
     
     fileprivate func addLabel() {
-        label = UILabel(frame: CGRect(x: 0, y: 0, width: 100.0, height: 24.0))
+        label = UILabel(frame: CGRect(x: 0, y: 0, width: 200.0, height: 24.0))
         let centerX = label!.bounds.width / 2 + 48.0
         let centerY = (self.cameraView?.bounds.height)! - label!.bounds.height / 2 - 32.0
         label?.center = CGPoint(x: centerX, y: centerY)
@@ -229,11 +229,10 @@ extension CameraManager: GazePredictionDelegate {
     func didUpdatePrediction() {
         self.isFaceDetected(status: true)
         let gazeTracker: GazeTracker = self.gazeTracker!
-        print("Values: \(gazeTracker.gazeEstimation)")
         if gazeTracker.gazeEstimation == nil {
             self.label?.text = "nil"
         } else {
-            self.label?.text = "nil"
+            self.label?.text = "Values: \(gazeTracker.gazeEstimation)"
         }
     }
     
@@ -284,7 +283,7 @@ extension CameraManager {
                             self.deviceOrientation = .portraitUpsideDown
                         }
                         
-                        //                        self._orientationChanged()
+                        // self._orientationChanged()
                 })
                 
                 cameraIsObservingDeviceOrientation = true
