@@ -130,13 +130,13 @@ extension CameraManager {
     }
     
     fileprivate func addLabel() {
-        label = UILabel(frame: CGRect(x: 0, y: 0, width: 200.0, height: 24.0))
+        label = UILabel(frame: CGRect(x: 0, y: 0, width: 300.0, height: 24.0))
         let centerX = label!.bounds.width / 2 + 48.0
         let centerY = (self.cameraView?.bounds.height)! - label!.bounds.height / 2 - 32.0
         label?.center = CGPoint(x: centerX, y: centerY)
         label?.textAlignment = .left
         label?.textColor = .red
-        label?.font = UIFont(name:"HelveticaNeue-Bold", size: 18.0)
+        label?.font = UIFont(name:"HelveticaNeue-Bold", size: 16.0)
         label?.text = "Coordinates"
         self.cameraView?.addSubview(label!)
     }
@@ -232,7 +232,7 @@ extension CameraManager: GazePredictionDelegate {
         if gazeTracker.gazeEstimation == nil {
             self.label?.text = "nil"
         } else {
-            self.label?.text = "Values: \(gazeTracker.gazeEstimation)"
+            self.label?.text = "Values: \(String(describing: gazeTracker.gazeEstimation))"
         }
     }
     
