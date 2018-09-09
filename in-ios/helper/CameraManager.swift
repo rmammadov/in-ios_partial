@@ -232,6 +232,8 @@ extension CameraManager: GazePredictionDelegate {
         if gazeTracker.gazeEstimation == nil {
             self.label?.text = "nil"
         } else {
+            print("Value1: \(gazeTracker.gazeEstimation?.dataType)");
+            print("Value2: \(gazeTracker.gazeEstimation?.strides)");
             self.label?.text = "Values: \(String(describing: gazeTracker.gazeEstimation))"
         }
     }

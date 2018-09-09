@@ -15,6 +15,9 @@
 		F32D99C821117E8A007AAA8D /* MenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D99C721117E8A007AAA8D /* MenuModel.swift */; };
 		F32D99CA21117EC7007AAA8D /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D99C921117EC7007AAA8D /* BaseViewModel.swift */; };
 		F32D99CC21117EE8007AAA8D /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D99CB21117EE8007AAA8D /* BaseModel.swift */; };
+		F32F5B6521453DCC00558C68 /* IntroSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F5B6421453DCC00558C68 /* IntroSecondViewController.swift */; };
+		F32F5B6721453DFB00558C68 /* IntroSecondViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F5B6621453DFB00558C68 /* IntroSecondViewModel.swift */; };
+		F32F5B6921453E0B00558C68 /* IntroSecondModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F5B6821453E0B00558C68 /* IntroSecondModel.swift */; };
 		F331EA7F211303880000B4E6 /* TopMenuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331EA7D211303880000B4E6 /* TopMenuItemCollectionViewCell.swift */; };
 		F331EA80211303880000B4E6 /* TopMenuItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F331EA7E211303880000B4E6 /* TopMenuItemCollectionViewCell.xib */; };
 		F334ADBC2104E7970056824A /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334ADBB2104E7970056824A /* CameraManager.swift */; };
@@ -118,6 +121,9 @@
 		F32D99C721117E8A007AAA8D /* MenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuModel.swift; sourceTree = "<group>"; };
 		F32D99C921117EC7007AAA8D /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		F32D99CB21117EE8007AAA8D /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
+		F32F5B6421453DCC00558C68 /* IntroSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroSecondViewController.swift; sourceTree = "<group>"; };
+		F32F5B6621453DFB00558C68 /* IntroSecondViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroSecondViewModel.swift; sourceTree = "<group>"; };
+		F32F5B6821453E0B00558C68 /* IntroSecondModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroSecondModel.swift; sourceTree = "<group>"; };
 		F331EA7D211303880000B4E6 /* TopMenuItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		F331EA7E211303880000B4E6 /* TopMenuItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopMenuItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		F334ADBB2104E7970056824A /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
@@ -266,6 +272,16 @@
 			path = menu;
 			sourceTree = "<group>";
 		};
+		F32F5B6321453C7500558C68 /* intro-second */ = {
+			isa = PBXGroup;
+			children = (
+				F32F5B6421453DCC00558C68 /* IntroSecondViewController.swift */,
+				F32F5B6621453DFB00558C68 /* IntroSecondViewModel.swift */,
+				F32F5B6821453E0B00558C68 /* IntroSecondModel.swift */,
+			);
+			path = "intro-second";
+			sourceTree = "<group>";
+		};
 		F331EA8321136F5C0000B4E6 /* extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -397,6 +413,7 @@
 				F32D99CB21117EE8007AAA8D /* BaseModel.swift */,
 				F334ADC6210D793B0056824A /* model */,
 				F3CE691E213DB2CA004F6756 /* intro-first */,
+				F32F5B6321453C7500558C68 /* intro-second */,
 				F3355CEB2122E83D009AF602 /* loading */,
 				F32D99CD211189D9007AAA8D /* home */,
 				F3E19CA7211C3C3A00ADE838 /* homecontainer */,
@@ -775,11 +792,13 @@
 				F32D99C621117E79007AAA8D /* HomeModel.swift in Sources */,
 				F336587D20D318C300B18CEC /* AppDelegate.swift in Sources */,
 				F331EA7F211303880000B4E6 /* TopMenuItemCollectionViewCell.swift in Sources */,
+				F32F5B6921453E0B00558C68 /* IntroSecondModel.swift in Sources */,
 				F3355CE82121E04F009AF602 /* InputScreen.swift in Sources */,
 				F39059C1210F290F00CAA292 /* MenuViewModel.swift in Sources */,
 				F334ADCA210D7F890056824A /* HomeViewModel.swift in Sources */,
 				F3C48CCB210F018200742855 /* MenuViewController.swift in Sources */,
 				F3355CF12122E904009AF602 /* LoadingModel.swift in Sources */,
+				F32F5B6521453DCC00558C68 /* IntroSecondViewController.swift in Sources */,
 				F3E200C92135F2D500902A33 /* UIApplication+getPresentedViewController.swift in Sources */,
 				F3E19CAA211C3CDB00ADE838 /* HomeContainerViewModel.swift in Sources */,
 				F3E19CB9211D835500ADE838 /* SubMenuViewController.swift in Sources */,
@@ -787,6 +806,7 @@
 				F39059C32110473D00CAA292 /* MenuItems.swift in Sources */,
 				F3CE6924213DB385004F6756 /* IntroFirstModel.swift in Sources */,
 				F3E97E5721422F3C00379B4A /* UIDevice+modelName.swift in Sources */,
+				F32F5B6721453DFB00558C68 /* IntroSecondViewModel.swift in Sources */,
 				F3CE6920213DB318004F6756 /* IntroFirstViewController.swift in Sources */,
 				F3E19CB6211D827000ADE838 /* MenuItemCollectionViewCell.swift in Sources */,
 				F3E19CAC211C3CEE00ADE838 /* HomeContainerModel.swift in Sources */,
