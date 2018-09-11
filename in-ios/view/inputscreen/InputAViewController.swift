@@ -11,6 +11,8 @@ import RxSwift
 
 private let nibMenuItem = "MenuItemCollectionViewCell"
 private let reuseIdentifier = "cellMenuItem"
+private let tileLineCount : CGFloat = 6.0
+private let tileColumnCount : CGFloat = 4.0
 
 class InputAViewController: BaseViewController {
 
@@ -21,6 +23,8 @@ class InputAViewController: BaseViewController {
     
     let viewModel = InputAViewModel()
     
+    var page = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -122,11 +126,15 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
     // FIXME: Remove the hardcode
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let cellWidth = self.collectionView.frame.size.width / 5
-        let cellHeight = self.collectionView.frame.size.height / 4
-        
+
+        let cellWidth = self.collectionView.frame.size.width / tileLineCount
+        let cellHeight = self.collectionView.frame.size.height / tileColumnCount
+
         return CGSize(width: cellWidth, height: cellHeight)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        collectionView.reloadData()
     }
     
     // MARK: UICollectionViewDelegate
