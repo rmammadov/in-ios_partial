@@ -1,36 +1,3 @@
-//
-//  Lock.swift
-//  RxSwift
-//
-//  Created by Krunoslav Zaher on 3/31/15.
-//  Copyright © 2015 Krunoslav Zaher. All rights reserved.
-//
-
-protocol Lock {
-    func lock()
-    func unlock()
-}
-
-// https://lists.swift.org/pipermail/swift-dev/Week-of-Mon-20151214/000321.html
-typealias SpinLock = RecursiveLock
-
-extension RecursiveLock : Lock {
-    @inline(__always)
-    final func performLocked(_ action: () -> Void) {
-        lock(); defer { unlock() }
-        action()
-    }
-
-    @inline(__always)
-    final func calculateLocked<T>(_ action: () -> T) -> T {
-        lock(); defer { unlock() }
-        return action()
-    }
-
-    @inline(__always)
-    final func calculateLockedOrFail<T>(_ action: () throws -> T) throws -> T {
-        lock(); defer { unlock() }
-        let result = try action()
-        return result
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:42dc24e81b0e3f6f1f2fdee17819461ae0ed48fec16d7eb82d0226f76019b387
+size 825

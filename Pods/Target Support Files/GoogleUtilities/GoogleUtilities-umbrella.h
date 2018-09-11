@@ -1,19 +1,3 @@
-#ifdef __OBJC__
-#import <UIKit/UIKit.h>
-#else
-#ifndef FOUNDATION_EXPORT
-#if defined(__cplusplus)
-#define FOUNDATION_EXPORT extern "C"
-#else
-#define FOUNDATION_EXPORT extern
-#endif
-#endif
-#endif
-
-#import "GULLoggerLevel.h"
-#import "GULLoggerCodes.h"
-#import "GULNSData+zlib.h"
-
-FOUNDATION_EXPORT double GoogleUtilitiesVersionNumber;
-FOUNDATION_EXPORT const unsigned char GoogleUtilitiesVersionString[];
-
+version https://git-lfs.github.com/spec/v1
+oid sha256:a58a0f88ccfd4398591b48a8be28bff24ca70aaa49e8c23ab7e539fe87b36f3d
+size 403

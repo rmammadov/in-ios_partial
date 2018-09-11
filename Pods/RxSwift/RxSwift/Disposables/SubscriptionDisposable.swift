@@ -1,21 +1,3 @@
-//
-//  SubscriptionDisposable.swift
-//  RxSwift
-//
-//  Created by Krunoslav Zaher on 10/25/15.
-//  Copyright © 2015 Krunoslav Zaher. All rights reserved.
-//
-
-struct SubscriptionDisposable<T: SynchronizedUnsubscribeType> : Disposable {
-    private let _key: T.DisposeKey
-    private weak var _owner: T?
-
-    init(owner: T, key: T.DisposeKey) {
-        _owner = owner
-        _key = key
-    }
-
-    func dispose() {
-        _owner?.synchronizedUnsubscribe(_key)
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:5a8a90626e429b265698dd58130eb1b194a1eb7f917fea40cae63de925adc888
+size 468

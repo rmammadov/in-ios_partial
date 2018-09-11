@@ -1,27 +1,3 @@
-//
-//  RxMutableBox.swift
-//  RxSwift
-//
-//  Created by Krunoslav Zaher on 5/22/15.
-//  Copyright © 2015 Krunoslav Zaher. All rights reserved.
-//
-
-/// Creates mutable reference wrapper for any type.
-final class RxMutableBox<T> : CustomDebugStringConvertible {
-    /// Wrapped value
-    var value : T
-    
-    /// Creates reference wrapper for `value`.
-    ///
-    /// - parameter value: Value to wrap.
-    init (_ value: T) {
-        self.value = value
-    }
-}
-
-extension RxMutableBox {
-    /// - returns: Box description.
-    var debugDescription: String {
-        return "MutatingBox(\(self.value))"
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:b09bcf4d158da5c584c8af102a28b6c11d15fc91f0e8630579a97004ba8df00c
+size 611
