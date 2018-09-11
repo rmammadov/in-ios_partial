@@ -482,10 +482,10 @@
             </objects>
             <point key="canvasLocation" x="-1347.3021582733813" y="862.58992805755406"/>
         </scene>
-        <!--View Controller-->
+        <!--Intro Second View Controller-->
         <scene sceneID="5sn-IC-jq9">
             <objects>
-                <viewController id="U0z-Rb-cOW" sceneMemberID="viewController">
+                <viewController id="U0z-Rb-cOW" customClass="IntroSecondViewController" customModule="in_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vgg-JJ-MC5">
                         <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

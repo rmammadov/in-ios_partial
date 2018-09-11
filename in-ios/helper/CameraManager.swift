@@ -33,6 +33,7 @@ class CameraManager: NSObject {
     fileprivate var cameraView: UIImageView? // For the test purpose
     fileprivate var label: UILabel?
     fileprivate var previewLayer: UIView?
+    fileprivate var validPreviewLayer: AVCaptureVideoPreviewLayer?
 
     open var cameraIsReady: Bool {
         get {
@@ -130,13 +131,13 @@ extension CameraManager {
     }
     
     fileprivate func addLabel() {
-        label = UILabel(frame: CGRect(x: 0, y: 0, width: 200.0, height: 24.0))
+        label = UILabel(frame: CGRect(x: 0, y: 0, width: 300.0, height: 24.0))
         let centerX = label!.bounds.width / 2 + 48.0
         let centerY = (self.cameraView?.bounds.height)! - label!.bounds.height / 2 - 32.0
         label?.center = CGPoint(x: centerX, y: centerY)
         label?.textAlignment = .left
         label?.textColor = .red
-        label?.font = UIFont(name:"HelveticaNeue-Bold", size: 18.0)
+        label?.font = UIFont(name:"HelveticaNeue-Bold", size: 16.0)
         label?.text = "Coordinates"
         self.cameraView?.addSubview(label!)
     }
@@ -169,10 +170,10 @@ extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
                 
                 DispatchQueue.main.async {
                     // TODO: Remove this after tests
-                    let previewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession!)
-//                    previewLayer.connection?.videoOrientation = .landscapeLeft
-                    self.previewLayer?.layer.addSublayer(previewLayer)
-                    previewLayer.frame = (self.previewLayer?.frame)!
+                    self.validPreviewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession!)
+                    self.validPreviewLayer!.connection?.videoOrientation = self._videoOrientation(forDeviceOrientation: self.deviceOrientation)
+                    self.previewLayer?.layer.addSublayer(self.validPreviewLayer!)
+                    self.validPreviewLayer!.frame = (self.previewLayer?.frame)!
                 }
                 
                 let dataOutput = AVCaptureVideoDataOutput()
@@ -232,7 +233,7 @@ extension CameraManager: GazePredictionDelegate {
         if gazeTracker.gazeEstimation == nil {
             self.label?.text = "nil"
         } else {
-            self.label?.text = "Values: \(gazeTracker.gazeEstimation)"
+            self.label?.text = "Values: X: \(String(describing: gazeTracker.gazeEstimation![0]))" + " Y: \(String(describing: gazeTracker.gazeEstimation![0]))"
         }
     }
     
@@ -252,6 +253,12 @@ extension CameraManager: GazePredictionDelegate {
 
 
 extension CameraManager {
+    
+    fileprivate func _orientationChanged() {
+        if let validPreviewLayer = self.validPreviewLayer, let connection = validPreviewLayer.connection  {
+              self.validPreviewLayer!.connection?.videoOrientation = self._videoOrientation(forDeviceOrientation: self.deviceOrientation)
+        }
+    }
     
     fileprivate func _startFollowingDeviceOrientation() {
         if shouldRespondToOrientationChanges && !cameraIsObservingDeviceOrientation {
@@ -283,7 +290,7 @@ extension CameraManager {
                             self.deviceOrientation = .portraitUpsideDown
                         }
                         
-                        // self._orientationChanged()
+                         self._orientationChanged()
                 })
                 
                 cameraIsObservingDeviceOrientation = true
@@ -329,5 +336,95 @@ extension CameraManager {
         
         return image
     }
+    
+    fileprivate func _currentCaptureVideoOrientation() -> AVCaptureVideoOrientation {
+        
+        if deviceOrientation == .faceDown
+            || deviceOrientation == .faceUp
+            || deviceOrientation == .unknown {
+            return _currentPreviewVideoOrientation()
+        }
+        
+        return _videoOrientation(forDeviceOrientation: deviceOrientation)
+    }
+    
+    fileprivate func _currentPreviewVideoOrientation() -> AVCaptureVideoOrientation {
+        let orientation = _currentPreviewDeviceOrientation()
+        return _videoOrientation(forDeviceOrientation: orientation)
+    }
+    
+    fileprivate func _currentPreviewDeviceOrientation() -> UIDeviceOrientation {
+            return .portrait
+        
+        return UIDevice.current.orientation
+    }
+    
+    fileprivate func _videoOrientation(forDeviceOrientation deviceOrientation: UIDeviceOrientation) -> AVCaptureVideoOrientation {
+        switch deviceOrientation {
+        case .landscapeLeft:
+            return .landscapeRight
+        case .landscapeRight:
+            return .landscapeLeft
+        case .portraitUpsideDown:
+            return .portraitUpsideDown
+        case .faceUp:
+            /*
+             Attempt to keep the existing orientation.  If the device was landscape, then face up
+             getting the orientation from the stats bar would fail every other time forcing it
+             to default to portrait which would introduce flicker into the preview layer.  This
+             would not happen if it was in portrait then face up
+             */
+            if let validPreviewLayer = self.validPreviewLayer, let connection = validPreviewLayer.connection  {
+                return connection.videoOrientation //Keep the existing orientation
+            }
+            //Could not get existing orientation, try to get it from stats bar
+            return _videoOrientationFromStatusBarOrientation()
+        case .faceDown:
+            /*
+             Attempt to keep the existing orientation.  If the device was landscape, then face down
+             getting the orientation from the stats bar would fail every other time forcing it
+             to default to portrait which would introduce flicker into the preview layer.  This
+             would not happen if it was in portrait then face down
+             */
+            if let validPreviewLayer = self.validPreviewLayer, let connection = validPreviewLayer.connection  {
+                return connection.videoOrientation //Keep the existing orientation
+            }
+            //Could not get existing orientation, try to get it from stats bar
+            return _videoOrientationFromStatusBarOrientation()
+        default:
+            return .portrait
+        }
+    }
+    
+    fileprivate func _videoOrientationFromStatusBarOrientation() -> AVCaptureVideoOrientation {
+        
+        var orientation: UIInterfaceOrientation?
+        
+        DispatchQueue.main.async {
+            orientation = UIApplication.shared.statusBarOrientation
+        }
+        
+        /*
+         Note - the following would fall into the guard every other call (it is called repeatedly) if the device was
+         landscape then face up/down.  Did not seem to fail if in portrait first.
+         */
+        guard let statusBarOrientation = orientation else {
+            return .portrait
+        }
+        
+        switch statusBarOrientation {
+        case .landscapeLeft:
+            return .landscapeLeft
+        case .landscapeRight:
+            return .landscapeRight
+        case .portrait:
+            return .portrait
+        case .portraitUpsideDown:
+            return .portraitUpsideDown
+        default:
+            return .portrait
+        }
+    }
+
 }
 
