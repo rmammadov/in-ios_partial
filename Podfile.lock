@@ -91,7 +91,6 @@ PODS:
   - RxCocoa (4.2.0):
     - RxSwift (~> 4.0)
   - RxSwift (4.2.0)
-  - Surge (2.0.0)
 
 DEPENDENCIES:
   - Crashlytics (~> 3.10.2)
@@ -102,7 +101,6 @@ DEPENDENCIES:
   - Kingfisher (~> 4.0)
   - RxCocoa (~> 4.0)
   - RxSwift (~> 4.0)
-  - Surge (~> 2.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -126,7 +124,6 @@ SPEC REPOS:
     - Protobuf
     - RxCocoa
     - RxSwift
-    - Surge
 
 SPEC CHECKSUMS:
   Crashlytics: ccaac42660eb9351b9960c0d66106b0bcf99f4fa
@@ -149,8 +146,7 @@ SPEC CHECKSUMS:
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
-  Surge: 1f0286bc5f0fe4283f3455479895bf85c7ef7760
 
-PODFILE CHECKSUM: 19c15aaba92def3fb3dc0c3452a5d52d879cd651
+PODFILE CHECKSUM: bf0e3f76ce13a78a0dda63de8f0708ea545f49b9
 
 COCOAPODS: 1.5.3

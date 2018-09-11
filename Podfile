@@ -12,7 +12,6 @@ target 'in-ios' do
   pod 'Firebase/Core'
   pod 'Firebase/MLVision'
   pod 'Firebase/MLVisionFaceModel'
-  pod 'Surge', '~> 2.0.0'
 
   # Pods for in-ios
 
