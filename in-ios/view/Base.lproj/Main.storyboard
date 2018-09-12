@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -106,7 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="232.55395683453239" y="125.17985611510792"/>
+            <point key="canvasLocation" x="246" y="1558"/>
         </scene>
         <!--Item-->
         <scene sceneID="f0M-vB-Icx">
@@ -129,7 +130,7 @@
                                 <cells/>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="pigio_black"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Pen-im-3Ef" firstAttribute="trailing" secondItem="7J2-te-iIE" secondAttribute="trailing" constant="48" id="IHe-Kk-XFb"/>
@@ -149,7 +150,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jnl-Y4-UGu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1514.5683453237411" y="831.65467625899282"/>
+            <point key="canvasLocation" x="1528" y="2264"/>
         </scene>
         <!--Sub Menu View Controller-->
         <scene sceneID="HWj-na-eOX">
@@ -228,7 +229,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MFa-gQ-Gup" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1514.5683453237411" y="1495.6834532374103"/>
+            <point key="canvasLocation" x="1528" y="2928"/>
         </scene>
         <!--Item-->
         <scene sceneID="2aY-Mp-zJO">
@@ -244,7 +245,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3uO-Zv-oUK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="878" y="832"/>
+            <point key="canvasLocation" x="891" y="2264"/>
         </scene>
         <!--Home Container View Controller-->
         <scene sceneID="wsX-Ah-WZA">
@@ -261,7 +262,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yab-xP-Kuo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="233" y="832"/>
+            <point key="canvasLocation" x="246" y="2264"/>
         </scene>
         <!--InputA View Controller-->
         <scene sceneID="Ha3-yO-Ztc">
@@ -284,7 +285,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LNC-Qm-PPp">
                                 <rect key="frame" x="79" y="52" width="954" height="630"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hvn-EK-XJK">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hvn-EK-XJK">
                                         <rect key="frame" x="0.0" y="0.0" width="954" height="630"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8Xe-L6-vxs">
@@ -324,7 +325,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="pigio_black"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="UIu-s7-iiK" firstAttribute="centerY" secondItem="die-hq-sjL" secondAttribute="centerY" id="0sx-O8-Zcz"/>
@@ -352,7 +353,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jJr-zy-kS2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2173.9208633093526" y="831.65467625899282"/>
+            <point key="canvasLocation" x="2187" y="2264"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RtK-rX-zeG">
@@ -590,7 +591,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iU8-AG-KM4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-506" y="124"/>
+            <point key="canvasLocation" x="-493" y="1556"/>
         </scene>
         <!--Loading View Controller-->
         <scene sceneID="zbN-pq-FJ1">
@@ -647,5 +648,8 @@
         <image name="ic_side_btn_speak" width="87" height="175"/>
         <image name="ic_textfield_background" width="390" height="71"/>
         <image name="line_gradient" width="1367" height="3"/>
+        <namedColor name="pigio_black">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
     </resources>
 </document>

@@ -110,7 +110,7 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
     // FIXME: Fix the hardcode and update collection data properly
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.viewModel.getItmes().count
+        return self.viewModel.getItems(for: page).count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -140,7 +140,13 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
     // MARK: UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        
+        if (indexPath.row >= 4) {
+            page = page+1
+        } else if (indexPath.row == 0 && page > 0) {
+            page = page-1
+        }
+        collectionView.reloadData()
     }
     
     func getCellForIndexPath(indexPath: IndexPath) -> MenuItemCollectionViewCell {
