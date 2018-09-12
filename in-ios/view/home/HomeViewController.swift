@@ -103,18 +103,19 @@ extension HomeViewController {
         self.collectionTopMenu.reloadData()
     }
     
-    func setCamera() {
-        // TODO: should be removed and reimplemented after tests
-        let cameraManager: CameraManager = CameraManager(cameraView: self.ivBackground)
-        
-        cameraManager.askUserForCameraPermission { (status) in
-            if status {
-                cameraManager.setPrediction()
-                cameraManager.setCamera()
-                cameraManager.startSession()
-//                cameraManager.shouldRespondToOrientationChanges = true
-            }
-        }
+    func setCamera()
+    {
+//        // TODO: should be removed and reimplemented after tests
+//        let cameraManager: CameraManager = CameraManager(cameraView: self.ivBackground)
+//
+//        cameraManager.askUserForCameraPermission { (status) in
+//            if status {
+//                cameraManager.setPrediction()
+//                cameraManager.setCamera()
+//                cameraManager.startSession()
+//               //cameraManager.shouldRespondToOrientationChanges = true
+//            }
+//        }
     }
 }
 
