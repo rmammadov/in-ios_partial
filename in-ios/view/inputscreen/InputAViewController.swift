@@ -134,14 +134,16 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        collectionView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            self.collectionView.collectionViewLayout.invalidateLayout()
+        }
     }
     
     // MARK: UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if (indexPath.row >= 4) {
+        if (indexPath.row >= self.viewModel.itemsCountOnPage) {
             page = page+1
         } else if (indexPath.row == 0 && page > 0) {
             page = page-1

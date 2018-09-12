@@ -24,8 +24,7 @@ class InputAViewModel: BaseViewModel {
     fileprivate var button: ButtonInputScreen?
     fileprivate var indexSelectedItem: IndexPath = IndexPath(row: 0, section: 0)
     fileprivate var displayedArray = Array<ButtonInputScreen> ()
-    fileprivate var itemCountOnPage = 4
-    
+    var itemsCountOnPage = 20
     
     func setParentMenuItem(item: MenuItem) {
         self.parentMenuItem = item
@@ -54,25 +53,20 @@ class InputAViewModel: BaseViewModel {
     
     func getItems(for page: NSInteger) -> [ButtonInputScreen] {
         
-        if (self.items.count > itemCountOnPage) {
-
+        if (self.items.count > itemsCountOnPage) {
+            
             if (page < 1) {
-                displayedArray = Array(self.items[0..<itemCountOnPage])
-                displayedArray.insert(addButton(previous: false), at: itemCountOnPage)
-                print(displayedArray.count)
+                displayedArray = Array(self.items[0..<itemsCountOnPage])
+                displayedArray.append(addButton(previous: false))
             } else {
-                if (itemCountOnPage*page+itemCountOnPage > self.items.count) {
-
+                if ((itemsCountOnPage-1)*page+1+itemsCountOnPage > self.items.count) {
+                    displayedArray.append(addButton(previous: true))
+                    displayedArray.append(contentsOf:(self.items[itemsCountOnPage*page - (page >= 2 ? page-1 : 0)..<self.items.count]))
                     
-                    displayedArray = Array(self.items[itemCountOnPage*page..<self.items.count])
-                    displayedArray.insert(addButton(previous: true), at: 0)
                 } else {
-                    print(displayedArray)
-                    displayedArray = Array(self.items[itemCountOnPage*page..<itemCountOnPage*page+itemCountOnPage-1])
-                    displayedArray.insert(addButton(previous: true), at: 0)
-                    print(displayedArray.count)
-                    print(displayedArray)
-                    displayedArray.insert(addButton(previous: false), at: itemCountOnPage)
+                    displayedArray.append(addButton(previous: true))
+                    displayedArray.append(contentsOf: Array(self.items[itemsCountOnPage*page - (page >= 2 ? page-1 : 0)..<itemsCountOnPage*page+itemsCountOnPage - (page >= 2 ? page : 1)]))
+                    displayedArray.append(addButton(previous: false))
                 }
             }
         } else {
@@ -92,10 +86,6 @@ class InputAViewModel: BaseViewModel {
         return button
     }
     
-//    func getItmes() -> [ButtonInputScreen] {
-//        return self.items
-//    }
-
     func setItem(index: Int) {
         self.button = self.displayedArray[index]
     }
