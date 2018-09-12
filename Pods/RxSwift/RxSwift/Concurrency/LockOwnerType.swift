@@ -1,21 +1,3 @@
-//
-//  LockOwnerType.swift
-//  RxSwift
-//
-//  Created by Krunoslav Zaher on 10/25/15.
-//  Copyright © 2015 Krunoslav Zaher. All rights reserved.
-//
-
-protocol LockOwnerType : class, Lock {
-    var _lock: RecursiveLock { get }
-}
-
-extension LockOwnerType {
-    func lock() {
-        _lock.lock()
-    }
-
-    func unlock() {
-        _lock.unlock()
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:8b77ef7096771c20b72cf37ec9fdc8083968f264191e16d9341867a1816b3520
+size 352

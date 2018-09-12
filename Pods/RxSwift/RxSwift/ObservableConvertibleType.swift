@@ -1,18 +1,3 @@
-//
-//  ObservableConvertibleType.swift
-//  RxSwift
-//
-//  Created by Krunoslav Zaher on 9/17/15.
-//  Copyright © 2015 Krunoslav Zaher. All rights reserved.
-//
-
-/// Type that can be converted to observable sequence (`Observable<E>`).
-public protocol ObservableConvertibleType {
-    /// Type of elements in sequence.
-    associatedtype E
-
-    /// Converts `self` to `Observable` sequence.
-    ///
-    /// - returns: Observable sequence that represents `self`.
-    func asObservable() -> Observable<E>
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:27f97901c1dac8b6b197cd1e2aebf9b0c8a80bed611f436d2dbb5065281c49c5
+size 502

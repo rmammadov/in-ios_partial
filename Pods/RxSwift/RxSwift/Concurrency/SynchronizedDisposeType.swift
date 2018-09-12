@@ -1,18 +1,3 @@
-//
-//  SynchronizedDisposeType.swift
-//  RxSwift
-//
-//  Created by Krunoslav Zaher on 10/25/15.
-//  Copyright © 2015 Krunoslav Zaher. All rights reserved.
-//
-
-protocol SynchronizedDisposeType : class, Disposable, Lock {
-    func _synchronized_dispose()
-}
-
-extension SynchronizedDisposeType {
-    func synchronizedDispose() {
-        lock(); defer { unlock() }
-        _synchronized_dispose()
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:616a3229c2edfb8af870327bcac446d2294aa3c5034a61612690cf4979b45693
+size 401

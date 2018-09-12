@@ -103,8 +103,8 @@ extension HomeViewController {
         self.collectionTopMenu.reloadData()
     }
     
-    func setCamera(){}
-//    {
+    func setCamera()
+    {
 //        // TODO: should be removed and reimplemented after tests
 //        let cameraManager: CameraManager = CameraManager(cameraView: self.ivBackground)
 //
@@ -113,9 +113,10 @@ extension HomeViewController {
 //                cameraManager.setPrediction()
 //                cameraManager.setCamera()
 //                cameraManager.startSession()
+//               //cameraManager.shouldRespondToOrientationChanges = true
 //            }
 //        }
-//    }
+    }
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

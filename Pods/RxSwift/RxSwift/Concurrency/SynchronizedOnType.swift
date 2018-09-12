@@ -1,18 +1,3 @@
-//
-//  SynchronizedOnType.swift
-//  RxSwift
-//
-//  Created by Krunoslav Zaher on 10/25/15.
-//  Copyright © 2015 Krunoslav Zaher. All rights reserved.
-//
-
-protocol SynchronizedOnType : class, ObserverType, Lock {
-    func _synchronized_on(_ event: Event<E>)
-}
-
-extension SynchronizedOnType {
-    func synchronizedOn(_ event: Event<E>) {
-        lock(); defer { unlock() }
-        _synchronized_on(event)
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:e1a3c894ef6c8ce89c7d7ff695f409b64236bf48ecb2b83f935aff54d9e2b68c
+size 412

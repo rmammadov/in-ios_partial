@@ -1,24 +1,3 @@
-//
-//  ControlProperty+Driver.swift
-//  RxCocoa
-//
-//  Created by Krunoslav Zaher on 9/19/15.
-//  Copyright © 2015 Krunoslav Zaher. All rights reserved.
-//
-
-import RxSwift
-
-extension ControlProperty {
-    /// Converts `ControlProperty` to `Driver` trait.
-    ///
-    /// `ControlProperty` already can't fail, so no special case needs to be handled.
-    public func asDriver() -> Driver<E> {
-        return self.asDriver { (error) -> Driver<E> in
-            #if DEBUG
-                rxFatalError("Somehow driver received error from a source that shouldn't fail.")
-            #else
-                return Driver.empty()
-            #endif
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:b15cc29de1da7bf96145a65378ee22846823b43de83a5af40bd8df1ee00ed411
+size 659

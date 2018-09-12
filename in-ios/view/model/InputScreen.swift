@@ -13,7 +13,7 @@ struct InputScreen: Decodable {
     let disableTextToSpeech: Bool
     let translations: [TranslationInputScreen]
     let buttons: [ButtonInputScreen]?
-    let background: String?
+    let background: Background?
     let backgroundTransparency: Double?
     let previousButton: ButtonInputScreen?
     let nextButton: ButtonInputScreen?
@@ -41,14 +41,14 @@ extension InputScreen {
         
         
         var buttons: [ButtonInputScreen]?
-        var background: String?
+        var background: Background?
         var backgroundTransparency: Double?
         var previousButton: ButtonInputScreen?
         var nextButton: ButtonInputScreen?
         
         if type == Constant.InputScreen.TYPE_A {
             buttons = try container.decode([ButtonInputScreen].self, forKey: .buttons)
-            background = try container.decode(String?.self, forKey: .background)
+            background = try container.decode(Background?.self, forKey: .background)
             backgroundTransparency = try container.decode(Double.self, forKey: .backgroundTransparency)
             previousButton = try container.decode(ButtonInputScreen?.self, forKey: .previousButton)
             nextButton = try container.decode(ButtonInputScreen?.self, forKey: .nextButton)
@@ -80,5 +80,15 @@ struct ButtonInputScreen: Decodable {
     enum CodingKeys: String, CodingKey {
         case disableTextToSpeech = "disable_text_to_speech"
         case icon, translations, type
+    }
+}
+
+struct Background: Decodable {
+    
+    var id: Int?
+    var url: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id, url
     }
 }

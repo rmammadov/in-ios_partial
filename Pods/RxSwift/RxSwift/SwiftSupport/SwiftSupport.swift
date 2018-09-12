@@ -1,29 +1,3 @@
-//
-//  SwiftSupport.swift
-//  RxSwift
-//
-//  Created by Volodymyr  Gorbenko on 3/6/17.
-//  Copyright © 2017 Krunoslav Zaher. All rights reserved.
-//
-
-import Foundation
-
-#if swift(>=4.0)
-    typealias IntMax = Int64
-    public typealias RxAbstractInteger = FixedWidthInteger
-    
-    extension SignedInteger {
-        func toIntMax() -> IntMax {
-            return IntMax(self)
-        }
-    }
-#else
-    public typealias RxAbstractInteger = SignedInteger
-  
-    extension Array {
-        public mutating func swapAt(_ i: Int, _ j: Int) {
-            swap(&self[i], &self[j])
-        }
-    }
-  
-#endif
+version https://git-lfs.github.com/spec/v1
+oid sha256:8d86b916f4bea8602db2249fed67cbf58e49558ac301545599932d12917c96f9
+size 601

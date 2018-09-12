@@ -1,22 +1,3 @@
-#ifdef __OBJC__
-#import <UIKit/UIKit.h>
-#else
-#ifndef FOUNDATION_EXPORT
-#if defined(__cplusplus)
-#define FOUNDATION_EXPORT extern "C"
-#else
-#define FOUNDATION_EXPORT extern
-#endif
-#endif
-#endif
-
-#import "RxCocoa.h"
-#import "RxCocoaRuntime.h"
-#import "_RX.h"
-#import "_RXDelegateProxy.h"
-#import "_RXKVOObserver.h"
-#import "_RXObjCRuntime.h"
-
-FOUNDATION_EXPORT double RxCocoaVersionNumber;
-FOUNDATION_EXPORT const unsigned char RxCocoaVersionString[];
-
+version https://git-lfs.github.com/spec/v1
+oid sha256:93b4270767653cd8545429d73d318eafe494be10995d91879f42a047d4d03bc0
+size 452
