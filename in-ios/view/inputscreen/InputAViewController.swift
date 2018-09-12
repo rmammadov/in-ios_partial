@@ -11,6 +11,8 @@ import RxSwift
 
 private let nibMenuItem = "MenuItemCollectionViewCell"
 private let reuseIdentifier = "cellMenuItem"
+private let tileLineCount : CGFloat = 6.0
+private let tileColumnCount : CGFloat = 4.0
 
 class InputAViewController: BaseViewController {
 
@@ -21,6 +23,8 @@ class InputAViewController: BaseViewController {
     
     let viewModel = InputAViewModel()
     
+    var page = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -106,7 +110,7 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
     // FIXME: Fix the hardcode and update collection data properly
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.viewModel.getItmes().count
+        return self.viewModel.getItems(for: page).count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -122,17 +126,29 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
     // FIXME: Remove the hardcode
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let cellWidth = self.collectionView.frame.size.width / 5
-        let cellHeight = self.collectionView.frame.size.height / 4
-        
+
+        let cellWidth = self.collectionView.frame.size.width / tileLineCount
+        let cellHeight = self.collectionView.frame.size.height / tileColumnCount
+
         return CGSize(width: cellWidth, height: cellHeight)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            self.collectionView.collectionViewLayout.invalidateLayout()
+        }
     }
     
     // MARK: UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        
+        if (indexPath.row >= self.viewModel.itemsCountOnPage) {
+            page = page+1
+        } else if (indexPath.row == 0 && page > 0) {
+            page = page-1
+        }
+        collectionView.reloadData()
     }
     
     func getCellForIndexPath(indexPath: IndexPath) -> MenuItemCollectionViewCell {

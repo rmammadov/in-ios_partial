@@ -23,6 +23,8 @@ class InputAViewModel: BaseViewModel {
     fileprivate var items: Array<ButtonInputScreen> = []
     fileprivate var button: ButtonInputScreen?
     fileprivate var indexSelectedItem: IndexPath = IndexPath(row: 0, section: 0)
+    fileprivate var displayedArray = Array<ButtonInputScreen> ()
+    var itemsCountOnPage = 20
     
     func setParentMenuItem(item: MenuItem) {
         self.parentMenuItem = item
@@ -45,16 +47,47 @@ class InputAViewModel: BaseViewModel {
     
     func setItems(buttons: [ButtonInputScreen]?) {
         if buttons != nil {
-            self.items = buttons!
+            self.displayedArray = buttons!
         }
     }
     
-    func getItmes() -> [ButtonInputScreen] {
-        return self.items
+    func getItems(for page: NSInteger) -> [ButtonInputScreen] {
+        
+        if (self.items.count > itemsCountOnPage) {
+            
+            if (page < 1) {
+                displayedArray = Array(self.items[0..<itemsCountOnPage])
+                displayedArray.append(addButton(previous: false))
+            } else {
+                if ((itemsCountOnPage-1)*page+1+itemsCountOnPage > self.items.count) {
+                    displayedArray.append(addButton(previous: true))
+                    displayedArray.append(contentsOf:(self.items[itemsCountOnPage*page - (page >= 2 ? page-1 : 0)..<self.items.count]))
+                    
+                } else {
+                    displayedArray.append(addButton(previous: true))
+                    displayedArray.append(contentsOf: Array(self.items[itemsCountOnPage*page - (page >= 2 ? page-1 : 0)..<itemsCountOnPage*page+itemsCountOnPage - (page >= 2 ? page : 1)]))
+                    displayedArray.append(addButton(previous: false))
+                }
+            }
+        } else {
+            displayedArray = self.items
+        }
+        
+        return displayedArray
     }
+    
+    func addButton(previous: Bool) -> ButtonInputScreen {
+        var button = ButtonInputScreen()
+        button.type = previous ? "Previous" : "Next"
+        button.translations = [TranslationMenuItem()]
+        button.icon = IconMenuItem()
+        button.icon?.url = previous ? "https://cdn-beta1.innodem-neurosciences.com/upload/media/dev/button_icon/0001/01/e5ef0e37d1f7d0e808fdbc5d6fbcf3bebbf0bc75.png" : "https://cdn-beta1.innodem-neurosciences.com/upload/media/dev/button_icon/0001/01/64e1befbd58e7a6955aa2701f0dd6ee1f502b581.png"
 
+        return button
+    }
+    
     func setItem(index: Int) {
-        self.button = self.items[index]
+        self.button = self.displayedArray[index]
     }
     
     func getItemTitle() -> String? {
