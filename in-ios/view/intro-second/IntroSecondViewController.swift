@@ -43,6 +43,7 @@ extension IntroSecondViewController {
         self.tfName.tag = 0
         self.tfSurname.delegate = self
         self.tfSurname.tag = 1
+        self.setKeyboardInetraction()
     }
     
 }

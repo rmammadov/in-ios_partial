@@ -14,7 +14,6 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.hideNavigationBar()
-        setKeyboardInetraction()
     }
     
     override func viewWillAppear(_ animated: Bool) {
