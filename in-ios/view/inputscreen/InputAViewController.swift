@@ -112,11 +112,7 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MenuItemCollectionViewCell
         
         self.viewModel.setItem(index: indexPath.row)
-        cell.labelTitle.text = self.viewModel.getItemTitle()
-
-        if let icon = self.viewModel.getItemIcon(){
-            cell.setIcon(url: icon)
-        }
+        cell.setCell(url: self.viewModel.getItemIcon(), text: self.viewModel.getItemTitle())
         
         return cell
     }
@@ -141,7 +137,7 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if (indexPath.row >= self.viewModel.itemsCountOnPage) {
+        if (indexPath.row >= self.viewModel.itemsCountOnPage-1) {
             page = page+1
         } else if (indexPath.row == 0 && page > 0) {
             page = page-1
