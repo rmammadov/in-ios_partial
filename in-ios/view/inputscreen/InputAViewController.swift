@@ -64,7 +64,6 @@ extension InputAViewController {
     func setUi() {
         self.setViewModel()
         self.setTitle()
-        self.setSpeakButtonStatus()
         self.setCollectionView()
         self.setSubscribers()
     }
@@ -79,10 +78,6 @@ extension InputAViewController {
     
     func setTitle() {
         self.labelTitle.text = self.viewModel.getTitle()
-    }
-    
-    func setSpeakButtonStatus() {
-        self.btnSpeak.isHidden = self.viewModel.getSpeakButtonStatus()!
     }
     
     func setCollectionView() {
