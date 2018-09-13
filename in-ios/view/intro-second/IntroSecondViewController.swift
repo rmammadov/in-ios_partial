@@ -31,7 +31,7 @@ class IntroSecondViewController: BaseViewController {
     }
     */
     @IBAction func onClickBackBtn(_ sender: Any) {
-        
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
