@@ -16,6 +16,9 @@
 		F32D99CA21117EC7007AAA8D /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D99C921117EC7007AAA8D /* BaseViewModel.swift */; };
 		F32D99CC21117EE8007AAA8D /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D99CB21117EE8007AAA8D /* BaseModel.swift */; };
 		F32DCED9214A41D100B3D0F8 /* INTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32DCED8214A41D100B3D0F8 /* INTextField.swift */; };
+		F32DCEDC214A64B000B3D0F8 /* IntroThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32DCEDB214A64B000B3D0F8 /* IntroThirdViewController.swift */; };
+		F32DCEDE214A652000B3D0F8 /* IntroThirdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32DCEDD214A652000B3D0F8 /* IntroThirdViewModel.swift */; };
+		F32DCEE0214A654400B3D0F8 /* IntroThirdModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32DCEDF214A654400B3D0F8 /* IntroThirdModel.swift */; };
 		F32F5B6521453DCC00558C68 /* IntroSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F5B6421453DCC00558C68 /* IntroSecondViewController.swift */; };
 		F32F5B6721453DFB00558C68 /* IntroSecondViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F5B6621453DFB00558C68 /* IntroSecondViewModel.swift */; };
 		F32F5B6921453E0B00558C68 /* IntroSecondModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F5B6821453E0B00558C68 /* IntroSecondModel.swift */; };
@@ -123,6 +126,9 @@
 		F32D99C921117EC7007AAA8D /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		F32D99CB21117EE8007AAA8D /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
 		F32DCED8214A41D100B3D0F8 /* INTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INTextField.swift; sourceTree = "<group>"; };
+		F32DCEDB214A64B000B3D0F8 /* IntroThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroThirdViewController.swift; sourceTree = "<group>"; };
+		F32DCEDD214A652000B3D0F8 /* IntroThirdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroThirdViewModel.swift; sourceTree = "<group>"; };
+		F32DCEDF214A654400B3D0F8 /* IntroThirdModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroThirdModel.swift; sourceTree = "<group>"; };
 		F32F5B6421453DCC00558C68 /* IntroSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroSecondViewController.swift; sourceTree = "<group>"; };
 		F32F5B6621453DFB00558C68 /* IntroSecondViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroSecondViewModel.swift; sourceTree = "<group>"; };
 		F32F5B6821453E0B00558C68 /* IntroSecondModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroSecondModel.swift; sourceTree = "<group>"; };
@@ -274,6 +280,16 @@
 			path = menu;
 			sourceTree = "<group>";
 		};
+		F32DCEDA214A646E00B3D0F8 /* intro-third */ = {
+			isa = PBXGroup;
+			children = (
+				F32DCEDB214A64B000B3D0F8 /* IntroThirdViewController.swift */,
+				F32DCEDD214A652000B3D0F8 /* IntroThirdViewModel.swift */,
+				F32DCEDF214A654400B3D0F8 /* IntroThirdModel.swift */,
+			);
+			path = "intro-third";
+			sourceTree = "<group>";
+		};
 		F32F5B6321453C7500558C68 /* intro-second */ = {
 			isa = PBXGroup;
 			children = (
@@ -417,6 +433,7 @@
 				F334ADC6210D793B0056824A /* model */,
 				F3CE691E213DB2CA004F6756 /* intro-first */,
 				F32F5B6321453C7500558C68 /* intro-second */,
+				F32DCEDA214A646E00B3D0F8 /* intro-third */,
 				F3355CEB2122E83D009AF602 /* loading */,
 				F32D99CD211189D9007AAA8D /* home */,
 				F3E19CA7211C3C3A00ADE838 /* homecontainer */,
@@ -783,6 +800,7 @@
 				F334ADC8210D7A370056824A /* MenuItem.swift in Sources */,
 				F3CE691D213D70E6004F6756 /* GazeEstimator.mlmodel in Sources */,
 				F32D99C621117E79007AAA8D /* HomeModel.swift in Sources */,
+				F32DCEDE214A652000B3D0F8 /* IntroThirdViewModel.swift in Sources */,
 				F336587D20D318C300B18CEC /* AppDelegate.swift in Sources */,
 				F331EA7F211303880000B4E6 /* TopMenuItemCollectionViewCell.swift in Sources */,
 				F32F5B6921453E0B00558C68 /* IntroSecondModel.swift in Sources */,
@@ -794,8 +812,10 @@
 				F32F5B6521453DCC00558C68 /* IntroSecondViewController.swift in Sources */,
 				F3E200C92135F2D500902A33 /* UIApplication+getPresentedViewController.swift in Sources */,
 				F3E19CAA211C3CDB00ADE838 /* HomeContainerViewModel.swift in Sources */,
+				F32DCEE0214A654400B3D0F8 /* IntroThirdModel.swift in Sources */,
 				F3E19CB9211D835500ADE838 /* SubMenuViewController.swift in Sources */,
 				F3E97E5921422F4800379B4A /* GazeTracker.swift in Sources */,
+				F32DCEDC214A64B000B3D0F8 /* IntroThirdViewController.swift in Sources */,
 				F39059C32110473D00CAA292 /* MenuItems.swift in Sources */,
 				F3CE6924213DB385004F6756 /* IntroFirstModel.swift in Sources */,
 				F3E97E5721422F3C00379B4A /* UIDevice+modelName.swift in Sources */,

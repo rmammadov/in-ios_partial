@@ -599,16 +599,16 @@
                                 <state key="normal" image="ic_side_btn_back"/>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LAi-9K-3Pi">
-                                <rect key="frame" x="357" y="295" width="398" height="264"/>
+                                <rect key="frame" x="301.5" y="267.5" width="509" height="319"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sex" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zGB-6H-Puo">
-                                        <rect key="frame" x="177.5" y="0.0" width="43" height="33"/>
+                                        <rect key="frame" x="233" y="0.0" width="43" height="33"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IdG-s2-GNI">
-                                        <rect key="frame" x="231" y="97" width="167" height="167"/>
+                                        <rect key="frame" x="286.5" y="97" width="222.5" height="222"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="IdG-s2-GNI" secondAttribute="height" multiplier="1:1" id="GEO-P9-kFv"/>
                                         </constraints>
@@ -618,7 +618,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o0f-bH-3Pb">
-                                        <rect key="frame" x="0.0" y="97" width="167" height="167"/>
+                                        <rect key="frame" x="0.0" y="97" width="222.5" height="222"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="o0f-bH-3Pb" secondAttribute="height" multiplier="1:1" id="WLV-4d-pho"/>
                                         </constraints>
@@ -653,7 +653,7 @@
                             <constraint firstItem="1SR-tG-Imv" firstAttribute="top" secondItem="wMz-ed-MPZ" secondAttribute="top" id="a9h-jM-ngD"/>
                             <constraint firstItem="LAi-9K-3Pi" firstAttribute="centerX" secondItem="kI7-yY-waZ" secondAttribute="centerX" id="dX2-4V-Rea"/>
                             <constraint firstItem="LAi-9K-3Pi" firstAttribute="centerY" secondItem="kI7-yY-waZ" secondAttribute="centerY" id="mMo-5K-Nby"/>
-                            <constraint firstItem="o0f-bH-3Pb" firstAttribute="width" secondItem="wMz-ed-MPZ" secondAttribute="width" multiplier="0.15" id="nA0-bI-yM3"/>
+                            <constraint firstItem="o0f-bH-3Pb" firstAttribute="width" secondItem="wMz-ed-MPZ" secondAttribute="width" multiplier="0.2" id="nA0-bI-yM3"/>
                             <constraint firstItem="1SR-tG-Imv" firstAttribute="leading" secondItem="kI7-yY-waZ" secondAttribute="leading" id="wqc-4t-NET"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kI7-yY-waZ"/>
