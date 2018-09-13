@@ -29,8 +29,8 @@ class CameraManager: NSObject {
     fileprivate var cameraIsObservingDeviceOrientation = false
     fileprivate var cameraPosition = AVCaptureDevice.Position.front
     fileprivate var gazeTracker: GazeTracker?
-    fileprivate var gazeTrackingCompleted: Bool = true
     fileprivate var cameraView: UIImageView? // For the test purpose
+    fileprivate weak var processingImage: UIImage?
     fileprivate var label: UILabel?
     fileprivate var previewLayer: UIView?
     fileprivate var validPreviewLayer: AVCaptureVideoPreviewLayer?
@@ -128,6 +128,7 @@ extension CameraManager {
     fileprivate func addPreviewLayer() {
         self.previewLayer = UIView(frame: CGRect(x: 10, y: (self.cameraView?.bounds.height)! - 600.0, width: 350.0, height: 600.0))
         self.cameraView?.addSubview(self.previewLayer!)
+        self.cameraView?.layer.zPosition = .greatestFiniteMagnitude
     }
     
     fileprivate func addLabel() {
@@ -202,15 +203,13 @@ extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
     }
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        if self.gazeTrackingCompleted {
-            let image = sampleBuffer.image(orientation: .leftMirrored, scale: 1.0)?.rotate(radians: 0)
-//            DispatchQueue.main.async {
-//                self.cameraView?.image = image
-//            }
-            predicate(frame: image!)
-//            predicate(frame: UIImage(named:"test_image")!)
+        if (self.processingImage == nil) {
+            
+            guard let capturedImage = sampleBuffer.image(orientation: .leftMirrored, scale: 1.0)?.rotate(radians: 0) else {return}
+            
+            self.processingImage = capturedImage //save weak reference to know when prediction is completed
+            predicate(frame: capturedImage)
         }
-        self.gazeTrackingCompleted = !self.gazeTrackingCompleted
     }
     
 }
@@ -222,7 +221,6 @@ extension CameraManager: GazePredictionDelegate {
     }
     
     func predicate(frame: UIImage) {
-        self.gazeTrackingCompleted = false
         let gazeTracker: GazeTracker = self.gazeTracker!
         gazeTracker.startPredictionInBackground(scene: frame)
     }
