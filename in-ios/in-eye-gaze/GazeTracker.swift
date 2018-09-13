@@ -55,6 +55,8 @@ public class GazeTracker: FaceFinderDelegate {
     var screenWidthPix: Double = 0, screenHeightPix: Double = 0
     var PPCM: [Double] = [0.0, 0.0]
     var illumResizeRatio: Double = 1.0
+    var frameReceived:Int = 0
+    let frameSubSampleInterval = 12;
     
     /**
      Initializer
@@ -178,7 +180,19 @@ public class GazeTracker: FaceFinderDelegate {
      Runs the gaze estimation in the background
     */
     public func startPredictionInBackground(scene: UIImage) {
+        
+        //quick fix to avoid overflowing the DispatchQueue
+        //will need a more permanent pacing mechanism to post only as fast as algo can process
+        //for now tweak the frameSubsampleInterval if device is too slow
+        
+        frameReceived += 1;
+        if (frameReceived % frameSubSampleInterval != 1)
+        {
+            return;
+        }
+
         DispatchQueue.global(qos: .background).async {
+
             var rotatedImage: UIImage?
             
             switch scene.imageOrientation {
