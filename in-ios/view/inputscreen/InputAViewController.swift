@@ -113,7 +113,10 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
         
         self.viewModel.setItem(index: indexPath.row)
         cell.labelTitle.text = self.viewModel.getItemTitle()
-        cell.setIcon(url: self.viewModel.getItemIcon())
+
+        if let icon = self.viewModel.getItemIcon(){
+            cell.setIcon(url: icon)
+        }
         
         return cell
     }
