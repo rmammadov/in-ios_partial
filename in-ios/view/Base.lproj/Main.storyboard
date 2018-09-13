@@ -579,10 +579,10 @@
             </objects>
             <point key="canvasLocation" x="-1347.3021582733813" y="1556.1151079136691"/>
         </scene>
-        <!--View Controller-->
+        <!--Intro Third View Controller-->
         <scene sceneID="9B7-e8-PWG">
             <objects>
-                <viewController id="VWj-rM-8KC" sceneMemberID="viewController">
+                <viewController id="VWj-rM-8KC" customClass="IntroThirdViewController" customModule="in_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wMz-ed-MPZ">
                         <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -597,6 +597,9 @@
                                     <constraint firstAttribute="width" secondItem="0Gs-pv-KIO" secondAttribute="height" multiplier="83:176" id="jot-ac-ZPH"/>
                                 </constraints>
                                 <state key="normal" image="ic_side_btn_back"/>
+                                <connections>
+                                    <action selector="onClickBackBtn:" destination="VWj-rM-8KC" eventType="touchUpInside" id="Iy1-cg-PDS"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LAi-9K-3Pi">
                                 <rect key="frame" x="301.5" y="267.5" width="509" height="319"/>

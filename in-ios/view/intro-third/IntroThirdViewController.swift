@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IntroThirdViewController: UIViewController {
+class IntroThirdViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,4 +27,7 @@ class IntroThirdViewController: UIViewController {
     }
     */
 
+    @IBAction func onClickBackBtn(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
