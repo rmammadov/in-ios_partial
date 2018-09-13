@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVKit
 import RxSwift
 
 private let nibMenuItem = "MenuItemCollectionViewCell"
@@ -136,6 +137,13 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
     // MARK: UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let speechSynthesizer = AVSpeechSynthesizer()
+        self.viewModel.setItem(index: indexPath.row)
+        let text = self.viewModel.getItemTitle()
+        
+        let speechUtterance = AVSpeechUtterance(string: text!)
+        speechSynthesizer.speak(speechUtterance)
         
         if (indexPath.row >= self.viewModel.itemsCountOnPage-1) {
             page = page+1
