@@ -10,10 +10,14 @@ import UIKit
 
 class IntroSecondViewController: BaseViewController {
 
+    @IBOutlet weak var tfName: INTextField!
+    @IBOutlet weak var tfSurname: INTextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        setUi()
     }
     
 
@@ -26,5 +30,20 @@ class IntroSecondViewController: BaseViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    @IBAction func onClickBackBtn(_ sender: Any) {
+        
+    }
+    
 }
+
+extension IntroSecondViewController {
+    
+    func setUi() {
+        self.tfName.delegate = self
+        self.tfName.tag = 0
+        self.tfSurname.delegate = self
+        self.tfSurname.tag = 1
+    }
+}
+
+
