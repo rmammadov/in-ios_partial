@@ -133,11 +133,7 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.setIcon(url: self.viewModel.getItemIcon())
         cell.labelTitle.text = self.viewModel.getItemTitle()
         
-        if indexPath.row == self.viewModel.getIAMItem() {
-            AnimationUtil.setMenuSelection(imageView: cell.ivStatusIcon)
-        } else {
-            AnimationUtil.cancelMenuSelection(imageView: cell.ivStatusIcon)
-        }
+        AnimationUtil.cancelMenuSelection(imageView: cell.ivStatusIcon)
         
         return cell
     }
