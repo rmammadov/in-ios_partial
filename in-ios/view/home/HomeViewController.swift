@@ -30,7 +30,7 @@ class HomeViewController: BaseViewController {
 
         // Do any additional setup after loading the view.
         setUi()
-//        setCamera()
+        setCamera()
     }
 
     override func didReceiveMemoryWarning() {
