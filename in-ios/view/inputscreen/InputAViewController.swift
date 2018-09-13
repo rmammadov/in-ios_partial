@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVKit
 import RxSwift
 
 private let nibMenuItem = "MenuItemCollectionViewCell"
@@ -64,7 +65,6 @@ extension InputAViewController {
     func setUi() {
         self.setViewModel()
         self.setTitle()
-        self.setSpeakButtonStatus()
         self.setCollectionView()
         self.setSubscribers()
     }
@@ -79,10 +79,6 @@ extension InputAViewController {
     
     func setTitle() {
         self.labelTitle.text = self.viewModel.getTitle()
-    }
-    
-    func setSpeakButtonStatus() {
-        self.btnSpeak.isHidden = self.viewModel.getSpeakButtonStatus()!
     }
     
     func setCollectionView() {
@@ -117,8 +113,7 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MenuItemCollectionViewCell
         
         self.viewModel.setItem(index: indexPath.row)
-        cell.labelTitle.text = self.viewModel.getItemTitle()
-        cell.setIcon(url: self.viewModel.getItemIcon())
+        cell.setCell(url: self.viewModel.getItemIcon(), text: self.viewModel.getItemTitle())
         
         return cell
     }
@@ -143,7 +138,14 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if (indexPath.row >= self.viewModel.itemsCountOnPage) {
+        let speechSynthesizer = AVSpeechSynthesizer()
+        self.viewModel.setItem(index: indexPath.row)
+        let text = self.viewModel.getItemTitle()
+        
+        let speechUtterance = AVSpeechUtterance(string: text!)
+        speechSynthesizer.speak(speechUtterance)
+        
+        if (indexPath.row >= self.viewModel.itemsCountOnPage-1) {
             page = page+1
         } else if (indexPath.row == 0 && page > 0) {
             page = page-1

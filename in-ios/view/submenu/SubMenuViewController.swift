@@ -102,8 +102,7 @@ extension SubMenuViewController: UICollectionViewDelegate, UICollectionViewDataS
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MenuItemCollectionViewCell
         
         self.viewModel.setItem(index: indexPath.row)
-        cell.labelTitle.text = self.viewModel.getItemTitle()
-        cell.setIcon(url: self.viewModel.getItemIcon())
+        cell.setCell(url: self.viewModel.getItemIcon(), text: self.viewModel.getItemTitle())
         
         return cell
     }

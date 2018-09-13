@@ -129,15 +129,8 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MenuItemCollectionViewCell
         
         self.viewModel.setItem(index: indexPath.row)
-        
-        cell.setIcon(url: self.viewModel.getItemIcon())
-        cell.labelTitle.text = self.viewModel.getItemTitle()
-        
-        if indexPath.row == self.viewModel.getIAMItem() {
-            AnimationUtil.setMenuSelection(imageView: cell.ivStatusIcon)
-        } else {
-            AnimationUtil.cancelMenuSelection(imageView: cell.ivStatusIcon)
-        }
+        cell.setCell(url: self.viewModel.getItemIcon(), text: self.viewModel.getItemTitle())
+        AnimationUtil.cancelMenuSelection(imageView: cell.ivStatusIcon)
         
         return cell
     }

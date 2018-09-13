@@ -53,19 +53,20 @@ class InputAViewModel: BaseViewModel {
     
     func getItems(for page: NSInteger) -> [ButtonInputScreen] {
         
+        displayedArray = []
         if (self.items.count > itemsCountOnPage) {
             
             if (page < 1) {
-                displayedArray = Array(self.items[0..<itemsCountOnPage])
+                displayedArray = Array(self.items[0..<itemsCountOnPage-1])
                 displayedArray.append(addButton(previous: false))
             } else {
-                if ((itemsCountOnPage-1)*page+1+itemsCountOnPage > self.items.count) {
+                if ((itemsCountOnPage-2)*page+1+itemsCountOnPage-2 > self.items.count) {
                     displayedArray.append(addButton(previous: true))
-                    displayedArray.append(contentsOf:(self.items[itemsCountOnPage*page - (page >= 2 ? page-1 : 0)..<self.items.count]))
+                    displayedArray.append(contentsOf:(self.items[itemsCountOnPage-1*page - (page >= 2 ? page-1 : 0)..<self.items.count]))
                     
                 } else {
                     displayedArray.append(addButton(previous: true))
-                    displayedArray.append(contentsOf: Array(self.items[itemsCountOnPage*page - (page >= 2 ? page-1 : 0)..<itemsCountOnPage*page+itemsCountOnPage - (page >= 2 ? page : 1)]))
+                    displayedArray.append(contentsOf: Array(self.items[itemsCountOnPage-1*page - (page >= 2 ? page-1 : 0)..<itemsCountOnPage-1*page+itemsCountOnPage - (page >= 3 ? page : 2)]))
                     displayedArray.append(addButton(previous: false))
                 }
             }
@@ -77,9 +78,10 @@ class InputAViewModel: BaseViewModel {
     }
     
     func addButton(previous: Bool) -> ButtonInputScreen {
+        
         var button = ButtonInputScreen()
-        button.type = previous ? "Previous" : "Next"
         button.translations = [TranslationMenuItem()]
+        button.translations![0].label = previous ? "Previous" : "Next"
         button.icon = IconMenuItem()
         button.icon?.url = previous ? "https://cdn-beta1.innodem-neurosciences.com/upload/media/dev/button_icon/0001/01/e5ef0e37d1f7d0e808fdbc5d6fbcf3bebbf0bc75.png" : "https://cdn-beta1.innodem-neurosciences.com/upload/media/dev/button_icon/0001/01/64e1befbd58e7a6955aa2701f0dd6ee1f502b581.png"
 

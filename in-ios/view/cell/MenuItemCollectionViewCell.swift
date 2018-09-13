@@ -19,11 +19,15 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func setIcon(url: String?) {
-        if url != nil {
-            guard let url = URL(string: url!) else {return}
-            self.ivIcon.kf.indicatorType = .activity
-            self.ivIcon.kf.setImage(with: url)
+    func setCell(url: String?, text: String?) {
+        self.ivIcon.kf.indicatorType = .activity
+        if let iconUrl = url {
+            self.ivIcon.kf.setImage(with: URL(string: iconUrl))
+        } else {
+            self.ivIcon.kf.setImage(with: nil)
         }
+        
+        self.ivIcon.kf.indicatorType = .activity
+        self.labelTitle.text = text
     }
 }
