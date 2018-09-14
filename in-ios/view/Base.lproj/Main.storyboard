@@ -537,12 +537,14 @@
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First name" minimumFontSize="17" background="ic_textfield_background" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="MnX-m6-oMv" customClass="INTextField" customModule="in_ios" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="256" height="48"/>
+                                        <color key="tintColor" name="pigio_black"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last name" textAlignment="natural" minimumFontSize="17" background="ic_textfield_background" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="AeH-oL-LvQ" customClass="INTextField" customModule="in_ios" customModuleProvider="target">
                                         <rect key="frame" x="272" y="0.0" width="256" height="48"/>
+                                        <color key="tintColor" name="pigio_black"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="continue"/>
@@ -739,7 +741,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="button:UIu-s7-iiK:image" width="87" height="175">
+        <image name="button:UIu-s7-iiK:image" width="0.0" height="0.0">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGUFFYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QEAcI
 ERYbHCIjKSw2PkJGSk1VJG51bGzUCQoLDA0ODxBWJGNsYXNzXE5TSW1hZ2VGbGFnc1ZOU1JlcHNXTlND
@@ -832,7 +834,7 @@ AfQB/BNoE2oTbxN9E4ETiBONE5oTnROqE68TtxO6E78TxxPKE9wT3xPkAAAAAAAAAgEAAAAAAAAAVAAA
 AAAAAAAAAAAAAAAAE+Y
 </mutableData>
         </image>
-        <image name="button:fH3-UL-IDN:image" width="83" height="176">
+        <image name="button:fH3-UL-IDN:image" width="0.0" height="0.0">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGUFFYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QEAcI
 ERYbHCIjKSw2PkJGSk1VJG51bGzUCQoLDA0ODxBWJGNsYXNzXE5TSW1hZ2VGbGFnc1ZOU1JlcHNXTlND
