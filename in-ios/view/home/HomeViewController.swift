@@ -9,7 +9,8 @@
 import UIKit
 import Kingfisher
 
-private let segueIdentifierMenu = "segueMenu"
+private let SEGUE_IDENTIFIER_MENU = "segueMenu"
+
 private let nibTopMenuItem = "TopMenuItemCollectionViewCell"
 private let reuseIdentifier = "cellTopMenuItem"
 private let nibTopMenuItemExpanded = "TopMenuItemExpandedCollectionViewCell"

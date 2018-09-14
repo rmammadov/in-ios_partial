@@ -8,11 +8,11 @@
 
 import UIKit
 
+private let SEGUE_IDENTIFIER_SUB_MENU = "segueSubMenu"
+private let SEGUE_IDENTIFIER_INPUT = "segueInputA"
+
 private let nibMenuItem = "MenuItemCollectionViewCell"
 private let reuseIdentifier = "cellMenuItem"
-
-private let segueIdentifierSubMenu = "segueSubMenu"
-private let segueIdentifierInput = "segueInputA"
 
 class MenuViewController: BaseViewController {
     
@@ -47,10 +47,10 @@ class MenuViewController: BaseViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if segue.identifier == segueIdentifierInput {
+        if segue.identifier == SEGUE_IDENTIFIER_INPUT {
             let vc = segue.destination as! InputAViewController
             vc.viewModel.setParentMenuItem(item: self.viewModel.getSelectedItem()!)
-        } else if segue.identifier == segueIdentifierSubMenu {
+        } else if segue.identifier == SEGUE_IDENTIFIER_SUB_MENU {
             let vc = segue.destination as! SubMenuViewController
             vc.viewModel.setParentMenuItem(item: self.viewModel.getSelectedItem()!)
         }
@@ -83,7 +83,7 @@ extension MenuViewController {
             event in
             DispatchQueue.main.async {
                 if self.viewModel.status.value == MenuStatus.secondPhaseLoaded.rawValue {
-                    self.performSegue(withIdentifier: segueIdentifierSubMenu, sender: self)
+                    self.performSegue(withIdentifier: SEGUE_IDENTIFIER_SUB_MENU, sender: self)
                     AnimationUtil.cancelMenuSelection(imageView: self.getCellForIndexPath(indexPath: self.viewModel.getSelection()).ivStatusIcon)
                 } else {
                     // Dissmis all view controllers which overlapping main view
@@ -97,7 +97,7 @@ extension MenuViewController {
             event in
             DispatchQueue.main.async {
                 if self.viewModel.statusInput.value == InputScreenId.inputScreen0.rawValue {
-                    self.performSegue(withIdentifier: segueIdentifierInput, sender: self)
+                    self.performSegue(withIdentifier: SEGUE_IDENTIFIER_INPUT, sender: self)
                     AnimationUtil.cancelMenuSelection(imageView: self.getCellForIndexPath(indexPath: self.viewModel.getSelection()).ivStatusIcon)
                 }
             }

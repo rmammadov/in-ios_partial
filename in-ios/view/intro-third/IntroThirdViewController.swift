@@ -8,6 +8,8 @@
 
 import UIKit
 
+private let SEGUE_IDENTIFIER_SHOW_AGE_INPUT = " "
+
 class IntroThirdViewController: BaseViewController {
 
     override func viewDidLoad() {
@@ -29,5 +31,11 @@ class IntroThirdViewController: BaseViewController {
 
     @IBAction func onClickBackBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func onClickMale(_ sender: Any) {
+    }
+    
+    @IBAction func onClickFemale(_ sender: Any) {
     }
 }

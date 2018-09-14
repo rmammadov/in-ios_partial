@@ -100,8 +100,13 @@ extension BaseViewController: UITextFieldDelegate {
         } else {
             // Not found, so remove keyboard.
             textField.resignFirstResponder()
+            onContinue()
         }
         // Do not add a line break
         return false
+    }
+   
+    @objc func onContinue() {
+        // Called when all text fileds filled and clicked on return key
     }
 }

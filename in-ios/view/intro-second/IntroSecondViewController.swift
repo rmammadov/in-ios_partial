@@ -8,6 +8,8 @@
 
 import UIKit
 
+private let SEGUE_IDENTIFIER_SHOW_GENDER_OPTIONS = "showGenderOptions"
+
 class IntroSecondViewController: BaseViewController {
 
     @IBOutlet weak var tfName: INTextField!
@@ -34,6 +36,10 @@ class IntroSecondViewController: BaseViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func onClickContinueBtn(_ sender: Any) {
+        performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_GENDER_OPTIONS, sender: self)
+    }
+    
 }
 
 extension IntroSecondViewController {
@@ -48,4 +54,11 @@ extension IntroSecondViewController {
     
 }
 
+extension IntroSecondViewController {
+    
+    override func onContinue() {
+        super.onContinue()
+        
+    }
+}
 
