@@ -205,7 +205,8 @@ extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         if (self.processingImage == nil) {
             
-            guard let capturedImage = sampleBuffer.image(orientation: .leftMirrored, scale: 1.0)?.rotate(radians: 0) else {return}
+//            guard let capturedImage = sampleBuffer.image(orientation: .leftMirrored, scale: 1.0)?.rotate(radians: 0) else {return}
+            guard let capturedImage = UIImage(named: "test_image") else {return} // Use static image to uncomment this line and comment previous
             
             self.processingImage = capturedImage //save weak reference to know when prediction is completed
             predicate(frame: capturedImage)
