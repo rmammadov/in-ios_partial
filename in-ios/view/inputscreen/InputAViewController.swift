@@ -39,20 +39,15 @@ class InputAViewController: BaseViewController {
         super.viewWillAppear(true)
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        getPointBottomCellPoint()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     @IBAction func onClickBackBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -70,10 +65,35 @@ extension InputAViewController {
         self.setSpeakButtonStatus()
         self.setCollectionView()
         self.setSubscribers()
+        setBackground()
+    }
+    
+    func setBackground() {
+        
+        if let backgroundUrl = viewModel.getBackground() {
+            viewModel.parentVC?.ivBackground.kf.setImage(with: URL(string: backgroundUrl))
+        } else {
+            viewModel.parentVC?.ivBackground.kf.setImage(with: nil)
+        }
+    }
+    
+    func getParentViewController() -> HomeViewController {
+        return self.parent?.parent?.parent as! HomeViewController
+    }
+    
+    func getPointBottomCellPoint() {
+        
+        if let lastVisibleCell = collectionView.indexPathsForVisibleItems.last  {
+            let attributes = collectionView.layoutAttributesForItem(at:lastVisibleCell)!
+            let cellRect = attributes.frame
+            let cellRectInSV = collectionView.convert(cellRect, to: collectionView.superview)
+
+            setGradientBackground(to: cellRectInSV.maxY+cellRectInSV.height)
+        }
     }
     
     func setSpeakButtonStatus() {
-        
+
         if self.viewModel.getSpeakButtonStatus()! {
             btnBack.isHidden = true
             btnSpeak.isHidden = true
@@ -87,12 +107,25 @@ extension InputAViewController {
         }
     }
     
+    func setGradientBackground(to endGradientHeight: CGFloat) {
+
+        let gradientLayer = CAGradientLayer()
+        let gradientHeight = endGradientHeight/view.frame.height
+
+        gradientLayer.locations = [0.0, gradientHeight-0.5, gradientHeight-0.2, gradientHeight] as [NSNumber]
+        gradientLayer.colors = [UIColor.black.cgColor, UIColor.black.cgColor, UIColor.darkGray.cgColor, UIColor.clear.cgColor]
+        gradientLayer.frame = CGRect.init(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+
+        viewModel.parentVC?.ivBackground.layer.insertSublayer(gradientLayer, at: 0)
+    }
+    
     func updateUi() {
         self.collectionView.reloadData()
     }
     
     func setViewModel() {
         self.viewModel.loadScreen()
+        self.viewModel.setParentVC(vc: self.getParentViewController())
     }
     
     func setTitle() {
