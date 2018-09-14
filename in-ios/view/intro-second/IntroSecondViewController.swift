@@ -58,7 +58,7 @@ extension IntroSecondViewController {
     
     override func onContinue() {
         super.onContinue()
-        
+        performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_GENDER_OPTIONS, sender: self)
     }
 }
 

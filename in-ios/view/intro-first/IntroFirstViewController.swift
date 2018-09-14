@@ -70,11 +70,15 @@ extension IntroFirstViewController: UITextViewDelegate {
         attributes[.font] = UIFont(name: "Avenir Next Medium", size: 12.0)!
         
         let attributedString = NSMutableAttributedString(string: "I agree to the Privacy Policy and Terms and Conditions", attributes: attributes)
-        attributedString.addAttribute(.link, value: "https://www.google.com", range: NSRange(location: 14, length: 15))
-        attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSNumber(value: 1), range: NSMakeRange(14, 15))
         
-        attributedString.addAttribute(.link, value: "https://www.apple.com", range: NSRange(location: 18, length: 22))
-        attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSNumber(value: 1), range: NSMakeRange(18, 19))
+        let rangePrivacy = attributedString.mutableString.range(of: "Privacy Policy")
+        let rangeTerms = attributedString.mutableString.range(of: "Terms and Conditions")
+        
+        attributedString.addAttribute(.link, value: "https://www.google.com", range: rangePrivacy)
+        attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSNumber(value: 1), range: rangePrivacy)
+        
+        attributedString.addAttribute(.link, value: "https://www.apple.com", range: rangeTerms)
+        attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSNumber(value: 1), range: rangeTerms)
         
         self.tvAgreement.attributedText = attributedString
     }
