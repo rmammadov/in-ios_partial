@@ -21,6 +21,8 @@ class InputAViewController: BaseViewController {
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var btnSpeak: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var backButtonLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var speakButtonTrailingConstraint: NSLayoutConstraint!
     
     let viewModel = InputAViewModel()
     
@@ -65,8 +67,24 @@ extension InputAViewController {
     func setUi() {
         self.setViewModel()
         self.setTitle()
+        self.setSpeakButtonStatus()
         self.setCollectionView()
         self.setSubscribers()
+    }
+    
+    func setSpeakButtonStatus() {
+        
+        if self.viewModel.getSpeakButtonStatus()! {
+            btnBack.isHidden = true
+            btnSpeak.isHidden = true
+            backButtonLeadingConstraint.constant = backButtonLeadingConstraint.constant - btnBack.frame.width
+            speakButtonTrailingConstraint.constant = speakButtonTrailingConstraint.constant + btnSpeak.frame.width
+        } else {
+            btnBack.isHidden = false
+            btnSpeak.isHidden = false
+            backButtonLeadingConstraint.constant = 0
+            speakButtonTrailingConstraint.constant = 0
+        }
     }
     
     func updateUi() {
