@@ -20,7 +20,7 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
     }
     
     func setCell(url: String?, text: String?) {
-        
+        self.ivIcon.kf.indicatorType = .activity
         if let iconUrl = url {
             self.ivIcon.kf.setImage(with: URL(string: iconUrl))
         } else {

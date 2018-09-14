@@ -30,7 +30,7 @@ class HomeViewController: BaseViewController {
 
         // Do any additional setup after loading the view.
         setUi()
-        setCamera()
+//        setCamera()
     }
 
     override func didReceiveMemoryWarning() {
@@ -105,17 +105,17 @@ extension HomeViewController {
     
     func setCamera()
     {
-//        // TODO: should be removed and reimplemented after tests
-//        let cameraManager: CameraManager = CameraManager(cameraView: self.ivBackground)
-//
-//        cameraManager.askUserForCameraPermission { (status) in
-//            if status {
-//                cameraManager.setPrediction()
-//                cameraManager.setCamera()
-//                cameraManager.startSession()
-//               //cameraManager.shouldRespondToOrientationChanges = true
-//            }
-//        }
+        // TODO: should be removed and reimplemented after tests
+        let cameraManager: CameraManager = CameraManager(cameraView: self.ivBackground)
+
+        cameraManager.askUserForCameraPermission { (status) in
+            if status {
+                cameraManager.setPrediction()
+                cameraManager.setCamera()
+                cameraManager.startSession()
+               //cameraManager.shouldRespondToOrientationChanges = true
+            }
+        }
     }
 }
 

@@ -165,7 +165,7 @@ extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
     func startSession() {
         DispatchQueue.global(qos: .background).async {
             if self.captureSession != nil {
-                self.captureSession?.sessionPreset = .low
+                self.captureSession?.sessionPreset = .high
                 self.captureSession?.startRunning()
                 
                 DispatchQueue.main.async {

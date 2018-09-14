@@ -23,9 +23,11 @@ class TopMenuItemCollectionViewCell: UICollectionViewCell {
     }
     
     func setIcon(url: String?) {
-        guard let url = URL(string: url!) else {return}
-        self.ivIcon.kf.indicatorType = .activity
-        self.ivIcon.kf.setImage(with: url)
+        if url != nil {
+            guard let url = URL(string: url!) else {return}
+            self.ivIcon.kf.indicatorType = .activity
+            self.ivIcon.kf.setImage(with: url)
+        }
     }
     
     func setSelected(isSelected: Bool) {
