@@ -24,7 +24,7 @@ class CameraManager: NSObject {
     open var captureSession: AVCaptureSession?
     fileprivate var coreMotionManager: CMMotionManager!
     fileprivate var sessionQueue: DispatchQueue = DispatchQueue(label: "CameraSessionQueue", attributes: [])
-    fileprivate var deviceOrientation: UIDeviceOrientation = .portrait
+    fileprivate var deviceOrientation: UIDeviceOrientation = .unknown
     fileprivate var cameraIsSetup = false
     fileprivate var cameraIsObservingDeviceOrientation = false
     fileprivate var cameraPosition = AVCaptureDevice.Position.front
@@ -32,8 +32,8 @@ class CameraManager: NSObject {
     fileprivate var cameraView: UIImageView? // For the test purpose
     fileprivate weak var processingImage: UIImage?
     fileprivate var label: UILabel?
-    fileprivate var previewLayer: UIView?
-    fileprivate var validPreviewLayer: AVCaptureVideoPreviewLayer?
+    fileprivate var previewLayer: UIImageView?
+    fileprivate var dataOutput: AVCaptureVideoDataOutput?
 
     open var cameraIsReady: Bool {
         get {
@@ -126,21 +126,34 @@ extension CameraManager {
     }
     
     fileprivate func addPreviewLayer() {
-        self.previewLayer = UIView(frame: CGRect(x: 10, y: (self.cameraView?.bounds.height)! - 600.0, width: 350.0, height: 600.0))
+        self.previewLayer = UIImageView()
+        
+        self.previewLayer?.contentMode = .scaleAspectFit
         self.cameraView?.addSubview(self.previewLayer!)
+        
+        self.previewLayer?.translatesAutoresizingMaskIntoConstraints = false
+        self.previewLayer?.leftAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 10).isActive=true
+        self.previewLayer?.topAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -350).isActive=true
+        self.previewLayer?.rightAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 330).isActive=true
+        self.previewLayer?.bottomAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -34).isActive=true
+
         self.cameraView?.layer.zPosition = .greatestFiniteMagnitude
     }
     
     fileprivate func addLabel() {
-        label = UILabel(frame: CGRect(x: 0, y: 0, width: 300.0, height: 24.0))
-        let centerX = label!.bounds.width / 2 + 48.0
-        let centerY = (self.cameraView?.bounds.height)! - label!.bounds.height / 2 - 32.0
-        label?.center = CGPoint(x: centerX, y: centerY)
-        label?.textAlignment = .left
+        label = UILabel()
+        label?.textAlignment = .center
         label?.textColor = .red
         label?.font = UIFont(name:"HelveticaNeue-Bold", size: 16.0)
         label?.text = "Coordinates"
         self.cameraView?.addSubview(label!)
+        
+        label?.translatesAutoresizingMaskIntoConstraints = false
+        label?.leftAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 10).isActive=true
+        label?.topAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -34).isActive=true
+        label?.rightAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 330).isActive=true
+        label?.bottomAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -10).isActive=true
+
     }
     
 }
@@ -168,18 +181,33 @@ extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
             if self.captureSession != nil {
                 self.captureSession?.sessionPreset = .high
                 self.captureSession?.startRunning()
+
+                self.deviceOrientation = UIDevice.current.orientation;
+                
+                let videoOrientation = self._videoOrientation(forDeviceOrientation: self.deviceOrientation);
                 
                 DispatchQueue.main.async {
                     // TODO: Remove this after tests
+
+                    //J.V. commented this out because using hardware preview is not very useful
+                    //for verifying the image orientation sent to the gaze tracker
+                    
+                    /*
                     self.validPreviewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession!)
-                    self.validPreviewLayer!.connection?.videoOrientation = self._videoOrientation(forDeviceOrientation: self.deviceOrientation)
+                    self.validPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
+                    
+                    self.validPreviewLayer!.connection?.videoOrientation = videoOrientation
                     self.previewLayer?.layer.addSublayer(self.validPreviewLayer!)
                     self.validPreviewLayer!.frame = (self.previewLayer?.frame)!
+                    */
                 }
                 
                 let dataOutput = AVCaptureVideoDataOutput()
                 dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "Video Queue"))
                 self.captureSession?.addOutput(dataOutput)
+                dataOutput.connection(with: AVMediaType.video)?.videoOrientation = videoOrientation
+                self.dataOutput = dataOutput;
+                
             }
         }
     }
@@ -205,8 +233,22 @@ extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         if (self.processingImage == nil) {
             
-//            guard let capturedImage = sampleBuffer.image(orientation: .leftMirrored, scale: 1.0)?.rotate(radians: 0) else {return}
-            guard let capturedImage = UIImage(named: "test_image") else {return} // Use static image to uncomment this line and comment previous
+            guard let capturedImage = sampleBuffer.image(orientation: .up, scale: 1.0)?.rotate(radians: 0) else {return}
+//            guard let capturedImage = UIImage(named: "test_image") else {return} // Use static image to uncomment this line and comment previous
+            
+            if let cgImage = capturedImage.cgImage?.copy()
+            {
+                //must duplicate the image to avoid a retain cycle on our weak reference
+                let newImage = UIImage(cgImage: cgImage,
+                                       scale: capturedImage.scale,
+                                       orientation: capturedImage.imageOrientation)
+                
+                DispatchQueue.main.async {
+                    self.previewLayer?.image = newImage;
+                }
+                
+                
+            }
             
             self.processingImage = capturedImage //save weak reference to know when prediction is completed
             predicate(frame: capturedImage)
@@ -254,8 +296,12 @@ extension CameraManager: GazePredictionDelegate {
 extension CameraManager {
     
     fileprivate func _orientationChanged() {
-        if let validPreviewLayer = self.validPreviewLayer, let connection = validPreviewLayer.connection  {
-              self.validPreviewLayer!.connection?.videoOrientation = self._videoOrientation(forDeviceOrientation: self.deviceOrientation)
+        //self.validPreviewLayer?.connection?.videoOrientation = self._videoOrientation(forDeviceOrientation: self.deviceOrientation)
+        
+        if let outputs = captureSession?.outputs {
+            for output in outputs {
+                output.connection(with: AVMediaType.video)!.videoOrientation = self._videoOrientation(forDeviceOrientation: self.deviceOrientation)
+            }
         }
     }
     
@@ -272,24 +318,34 @@ extension CameraManager {
                             return
                         }
                         
+                        var newOrientation:UIDeviceOrientation = .unknown
+                        
                         let scaling: CGFloat = CGFloat(1) / CGFloat(( abs(acceleration.x) + abs(acceleration.y)))
                         
                         let x: CGFloat = CGFloat(acceleration.x) * scaling
                         let y: CGFloat = CGFloat(acceleration.y) * scaling
                         
                         if acceleration.z < Double(-0.75) {
-                            self.deviceOrientation = .faceUp
+                            newOrientation = .faceUp
                         } else if acceleration.z > Double(0.75) {
-                            self.deviceOrientation = .faceDown
+                            newOrientation = .faceDown
                         } else if x < CGFloat(-0.5) {
-                            self.deviceOrientation = .landscapeLeft
+                            newOrientation = .landscapeLeft
                         } else if x > CGFloat(0.5) {
-                            self.deviceOrientation = .landscapeRight
+                            newOrientation = .landscapeRight
+                        } else if y < CGFloat(-0.5) {
+                            newOrientation = .portrait
                         } else if y > CGFloat(0.5) {
-                            self.deviceOrientation = .portraitUpsideDown
+                            newOrientation = .portraitUpsideDown
                         }
                         
-                         self._orientationChanged()
+                        if (newOrientation != self.deviceOrientation)
+                        {
+                            self.deviceOrientation = newOrientation;
+                            self._orientationChanged()
+                        }
+                        
+                        
                 })
                 
                 cameraIsObservingDeviceOrientation = true
@@ -299,7 +355,7 @@ extension CameraManager {
         }
     }
     
-    
+
     fileprivate func _imageOrientation(forDeviceOrientation deviceOrientation: UIDeviceOrientation, isMirrored: Bool) -> UIImage.Orientation {
         
         switch deviceOrientation {
@@ -357,7 +413,7 @@ extension CameraManager {
         
         return UIDevice.current.orientation
     }
-    
+     
     fileprivate func _videoOrientation(forDeviceOrientation deviceOrientation: UIDeviceOrientation) -> AVCaptureVideoOrientation {
         switch deviceOrientation {
         case .landscapeLeft:
@@ -373,7 +429,7 @@ extension CameraManager {
              to default to portrait which would introduce flicker into the preview layer.  This
              would not happen if it was in portrait then face up
              */
-            if let validPreviewLayer = self.validPreviewLayer, let connection = validPreviewLayer.connection  {
+            if let dataOutput = self.dataOutput, let connection = dataOutput.connection(with: AVMediaType.video) {
                 return connection.videoOrientation //Keep the existing orientation
             }
             //Could not get existing orientation, try to get it from stats bar
@@ -385,7 +441,7 @@ extension CameraManager {
              to default to portrait which would introduce flicker into the preview layer.  This
              would not happen if it was in portrait then face down
              */
-            if let validPreviewLayer = self.validPreviewLayer, let connection = validPreviewLayer.connection  {
+            if let dataOutput = self.dataOutput, let connection = dataOutput.connection(with: AVMediaType.video) {
                 return connection.videoOrientation //Keep the existing orientation
             }
             //Could not get existing orientation, try to get it from stats bar
