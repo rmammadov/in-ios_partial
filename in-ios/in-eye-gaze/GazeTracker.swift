@@ -243,14 +243,6 @@ public class GazeTracker: FaceFinderDelegate {
             features.append(0)
         }
         
-        if let mouthLeft = self.mainFace?.landmark(ofType: .mouthLeft) {
-            features.append(mouthLeft.position.x.doubleValue)
-            features.append(mouthLeft.position.y.doubleValue)
-        } else {
-            features.append(0)
-            features.append(0)
-        }
-        
         if let mouthRight = self.mainFace?.landmark(ofType: .mouthRight) {
             features.append(mouthRight.position.x.doubleValue)
             features.append(mouthRight.position.y.doubleValue)
@@ -259,9 +251,9 @@ public class GazeTracker: FaceFinderDelegate {
             features.append(0)
         }
         
-        if let earLeft = self.mainFace?.landmark(ofType: .leftEar) {
-            features.append(earLeft.position.x.doubleValue)
-            features.append(earLeft.position.y.doubleValue)
+        if let mouthLeft = self.mainFace?.landmark(ofType: .mouthLeft) {
+            features.append(mouthLeft.position.x.doubleValue)
+            features.append(mouthLeft.position.y.doubleValue)
         } else {
             features.append(0)
             features.append(0)
@@ -275,9 +267,9 @@ public class GazeTracker: FaceFinderDelegate {
             features.append(0)
         }
         
-        if let cheekLeft = self.mainFace?.landmark(ofType: .leftCheek) {
-            features.append(cheekLeft.position.x.doubleValue)
-            features.append(cheekLeft.position.y.doubleValue)
+        if let earLeft = self.mainFace?.landmark(ofType: .leftEar) {
+            features.append(earLeft.position.x.doubleValue)
+            features.append(earLeft.position.y.doubleValue)
         } else {
             features.append(0)
             features.append(0)
@@ -286,6 +278,14 @@ public class GazeTracker: FaceFinderDelegate {
         if let cheekRight = self.mainFace?.landmark(ofType: .rightCheek) {
             features.append(cheekRight.position.x.doubleValue)
             features.append(cheekRight.position.y.doubleValue)
+        } else {
+            features.append(0)
+            features.append(0)
+        }
+        
+        if let cheekLeft = self.mainFace?.landmark(ofType: .leftCheek) {
+            features.append(cheekLeft.position.x.doubleValue)
+            features.append(cheekLeft.position.y.doubleValue)
         }  else {
             features.append(0)
             features.append(0)
@@ -326,7 +326,7 @@ public class GazeTracker: FaceFinderDelegate {
             rightEyePos = rightEye.position
         }
         
-        let cropLen: Int = Int(abs((rightEyePos?.x.floatValue)! - (leftEyePos?.x.floatValue)!)/2 * Float(image.scale))
+        let cropLen: Int = Int(1.3*abs((rightEyePos?.x.floatValue)! - (leftEyePos?.x.floatValue)!)/2 * Float(image.scale))
         let cropSize = CGSize(width: cropLen, height: cropLen)
         
         let leftOrigin = CGPoint(x: (leftEyePos?.x.intValue)! - cropLen/2,
@@ -385,8 +385,6 @@ public class GazeTracker: FaceFinderDelegate {
     
     /**
      Converts a CGImage into three MLMultiArrays, one for each color channel of the original image.
-     
-     - Parameter image: A CGImage. The image is assumed to be in ARGB format.
      */
     private func channels2MLMultiArray(image: CGImage) -> (redChannel: MLMultiArray, greenChannel: MLMultiArray, blueChannel: MLMultiArray)? {
         
@@ -404,6 +402,20 @@ public class GazeTracker: FaceFinderDelegate {
         }
         
         guard let colorSpace = image.colorSpace else { return nil }
+        let alphaInfo: CGImageAlphaInfo = image.alphaInfo
+
+        var step: Int = 3, rOff: Int = 0, gOff: Int = 1, bOff: Int = 2
+        switch alphaInfo {
+        case .alphaOnly:
+            return nil
+        case .none, .noneSkipLast, .noneSkipFirst:
+            break
+        case .last, .premultipliedLast:
+            step = 4
+        case .first, .premultipliedFirst:
+            step = 4; rOff = 1; gOff = 2; bOff = 3;
+        }
+
         guard let context = CGContext(data: nil,
                                       width: width,
                                       height: height,
@@ -413,22 +425,25 @@ public class GazeTracker: FaceFinderDelegate {
                                       bitmapInfo: image.alphaInfo.rawValue) else { return nil }
         context.draw(image, in: CGRect(x: 0, y:0, width: width, height: height))
         let data = UnsafePointer<UInt8>(context.data?.assumingMemoryBound(to: UInt8.self))!
-        
+
         for y in 0..<height {
             for x in 0..<width {
-                let offset = 4 * (y * width + x)
-                let red: Double = Double(data[offset+1])/255.0
-                let green: Double = Double(data[offset+2])/255.0
-                let blue: Double = Double(data[offset+3])/255.0
-                
-//                if red.isNaN { red = 0.0 }
-//                if green.isNaN { green = 0.0 }
-//                if blue.isNaN { blue = 0.0 }
-                
+                let offset = step * (y * width + x)
+                let red: Double = Double(data[offset+rOff])/255.0
+                let green: Double = Double(data[offset+gOff])/255.0
+                let blue: Double = Double(data[offset+bOff])/255.0
+
                 redChannel[y * width + x] = red as NSNumber
                 greenChannel[y * width + x] = green as NSNumber
                 blueChannel[y * width + x] = blue as NSNumber
             }
+        }
+        
+        for i in 0..<width*height {
+            if i%80 == 0 {
+                print("---------------------------------")
+            }
+            print(redChannel[i], greenChannel[i], blueChannel[i])
         }
         
         return (redChannel, greenChannel, blueChannel)
@@ -451,7 +466,6 @@ public class GazeTracker: FaceFinderDelegate {
         let width = Int(Double(cgImage.width) * self.illumResizeRatio)
         let height = Int(Double(cgImage.height) * self.illumResizeRatio)
         let count = width*height
-        let nGrey: Int = Int(0.1 * Float(count))
         
         let bytesPerRow: Int = width * cgImage.bytesPerRow/cgImage.width
         
@@ -471,14 +485,12 @@ public class GazeTracker: FaceFinderDelegate {
         var redChannel: [Float] = Array<Float>(repeating: 0.0, count: count)
         var greenChannel: [Float] = Array<Float>(repeating: 0.0, count: count)
         var blueChannel: [Float] = Array<Float>(repeating: 0.0, count: count)
-        var normImage: [[Float]] = [redChannel, greenChannel, blueChannel]
         
         var L: [Float] = Array<Float>(repeating: 0.0, count: count)
         
         var redLog: [Float] = Array<Float>(repeating: 0.0, count: count)
         var greenLog: [Float] = Array<Float>(repeating: 0.0, count: count)
         var blueLog: [Float] = Array<Float>(repeating: 0.0, count: count)
-        let logImage: [[Float]] = [redLog, greenLog, blueLog]
         
         for y in 0..<height {
             for x in 0..<width {
@@ -498,46 +510,77 @@ public class GazeTracker: FaceFinderDelegate {
                 blueLog[index] = Darwin.log(blue)
             }
         }
+        var normImage: [[Float]] = [redChannel, greenChannel, blueChannel]
+        let logImage: [[Float]] = [redLog, greenLog, blueLog]
         
         //Apply edge detection (Laplace) to each color channel of the log-space image. Store in variable (SDN)
-        var SDN: [[Float]] = []
-        for logChannel in logImage {
+        let width2 = width-1, height2 = height-1
+        let count2 = width2 * height2
+        var SDN: [[Float]] = [Array(repeating: 0.0, count: count2), Array(repeating: 0.0, count: count2), Array(repeating: 0.0, count: count2)]
+        
+        let kernelPrt: UnsafePointer<Float> = UnsafePointer<Float>(LAPLACE_OPERATOR)
+        for (i, logChannel) in logImage.enumerated() {
+            let channelPtr: UnsafePointer<Float> = UnsafePointer<Float>(logChannel)
             let sdnPointer: UnsafeMutablePointer<Float> = UnsafeMutablePointer<Float>.allocate(capacity: logChannel.count)
             sdnPointer.initialize(repeating: 0.0, count: logChannel.count)
             
-            Accelerate.vDSP_f3x3(UnsafePointer<Float>(logChannel), vDSP_Length(height), vDSP_Length(width), UnsafePointer<Float>(LAPLACE_OPERATOR), sdnPointer)
-            SDN.append(Array(UnsafeBufferPointer(start: sdnPointer, count: logChannel.count)))
+            Accelerate.vDSP_f3x3(channelPtr, vDSP_Length(height), vDSP_Length(width), kernelPrt, sdnPointer)
+            for y in 0..<height2 {
+                for x in 0..<width2 {
+                    SDN[i][y*width2 + x] = abs(sdnPointer[(y+1)*width + x+1])
+                }
+            }
             sdnPointer.deallocate()
         }
         
         //Average SDN over the color channels. Store in variable (aSDN)
-        var aSDN: [Float] = []
-        for i in 0..<count {
+        var aSDN: [Float] = Array(repeating: 0.0, count: count2)
+        for i in 0..<count2 {
             aSDN.append([SDN[0][i], SDN[1][i], SDN[2][i]].reduce(0, +)/3.0)
         }
         
         //Compute constant P
-        var P: [Float] = Array<Float>(repeating: 0.0, count: width*height)
-        for i in 0..<count {
+        var P: [Float] = Array<Float>(repeating: 0.0, count: count2)
+        for i in 0..<count2 {
             let innerSum: [Float] = [pow(SDN[0][i] - aSDN[i], 2.0)/aSDN[i],
                                      pow(SDN[1][i] - aSDN[i], 2.0)/aSDN[i],
                                      pow(SDN[2][i] - aSDN[i], 2.0)/aSDN[i]]
-            P[i] = sqrtf(innerSum.reduce(0, +)/Float(innerSum.count))
+            P[i] = sqrtf(innerSum.reduce(0, +)/3.0)
         }
         
         //Compute EGI from constants P and L. Store in variable.
-        var temp: [Float] = Array<Float>(repeating: 0.0, count: count)
-        for i in 0..<count { temp[i] = P[i]/L[i] }
+        var temp: [Float] = Array<Float>(repeating: 0.0, count: count2)
+        for y in 0..<height2 {
+            for x in 0..<width2 {
+                temp[y*width2 + x] = P[y*width2 + x]/L[(y+1)*width + x+1]
+            }
+        }
+        
+        let filtPtr: UnsafePointer<Float> = UnsafePointer<Float>(AVERAGING_FILTER)
+        let tempPtr: UnsafePointer<Float> = UnsafePointer<Float>(temp)
         let egiPointer: UnsafeMutablePointer<Float> = UnsafeMutablePointer<Float>.allocate(capacity: count)
         egiPointer.initialize(repeating: 0.0, count: count)
-        Accelerate.vDSP_imgfir(UnsafePointer<Float>(temp), vDSP_Length(height), vDSP_Length(width), UnsafePointer<Float>(AVERAGING_FILTER), egiPointer, 7, 7)
-        let EGI: [Float] = Array(UnsafeBufferPointer(start: egiPointer, count:count))
+        Accelerate.vDSP_imgfir(tempPtr, vDSP_Length(height2), vDSP_Length(width2), filtPtr, egiPointer, 7, 7)
+        
+        let width3 = width2-3, height3 = height2-3
+        let count3 = width3*height3
+        var EGI: [Float] = Array(repeating: 0.0, count: count3)
+        for y in 0..<height3 {
+            for x in 0..<width3 {
+                EGI[y*width3 + x] = egiPointer[(y+3)*width2 + x+3]
+            }
+        }
+        egiPointer.deallocate()
         
         //Compute GPn
+        let nGrey: Int = Int(0.1 * Float(count3))
         let threshold: Float = EGI.sorted {$0 > $1}[nGrey]
         var GPn: [Int] = []
-        for (i, val) in EGI.enumerated() {
-            if val < threshold { GPn.append(i) }
+        for (index, val) in EGI.enumerated() {
+            if val < threshold {
+                let x = index%height3, y = index/height3
+                GPn.append((y+4)*width + x+4)
+            }
         }
         
         //Compute the illuminant values
@@ -561,7 +604,7 @@ public class GazeTracker: FaceFinderDelegate {
             fatalError("Unexpected runtime error. MLMultiArray")
         }
         for i in 0...2 {
-            illuminant[i] = e_i[i] as NSNumber
+            illuminant[i] = e_i[i].isNaN ? 1.0 : e_i[i] as NSNumber
         }
         
         return illuminant
