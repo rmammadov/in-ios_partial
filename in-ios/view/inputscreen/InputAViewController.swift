@@ -25,6 +25,7 @@ class InputAViewController: BaseViewController {
     @IBOutlet weak var speakButtonTrailingConstraint: NSLayoutConstraint!
     
     let viewModel = InputAViewModel()
+    let disposeBag = DisposeBag()
     
     var page = 0
 
@@ -34,19 +35,19 @@ class InputAViewController: BaseViewController {
         // Do any additional setup after loading the view.
         self.setUi()
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+    
+    deinit {
+        setBackground(remove: true)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        getPointBottomCellPoint()
+        setupGradient()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        setBackground(remove: true)
     }
     
     @IBAction func onClickBackBtn(_ sender: Any) {
@@ -59,17 +60,70 @@ class InputAViewController: BaseViewController {
 
 extension InputAViewController {
     
+    func getParentViewController() -> HomeViewController {
+        return self.parent?.parent?.parent as! HomeViewController
+    }
+    
+    func setupGradient() {
+        if let parentVC = viewModel.parentVC {
+            DispatchQueue.main.async {
+                self.addGradient(height: self.getLastCellPositionHeight(from: self.collectionView, to: parentVC.ivBackground), in: parentVC.ivBackground)
+            }
+        }
+    }
+    
+    fileprivate func addGradient(height: CGFloat, in targetView: UIView) {
+        let gradientName = "backgroundGradient"
+        var gradientLayer: CAGradientLayer!
+        
+        if let sublayers = targetView.layer.sublayers {
+            sublayers.forEach { (subLayer) in
+                if subLayer.name == gradientName, let gradient = subLayer as? CAGradientLayer {
+                    gradientLayer = gradient
+                }
+            }
+        }
+        
+        // animate function
+        func animate(gradient: CAGradientLayer) {
+            let gradientChangeLocation = CABasicAnimation(keyPath: "locations")
+            gradientChangeLocation.duration = 2
+            gradientChangeLocation.isRemovedOnCompletion = false
+            gradient.add(gradientChangeLocation, forKey: "locationsChange")
+        }
+        
+        if gradientLayer == nil {
+            gradientLayer = CAGradientLayer()
+            gradientLayer.name = gradientName
+            targetView.layer.insertSublayer(gradientLayer, at: 0)
+            animate(gradient: gradientLayer)
+        }
+        
+        // TODO: need to think about alghritm how to proportionally adjust locations to make smooth gradient with any frame height
+        gradientLayer.locations = [0.0, 0.4, 0.6, 0.8, 1] as [NSNumber]
+        gradientLayer.colors = [
+            UIColor.black.withAlphaComponent(0.9).cgColor,
+            UIColor.black.withAlphaComponent(0.7).cgColor,
+            UIColor.black.withAlphaComponent(0.5).cgColor,
+            UIColor.black.withAlphaComponent(0.2).cgColor,
+            UIColor.clear.cgColor]
+        gradientLayer.frame = CGRect(x: 0, y: 0, width: targetView.frame.width, height: height)
+    }
+    
     func setUi() {
         self.setViewModel()
         self.setTitle()
         self.setSpeakButtonStatus()
         self.setCollectionView()
         self.setSubscribers()
-        setBackground()
+        setBackground(remove: false)
     }
     
-    func setBackground() {
-        
+    func setBackground(remove: Bool) {
+        if remove == true {
+            viewModel.parentVC?.ivBackground.kf.setImage(with: nil)
+            return
+        }
         if let backgroundUrl = viewModel.getBackground() {
             viewModel.parentVC?.ivBackground.kf.setImage(with: URL(string: backgroundUrl))
         } else {
@@ -77,50 +131,16 @@ extension InputAViewController {
         }
     }
     
-    func getParentViewController() -> HomeViewController {
-        return self.parent?.parent?.parent as! HomeViewController
-    }
-    
-    func getPointBottomCellPoint() {
-        
-        if let lastVisibleCell = collectionView.indexPathsForVisibleItems.last  {
-            let attributes = collectionView.layoutAttributesForItem(at:lastVisibleCell)!
-            let cellRect = attributes.frame
-            let cellRectInSV = collectionView.convert(cellRect, to: collectionView.superview)
-
-            setGradientBackground(to: cellRectInSV.maxY+cellRectInSV.height)
-        }
-    }
-    
     func setSpeakButtonStatus() {
-
-        if self.viewModel.getSpeakButtonStatus()! {
-            btnBack.isHidden = true
-            btnSpeak.isHidden = true
-            backButtonLeadingConstraint.constant = backButtonLeadingConstraint.constant - btnBack.frame.width
-            speakButtonTrailingConstraint.constant = speakButtonTrailingConstraint.constant + btnSpeak.frame.width
-        } else {
-            btnBack.isHidden = false
-            btnSpeak.isHidden = false
-            backButtonLeadingConstraint.constant = 0
-            speakButtonTrailingConstraint.constant = 0
-        }
-    }
-    
-    func setGradientBackground(to endGradientHeight: CGFloat) {
-
-        let gradientLayer = CAGradientLayer()
-        let gradientHeight = endGradientHeight/view.frame.height
-
-        gradientLayer.locations = [0.0, gradientHeight-0.5, gradientHeight-0.2, gradientHeight] as [NSNumber]
-        gradientLayer.colors = [UIColor.black.cgColor, UIColor.black.cgColor, UIColor.darkGray.cgColor, UIColor.clear.cgColor]
-        gradientLayer.frame = CGRect.init(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
-
-        viewModel.parentVC?.ivBackground.layer.insertSublayer(gradientLayer, at: 0)
+        btnBack.isHidden = true
+        btnSpeak.isHidden = true
+        backButtonLeadingConstraint.constant = backButtonLeadingConstraint.constant - btnBack.frame.width
+        speakButtonTrailingConstraint.constant = speakButtonTrailingConstraint.constant + btnSpeak.frame.width
     }
     
     func updateUi() {
-        self.collectionView.reloadData()
+        collectionView.reloadData()
+        setupGradient()
     }
     
     func setViewModel() {
@@ -139,14 +159,14 @@ extension InputAViewController {
     }
     
     func setSubscribers() {
-        self.viewModel.status.asObservable().subscribe(onNext: {
+        self.viewModel.status.asObservable().subscribe(onNext: {[weak self]
             event in
-            if self.viewModel.status.value == InputAStatus.loaded.rawValue {
+            if self?.viewModel.status.value == InputAStatus.loaded.rawValue {
                 DispatchQueue.main.async {
-                    self.updateUi()
+                    self?.updateUi()
                 }
             }
-        })
+        }).disposed(by: disposeBag)
     }
 }
 
@@ -201,13 +221,22 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
         } else if (indexPath.row == 0 && page > 0) {
             page = page-1
         }
-        collectionView.reloadData()
+        updateUi()
     }
     
     func getCellForIndexPath(indexPath: IndexPath) -> MenuItemCollectionViewCell {
         let cell: MenuItemCollectionViewCell = self.collectionView.cellForItem(at: indexPath) as! MenuItemCollectionViewCell
         
         return cell
+    }
+    
+    fileprivate func getLastCellPositionHeight(from collectionView: UICollectionView, to parentView: UIView) -> CGFloat {
+        let lastIndexPath = IndexPath(item: viewModel.getItems(for: page).count-1, section: 0)
+        if let attributes = collectionView.layoutAttributesForItem(at:lastIndexPath)  {
+            let cellRectInSV = collectionView.convert(attributes.frame, to: parentView)
+            return cellRectInSV.maxY
+        }
+        return 0.0
     }
 }
 
