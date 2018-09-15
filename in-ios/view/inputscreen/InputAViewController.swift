@@ -45,6 +45,11 @@ class InputAViewController: BaseViewController {
         setupGradient()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        setBackground(remove: true)
+    }
+    
     @IBAction func onClickBackBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
