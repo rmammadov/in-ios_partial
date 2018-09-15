@@ -1,16 +1,16 @@
 //
-//  IntroThirdViewController.swift
+//  IntroFifthViewController.swift
 //  in-ios
 //
-//  Created by Rahman Mammadov on 9/13/18.
+//  Created by Rahman Mammadov on 9/15/18.
 //  Copyright © 2018 com.innodemneurosciences. All rights reserved.
 //
 
 import UIKit
 
-private let SEGUE_IDENTIFIER_SHOW_AGE_INPUT = "showAgeInput"
+private let SEGUE_IDENTIFIER_SHOW_HOME = "showHome"
 
-class IntroThirdViewController: BaseViewController {
+class IntroFifthViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,16 +28,12 @@ class IntroThirdViewController: BaseViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
     @IBAction func onClickBackBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func onClickMale(_ sender: Any) {
-        performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_AGE_INPUT, sender: self)
+    @IBAction func onClickContinueBtn(_ sender: Any) {
+        performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_HOME, sender: self)
     }
     
-    @IBAction func onClickFemale(_ sender: Any) {
-        performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_AGE_INPUT, sender: self)
-    }
 }

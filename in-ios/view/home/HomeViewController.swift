@@ -9,7 +9,8 @@
 import UIKit
 import Kingfisher
 
-private let segueIdentifierMenu = "segueMenu"
+private let SEGUE_IDENTIFIER_MENU = "segueMenu"
+
 private let nibTopMenuItem = "TopMenuItemCollectionViewCell"
 private let reuseIdentifier = "cellTopMenuItem"
 private let nibTopMenuItemExpanded = "TopMenuItemExpandedCollectionViewCell"
@@ -30,7 +31,7 @@ class HomeViewController: BaseViewController {
 
         // Do any additional setup after loading the view.
         setUi()
-//        setCamera()
+        setCamera()
     }
 
     override func didReceiveMemoryWarning() {
@@ -113,7 +114,7 @@ extension HomeViewController {
                 cameraManager.setPrediction()
                 cameraManager.setCamera()
                 cameraManager.startSession()
-               //cameraManager.shouldRespondToOrientationChanges = true
+                cameraManager.shouldRespondToOrientationChanges = true
             }
         }
     }

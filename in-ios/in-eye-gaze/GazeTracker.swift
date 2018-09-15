@@ -55,8 +55,6 @@ public class GazeTracker: FaceFinderDelegate {
     var screenWidthPix: Double = 0, screenHeightPix: Double = 0
     var PPCM: [Double] = [0.0, 0.0]
     var illumResizeRatio: Double = 1.0
-    var frameReceived:Int = 0
-    let frameSubSampleInterval = 12;
     
     /**
      Initializer
@@ -181,33 +179,8 @@ public class GazeTracker: FaceFinderDelegate {
     */
     public func startPredictionInBackground(scene: UIImage) {
         
-        //quick fix to avoid overflowing the DispatchQueue
-        //will need a more permanent pacing mechanism to post only as fast as algo can process
-        //for now tweak the frameSubsampleInterval if device is too slow
-        
-        frameReceived += 1;
-        if (frameReceived % frameSubSampleInterval != 1)
-        {
-            return;
-        }
-
         DispatchQueue.global(qos: .background).async {
-
-            var rotatedImage: UIImage?
-            
-            switch scene.imageOrientation {
-            case .left:
-                rotatedImage = GazeTracker.rotateImage(image: scene, degrees: -90)
-            case .down:
-                rotatedImage = GazeTracker.rotateImage(image: scene, degrees: 180)
-            case .right:
-                rotatedImage = GazeTracker.rotateImage(image: scene, degrees: 90)
-            default:
-                rotatedImage = scene
-            }
-            
-            guard let image = rotatedImage else { return }
-            self.detector?.getFaces(scene: image)
+            self.startPrediction(scene: scene)
         }
     }
     

@@ -62,7 +62,6 @@ class InputAViewModel: BaseViewModel {
     }
     
     func getItems(for page: NSInteger) -> [ButtonInputScreen] {
-        
         displayedArray = []
         if (self.items.count > itemsCountOnPage) {
             
@@ -88,7 +87,6 @@ class InputAViewModel: BaseViewModel {
     }
     
     func addButton(previous: Bool) -> ButtonInputScreen {
-        
         var button = ButtonInputScreen()
         button.translations = [TranslationMenuItem()]
         button.translations![0].label = previous ? "Previous" : "Next"

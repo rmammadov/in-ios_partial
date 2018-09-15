@@ -8,8 +8,8 @@
 
 import UIKit
 
-private let segueIdentifierIntro = "segueIntro"
-private let segueIdentifierHome = "segueHome"
+private let SEGUE_IDENTIFIER_INTRO = "segueIntro"
+private let SEGUE_IDENTIFIER_HOME = "segueHome"
 
 class LoadingViewController: BaseViewController {
 
@@ -75,13 +75,13 @@ extension LoadingViewController {
     
     func showIntro() {
         DispatchQueue.main.async {
-            self.performSegue(withIdentifier: segueIdentifierIntro, sender: self)
+            self.performSegue(withIdentifier: SEGUE_IDENTIFIER_INTRO, sender: self)
         }
     }
     
     func showHome() {
         DispatchQueue.main.async {
-            self.performSegue(withIdentifier: segueIdentifierHome, sender: self)
+            self.performSegue(withIdentifier: SEGUE_IDENTIFIER_HOME, sender: self)
         }
     }
 }
