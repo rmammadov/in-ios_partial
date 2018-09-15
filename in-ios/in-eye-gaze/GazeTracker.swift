@@ -401,11 +401,8 @@ public class GazeTracker: FaceFinderDelegate {
             fatalError("Unexpected runtime error. MLMultiArray")
         }
         
-        guard let colorSpace = image.colorSpace else { return nil }
-        let alphaInfo: CGImageAlphaInfo = image.alphaInfo
-
         var step: Int = 3, rOff: Int = 0, gOff: Int = 1, bOff: Int = 2
-        switch alphaInfo {
+        switch image.alphaInfo {
         case .alphaOnly:
             return nil
         case .none, .noneSkipLast, .noneSkipFirst:
@@ -415,35 +412,25 @@ public class GazeTracker: FaceFinderDelegate {
         case .first, .premultipliedFirst:
             step = 4; rOff = 1; gOff = 2; bOff = 3;
         }
-
-        guard let context = CGContext(data: nil,
-                                      width: width,
-                                      height: height,
-                                      bitsPerComponent: image.bitsPerComponent,
-                                      bytesPerRow: image.bytesPerRow,
-                                      space: colorSpace,
-                                      bitmapInfo: image.alphaInfo.rawValue) else { return nil }
-        context.draw(image, in: CGRect(x: 0, y:0, width: width, height: height))
-        let data = UnsafePointer<UInt8>(context.data?.assumingMemoryBound(to: UInt8.self))!
-
+        
+        let provider = image.dataProvider
+        let providerData = provider?.data
+        guard let data = CFDataGetBytePtr(providerData) else { return nil }
+        
         for y in 0..<height {
+            print("------------------------------------")
             for x in 0..<width {
                 let offset = step * (y * width + x)
                 let red: Double = Double(data[offset+rOff])/255.0
                 let green: Double = Double(data[offset+gOff])/255.0
                 let blue: Double = Double(data[offset+bOff])/255.0
 
+                print(x, y, red, green, blue)
+
                 redChannel[y * width + x] = red as NSNumber
                 greenChannel[y * width + x] = green as NSNumber
                 blueChannel[y * width + x] = blue as NSNumber
             }
-        }
-        
-        for i in 0..<width*height {
-            if i%80 == 0 {
-                print("---------------------------------")
-            }
-            print(redChannel[i], greenChannel[i], blueChannel[i])
         }
         
         return (redChannel, greenChannel, blueChannel)
