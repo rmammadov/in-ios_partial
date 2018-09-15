@@ -18,6 +18,7 @@ class InputAViewModel: BaseViewModel {
 
     var status = Variable<Int>(0)
     
+    var parentVC: HomeViewController?
     fileprivate var screen: InputScreen?
     fileprivate var parentMenuItem: MenuItem?
     fileprivate var items: Array<ButtonInputScreen> = []
@@ -32,9 +33,18 @@ class InputAViewModel: BaseViewModel {
     
     func loadScreen() {
         self.screen = DataManager.getInputScreens().getInputScreen(title: (parentMenuItem?.name)!)
+        
         if (self.screen?.buttons?.count)! > 0 {
             self.items = (self.screen?.buttons)!
         }
+    }
+    
+    func setParentVC(vc: HomeViewController?) {
+        self.parentVC = vc
+    }
+    
+    func getBackground() -> String? {
+        return self.screen?.background?.url
     }
     
     func getTitle() -> String? {
@@ -81,7 +91,7 @@ class InputAViewModel: BaseViewModel {
         button.translations = [TranslationMenuItem()]
         button.translations![0].label = previous ? "Previous" : "Next"
         button.icon = IconMenuItem()
-        button.icon?.url = previous ? "https://cdn-beta1.innodem-neurosciences.com/upload/media/dev/button_icon/0001/01/e5ef0e37d1f7d0e808fdbc5d6fbcf3bebbf0bc75.png" : "https://cdn-beta1.innodem-neurosciences.com/upload/media/dev/button_icon/0001/01/64e1befbd58e7a6955aa2701f0dd6ee1f502b581.png"
+        button.icon?.url = previous ? "https://cdn-beta1.innodem-neurosciences.com/upload/media/dev/button_icon/0001/01/e4de4144d7b3edcca5d9ded2e5fac5dd42c59d30.png" : "https://cdn-beta1.innodem-neurosciences.com/upload/media/dev/button_icon/0001/01/2a6688ec7b5b0f59e024aae189898a660bd29f6d.png"
 
         return button
     }
