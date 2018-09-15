@@ -48,7 +48,6 @@
 		F33F0BCF2121B11C002E31B9 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33F0BCE2121B11C002E31B9 /* DataManager.swift */; };
 		F34B909B20D46FA100800FCD /* DisplayHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34B909A20D46FA100800FCD /* DisplayHelper.swift */; };
 		F352854E20D3CED500E973C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F352854D20D3CED500E973C8 /* GoogleService-Info.plist */; };
-		F35E76C5213779E100E8B57E /* UIImage+fixedOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35E76C4213779E100E8B57E /* UIImage+fixedOrientation.swift */; };
 		F39059BB210F09C800CAA292 /* MenuItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F39059B9210F09C800CAA292 /* MenuItemCollectionViewCell.xib */; };
 		F39059BF210F254C00CAA292 /* AnimationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059BE210F254C00CAA292 /* AnimationUtil.swift */; };
 		F39059C1210F290F00CAA292 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059C0210F290F00CAA292 /* MenuViewModel.swift */; };
@@ -164,7 +163,6 @@
 		F33F0BCE2121B11C002E31B9 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		F34B909A20D46FA100800FCD /* DisplayHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayHelper.swift; sourceTree = "<group>"; };
 		F352854D20D3CED500E973C8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		F35E76C4213779E100E8B57E /* UIImage+fixedOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+fixedOrientation.swift"; sourceTree = "<group>"; };
 		F39059B9210F09C800CAA292 /* MenuItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		F39059BE210F254C00CAA292 /* AnimationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationUtil.swift; sourceTree = "<group>"; };
 		F39059C0210F290F00CAA292 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
@@ -305,7 +303,6 @@
 			children = (
 				F3E200C82135F2D500902A33 /* UIApplication+getPresentedViewController.swift */,
 				F3E200CC213664C700902A33 /* CMSampleBuffer+image.swift */,
-				F35E76C4213779E100E8B57E /* UIImage+fixedOrientation.swift */,
 				F32DCED8214A41D100B3D0F8 /* INTextField.swift */,
 			);
 			path = extension;
@@ -792,7 +789,6 @@
 				F334ADC5210B3BC00056824A /* ApiRequestHandler.swift in Sources */,
 				F336587F20D318C300B18CEC /* BaseViewController.swift in Sources */,
 				F3355CEA2122BE79009AF602 /* InputScreens.swift in Sources */,
-				F35E76C5213779E100E8B57E /* UIImage+fixedOrientation.swift in Sources */,
 				F3355CED2122E88C009AF602 /* LoadingViewController.swift in Sources */,
 				F3E19CAE211C3D6400ADE838 /* InputAViewController.swift in Sources */,
 				F3E19CB0211C3DA500ADE838 /* InputAViewModel.swift in Sources */,
