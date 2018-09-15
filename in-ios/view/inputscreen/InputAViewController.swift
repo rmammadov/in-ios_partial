@@ -132,18 +132,10 @@ extension InputAViewController {
     }
     
     func setSpeakButtonStatus() {
-
-        if self.viewModel.getSpeakButtonStatus()! {
-            btnBack.isHidden = true
-            btnSpeak.isHidden = true
-            backButtonLeadingConstraint.constant = backButtonLeadingConstraint.constant - btnBack.frame.width
-            speakButtonTrailingConstraint.constant = speakButtonTrailingConstraint.constant + btnSpeak.frame.width
-        } else {
-            btnBack.isHidden = false
-            btnSpeak.isHidden = false
-            backButtonLeadingConstraint.constant = 0
-            speakButtonTrailingConstraint.constant = 0
-        }
+        btnBack.isHidden = true
+        btnSpeak.isHidden = true
+        backButtonLeadingConstraint.constant = backButtonLeadingConstraint.constant - btnBack.frame.width
+        speakButtonTrailingConstraint.constant = speakButtonTrailingConstraint.constant + btnSpeak.frame.width
     }
     
     func updateUi() {
