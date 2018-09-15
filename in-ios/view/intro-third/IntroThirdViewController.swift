@@ -8,7 +8,7 @@
 
 import UIKit
 
-private let SEGUE_IDENTIFIER_SHOW_AGE_INPUT = " "
+private let SEGUE_IDENTIFIER_SHOW_AGE_INPUT = "showAgeInput"
 
 class IntroThirdViewController: BaseViewController {
 
@@ -34,8 +34,10 @@ class IntroThirdViewController: BaseViewController {
     }
     
     @IBAction func onClickMale(_ sender: Any) {
+        performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_AGE_INPUT, sender: self)
     }
     
     @IBAction func onClickFemale(_ sender: Any) {
+        performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_AGE_INPUT, sender: self)
     }
 }

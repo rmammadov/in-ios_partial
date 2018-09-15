@@ -8,6 +8,8 @@
 
 import UIKit
 
+private let SEGUE_IDENTIFIER_SHOW_MEDICAL_INPUT = "showMedicalInput"
+
 class IntroFourthViewController: BaseViewController {
 
     override func viewDidLoad() {
@@ -26,5 +28,12 @@ class IntroFourthViewController: BaseViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    @IBAction func onClickBackBtn(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func onClickContinueBtn(_ sender: Any) {
+        performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_MEDICAL_INPUT, sender: self)
+    }
+    
 }
