@@ -760,6 +760,7 @@
                         <viewLayoutGuide key="safeArea" id="A7D-el-ms5"/>
                     </view>
                     <connections>
+                        <outlet property="tfAgeGroup" destination="BY4-Dr-Ekp" id="wcX-qH-o18"/>
                         <segue destination="3EM-oy-krY" kind="show" identifier="showMedicalInput" id="Bqq-ec-no4"/>
                     </connections>
                 </viewController>
@@ -858,6 +859,7 @@
                         <viewLayoutGuide key="safeArea" id="5Dy-vM-dnG"/>
                     </view>
                     <connections>
+                        <outlet property="tfMedicalCondition" destination="t9W-fd-Xx1" id="fE1-Fc-Oip"/>
                         <segue destination="NSJ-NQ-Qye" kind="show" identifier="showHome" id="ycc-j2-1X5"/>
                     </connections>
                 </viewController>

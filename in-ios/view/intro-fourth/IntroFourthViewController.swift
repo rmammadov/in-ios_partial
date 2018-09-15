@@ -11,11 +11,16 @@ import UIKit
 private let SEGUE_IDENTIFIER_SHOW_MEDICAL_INPUT = "showMedicalInput"
 
 class IntroFourthViewController: BaseViewController {
+    
+    @IBOutlet weak var tfAgeGroup: UITextField!
+    
+    private var pickerAgeGroup: UIPickerView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        setUi()
     }
     
 
@@ -34,6 +39,34 @@ class IntroFourthViewController: BaseViewController {
     
     @IBAction func onClickContinueBtn(_ sender: Any) {
         performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_MEDICAL_INPUT, sender: self)
+    }
+    
+}
+
+extension IntroFourthViewController {
+    
+    func setUi() {
+        setPicker()
+        self.setKeyboardInetraction()
+    }
+    
+    func setPicker() {
+        pickerAgeGroup = UIPickerView()
+        pickerAgeGroup?.dataSource = self
+        pickerAgeGroup?.delegate = self
+        
+        self.tfAgeGroup.inputView = pickerAgeGroup
+    }
+}
+
+extension IntroFourthViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 5
     }
     
 }

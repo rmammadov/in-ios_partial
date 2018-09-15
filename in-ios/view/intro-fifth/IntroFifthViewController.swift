@@ -12,10 +12,15 @@ private let SEGUE_IDENTIFIER_SHOW_HOME = "showHome"
 
 class IntroFifthViewController: BaseViewController {
 
+    @IBOutlet weak var tfMedicalCondition: UITextField!
+    
+    private var pickerMedicalCondition: UIPickerView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        setUi()
     }
     
 
@@ -34,6 +39,34 @@ class IntroFifthViewController: BaseViewController {
     
     @IBAction func onClickContinueBtn(_ sender: Any) {
         performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_HOME, sender: self)
+    }
+    
+}
+
+extension IntroFifthViewController {
+    
+    func setUi() {
+        setPicker()
+        self.setKeyboardInetraction()
+    }
+    
+    func setPicker() {
+        pickerMedicalCondition = UIPickerView()
+        pickerMedicalCondition?.dataSource = self
+        pickerMedicalCondition?.delegate = self
+        
+        self.tfMedicalCondition.inputView = pickerMedicalCondition
+    }
+}
+
+extension IntroFifthViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 5
     }
     
 }
