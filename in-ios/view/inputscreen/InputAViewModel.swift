@@ -19,10 +19,12 @@ class InputAViewModel: BaseViewModel {
     var status = Variable<Int>(0)
     
     var parentVC: HomeViewController?
+    
     fileprivate var screen: InputScreen?
     fileprivate var parentMenuItem: MenuItem?
     fileprivate var items: Array<ButtonInputScreen> = []
-    fileprivate var button: ButtonInputScreen?
+    fileprivate var item: ButtonInputScreen?
+    fileprivate var selectedItem: ButtonInputScreen?
     fileprivate var indexSelectedItem: IndexPath = IndexPath(row: 0, section: 0)
     fileprivate var displayedArray = Array<ButtonInputScreen> ()
     var itemsCountOnPage = 20
@@ -75,14 +77,14 @@ class InputAViewModel: BaseViewModel {
             
             if (page < 1) {
                 displayedArray = Array(self.items[0..<itemsCountOnPage-1])
-                displayedArray.append(addButton(previous: false))
+//                displayedArray.append(addButton(previous: false))
             } else {
                 if ((itemsCountOnPage-2)*page+1+itemsCountOnPage-2 > self.items.count) {
-                    displayedArray.append(addButton(previous: true))
+//                    displayedArray.append(addButton(previous: true))
                     displayedArray.append(contentsOf:(self.items[itemsCountOnPage-1*page - (page >= 2 ? page-1 : 0)..<self.items.count]))
                     
                 } else {
-                    displayedArray.append(addButton(previous: true))
+//                    displayedArray.append(addButton(previous: true))
                     displayedArray.append(contentsOf: Array(self.items[itemsCountOnPage-1*page - (page >= 2 ? page-1 : 0)..<itemsCountOnPage-1*page+itemsCountOnPage - (page >= 3 ? page : 2)]))
                     displayedArray.append(addButton(previous: false))
                 }
@@ -95,15 +97,15 @@ class InputAViewModel: BaseViewModel {
     }
     
     func setItem(index: Int) {
-        self.button = self.displayedArray[index]
+        self.item = self.displayedArray[index]
     }
     
     func getItemTitle() -> String? {
-        return self.button?.translations!.first!.label
+        return self.item?.translations!.first!.label
     }
     
     func getItemIcon() -> String? {
-        return self.button?.icon?.url
+        return self.item?.icon?.url
     }
     
     func setSelection(indexPath: IndexPath) {
@@ -113,6 +115,27 @@ class InputAViewModel: BaseViewModel {
     func getSelection() -> IndexPath {
         return self.indexSelectedItem
     }
+    
+    // FIXME: Fix and update
+    
+    func onItemLoadRequest(indexPath: IndexPath, page: NSInteger) {
+        let item = self.getItems(for: page)[indexPath.row]
+        self.selectedItem = item
+        
+        if !(selectedItem?.disableTextToSpeech)! {
+            textToSpech(text: (selectedItem?.translations!.first?.labelTextToSpeech)!)
+        }
+        
+        self.status.value = InputAStatus.loaded.rawValue
+    }
+    
+    // FIXME: Remove hardcode language type
+    
+    func textToSpech(text: String) {
+        SpeechHelper.play(text: text, language: "en-US")
+    }
+    
+    // FIXME: HARDCODE
     
     func addButton(previous: Bool) -> ButtonInputScreen {
         var button = ButtonInputScreen()

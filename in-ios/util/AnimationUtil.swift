@@ -17,12 +17,16 @@ enum AnimationStatus: Int {
 class AnimationUtil {
     
     static var status = Variable<Int>(0)
+    static var tag: String = " "
     
-    static func animateMenuSelection(imageView: UIImageView, fingerTouch: Bool) {
+    static func animateMenuSelection(imageView: UIImageView, fingerTouch: Bool, tag: String) {
         imageView.image = #imageLiteral(resourceName: "ic_circle_gradient_loading")
+        self.tag = tag
         if fingerTouch {
             self.setMenuSelection(imageView: imageView)
-            self.status.value += AnimationStatus.completed.rawValue
+            Timer.scheduledTimer(withTimeInterval: Constant.AnimationConfig.MENU_ITEM_FINGER_TOUCH_ANIMATION_DURATION, repeats: false) { (timer) in
+                self.status.value += AnimationStatus.completed.rawValue
+            }
         } else {
             CATransaction.begin()
             CATransaction.setCompletionBlock({
@@ -63,5 +67,9 @@ class AnimationUtil {
         rotationAnimation.repeatCount = .infinity;
         imageView.layer.add(rotationAnimation, forKey: "rotationAnimation")
         CATransaction.commit()
+    }
+    
+    static func getTag() -> String {
+        return tag
     }
 }

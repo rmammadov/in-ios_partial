@@ -103,6 +103,11 @@ class MenuViewModel: BaseViewModel {
     func onItemLoadRequest(indexPath: IndexPath) {
         let menuItem = self.getMenuItems()![indexPath.row]
         self.selectedItem = menuItem
+        
+        if !(selectedItem?.disableTextToSpeech)! {
+            textToSpech(text: (selectedItem?.translations.first?.labelTextToSpeech)!)
+        }
+        
         self.loadSubMenuItemsOf(menuItem: menuItem, topMenuClicked: false)
     }
     

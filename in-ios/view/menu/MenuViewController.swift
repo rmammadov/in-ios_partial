@@ -16,6 +16,8 @@ private let reuseIdentifier = "cellMenuItem"
 
 class MenuViewController: BaseViewController {
     
+    private static let TAG = "MenuViewController"
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     let viewModel = MenuViewModel()
@@ -105,7 +107,7 @@ extension MenuViewController {
         
         AnimationUtil.status.asObservable().subscribe(onNext: {
             event in
-            if AnimationUtil.status.value == AnimationStatus.completed.rawValue {
+            if AnimationUtil.status.value == AnimationStatus.completed.rawValue && AnimationUtil.getTag() == MenuViewController.TAG {
                 self.viewModel.onItemLoadRequest(indexPath: self.viewModel.getSelection())
             }
         })
@@ -149,7 +151,7 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.viewModel.setSelection(indexPath: indexPath)
-        AnimationUtil.animateMenuSelection(imageView: self.getCellForIndexPath(indexPath: indexPath).ivStatusIcon, fingerTouch: true)
+        AnimationUtil.animateMenuSelection(imageView: self.getCellForIndexPath(indexPath: indexPath).ivStatusIcon, fingerTouch: true, tag: MenuViewController.TAG)
     }
     
     func getCellForIndexPath(indexPath: IndexPath) -> MenuItemCollectionViewCell {

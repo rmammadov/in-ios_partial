@@ -18,6 +18,8 @@ private let reuseIdentifierExpanded = "cellTopMenuItemExpanded"
 
 class HomeViewController: BaseViewController {
 
+    private static let TAG = "HomeViewController"
+    
     @IBOutlet weak var ivBackground: UIImageView!
     @IBOutlet weak var viewTopMenu: UIView!
     @IBOutlet weak var collectionTopMenu: UICollectionView!

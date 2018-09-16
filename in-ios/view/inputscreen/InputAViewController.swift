@@ -17,6 +17,8 @@ private let tileColumnCount : CGFloat = 4.0
 
 class InputAViewController: BaseViewController {
 
+    private static let TAG = "InputAViewController"
+    
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var btnSpeak: UIButton!
@@ -171,8 +173,17 @@ extension InputAViewController {
             event in
             if self?.viewModel.status.value == InputAStatus.loaded.rawValue {
                 DispatchQueue.main.async {
+                    AnimationUtil.cancelMenuSelection(imageView: self!.getCellForIndexPath(indexPath: (self?.viewModel.getSelection())!).ivStatusIcon)
                     self?.updateUi()
                 }
+            }
+        }).disposed(by: disposeBag)
+        
+        AnimationUtil.status.asObservable().subscribe(onNext: {
+            event in
+            if AnimationUtil.status.value == AnimationStatus.completed.rawValue && AnimationUtil.getTag() == InputAViewController.TAG {
+                print("Clicked")
+                self.viewModel.onItemLoadRequest(indexPath: self.viewModel.getSelection(), page: self.page)
             }
         }).disposed(by: disposeBag)
     }
@@ -216,10 +227,12 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
     // MARK: UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.viewModel.setSelection(indexPath: indexPath)
+        AnimationUtil.animateMenuSelection(imageView: self.getCellForIndexPath(indexPath: indexPath).ivStatusIcon, fingerTouch: true, tag: InputAViewController.TAG)
         
-        let speechSynthesizer = AVSpeechSynthesizer()
+//        let speechSynthesizer = AVSpeechSynthesizer()
         self.viewModel.setItem(index: indexPath.row)
-        let text = self.viewModel.getItemTitle()
+//        let text = self.viewModel.getItemTitle()
         
 //        let speechUtterance = AVSpeechUtterance(string: text!)
 //        speechSynthesizer.speak(speechUtterance)
@@ -229,7 +242,7 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
         } else if (indexPath.row == 0 && page > 0) {
             page = page-1
         }
-        updateUi()
+//        updateUi()
     }
     
     func getCellForIndexPath(indexPath: IndexPath) -> MenuItemCollectionViewCell {

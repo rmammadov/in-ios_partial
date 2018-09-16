@@ -60,6 +60,11 @@ class HomeViewModel: BaseViewModel {
     func onTopMenuItemSelected(indexPath: IndexPath) {
         topMenuItemSelected = getTopMenuItems()?[indexPath.row]
         topMenuItemSelectedIndex = indexPath
+        
+        if !(topMenuItemSelected?.disableTextToSpeech)! {
+            textToSpech(text: (topMenuItemSelected?.translations.first?.labelTextToSpeech)!)
+        }
+        
         status.value = TopMenuStatus.loaded.rawValue
     }
     

@@ -14,6 +14,8 @@ private let reuseIdentifier = "cellMenuItem"
 
 class SubMenuViewController: BaseViewController {
 
+    private static let TAG = "SubMenuViewController"
+    
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var btnBack: UIButton!
@@ -121,7 +123,7 @@ extension SubMenuViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         AnimationUtil.cancelMenuSelection(imageView: self.getCellForIndexPath(indexPath: viewModel.getSelection()).ivStatusIcon)
-        AnimationUtil.animateMenuSelection(imageView: self.getCellForIndexPath(indexPath: indexPath).ivStatusIcon, fingerTouch: true)
+        AnimationUtil.animateMenuSelection(imageView: self.getCellForIndexPath(indexPath: indexPath).ivStatusIcon, fingerTouch: true, tag: SubMenuViewController.TAG)
         self.viewModel.setSelection(indexPath: indexPath)
     }
     

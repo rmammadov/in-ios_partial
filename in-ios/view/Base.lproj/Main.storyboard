@@ -693,9 +693,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FHX-k8-lu7">
-                                <rect key="frame" x="0.0" y="360" width="63.5" height="134"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FHX-k8-lu7">
+                                <rect key="frame" x="0.0" y="359.5" width="63.5" height="135"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="FHX-k8-lu7" secondAttribute="height" multiplier="63:134" id="oI2-pO-hB3"/>
+                                </constraints>
                                 <state key="normal" image="ic_side_btn_back"/>
                                 <connections>
                                     <action selector="onClickBackBtn:" destination="UTw-f4-p0K" eventType="touchUpInside" id="hrE-Ln-JbQ"/>
@@ -755,7 +757,10 @@
                         <constraints>
                             <constraint firstItem="ba7-Cs-nlm" firstAttribute="centerX" secondItem="A7D-el-ms5" secondAttribute="centerX" id="E5F-bZ-7AD"/>
                             <constraint firstItem="ba7-Cs-nlm" firstAttribute="height" secondItem="TnY-mU-0Au" secondAttribute="height" multiplier="0.4" id="Vws-oV-Bq4"/>
+                            <constraint firstItem="FHX-k8-lu7" firstAttribute="width" secondItem="TnY-mU-0Au" secondAttribute="width" multiplier="0.057" id="WZc-2I-AVL"/>
+                            <constraint firstItem="FHX-k8-lu7" firstAttribute="centerY" secondItem="A7D-el-ms5" secondAttribute="centerY" id="Wbk-SZ-vGj"/>
                             <constraint firstItem="ba7-Cs-nlm" firstAttribute="centerY" secondItem="A7D-el-ms5" secondAttribute="centerY" id="ajc-Bv-xxf"/>
+                            <constraint firstItem="FHX-k8-lu7" firstAttribute="leading" secondItem="A7D-el-ms5" secondAttribute="leading" id="xwz-Wt-lOU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="A7D-el-ms5"/>
                     </view>
