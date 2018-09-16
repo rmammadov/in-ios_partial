@@ -52,11 +52,15 @@ class InputAViewModel: BaseViewModel {
     }
     
     func getBackButtonStatus() -> Bool? {
-        return self.screen?.disableTextToSpeech
+        if self.screen?.backButton != nil {
+            return true
+        } else {
+            return false
+        }
     }
     
     func getSpeakButtonStatus() -> Bool? {
-        return self.screen?.disableTextToSpeech
+        return !(self.screen?.disableTextToSpeech)!
     }
     
     func setItems(buttons: [ButtonInputScreen]?) {

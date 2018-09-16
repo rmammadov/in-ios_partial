@@ -113,7 +113,8 @@ extension InputAViewController {
     func setUi() {
         self.setViewModel()
         self.setTitle()
-//        self.setSpeakButtonStatus()
+        self.setBackButtonStatus()
+        self.setSpeakButtonStatus()
         self.setCollectionView()
         self.setSubscribers()
 //        setBackground(remove: false)
@@ -131,11 +132,18 @@ extension InputAViewController {
 //        }
 //    }
     
+    func setBackButtonStatus() {
+        if !self.viewModel.getBackButtonStatus()! {
+            btnBack.isHidden = self.viewModel.getBackButtonStatus()!
+            backButtonLeadingConstraint.constant = backButtonLeadingConstraint.constant - btnBack.frame.width
+        }
+    }
+    
     func setSpeakButtonStatus() {
-        btnBack.isHidden = true
-        btnSpeak.isHidden = true
-        backButtonLeadingConstraint.constant = backButtonLeadingConstraint.constant - btnBack.frame.width
-        speakButtonTrailingConstraint.constant = speakButtonTrailingConstraint.constant + btnSpeak.frame.width
+        if !self.viewModel.getSpeakButtonStatus()! {
+            btnSpeak.isHidden = self.viewModel.getSpeakButtonStatus()!
+            speakButtonTrailingConstraint.constant = speakButtonTrailingConstraint.constant + btnSpeak.frame.width
+        }
     }
     
     func updateUi() {
