@@ -37,17 +37,17 @@ class InputAViewController: BaseViewController {
     }
     
     deinit {
-        setBackground(remove: true)
+//        setBackground(remove: true)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setupGradient()
+//        setupGradient()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        setBackground(remove: true)
+//        setBackground(remove: true)
     }
     
     @IBAction func onClickBackBtn(_ sender: Any) {
@@ -64,72 +64,72 @@ extension InputAViewController {
         return self.parent?.parent?.parent as! HomeViewController
     }
     
-    func setupGradient() {
-        if let parentVC = viewModel.parentVC {
-            DispatchQueue.main.async {
-                self.addGradient(height: self.getLastCellPositionHeight(from: self.collectionView, to: parentVC.ivBackground), in: parentVC.ivBackground)
-            }
-        }
-    }
+//    func setupGradient() {
+//        if let parentVC = viewModel.parentVC {
+//            DispatchQueue.main.async {
+//                self.addGradient(height: self.getLastCellPositionHeight(from: self.collectionView, to: parentVC.ivBackground), in: parentVC.ivBackground)
+//            }
+//        }
+//    }
     
-    fileprivate func addGradient(height: CGFloat, in targetView: UIView) {
-        let gradientName = "backgroundGradient"
-        var gradientLayer: CAGradientLayer!
-        
-        if let sublayers = targetView.layer.sublayers {
-            sublayers.forEach { (subLayer) in
-                if subLayer.name == gradientName, let gradient = subLayer as? CAGradientLayer {
-                    gradientLayer = gradient
-                }
-            }
-        }
-        
-        // animate function
-        func animate(gradient: CAGradientLayer) {
-            let gradientChangeLocation = CABasicAnimation(keyPath: "locations")
-            gradientChangeLocation.duration = 2
-            gradientChangeLocation.isRemovedOnCompletion = false
-            gradient.add(gradientChangeLocation, forKey: "locationsChange")
-        }
-        
-        if gradientLayer == nil {
-            gradientLayer = CAGradientLayer()
-            gradientLayer.name = gradientName
-            targetView.layer.insertSublayer(gradientLayer, at: 0)
-            animate(gradient: gradientLayer)
-        }
-        
-        // TODO: need to think about alghritm how to proportionally adjust locations to make smooth gradient with any frame height
-        gradientLayer.locations = [0.0, 0.4, 0.6, 0.8, 1] as [NSNumber]
-        gradientLayer.colors = [
-            UIColor.black.withAlphaComponent(0.9).cgColor,
-            UIColor.black.withAlphaComponent(0.7).cgColor,
-            UIColor.black.withAlphaComponent(0.5).cgColor,
-            UIColor.black.withAlphaComponent(0.2).cgColor,
-            UIColor.clear.cgColor]
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: targetView.frame.width, height: height)
-    }
+//    fileprivate func addGradient(height: CGFloat, in targetView: UIView) {
+//        let gradientName = "backgroundGradient"
+//        var gradientLayer: CAGradientLayer!
+//
+//        if let sublayers = targetView.layer.sublayers {
+//            sublayers.forEach { (subLayer) in
+//                if subLayer.name == gradientName, let gradient = subLayer as? CAGradientLayer {
+//                    gradientLayer = gradient
+//                }
+//            }
+//        }
+//
+//        // animate function
+//        func animate(gradient: CAGradientLayer) {
+//            let gradientChangeLocation = CABasicAnimation(keyPath: "locations")
+//            gradientChangeLocation.duration = 2
+//            gradientChangeLocation.isRemovedOnCompletion = false
+//            gradient.add(gradientChangeLocation, forKey: "locationsChange")
+//        }
+//
+//        if gradientLayer == nil {
+//            gradientLayer = CAGradientLayer()
+//            gradientLayer.name = gradientName
+//            targetView.layer.insertSublayer(gradientLayer, at: 0)
+//            animate(gradient: gradientLayer)
+//        }
+//
+//        // TODO: need to think about alghritm how to proportionally adjust locations to make smooth gradient with any frame height
+//        gradientLayer.locations = [0.0, 0.4, 0.6, 0.8, 1] as [NSNumber]
+//        gradientLayer.colors = [
+//            UIColor.black.withAlphaComponent(0.9).cgColor,
+//            UIColor.black.withAlphaComponent(0.7).cgColor,
+//            UIColor.black.withAlphaComponent(0.5).cgColor,
+//            UIColor.black.withAlphaComponent(0.2).cgColor,
+//            UIColor.clear.cgColor]
+//        gradientLayer.frame = CGRect(x: 0, y: 0, width: targetView.frame.width, height: height)
+//    }
     
     func setUi() {
         self.setViewModel()
         self.setTitle()
-        self.setSpeakButtonStatus()
+//        self.setSpeakButtonStatus()
         self.setCollectionView()
         self.setSubscribers()
-        setBackground(remove: false)
+//        setBackground(remove: false)
     }
     
-    func setBackground(remove: Bool) {
-        if remove == true {
-            viewModel.parentVC?.ivBackground.kf.setImage(with: nil)
-            return
-        }
-        if let backgroundUrl = viewModel.getBackground() {
-            viewModel.parentVC?.ivBackground.kf.setImage(with: URL(string: backgroundUrl))
-        } else {
-            viewModel.parentVC?.ivBackground.kf.setImage(with: nil)
-        }
-    }
+//    func setBackground(remove: Bool) {
+//        if remove == true {
+//            viewModel.parentVC?.ivBackground.kf.setImage(with: nil)
+//            return
+//        }
+//        if let backgroundUrl = viewModel.getBackground() {
+//            viewModel.parentVC?.ivBackground.kf.setImage(with: URL(string: backgroundUrl))
+//        } else {
+//            viewModel.parentVC?.ivBackground.kf.setImage(with: nil)
+//        }
+//    }
     
     func setSpeakButtonStatus() {
         btnBack.isHidden = true
@@ -140,7 +140,7 @@ extension InputAViewController {
     
     func updateUi() {
         collectionView.reloadData()
-        setupGradient()
+//        setupGradient()
     }
     
     func setViewModel() {
@@ -213,8 +213,8 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
         self.viewModel.setItem(index: indexPath.row)
         let text = self.viewModel.getItemTitle()
         
-        let speechUtterance = AVSpeechUtterance(string: text!)
-        speechSynthesizer.speak(speechUtterance)
+//        let speechUtterance = AVSpeechUtterance(string: text!)
+//        speechSynthesizer.speak(speechUtterance)
         
         if (indexPath.row >= self.viewModel.itemsCountOnPage-1) {
             page = page+1

@@ -51,6 +51,10 @@ class InputAViewModel: BaseViewModel {
         return self.screen?.translations[0].title
     }
     
+    func getBackButtonStatus() -> Bool? {
+        return self.screen?.disableTextToSpeech
+    }
+    
     func getSpeakButtonStatus() -> Bool? {
         return self.screen?.disableTextToSpeech
     }
@@ -86,22 +90,12 @@ class InputAViewModel: BaseViewModel {
         return displayedArray
     }
     
-    func addButton(previous: Bool) -> ButtonInputScreen {
-        var button = ButtonInputScreen()
-        button.translations = [TranslationMenuItem()]
-        button.translations![0].label = previous ? "Previous" : "Next"
-        button.icon = IconMenuItem()
-        button.icon?.url = previous ? "https://cdn-beta1.innodem-neurosciences.com/upload/media/dev/button_icon/0001/01/e4de4144d7b3edcca5d9ded2e5fac5dd42c59d30.png" : "https://cdn-beta1.innodem-neurosciences.com/upload/media/dev/button_icon/0001/01/2a6688ec7b5b0f59e024aae189898a660bd29f6d.png"
-
-        return button
-    }
-    
     func setItem(index: Int) {
         self.button = self.displayedArray[index]
     }
     
     func getItemTitle() -> String? {
-        return self.button?.translations![0].label
+        return self.button?.translations!.first!.label
     }
     
     func getItemIcon() -> String? {
@@ -114,5 +108,15 @@ class InputAViewModel: BaseViewModel {
     
     func getSelection() -> IndexPath {
         return self.indexSelectedItem
+    }
+    
+    func addButton(previous: Bool) -> ButtonInputScreen {
+        var button = ButtonInputScreen()
+        button.translations = [TranslationMenuItem()]
+        button.translations![0].label = previous ? "Previous" : "Next"
+        button.icon = IconMenuItem()
+        button.icon?.url = previous ? "https://cdn-beta1.innodem-neurosciences.com/upload/media/dev/button_icon/0001/01/e4de4144d7b3edcca5d9ded2e5fac5dd42c59d30.png" : "https://cdn-beta1.innodem-neurosciences.com/upload/media/dev/button_icon/0001/01/2a6688ec7b5b0f59e024aae189898a660bd29f6d.png"
+        
+        return button
     }
 }
