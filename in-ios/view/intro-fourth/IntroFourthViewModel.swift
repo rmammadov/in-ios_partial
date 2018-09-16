@@ -9,5 +9,11 @@
 import UIKit
 
 class IntroFourthViewModel: BaseViewModel {
+    
+    let model: IntroFourthModel = IntroFourthModel()
+    
+    func getAgeGroups() -> Array<String> {
+        return model.getAgeGroups()
+    }
 
 }

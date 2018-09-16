@@ -10,4 +10,10 @@ import UIKit
 
 class IntroFifthViewModel: BaseViewModel {
 
+    let model: IntroFifthModel = IntroFifthModel()
+    
+    func getMedicalConditions() -> Array<String> {
+        return model.getMedicalConditions()
+    }
+    
 }

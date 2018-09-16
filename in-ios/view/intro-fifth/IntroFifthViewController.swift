@@ -15,6 +15,7 @@ class IntroFifthViewController: BaseViewController {
     @IBOutlet weak var tfMedicalCondition: UITextField!
     
     private var pickerMedicalCondition: UIPickerView?
+    private let viewModel: IntroFifthViewModel = IntroFifthViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,17 +57,22 @@ extension IntroFifthViewController {
         pickerMedicalCondition?.delegate = self
         
         self.tfMedicalCondition.inputView = pickerMedicalCondition
+        self.tfMedicalCondition.text = viewModel.getMedicalConditions().first
     }
 }
 
 extension IntroFifthViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        return [viewModel.getMedicalConditions()].count
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 5
+        return viewModel.getMedicalConditions().count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return viewModel.getMedicalConditions()[row]
     }
     
 }

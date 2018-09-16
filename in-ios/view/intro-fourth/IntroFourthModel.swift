@@ -11,4 +11,9 @@ import Foundation
 
 class IntroFourthModel: BaseModel {
     
+    private var arrayAgeGroups: Array<String> = ["5 - 10 years old", "11 - 20 years old", "31 - 30 years old", "31 - 40 years old"]
+    
+    func getAgeGroups() -> Array<String> {
+        return arrayAgeGroups
+    }
 }

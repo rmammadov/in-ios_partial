@@ -10,5 +10,10 @@ import Foundation
 
 
 class IntroFifthModel: BaseModel {
+
+    private var arrayMedicalConditions: Array<String> = ["None", "Stroke", "Amytrophic Lateral", "Sclerosis"]
     
+    func getMedicalConditions() -> Array<String> {
+        return arrayMedicalConditions
+    }
 }

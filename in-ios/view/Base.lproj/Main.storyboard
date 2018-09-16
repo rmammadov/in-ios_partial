@@ -704,7 +704,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ba7-Cs-nlm">
                                 <rect key="frame" x="268" y="260" width="576" height="334"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" background="ic_textfield_background_long" translatesAutoresizingMaskIntoConstraints="NO" id="BY4-Dr-Ekp">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" background="ic_textfield_background_long" translatesAutoresizingMaskIntoConstraints="NO" id="BY4-Dr-Ekp" customClass="INTextField" customModule="in_ios" customModuleProvider="target">
                                         <rect key="frame" x="32" y="143" width="512" height="48"/>
                                         <color key="tintColor" name="pigio_black"/>
                                         <constraints>
@@ -816,7 +816,7 @@
                                             <action selector="onClickContinueBtn:" destination="3EM-oy-krY" eventType="touchUpInside" id="5IL-VA-pcM"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" background="ic_textfield_background_long" translatesAutoresizingMaskIntoConstraints="NO" id="t9W-fd-Xx1">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" background="ic_textfield_background_long" translatesAutoresizingMaskIntoConstraints="NO" id="t9W-fd-Xx1" customClass="INTextField" customModule="in_ios" customModuleProvider="target">
                                         <rect key="frame" x="32" y="143" width="512" height="48"/>
                                         <color key="tintColor" name="pigio_black"/>
                                         <constraints>

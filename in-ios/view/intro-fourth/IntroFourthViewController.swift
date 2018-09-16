@@ -15,6 +15,7 @@ class IntroFourthViewController: BaseViewController {
     @IBOutlet weak var tfAgeGroup: UITextField!
     
     private var pickerAgeGroup: UIPickerView?
+    private let viewModel: IntroFourthViewModel = IntroFourthViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,17 +57,22 @@ extension IntroFourthViewController {
         pickerAgeGroup?.delegate = self
         
         self.tfAgeGroup.inputView = pickerAgeGroup
+        self.tfAgeGroup.text = viewModel.getAgeGroups().first
     }
 }
 
 extension IntroFourthViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        return [viewModel.getAgeGroups()].count
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 5
+        return viewModel.getAgeGroups().count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return viewModel.getAgeGroups()[row]
     }
     
 }
