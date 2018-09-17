@@ -1,5 +1,5 @@
 # http://docs.travis-ci.com/
-# https://docs.fastlane.tools/getting-started/ios/setup/
+# https://docs.fastlane.tools/getting-started/ios/fastlane-swift/
 
 language: objective-c
 os: osx
