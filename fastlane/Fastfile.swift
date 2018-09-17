@@ -9,9 +9,15 @@
 import Foundation
 
 class Fastfile: LaneFile {
+	func buildLane() {
+		desc("Build only")
+		buildIosApp(workspace: "in-ios.xcworkspace", scheme: "in-ios")
+	}
+
 	func betaLane() {
-	desc("Push a new beta build to TestFlight")
-		buildApp(workspace: "in-ios.xcworkspace", scheme: "in-ios")
+		desc("Push a new beta build to TestFlight")
+		syncCodeSigning(gitUrl: "git@github.com:innodem-neurosciences/code-signing.git", appIdentifier: ["com.innodemneurosciences.in-ios"], username: "dev@innodemneurosciences.com")
+		buildIosApp(workspace: "in-ios.xcworkspace", scheme: "in-ios")
 		uploadToTestflight(username: "dev@innodemneurosciences.com")
 	}
 }

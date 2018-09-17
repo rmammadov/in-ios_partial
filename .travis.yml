@@ -1,5 +1,5 @@
 # http://docs.travis-ci.com/
-# https://docs.fastlane.tools/getting-started/ios/setup/
+# https://docs.fastlane.tools/getting-started/ios/fastlane-swift/
 
 language: objective-c
 os: osx
@@ -55,20 +55,24 @@ install:
 before_script:
   - echo "Starting before_script."
   - # check both versions below in all cases
-  - agvtool new-marketing-version ${BUILD_VERSION}
+  - |
+    if on_store ; then \
+      agvtool new-marketing-version ${BUILD_VERSION}
+    fi
   - agvtool new-version -all ${TRAVIS_JOB_NUMBER}
-  - bundle exec fastlane match development --git_url git@github.com:innodem-neurosciences/code-signing.git --app_identifier com.innodemneurosciences.in-ios --verbose --readonly
-  - bundle exec fastlane match appstore --git_url git@github.com:innodem-neurosciences/code-signing.git --app_identifier com.innodemneurosciences.in-ios --verbose --readonly
+  - bundle exec fastlane match development --verbose --readonly
+  - bundle exec fastlane match appstore --verbose --readonly
 
 script:
   - echo "Starting script."
   # check CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
-  - xcodebuild -workspace in-ios.xcworkspace -scheme in-ios -destination "platform=iOS Simulator,OS=12.0,name=iPad Pro (9.7-inch)"" -sdk iphonesimulator12.0 -showBuildSettings -showdestinations CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO | xcpretty
+  #- xcodebuild -workspace in-ios.xcworkspace -scheme in-ios -destination "platform=iOS Simulator,OS=12.0,name=iPad (6th generation)" -sdk iphonesimulator12.0 -showBuildSettings -showdestinations CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+  - bundle exec fastlane buildLane
   - |
     if echo ${COMMIT_MESSAGE} | grep -iF '#skip-tests' &>/dev/null ; then \
       echo "Skipping unit tests." \
     else \
-      xcodebuild -workspace in-ios.xcworkspace -scheme in-ios_test -destination "platform=iOS Simulator,OS=12.0,name=iPad Pro (9.7-inch)"" -sdk iphonesimulator12.0 -showBuildSettings -showdestinations CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO | xcpretty \
+      xcodebuild -workspace in-ios.xcworkspace -scheme in-ios_test -destination "platform=iOS Simulator,OS=12.0,name=iPad (6th generation)" -sdk iphonesimulator12.0 -showBuildSettings -showdestinations CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO | xcpretty \
     fi
 
 before_cache:
