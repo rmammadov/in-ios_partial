@@ -42,7 +42,6 @@ before_install:
   - . in-scripts/travis-functions.sh
   - before_install short
   - brew update
-  - brew bundle
   - brew install git-lfs
   - git lfs install
   - gem update
