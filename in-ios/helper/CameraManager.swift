@@ -274,7 +274,7 @@ extension CameraManager: GazePredictionDelegate {
         if gazeTracker.gazeEstimation == nil {
             self.label?.text = "nil"
         } else {
-            self.label?.text = "Values: X: \(String(describing: gazeTracker.gazeEstimation![0]))" + " Y: \(String(describing: gazeTracker.gazeEstimation![0]))"
+            self.label?.text = "Values: X: \(String(describing: gazeTracker.gazeEstimation![0]))" + " Y: \(String(describing: gazeTracker.gazeEstimation![1]))"
         }
     }
     

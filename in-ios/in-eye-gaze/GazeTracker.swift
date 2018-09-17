@@ -420,14 +420,11 @@ public class GazeTracker: FaceFinderDelegate {
         guard let data = CFDataGetBytePtr(providerData) else { return nil }
         
         for y in 0..<height {
-            print("------------------------------------")
             for x in 0..<width {
                 let offset = y*stride + x*step
                 let red: Double = Double(data[offset+rOff])/255.0
                 let green: Double = Double(data[offset+gOff])/255.0
                 let blue: Double = Double(data[offset+bOff])/255.0
-
-                print(x, y, red, green, blue)
 
                 redChannel[y * width + x] = red as NSNumber
                 greenChannel[y * width + x] = green as NSNumber
@@ -448,6 +445,14 @@ public class GazeTracker: FaceFinderDelegate {
      - Returns: An MLMultiArray containing three Double values, one for each color channel of the image.
      */
     private func estimateIlluminant(image: UIImage) -> MLMultiArray?{
+        guard let illuminant = try? MLMultiArray(shape: [3], dataType: MLMultiArrayDataType.double) else {
+            fatalError("Unexpected runtime error. MLMultiArray")
+        }
+        for i in 0...2 {
+            illuminant[i] = 1.0 as NSNumber
+        }
+        return illuminant
+        
         guard
             let cgImage = image.cgImage,
             let sourceColorSpace = cgImage.colorSpace else { return nil }
@@ -588,10 +593,7 @@ public class GazeTracker: FaceFinderDelegate {
 //            return $0
 //        }
         
-        //Create the MLMultiArray, populate it and return it
-        guard let illuminant = try? MLMultiArray(shape: [3], dataType: MLMultiArrayDataType.double) else {
-            fatalError("Unexpected runtime error. MLMultiArray")
-        }
+        //Populate it and return it
         for i in 0...2 {
             illuminant[i] = e_i[i].isNaN ? 1.0 : e_i[i] as NSNumber
         }
