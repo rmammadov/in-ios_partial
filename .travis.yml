@@ -57,9 +57,8 @@ before_script:
   - echo "${BUILD_NAME}" > "${TRAVIS_BUILD_DIR}/version.txt"
   - agvtool new-marketing-version ${BUILD_VERSION}
   - agvtool new-version -all ${TRAVIS_JOB_NUMBER}
-  - echo -e "machine github.com\n  login $CI_USER_TOKEN" >> ~/.netrc
-  - bundle exec fastlane match development --git_url https://github.com/innodem-neurosciences/code-signing.git --app_identifier com.innodemneurosciences.in-ios --verbose --readonly
-  - bundle exec fastlane match appstore --git_url https://github.com/innodem-neurosciences/code-signing.git --app_identifier com.innodemneurosciences.in-ios --verbose --readonly
+  - bundle exec fastlane match development --git_url git@github.com:innodem-neurosciences/code-signing.git --app_identifier com.innodemneurosciences.in-ios --verbose --readonly
+  - bundle exec fastlane match appstore --git_url git@github.com:innodem-neurosciences/code-signing.git --app_identifier com.innodemneurosciences.in-ios --verbose --readonly
 
 script:
   - echo "Starting script."
