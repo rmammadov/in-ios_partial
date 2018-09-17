@@ -1,0 +1,3 @@
+[submodule "in-scripts"]
+	path = in-scripts
+	url = git@github.com:innodem-neurosciences/in-scripts.git
