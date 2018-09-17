@@ -4,7 +4,7 @@
 language: objective-c
 os: osx
 osx_image: xcode10
-#podfile: $HOME/Pods/Pods.xcodeproj
+podfile: $HOME/Podfile
 xcode_workspace: in-ios.xcworkspace
 xcode_scheme: in-ios_test
 xcode_destination: platform=iOS Simulator,OS=12.0,name=iPad Pro (9.7-inch)
