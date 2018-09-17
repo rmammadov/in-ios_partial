@@ -390,6 +390,8 @@ public class GazeTracker: FaceFinderDelegate {
         
         let width = image.width
         let height = image.height
+        let stride = image.bytesPerRow
+        
         
         guard let redChannel = try? MLMultiArray(shape: [1, height as NSNumber, width as NSNumber], dataType: MLMultiArrayDataType.double) else {
             fatalError("Unexpected runtime error. MLMultiArray")
@@ -420,7 +422,7 @@ public class GazeTracker: FaceFinderDelegate {
         for y in 0..<height {
             print("------------------------------------")
             for x in 0..<width {
-                let offset = step * (y * width + x)
+                let offset = y*stride + x*step
                 let red: Double = Double(data[offset+rOff])/255.0
                 let green: Double = Double(data[offset+gOff])/255.0
                 let blue: Double = Double(data[offset+bOff])/255.0
