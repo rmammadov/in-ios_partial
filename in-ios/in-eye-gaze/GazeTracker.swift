@@ -420,14 +420,11 @@ public class GazeTracker: FaceFinderDelegate {
         guard let data = CFDataGetBytePtr(providerData) else { return nil }
         
         for y in 0..<height {
-            print("------------------------------------")
             for x in 0..<width {
                 let offset = y*stride + x*step
                 let red: Double = Double(data[offset+rOff])/255.0
                 let green: Double = Double(data[offset+gOff])/255.0
                 let blue: Double = Double(data[offset+bOff])/255.0
-
-                print(x, y, red, green, blue)
 
                 redChannel[y * width + x] = red as NSNumber
                 greenChannel[y * width + x] = green as NSNumber
