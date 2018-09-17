@@ -34,6 +34,7 @@ class CameraManager: NSObject {
     fileprivate var label: UILabel?
     fileprivate var previewLayer: UIImageView?
     fileprivate var dataOutput: AVCaptureVideoDataOutput?
+    fileprivate var ivPointer: UIImageView?
 
     open var cameraIsReady: Bool {
         get {
@@ -79,6 +80,7 @@ class CameraManager: NSObject {
         self.cameraView = cameraView // For the test purpose
         addPreviewLayer()
         addLabel();
+        addPointer();
     }
     
 }
@@ -156,6 +158,16 @@ extension CameraManager {
 
     }
     
+    fileprivate func addPointer() {
+        let image = UIImage(named: "ic_pointer.png")
+        ivPointer = UIImageView(image: image!)
+        ivPointer?.contentMode = .scaleAspectFill
+    }
+    
+    fileprivate func updatePointer(x: Double, y: Double) {
+        ivPointer?.frame = CGRect(x: x, y: x, width: 50.0, height: 55.0)
+        cameraView!.addSubview(ivPointer!)
+    }
 }
 
 
@@ -275,6 +287,7 @@ extension CameraManager: GazePredictionDelegate {
             self.label?.text = "nil"
         } else {
             self.label?.text = "Values: X: \(String(describing: gazeTracker.gazeEstimation![0]))" + " Y: \(String(describing: gazeTracker.gazeEstimation![1]))"
+            updatePointer(x: Double(truncating: gazeTracker.gazeEstimation![0]), y: Double(truncating: gazeTracker.gazeEstimation![1]))
         }
     }
     

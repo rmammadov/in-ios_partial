@@ -512,8 +512,8 @@
 		F3E19CA7211C3C3A00ADE838 /* homecontainer */ = {
 			isa = PBXGroup;
 			children = (
-				F3E19CA5211B10FF00ADE838 /* HomeContainerViewController.swift */,
 				F3E19CA9211C3CDB00ADE838 /* HomeContainerViewModel.swift */,
+				F3E19CA5211B10FF00ADE838 /* HomeContainerViewController.swift */,
 				F3E19CAB211C3CEE00ADE838 /* HomeContainerModel.swift */,
 			);
 			path = homecontainer;
