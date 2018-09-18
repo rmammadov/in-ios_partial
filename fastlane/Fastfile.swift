@@ -11,7 +11,9 @@ import Foundation
 class Fastfile: LaneFile {
 	func buildLane() {
 		desc("Build only")
-		buildIosApp(workspace: "in-ios.xcworkspace", scheme: "in-ios")
+		get_certificates
+  		get_provisioning_profile
+  		buildIosApp(workspace: "in-ios.xcworkspace", scheme: "in-ios")
 	}
 
 	func betaLane() {
