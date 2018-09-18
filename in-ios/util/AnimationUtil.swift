@@ -55,7 +55,7 @@ class AnimationUtil {
     
     static func animateLoading(imageView: UIImageView) {
         imageView.image = #imageLiteral(resourceName: "ic_circle_gradient_loading")
-        
+    
         CATransaction.begin()
         CATransaction.setCompletionBlock({
             

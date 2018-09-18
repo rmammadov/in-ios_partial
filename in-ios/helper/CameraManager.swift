@@ -159,17 +159,17 @@ extension CameraManager {
     }
     
     fileprivate func addPointer() {
-        let image = UIImage(named: "ic_pointer.png")
+        let image = UIImage(named: "ic_pointer_red")
         ivPointer = UIImageView(image: image!)
         ivPointer?.contentMode = .scaleAspectFill
     }
 
     fileprivate func setPointerActive() {
-
+        ivPointer?.image = UIImage(named: "ic_pointer_yellow")
     }
 
     fileprivate func setPointerPassive() {
-    
+        ivPointer?.image = UIImage(named: "ic_pointer_red")
     }
     
     fileprivate func updatePointer(x: Double, y: Double) {
@@ -289,26 +289,28 @@ extension CameraManager: GazePredictionDelegate {
         gazeTracker.startPredictionInBackground(scene: frame)
     }
     
-    func didUpdatePrediction() {
+    func didUpdatePrediction(status: Bool) {
         let gazeTracker: GazeTracker = self.gazeTracker!
-        if gazeTracker.gazeEstimation == nil {
+        if !status {
             self.label?.text = "nil"
-            self.isFaceDetected(status: false)
+            setPointerPassive()
         } else {
             self.label?.text = "Values: X: \(String(describing: gazeTracker.gazeEstimation![0]))" + " Y: \(String(describing: gazeTracker.gazeEstimation![1]))"
             updatePointer(x: Double(truncating: gazeTracker.gazeEstimation![0]), y: Double(truncating: gazeTracker.gazeEstimation![1]))
-            self.isFaceDetected(status: true)
+            setPointerActive()
         }
+        
+//        self.isFaceDetected(status: status)
     }
     
     func isFaceDetected(status: Bool) {
         DispatchQueue.main.async {
             if status {
-              //  self.cameraView?.layer.borderWidth = 10
-              //  self.cameraView?.layer.borderColor = UIColor.red.cgColor
+                self.cameraView?.layer.borderWidth = 10
+                self.cameraView?.layer.borderColor = UIColor.red.cgColor
             } else {
-              //  self.cameraView?.layer.borderWidth = 0
-              //  self.cameraView?.layer.borderColor = UIColor.black.cgColor
+                self.cameraView?.layer.borderWidth = 0
+                self.cameraView?.layer.borderColor = UIColor.black.cgColor
             }
         }
     }

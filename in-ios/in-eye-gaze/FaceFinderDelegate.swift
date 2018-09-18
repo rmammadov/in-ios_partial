@@ -10,5 +10,5 @@ import Foundation
 import UIKit
 
 protocol FaceFinderDelegate {
-    func didFindFaces(scene: UIImage)
+    func didFindFaces(status: Bool, scene: UIImage)
 }

@@ -184,37 +184,42 @@ public class GazeTracker: FaceFinderDelegate {
         }
     }
     
-    public func didFindFaces(scene: UIImage) {
+    public func didFindFaces(status: Bool, scene: UIImage) {
+        if !status {
+            self.predictionDelegate?.didUpdatePrediction(status: false)
+            return
+        }
+        
         getMainFace()
         let facialFeatures: MLMultiArray = self.getFacialFeatures()
         let eyes = self.getEyes(image: scene)
         guard let leftEye = eyes.leftEYe, let rightEye = eyes.rightEye else{
             self.gazeEstimation = nil
-            self.predictionDelegate?.didUpdatePrediction()
+            self.predictionDelegate?.didUpdatePrediction(status: false)
             return
         }
         
         guard let eyesImage = self.concatenateEyes(leftEye: leftEye, rightEye: rightEye) else {
             self.gazeEstimation = nil
-            self.predictionDelegate?.didUpdatePrediction()
+            self.predictionDelegate?.didUpdatePrediction(status: false)
             return
         }
 
         guard let eyeChannels = self.channels2MLMultiArray(image: eyesImage) else {
             self.gazeEstimation = nil
-            self.predictionDelegate?.didUpdatePrediction()
+            self.predictionDelegate?.didUpdatePrediction(status: false)
             return
         }
         
         guard let illuminant = self.estimateIlluminant(image: scene) else {
             self.gazeEstimation = nil
-            self.predictionDelegate?.didUpdatePrediction()
+            self.predictionDelegate?.didUpdatePrediction(status: false)
             return
         }
         
         let pred = self.predictGaze(eyesB: eyeChannels.blueChannel, eyesG: eyeChannels.greenChannel, eyesR: eyeChannels.redChannel, illuminant: illuminant, headPose: facialFeatures)
         self.gazeEstimation = pred
-        self.predictionDelegate?.didUpdatePrediction()
+        self.predictionDelegate?.didUpdatePrediction(status: true)
     }
     
     private func getMainFace() {

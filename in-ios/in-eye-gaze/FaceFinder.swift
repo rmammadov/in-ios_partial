@@ -41,17 +41,18 @@ class FaceFinder {
                 guard error == nil, let faces = faces, !faces.isEmpty else {
                     strongSelf.faces = nil
                     print("No face detected")
+                    strongSelf.didFindFaces(status: false, scene: scene)
                     return
                 }
                 strongSelf.faces = faces
-                strongSelf.didFindFaces(scene: scene)
+                strongSelf.didFindFaces(status: true, scene: scene)
             }
         } else {
             print("Face detector is nil")
         }
     }
     
-    public func didFindFaces(scene: UIImage) {
-        self.delegate?.didFindFaces(scene: scene)
+    public func didFindFaces(status: Bool, scene: UIImage) {
+        self.delegate?.didFindFaces(status: status, scene: scene)
     }
 }
