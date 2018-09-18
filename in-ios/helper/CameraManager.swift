@@ -163,6 +163,14 @@ extension CameraManager {
         ivPointer = UIImageView(image: image!)
         ivPointer?.contentMode = .scaleAspectFill
     }
+
+    fileprivate func setPointerActive() {
+
+    }
+
+    fileprivate func setPointerPassive() {
+    
+    }
     
     fileprivate func updatePointer(x: Double, y: Double) {
         print("Coordinates x: \(x)" + " y: \(y)")
@@ -282,24 +290,25 @@ extension CameraManager: GazePredictionDelegate {
     }
     
     func didUpdatePrediction() {
-        self.isFaceDetected(status: true)
         let gazeTracker: GazeTracker = self.gazeTracker!
         if gazeTracker.gazeEstimation == nil {
             self.label?.text = "nil"
+            self.isFaceDetected(status: false)
         } else {
             self.label?.text = "Values: X: \(String(describing: gazeTracker.gazeEstimation![0]))" + " Y: \(String(describing: gazeTracker.gazeEstimation![1]))"
             updatePointer(x: Double(truncating: gazeTracker.gazeEstimation![0]), y: Double(truncating: gazeTracker.gazeEstimation![1]))
+            self.isFaceDetected(status: true)
         }
     }
     
     func isFaceDetected(status: Bool) {
         DispatchQueue.main.async {
             if status {
-                self.cameraView?.layer.borderWidth = 10
-                self.cameraView?.layer.borderColor = UIColor.red.cgColor
+              //  self.cameraView?.layer.borderWidth = 10
+              //  self.cameraView?.layer.borderColor = UIColor.red.cgColor
             } else {
-                self.cameraView?.layer.borderWidth = 0
-                self.cameraView?.layer.borderColor = UIColor.black.cgColor
+              //  self.cameraView?.layer.borderWidth = 0
+              //  self.cameraView?.layer.borderColor = UIColor.black.cgColor
             }
         }
     }
