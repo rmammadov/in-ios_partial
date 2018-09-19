@@ -191,7 +191,8 @@ public class GazeTracker: FaceFinderDelegate {
         }
         
         getMainFace()
-        let facialFeatures: MLMultiArray = self.getFacialFeatures()
+        let width = scene.cgImage!.width, height = scene.cgImage!.height
+        let facialFeatures: MLMultiArray = self.getFacialFeatures(width: width, height: height)
         let eyes = self.getEyes(image: scene)
         guard let leftEye = eyes.leftEYe, let rightEye = eyes.rightEye else{
             self.gazeEstimation = nil
@@ -236,80 +237,58 @@ public class GazeTracker: FaceFinderDelegate {
         self.mainFace = tempFace
     }
     
-    public func getFacialFeatures() -> MLMultiArray {
+    public func getFacialFeatures(width: Int, height: Int) -> MLMultiArray {
         //        TODO: Clean up code, deal with missing features more gracefully
-        var features = [Double]()
+        var featuresX: [Double] = Array(repeating: 0.0, count: 8)
+        var featuresY: [Double] = Array(repeating: 0.0, count: 8)
         
         if let mouthBottom = self.mainFace?.landmark(ofType: .mouthBottom) {
-            features.append(mouthBottom.position.x.doubleValue)
-            features.append(mouthBottom.position.y.doubleValue)
-        } else {
-            features.append(0)
-            features.append(0)
+            featuresX[0] = mouthBottom.position.x.doubleValue
+            featuresY[0] = mouthBottom.position.y.doubleValue
         }
         
         if let mouthRight = self.mainFace?.landmark(ofType: .mouthRight) {
-            features.append(mouthRight.position.x.doubleValue)
-            features.append(mouthRight.position.y.doubleValue)
-        } else {
-            features.append(0)
-            features.append(0)
+            featuresX[1] = mouthRight.position.x.doubleValue
+            featuresY[1] = mouthRight.position.y.doubleValue
         }
         
         if let mouthLeft = self.mainFace?.landmark(ofType: .mouthLeft) {
-            features.append(mouthLeft.position.x.doubleValue)
-            features.append(mouthLeft.position.y.doubleValue)
-        } else {
-            features.append(0)
-            features.append(0)
+            featuresX[2] = mouthLeft.position.x.doubleValue
+            featuresY[2] = mouthLeft.position.y.doubleValue
         }
         
         if let earRight = self.mainFace?.landmark(ofType: .rightEar) {
-            features.append(earRight.position.x.doubleValue)
-            features.append(earRight.position.y.doubleValue)
-        } else {
-            features.append(0)
-            features.append(0)
+            featuresX[3] = earRight.position.x.doubleValue
+            featuresY[3] = earRight.position.y.doubleValue
         }
         
         if let earLeft = self.mainFace?.landmark(ofType: .leftEar) {
-            features.append(earLeft.position.x.doubleValue)
-            features.append(earLeft.position.y.doubleValue)
-        } else {
-            features.append(0)
-            features.append(0)
+            featuresX[4] = earLeft.position.x.doubleValue
+            featuresY[4] = earLeft.position.y.doubleValue
         }
         
         if let cheekRight = self.mainFace?.landmark(ofType: .rightCheek) {
-            features.append(cheekRight.position.x.doubleValue)
-            features.append(cheekRight.position.y.doubleValue)
-        } else {
-            features.append(0)
-            features.append(0)
+            featuresX[5] = cheekRight.position.x.doubleValue
+            featuresY[5] = cheekRight.position.y.doubleValue
         }
         
         if let cheekLeft = self.mainFace?.landmark(ofType: .leftCheek) {
-            features.append(cheekLeft.position.x.doubleValue)
-            features.append(cheekLeft.position.y.doubleValue)
-        }  else {
-            features.append(0)
-            features.append(0)
+            featuresX[6] = cheekLeft.position.x.doubleValue
+            featuresY[6] = cheekLeft.position.y.doubleValue
         }
         
         if let nose = self.mainFace?.landmark(ofType: .noseBase) {
-            features.append(nose.position.x.doubleValue)
-            features.append(nose.position.y.doubleValue)
-        } else {
-            features.append(0)
-            features.append(0)
+            featuresX[7] = nose.position.x.doubleValue
+            featuresY[7] = nose.position.y.doubleValue
         }
         
         guard let mlFeatures = try? MLMultiArray(shape:[16], dataType:MLMultiArrayDataType.double) else {
                 fatalError("Unexpected runtime error. MLMultiArray")
         }
         
-        for (index, element) in features.enumerated() {
-            mlFeatures[index] = (element/features.max()!) as NSNumber
+        for i in 0...7 {
+            mlFeatures[2*i] = (featuresX[i]/Double(width)) as NSNumber
+            mlFeatures[2*i + 1] = (featuresY[i]/Double(height)) as NSNumber
         }
         
         return mlFeatures
