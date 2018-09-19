@@ -464,15 +464,14 @@ public class GazeTracker: FaceFinderDelegate {
         
         let width = Int(Double(cgImage.width) * self.illumResizeRatio)
         let height = Int(Double(cgImage.height) * self.illumResizeRatio)
+        let stride = cgImage.bytesPerRow/cgImage.width * width
         let count = width*height
-        
-        let bytesPerRow: Int = width * cgImage.bytesPerRow/cgImage.width
         
         guard let context = CGContext(data: nil,
                                       width: width,
                                       height: height,
                                       bitsPerComponent: cgImage.bitsPerComponent,
-                                      bytesPerRow: bytesPerRow,
+                                      bytesPerRow: stride,
                                       space: sourceColorSpace,
                                       bitmapInfo: cgImage.alphaInfo.rawValue) else { return nil }
         context.draw(cgImage, in: CGRect(x: 0, y:0, width: width, height: height))
@@ -491,14 +490,26 @@ public class GazeTracker: FaceFinderDelegate {
         var greenLog: [Float] = Array<Float>(repeating: 0.0, count: count)
         var blueLog: [Float] = Array<Float>(repeating: 0.0, count: count)
         
+        var step: Int = 3, rOff: Int = 0, gOff: Int = 1, bOff: Int = 2
+        switch cgImage.alphaInfo {
+        case .alphaOnly:
+            return nil
+        case .none, .noneSkipLast, .noneSkipFirst:
+            break
+        case .last, .premultipliedLast:
+            step = 4
+        case .first, .premultipliedFirst:
+            step = 4; rOff = 1; gOff = 2; bOff = 3;
+        }
+        
         for y in 0..<height {
             for x in 0..<width {
-                let offset = 4 * (y * width + x)
+                let offset = y*stride + x*step
                 let index = y * width + x
                 
-                let red = Float(data[offset + 1])/255.0 + 1e-50
-                let green = Float(data[offset + 2])/255.0 + 1e-50
-                let blue = Float(data[offset + 2])/255.0 + 1e-50
+                let red = Float(data[offset + rOff])/255.0 + 1e-50
+                let green = Float(data[offset + gOff])/255.0 + 1e-50
+                let blue = Float(data[offset + bOff])/255.0 + 1e-50
                 
                 redChannel[index] = red
                 greenChannel[index] = green
@@ -577,7 +588,7 @@ public class GazeTracker: FaceFinderDelegate {
         var GPn: [Int] = []
         for (index, val) in EGI.enumerated() {
             if val < threshold {
-                let x = index%height3, y = index/height3
+                let x = index%width3, y = index/width3
                 GPn.append((y+4)*width + x+4)
             }
         }
@@ -591,12 +602,6 @@ public class GazeTracker: FaceFinderDelegate {
         }
         
         e_i = e_i.map {$0/e_i.max()!}
-        
-        //Catch any NaN and replace it by 1.0
-//        e_i = e_i.map {
-//            if $0.isNaN { return 1.0 }
-//            return $0
-//        }
         
         //Populate it and return it
         for i in 0...2 {
