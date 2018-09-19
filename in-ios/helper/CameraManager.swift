@@ -35,6 +35,8 @@ class CameraManager: NSObject {
     fileprivate var previewLayer: UIImageView?
     fileprivate var dataOutput: AVCaptureVideoDataOutput?
     fileprivate var ivPointer: UIImageView?
+    fileprivate var imagePointerRed: UIImage?
+    fileprivate var imagePointerYellow: UIImage?
 
     open var cameraIsReady: Bool {
         get {
@@ -159,17 +161,18 @@ extension CameraManager {
     }
     
     fileprivate func addPointer() {
-        let image = UIImage(named: "ic_pointer_red")
-        ivPointer = UIImageView(image: image!)
+        imagePointerRed = UIImage(named: "ic_pointer_red")
+        imagePointerYellow = UIImage(named: "ic_pointer_yellow")
+        ivPointer = UIImageView(image: imagePointerRed!)
         ivPointer?.contentMode = .scaleAspectFill
     }
 
     fileprivate func setPointerActive() {
-        ivPointer?.image = UIImage(named: "ic_pointer_yellow")
+        ivPointer?.image = imagePointerYellow
     }
 
     fileprivate func setPointerPassive() {
-        ivPointer?.image = UIImage(named: "ic_pointer_red")
+        ivPointer?.image = imagePointerRed
     }
     
     fileprivate func updatePointer(x: Double, y: Double) {
