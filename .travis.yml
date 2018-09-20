@@ -50,7 +50,7 @@ before_install:
 install:
   - echo "Starting install."
   - bundle install
-  - bundle exec pod install
+  - bundle exec pod install --repo-update
 
 before_script:
   - echo "Starting before_script."
@@ -60,8 +60,15 @@ before_script:
       agvtool new-marketing-version ${BUILD_VERSION}
     fi
   - agvtool new-version -all ${TRAVIS_JOB_NUMBER}
+
+  - security create-keychain -p travis ios-build.keychain
+  - security default-keychain -s ios-build.keychain
+  - security unlock-keychain -p travis ios-build.keychain
+
   - bundle exec fastlane match development --verbose --readonly
   - bundle exec fastlane match appstore --verbose --readonly
+
+  - security set-key-partition-list -S apple-tool:,apple: -s -k travis ios-build.keychain
 
 script:
   - echo "Starting script."
