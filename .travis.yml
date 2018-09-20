@@ -50,7 +50,7 @@ before_install:
 install:
   - echo "Starting install."
   - bundle install
-  - bundle exec pod install
+  - bundle exec pod install --repo-update
 
 before_script:
   - echo "Starting before_script."
