@@ -19,6 +19,7 @@ enum DataStatus: Int {
 class DataManager {
     
     static var status = Variable<Int>(0)
+    static let disposeBag = DisposeBag()
     
     static fileprivate var menuItems: MenuItems?
     static fileprivate var inputScreens: InputScreens?
@@ -37,7 +38,7 @@ class DataManager {
                     self.status.value = DataStatus.dataLoadingCompleted.rawValue
                 }
             }
-        })
+        }).disposed(by: disposeBag)
     }
     
     static func loadRequiredData() {

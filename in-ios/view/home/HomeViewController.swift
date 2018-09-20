@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import RxSwift
 
 private let SEGUE_IDENTIFIER_MENU = "segueMenu"
 
@@ -27,6 +28,7 @@ class HomeViewController: BaseViewController {
     @IBOutlet weak var containerViewSubMenu: UIView!
     
     let viewModel = HomeViewModel()
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,7 +88,7 @@ extension HomeViewController {
                     self.updateUi()
                 }
             }
-        })
+        }).disposed(by: disposeBag)
     }
     
     func updateUi() {

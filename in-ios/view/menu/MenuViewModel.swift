@@ -27,6 +27,7 @@ class MenuViewModel: BaseViewModel {
     
     var status = Variable<Int>(0)
     var statusInput = Variable<Int>(0)
+    let disposeBag = DisposeBag()
     
     fileprivate var parentMenuItem: MenuItem?
     fileprivate var parentVC: HomeViewController?
@@ -44,7 +45,7 @@ class MenuViewModel: BaseViewModel {
                 self.setParentMenuItem(item: self.parentVC?.viewModel.getTopMenuItemSelected())
                 self.loadInitalMenuItems()
             }
-        })
+        }).disposed(by: disposeBag)
     }
     
     func setParentMenuItem(item: MenuItem?) {
