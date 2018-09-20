@@ -41,6 +41,7 @@ before_install:
   - echo "Starting before_install."
   - . in-scripts/travis-functions.sh
   - before_install short
+  - security set-key-partition-list -S apple-tool:,apple: -s -k $PASS ~/Library/Keychains/login.keychain-db
 #  - brew update
   - brew install git-lfs
   - git lfs install
