@@ -191,7 +191,8 @@ public class GazeTracker: FaceFinderDelegate {
         }
         
         getMainFace()
-        let facialFeatures: MLMultiArray = self.getFacialFeatures()
+        let width = scene.cgImage!.width, height = scene.cgImage!.height
+        let facialFeatures: MLMultiArray = self.getFacialFeatures(width: width, height: height)
         let eyes = self.getEyes(image: scene)
         guard let leftEye = eyes.leftEYe, let rightEye = eyes.rightEye else{
             self.gazeEstimation = nil
@@ -236,80 +237,58 @@ public class GazeTracker: FaceFinderDelegate {
         self.mainFace = tempFace
     }
     
-    public func getFacialFeatures() -> MLMultiArray {
+    public func getFacialFeatures(width: Int, height: Int) -> MLMultiArray {
         //        TODO: Clean up code, deal with missing features more gracefully
-        var features = [Double]()
+        var featuresX: [Double] = Array(repeating: 0.0, count: 8)
+        var featuresY: [Double] = Array(repeating: 0.0, count: 8)
         
         if let mouthBottom = self.mainFace?.landmark(ofType: .mouthBottom) {
-            features.append(mouthBottom.position.x.doubleValue)
-            features.append(mouthBottom.position.y.doubleValue)
-        } else {
-            features.append(0)
-            features.append(0)
+            featuresX[0] = mouthBottom.position.x.doubleValue
+            featuresY[0] = mouthBottom.position.y.doubleValue
         }
         
         if let mouthRight = self.mainFace?.landmark(ofType: .mouthRight) {
-            features.append(mouthRight.position.x.doubleValue)
-            features.append(mouthRight.position.y.doubleValue)
-        } else {
-            features.append(0)
-            features.append(0)
+            featuresX[1] = mouthRight.position.x.doubleValue
+            featuresY[1] = mouthRight.position.y.doubleValue
         }
         
         if let mouthLeft = self.mainFace?.landmark(ofType: .mouthLeft) {
-            features.append(mouthLeft.position.x.doubleValue)
-            features.append(mouthLeft.position.y.doubleValue)
-        } else {
-            features.append(0)
-            features.append(0)
+            featuresX[2] = mouthLeft.position.x.doubleValue
+            featuresY[2] = mouthLeft.position.y.doubleValue
         }
         
         if let earRight = self.mainFace?.landmark(ofType: .rightEar) {
-            features.append(earRight.position.x.doubleValue)
-            features.append(earRight.position.y.doubleValue)
-        } else {
-            features.append(0)
-            features.append(0)
+            featuresX[3] = earRight.position.x.doubleValue
+            featuresY[3] = earRight.position.y.doubleValue
         }
         
         if let earLeft = self.mainFace?.landmark(ofType: .leftEar) {
-            features.append(earLeft.position.x.doubleValue)
-            features.append(earLeft.position.y.doubleValue)
-        } else {
-            features.append(0)
-            features.append(0)
+            featuresX[4] = earLeft.position.x.doubleValue
+            featuresY[4] = earLeft.position.y.doubleValue
         }
         
         if let cheekRight = self.mainFace?.landmark(ofType: .rightCheek) {
-            features.append(cheekRight.position.x.doubleValue)
-            features.append(cheekRight.position.y.doubleValue)
-        } else {
-            features.append(0)
-            features.append(0)
+            featuresX[5] = cheekRight.position.x.doubleValue
+            featuresY[5] = cheekRight.position.y.doubleValue
         }
         
         if let cheekLeft = self.mainFace?.landmark(ofType: .leftCheek) {
-            features.append(cheekLeft.position.x.doubleValue)
-            features.append(cheekLeft.position.y.doubleValue)
-        }  else {
-            features.append(0)
-            features.append(0)
+            featuresX[6] = cheekLeft.position.x.doubleValue
+            featuresY[6] = cheekLeft.position.y.doubleValue
         }
         
         if let nose = self.mainFace?.landmark(ofType: .noseBase) {
-            features.append(nose.position.x.doubleValue)
-            features.append(nose.position.y.doubleValue)
-        } else {
-            features.append(0)
-            features.append(0)
+            featuresX[7] = nose.position.x.doubleValue
+            featuresY[7] = nose.position.y.doubleValue
         }
         
         guard let mlFeatures = try? MLMultiArray(shape:[16], dataType:MLMultiArrayDataType.double) else {
                 fatalError("Unexpected runtime error. MLMultiArray")
         }
         
-        for (index, element) in features.enumerated() {
-            mlFeatures[index] = (element/features.max()!) as NSNumber
+        for i in 0...7 {
+            mlFeatures[2*i] = (featuresX[i]/Double(width)) as NSNumber
+            mlFeatures[2*i + 1] = (featuresY[i]/Double(height)) as NSNumber
         }
         
         return mlFeatures
@@ -464,15 +443,14 @@ public class GazeTracker: FaceFinderDelegate {
         
         let width = Int(Double(cgImage.width) * self.illumResizeRatio)
         let height = Int(Double(cgImage.height) * self.illumResizeRatio)
+        let stride = cgImage.bytesPerRow/cgImage.width * width
         let count = width*height
-        
-        let bytesPerRow: Int = width * cgImage.bytesPerRow/cgImage.width
         
         guard let context = CGContext(data: nil,
                                       width: width,
                                       height: height,
                                       bitsPerComponent: cgImage.bitsPerComponent,
-                                      bytesPerRow: bytesPerRow,
+                                      bytesPerRow: stride,
                                       space: sourceColorSpace,
                                       bitmapInfo: cgImage.alphaInfo.rawValue) else { return nil }
         context.draw(cgImage, in: CGRect(x: 0, y:0, width: width, height: height))
@@ -491,14 +469,26 @@ public class GazeTracker: FaceFinderDelegate {
         var greenLog: [Float] = Array<Float>(repeating: 0.0, count: count)
         var blueLog: [Float] = Array<Float>(repeating: 0.0, count: count)
         
+        var step: Int = 3, rOff: Int = 0, gOff: Int = 1, bOff: Int = 2
+        switch cgImage.alphaInfo {
+        case .alphaOnly:
+            return nil
+        case .none, .noneSkipLast, .noneSkipFirst:
+            break
+        case .last, .premultipliedLast:
+            step = 4
+        case .first, .premultipliedFirst:
+            step = 4; rOff = 1; gOff = 2; bOff = 3;
+        }
+        
         for y in 0..<height {
             for x in 0..<width {
-                let offset = 4 * (y * width + x)
+                let offset = y*stride + x*step
                 let index = y * width + x
                 
-                let red = Float(data[offset + 1])/255.0 + 1e-50
-                let green = Float(data[offset + 2])/255.0 + 1e-50
-                let blue = Float(data[offset + 2])/255.0 + 1e-50
+                let red = Float(data[offset + rOff])/255.0 + 1e-50
+                let green = Float(data[offset + gOff])/255.0 + 1e-50
+                let blue = Float(data[offset + bOff])/255.0 + 1e-50
                 
                 redChannel[index] = red
                 greenChannel[index] = green
@@ -577,7 +567,7 @@ public class GazeTracker: FaceFinderDelegate {
         var GPn: [Int] = []
         for (index, val) in EGI.enumerated() {
             if val < threshold {
-                let x = index%height3, y = index/height3
+                let x = index%width3, y = index/width3
                 GPn.append((y+4)*width + x+4)
             }
         }
@@ -591,12 +581,6 @@ public class GazeTracker: FaceFinderDelegate {
         }
         
         e_i = e_i.map {$0/e_i.max()!}
-        
-        //Catch any NaN and replace it by 1.0
-//        e_i = e_i.map {
-//            if $0.isNaN { return 1.0 }
-//            return $0
-//        }
         
         //Populate it and return it
         for i in 0...2 {
