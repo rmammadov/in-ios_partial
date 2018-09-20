@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 private let SEGUE_IDENTIFIER_SUB_MENU = "segueSubMenu"
 private let SEGUE_IDENTIFIER_INPUT = "segueInputA"
@@ -21,6 +22,7 @@ class MenuViewController: BaseViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     let viewModel = MenuViewModel()
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,31 +88,32 @@ extension MenuViewController {
             DispatchQueue.main.async {
                 if self.viewModel.status.value == MenuStatus.secondPhaseLoaded.rawValue {
                     self.performSegue(withIdentifier: SEGUE_IDENTIFIER_SUB_MENU, sender: self)
-                    AnimationUtil.cancelMenuSelection(imageView: self.getCellForIndexPath(indexPath: self.viewModel.getSelection()).ivStatusIcon)
+                    guard let cell = self.getCellForIndexPath(indexPath: self.viewModel.getSelection()) else { return }
+                    AnimationUtil.cancelMenuSelection(imageView: cell.ivStatusIcon)
                 } else {
                     // Dissmis all view controllers which overlapping main view
                     self.navigationController?.popToRootViewController(animated: true)
                     self.collectionView.reloadData()
                 }
             }
-        })
+        }).disposed(by: disposeBag)
         
         self.viewModel.statusInput.asObservable().subscribe(onNext: {
             event in
             DispatchQueue.main.async {
                 if self.viewModel.statusInput.value == InputScreenId.inputScreen0.rawValue {
                     self.performSegue(withIdentifier: SEGUE_IDENTIFIER_INPUT, sender: self)
-                    AnimationUtil.cancelMenuSelection(imageView: self.getCellForIndexPath(indexPath: self.viewModel.getSelection()).ivStatusIcon)
+                    AnimationUtil.cancelMenuSelection(imageView: self.getCellForIndexPath(indexPath: self.viewModel.getSelection())!.ivStatusIcon)
                 }
             }
-        })
+        }).disposed(by: disposeBag)
         
         AnimationUtil.status.asObservable().subscribe(onNext: {
             event in
             if AnimationUtil.status.value == AnimationStatus.completed.rawValue && AnimationUtil.getTag() == MenuViewController.TAG {
                 self.viewModel.onItemLoadRequest(indexPath: self.viewModel.getSelection())
             }
-        })
+        }).disposed(by: disposeBag)
     }
     
     func getParentViewController() -> HomeViewController {
@@ -151,11 +154,12 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.viewModel.setSelection(indexPath: indexPath)
-        AnimationUtil.animateMenuSelection(imageView: self.getCellForIndexPath(indexPath: indexPath).ivStatusIcon, fingerTouch: true, tag: MenuViewController.TAG)
+        guard let cell = getCellForIndexPath(indexPath: indexPath) else { return }
+        AnimationUtil.animateMenuSelection(imageView: cell.ivStatusIcon, fingerTouch: true, tag: MenuViewController.TAG)
     }
     
-    func getCellForIndexPath(indexPath: IndexPath) -> MenuItemCollectionViewCell {
-        let cell: MenuItemCollectionViewCell = self.collectionView.cellForItem(at: indexPath) as! MenuItemCollectionViewCell
+    func getCellForIndexPath(indexPath: IndexPath) -> MenuItemCollectionViewCell? {
+        guard let cell: MenuItemCollectionViewCell = self.collectionView.cellForItem(at: indexPath) as? MenuItemCollectionViewCell else { return nil}
         
         return cell
     }

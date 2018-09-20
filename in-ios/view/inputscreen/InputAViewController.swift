@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AVKit
 import RxSwift
 
 private let nibMenuItem = "MenuItemCollectionViewCell"
@@ -28,7 +27,7 @@ class InputAViewController: BaseViewController {
     
     let viewModel = InputAViewModel()
     let disposeBag = DisposeBag()
-    
+
     var page = 0
 
     override func viewDidLoad() {
@@ -173,7 +172,8 @@ extension InputAViewController {
             event in
             if self?.viewModel.status.value == InputAStatus.loaded.rawValue {
                 DispatchQueue.main.async {
-                    AnimationUtil.cancelMenuSelection(imageView: self!.getCellForIndexPath(indexPath: (self?.viewModel.getSelection())!).ivStatusIcon)
+                    guard let cell = self?.getCellForIndexPath(indexPath: ((self?.viewModel.getSelection())!)) else { return }
+                    AnimationUtil.cancelMenuSelection(imageView: cell.ivStatusIcon)
                     self?.updateUi()
                 }
             }
@@ -228,7 +228,8 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.viewModel.setSelection(indexPath: indexPath)
-        AnimationUtil.animateMenuSelection(imageView: self.getCellForIndexPath(indexPath: indexPath).ivStatusIcon, fingerTouch: true, tag: InputAViewController.TAG)
+        guard let cell = self.getCellForIndexPath(indexPath: indexPath) else { return }
+        AnimationUtil.animateMenuSelection(imageView: cell.ivStatusIcon, fingerTouch: true, tag: InputAViewController.TAG)
         
 //        let speechSynthesizer = AVSpeechSynthesizer()
         self.viewModel.setItem(index: indexPath.row)
@@ -245,8 +246,8 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
 //        updateUi()
     }
     
-    func getCellForIndexPath(indexPath: IndexPath) -> MenuItemCollectionViewCell {
-        let cell: MenuItemCollectionViewCell = self.collectionView.cellForItem(at: indexPath) as! MenuItemCollectionViewCell
+    func getCellForIndexPath(indexPath: IndexPath) -> MenuItemCollectionViewCell? {
+        guard let cell: MenuItemCollectionViewCell = self.collectionView.cellForItem(at: indexPath) as? MenuItemCollectionViewCell else { return nil}
         
         return cell
     }

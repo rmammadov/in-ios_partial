@@ -22,6 +22,7 @@ class SubMenuViewController: BaseViewController {
     @IBOutlet weak var btnSpeak: UIButton!
     
     let viewModel = SubMenuViewModel()
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,7 +89,7 @@ extension SubMenuViewController {
                     self.updateUi()
                 }
             }
-        })
+        }).disposed(by: disposeBag)
     }
 }
 
@@ -122,13 +123,13 @@ extension SubMenuViewController: UICollectionViewDelegate, UICollectionViewDataS
     // MARK: UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        AnimationUtil.cancelMenuSelection(imageView: self.getCellForIndexPath(indexPath: viewModel.getSelection()).ivStatusIcon)
-        AnimationUtil.animateMenuSelection(imageView: self.getCellForIndexPath(indexPath: indexPath).ivStatusIcon, fingerTouch: true, tag: SubMenuViewController.TAG)
+        AnimationUtil.cancelMenuSelection(imageView: self.getCellForIndexPath(indexPath: viewModel.getSelection())!.ivStatusIcon)
+        AnimationUtil.animateMenuSelection(imageView: self.getCellForIndexPath(indexPath: indexPath)!.ivStatusIcon, fingerTouch: true, tag: SubMenuViewController.TAG)
         self.viewModel.setSelection(indexPath: indexPath)
     }
     
-    func getCellForIndexPath(indexPath: IndexPath) -> MenuItemCollectionViewCell {
-        let cell: MenuItemCollectionViewCell = self.collectionView.cellForItem(at: indexPath) as! MenuItemCollectionViewCell
+    func getCellForIndexPath(indexPath: IndexPath) -> MenuItemCollectionViewCell? {
+        guard let cell: MenuItemCollectionViewCell = self.collectionView.cellForItem(at: indexPath) as? MenuItemCollectionViewCell else { return nil}
         
         return cell
     }

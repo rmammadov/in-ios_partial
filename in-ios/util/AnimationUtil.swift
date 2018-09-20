@@ -19,7 +19,8 @@ class AnimationUtil {
     static var status = Variable<Int>(0)
     static var tag: String = " "
     
-    static func animateMenuSelection(imageView: UIImageView, fingerTouch: Bool, tag: String) {
+    static func animateMenuSelection(imageView: UIImageView?, fingerTouch: Bool, tag: String) {
+        guard let imageView = imageView else { return }
         imageView.image = #imageLiteral(resourceName: "ic_circle_gradient_loading")
         self.tag = tag
         if fingerTouch {
