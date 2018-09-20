@@ -11,10 +11,8 @@ import Foundation
 class Fastfile: LaneFile {
 	func buildLane() {
 		desc("Build only")
-		get_certificates
-  		get_provisioning_profile
-        syncCodeSigning(gitUrl: "git@github.com:innodem-neurosciences/code-signing.git", appIdentifier: ["com.innodemneurosciences.in-ios"], username: "dev@innodemneurosciences.com")
-  		//buildIosApp(workspace: "in-ios.xcworkspace", scheme: "in-ios", )
+        println(message: "--- executing the buildlane ---")
+  		buildIosApp(workspace: "in-ios.xcworkspace", scheme: "in-ios" )
 	}
 
 	func betaLane() {
