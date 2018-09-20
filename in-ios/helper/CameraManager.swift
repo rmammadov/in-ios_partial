@@ -288,7 +288,7 @@ extension CameraManager: GazePredictionDelegate {
     }
     
     func predicate(frame: UIImage) {
-        let gazeTracker: GazeTracker = self.gazeTracker!
+        guard let gazeTracker = gazeTracker else { return }
         gazeTracker.startPredictionInBackground(scene: frame)
     }
     
@@ -299,7 +299,8 @@ extension CameraManager: GazePredictionDelegate {
             setPointerPassive()
         } else {
             self.label?.text = "Values: X: \(String(describing: gazeTracker.gazeEstimation![0]))" + " Y: \(String(describing: gazeTracker.gazeEstimation![1]))"
-            updatePointer(x: Double(truncating: gazeTracker.gazeEstimation![0]), y: Double(truncating: gazeTracker.gazeEstimation![1]))
+            let coordinates = gazeTracker.cm2pixels(gazeX: gazeTracker.gazeEstimation?[0] as! Double, gazeY: gazeTracker.gazeEstimation?[1] as! Double, camX: 0, camY: 12.0, orientation: .portrait)
+            updatePointer(x: coordinates.gazeX, y: coordinates.gazeY)
             setPointerActive()
         }
         

@@ -111,32 +111,32 @@ public class GazeTracker: FaceFinderDelegate {
      - Parameter camY: the vertical position of the camera relative to the center of the device when in portrait mode, in centimeters.
      - Parameter orientation: The current orientation of the device.
      */
-    func cm2pixels(gazeX: Double, gazeY: Double, camX: Double, camY: Double, orientation: UIDeviceOrientation) -> (gazeX: Int, gazeY: Int) {
+    func cm2pixels(gazeX: Double, gazeY: Double, camX: Double, camY: Double, orientation: UIDeviceOrientation) -> (gazeX: Double, gazeY: Double) {
         
         var gazeXFromCenter: Double = 0, gazeYFromCenter: Double = 0 //Distance of gaze from center in centimenters
-        var pixelsX: Int = 0, pixelsY: Int = 0 //Distance of gaze from center in pixels
+        var pixelsX: Double = 0, pixelsY: Double = 0 //Distance of gaze from center in pixels
         
         switch orientation {
         case .portraitUpsideDown:
             gazeXFromCenter = gazeX - camX
             gazeYFromCenter = gazeY - camY
-            pixelsX = Int(gazeXFromCenter * self.PPCM[0])
-            pixelsY = Int(gazeYFromCenter * self.PPCM[1])
+            pixelsX = Double(gazeXFromCenter * self.PPCM[0])
+            pixelsY = Double(gazeYFromCenter * self.PPCM[1])
         case .landscapeLeft:
             gazeXFromCenter = gazeX - camY
             gazeYFromCenter = gazeY + camX
-            pixelsX = Int(gazeXFromCenter * self.PPCM[1])
-            pixelsY = Int(gazeYFromCenter * self.PPCM[0])
+            pixelsX = Double(gazeXFromCenter * self.PPCM[1])
+            pixelsY = Double(gazeYFromCenter * self.PPCM[0])
         case .landscapeRight:
             gazeXFromCenter = gazeX + camY
             gazeYFromCenter = gazeY - camX
-            pixelsX = Int(gazeXFromCenter * self.PPCM[1])
-            pixelsY = Int(gazeYFromCenter * self.PPCM[0])
+            pixelsX = Double(gazeXFromCenter * self.PPCM[1])
+            pixelsY = Double(gazeYFromCenter * self.PPCM[0])
         default:
             gazeXFromCenter = gazeX + camX
             gazeYFromCenter = gazeY + camY
-            pixelsX = Int(gazeXFromCenter * self.PPCM[0])
-            pixelsY = Int(gazeYFromCenter * self.PPCM[1])
+            pixelsX = Double(gazeXFromCenter * self.PPCM[0])
+            pixelsY = Double(gazeYFromCenter * self.PPCM[1])
         }
         
         return (pixelsX, pixelsY)
