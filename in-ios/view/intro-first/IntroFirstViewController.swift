@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 private let SEGUE_IDENTIFIER_SHOW_NAME_INPUT = "showNameSurnameInput"
 
