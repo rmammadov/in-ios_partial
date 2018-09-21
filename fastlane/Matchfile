@@ -3,7 +3,8 @@ team_id("954DRPZZ57")
 
 app_identifier(["com.innodemneurosciences.in-ios"])
 username("dev@innodemneurosciences.com") # Your Apple Developer Portal username
-
+keychain_name("ios-build.keychain")
+keychain_password("travis")
 
 # For all available options run `fastlane match --help`
 # Remove the # in the beginning of the line to enable the other options
