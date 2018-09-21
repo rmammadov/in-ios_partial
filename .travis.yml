@@ -65,6 +65,7 @@ before_script:
   - security default-keychain -s ios-build.keychain
   - security unlock-keychain -p travis ios-build.keychain
 
+  - bundle exec fastlane match development --verbose --readonly
   - bundle exec fastlane match appstore --verbose --readonly
 
   - 'security set-key-partition-list -S apple-tool:,apple: -s -k travis ios-build.keychain'

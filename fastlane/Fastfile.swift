@@ -11,12 +11,11 @@ import Foundation
 class Fastfile: LaneFile {
 	func buildLane() {
 		desc("Build only")
-  		buildIosApp(workspace: "in-ios.xcworkspace", scheme: "in-ios" )
+  		buildIosApp(workspace: "in-ios.xcworkspace", scheme: "in-ios", configuration: "release", codesigningIdentity: "match AppStore com.innodemneurosciences.in-ios" )
 	}
 
 	func betaLane() {
 		desc("Push a new beta build to TestFlight")
-		buildIosApp(workspace: "in-ios.xcworkspace", scheme: "in-ios")
-		uploadToTestflight(username: "dev@innodemneurosciences.com")
+          buildIosApp(workspace: "in-ios.xcworkspace", scheme: "in-ios", configuration: "Release" )
 	}
 }
