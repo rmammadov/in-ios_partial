@@ -61,9 +61,9 @@ before_script:
     fi
   - agvtool new-version -all ${TRAVIS_JOB_NUMBER}
 
-  - security delete-keychain ios-build.keychain
   - security create-keychain -p travis ios-build.keychain
   - security default-keychain -s ios-build.keychain
+  - security set-keychain-settings -l -u -t 3600 ios-build.keychain
   - security unlock-keychain -p travis ios-build.keychain
 
   - bundle exec fastlane match development --verbose --readonly
