@@ -909,6 +909,18 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rMP-0r-gth">
+                                <rect key="frame" x="428" y="556" width="256" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="EDd-aA-Fbj"/>
+                                    <constraint firstAttribute="width" constant="256" id="SIA-zJ-dIX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
+                                <state key="normal" title="Try Again" backgroundImage="ic_btn_get_started_enabled"/>
+                                <connections>
+                                    <action selector="onClickBtnTryAgain:" destination="aOp-Hy-hFa" eventType="touchUpInside" id="8rI-KA-nfp"/>
+                                </connections>
+                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I3H-1M-tyc">
                                 <rect key="frame" x="540" y="411" width="32" height="32"/>
                                 <constraints>
@@ -925,13 +937,16 @@
                             <constraint firstItem="BEl-97-I5p" firstAttribute="centerX" secondItem="mEf-iJ-htT" secondAttribute="centerX" id="DVd-fQ-fHo"/>
                             <constraint firstItem="uXg-sW-efy" firstAttribute="centerY" secondItem="mEf-iJ-htT" secondAttribute="centerY" id="F7L-Y9-YZB"/>
                             <constraint firstItem="I3H-1M-tyc" firstAttribute="centerY" secondItem="uXg-sW-efy" secondAttribute="centerY" id="K6G-tv-Pod"/>
+                            <constraint firstItem="rMP-0r-gth" firstAttribute="top" secondItem="BEl-97-I5p" secondAttribute="bottom" constant="64" id="Pxs-7x-nPs"/>
                             <constraint firstItem="BEl-97-I5p" firstAttribute="top" secondItem="uXg-sW-efy" secondAttribute="bottom" constant="16" id="bXF-BN-yPY"/>
+                            <constraint firstItem="rMP-0r-gth" firstAttribute="centerX" secondItem="mEf-iJ-htT" secondAttribute="centerX" id="rUN-35-Ymj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mEf-iJ-htT"/>
                     </view>
                     <navigationItem key="navigationItem" id="9RX-CS-Ii8"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="btnTryAgain" destination="rMP-0r-gth" id="MYa-lG-Uay"/>
                         <outlet property="ivProgressbar" destination="uXg-sW-efy" id="ueh-Tr-4YT"/>
                         <outlet property="ivProgressbarContent" destination="I3H-1M-tyc" id="i8D-HG-jdk"/>
                         <outlet property="labelStatus" destination="BEl-97-I5p" id="p9f-vF-b7K"/>

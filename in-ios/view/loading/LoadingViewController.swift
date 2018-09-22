@@ -17,6 +17,7 @@ class LoadingViewController: BaseViewController {
     @IBOutlet weak var ivProgressbar: UIImageView!
     @IBOutlet weak var ivProgressbarContent: UIImageView!
     @IBOutlet weak var labelStatus: UILabel!
+    @IBOutlet weak var btnTryAgain: UIButton!
     
     let viewModel = LoadingViewModel()
     let disposeBag = DisposeBag()
@@ -44,6 +45,10 @@ class LoadingViewController: BaseViewController {
     }
     */
 
+    @IBAction func onClickBtnTryAgain(_ sender: Any) {
+        self.viewModel.requestData()
+    }
+    
 }
 
 extension LoadingViewController {
@@ -74,12 +79,14 @@ extension LoadingViewController {
                     self.ivProgressbar.image = UIImage(named: "ic_circle_gradient_fill")
                     self.ivProgressbarContent.image = UIImage(named: "ic_no_internet")
                     self.labelStatus.text = "No internet connection !"
+                    self.btnTryAgain.isHidden = false
                 
                 case LoadingStatus.failed.rawValue:
                     AnimationUtil.animateLoading(imageView: self.ivProgressbar)
                     self.ivProgressbar.image = UIImage(named: "ic_circle_gradient_fill")
                     self.ivProgressbarContent.image = UIImage(named: "ic_server_error")
                     self.labelStatus.text = "Failed to connect to the server !"
+                    self.btnTryAgain.isHidden = false
                 
                 case LoadingStatus.completed.rawValue:
                     self.showIntro()
@@ -87,7 +94,8 @@ extension LoadingViewController {
                 default:
                     self.ivProgressbarContent.image = nil
                     AnimationUtil.animateLoading(imageView: self.ivProgressbar)
-                self.labelStatus.text = "Loading content..."
+                    self.labelStatus.text = "Loading content..."
+                    self.btnTryAgain.isHidden = true
             }
         }
     }
