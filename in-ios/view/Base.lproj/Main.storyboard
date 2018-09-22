@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aOp-Hy-hFa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aOp-Hy-hFa">
     <device id="ipad10_5" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -909,13 +909,22 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I3H-1M-tyc">
+                                <rect key="frame" x="540" y="411" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="I3H-1M-tyc" secondAttribute="height" multiplier="1:1" id="tIN-w4-slB"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="uXg-sW-efy" firstAttribute="centerX" secondItem="mEf-iJ-htT" secondAttribute="centerX" id="4GL-vG-Pza"/>
+                            <constraint firstItem="I3H-1M-tyc" firstAttribute="width" secondItem="uXg-sW-efy" secondAttribute="width" multiplier="0.5" id="8zM-xr-l8o"/>
+                            <constraint firstItem="I3H-1M-tyc" firstAttribute="centerX" secondItem="uXg-sW-efy" secondAttribute="centerX" id="BGf-do-M1v"/>
                             <constraint firstItem="BEl-97-I5p" firstAttribute="centerX" secondItem="mEf-iJ-htT" secondAttribute="centerX" id="DVd-fQ-fHo"/>
                             <constraint firstItem="uXg-sW-efy" firstAttribute="centerY" secondItem="mEf-iJ-htT" secondAttribute="centerY" id="F7L-Y9-YZB"/>
+                            <constraint firstItem="I3H-1M-tyc" firstAttribute="centerY" secondItem="uXg-sW-efy" secondAttribute="centerY" id="K6G-tv-Pod"/>
                             <constraint firstItem="BEl-97-I5p" firstAttribute="top" secondItem="uXg-sW-efy" secondAttribute="bottom" constant="16" id="bXF-BN-yPY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mEf-iJ-htT"/>
@@ -924,13 +933,14 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="ivProgressbar" destination="uXg-sW-efy" id="ueh-Tr-4YT"/>
+                        <outlet property="ivProgressbarContent" destination="I3H-1M-tyc" id="i8D-HG-jdk"/>
                         <outlet property="labelStatus" destination="BEl-97-I5p" id="p9f-vF-b7K"/>
                         <segue destination="3Au-hN-HZc" kind="presentation" identifier="segueIntro" id="nXY-dm-Ivv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vev-Eu-snY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2086" y="124"/>
+            <point key="canvasLocation" x="-2086.5107913669067" y="123.74100719424462"/>
         </scene>
     </scenes>
     <resources>

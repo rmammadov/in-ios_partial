@@ -11,9 +11,10 @@ import RxSwift
 
 enum DataStatus: Int {
     case notLoaded = 0
-    case menuItemsLoaded = 1
-    case inputScreensLoaded = 2
-    case dataLoadingCompleted = 3
+    case dataLoadingFailed = 1
+    case menuItemsLoaded = 2
+    case inputScreensLoaded = 3
+    case dataLoadingCompleted = 4
 }
 
 class DataManager {
@@ -28,7 +29,7 @@ class DataManager {
     static func setSubscribers() {
         self.requestHandler.status.asObservable().subscribe(onNext: {
             event in
-            if self.requestHandler.status.value == RequestStatus.requestCompleted.rawValue {
+            if self.requestHandler.status.value == RequestStatus.completed.rawValue {
                 if self.requestHandler.getMenuItems().count != 0 && self.status.value == DataStatus.notLoaded.rawValue {
                     self.menuItems = MenuItems(items: self.requestHandler.getMenuItems())
                     self.loadInputScreens()
@@ -37,6 +38,8 @@ class DataManager {
                     self.inputScreens = InputScreens(screens: self.requestHandler.getInputScreens())
                     self.status.value = DataStatus.dataLoadingCompleted.rawValue
                 }
+            } else if self.requestHandler.status.value == RequestStatus.failed.rawValue {
+                self.status.value = DataStatus.dataLoadingFailed.rawValue
             }
         }).disposed(by: disposeBag)
     }

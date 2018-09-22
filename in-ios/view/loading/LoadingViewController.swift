@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 private let SEGUE_IDENTIFIER_INTRO = "segueIntro"
 private let SEGUE_IDENTIFIER_HOME = "segueHome"
@@ -14,9 +15,11 @@ private let SEGUE_IDENTIFIER_HOME = "segueHome"
 class LoadingViewController: BaseViewController {
 
     @IBOutlet weak var ivProgressbar: UIImageView!
+    @IBOutlet weak var ivProgressbarContent: UIImageView!
     @IBOutlet weak var labelStatus: UILabel!
     
     let viewModel = LoadingViewModel()
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +50,7 @@ extension LoadingViewController {
     
     func setUi() {
         self.setViewModel()
-        self.setLoadingScreen()
+        self.setLoadingScreenStatus()
         self.setSubscribers()
     }
     
@@ -59,19 +62,35 @@ extension LoadingViewController {
     func setSubscribers() {
         self.viewModel.status.asObservable().subscribe(onNext: {
             event in
-            if self.viewModel.status.value == LoadingStatus.completed.rawValue {
-                self.showIntro()
-            }
-        })
+            self.setLoadingScreenStatus()
+        }).disposed(by: disposeBag)
     }
     
-    func setLoadingScreen() {
+    func setLoadingScreenStatus() {
         DispatchQueue.main.async {
-            self.labelStatus.text = "Loading content..."
-            AnimationUtil.animateLoading(imageView: self.ivProgressbar)
+            switch self.viewModel.status.value {
+                case LoadingStatus.noInternetConnection.rawValue:
+                    AnimationUtil.animateLoading(imageView: self.ivProgressbar)
+                    self.ivProgressbar.image = UIImage(named: "ic_circle_gradient_fill")
+                    self.ivProgressbarContent.image = UIImage(named: "ic_no_internet")
+                    self.labelStatus.text = "No internet connection !"
+                
+                case LoadingStatus.failed.rawValue:
+                    AnimationUtil.animateLoading(imageView: self.ivProgressbar)
+                    self.ivProgressbar.image = UIImage(named: "ic_circle_gradient_fill")
+                    self.ivProgressbarContent.image = UIImage(named: "ic_server_error")
+                    self.labelStatus.text = "Failed to connect to the server !"
+                
+                case LoadingStatus.completed.rawValue:
+                    self.showIntro()
+                
+                default:
+                    self.ivProgressbarContent.image = nil
+                    AnimationUtil.animateLoading(imageView: self.ivProgressbar)
+                self.labelStatus.text = "Loading content..."
+            }
         }
     }
-    
     
     func showIntro() {
         DispatchQueue.main.async {

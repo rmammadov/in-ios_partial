@@ -11,11 +11,11 @@ import Foundation
 class ReachabilityManager: NSObject {
     
     static  let shared = ReachabilityManager()
-    
-    var isNetworkAvailable : Bool {
+
+    var reachabilityStatus: Reachability.Connection = .none
+    var isNetworkAvailable: Bool {
         return reachabilityStatus != .none
     }
-    var reachabilityStatus: Reachability.Connection = .none
     let reachability = Reachability()!
     
     // Called whenever there is a change in NetworkReachibility Status
@@ -38,6 +38,7 @@ class ReachabilityManager: NSObject {
     
     // Starts monitoring the network availability status
     func startMonitoring() {
+        reachabilityStatus = reachability.connection
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.reachabilityChanged),
                                                name: Notification.Name.reachabilityChanged,

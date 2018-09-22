@@ -11,7 +11,8 @@ import Foundation
 struct Constant {
     
     struct DefaultConfig {
-
+        static let TIMEOUT_FOR_REQUEST: Double = 15.0
+        static let TIMEOUT_FOR_RESOURCE: Double = 30.0
     }
     
     struct Url {

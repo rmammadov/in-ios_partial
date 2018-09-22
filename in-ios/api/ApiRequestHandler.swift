@@ -12,7 +12,8 @@ import RxSwift
 enum RequestStatus: Int {
     case notRequested = 0
     case requested = 1
-    case requestCompleted = 2
+    case failed = 2
+    case completed = 3
 }
 
 
@@ -30,6 +31,8 @@ class ApiRequestHandler {
     
     init() {
         config = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = Constant.DefaultConfig.TIMEOUT_FOR_REQUEST
+        config.timeoutIntervalForResource = Constant.DefaultConfig.TIMEOUT_FOR_RESOURCE
         session = URLSession(configuration: config)
     }
     
@@ -40,6 +43,7 @@ class ApiRequestHandler {
             // ensure there is no error for this HTTP response
             guard error == nil else {
                 print ("error: \(error!)")
+                self.status.value = RequestStatus.failed.rawValue
                 return
             }
 
@@ -57,7 +61,7 @@ class ApiRequestHandler {
 
             do {
                 self.menuItems = try JSONDecoder().decode([MenuItem].self, from: content)
-                self.status.value = RequestStatus.requestCompleted.rawValue
+                self.status.value = RequestStatus.completed.rawValue
             } catch let jsonErr {
                 print("Error serializing json",  jsonErr)
             }
@@ -77,6 +81,7 @@ class ApiRequestHandler {
             // ensure there is no error for this HTTP response
             guard error == nil else {
                 print ("error: \(error!)")
+                self.status.value = RequestStatus.failed.rawValue
                 return
             }
             
@@ -94,7 +99,7 @@ class ApiRequestHandler {
             
             do {
                 self.inputScreens = try JSONDecoder().decode([InputScreen].self, from: content)
-                self.status.value = RequestStatus.requestCompleted.rawValue
+                self.status.value = RequestStatus.completed.rawValue
             } catch let jsonErr {
                 print("Error serializing json",  jsonErr)
             }
