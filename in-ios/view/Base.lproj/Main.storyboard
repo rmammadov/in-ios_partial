@@ -904,13 +904,13 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEl-97-I5p">
-                                <rect key="frame" x="523" y="475" width="66" height="17"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                                <rect key="frame" x="501.5" y="491" width="109.5" height="33"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rMP-0r-gth">
-                                <rect key="frame" x="428" y="556" width="256" height="64"/>
+                                <rect key="frame" x="428" y="588" width="256" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="EDd-aA-Fbj"/>
                                     <constraint firstAttribute="width" constant="256" id="SIA-zJ-dIX"/>
@@ -938,7 +938,7 @@
                             <constraint firstItem="uXg-sW-efy" firstAttribute="centerY" secondItem="mEf-iJ-htT" secondAttribute="centerY" id="F7L-Y9-YZB"/>
                             <constraint firstItem="I3H-1M-tyc" firstAttribute="centerY" secondItem="uXg-sW-efy" secondAttribute="centerY" id="K6G-tv-Pod"/>
                             <constraint firstItem="rMP-0r-gth" firstAttribute="top" secondItem="BEl-97-I5p" secondAttribute="bottom" constant="64" id="Pxs-7x-nPs"/>
-                            <constraint firstItem="BEl-97-I5p" firstAttribute="top" secondItem="uXg-sW-efy" secondAttribute="bottom" constant="16" id="bXF-BN-yPY"/>
+                            <constraint firstItem="BEl-97-I5p" firstAttribute="top" secondItem="uXg-sW-efy" secondAttribute="bottom" constant="32" id="bXF-BN-yPY"/>
                             <constraint firstItem="rMP-0r-gth" firstAttribute="centerX" secondItem="mEf-iJ-htT" secondAttribute="centerX" id="rUN-35-Ymj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mEf-iJ-htT"/>
