@@ -14,12 +14,19 @@ enum TopMenuStatus: Int {
     case loaded = 1
 }
 
+enum BackgroundStatus: Int {
+    case notSet = 10
+    case set = 11
+}
+
 class HomeViewModel: BaseViewModel {
     
     // TODO: Get data types from model class
     
     var status = Variable<Int>(0)
     
+    fileprivate var backgroundUrl: String?
+    fileprivate var backgroundTransparency: Double?
     fileprivate var topMenuItems: [MenuItem] = []
     fileprivate var topMenuItem: MenuItem?
     fileprivate var topMenuItemSelectedIndex: IndexPath = IndexPath(row: 0, section: 0)
@@ -78,6 +85,25 @@ class HomeViewModel: BaseViewModel {
     
     func getIsMenuExpanded() -> Bool {
         return isMenuExpanded
+    }
+    
+    func setBackgroundImage(url: String?) {
+        self.backgroundUrl = url
+        self.status.value = BackgroundStatus.set.rawValue
+    }
+    
+    func getBackground() -> String? {
+        return backgroundUrl
+    }
+    
+    func setBackgroundTransparency(transparency: Double?) {
+        backgroundTransparency = transparency
+        self.status.value = BackgroundStatus.set.rawValue
+    }
+    
+    func getBackgroundAlpha() -> CGFloat {
+        guard let backgroundTransparency = backgroundTransparency else { return (100 - 0) / 100 }
+        return CGFloat((100 - backgroundTransparency) / 100)
     }
     
     // FIXME: Remove hardcode language type

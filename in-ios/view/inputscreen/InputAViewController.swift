@@ -114,6 +114,7 @@ extension InputAViewController {
     func setUi() {
         self.setViewModel()
         self.setTitle()
+        self.setBackground()
         self.setBackButtonStatus()
         self.setSpeakButtonStatus()
         self.setCollectionView()
@@ -133,19 +134,6 @@ extension InputAViewController {
 //        }
 //    }
     
-    func setBackButtonStatus() {
-        if !self.viewModel.getBackButtonStatus()! {
-            btnBack.isHidden = self.viewModel.getBackButtonStatus()!
-            backButtonLeadingConstraint.constant = backButtonLeadingConstraint.constant - btnBack.frame.width
-        }
-    }
-    
-    func setSpeakButtonStatus() {
-        if !self.viewModel.getSpeakButtonStatus()! {
-            btnSpeak.isHidden = self.viewModel.getSpeakButtonStatus()!
-            speakButtonTrailingConstraint.constant = speakButtonTrailingConstraint.constant + btnSpeak.frame.width
-        }
-    }
     
     func updateUi() {
         collectionView.reloadData()
@@ -159,6 +147,25 @@ extension InputAViewController {
     
     func setTitle() {
         self.labelTitle.text = self.viewModel.getTitle()
+    }
+    
+    func setBackground() {
+        getParentViewController().viewModel.setBackgroundImage(url: viewModel.getBackground())
+        getParentViewController().viewModel.setBackgroundTransparency(transparency: viewModel.getBackgroundTransparency())
+    }
+    
+    func setBackButtonStatus() {
+        if !self.viewModel.getBackButtonStatus()! {
+            btnBack.isHidden = self.viewModel.getBackButtonStatus()!
+            backButtonLeadingConstraint.constant = backButtonLeadingConstraint.constant - btnBack.frame.width
+        }
+    }
+    
+    func setSpeakButtonStatus() {
+        if !self.viewModel.getSpeakButtonStatus()! {
+            btnSpeak.isHidden = self.viewModel.getSpeakButtonStatus()!
+            speakButtonTrailingConstraint.constant = speakButtonTrailingConstraint.constant + btnSpeak.frame.width
+        }
     }
     
     func setCollectionView() {

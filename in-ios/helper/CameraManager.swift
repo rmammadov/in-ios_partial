@@ -29,7 +29,7 @@ class CameraManager: NSObject {
     fileprivate var cameraIsObservingDeviceOrientation = false
     fileprivate var cameraPosition = AVCaptureDevice.Position.front
     fileprivate var gazeTracker: GazeTracker?
-    fileprivate var cameraView: UIImageView? // For the test purpose
+    fileprivate var cameraView: UIView? // For the test purpose
     fileprivate weak var processingImage: UIImage?
     fileprivate var label: UILabel?
     fileprivate var previewLayer: UIImageView?
@@ -76,7 +76,7 @@ class CameraManager: NSObject {
         }
     }
     
-    init(cameraView: UIImageView) {
+    init(cameraView: UIView) {
         super.init()
         // TODO: Remove after tests
         self.cameraView = cameraView // For the test purpose

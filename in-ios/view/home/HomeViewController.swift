@@ -22,6 +22,7 @@ class HomeViewController: BaseViewController {
     private static let TAG = "HomeViewController"
     
     @IBOutlet weak var ivBackground: UIImageView!
+    @IBOutlet weak var viewOpacity: UIView!
     @IBOutlet weak var viewTopMenu: UIView!
     @IBOutlet weak var collectionTopMenu: UICollectionView!
     @IBOutlet weak var constraintCollectionViewHeight: NSLayoutConstraint!
@@ -66,6 +67,7 @@ extension HomeViewController {
         setViewModel()
         setCollectionView()
         setSubscribers()
+        updateUi()
     }
     
     func setViewModel() {
@@ -83,9 +85,9 @@ extension HomeViewController {
     func setSubscribers() {
         self.viewModel.status.asObservable().subscribe(onNext: {
             event in
-            if self.viewModel.status.value == TopMenuStatus.loaded.rawValue {
+            if self.viewModel.status.value == BackgroundStatus.set.rawValue {
                 DispatchQueue.main.async {
-                    self.updateUi()
+                    self.setBackground()
                 }
             }
         }).disposed(by: disposeBag)
@@ -108,10 +110,17 @@ extension HomeViewController {
         self.collectionTopMenu.reloadData()
     }
     
+    func setBackground() {
+        guard let url = URL(string: viewModel.getBackground()!) else {return}
+        let alpha  = viewModel.getBackgroundAlpha()
+        ivBackground.kf.setImage(with: url)
+        ivBackground.alpha = alpha
+    }
+    
     func setCamera()
     {
         // TODO: should be removed and reimplemented after tests
-        let cameraManager: CameraManager = CameraManager(cameraView: self.ivBackground)
+        let cameraManager: CameraManager = CameraManager(cameraView: self.viewOpacity)
 
         cameraManager.askUserForCameraPermission { (status) in
             if status {

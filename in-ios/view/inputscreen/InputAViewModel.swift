@@ -49,6 +49,10 @@ class InputAViewModel: BaseViewModel {
         return self.screen?.background?.url
     }
     
+    func getBackgroundTransparency() -> Double? {
+        return self.screen?.backgroundTransparency
+    }
+    
     func getTitle() -> String? {
         return self.screen?.translations[0].title
     }
