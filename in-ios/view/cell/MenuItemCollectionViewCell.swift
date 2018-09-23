@@ -19,7 +19,7 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func setCell(url: String?, text: String?) {
+    func setCell(url: String?, label: String?) {
         self.ivIcon.kf.indicatorType = .activity
         if let iconUrl = url {
             self.ivIcon.kf.setImage(with: URL(string: iconUrl))
@@ -28,6 +28,6 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
         }
         
         self.ivIcon.kf.indicatorType = .activity
-        self.labelTitle.text = text
+        self.labelTitle.text = label
     }
 }

@@ -11,8 +11,6 @@ import RxSwift
 
 private let nibMenuItem = "MenuItemCollectionViewCell"
 private let reuseIdentifier = "cellMenuItem"
-private let tileLineCount : CGFloat = 6.0
-private let tileColumnCount : CGFloat = 4.0
 
 class InputAViewController: BaseViewController {
 
@@ -37,18 +35,19 @@ class InputAViewController: BaseViewController {
         self.setUi()
     }
     
-    deinit {
-//        setBackground(remove: true)
-    }
+    deinit { }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-//        setupGradient()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        onOrientationChanged()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        setBackground(remove: true)
     }
     
     @IBAction func onClickBackBtn(_ sender: Any) {
@@ -65,52 +64,6 @@ extension InputAViewController {
         return self.parent?.parent?.parent as! HomeViewController
     }
     
-//    func setupGradient() {
-//        if let parentVC = viewModel.parentVC {
-//            DispatchQueue.main.async {
-//                self.addGradient(height: self.getLastCellPositionHeight(from: self.collectionView, to: parentVC.ivBackground), in: parentVC.ivBackground)
-//            }
-//        }
-//    }
-    
-//    fileprivate func addGradient(height: CGFloat, in targetView: UIView) {
-//        let gradientName = "backgroundGradient"
-//        var gradientLayer: CAGradientLayer!
-//
-//        if let sublayers = targetView.layer.sublayers {
-//            sublayers.forEach { (subLayer) in
-//                if subLayer.name == gradientName, let gradient = subLayer as? CAGradientLayer {
-//                    gradientLayer = gradient
-//                }
-//            }
-//        }
-//
-//        // animate function
-//        func animate(gradient: CAGradientLayer) {
-//            let gradientChangeLocation = CABasicAnimation(keyPath: "locations")
-//            gradientChangeLocation.duration = 2
-//            gradientChangeLocation.isRemovedOnCompletion = false
-//            gradient.add(gradientChangeLocation, forKey: "locationsChange")
-//        }
-//
-//        if gradientLayer == nil {
-//            gradientLayer = CAGradientLayer()
-//            gradientLayer.name = gradientName
-//            targetView.layer.insertSublayer(gradientLayer, at: 0)
-//            animate(gradient: gradientLayer)
-//        }
-//
-//        // TODO: need to think about alghritm how to proportionally adjust locations to make smooth gradient with any frame height
-//        gradientLayer.locations = [0.0, 0.4, 0.6, 0.8, 1] as [NSNumber]
-//        gradientLayer.colors = [
-//            UIColor.black.withAlphaComponent(0.9).cgColor,
-//            UIColor.black.withAlphaComponent(0.7).cgColor,
-//            UIColor.black.withAlphaComponent(0.5).cgColor,
-//            UIColor.black.withAlphaComponent(0.2).cgColor,
-//            UIColor.clear.cgColor]
-//        gradientLayer.frame = CGRect(x: 0, y: 0, width: targetView.frame.width, height: height)
-//    }
-    
     func setUi() {
         self.setViewModel()
         self.setTitle()
@@ -119,25 +72,10 @@ extension InputAViewController {
         self.setSpeakButtonStatus()
         self.setCollectionView()
         self.setSubscribers()
-//        setBackground(remove: false)
     }
-    
-//    func setBackground(remove: Bool) {
-//        if remove == true {
-//            viewModel.parentVC?.ivBackground.kf.setImage(with: nil)
-//            return
-//        }
-//        if let backgroundUrl = viewModel.getBackground() {
-//            viewModel.parentVC?.ivBackground.kf.setImage(with: URL(string: backgroundUrl))
-//        } else {
-//            viewModel.parentVC?.ivBackground.kf.setImage(with: nil)
-//        }
-//    }
-    
     
     func updateUi() {
         collectionView.reloadData()
-//        setupGradient()
     }
     
     func setViewModel() {
@@ -210,7 +148,7 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MenuItemCollectionViewCell
         
         self.viewModel.setItem(index: indexPath.row)
-        cell.setCell(url: self.viewModel.getItemIcon(), text: self.viewModel.getItemTitle())
+        cell.setCell(url: self.viewModel.getItemIcon(), label: self.viewModel.getItemTitle())
         
         return cell
     }
@@ -218,17 +156,12 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
     // FIXME: Remove the hardcode
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-        let cellWidth = self.collectionView.frame.size.width / tileLineCount
-        let cellHeight = self.collectionView.frame.size.height / tileColumnCount
+        
+        
+        let cellWidth = self.collectionView.frame.size.width / 5
+        let cellHeight = self.collectionView.frame.size.height / 4
 
         return CGSize(width: cellWidth, height: cellHeight)
-    }
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-            self.collectionView.collectionViewLayout.invalidateLayout()
-        }
     }
     
     // MARK: UICollectionViewDelegate
@@ -238,12 +171,7 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
         guard let cell = self.getCellForIndexPath(indexPath: indexPath) else { return }
         AnimationUtil.animateMenuSelection(imageView: cell.ivStatusIcon, fingerTouch: true, tag: InputAViewController.TAG)
         
-//        let speechSynthesizer = AVSpeechSynthesizer()
         self.viewModel.setItem(index: indexPath.row)
-//        let text = self.viewModel.getItemTitle()
-        
-//        let speechUtterance = AVSpeechUtterance(string: text!)
-//        speechSynthesizer.speak(speechUtterance)
         
         if (indexPath.row >= self.viewModel.itemsCountOnPage-1) {
             page = page+1
@@ -258,14 +186,12 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
         
         return cell
     }
-    
-    fileprivate func getLastCellPositionHeight(from collectionView: UICollectionView, to parentView: UIView) -> CGFloat {
-        let lastIndexPath = IndexPath(item: viewModel.getItems(for: page).count-1, section: 0)
-        if let attributes = collectionView.layoutAttributesForItem(at:lastIndexPath)  {
-            let cellRectInSV = collectionView.convert(attributes.frame, to: parentView)
-            return cellRectInSV.maxY
+
+    func onOrientationChanged() {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            self.collectionView.collectionViewLayout.invalidateLayout()
+            self.collectionView.reloadData()
         }
-        return 0.0
     }
 }
 

@@ -36,6 +36,11 @@ class SubMenuViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        onOrientationChanged()
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -105,7 +110,7 @@ extension SubMenuViewController: UICollectionViewDelegate, UICollectionViewDataS
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MenuItemCollectionViewCell
         
         self.viewModel.setItem(index: indexPath.row)
-        cell.setCell(url: self.viewModel.getItemIcon(), text: self.viewModel.getItemTitle())
+        cell.setCell(url: self.viewModel.getItemIcon(), label: self.viewModel.getItemTitle())
         
         return cell
     }
@@ -132,5 +137,12 @@ extension SubMenuViewController: UICollectionViewDelegate, UICollectionViewDataS
         guard let cell: MenuItemCollectionViewCell = self.collectionView.cellForItem(at: indexPath) as? MenuItemCollectionViewCell else { return nil}
         
         return cell
+    }
+    
+    func onOrientationChanged() {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            self.collectionView.collectionViewLayout.invalidateLayout()
+            self.collectionView.reloadData()
+        }
     }
 }

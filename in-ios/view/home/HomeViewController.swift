@@ -48,6 +48,11 @@ class HomeViewController: BaseViewController {
         super.viewWillAppear(animated)
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        onOrientationChanged()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
@@ -231,6 +236,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             previousActiveCell.setSelected(isSelected: false)
             let currentActiveCell = self.getCellForIndexPath(indexPath: indexPath) as! TopMenuItemCollectionViewCell
             currentActiveCell.setSelected(isSelected: true)
+        }
+    }
+    
+    func onOrientationChanged() {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            self.collectionTopMenu.collectionViewLayout.invalidateLayout()
+            self.collectionTopMenu.reloadData()
         }
     }
 }
