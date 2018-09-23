@@ -35,7 +35,7 @@ class InputAViewController: BaseViewController {
         self.setUi()
     }
     
-    deinit { }
+    deinit {}
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
