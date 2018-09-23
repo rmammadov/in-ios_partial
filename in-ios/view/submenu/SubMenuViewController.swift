@@ -119,7 +119,7 @@ extension SubMenuViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let cellWidth = self.collectionView.frame.size.width / 5.2
+        let cellWidth = self.collectionView.frame.size.width / 5
         let cellHeight = self.collectionView.frame.size.height / 4
         
         return CGSize(width: cellWidth, height: cellHeight)
