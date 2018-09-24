@@ -203,7 +203,7 @@ extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
     func startSession() {
         DispatchQueue.global(qos: .background).async {
             if self.captureSession != nil {
-                self.captureSession?.sessionPreset = .high
+                self.captureSession?.sessionPreset = .vga640x480
                 self.captureSession?.startRunning()
 
                 self.deviceOrientation = UIDevice.current.orientation;
