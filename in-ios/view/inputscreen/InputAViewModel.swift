@@ -169,6 +169,12 @@ class InputAViewModel: BaseViewModel {
             textToSpech(text: (selectedItem?.translations!.first?.labelTextToSpeech)!)
         }
         
+        if selectedItem?.translations?.first?.label == "Previous" {
+            setPage(page: getPage() - 1)
+        } else if selectedItem?.translations?.first?.label == "Next" {
+            setPage(page: getPage() + 1)
+        }
+        
         self.status.value = InputAStatus.loaded.rawValue
     }
     
