@@ -28,6 +28,8 @@ struct Constant {
         static let NAME_TOP_MENU_ITEM: String = "root"
         static let NAME_IAM_MENU_ITEM: String = "I am"
         static let IAM_NOT_FOUND_INDEX: Int = 999
+        static let PREVIOUS_ITEM_NAME = "Previous"
+        static let NEXT_ITEM_NAME = "Next"
     }
     
     struct InputScreen {

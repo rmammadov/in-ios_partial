@@ -123,11 +123,14 @@ class InputAViewModel: BaseViewModel {
                 var subItems: Array<ButtonInputScreen> = []
                 if countItems > countNavigationItems {
                     subItems = Array(getItems()[startingIndex...startingIndex + countItemsPerPage - countNavigationItems - 1])
-                    subItems.append(getNextButton()!)
+                    if groupedItems.count > 0 {  // If it is not first page add previous button also
+                       subItems.append(getPreviousButton()!)
+                    }
+                    subItems.append(getNextButton()!) // Add next button
                     startingIndex = startingIndex + countItemsPerPage - countNavigationItems
                 } else {
                     subItems = Array(getItems()[startingIndex...getItems().count - 1])
-                    subItems.append(getPreviousButton()!)
+                    subItems.append(getPreviousButton()!) // Add previous button
                 }
                 
                 groupedItems.append(subItems)
@@ -169,9 +172,9 @@ class InputAViewModel: BaseViewModel {
             textToSpech(text: (selectedItem?.translations!.first?.labelTextToSpeech)!)
         }
         
-        if selectedItem?.translations?.first?.label == "Previous" {
+        if selectedItem?.translations?.first?.label == Constant.MenuConfig.PREVIOUS_ITEM_NAME {
             setPage(page: getPage() - 1)
-        } else if selectedItem?.translations?.first?.label == "Next" {
+        } else if selectedItem?.translations?.first?.label == Constant.MenuConfig.NEXT_ITEM_NAME {
             setPage(page: getPage() + 1)
         }
         
