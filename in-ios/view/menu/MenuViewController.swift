@@ -149,8 +149,8 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let cellWidth = self.collectionView.frame.size.width / 5
-        let cellHeight = self.collectionView.frame.size.height / 4
+        let cellWidth = self.collectionView.frame.size.width / CGFloat(viewModel.getColumnCount())
+        let cellHeight = self.collectionView.frame.size.height / CGFloat(viewModel.getRowCount())
         
         return CGSize(width: cellWidth, height: cellHeight)
     }

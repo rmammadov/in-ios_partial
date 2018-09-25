@@ -10,4 +10,11 @@ import Foundation
 
 class BaseViewModel: NSObject {
     
+    func getRowCount() -> Int {
+        return Constant.DefaultConfig.COUNT_ROW_ITEMS
+    }
+    
+    func getColumnCount() -> Int {
+        return Constant.DefaultConfig.COUNT_COLUMN_ITEMS
+    }
 }

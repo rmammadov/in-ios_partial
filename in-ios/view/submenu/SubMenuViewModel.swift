@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class SubMenuViewModel: NSObject {
+class SubMenuViewModel: BaseViewModel {
 
     var status = Variable<Int>(0)
     

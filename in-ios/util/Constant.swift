@@ -13,6 +13,8 @@ struct Constant {
     struct DefaultConfig {
         static let TIMEOUT_FOR_REQUEST: Double = 15.0
         static let TIMEOUT_FOR_RESOURCE: Double = 30.0
+        static let COUNT_ROW_ITEMS: Int = 4
+        static let COUNT_COLUMN_ITEMS: Int = 5
     }
     
     struct Url {

@@ -26,8 +26,6 @@ class InputAViewController: BaseViewController {
     let viewModel = InputAViewModel()
     let disposeBag = DisposeBag()
 
-    var page = 0
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -128,7 +126,7 @@ extension InputAViewController {
             event in
             if AnimationUtil.status.value == AnimationStatus.completed.rawValue && AnimationUtil.getTag() == InputAViewController.TAG {
                 print("Clicked")
-                self.viewModel.onItemLoadRequest(indexPath: self.viewModel.getSelection(), page: self.page)
+                self.viewModel.onItemLoadRequest(indexPath: self.viewModel.getSelection())
             }
         }).disposed(by: disposeBag)
     }
@@ -141,7 +139,7 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
     // FIXME: Fix the hardcode and update collection data properly
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.viewModel.getItems(for: page).count
+        return self.viewModel.getGroupedItems()[viewModel.getPage()].count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -157,9 +155,8 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        
-        let cellWidth = self.collectionView.frame.size.width / 5
-        let cellHeight = self.collectionView.frame.size.height / 4
+        let cellWidth = self.collectionView.frame.size.width / CGFloat(viewModel.getColumnCount())
+        let cellHeight = self.collectionView.frame.size.height / CGFloat(viewModel.getRowCount())
 
         return CGSize(width: cellWidth, height: cellHeight)
     }
@@ -172,13 +169,7 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
         AnimationUtil.animateMenuSelection(imageView: cell.ivStatusIcon, fingerTouch: true, tag: InputAViewController.TAG)
         
         self.viewModel.setItem(index: indexPath.row)
-        
-        if (indexPath.row >= self.viewModel.itemsCountOnPage-1) {
-            page = page+1
-        } else if (indexPath.row == 0 && page > 0) {
-            page = page-1
-        }
-//        updateUi()
+
     }
     
     func getCellForIndexPath(indexPath: IndexPath) -> MenuItemCollectionViewCell? {

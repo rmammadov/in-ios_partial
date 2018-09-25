@@ -23,21 +23,22 @@ class InputAViewModel: BaseViewModel {
     fileprivate var screen: InputScreen?
     fileprivate var parentMenuItem: MenuItem?
     fileprivate var items: Array<ButtonInputScreen> = []
+    fileprivate var groupedItems: Array<Array<ButtonInputScreen>> = []
     fileprivate var item: ButtonInputScreen?
     fileprivate var selectedItem: ButtonInputScreen?
     fileprivate var indexSelectedItem: IndexPath = IndexPath(row: 0, section: 0)
-    fileprivate var displayedArray = Array<ButtonInputScreen> ()
-    var itemsCountOnPage = 20
+    fileprivate var page: Int = 0
     
     func setParentMenuItem(item: MenuItem) {
-        self.parentMenuItem = item
+        parentMenuItem = item
     }
     
     func loadScreen() {
         self.screen = DataManager.getInputScreens().getInputScreen(title: (parentMenuItem?.name)!)
         
-        if (self.screen?.buttons?.count)! > 0 {
-            self.items = (self.screen?.buttons)!
+        if (screen?.buttons?.count)! > 0 {
+            items = (screen?.buttons)!
+            setGroupedItems(items: items)
         }
     }
     
@@ -46,19 +47,19 @@ class InputAViewModel: BaseViewModel {
     }
     
     func getBackground() -> String? {
-        return self.screen?.background?.url
+        return screen?.background?.url
     }
     
     func getBackgroundTransparency() -> Double? {
-        return self.screen?.backgroundTransparency
+        return screen?.backgroundTransparency
     }
     
     func getTitle() -> String? {
-        return self.screen?.translations[0].title
+        return screen?.translations[0].title
     }
     
     func getBackButtonStatus() -> Bool? {
-        if self.screen?.backButton != nil {
+        if screen?.backButton != nil {
             return true
         } else {
             return false
@@ -66,50 +67,88 @@ class InputAViewModel: BaseViewModel {
     }
     
     func getSpeakButtonStatus() -> Bool? {
-        return !(self.screen?.disableTextToSpeech)!
+        return !(screen?.disableTextToSpeech)!
     }
     
-    func setItems(buttons: [ButtonInputScreen]?) {
-        if buttons != nil {
-            self.displayedArray = buttons!
-        }
+    func getPreviousButton() -> ButtonInputScreen? {
+        return screen?.previousButton
     }
     
-    func getItems(for page: NSInteger) -> [ButtonInputScreen] {
-        displayedArray = []
-        if (self.items.count > itemsCountOnPage) {
-            
-            if (page < 1) {
-                displayedArray = Array(self.items[0..<itemsCountOnPage-1])
-//                displayedArray.append(addButton(previous: false))
-            } else {
-                if ((itemsCountOnPage-2)*page+1+itemsCountOnPage-2 > self.items.count) {
-//                    displayedArray.append(addButton(previous: true))
-                    displayedArray.append(contentsOf:(self.items[itemsCountOnPage-1*page - (page >= 2 ? page-1 : 0)..<self.items.count]))
-                    
-                } else {
-//                    displayedArray.append(addButton(previous: true))
-                    displayedArray.append(contentsOf: Array(self.items[itemsCountOnPage-1*page - (page >= 2 ? page-1 : 0)..<itemsCountOnPage-1*page+itemsCountOnPage - (page >= 3 ? page : 2)]))
-                    displayedArray.append(addButton(previous: false))
-                }
-            }
-        } else {
-            displayedArray = self.items
-        }
+    func getNextButton() -> ButtonInputScreen? {
+        return screen?.nextButton
+    }
+    
+    func setItems(items: [ButtonInputScreen]?) {
+    }
+    
+    func getItems() -> [ButtonInputScreen] {
+        return items
+    }
+    
+    func setPage(page: Int) {
+        self.page = page
+    }
+    
+    func getPage() -> Int {
+        return page
+    }
+    
+    func setGroupedItems(items: [ButtonInputScreen]) {
+        let countItemsPerPage = getRowCount() * getColumnCount()
+        var countItems = getItems().count
         
-        return displayedArray
+        if countItems <= countItemsPerPage {
+            return groupedItems = [items]
+        } else {
+//            var pageCount: Double = Double((countItems - 2) / (countItemsPerPage - 2))
+//
+//            if pageCount.rounded() > pageCount {
+//                pageCount += pageCount.rounded()
+//            } else {
+//                pageCount = pageCount.rounded()
+//            }
+            
+            var startingIndex: Int = 0
+            
+            while countItems > 0 {
+                var countNavigationItems: Int = 1
+                
+                if groupedItems.count > 0 {
+                    countNavigationItems = 2
+                } else {
+                    countNavigationItems = 1
+                }
+                
+                countItems = countItems - (countItemsPerPage - countNavigationItems)
+                var subItems: Array<ButtonInputScreen> = []
+                if countItems > countNavigationItems {
+                    subItems = Array(getItems()[startingIndex...startingIndex + countItemsPerPage - countNavigationItems - 1])
+                    subItems.append(getNextButton()!)
+                    startingIndex = startingIndex + countItemsPerPage - countNavigationItems
+                } else {
+                    subItems = Array(getItems()[startingIndex...getItems().count - 1])
+                    subItems.append(getPreviousButton()!)
+                }
+                
+                groupedItems.append(subItems)
+            }
+        }
+    }
+    
+    func getGroupedItems() -> [[ButtonInputScreen]] {
+        return groupedItems
     }
     
     func setItem(index: Int) {
-        self.item = self.displayedArray[index]
+        item = getGroupedItems()[getPage()][index]
     }
     
     func getItemTitle() -> String? {
-        return self.item?.translations!.first!.label
+        return item?.translations!.first!.label
     }
     
     func getItemIcon() -> String? {
-        return self.item?.icon?.url
+        return item?.icon?.url
     }
     
     func setSelection(indexPath: IndexPath) {
@@ -117,13 +156,13 @@ class InputAViewModel: BaseViewModel {
     }
     
     func getSelection() -> IndexPath {
-        return self.indexSelectedItem
+        return indexSelectedItem
     }
     
     // FIXME: Fix and update
     
-    func onItemLoadRequest(indexPath: IndexPath, page: NSInteger) {
-        let item = self.getItems(for: page)[indexPath.row]
+    func onItemLoadRequest(indexPath: IndexPath) {
+        let item = getGroupedItems()[getPage()][indexPath.row]
         self.selectedItem = item
         
         if !(selectedItem?.disableTextToSpeech)! {
@@ -137,17 +176,5 @@ class InputAViewModel: BaseViewModel {
     
     func textToSpech(text: String) {
         SpeechHelper.play(text: text, language: "en-US")
-    }
-    
-    // FIXME: HARDCODE
-    
-    func addButton(previous: Bool) -> ButtonInputScreen {
-        var button = ButtonInputScreen()
-        button.translations = [TranslationMenuItem()]
-        button.translations![0].label = previous ? "Previous" : "Next"
-        button.icon = IconMenuItem()
-        button.icon?.url = previous ? "https://cdn-beta1.innodem-neurosciences.com/upload/media/dev/button_icon/0001/01/e4de4144d7b3edcca5d9ded2e5fac5dd42c59d30.png" : "https://cdn-beta1.innodem-neurosciences.com/upload/media/dev/button_icon/0001/01/2a6688ec7b5b0f59e024aae189898a660bd29f6d.png"
-        
-        return button
     }
 }
