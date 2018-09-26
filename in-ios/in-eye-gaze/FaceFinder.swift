@@ -11,6 +11,8 @@ import Firebase
 
 class FaceFinder {
     
+    let RESIZE: Float = 0.5
+    
     var faces: [VisionFace]? = nil
     var detector: VisionFaceDetector? = nil
     var delegate: FaceFinderDelegate? = nil
@@ -27,6 +29,7 @@ class FaceFinder {
         let options = VisionFaceDetectorOptions()
         options.landmarkType = .all
         options.classificationType = .all
+        options.isTrackingEnabled = true
         
         let vision = Vision.vision()
         self.detector = vision.faceDetector(options: options)
@@ -34,6 +37,8 @@ class FaceFinder {
     
     public func getFaces(scene: UIImage) {
         
+//        print("\(scene.size)")
+        print("Face detection start @:    \(CFAbsoluteTimeGetCurrent())")
         let visionImage = VisionImage(image: scene)
         if let detector = self.detector {
             detector.detect(in: visionImage) { [weak self] (faces, error) in
@@ -53,6 +58,27 @@ class FaceFinder {
     }
     
     public func didFindFaces(status: Bool, scene: UIImage) {
+        print("Calling delegate     @:    \(CFAbsoluteTimeGetCurrent())")
         self.delegate?.didFindFaces(status: status, scene: scene)
+    }
+    
+    private func resizeImage(image: UIImage, factor: Float) -> UIImage? {
+        guard let cgImage: CGImage = image.cgImage else {return nil}
+        guard let colorspace = cgImage.colorSpace else {return nil}
+        
+        let width: Int = Int(Float(cgImage.width) * factor)
+        let height: Int = Int(Float(cgImage.height) * factor)
+        
+        guard let context = CGContext(data: nil,
+                                      width: width,
+                                      height: height,
+                                      bitsPerComponent: cgImage.bitsPerComponent,
+                                      bytesPerRow: width*cgImage.bitsPerPixel/8,
+                                      space: colorspace,
+                                      bitmapInfo: cgImage.alphaInfo.rawValue) else {return nil}
+        context.interpolationQuality = .high
+        context.draw(cgImage, in: CGRect(x: 0, y: 0, width: width, height: height))
+        guard let newImage = context.makeImage() else {return nil}
+        return UIImage(cgImage: newImage)
     }
 }

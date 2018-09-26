@@ -56,6 +56,9 @@ public class GazeTracker: FaceFinderDelegate {
     var PPCM: [Double] = [0.0, 0.0]
     var illumResizeRatio: Double = 1.0
     
+    var startTotalTime: Double = 0.0
+    var elapsedTotalTime: Double = 0.0
+    
     /**
      Initializer
      */
@@ -120,23 +123,23 @@ public class GazeTracker: FaceFinderDelegate {
         case .portraitUpsideDown:
             gazeXFromCenter = gazeX - camX
             gazeYFromCenter = gazeY - camY
-            pixelsX = Double(gazeXFromCenter * self.PPCM[0])
-            pixelsY = Double(gazeYFromCenter * self.PPCM[1])
+            pixelsX = Double(gazeXFromCenter * self.PPCM[0])// + self.screenWidthPix/2
+            pixelsY = Double(gazeYFromCenter * self.PPCM[1])// + self.screenHeightPix/2
         case .landscapeLeft:
             gazeXFromCenter = gazeX - camY
             gazeYFromCenter = gazeY + camX
-            pixelsX = Double(gazeXFromCenter * self.PPCM[1])
-            pixelsY = Double(gazeYFromCenter * self.PPCM[0])
+            pixelsX = Double(gazeXFromCenter * self.PPCM[1])// + self.screenHeightPix/2
+            pixelsY = Double(gazeYFromCenter * self.PPCM[0])// + self.screenWidthPix/2
         case .landscapeRight:
             gazeXFromCenter = gazeX + camY
             gazeYFromCenter = gazeY - camX
-            pixelsX = Double(gazeXFromCenter * self.PPCM[1])
-            pixelsY = Double(gazeYFromCenter * self.PPCM[0])
+            pixelsX = Double(gazeXFromCenter * self.PPCM[1])// + self.screenHeightPix/2
+            pixelsY = Double(gazeYFromCenter * self.PPCM[0])// + self.screenWidthPix/2
         default:
             gazeXFromCenter = gazeX + camX
             gazeYFromCenter = gazeY + camY
-            pixelsX = Double(gazeXFromCenter * self.PPCM[0])
-            pixelsY = Double(gazeYFromCenter * self.PPCM[1])
+            pixelsX = Double(gazeXFromCenter * self.PPCM[0])// + self.screenWidthPix/2
+            pixelsY = Double(gazeYFromCenter * self.PPCM[1])// + self.screenHeightPix/2
         }
         
         return (pixelsX, pixelsY)
@@ -157,8 +160,9 @@ public class GazeTracker: FaceFinderDelegate {
      - Normalize features
      */
     public func startPrediction(scene: UIImage) {
-        var rotatedImage: UIImage?
         
+        print("Algorithm starting @:      \(CFAbsoluteTimeGetCurrent())")
+        var rotatedImage: UIImage?
         switch scene.imageOrientation {
         case .left:
             rotatedImage = GazeTracker.rotateImage(image: scene, degrees: -90)
@@ -185,14 +189,21 @@ public class GazeTracker: FaceFinderDelegate {
     }
     
     public func didFindFaces(status: Bool, scene: UIImage) {
+        print("Faces found @:             \(CFAbsoluteTimeGetCurrent())")
+        
         if !status {
             self.predictionDelegate?.didUpdatePrediction(status: false)
             return
         }
         
+        print("Getting main face @:       \(CFAbsoluteTimeGetCurrent())")
         getMainFace()
+        
         let width = scene.cgImage!.width, height = scene.cgImage!.height
+        
+        print("Getting facial features @: \(CFAbsoluteTimeGetCurrent())")
         let facialFeatures: MLMultiArray = self.getFacialFeatures(width: width, height: height)
+        print("Cropping eyes @:           \(CFAbsoluteTimeGetCurrent())")
         let eyes = self.getEyes(image: scene)
         guard let leftEye = eyes.leftEYe, let rightEye = eyes.rightEye else{
             self.gazeEstimation = nil
@@ -200,26 +211,32 @@ public class GazeTracker: FaceFinderDelegate {
             return
         }
         
+        print("Concatenating eyes @:      \(CFAbsoluteTimeGetCurrent())")
         guard let eyesImage = self.concatenateEyes(leftEye: leftEye, rightEye: rightEye) else {
             self.gazeEstimation = nil
             self.predictionDelegate?.didUpdatePrediction(status: false)
             return
         }
-
+        
+        print("Converting eyes @:         \(CFAbsoluteTimeGetCurrent())")
         guard let eyeChannels = self.channels2MLMultiArray(image: eyesImage) else {
             self.gazeEstimation = nil
             self.predictionDelegate?.didUpdatePrediction(status: false)
             return
         }
         
+        print("Estimating illuminant @:   \(CFAbsoluteTimeGetCurrent())")
         guard let illuminant = self.estimateIlluminant(image: scene) else {
             self.gazeEstimation = nil
             self.predictionDelegate?.didUpdatePrediction(status: false)
             return
         }
         
+        print("Estimating gaze @:         \(CFAbsoluteTimeGetCurrent())")
         let pred = self.predictGaze(eyesB: eyeChannels.blueChannel, eyesG: eyeChannels.greenChannel, eyesR: eyeChannels.redChannel, illuminant: illuminant, headPose: facialFeatures)
+        
         self.gazeEstimation = pred
+        print("Algorithm terminating @:   \(CFAbsoluteTimeGetCurrent())")
         self.predictionDelegate?.didUpdatePrediction(status: true)
     }
     

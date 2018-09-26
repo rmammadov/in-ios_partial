@@ -230,6 +230,7 @@ extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
                 }
                 
                 let dataOutput = AVCaptureVideoDataOutput()
+                dataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as AnyHashable as! String: NSNumber(value: kCVPixelFormatType_32BGRA)]
                 dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "Video Queue"))
                 self.captureSession?.addOutput(dataOutput)
                 dataOutput.connection(with: AVMediaType.video)?.videoOrientation = videoOrientation
