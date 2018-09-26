@@ -67,9 +67,7 @@ before_script:
 script:
 - echo "Starting script."
 - UNIT_TESTS=true
-- TEST_FLIGHT=true
-- export FASTLANE_USER=dev@innodemneurosciences.com
-- export FASTLANE_PASSWORD=Brainnoise55
+- TEST_FLIGHT=false
 - if echo ${COMMIT_MESSAGE} | grep -iF '#skip-tests' &>/dev/null ; then echo "Skipping unit tests." ; UNIT_TESTS=false ; fi
 - if [ ${DEPLOY_ON_BETA} == "1" ] ; then TEST_FLIGHT=true ; fi
 - bundle exec fastlane betaLane unit_tests:${UNIT_TESTS} test_flight:${TEST_FLIGHT}
