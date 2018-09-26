@@ -37,6 +37,9 @@ class CameraManager: NSObject {
     fileprivate var ivPointer: UIImageView?
     fileprivate var imagePointerRed: UIImage?
     fileprivate var imagePointerYellow: UIImage?
+    fileprivate var averageX: Double = 0
+    fileprivate var averageY: Double = 0
+    fileprivate var averagingCount: Double = 0
 
     open var cameraIsReady: Bool {
         get {
@@ -297,9 +300,20 @@ extension CameraManager: GazePredictionDelegate {
             setPointerPassive()
         } else {
             self.label?.text = "Values: X: \(String(describing: gazeTracker.gazeEstimation![0]))" + " Y: \(String(describing: gazeTracker.gazeEstimation![1]))"
-            let coordinates = gazeTracker.cm2pixels(gazeX: gazeTracker.gazeEstimation?[0] as! Double, gazeY: gazeTracker.gazeEstimation?[1] as! Double, camX: 0, camY: 12.0, orientation: UIDevice.current.orientation)
-            updatePointer(x: coordinates.gazeX, y: coordinates.gazeY)
-            setPointerActive()
+            averageX = averageX + Double(gazeTracker.gazeEstimation![0])
+            averageY = averageY + Double(gazeTracker.gazeEstimation![1])
+            averagingCount = averagingCount + 1
+            
+            if averagingCount >= Constant.DefaultConfig.GAZE_PREDICTION_AVERAGING_COUNT {
+                averageX = averageX / averagingCount
+                averageY = averageY / averagingCount
+                let coordinates = gazeTracker.cm2pixels(gazeX: averageX, gazeY: averageY, camX: 0, camY: 12.0, orientation: UIDevice.current.orientation)
+                updatePointer(x: coordinates.gazeX, y: coordinates.gazeY)
+                setPointerActive()
+                averageX = 0
+                averageY = 0
+                averagingCount = 0
+            }
         }
         
 //        self.isFaceDetected(status: status)
