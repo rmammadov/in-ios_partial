@@ -116,6 +116,8 @@ public class GazeTracker: FaceFinderDelegate {
      */
     func cm2pixels(gazeX: Double, gazeY: Double, camX: Double, camY: Double, orientation: UIDeviceOrientation) -> (gazeX: Double, gazeY: Double) {
         
+        print(self.screenWidthMil, self.screenWidthPix, self.screenHeightMil, self.screenHeightPix)
+        print(camX, camY)
         var gazeXFromCenter: Double = 0, gazeYFromCenter: Double = 0 //Distance of gaze from center in centimenters
         var pixelsX: Double = 0, pixelsY: Double = 0 //Distance of gaze from center in pixels
         
@@ -123,23 +125,23 @@ public class GazeTracker: FaceFinderDelegate {
         case .portraitUpsideDown:
             gazeXFromCenter = gazeX - camX
             gazeYFromCenter = gazeY - camY
-            pixelsX = Double(gazeXFromCenter * self.PPCM[0])// + self.screenWidthPix/2
-            pixelsY = Double(gazeYFromCenter * self.PPCM[1])// + self.screenHeightPix/2
+            pixelsX = Double(gazeXFromCenter * self.PPCM[0]) + self.screenWidthPix/2
+            pixelsY = Double(gazeYFromCenter * self.PPCM[1]) + self.screenHeightPix/2
         case .landscapeLeft:
             gazeXFromCenter = gazeX - camY
             gazeYFromCenter = gazeY + camX
-            pixelsX = Double(gazeXFromCenter * self.PPCM[1])// + self.screenHeightPix/2
-            pixelsY = Double(gazeYFromCenter * self.PPCM[0])// + self.screenWidthPix/2
+            pixelsX = Double(gazeXFromCenter * self.PPCM[1]) + self.screenHeightPix/2
+            pixelsY = Double(gazeYFromCenter * self.PPCM[0]) + self.screenWidthPix/2
         case .landscapeRight:
             gazeXFromCenter = gazeX + camY
             gazeYFromCenter = gazeY - camX
-            pixelsX = Double(gazeXFromCenter * self.PPCM[1])// + self.screenHeightPix/2
-            pixelsY = Double(gazeYFromCenter * self.PPCM[0])// + self.screenWidthPix/2
+            pixelsX = Double(gazeXFromCenter * self.PPCM[1]) + self.screenHeightPix/2
+            pixelsY = Double(gazeYFromCenter * self.PPCM[0]) + self.screenWidthPix/2
         default:
             gazeXFromCenter = gazeX + camX
             gazeYFromCenter = gazeY + camY
-            pixelsX = Double(gazeXFromCenter * self.PPCM[0])// + self.screenWidthPix/2
-            pixelsY = Double(gazeYFromCenter * self.PPCM[1])// + self.screenHeightPix/2
+            pixelsX = Double(gazeXFromCenter * self.PPCM[0]) + self.screenWidthPix/2
+            pixelsY = Double(gazeYFromCenter * self.PPCM[1]) + self.screenHeightPix/2
         }
         
         return (pixelsX, pixelsY)
@@ -160,8 +162,8 @@ public class GazeTracker: FaceFinderDelegate {
      - Normalize features
      */
     public func startPrediction(scene: UIImage) {
-        
-        print("Algorithm starting @:      \(CFAbsoluteTimeGetCurrent())")
+        self.startTotalTime = CFAbsoluteTimeGetCurrent()
+//        print("Algorithm starting @:      \(CFAbsoluteTimeGetCurrent())")
         var rotatedImage: UIImage?
         switch scene.imageOrientation {
         case .left:
@@ -189,21 +191,21 @@ public class GazeTracker: FaceFinderDelegate {
     }
     
     public func didFindFaces(status: Bool, scene: UIImage) {
-        print("Faces found @:             \(CFAbsoluteTimeGetCurrent())")
+//        print("Faces found @:             \(CFAbsoluteTimeGetCurrent())")
         
         if !status {
             self.predictionDelegate?.didUpdatePrediction(status: false)
             return
         }
         
-        print("Getting main face @:       \(CFAbsoluteTimeGetCurrent())")
+//        print("Getting main face @:       \(CFAbsoluteTimeGetCurrent())")
         getMainFace()
         
         let width = scene.cgImage!.width, height = scene.cgImage!.height
         
-        print("Getting facial features @: \(CFAbsoluteTimeGetCurrent())")
+//        print("Getting facial features @: \(CFAbsoluteTimeGetCurrent())")
         let facialFeatures: MLMultiArray = self.getFacialFeatures(width: width, height: height)
-        print("Cropping eyes @:           \(CFAbsoluteTimeGetCurrent())")
+//        print("Cropping eyes @:           \(CFAbsoluteTimeGetCurrent())")
         let eyes = self.getEyes(image: scene)
         guard let leftEye = eyes.leftEYe, let rightEye = eyes.rightEye else{
             self.gazeEstimation = nil
@@ -211,32 +213,35 @@ public class GazeTracker: FaceFinderDelegate {
             return
         }
         
-        print("Concatenating eyes @:      \(CFAbsoluteTimeGetCurrent())")
+//        print("Concatenating eyes @:      \(CFAbsoluteTimeGetCurrent())")
         guard let eyesImage = self.concatenateEyes(leftEye: leftEye, rightEye: rightEye) else {
             self.gazeEstimation = nil
             self.predictionDelegate?.didUpdatePrediction(status: false)
             return
         }
         
-        print("Converting eyes @:         \(CFAbsoluteTimeGetCurrent())")
+//        print("Converting eyes @:         \(CFAbsoluteTimeGetCurrent())")
         guard let eyeChannels = self.channels2MLMultiArray(image: eyesImage) else {
             self.gazeEstimation = nil
             self.predictionDelegate?.didUpdatePrediction(status: false)
             return
         }
         
-        print("Estimating illuminant @:   \(CFAbsoluteTimeGetCurrent())")
+//        print("Estimating illuminant @:   \(CFAbsoluteTimeGetCurrent())")
         guard let illuminant = self.estimateIlluminant(image: scene) else {
             self.gazeEstimation = nil
             self.predictionDelegate?.didUpdatePrediction(status: false)
             return
         }
         
-        print("Estimating gaze @:         \(CFAbsoluteTimeGetCurrent())")
+//        print("Estimating gaze @:         \(CFAbsoluteTimeGetCurrent())")
         let pred = self.predictGaze(eyesB: eyeChannels.blueChannel, eyesG: eyeChannels.greenChannel, eyesR: eyeChannels.redChannel, illuminant: illuminant, headPose: facialFeatures)
         
         self.gazeEstimation = pred
-        print("Algorithm terminating @:   \(CFAbsoluteTimeGetCurrent())")
+//        print("Algorithm terminating @:   \(CFAbsoluteTimeGetCurrent())")
+        self.elapsedTotalTime = CFAbsoluteTimeGetCurrent() - self.startTotalTime
+        print("\nTotal algorithm processing time: \(self.elapsedTotalTime) s.")
+        if pred != nil { print(pred![0], pred![1]) }
         self.predictionDelegate?.didUpdatePrediction(status: true)
     }
     

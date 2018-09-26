@@ -37,8 +37,8 @@ class CameraManager: NSObject {
     fileprivate var ivPointer: UIImageView?
     fileprivate var imagePointerRed: UIImage?
     fileprivate var imagePointerYellow: UIImage?
-    fileprivate var averageX: Double = 0
-    fileprivate var averageY: Double = 0
+    fileprivate var averageX: [Double] = Array(repeating: 0.0, count: 3)
+    fileprivate var averageY: [Double] = Array(repeating: 0.0, count: 3)
     fileprivate var averagingCount: Double = 0
 
     open var cameraIsReady: Bool {
@@ -301,20 +301,19 @@ extension CameraManager: GazePredictionDelegate {
             setPointerPassive()
         } else {
             self.label?.text = "Values: X: \(String(describing: gazeTracker.gazeEstimation![0]))" + " Y: \(String(describing: gazeTracker.gazeEstimation![1]))"
-            averageX = averageX + Double(gazeTracker.gazeEstimation![0])
-            averageY = averageY + Double(gazeTracker.gazeEstimation![1])
-            averagingCount = averagingCount + 1
             
-            if averagingCount >= Constant.DefaultConfig.GAZE_PREDICTION_AVERAGING_COUNT {
-                averageX = averageX / averagingCount
-                averageY = averageY / averagingCount
-                let coordinates = gazeTracker.cm2pixels(gazeX: averageX, gazeY: averageY, camX: 0, camY: 12.0, orientation: UIDevice.current.orientation)
-                updatePointer(x: coordinates.gazeX, y: coordinates.gazeY)
-                setPointerActive()
-                averageX = 0
-                averageY = 0
-                averagingCount = 0
-            }
+            averageX.remove(at: 0)
+            averageX.append(Double(truncating: gazeTracker.gazeEstimation![0]))
+            
+            averageY.remove(at: 0)
+            averageY.append(Double(truncating: gazeTracker.gazeEstimation![1]))
+            
+            let X = averageX.reduce(0, +)/Double(averageX.count)
+            let Y = averageY.reduce(0, +)/Double(averageY.count)
+            
+            let coordinates = gazeTracker.cm2pixels(gazeX: X, gazeY: Y, camX: 0, camY: 12.0, orientation: UIDevice.current.orientation)
+            updatePointer(x: coordinates.gazeX, y: coordinates.gazeY)
+            setPointerActive()
         }
         
 //        self.isFaceDetected(status: status)

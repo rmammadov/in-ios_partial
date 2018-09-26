@@ -38,7 +38,7 @@ class FaceFinder {
     public func getFaces(scene: UIImage) {
         
 //        print("\(scene.size)")
-        print("Face detection start @:    \(CFAbsoluteTimeGetCurrent())")
+//        print("Face detection start @:    \(CFAbsoluteTimeGetCurrent())")
         let visionImage = VisionImage(image: scene)
         if let detector = self.detector {
             detector.detect(in: visionImage) { [weak self] (faces, error) in
@@ -58,7 +58,7 @@ class FaceFinder {
     }
     
     public func didFindFaces(status: Bool, scene: UIImage) {
-        print("Calling delegate     @:    \(CFAbsoluteTimeGetCurrent())")
+//        print("Calling delegate     @:    \(CFAbsoluteTimeGetCurrent())")
         self.delegate?.didFindFaces(status: status, scene: scene)
     }
     
