@@ -116,8 +116,6 @@ public class GazeTracker: FaceFinderDelegate {
      */
     func cm2pixels(gazeX: Double, gazeY: Double, camX: Double, camY: Double, orientation: UIDeviceOrientation) -> (gazeX: Double, gazeY: Double) {
         
-        print(self.screenWidthMil, self.screenWidthPix, self.screenHeightMil, self.screenHeightPix)
-        print(camX, camY)
         var gazeXFromCenter: Double = 0, gazeYFromCenter: Double = 0 //Distance of gaze from center in centimenters
         var pixelsX: Double = 0, pixelsY: Double = 0 //Distance of gaze from center in pixels
         
@@ -125,23 +123,23 @@ public class GazeTracker: FaceFinderDelegate {
         case .portraitUpsideDown:
             gazeXFromCenter = gazeX - camX
             gazeYFromCenter = gazeY - camY
-            pixelsX = Double(gazeXFromCenter * self.PPCM[0]) + self.screenWidthPix/2
-            pixelsY = Double(gazeYFromCenter * self.PPCM[1]) + self.screenHeightPix/2
+            pixelsX = self.screenWidthPix/2 + Double(gazeXFromCenter * self.PPCM[0])
+            pixelsY = self.screenHeightPix/2 - Double(gazeYFromCenter * self.PPCM[1])
         case .landscapeLeft:
             gazeXFromCenter = gazeX - camY
             gazeYFromCenter = gazeY + camX
-            pixelsX = Double(gazeXFromCenter * self.PPCM[1]) + self.screenHeightPix/2
-            pixelsY = Double(gazeYFromCenter * self.PPCM[0]) + self.screenWidthPix/2
+            pixelsX = self.screenHeightPix/2 + Double(gazeXFromCenter * self.PPCM[1])
+            pixelsY = self.screenWidthPix/2 - Double(gazeYFromCenter * self.PPCM[0])
         case .landscapeRight:
             gazeXFromCenter = gazeX + camY
             gazeYFromCenter = gazeY - camX
-            pixelsX = Double(gazeXFromCenter * self.PPCM[1]) + self.screenHeightPix/2
-            pixelsY = Double(gazeYFromCenter * self.PPCM[0]) + self.screenWidthPix/2
+            pixelsX = self.screenHeightPix/2 + Double(gazeXFromCenter * self.PPCM[1])
+            pixelsY = self.screenWidthPix/2 - Double(gazeYFromCenter * self.PPCM[0])
         default:
             gazeXFromCenter = gazeX + camX
             gazeYFromCenter = gazeY + camY
-            pixelsX = Double(gazeXFromCenter * self.PPCM[0]) + self.screenWidthPix/2
-            pixelsY = Double(gazeYFromCenter * self.PPCM[1]) + self.screenHeightPix/2
+            pixelsX = self.screenWidthPix/2 + Double(gazeXFromCenter * self.PPCM[0])
+            pixelsY = self.screenHeightPix/2 - Double(gazeYFromCenter * self.PPCM[1])
         }
         
         return (pixelsX, pixelsY)
