@@ -177,7 +177,7 @@ extension CameraManager {
     
     fileprivate func updatePointer(x: Double, y: Double) {
         print("Coordinates x: \(x)" + " y: \(y)")
-        ivPointer?.frame = CGRect(x: x, y: x, width: 50.0, height: 55.0)
+        ivPointer?.frame = CGRect(x: x, y: y, width: 50.0, height: 55.0)
         cameraView!.addSubview(ivPointer!)
     }
 }
