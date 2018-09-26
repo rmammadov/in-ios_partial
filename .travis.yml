@@ -11,9 +11,9 @@ xcode_destination: platform=iOS Simulator,OS=12.0,name=iPad Pro (9.7-inch)
 xcode_sdk: iphonesimulator12.0
 
 env:
-  global:
-      - LC_CTYPE=en_US.UTF-8
-      - LANG=en_US.UTF-8
+global:
+- LC_CTYPE=en_US.UTF-8
+- LANG=en_US.UTF-8
 
 #addons:
 #  apt:
@@ -27,102 +27,88 @@ env:
 #  - redis-server
 
 cache:
-  timeout: 300
-  bundler: true
-  cocoapods: true
-  directories:
-    - $HOME/Library/Caches/CocoaPods/Pods/
-    - $HOME/.cocoapods/
-    - $HOME/.rvm/
+timeout: 300
+bundler: true
+cocoapods: true
+directories:
+- $HOME/Library/Caches/CocoaPods/Pods/
+- $HOME/.cocoapods/
+- $HOME/.rvm/
 
 before_install:
-  - set -e
-  - set -o pipefail
-  - echo "Starting before_install."
-  - . in-scripts/travis-functions.sh
-  - before_install short
-#  - brew update
-  - brew install git-lfs
-  - git lfs install
-  - git lfs pull
-#  - gem update
+- set -e
+- set -o pipefail
+- echo "Starting before_install."
+- . in-scripts/travis-functions.sh
+- before_install short
+- brew install git-lfs
+- git lfs install
+- git lfs pull
+- gem update
 
 install:
-  - echo "Starting install."
-  - bundle install
-  - bundle exec pod install --repo-update
+- echo "Starting install."
+- bundle install
+- bundle update
+- bundle exec pod install --repo-update
 
 before_script:
-  - echo "Starting before_script."
-  - # check both versions below in all cases
-  - |
-    if on_store ; then \
-      agvtool new-marketing-version ${BUILD_VERSION}
-    fi
-  - agvtool new-version -all ${TRAVIS_JOB_NUMBER}
-
-  - security create-keychain -p travis ios-build.keychain
-  - security default-keychain -s ios-build.keychain
-  - security set-keychain-settings -l -u -t 3600 ios-build.keychain
-  - security unlock-keychain -p travis ios-build.keychain
-
-  - bundle exec fastlane match development --verbose --readonly
-  - bundle exec fastlane match appstore --verbose --readonly
-
-  - 'security set-key-partition-list -S apple-tool:,apple: -s -k travis ios-build.keychain'
-
+- echo "Starting before_script."
+- if on_store ; then agvtool new-marketing-version ${BUILD_VERSION} ; fi
+- agvtool new-version -all ${TRAVIS_BUILD_NUMBER}
+- security create-keychain -p travis ios-build.keychain
+- security default-keychain -s ios-build.keychain
+- security set-keychain-settings -l -u -t 3600 ios-build.keychain
+- security unlock-keychain -p travis ios-build.keychain
+- bundle exec fastlane match development --verbose --readonly
+- bundle exec fastlane match appstore --verbose --readonly
+- 'security set-key-partition-list -S apple-tool:,apple: -s -k travis ios-build.keychain'
 
 script:
-  - echo "Starting script."
-  # check CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
-  #- xcodebuild -workspace in-ios.xcworkspace -scheme in-ios -destination "platform=iOS Simulator,OS=12.0,name=iPad (6th generation)" -sdk iphonesimulator12.0 -showBuildSettings -showdestinations CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
-  - bundle exec fastlane betaLane
-  - |
-    if echo ${COMMIT_MESSAGE} | grep -iF '#skip-tests' &>/dev/null ; then \
-      echo "Skipping unit tests." \
-    else \
-      xcodebuild -workspace in-ios.xcworkspace -scheme in-ios_test -destination "platform=iOS Simulator,OS=12.0,name=iPad (6th generation)" -sdk iphonesimulator12.0 -showBuildSettings -showdestinations CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO | xcpretty \
-    fi
+- echo "Starting script."
+- UNIT_TESTS=true
+- TEST_FLIGHT=true
+- export FASTLANE_USER=dev@innodemneurosciences.com
+- export FASTLANE_PASSWORD=Brainnoise55
+- if echo ${COMMIT_MESSAGE} | grep -iF '#skip-tests' &>/dev/null ; then echo "Skipping unit tests." ; UNIT_TESTS=false ; fi
+- if [ ${DEPLOY_ON_BETA} == "1" ] ; then TEST_FLIGHT=true ; fi
+- bundle exec fastlane betaLane unit_tests:${UNIT_TESTS} test_flight:${TEST_FLIGHT}
 
 before_cache:
-  - echo "Nothing to do for before_cache."
+- echo "Nothing to do for before_cache."
 
 after_success:
-  - echo "Starting after_success."
-  - mkdir deployment
-  - mv "${BUILD_NAME}.zip" "deployment/${BUILD_NAME}.zip"
-  - |
-    if on_store ; then \
-      bundle exec fastlane upload_to_testflight upload -i deployment/${BUILD_NUMBER}-${BUILD_NAME}.ipa --skip_waiting_for_build_processing
-    fi
+- echo "Starting after_success."
+- mkdir "${HOME}/deployment"
+- mv "${HOME}/build/innodem-neurosciences/in-ios/in-ios.ipa" "${HOME}/deployment/${BUILD_NAME}.ipa"
 
 after_failure:
-  - echo "Nothing to do for after_failure."
+- echo "Nothing to do for after_failure."
 
 before_deploy:
-  - echo "Nothing to do for before_deploy."
+- echo "Nothing to do for before_deploy."
 
 deploy:
 - provider: s3
-  region: "us-east-1"
-  access_key_id: "${AWS_ACCESS_KEY}"
-  secret_access_key: "${AWS_SECRET_KEY}"
-  local_dir: "deployment"
-  skip_cleanup: true
-  on:
-    all_branches: true
-    condition: "${DEPLOY_ON_STORE}"
-    tags: true
-    bucket: "innodem-travis-builds"
-    upload_dir: "${TRAVIS_REPO_SLUG}"
+region: "us-east-1"
+access_key_id: "${AWS_ACCESS_KEY}"
+secret_access_key: "${AWS_SECRET_KEY}"
+local_dir: "${HOME}/deployment"
+skip_cleanup: true
+on:
+all_branches: true
+condition: "${DEPLOY_ON_PROD}"
+tags: true
+bucket: "innodem-travis-builds"
+upload_dir: "${TRAVIS_REPO_SLUG}"
 
 after_deploy:
-  - echo "Nothing to do for after_deploy."
-    
+- echo "Nothing to do for after_deploy."
+
 after_script:
-  - echo "Nothing to do for after_script."
+- echo "Nothing to do for after_script."
 
 notifications:
-  email:
-    on_success: change
-    on_failure: change
+email:
+on_success: change
+on_failure: change

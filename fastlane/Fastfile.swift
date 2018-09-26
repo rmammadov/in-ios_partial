@@ -5,17 +5,23 @@
 //
 //     https://docs.fastlane.tools/actions
 //
-
 import Foundation
 
 class Fastfile: LaneFile {
-	func buildLane() {
-		desc("Build only")
-  		buildIosApp(workspace: "in-ios.xcworkspace", scheme: "in-ios", configuration: "release", codesigningIdentity: "match AppStore com.innodemneurosciences.in-ios" )
-	}
+    func betaLane( withOptions options:[String: String]? )
+    {
+        desc( "Push a new beta build to TestFlight" )
 
-	func betaLane() {
-		desc("Push a new beta build to TestFlight")
-          buildIosApp(workspace: "in-ios.xcworkspace", scheme: "in-ios", configuration: "Release" )
-	}
+        if let unit_tests = options?["unit_tests"], unit_tests == "true"
+        {
+            // execute unit tests here
+        }
+
+        buildIosApp( workspace: "in-ios.xcworkspace", scheme: "in-ios", configuration: "Release" )
+
+        if let test_flight = options?["test_flight"], test_flight == "true"
+        {
+            uploadToTestflight( username: "dev@innodemneurosciences.com" )
+        }
+    }
 }
