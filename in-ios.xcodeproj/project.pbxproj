@@ -57,6 +57,9 @@
 		F3CE6920213DB318004F6756 /* IntroFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE691F213DB318004F6756 /* IntroFirstViewController.swift */; };
 		F3CE6922213DB367004F6756 /* IntroFirstViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE6921213DB367004F6756 /* IntroFirstViewModel.swift */; };
 		F3CE6924213DB385004F6756 /* IntroFirstModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE6923213DB385004F6756 /* IntroFirstModel.swift */; };
+		F3CE9029215D3F8300A9F3DF /* IntroSecondNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE9028215D3F8300A9F3DF /* IntroSecondNewViewController.swift */; };
+		F3CE902B215D3FE600A9F3DF /* IntroSeconNewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE902A215D3FE600A9F3DF /* IntroSeconNewViewModel.swift */; };
+		F3CE902D215D3FFB00A9F3DF /* IntroSecondNewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE902C215D3FFB00A9F3DF /* IntroSecondNewModel.swift */; };
 		F3D6D204214CF7F400A6231E /* IntroFourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6D203214CF7F400A6231E /* IntroFourthViewController.swift */; };
 		F3D6D206214CF81300A6231E /* IntroFifthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6D205214CF81300A6231E /* IntroFifthViewController.swift */; };
 		F3D6D208214CF83900A6231E /* IntroFourthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6D207214CF83900A6231E /* IntroFourthViewModel.swift */; };
@@ -179,6 +182,9 @@
 		F3CE691F213DB318004F6756 /* IntroFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFirstViewController.swift; sourceTree = "<group>"; };
 		F3CE6921213DB367004F6756 /* IntroFirstViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFirstViewModel.swift; sourceTree = "<group>"; };
 		F3CE6923213DB385004F6756 /* IntroFirstModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFirstModel.swift; sourceTree = "<group>"; };
+		F3CE9028215D3F8300A9F3DF /* IntroSecondNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroSecondNewViewController.swift; sourceTree = "<group>"; };
+		F3CE902A215D3FE600A9F3DF /* IntroSeconNewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroSeconNewViewModel.swift; sourceTree = "<group>"; };
+		F3CE902C215D3FFB00A9F3DF /* IntroSecondNewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroSecondNewModel.swift; sourceTree = "<group>"; };
 		F3D6D203214CF7F400A6231E /* IntroFourthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFourthViewController.swift; sourceTree = "<group>"; };
 		F3D6D205214CF81300A6231E /* IntroFifthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFifthViewController.swift; sourceTree = "<group>"; };
 		F3D6D207214CF83900A6231E /* IntroFourthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFourthViewModel.swift; sourceTree = "<group>"; };
@@ -445,6 +451,7 @@
 				F334ADC6210D793B0056824A /* model */,
 				F3355CEB2122E83D009AF602 /* loading */,
 				F3CE691E213DB2CA004F6756 /* intro-first */,
+				F3CE9027215D3F2300A9F3DF /* intro-second-new */,
 				F32F5B6321453C7500558C68 /* intro-second */,
 				F32DCEDA214A646E00B3D0F8 /* intro-third */,
 				F3D6D201214CF7AD00A6231E /* intro-fourth */,
@@ -487,6 +494,16 @@
 				F3CE6923213DB385004F6756 /* IntroFirstModel.swift */,
 			);
 			path = "intro-first";
+			sourceTree = "<group>";
+		};
+		F3CE9027215D3F2300A9F3DF /* intro-second-new */ = {
+			isa = PBXGroup;
+			children = (
+				F3CE9028215D3F8300A9F3DF /* IntroSecondNewViewController.swift */,
+				F3CE902A215D3FE600A9F3DF /* IntroSeconNewViewModel.swift */,
+				F3CE902C215D3FFB00A9F3DF /* IntroSecondNewModel.swift */,
+			);
+			path = "intro-second-new";
 			sourceTree = "<group>";
 		};
 		F3D6D201214CF7AD00A6231E /* intro-fourth */ = {
@@ -840,6 +857,7 @@
 				F331EA7F211303880000B4E6 /* TopMenuItemCollectionViewCell.swift in Sources */,
 				F32F5B6921453E0B00558C68 /* IntroSecondModel.swift in Sources */,
 				F3355CE82121E04F009AF602 /* InputScreen.swift in Sources */,
+				F3CE902D215D3FFB00A9F3DF /* IntroSecondNewModel.swift in Sources */,
 				F39059C1210F290F00CAA292 /* MenuViewModel.swift in Sources */,
 				F3D6D206214CF81300A6231E /* IntroFifthViewController.swift in Sources */,
 				F334ADCA210D7F890056824A /* HomeViewModel.swift in Sources */,
@@ -847,6 +865,7 @@
 				F3355CF12122E904009AF602 /* LoadingModel.swift in Sources */,
 				F32F5B6521453DCC00558C68 /* IntroSecondViewController.swift in Sources */,
 				F3E200C92135F2D500902A33 /* UIApplication+getPresentedViewController.swift in Sources */,
+				F3CE902B215D3FE600A9F3DF /* IntroSeconNewViewModel.swift in Sources */,
 				F3D6D208214CF83900A6231E /* IntroFourthViewModel.swift in Sources */,
 				F3E19CAA211C3CDB00ADE838 /* HomeContainerViewModel.swift in Sources */,
 				F3D6D20E214CF87800A6231E /* IntroFifthModel.swift in Sources */,
@@ -866,6 +885,7 @@
 				F3E19CBD211D837900ADE838 /* SubMenuModel.swift in Sources */,
 				F3E200C52135EC5E00902A33 /* GazePredictionDelegate.swift in Sources */,
 				F33658AE20D3198000B18CEC /* Constant.swift in Sources */,
+				F3CE9029215D3F8300A9F3DF /* IntroSecondNewViewController.swift in Sources */,
 				F334ADBC2104E7970056824A /* CameraManager.swift in Sources */,
 				F3E19CB2211C3DB400ADE838 /* InputAModel.swift in Sources */,
 				F3E19CBB211D836B00ADE838 /* SubMenuViewModel.swift in Sources */,
