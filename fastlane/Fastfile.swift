@@ -21,7 +21,7 @@ class Fastfile: LaneFile {
 
         if let test_flight = options?["test_flight"], test_flight == "true"
         {
-            uploadToTestflight( username: "dev@innodemneurosciences.com", wait_processing_interval: 60 )
+            uploadToTestflight( username: "dev@innodemneurosciences.com", waitProcessingInterval: 60 )
         }
     }
 }
