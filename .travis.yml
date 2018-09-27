@@ -37,7 +37,6 @@ directories:
 
 before_install:
 - set -e
-- set -o pipefail
 - echo "Starting before_install."
 - . in-scripts/travis-functions.sh
 - before_install short
