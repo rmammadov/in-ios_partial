@@ -67,7 +67,8 @@ class InputAViewModel: BaseViewModel {
     }
     
     func getSpeakButtonStatus() -> Bool? {
-        return !(screen?.disableTextToSpeech)!
+        return false
+//        return !(screen?.disableTextToSpeech)!
     }
     
     func getPreviousButton() -> ButtonInputScreen? {

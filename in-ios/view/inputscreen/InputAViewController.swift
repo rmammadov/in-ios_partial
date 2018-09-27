@@ -92,14 +92,14 @@ extension InputAViewController {
     
     func setBackButtonStatus() {
         if !self.viewModel.getBackButtonStatus()! {
-            btnBack.isHidden = self.viewModel.getBackButtonStatus()!
+            btnBack.isHidden = !self.viewModel.getBackButtonStatus()!
             backButtonLeadingConstraint.constant = backButtonLeadingConstraint.constant - btnBack.frame.width
         }
     }
     
     func setSpeakButtonStatus() {
         if !self.viewModel.getSpeakButtonStatus()! {
-            btnSpeak.isHidden = self.viewModel.getSpeakButtonStatus()!
+            btnSpeak.isHidden = !self.viewModel.getSpeakButtonStatus()!
             speakButtonTrailingConstraint.constant = speakButtonTrailingConstraint.constant + btnSpeak.frame.width
         }
     }
