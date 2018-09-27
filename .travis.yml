@@ -68,7 +68,7 @@ script:
 - UNIT_TESTS=true
 - TEST_FLIGHT=false
 - if echo ${COMMIT_MESSAGE} | grep -iF '#skip-tests' &>/dev/null ; then echo "Skipping unit tests." ; UNIT_TESTS=false ; fi
-- if [ ${DEPLOY_ON_BETA} == "1" ] ; then TEST_FLIGHT=true ; fi
+- if [ ${DEPLOY_ON_BETA} = "1" ] ; then TEST_FLIGHT=true ; fi
 - bundle exec fastlane betaLane unit_tests:${UNIT_TESTS} test_flight:${TEST_FLIGHT}
 
 before_cache:
