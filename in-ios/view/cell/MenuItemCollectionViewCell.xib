@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,11 +26,11 @@
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6MF-pU-T87">
-                        <rect key="frame" x="65" y="16.5" width="83.5" height="95"/>
+                        <rect key="frame" x="58.5" y="16" width="95" height="95.5"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M3Q-0P-NaS">
-                        <rect key="frame" x="21" y="143" width="170" height="17"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                        <rect key="frame" x="21" y="130" width="170" height="98.5"/>
+                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="12"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -43,11 +41,12 @@
             <constraints>
                 <constraint firstItem="6MF-pU-T87" firstAttribute="centerY" secondItem="EJV-8z-gLK" secondAttribute="centerY" id="6n0-EC-igT"/>
                 <constraint firstItem="M3Q-0P-NaS" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="0.8" id="Aha-1d-oPJ"/>
+                <constraint firstAttribute="bottom" secondItem="M3Q-0P-NaS" secondAttribute="bottom" constant="3.5" id="HEq-0v-GO5"/>
                 <constraint firstItem="EJV-8z-gLK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="JeA-oc-aXy"/>
                 <constraint firstItem="6MF-pU-T87" firstAttribute="centerX" secondItem="EJV-8z-gLK" secondAttribute="centerX" id="LqF-r6-2Md"/>
                 <constraint firstItem="EJV-8z-gLK" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="MTN-H5-efC"/>
-                <constraint firstItem="6MF-pU-T87" firstAttribute="width" secondItem="EJV-8z-gLK" secondAttribute="width" multiplier="0.66" id="POD-sP-yRW"/>
-                <constraint firstItem="M3Q-0P-NaS" firstAttribute="top" secondItem="EJV-8z-gLK" secondAttribute="bottom" constant="16" id="egy-hu-gP8"/>
+                <constraint firstItem="6MF-pU-T87" firstAttribute="width" secondItem="EJV-8z-gLK" secondAttribute="width" multiplier="0.75" id="POD-sP-yRW"/>
+                <constraint firstItem="M3Q-0P-NaS" firstAttribute="top" secondItem="EJV-8z-gLK" secondAttribute="bottom" constant="3" id="egy-hu-gP8"/>
                 <constraint firstItem="EJV-8z-gLK" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="0.6" id="iBW-09-bPu"/>
                 <constraint firstItem="M3Q-0P-NaS" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="m3l-kS-S1S"/>
                 <constraint firstItem="6MF-pU-T87" firstAttribute="height" secondItem="EJV-8z-gLK" secondAttribute="height" multiplier="0.75" id="mNy-dJ-uac"/>
