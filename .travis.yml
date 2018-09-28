@@ -43,7 +43,7 @@ before_install:
   - brew install git-lfs
   - git lfs install
   - git lfs pull
-  - gem update
+  #- gem update
 
 install:
   - echo "Starting install."
