@@ -10,11 +10,19 @@ import UIKit
 
 private let SEGUE_IDENTIFIER_SHOW_GENDER_OPTIONS = "showGenderOptions"
 
+private let TAG_AGE_GROUP = 10
+private let TAG_MEDİCAL_CONDİTİON = 11
+
 class IntroSecondNewViewController: BaseViewController {
     
     @IBOutlet weak var tfName: INTextField!
     @IBOutlet weak var tfAgeGroup: INTextField!
     @IBOutlet weak var tfMedicalCondition: INTextField!
+    
+    private var pickerAgeGroup: UIPickerView?
+    private var pickerMedicalCondition: UIPickerView?
+    
+    private let viewModel: IntroSeconNewViewModel = IntroSeconNewViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +60,27 @@ extension IntroSecondNewViewController {
         tfMedicalCondition.delegate = self
         tfMedicalCondition.tag = 2
         self.setKeyboardInetraction()
+        
+        setPickerAgeGroup()
+        setPickerMedicalCondition()
+    }
+    
+    func setPickerAgeGroup() {
+        pickerAgeGroup = UIPickerView()
+        pickerAgeGroup?.dataSource = self
+        pickerAgeGroup?.delegate = self
+        pickerAgeGroup?.tag = TAG_AGE_GROUP
+        
+        self.tfAgeGroup.inputView = pickerAgeGroup
+    }
+    
+    func setPickerMedicalCondition() {
+        pickerMedicalCondition = UIPickerView()
+        pickerMedicalCondition?.dataSource = self
+        pickerMedicalCondition?.delegate = self
+        pickerMedicalCondition?.tag = TAG_MEDİCAL_CONDİTİON
+        
+        self.tfMedicalCondition.inputView = pickerMedicalCondition
     }
     
 }
@@ -62,4 +91,33 @@ extension IntroSecondNewViewController {
         super.onContinue()
         performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_GENDER_OPTIONS, sender: self)
     }
+}
+
+
+extension IntroSecondNewViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        if pickerView.tag == TAG_AGE_GROUP {
+            return [viewModel.getAgeGroups()].count
+        } else {
+            return [viewModel.getMedicalConditions()].count
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView.tag == TAG_AGE_GROUP {
+            return viewModel.getAgeGroups().count
+        } else {
+            return viewModel.getMedicalConditions().count
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView.tag == TAG_AGE_GROUP {
+            return viewModel.getAgeGroups()[row]
+        } else {
+            return viewModel.getMedicalConditions()[row]
+        }
+    }
+    
 }

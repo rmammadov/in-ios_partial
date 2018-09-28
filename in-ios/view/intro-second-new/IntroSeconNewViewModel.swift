@@ -10,4 +10,14 @@ import UIKit
 
 class IntroSeconNewViewModel: BaseViewModel {
 
+    let model: IntroSeconNewModel = IntroSeconNewModel()
+    
+    func getAgeGroups() -> Array<String> {
+        return model.getAgeGroups()
+    }
+    
+    func getMedicalConditions() -> Array<String> {
+        return model.getMedicalConditions()
+    }
+    
 }
