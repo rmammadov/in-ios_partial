@@ -53,7 +53,7 @@ install:
 
 before_script:
   - echo "Starting before_script."
-  - if on_store ; then agvtool new-marketing-version ${BUILD_VERSION} ; fi
+  - if on_prod ; then agvtool new-marketing-version ${BUILD_VERSION} ; fi
   - agvtool new-version -all ${TRAVIS_BUILD_NUMBER}
   - security create-keychain -p travis ios-build.keychain
   - security default-keychain -s ios-build.keychain
