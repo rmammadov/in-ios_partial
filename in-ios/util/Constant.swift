@@ -35,8 +35,73 @@ struct Constant {
         static let NEXT_ITEM_NAME = "Next"
     }
     
+    struct ButtonType {
+        static let INPUT_SCREEN_OPEN: String = "ButtonInputScreenOpen"
+    }
+    
+    enum InputScreenId: Int {
+        case more = 2
+        case dateAndNumbers = 8
+        case greetings = 9
+        case responses = 11
+        case actions = 12
+        case questions = 13
+        case goodbyes = 14
+        case to = 15
+        case cares = 17
+        case items = 18
+        case comfort = 19
+        case reposition = 20
+        case food = 21
+        case medicine = 22
+        case lights = 23
+        case toSee = 24
+        case toClean = 25
+        case miscellaneous = 26
+        case positiveMind = 27
+        case negativeMind = 29
+        case physicalSymptoms = 30
+        case breathingGiSymptoms = 31
+        
+        var buttonsTitle: String? {
+            switch self {
+            case .more: return "Keywords - More"
+            case .questions: return "Conversations - Questions"
+            case .dateAndNumbers: return "Keywords - Date & Numbers"
+            case .greetings: return "Conversations - Greetings"
+            case .responses: return "Conversations - Responses"
+            case .actions: return "Conversations - Actions"
+            case .goodbyes: return "Conversations - Goodbyes"
+            case .to: return "I want - To"
+            case .cares: return "I want - Cares"
+            case .items: return "I want - Items"
+            case .comfort: return "I want - Comfort"
+            case .reposition: return "I want - Reposition"
+            case .food: return "I want - Food"
+            case .medicine: return "I want - Medicine"
+            case .lights: return "I want - Lights"
+            case .toSee: return "I want - To see"
+            case .toClean: return "I want - To clean"
+            case .miscellaneous: return "I want - Miscellaneous"
+            case .positiveMind: return "I am - Positive Mind"
+            case .negativeMind: return "I am - Negative mind"
+            case .physicalSymptoms: return "I am - Physical symptoms"
+            case .breathingGiSymptoms: return "I am - Breathing/GI symptoms"
+            }
+        }
+        var type: String {
+            switch self {
+            case .dateAndNumbers:
+                return "Date & Time"
+            default:
+                return InputScreen.TYPE_B
+            }
+        }
+    }
+    
     struct InputScreen {
         static let TYPE_A: String = "InputScreenA"
+        static let TYPE_B: String = "InputScreenB"
     }
     
     struct AnimationConfig {

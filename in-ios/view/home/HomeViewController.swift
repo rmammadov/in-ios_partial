@@ -116,7 +116,10 @@ extension HomeViewController {
     }
     
     func setBackground() {
-        guard let url = URL(string: viewModel.getBackground()!) else {return}
+        guard
+            let background = viewModel.getBackground(),
+            let url = URL(string: background)
+            else {return}
         let alpha  = viewModel.getBackgroundAlpha()
         ivBackground.kf.setImage(with: url)
         ivBackground.alpha = alpha
