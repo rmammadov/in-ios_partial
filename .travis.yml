@@ -69,7 +69,7 @@ script:
   - TEST_FLIGHT=false
   - if echo ${COMMIT_MESSAGE} | grep -iF '#skip-tests' &>/dev/null ; then echo "Skipping unit tests." ; UNIT_TESTS=false ; fi
   - if [ "${DEPLOY_ON_BETA}" = "1" ] ; then TEST_FLIGHT=true ; fi
-  - bundle exec fastlane betaLane "unit_tests:${UNIT_TESTS}" "test_flight:${TEST_FLIGHT}"
+  - bundle exec fastlane betaLane "unit_tests:${UNIT_TESTS}" "test_flight:${TEST_FLIGHT}" || true
 
 before_cache:
   - echo "Nothing to do for before_cache."
@@ -85,19 +85,19 @@ after_failure:
 before_deploy:
   - echo "Nothing to do for before_deploy."
 
-#deploy:
-#  - provider: s3
-#    region: "us-east-1"
-#    access_key_id: "${AWS_ACCESS_KEY}"
-#    secret_access_key: "${AWS_SECRET_KEY}"
-#    local_dir: "${HOME}/deployment"
-#    skip_cleanup: true
-#    on:
-#    all_branches: true
-#    condition: "${DEPLOY_ON_PROD}"
-#    tags: true
-#    bucket: "innodem-travis-builds"
-#    upload_dir: "${TRAVIS_REPO_SLUG}"
+deploy:
+  - provider: s3
+    region: "us-east-1"
+    access_key_id: "${AWS_ACCESS_KEY}"
+    secret_access_key: "${AWS_SECRET_KEY}"
+    local_dir: "deployment"
+    bucket: "innodem-travis-builds"
+    upload_dir: "${TRAVIS_REPO_SLUG}"
+    skip_cleanup: true
+    on:
+      all_branches: true
+      tags: true
+      condition: "${DEPLOY_ON_STORE}"
 
 after_deploy:
   - echo "Nothing to do for after_deploy."
