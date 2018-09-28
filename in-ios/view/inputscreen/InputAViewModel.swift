@@ -17,11 +17,13 @@ enum InputAStatus: Int {
 class InputAViewModel: BaseViewModel {
 
     var status = Variable<Int>(0)
+    var statusInput = Variable<Int>(0)
     
     var parentVC: HomeViewController?
     
     fileprivate var screen: InputScreen?
     fileprivate var parentMenuItem: MenuItem?
+    var inputScreen: InputScreen?
     fileprivate var items: Array<ButtonInputScreen> = []
     fileprivate var groupedItems: Array<Array<ButtonInputScreen>> = []
     fileprivate var item: ButtonInputScreen?
@@ -34,11 +36,19 @@ class InputAViewModel: BaseViewModel {
     }
     
     func loadScreen() {
-        self.screen = DataManager.getInputScreens().getInputScreen(title: (parentMenuItem?.name)!)
-        
-        if (screen?.buttons?.count)! > 0 {
-            items = (screen?.buttons)!
-            setGroupedItems(items: items)
+        if let parentMenuItem = parentMenuItem {
+            self.screen = DataManager.getInputScreens().getInputScreen(title: parentMenuItem.name)
+            
+            if (screen?.buttons?.count)! > 0 {
+                items = (screen?.buttons)!
+                setGroupedItems(items: items)
+            }
+        } else if let inputScreen = inputScreen {
+            self.screen = inputScreen
+            if (screen?.buttons?.count) ?? 0 > 0 {
+                items = (screen?.buttons)!
+                setGroupedItems(items: items)
+            }
         }
     }
     
@@ -59,11 +69,12 @@ class InputAViewModel: BaseViewModel {
     }
     
     func getBackButtonStatus() -> Bool? {
-        if screen?.backButton != nil {
-            return true
-        } else {
-            return false
-        }
+        return screen?.backButton != nil || screen?.type == "InputScreenB"
+//        if screen?.backButton != nil {
+//            return true
+//        } else {
+//            return false
+//        }
     }
     
     func getSpeakButtonStatus() -> Bool? {
@@ -179,7 +190,23 @@ class InputAViewModel: BaseViewModel {
             setPage(page: getPage() + 1)
         }
         
+        if selectedItem?.type == Constant.ButtonType.INPUT_SCREEN_OPEN,
+            let inputScreen = Constant.InputScreenId(rawValue: selectedItem?.inputScreenId ?? -1),
+            inputScreen.type == Constant.InputScreen.TYPE_B {
+            self.statusInput.value = InputScreenId.inputScreen0.rawValue
+        }
+        
         self.status.value = InputAStatus.loaded.rawValue
+    }
+    
+    func loadInputScreenItem() -> InputScreen? {
+        guard let selectedItem = selectedItem,
+            let type = selectedItem.type,
+            let inputScreenId = selectedItem.inputScreenId,
+            let inputScreenType = Constant.InputScreenId(rawValue: inputScreenId),
+            let title = inputScreenType.buttonsTitle
+            else { return nil }
+        return DataManager.getInputScreens().getInputScreen(title: title)
     }
     
     // FIXME: Remove hardcode language type

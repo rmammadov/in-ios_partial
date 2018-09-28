@@ -22,6 +22,7 @@ class InputAViewController: BaseViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var backButtonLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var speakButtonTrailingConstraint: NSLayoutConstraint!
+    private var isDisappear: Bool = true
     
     let viewModel = InputAViewModel()
     let disposeBag = DisposeBag()
@@ -31,6 +32,11 @@ class InputAViewController: BaseViewController {
 
         // Do any additional setup after loading the view.
         self.setUi()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        isDisappear = false
     }
     
     deinit {}
@@ -46,6 +52,10 @@ class InputAViewController: BaseViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        isDisappear = true
     }
     
     @IBAction func onClickBackBtn(_ sender: Any) {
@@ -122,13 +132,31 @@ extension InputAViewController {
             }
         }).disposed(by: disposeBag)
         
+        self.viewModel.statusInput.asObservable().subscribe(onNext: { [weak self] (inputStatus) in
+            guard let `self` = self else { return }
+            if inputStatus == InputScreenId.inputScreen0.rawValue {
+                DispatchQueue.main.async {
+                    guard let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "InputAViewController")
+                        as? InputAViewController,
+                    let inputScreen = self.viewModel.loadInputScreenItem() else {
+                        return
+                    }
+                    nextVC.viewModel.inputScreen = inputScreen
+                    self.navigationController?.pushViewController(nextVC, animated: true)
+                }
+            }
+        }).disposed(by: disposeBag)
+        
         AnimationUtil.status.asObservable().subscribe(onNext: {
             event in
+            guard !self.isDisappear else { return }
             if AnimationUtil.status.value == AnimationStatus.completed.rawValue && AnimationUtil.getTag() == InputAViewController.TAG {
                 print("Clicked")
+                print(self.isBeingPresented)
                 self.viewModel.onItemLoadRequest(indexPath: self.viewModel.getSelection())
             }
         }).disposed(by: disposeBag)
+        
     }
 }
 

@@ -31,6 +31,7 @@ extension InputScreen {
         case backgroundTransparency = "background_transparency"
         case previousButton = "previous_button"
         case nextButton = "next_button"
+        case backButton = "back_button"
         case type = "type"
     }
     
@@ -40,23 +41,16 @@ extension InputScreen {
         let translations: [TranslationInputScreen] = try container.decode([TranslationInputScreen].self, forKey: .translations)
         let type: String = try container.decode(String.self, forKey: .type)
         
+        let buttons: [ButtonInputScreen]? = try container.decodeIfPresent([ButtonInputScreen].self, forKey: .buttons)
+        let background: Background? = try container.decodeIfPresent(Background.self, forKey: .background)
+        let backgroundTransparency: Double? = try container.decodeIfPresent(Double.self, forKey: .backgroundTransparency)
+        let previousButton: ButtonInputScreen? = try container.decodeIfPresent(ButtonInputScreen.self, forKey: .previousButton)
+        let nextButton: ButtonInputScreen? = try container.decodeIfPresent(ButtonInputScreen.self, forKey: .nextButton)
+        let backButton: ButtonInputScreen? = try container.decodeIfPresent(ButtonInputScreen.self, forKey: .backButton)
         
-        var buttons: [ButtonInputScreen]?
-        var background: Background?
-        var backgroundTransparency: Double?
-        var previousButton: ButtonInputScreen?
-        var nextButton: ButtonInputScreen?
-        var backButton: ButtonInputScreen?
-        
-        if type == Constant.InputScreen.TYPE_A {
-            buttons = try container.decode([ButtonInputScreen].self, forKey: .buttons)
-            background = try container.decode(Background?.self, forKey: .background)
-            backgroundTransparency = try container.decode(Double.self, forKey: .backgroundTransparency)
-            previousButton = try container.decode(ButtonInputScreen?.self, forKey: .previousButton)
-            nextButton = try container.decode(ButtonInputScreen?.self, forKey: .nextButton)
-        }
-        
-        self.init(disableTextToSpeech: disableTextToSpeech, translations: translations, buttons: buttons, background: background, backgroundTransparency: backgroundTransparency, previousButton: previousButton, nextButton: nextButton, type: type, backButton: nil)
+        self.init(disableTextToSpeech: disableTextToSpeech, translations: translations, buttons: buttons,
+                  background: background, backgroundTransparency: backgroundTransparency,
+                  previousButton: previousButton, nextButton: nextButton, type: type, backButton: backButton)
     }
 }
 
@@ -75,12 +69,14 @@ struct TranslationInputScreen: Decodable {
 struct ButtonInputScreen: Decodable {
     
     var disableTextToSpeech: Bool?
-    var icon: IconMenuItem?
+    var icon: IconMenuItem? = nil
     var translations: [TranslationMenuItem]?
     var type: String?
+    var inputScreenId: Int? = nil
     
     enum CodingKeys: String, CodingKey {
         case disableTextToSpeech = "disable_text_to_speech"
+        case inputScreenId = "input_screen_id"
         case icon, translations, type
     }
 }
