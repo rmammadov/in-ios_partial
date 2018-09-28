@@ -508,55 +508,86 @@
                                 </constraints>
                                 <state key="normal" image="ic_side_btn_back"/>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T3l-7k-7a5">
-                                <rect key="frame" x="221" y="107" width="703" height="598"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T3l-7k-7a5">
+                                <rect key="frame" x="268" y="178.5" width="576" height="497"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2K-OD-0Yc">
-                                        <rect key="frame" x="330" y="93" width="42" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2K-OD-0Yc">
+                                        <rect key="frame" x="256" y="32" width="64" height="33"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7sr-vH-pQv">
-                                        <rect key="frame" x="303" y="148" width="97" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" background="ic_textfield_background" translatesAutoresizingMaskIntoConstraints="NO" id="7sr-vH-pQv" customClass="INTextField" customModule="in_ios" customModuleProvider="target">
+                                        <rect key="frame" x="32" y="129" width="512" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="c5P-ym-l6h"/>
+                                        </constraints>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MST-zd-yCu">
-                                        <rect key="frame" x="303" y="206" width="97" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" background="ic_textfield_background" translatesAutoresizingMaskIntoConstraints="NO" id="MST-zd-yCu" customClass="INTextField" customModule="in_ios" customModuleProvider="target">
+                                        <rect key="frame" x="32" y="209" width="512" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="IEo-7M-VY5"/>
+                                        </constraints>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="olN-ub-vO9">
-                                        <rect key="frame" x="303" y="284" width="97" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" background="ic_textfield_background" translatesAutoresizingMaskIntoConstraints="NO" id="olN-ub-vO9" customClass="INTextField" customModule="in_ios" customModuleProvider="target">
+                                        <rect key="frame" x="32" y="289" width="512" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="9n5-gM-WCi"/>
+                                        </constraints>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwA-Py-rNW">
-                                        <rect key="frame" x="326" y="363" width="46" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwA-Py-rNW">
+                                        <rect key="frame" x="160" y="401" width="256" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="256" id="1wL-9i-qNw"/>
+                                            <constraint firstAttribute="height" constant="64" id="M43-LF-UjE"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
+                                        <state key="normal" title="Continue" backgroundImage="ic_btn_get_started_enabled">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="7sr-vH-pQv" firstAttribute="leading" secondItem="T3l-7k-7a5" secondAttribute="leading" constant="32" id="2UV-aZ-CAq"/>
+                                    <constraint firstAttribute="bottom" secondItem="JwA-Py-rNW" secondAttribute="bottom" constant="32" id="2jO-3g-mzM"/>
+                                    <constraint firstItem="d2K-OD-0Yc" firstAttribute="top" secondItem="T3l-7k-7a5" secondAttribute="top" constant="32" id="846-3D-8dc"/>
+                                    <constraint firstItem="7sr-vH-pQv" firstAttribute="width" secondItem="JwA-Py-rNW" secondAttribute="width" multiplier="2" id="AIh-aE-H7A"/>
+                                    <constraint firstItem="MST-zd-yCu" firstAttribute="top" secondItem="7sr-vH-pQv" secondAttribute="bottom" constant="32" id="C5Y-Px-NuJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="olN-ub-vO9" secondAttribute="trailing" constant="32" id="Qf6-DR-jpe"/>
+                                    <constraint firstItem="JwA-Py-rNW" firstAttribute="centerX" secondItem="T3l-7k-7a5" secondAttribute="centerX" id="RNj-Ul-srm"/>
+                                    <constraint firstItem="d2K-OD-0Yc" firstAttribute="centerX" secondItem="T3l-7k-7a5" secondAttribute="centerX" id="RrL-jN-9R7"/>
+                                    <constraint firstAttribute="trailing" secondItem="MST-zd-yCu" secondAttribute="trailing" constant="32" id="SJP-PK-eRD"/>
+                                    <constraint firstAttribute="trailing" secondItem="7sr-vH-pQv" secondAttribute="trailing" constant="32" id="bWH-hN-PP8"/>
+                                    <constraint firstItem="olN-ub-vO9" firstAttribute="leading" secondItem="T3l-7k-7a5" secondAttribute="leading" constant="32" id="cQH-gV-wrM"/>
+                                    <constraint firstItem="7sr-vH-pQv" firstAttribute="top" secondItem="d2K-OD-0Yc" secondAttribute="bottom" constant="64" id="fhY-SH-xuF"/>
+                                    <constraint firstItem="olN-ub-vO9" firstAttribute="top" secondItem="MST-zd-yCu" secondAttribute="bottom" constant="32" id="iqi-nf-Iq2"/>
+                                    <constraint firstItem="MST-zd-yCu" firstAttribute="width" secondItem="JwA-Py-rNW" secondAttribute="width" multiplier="2" id="pw5-L6-Cbu"/>
+                                    <constraint firstItem="JwA-Py-rNW" firstAttribute="top" secondItem="olN-ub-vO9" secondAttribute="bottom" constant="64" id="yOK-Wa-gZP"/>
+                                    <constraint firstItem="olN-ub-vO9" firstAttribute="width" secondItem="JwA-Py-rNW" secondAttribute="width" multiplier="2" id="ydQ-xZ-vpe"/>
+                                    <constraint firstItem="MST-zd-yCu" firstAttribute="leading" secondItem="T3l-7k-7a5" secondAttribute="leading" constant="32" id="zo8-8w-RKi"/>
+                                </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="pigio_black"/>
                         <color key="tintColor" name="pigio_black"/>
                         <constraints>
+                            <constraint firstItem="T3l-7k-7a5" firstAttribute="centerX" secondItem="gil-14-GMh" secondAttribute="centerX" id="4XI-3V-uX9"/>
                             <constraint firstItem="fSD-J3-aHG" firstAttribute="bottom" secondItem="gil-14-GMh" secondAttribute="bottom" id="4jX-7b-u6l"/>
                             <constraint firstItem="oRs-lY-WCX" firstAttribute="leading" secondItem="gil-14-GMh" secondAttribute="leading" id="GTh-Si-yEB"/>
                             <constraint firstItem="oRs-lY-WCX" firstAttribute="width" secondItem="nRe-EO-N2e" secondAttribute="width" multiplier="0.057" id="InQ-Jt-oaQ"/>
                             <constraint firstItem="fSD-J3-aHG" firstAttribute="leading" secondItem="gil-14-GMh" secondAttribute="leading" id="Ymr-Xs-aAO"/>
                             <constraint firstItem="fSD-J3-aHG" firstAttribute="top" secondItem="nRe-EO-N2e" secondAttribute="top" id="eJp-Q7-qf8"/>
+                            <constraint firstItem="T3l-7k-7a5" firstAttribute="centerY" secondItem="gil-14-GMh" secondAttribute="centerY" id="gcJ-B5-Grp"/>
                             <constraint firstItem="fSD-J3-aHG" firstAttribute="trailing" secondItem="gil-14-GMh" secondAttribute="trailing" id="lnX-c4-Ceq"/>
                             <constraint firstItem="oRs-lY-WCX" firstAttribute="centerY" secondItem="gil-14-GMh" secondAttribute="centerY" id="n3T-9I-XHb"/>
                         </constraints>
