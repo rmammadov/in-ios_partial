@@ -10,6 +10,7 @@ import UIKit
 import Crashlytics
 
 private let SEGUE_IDENTIFIER_SHOW_NAME_INPUT = "showNameSurnameInput"
+private let SEGUE_IDENTIFIER_SHOW_USER_DETAILS_INPUT = "showUserDetailsInput"
 
 class IntroFirstViewController: BaseViewController {
 
@@ -49,7 +50,7 @@ class IntroFirstViewController: BaseViewController {
     }
     
     @IBAction func onClickBtnGetStarted(_ sender: Any) {
-        performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_NAME_INPUT, sender: self)
+        performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_USER_DETAILS_INPUT, sender: self)
     }
 }
 

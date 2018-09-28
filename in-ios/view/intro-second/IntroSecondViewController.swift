@@ -37,7 +37,7 @@ class IntroSecondViewController: BaseViewController {
     }
     
     @IBAction func onClickContinueBtn(_ sender: Any) {
-        performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_GENDER_OPTIONS, sender: self)
+        onContinue()
     }
     
 }
