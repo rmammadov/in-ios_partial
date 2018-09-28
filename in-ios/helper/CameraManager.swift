@@ -37,8 +37,8 @@ class CameraManager: NSObject {
     fileprivate var ivPointer: UIImageView?
     fileprivate var imagePointerRed: UIImage?
     fileprivate var imagePointerYellow: UIImage?
-    fileprivate var averageX: [Double] = Array(repeating: 0.0, count: 3)
-    fileprivate var averageY: [Double] = Array(repeating: 0.0, count: 3)
+    fileprivate var averageX: [Double] = Array(repeating: 0.0, count: Constant.DefaultConfig.GAZE_PREDICTION_AVERAGING_COUNT)
+    fileprivate var averageY: [Double] = Array(repeating: 0.0, count: Constant.DefaultConfig.GAZE_PREDICTION_AVERAGING_COUNT)
     fileprivate var averagingCount: Double = 0
 
     open var cameraIsReady: Bool {
@@ -179,7 +179,6 @@ extension CameraManager {
     }
     
     fileprivate func updatePointer(x: Double, y: Double) {
-        print("Coordinates x: \(x)" + " y: \(y)")
         ivPointer?.frame = CGRect(x: x, y: y, width: 50.0, height: 55.0)
         cameraView!.addSubview(ivPointer!)
     }
