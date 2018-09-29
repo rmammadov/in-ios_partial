@@ -12,6 +12,10 @@ class IntroSeconNewViewModel: BaseViewModel {
 
     let model: IntroSeconNewModel = IntroSeconNewModel()
     
+    func getGenderOptions() -> Array<String> {
+        return model.getGenderOptions()
+    }
+    
     func getAgeGroups() -> Array<String> {
         return model.getAgeGroups()
     }

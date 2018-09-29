@@ -10,15 +10,18 @@ import UIKit
 
 private let SEGUE_IDENTIFIER_SHOW_GENDER_OPTIONS = "showGenderOptions"
 
-private let TAG_AGE_GROUP = 10
-private let TAG_MEDİCAL_CONDİTİON = 11
+private let TAG_GENDER = 10
+private let TAG_AGE_GROUP = 11
+private let TAG_MEDİCAL_CONDİTİON = 12
 
 class IntroSecondNewViewController: BaseViewController {
     
     @IBOutlet weak var tfName: INTextField!
+    @IBOutlet weak var tfGender: UITextField!
     @IBOutlet weak var tfAgeGroup: INTextField!
     @IBOutlet weak var tfMedicalCondition: INTextField!
     
+    private var pickerGender: UIPickerView?
     private var pickerAgeGroup: UIPickerView?
     private var pickerMedicalCondition: UIPickerView?
     
@@ -55,14 +58,26 @@ extension IntroSecondNewViewController {
     func setUi() {
         tfName.delegate = self
         tfName.tag = 0
+        tfGender.delegate = self
+        tfGender.tag = 1
         tfAgeGroup.delegate = self
-        tfAgeGroup.tag = 1
+        tfAgeGroup.tag = 2
         tfMedicalCondition.delegate = self
-        tfMedicalCondition.tag = 2
+        tfMedicalCondition.tag = 3
         self.setKeyboardInetraction()
         
+        setPickerGender()
         setPickerAgeGroup()
         setPickerMedicalCondition()
+    }
+    
+    func setPickerGender() {
+        pickerGender = UIPickerView()
+        pickerGender?.dataSource = self
+        pickerGender?.delegate = self
+        pickerGender?.tag = TAG_GENDER
+        
+        tfGender.inputView = pickerGender
     }
     
     func setPickerAgeGroup() {
@@ -71,7 +86,7 @@ extension IntroSecondNewViewController {
         pickerAgeGroup?.delegate = self
         pickerAgeGroup?.tag = TAG_AGE_GROUP
         
-        self.tfAgeGroup.inputView = pickerAgeGroup
+        tfAgeGroup.inputView = pickerAgeGroup
     }
     
     func setPickerMedicalCondition() {
@@ -80,7 +95,7 @@ extension IntroSecondNewViewController {
         pickerMedicalCondition?.delegate = self
         pickerMedicalCondition?.tag = TAG_MEDİCAL_CONDİTİON
         
-        self.tfMedicalCondition.inputView = pickerMedicalCondition
+        tfMedicalCondition.inputView = pickerMedicalCondition
     }
     
 }
@@ -97,7 +112,9 @@ extension IntroSecondNewViewController {
 extension IntroSecondNewViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        if pickerView.tag == TAG_AGE_GROUP {
+        if pickerView.tag == TAG_GENDER {
+            return [viewModel.getGenderOptions()].count
+        } else if pickerView.tag == TAG_AGE_GROUP {
             return [viewModel.getAgeGroups()].count
         } else {
             return [viewModel.getMedicalConditions()].count
@@ -105,7 +122,9 @@ extension IntroSecondNewViewController: UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView.tag == TAG_AGE_GROUP {
+        if pickerView.tag == TAG_GENDER {
+            return viewModel.getGenderOptions().count
+        } else if pickerView.tag == TAG_AGE_GROUP {
             return viewModel.getAgeGroups().count
         } else {
             return viewModel.getMedicalConditions().count
@@ -113,10 +132,22 @@ extension IntroSecondNewViewController: UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView.tag == TAG_AGE_GROUP {
+        if pickerView.tag == TAG_GENDER {
+           return viewModel.getGenderOptions()[row]
+        } else if pickerView.tag == TAG_AGE_GROUP {
             return viewModel.getAgeGroups()[row]
         } else {
             return viewModel.getMedicalConditions()[row]
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView.tag == TAG_GENDER {
+            tfGender.text = viewModel.getGenderOptions()[row]
+        } else if pickerView.tag == TAG_AGE_GROUP {
+            tfAgeGroup.text = viewModel.getAgeGroups()[row]
+        } else {
+            tfMedicalCondition.text = viewModel.getMedicalConditions()[row]
         }
     }
     

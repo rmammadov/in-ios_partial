@@ -561,7 +561,7 @@
                                             <action selector="onClickBtnContinue:" destination="sGm-Vu-vto" eventType="touchUpInside" id="NJB-2o-7Zb"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Gender" minimumFontSize="17" background="ic_textfield_background" translatesAutoresizingMaskIntoConstraints="NO" id="pKy-PN-N3c">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Gender" minimumFontSize="17" background="ic_textfield_background" translatesAutoresizingMaskIntoConstraints="NO" id="pKy-PN-N3c" customClass="INTextField" customModule="in_ios" customModuleProvider="target">
                                         <rect key="frame" x="32" y="209" width="512" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="xbZ-uJ-bor"/>
@@ -613,6 +613,7 @@
                     </view>
                     <connections>
                         <outlet property="tfAgeGroup" destination="MST-zd-yCu" id="j74-ES-998"/>
+                        <outlet property="tfGender" destination="pKy-PN-N3c" id="jzX-QC-x1z"/>
                         <outlet property="tfMedicalCondition" destination="olN-ub-vO9" id="SWc-8C-wBX"/>
                         <outlet property="tfName" destination="7sr-vH-pQv" id="jqp-AI-4lQ"/>
                         <segue destination="VWj-rM-8KC" kind="show" identifier="showGenderOptions" id="hAd-2m-2uz"/>
