@@ -172,7 +172,8 @@ extension IntroSecondNewViewController: UIPickerViewDelegate, UIPickerViewDataSo
         } else {
             viewModel.setMedicalCondition(medicalConditon: viewModel.getMedicalConditions()[row])
         }
-
+        
+        setValues(tag: pickerView.tag)
     }
     
 }
