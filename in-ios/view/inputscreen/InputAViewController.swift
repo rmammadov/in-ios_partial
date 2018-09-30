@@ -151,7 +151,6 @@ extension InputAViewController {
             event in
             guard !self.isDisappear else { return }
             if AnimationUtil.status.value == AnimationStatus.completed.rawValue && AnimationUtil.getTag() == InputAViewController.TAG {
-                print("Clicked")
                 print(self.isBeingPresented)
                 self.viewModel.onItemLoadRequest(indexPath: self.viewModel.getSelection())
             }

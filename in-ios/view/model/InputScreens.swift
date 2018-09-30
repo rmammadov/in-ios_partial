@@ -13,7 +13,6 @@ struct InputScreens {
     let screens: [InputScreen]
 }
 
-
 extension InputScreens {
     
     func getInputScreen(title: String) -> InputScreen {

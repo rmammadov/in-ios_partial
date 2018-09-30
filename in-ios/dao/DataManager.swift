@@ -14,7 +14,8 @@ enum DataStatus: Int {
     case dataLoadingFailed = 1
     case menuItemsLoaded = 2
     case inputScreensLoaded = 3
-    case dataLoadingCompleted = 4
+    case legalDocumentsLoaded = 4
+    case dataLoadingCompleted = 5
 }
 
 class DataManager {
@@ -24,6 +25,7 @@ class DataManager {
     
     static fileprivate var menuItems: MenuItems?
     static fileprivate var inputScreens: InputScreens?
+    static fileprivate var legalDocuments: LegalDocuments?
     static fileprivate let requestHandler = ApiRequestHandler()
     
     static func setSubscribers() {
@@ -36,6 +38,10 @@ class DataManager {
                     self.status.value = DataStatus.menuItemsLoaded.rawValue
                 } else if self.requestHandler.getInputScreens().count != 0 {
                     self.inputScreens = InputScreens(screens: self.requestHandler.getInputScreens())
+                    self.loadLegalDocuments()
+                    self.status.value = DataStatus.inputScreensLoaded.rawValue
+                } else if self.requestHandler.getLegalDocuments().count != 0 {
+                    self.legalDocuments = LegalDocuments(legalDocuments: self.requestHandler.getLegalDocuments())
                     self.status.value = DataStatus.dataLoadingCompleted.rawValue
                 }
             } else if self.requestHandler.status.value == RequestStatus.failed.rawValue {
@@ -62,5 +68,13 @@ class DataManager {
     
     static func getInputScreens() -> InputScreens {
         return self.inputScreens!
+    }
+    
+    static func loadLegalDocuments() {
+        self.requestHandler.requestLegalDocuments()
+    }
+    
+    static func getLegalDocuments() -> LegalDocuments {
+        return self.legalDocuments!
     }
 }
