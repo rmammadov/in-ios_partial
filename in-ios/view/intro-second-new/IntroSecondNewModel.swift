@@ -10,20 +10,53 @@ import Foundation
 
 class IntroSeconNewModel: BaseModel {
     
-    private var arrayGenderOptions: Array<String> = ["Male", "Female"]
-    private var arrayAgeGroups: Array<String> = ["0 - 11 years old", "12 - 17 years old", "18 - 23 years old", "24 - 29 years old", "30 - 49 years old", "50 - 64 years old", "65 - 80 years old", "80 - 95 years old", "96+ years old"]
-    private var arrayMedicalConditions: Array<String> = ["None", "Stroke", "Amyotrophic Lateral Sclerosis", "Spinal Muscular Atrophy", "Multiple Sclerosis", "Guillain-Barre Syndrome", "Alzheimer’s Disease", "Alzheimer’s Disease"]
+    private var name: String = ""
+    private var gender: String = Constant.DefaultValues.GEDNER_OPTIONS[0]
+    private var ageGroup: String = Constant.DefaultValues.AGE_GROUPS[0]
+    private var medicalCondition: String = Constant.DefaultValues.MEDICAL_CONDITIONS[0]
     
     func getGenderOptions() -> Array<String> {
-        return arrayGenderOptions
+        return Constant.DefaultValues.GEDNER_OPTIONS
     }
     
     func getAgeGroups() -> Array<String> {
-        return arrayAgeGroups
+        return Constant.DefaultValues.AGE_GROUPS
     }
     
     func getMedicalConditions() -> Array<String> {
-        return arrayMedicalConditions
+        return Constant.DefaultValues.MEDICAL_CONDITIONS
+    }
+    
+    func setName(name: String) {
+        self.name = name
+    }
+    
+    func getName() -> String {
+        return name
+    }
+    
+    func setGender(gender: String) {
+        self.gender = gender
+    }
+    
+    func getGender() -> String {
+        return gender
+    }
+    
+    func setAgeGroup(ageGroup: String) {
+        self.ageGroup = ageGroup
+    }
+    
+    func getAgeGroup() -> String {
+        return ageGroup
+    }
+    
+    func setMedicalCondition(medicalCondition: String) {
+        self.medicalCondition = medicalCondition
+    }
+    
+    func getMedicalCondition() -> String {
+        return medicalCondition
     }
     
 }

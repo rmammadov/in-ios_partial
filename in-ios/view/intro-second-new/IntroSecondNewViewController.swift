@@ -9,10 +9,14 @@
 import UIKit
 
 private let SEGUE_IDENTIFIER_SHOW_GENDER_OPTIONS = "showGenderOptions"
+private let SEGUE_IDENTIFIER_SHOW_HOME = "showHome"
 
-private let TAG_GENDER = 10
-private let TAG_AGE_GROUP = 11
-private let TAG_MEDİCAL_CONDİTİON = 12
+enum ISVCTextFieldTags: Int {
+    case tagName = 10
+    case tagGender = 11
+    case tagAgeGroup = 12
+    case tagMedicalCondition = 13
+}
 
 class IntroSecondNewViewController: BaseViewController {
     
@@ -57,13 +61,13 @@ extension IntroSecondNewViewController {
     
     func setUi() {
         tfName.delegate = self
-        tfName.tag = 0
+        tfName.tag = ISVCTextFieldTags.tagName.rawValue
         tfGender.delegate = self
-        tfGender.tag = 1
+        tfGender.tag = ISVCTextFieldTags.tagGender.rawValue
         tfAgeGroup.delegate = self
-        tfAgeGroup.tag = 2
+        tfAgeGroup.tag = ISVCTextFieldTags.tagAgeGroup.rawValue
         tfMedicalCondition.delegate = self
-        tfMedicalCondition.tag = 3
+        tfMedicalCondition.tag = ISVCTextFieldTags.tagMedicalCondition.rawValue
         self.setKeyboardInetraction()
         
         setPickerGender()
@@ -75,7 +79,7 @@ extension IntroSecondNewViewController {
         pickerGender = UIPickerView()
         pickerGender?.dataSource = self
         pickerGender?.delegate = self
-        pickerGender?.tag = TAG_GENDER
+        pickerGender?.tag = ISVCTextFieldTags.tagGender.rawValue
         
         tfGender.inputView = pickerGender
     }
@@ -84,7 +88,7 @@ extension IntroSecondNewViewController {
         pickerAgeGroup = UIPickerView()
         pickerAgeGroup?.dataSource = self
         pickerAgeGroup?.delegate = self
-        pickerAgeGroup?.tag = TAG_AGE_GROUP
+        pickerAgeGroup?.tag = ISVCTextFieldTags.tagAgeGroup.rawValue
         
         tfAgeGroup.inputView = pickerAgeGroup
     }
@@ -93,18 +97,37 @@ extension IntroSecondNewViewController {
         pickerMedicalCondition = UIPickerView()
         pickerMedicalCondition?.dataSource = self
         pickerMedicalCondition?.delegate = self
-        pickerMedicalCondition?.tag = TAG_MEDİCAL_CONDİTİON
+        pickerMedicalCondition?.tag = ISVCTextFieldTags.tagMedicalCondition.rawValue
         
         tfMedicalCondition.inputView = pickerMedicalCondition
+    }
+    
+    func setValues(tag: Int) {
+        switch tag {
+        case tfName.tag:
+            tfName.text = viewModel.getName()
+        case tfGender.tag:
+            tfGender.text = viewModel.getGender()
+        case tfAgeGroup.tag:
+            tfAgeGroup.text = viewModel.getAgeGroup()
+        case tfMedicalCondition.tag:
+            tfMedicalCondition.text = viewModel.getMedicalCondition()
+        default:
+            return
+        }
     }
     
 }
 
 extension IntroSecondNewViewController {
     
+    override func textFieldDidBeginEditing(_ textField: UITextField) {
+        setValues(tag: textField.tag)
+    }
+    
     override func onContinue() {
         super.onContinue()
-        performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_GENDER_OPTIONS, sender: self)
+        performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_HOME, sender: self)
     }
 }
 
@@ -112,9 +135,9 @@ extension IntroSecondNewViewController {
 extension IntroSecondNewViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        if pickerView.tag == TAG_GENDER {
+        if pickerView.tag == ISVCTextFieldTags.tagGender.rawValue {
             return [viewModel.getGenderOptions()].count
-        } else if pickerView.tag == TAG_AGE_GROUP {
+        } else if pickerView.tag == ISVCTextFieldTags.tagAgeGroup.rawValue {
             return [viewModel.getAgeGroups()].count
         } else {
             return [viewModel.getMedicalConditions()].count
@@ -122,9 +145,9 @@ extension IntroSecondNewViewController: UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView.tag == TAG_GENDER {
+        if pickerView.tag == ISVCTextFieldTags.tagGender.rawValue {
             return viewModel.getGenderOptions().count
-        } else if pickerView.tag == TAG_AGE_GROUP {
+        } else if pickerView.tag == ISVCTextFieldTags.tagAgeGroup.rawValue {
             return viewModel.getAgeGroups().count
         } else {
             return viewModel.getMedicalConditions().count
@@ -132,9 +155,9 @@ extension IntroSecondNewViewController: UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView.tag == TAG_GENDER {
+        if pickerView.tag == ISVCTextFieldTags.tagGender.rawValue {
            return viewModel.getGenderOptions()[row]
-        } else if pickerView.tag == TAG_AGE_GROUP {
+        } else if pickerView.tag == ISVCTextFieldTags.tagAgeGroup.rawValue {
             return viewModel.getAgeGroups()[row]
         } else {
             return viewModel.getMedicalConditions()[row]
@@ -142,13 +165,14 @@ extension IntroSecondNewViewController: UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView.tag == TAG_GENDER {
-            tfGender.text = viewModel.getGenderOptions()[row]
-        } else if pickerView.tag == TAG_AGE_GROUP {
-            tfAgeGroup.text = viewModel.getAgeGroups()[row]
+        if pickerView.tag == ISVCTextFieldTags.tagGender.rawValue {
+            viewModel.setGender(gender: viewModel.getGenderOptions()[row])
+        } else if pickerView.tag == ISVCTextFieldTags.tagAgeGroup.rawValue {
+            viewModel.setAgeGroup(ageGroup: viewModel.getAgeGroups()[row])
         } else {
-            tfMedicalCondition.text = viewModel.getMedicalConditions()[row]
+            viewModel.setMedicalCondition(medicalConditon: viewModel.getMedicalConditions()[row])
         }
+
     }
     
 }

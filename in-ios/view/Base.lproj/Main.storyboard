@@ -527,7 +527,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next" textContentType="name"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Age group?" minimumFontSize="17" background="ic_textfield_background" translatesAutoresizingMaskIntoConstraints="NO" id="MST-zd-yCu" customClass="INTextField" customModule="in_ios" customModuleProvider="target">
                                         <rect key="frame" x="32" y="289" width="512" height="48"/>
@@ -536,7 +536,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Do you have a medical condition?" minimumFontSize="17" background="ic_textfield_background" translatesAutoresizingMaskIntoConstraints="NO" id="olN-ub-vO9" customClass="INTextField" customModule="in_ios" customModuleProvider="target">
                                         <rect key="frame" x="32" y="369" width="512" height="48"/>
@@ -545,7 +545,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="continue"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="continue" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwA-Py-rNW">
                                         <rect key="frame" x="160" y="481" width="256" height="64"/>
@@ -568,7 +568,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -617,6 +617,7 @@
                         <outlet property="tfMedicalCondition" destination="olN-ub-vO9" id="SWc-8C-wBX"/>
                         <outlet property="tfName" destination="7sr-vH-pQv" id="jqp-AI-4lQ"/>
                         <segue destination="VWj-rM-8KC" kind="show" identifier="showGenderOptions" id="hAd-2m-2uz"/>
+                        <segue destination="NSJ-NQ-Qye" kind="show" identifier="showHome" id="0sY-W2-dgh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="co7-Eb-ICU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1295,7 +1296,7 @@ AAAAE90
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ycc-j2-1X5"/>
+        <segue reference="0sY-W2-dgh"/>
         <segue reference="hAd-2m-2uz"/>
     </inferredMetricsTieBreakers>
 </document>

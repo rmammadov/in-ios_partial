@@ -27,6 +27,12 @@ struct Constant {
         static let URL_EXTENSION_INPUT_SCREENS: String = "input-screens"
     }
     
+    struct DefaultValues {
+        static let GEDNER_OPTIONS: Array<String> = ["Male", "Female"]
+        static let AGE_GROUPS: Array<String> = ["0 - 11 years old", "12 - 17 years old", "18 - 23 years old", "24 - 29 years old", "30 - 49 years old", "50 - 64 years old", "65 - 80 years old", "80 - 95 years old", "96+ years old"]
+        static let MEDICAL_CONDITIONS: Array<String> = ["None", "Stroke", "Amyotrophic Lateral Sclerosis", "Spinal Muscular Atrophy", "Multiple Sclerosis", "Guillain-Barre Syndrome", "Alzheimer’s Disease", "Alzheimer’s Disease"]
+    }
+    
     struct MenuConfig {
         static let NAME_TOP_MENU_ITEM: String = "root"
         static let NAME_IAM_MENU_ITEM: String = "I am"
