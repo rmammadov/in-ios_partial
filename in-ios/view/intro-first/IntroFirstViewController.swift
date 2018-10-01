@@ -76,17 +76,16 @@ extension IntroFirstViewController: UITextViewDelegate {
         let rangePrivacy = attributedString.mutableString.range(of: "Privacy Policy")
         let rangeTerms = attributedString.mutableString.range(of: "Terms and Conditions")
         
-        attributedString.addAttribute(.link, value: "https://www.google.com", range: rangePrivacy)
+        attributedString.addAttribute(.link, value: "privacy_policy", range: rangePrivacy)
         attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSNumber(value: 1), range: rangePrivacy)
         
-        attributedString.addAttribute(.link, value: "https://www.apple.com", range: rangeTerms)
+        attributedString.addAttribute(.link, value: "terms_of_use", range: rangeTerms)
         attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSNumber(value: 1), range: rangeTerms)
         
         self.tvAgreement.attributedText = attributedString
     }
     
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        UIApplication.shared.open(URL, options: [:])
         
         return false
     }
