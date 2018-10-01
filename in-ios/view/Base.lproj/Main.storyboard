@@ -547,7 +547,7 @@
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="continue" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwA-Py-rNW">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwA-Py-rNW">
                                         <rect key="frame" x="160" y="481" width="256" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="256" id="1wL-9i-qNw"/>
@@ -557,6 +557,7 @@
                                         <state key="normal" title="Continue" backgroundImage="ic_btn_get_started_enabled">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <state key="disabled" backgroundImage="ic_btn_get_started_disabled"/>
                                         <connections>
                                             <action selector="onClickBtnContinue:" destination="sGm-Vu-vto" eventType="touchUpInside" id="NJB-2o-7Zb"/>
                                         </connections>
@@ -612,6 +613,7 @@
                         <viewLayoutGuide key="safeArea" id="gil-14-GMh"/>
                     </view>
                     <connections>
+                        <outlet property="btnContinue" destination="JwA-Py-rNW" id="gtf-FN-mc4"/>
                         <outlet property="tfAgeGroup" destination="MST-zd-yCu" id="j74-ES-998"/>
                         <outlet property="tfGender" destination="pKy-PN-N3c" id="jzX-QC-x1z"/>
                         <outlet property="tfMedicalCondition" destination="olN-ub-vO9" id="SWc-8C-wBX"/>
