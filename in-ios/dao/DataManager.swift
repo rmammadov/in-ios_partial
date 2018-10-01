@@ -31,16 +31,16 @@ class DataManager {
     static func setSubscribers() {
         self.requestHandler.status.asObservable().subscribe(onNext: {
             event in
-            if self.requestHandler.status.value == RequestStatus.completed.rawValue {
-                if self.requestHandler.getMenuItems().count != 0 && self.status.value == DataStatus.notLoaded.rawValue {
+            if self.requestHandler.status.value != RequestStatus.failed.rawValue{
+                if self.requestHandler.status.value == RequestStatus.completedMenuItems.rawValue {
                     self.menuItems = MenuItems(items: self.requestHandler.getMenuItems())
                     self.loadInputScreens()
                     self.status.value = DataStatus.menuItemsLoaded.rawValue
-                } else if self.requestHandler.getInputScreens().count != 0 {
+                } else if self.requestHandler.status.value == RequestStatus.completedInputScreens.rawValue {
                     self.inputScreens = InputScreens(screens: self.requestHandler.getInputScreens())
                     self.loadLegalDocuments()
                     self.status.value = DataStatus.inputScreensLoaded.rawValue
-                } else if self.requestHandler.getLegalDocuments().count != 0 {
+                } else if self.requestHandler.status.value == RequestStatus.completedLegalDocuments.rawValue {
                     self.legalDocuments = LegalDocuments(legalDocuments: self.requestHandler.getLegalDocuments())
                     self.status.value = DataStatus.dataLoadingCompleted.rawValue
                 }
