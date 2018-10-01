@@ -25,6 +25,13 @@ struct Constant {
         static let URL_EXTENSION_API: String = "api/"
         static let URL_EXTENSION_MENU_ITEMS: String = "menu-items"
         static let URL_EXTENSION_INPUT_SCREENS: String = "input-screens"
+        static let URL_EXTENSION_LEGAL_DOCUMENTS: String = "legal-documents"
+    }
+    
+    struct DefaultValues {
+        static let GEDNER_OPTIONS: Array<String> = ["Male", "Female"]
+        static let AGE_GROUPS: Array<String> = ["0 - 11 years old", "12 - 17 years old", "18 - 23 years old", "24 - 29 years old", "30 - 49 years old", "50 - 64 years old", "65 - 80 years old", "80 - 95 years old", "96+ years old"]
+        static let MEDICAL_CONDITIONS: Array<String> = ["None", "Stroke", "Amyotrophic Lateral Sclerosis", "Spinal Muscular Atrophy", "Multiple Sclerosis", "Guillain-Barre Syndrome", "Alzheimer’s Disease", "Alzheimer’s Disease"]
     }
     
     struct MenuConfig {

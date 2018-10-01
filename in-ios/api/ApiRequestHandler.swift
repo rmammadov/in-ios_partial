@@ -16,7 +16,6 @@ enum RequestStatus: Int {
     case completed = 3
 }
 
-
 // FIXME: RequestStatus should be updated to properly
 
 class ApiRequestHandler {
@@ -28,6 +27,7 @@ class ApiRequestHandler {
     
     fileprivate var menuItems: Array<MenuItem> = []
     fileprivate var inputScreens: Array<InputScreen> = []
+    fileprivate var legalDocuments: Array<LegalDocument> = []
     
     init() {
         config = URLSessionConfiguration.default
@@ -109,6 +109,45 @@ class ApiRequestHandler {
     }
     
     func getInputScreens() -> Array<InputScreen> {
-        return self.inputScreens
+        return inputScreens
+    }
+    
+    
+    func requestLegalDocuments() {
+        let url = URL(string: Constant.Url.HOST_API_BETA + Constant.Url.URL_EXTENSION_API + Constant.Url.URL_EXTENSION_LEGAL_DOCUMENTS)!
+        
+        let task = self.session.dataTask(with: url) { data, response, error in
+            // ensure there is no error for this HTTP response
+            guard error == nil else {
+                print ("error: \(error!)")
+                self.status.value = RequestStatus.failed.rawValue
+                return
+            }
+            
+            // ensure there is data returned from this HTTP response
+            guard let content = data else {
+                print("No data")
+                return
+            }
+            
+            // serialise the data / NSData object into Dictionary [String : Any]
+            guard ((try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? Array<Any>) != nil else {
+                print("Not containing JSON")
+                return
+            }
+            
+            do {
+                self.legalDocuments = try JSONDecoder().decode([LegalDocument].self, from: content)
+                self.status.value = RequestStatus.completed.rawValue
+            } catch let jsonErr {
+                print("Error serializing json",  jsonErr)
+            }
+        }
+        
+        task.resume()
+    }
+    
+    func getLegalDocuments() -> Array<LegalDocument> {
+        return self.legalDocuments
     }
 }

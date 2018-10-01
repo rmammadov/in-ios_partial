@@ -51,6 +51,8 @@
 		F39059BF210F254C00CAA292 /* AnimationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059BE210F254C00CAA292 /* AnimationUtil.swift */; };
 		F39059C1210F290F00CAA292 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059C0210F290F00CAA292 /* MenuViewModel.swift */; };
 		F39059C32110473D00CAA292 /* MenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059C22110473D00CAA292 /* MenuItems.swift */; };
+		F3A41ACC2161329000D2D8D6 /* LegalDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A41ACB2161329000D2D8D6 /* LegalDocument.swift */; };
+		F3A41ACE216147F100D2D8D6 /* LegalDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A41ACD216147F100D2D8D6 /* LegalDocuments.swift */; };
 		F3B0C1CC2154BA1400E30CA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3B0C1CB2154BA1300E30CA1 /* GoogleService-Info.plist */; };
 		F3C48CCB210F018200742855 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C48CCA210F018200742855 /* MenuViewController.swift */; };
 		F3CE691D213D70E6004F6756 /* GazeEstimator.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F3CE691C213D70E6004F6756 /* GazeEstimator.mlmodel */; };
@@ -176,6 +178,8 @@
 		F39059BE210F254C00CAA292 /* AnimationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationUtil.swift; sourceTree = "<group>"; };
 		F39059C0210F290F00CAA292 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		F39059C22110473D00CAA292 /* MenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItems.swift; sourceTree = "<group>"; };
+		F3A41ACB2161329000D2D8D6 /* LegalDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDocument.swift; sourceTree = "<group>"; };
+		F3A41ACD216147F100D2D8D6 /* LegalDocuments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDocuments.swift; sourceTree = "<group>"; };
 		F3B0C1CB2154BA1300E30CA1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F3C48CCA210F018200742855 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		F3CE691C213D70E6004F6756 /* GazeEstimator.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = GazeEstimator.mlmodel; sourceTree = "<group>"; };
@@ -344,6 +348,8 @@
 				F39059C22110473D00CAA292 /* MenuItems.swift */,
 				F3355CE72121E04F009AF602 /* InputScreen.swift */,
 				F3355CE92122BE79009AF602 /* InputScreens.swift */,
+				F3A41ACB2161329000D2D8D6 /* LegalDocument.swift */,
+				F3A41ACD216147F100D2D8D6 /* LegalDocuments.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -891,6 +897,7 @@
 				F3E19CBB211D836B00ADE838 /* SubMenuViewModel.swift in Sources */,
 				F32D99C821117E8A007AAA8D /* MenuModel.swift in Sources */,
 				F3D6D204214CF7F400A6231E /* IntroFourthViewController.swift in Sources */,
+				F3A41ACC2161329000D2D8D6 /* LegalDocument.swift in Sources */,
 				F3D6D20C214CF86500A6231E /* IntroFifthViewModel.swift in Sources */,
 				F33F0BCF2121B11C002E31B9 /* DataManager.swift in Sources */,
 				F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */,
@@ -900,6 +907,7 @@
 				F3E200C22135EC5E00902A33 /* FaceFinderDelegate.swift in Sources */,
 				F334ADC02106E86F0056824A /* NavigationHelper.swift in Sources */,
 				F3355CEF2122E8F3009AF602 /* LoadingViewModel.swift in Sources */,
+				F3A41ACE216147F100D2D8D6 /* LegalDocuments.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

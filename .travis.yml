@@ -11,9 +11,9 @@ xcode_destination: platform=iOS Simulator,OS=12.0,name=iPad Pro (9.7-inch)
 xcode_sdk: iphonesimulator12.0
 
 env:
-global:
-  - LC_CTYPE=en_US.UTF-8
-  - LANG=en_US.UTF-8
+  global:
+    - LC_CTYPE=en_US.UTF-8
+    - LANG=en_US.UTF-8
 
 #addons:
 #  apt:
@@ -27,13 +27,13 @@ global:
 #  - redis-server
 
 cache:
-timeout: 300
-bundler: true
-cocoapods: true
-directories:
-  - $HOME/Library/Caches/CocoaPods/Pods/
-  - $HOME/.cocoapods/
-  - $HOME/.rvm/
+  timeout: 300
+  bundler: true
+  cocoapods: true
+  directories:
+    - $HOME/Library/Caches/CocoaPods/Pods/
+    - $HOME/.cocoapods/
+    - $HOME/.rvm/
 
 before_install:
   - set -e
@@ -53,7 +53,7 @@ install:
 
 before_script:
   - echo "Starting before_script."
-  - if on_store ; then agvtool new-marketing-version ${BUILD_VERSION} ; fi
+  - if on_prod ; then agvtool new-marketing-version ${BUILD_VERSION} ; fi
   - agvtool new-version -all ${TRAVIS_BUILD_NUMBER}
   - security create-keychain -p travis ios-build.keychain
   - security default-keychain -s ios-build.keychain
@@ -68,8 +68,8 @@ script:
   - UNIT_TESTS=true
   - TEST_FLIGHT=false
   - if echo ${COMMIT_MESSAGE} | grep -iF '#skip-tests' &>/dev/null ; then echo "Skipping unit tests." ; UNIT_TESTS=false ; fi
-  - if [ "${DEPLOY_ON_BETA}"" = "1" ] ; then TEST_FLIGHT=true ; fi
-  - bundle exec fastlane betaLane unit_tests:${UNIT_TESTS} test_flight:${TEST_FLIGHT}
+  - if [ "${DEPLOY_ON_BETA}" = "1" ] ; then TEST_FLIGHT=true ; fi
+  - bundle exec fastlane betaLane "unit_tests:${UNIT_TESTS}" "test_flight:${TEST_FLIGHT}"
 
 before_cache:
   - echo "Nothing to do for before_cache."
@@ -85,19 +85,18 @@ after_failure:
 before_deploy:
   - echo "Nothing to do for before_deploy."
 
-#deploy:
-#  - provider: s3
-#    region: "us-east-1"
-#    access_key_id: "${AWS_ACCESS_KEY}"
-#    secret_access_key: "${AWS_SECRET_KEY}"
-#    local_dir: "${HOME}/deployment"
-#    skip_cleanup: true
-#    on:
-#    all_branches: true
-#    condition: "${DEPLOY_ON_PROD}"
-#    tags: true
-#    bucket: "innodem-travis-builds"
-#    upload_dir: "${TRAVIS_REPO_SLUG}"
+deploy:
+  - provider: s3
+    region: "us-east-1"
+    access_key_id: "${AWS_ACCESS_KEY}"
+    secret_access_key: "${AWS_SECRET_KEY}"
+    local_dir: "${HOME}/deployment"
+    bucket: "innodem-travis-builds"
+    upload_dir: "${TRAVIS_REPO_SLUG}"
+    skip_cleanup: true
+    on:
+      all_branches: true
+      condition: "${DEPLOY_ON_STORE}"
 
 after_deploy:
   - echo "Nothing to do for after_deploy."
