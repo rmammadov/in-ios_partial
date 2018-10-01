@@ -300,9 +300,9 @@
                                 <cells/>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UIu-s7-iiK">
-                                <rect key="frame" x="1052" y="295.5" width="60" height="127"/>
+                                <rect key="frame" x="1052" y="299" width="60" height="120"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="UIu-s7-iiK" secondAttribute="height" multiplier="83:176" id="IIE-HA-q5C"/>
+                                    <constraint firstAttribute="width" secondItem="UIu-s7-iiK" secondAttribute="height" multiplier="0.5" id="IIE-HA-q5C"/>
                                     <constraint firstAttribute="width" constant="60" id="uTh-F5-K2g"/>
                                 </constraints>
                                 <state key="normal" image="button:UIu-s7-iiK:image" backgroundImage="ic_side_btn_speak"/>

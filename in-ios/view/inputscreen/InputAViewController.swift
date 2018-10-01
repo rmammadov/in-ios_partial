@@ -180,12 +180,29 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     // FIXME: Remove the hardcode
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let cellWidth = self.collectionView.frame.size.width / CGFloat(viewModel.getColumnCount())
+        var cellWidth = self.collectionView.frame.size.width / CGFloat(viewModel.getColumnCount())
         let cellHeight = self.collectionView.frame.size.height / CGFloat(viewModel.getRowCount())
-
+        if cellWidth > cellHeight {
+            cellWidth = cellHeight - (7.0 + 7.0 + 17.0)
+        }
         return CGSize(width: cellWidth, height: cellHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        var cellWidth = self.collectionView.frame.size.width / CGFloat(viewModel.getColumnCount())
+        let cellHeight = self.collectionView.frame.size.height / CGFloat(viewModel.getRowCount())
+        if cellWidth > cellHeight {
+            cellWidth = cellHeight - (7.0 + 7.0 + 17.0)
+            return (collectionView.frame.width - (CGFloat(viewModel.getColumnCount()) * cellWidth)) / CGFloat(viewModel.getColumnCount() - 1)
+        } else {
+            return 0
+        }
     }
     
     // MARK: UICollectionViewDelegate
