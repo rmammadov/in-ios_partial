@@ -19,6 +19,8 @@ struct InputScreen: Decodable {
     let nextButton: ButtonInputScreen?
     let type: String
     let backButton: ButtonInputScreen?
+    let clearButton: ButtonInputScreen?
+    let tabs: [Tab]?
 }
 
 extension InputScreen {
@@ -32,6 +34,8 @@ extension InputScreen {
         case previousButton = "previous_button"
         case nextButton = "next_button"
         case backButton = "back_button"
+        case clearButton = "clear_button"
+        case tabs = "tabs"
         case type = "type"
     }
     
@@ -47,10 +51,13 @@ extension InputScreen {
         let previousButton: ButtonInputScreen? = try container.decodeIfPresent(ButtonInputScreen.self, forKey: .previousButton)
         let nextButton: ButtonInputScreen? = try container.decodeIfPresent(ButtonInputScreen.self, forKey: .nextButton)
         let backButton: ButtonInputScreen? = try container.decodeIfPresent(ButtonInputScreen.self, forKey: .backButton)
+        let clearButton: ButtonInputScreen? = try container.decodeIfPresent(ButtonInputScreen.self, forKey: .clearButton)
+        let tabs: [Tab]? = try container.decodeIfPresent([Tab].self, forKey: .tabs)
         
         self.init(disableTextToSpeech: disableTextToSpeech, translations: translations, buttons: buttons,
                   background: background, backgroundTransparency: backgroundTransparency,
-                  previousButton: previousButton, nextButton: nextButton, type: type, backButton: backButton)
+                  previousButton: previousButton, nextButton: nextButton, type: type, backButton: backButton,
+                  clearButton: clearButton, tabs: tabs)
     }
 }
 
@@ -88,5 +95,13 @@ struct Background: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case id, url
+    }
+}
+
+struct Tab: Decodable {
+    let panelScreenId: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case panelScreenId = "panel_screen_id"
     }
 }

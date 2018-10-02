@@ -194,6 +194,10 @@ class InputAViewModel: BaseViewModel {
             let inputScreen = Constant.InputScreenId(rawValue: selectedItem?.inputScreenId ?? -1),
             inputScreen.type == Constant.InputScreen.TYPE_B {
             self.statusInput.value = InputScreenId.inputScreen0.rawValue
+        } else if selectedItem?.type == Constant.ButtonType.INPUT_SCREEN_OPEN,
+            let inputScreen = Constant.InputScreenId(rawValue: selectedItem?.inputScreenId ?? -1),
+            inputScreen.type == Constant.InputScreen.TYPE_C {
+            self.statusInput.value = InputScreenId.inputScreen1.rawValue
         }
         if selectedItem?.type == Constant.ButtonType.BUTTONS_SIMPLE {
             if selectedItem?.translations?.first?.label == "Volume up" {

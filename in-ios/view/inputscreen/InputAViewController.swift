@@ -144,6 +144,15 @@ extension InputAViewController {
                     nextVC.viewModel.inputScreen = inputScreen
                     self.navigationController?.pushViewController(nextVC, animated: true)
                 }
+            } else if inputStatus == InputScreenId.inputScreen1.rawValue {
+                let storyboard = UIStoryboard(name: "ScreenTypeC", bundle: nil)
+                guard let screenCVC = storyboard.instantiateViewController(withIdentifier: "ScreenTypeCViewController") as? ScreenTypeCViewController,
+                    let inputScreen = self.viewModel.loadInputScreenItem()
+                    else { return }
+                screenCVC.viewModel
+                DispatchQueue.main.async {
+                    self.navigationController?.pushViewController(screenCVC, animated: true)
+                }
             }
         }).disposed(by: disposeBag)
         
