@@ -10,10 +10,13 @@ import Foundation
 import RxSwift
 
 enum RequestStatus: Int {
-    case notRequested = 0
-    case requested = 1
-    case failed = 2
-    case completed = 3
+    case notRequested = 10
+    case requested = 20
+    case failed = 30
+    case completedMenuItems = 31
+    case completedInputScreens = 32
+    case completedLegalDocuments = 33
+    case completed = 40
 }
 
 // FIXME: RequestStatus should be updated to properly
@@ -61,7 +64,7 @@ class ApiRequestHandler {
 
             do {
                 self.menuItems = try JSONDecoder().decode([MenuItem].self, from: content)
-                self.status.value = RequestStatus.completed.rawValue
+                self.status.value = RequestStatus.completedMenuItems.rawValue
             } catch let jsonErr {
                 print("Error serializing json",  jsonErr)
             }
@@ -99,7 +102,7 @@ class ApiRequestHandler {
             
             do {
                 self.inputScreens = try JSONDecoder().decode([InputScreen].self, from: content)
-                self.status.value = RequestStatus.completed.rawValue
+                self.status.value = RequestStatus.completedInputScreens.rawValue
             } catch let jsonErr {
                 print("Error serializing json",  jsonErr)
             }
@@ -138,7 +141,7 @@ class ApiRequestHandler {
             
             do {
                 self.legalDocuments = try JSONDecoder().decode([LegalDocument].self, from: content)
-                self.status.value = RequestStatus.completed.rawValue
+                self.status.value = RequestStatus.completedLegalDocuments.rawValue
             } catch let jsonErr {
                 print("Error serializing json",  jsonErr)
             }

@@ -24,6 +24,7 @@ class IntroSecondNewViewController: BaseViewController {
     @IBOutlet weak var tfGender: UITextField!
     @IBOutlet weak var tfAgeGroup: INTextField!
     @IBOutlet weak var tfMedicalCondition: INTextField!
+    @IBOutlet weak var btnContinue: UIButton!
     
     private var pickerGender: UIPickerView?
     private var pickerAgeGroup: UIPickerView?
@@ -123,6 +124,14 @@ extension IntroSecondNewViewController {
     
     override func textFieldDidBeginEditing(_ textField: UITextField) {
         setValues(tag: textField.tag)
+    }
+    
+    override func textFieldDidEndEditing(_ textField: UITextField) {
+        if !(tfName.text?.isEmpty)! && !(tfGender.text?.isEmpty)! && !(tfAgeGroup.text?.isEmpty)! && !(tfMedicalCondition.text?.isEmpty)! {
+            btnContinue.isEnabled = true
+        } else {
+            btnContinue.isEnabled = false
+        }
     }
     
     override func onContinue() {

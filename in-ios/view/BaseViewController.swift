@@ -93,6 +93,10 @@ extension BaseViewController {
 
 extension BaseViewController: UITextFieldDelegate {
     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+    }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
     }

@@ -160,7 +160,7 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.viewModel.setSelection(indexPath: indexPath)
         guard let cell = getCellForIndexPath(indexPath: indexPath) else { return }
-        AnimationUtil.animateMenuSelection(imageView: cell.ivStatusIcon, fingerTouch: true, tag: MenuViewController.TAG)
+        AnimationUtil.animateMenuSelection(imageView: cell.ivStatusIcon, fingerTouch: false, tag: MenuViewController.TAG)
     }
     
     func getCellForIndexPath(indexPath: IndexPath) -> MenuItemCollectionViewCell? {
