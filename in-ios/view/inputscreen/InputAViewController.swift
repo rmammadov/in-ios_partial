@@ -183,8 +183,8 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        var cellWidth = self.collectionView.frame.size.width / CGFloat(viewModel.getColumnCount())
+        let marginSpace = CGFloat(viewModel.getItemMargin() * (viewModel.getRowCount() - 1))
+        var cellWidth = (self.collectionView.frame.size.width - marginSpace) / CGFloat(viewModel.getColumnCount())
         let cellHeight = self.collectionView.frame.size.height / CGFloat(viewModel.getRowCount())
         if cellWidth > cellHeight {
             cellWidth = cellHeight - (7.0 + 7.0 + 17.0)
@@ -195,7 +195,8 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        var cellWidth = self.collectionView.frame.size.width / CGFloat(viewModel.getColumnCount())
+        let marginSpace = CGFloat(viewModel.getItemMargin() * (viewModel.getRowCount() - 1))
+        var cellWidth = (self.collectionView.frame.size.width - marginSpace) / CGFloat(viewModel.getColumnCount())
         let cellHeight = self.collectionView.frame.size.height / CGFloat(viewModel.getRowCount())
         if cellWidth > cellHeight {
             cellWidth = cellHeight - (7.0 + 7.0 + 17.0)

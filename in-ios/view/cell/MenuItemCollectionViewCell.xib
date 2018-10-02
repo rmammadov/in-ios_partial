@@ -48,6 +48,7 @@
                 <constraint firstItem="EJV-8z-gLK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="JeA-oc-aXy"/>
                 <constraint firstItem="6MF-pU-T87" firstAttribute="centerX" secondItem="EJV-8z-gLK" secondAttribute="centerX" id="LqF-r6-2Md"/>
                 <constraint firstItem="EJV-8z-gLK" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="MTN-H5-efC"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EJV-8z-gLK" secondAttribute="trailing" id="MrF-ng-1A0"/>
                 <constraint firstItem="6MF-pU-T87" firstAttribute="width" secondItem="EJV-8z-gLK" secondAttribute="width" multiplier="0.8" id="POD-sP-yRW"/>
                 <constraint firstAttribute="trailing" secondItem="EJV-8z-gLK" secondAttribute="trailing" priority="750" id="eA1-8V-dzY"/>
                 <constraint firstItem="M3Q-0P-NaS" firstAttribute="top" secondItem="EJV-8z-gLK" secondAttribute="bottom" constant="7" id="egy-hu-gP8"/>
