@@ -7,6 +7,7 @@
 //
 
 import AVFoundation
+import MediaPlayer
 
 
 class SpeechHelper {
@@ -50,6 +51,29 @@ class SpeechHelper {
             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
         } catch {
             print("audioSession properties weren't set because of an error.")
+        }
+    }
+    
+    static func volumeUp() {
+        let newValue = AVAudioSession.sharedInstance().outputVolume + 0.065
+        let volume = newValue > 1 ? 1 : newValue
+        
+        let mpVolumeView = MPVolumeView(frame: .init(origin: .zero, size: CGSize(width: 100, height: 100)))
+        if let slider = mpVolumeView.subviews.first as? UISlider {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                slider.value = volume
+            }
+        }
+    }
+    
+    static func volumeDown() {
+        let newValue = AVAudioSession.sharedInstance().outputVolume - 0.065
+        let volume = newValue < 0 ? 0 : newValue
+        let mpVolumeView = MPVolumeView(frame: .init(origin: .zero, size: CGSize(width: 100, height: 100)))
+        if let slider = mpVolumeView.subviews.first as? UISlider {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                slider.value = volume
+            }
         }
     }
 }

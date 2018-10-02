@@ -44,6 +44,7 @@ struct Constant {
     
     struct ButtonType {
         static let INPUT_SCREEN_OPEN: String = "ButtonInputScreenOpen"
+        static let BUTTONS_SIMPLE: String = "ButtonSimple"
     }
     
     enum InputScreenId: Int {
