@@ -13,12 +13,22 @@ class WebviewViewController: BaseViewController {
 
     @IBOutlet weak var webView: WKWebView!
     
+    let viewModel: WebviewViewModel = WebviewViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        setUi()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        showNavigationBar()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        hideNavigationBar()
+    }
 
     /*
     // MARK: - Navigation
@@ -30,4 +40,17 @@ class WebviewViewController: BaseViewController {
     }
     */
 
+}
+
+extension WebviewViewController {
+    
+    func setUi() {
+        setWebView()
+    }
+    
+    func setWebView() {
+        self.webView.allowsBackForwardNavigationGestures = false
+        guard let htmlString = viewModel.getHtml() else { return }
+        self.webView.loadHTMLString(htmlString, baseURL: nil)
+    }
 }

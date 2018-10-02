@@ -10,4 +10,13 @@ import Foundation
 
 class WebviewModel: BaseModel {
     
+    private var htmlString: String?
+    
+    func setHtml(string: String) {
+        htmlString = string
+    }
+    
+    func getHtml() -> String? {
+        return htmlString
+    }
 }

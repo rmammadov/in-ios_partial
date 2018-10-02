@@ -11,6 +11,7 @@ import Crashlytics
 
 private let SEGUE_IDENTIFIER_SHOW_NAME_INPUT = "showNameSurnameInput"
 private let SEGUE_IDENTIFIER_SHOW_USER_DETAILS_INPUT = "showUserDetailsInput"
+private let SEGUE_IDENTIFIER_SHOW_WEBVIEW = "showWebview"
 
 class IntroFirstViewController: BaseViewController {
 
@@ -19,6 +20,8 @@ class IntroFirstViewController: BaseViewController {
     @IBOutlet weak var btnCheckAgreement: UIButton!
     @IBOutlet weak var btnGetStarted: UIButton!
     @IBOutlet weak var tvAgreement: UITextView!
+    
+    private let viewModel: IntroFirstViewModel = IntroFirstViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,15 +36,18 @@ class IntroFirstViewController: BaseViewController {
     }
     
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == SEGUE_IDENTIFIER_SHOW_WEBVIEW {
+            let viewController = segue.destination as! WebviewViewController
+            viewController.viewModel.setHtml(string: (DataManager.getLegalDocuments().getLegalDocument(name: viewModel.getSelectedLegalName()).translations.first?.text)!)
+        }
     }
-    */
+
 
     @IBAction func onClickBtnCheckAgreement(_ sender: Any) {
         let btn = sender as! UIButton
@@ -76,18 +82,26 @@ extension IntroFirstViewController: UITextViewDelegate {
         let rangePrivacy = attributedString.mutableString.range(of: "Privacy Policy")
         let rangeTerms = attributedString.mutableString.range(of: "Terms and Conditions")
         
-        attributedString.addAttribute(.link, value: "privacy_policy", range: rangePrivacy)
+        attributedString.addAttribute(.link, value: viewModel.getLegalDocuments().legalDocuments.first?.name as Any, range: rangePrivacy)
         attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSNumber(value: 1), range: rangePrivacy)
         
-        attributedString.addAttribute(.link, value: "terms_of_use", range: rangeTerms)
+        attributedString.addAttribute(.link, value: viewModel.getLegalDocuments().legalDocuments[1].name as Any, range: rangeTerms)
         attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSNumber(value: 1), range: rangeTerms)
         
         self.tvAgreement.attributedText = attributedString
     }
     
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        
+        openHtml(name: URL.absoluteString)
         return false
     }
     
+}
+
+extension IntroFirstViewController {
+
+    func openHtml(name: String) {
+        viewModel.setSelectedLegal(name: name)
+        performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_WEBVIEW, sender: self)
+    }
 }

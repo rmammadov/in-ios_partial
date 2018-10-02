@@ -356,6 +356,9 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="I8Q-QD-ZBi">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="pigio_black"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" name="pigio_black"/>
                     </navigationBar>
                     <connections>
                         <segue destination="glP-Ob-3yG" kind="relationship" relationship="rootViewController" id="0lG-Kb-3XG"/>
@@ -375,7 +378,8 @@
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fug-79-iIh">
                                 <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="pigio_black"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
@@ -383,6 +387,7 @@
                             </wkWebView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" name="pigio_black"/>
                         <constraints>
                             <constraint firstItem="fug-79-iIh" firstAttribute="bottom" secondItem="BTI-Rp-Fz0" secondAttribute="bottom" id="6LY-L9-3t9"/>
                             <constraint firstItem="fug-79-iIh" firstAttribute="top" secondItem="eZF-Xp-XPn" secondAttribute="top" id="Odz-5Y-X82"/>
@@ -518,6 +523,7 @@
                         <outlet property="tvAgreement" destination="dmu-mt-dga" id="NBp-Wj-RYb"/>
                         <segue destination="U0z-Rb-cOW" kind="show" identifier="showNameSurnameInput" id="WXZ-ce-LuG"/>
                         <segue destination="sGm-Vu-vto" kind="show" identifier="showUserDetailsInput" id="Yhv-xJ-wey"/>
+                        <segue destination="5tl-um-rLO" kind="show" identifier="showWebview" id="POb-Y9-E7c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VGf-Oo-dk2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1332,7 +1338,7 @@ AAAAE90
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0sY-W2-dgh"/>
+        <segue reference="ycc-j2-1X5"/>
         <segue reference="hAd-2m-2uz"/>
     </inferredMetricsTieBreakers>
 </document>

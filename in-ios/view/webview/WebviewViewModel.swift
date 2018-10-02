@@ -10,4 +10,13 @@ import UIKit
 
 class WebviewViewModel: BaseViewModel {
 
+    private let model = WebviewModel()
+    
+    func setHtml(string: String) {
+        model.setHtml(string: string)
+    }
+    
+    func getHtml() -> String? {
+        return model.getHtml()
+    }
 }
