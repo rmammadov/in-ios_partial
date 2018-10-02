@@ -187,6 +187,13 @@ class InputAViewModel: BaseViewModel {
             inputScreen.type == Constant.InputScreen.TYPE_B {
             self.statusInput.value = InputScreenId.inputScreen0.rawValue
         }
+        if selectedItem?.type == Constant.ButtonType.BUTTONS_SIMPLE {
+            if selectedItem?.translations?.first?.label == "Volume up" {
+                SpeechHelper.volumeUp()
+            } else if selectedItem?.translations?.first?.label == "Volume down" {
+                SpeechHelper.volumeDown()
+            }
+        }
         
         self.status.value = InputAStatus.loaded.rawValue
     }

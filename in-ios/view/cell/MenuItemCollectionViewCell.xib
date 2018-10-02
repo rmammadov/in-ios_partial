@@ -9,33 +9,31 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="HelveticaNeue.ttc">
-            <string>HelveticaNeue-Bold</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellMenuItem" id="gTV-IL-0wX" customClass="MenuItemCollectionViewCell" customModule="in_ios" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="212" height="232"/>
+            <rect key="frame" x="0.0" y="0.0" width="397" height="413"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="212" height="232"/>
+                <rect key="frame" x="0.0" y="0.0" width="397" height="413"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_circle_gradient" translatesAutoresizingMaskIntoConstraints="NO" id="EJV-8z-gLK">
-                        <rect key="frame" x="42.5" y="0.0" width="127" height="127"/>
+                        <rect key="frame" x="7.5" y="0.0" width="382.5" height="382.5"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="EJV-8z-gLK" secondAttribute="height" id="Sin-30-SOy"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6MF-pU-T87">
-                        <rect key="frame" x="64" y="16" width="84" height="95.5"/>
+                        <rect key="frame" x="45.5" y="38.5" width="306" height="306"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M3Q-0P-NaS">
-                        <rect key="frame" x="21" y="143" width="170" height="17"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="M3Q-0P-NaS">
+                        <rect key="frame" x="39.5" y="389.5" width="318" height="16.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16.5" id="cOL-Sd-hh8"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="12"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -46,23 +44,24 @@
             <constraints>
                 <constraint firstItem="6MF-pU-T87" firstAttribute="centerY" secondItem="EJV-8z-gLK" secondAttribute="centerY" id="6n0-EC-igT"/>
                 <constraint firstItem="M3Q-0P-NaS" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="0.8" id="Aha-1d-oPJ"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="M3Q-0P-NaS" secondAttribute="bottom" constant="7" id="HEq-0v-GO5"/>
                 <constraint firstItem="EJV-8z-gLK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="JeA-oc-aXy"/>
                 <constraint firstItem="6MF-pU-T87" firstAttribute="centerX" secondItem="EJV-8z-gLK" secondAttribute="centerX" id="LqF-r6-2Md"/>
                 <constraint firstItem="EJV-8z-gLK" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="MTN-H5-efC"/>
-                <constraint firstItem="6MF-pU-T87" firstAttribute="width" secondItem="EJV-8z-gLK" secondAttribute="width" multiplier="0.66" id="POD-sP-yRW"/>
-                <constraint firstItem="M3Q-0P-NaS" firstAttribute="top" secondItem="EJV-8z-gLK" secondAttribute="bottom" constant="16" id="egy-hu-gP8"/>
-                <constraint firstItem="EJV-8z-gLK" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="0.6" id="iBW-09-bPu"/>
+                <constraint firstItem="6MF-pU-T87" firstAttribute="width" secondItem="EJV-8z-gLK" secondAttribute="width" multiplier="0.8" id="POD-sP-yRW"/>
+                <constraint firstAttribute="trailing" secondItem="EJV-8z-gLK" secondAttribute="trailing" priority="750" id="eA1-8V-dzY"/>
+                <constraint firstItem="M3Q-0P-NaS" firstAttribute="top" secondItem="EJV-8z-gLK" secondAttribute="bottom" constant="7" id="egy-hu-gP8"/>
                 <constraint firstItem="M3Q-0P-NaS" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="m3l-kS-S1S"/>
-                <constraint firstItem="6MF-pU-T87" firstAttribute="height" secondItem="EJV-8z-gLK" secondAttribute="height" multiplier="0.75" id="mNy-dJ-uac"/>
+                <constraint firstItem="6MF-pU-T87" firstAttribute="height" secondItem="EJV-8z-gLK" secondAttribute="height" multiplier="0.8" id="mNy-dJ-uac"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <size key="customSize" width="212" height="232"/>
+            <size key="customSize" width="397" height="413"/>
             <connections>
                 <outlet property="ivIcon" destination="6MF-pU-T87" id="dIK-Ln-BIV"/>
                 <outlet property="ivStatusIcon" destination="EJV-8z-gLK" id="tPO-EV-9hJ"/>
                 <outlet property="labelTitle" destination="M3Q-0P-NaS" id="J67-dE-vNB"/>
             </connections>
-            <point key="canvasLocation" x="45" y="134"/>
+            <point key="canvasLocation" x="192.80000000000001" y="213.64317841079463"/>
         </collectionViewCell>
     </objects>
     <resources>

@@ -44,15 +44,17 @@ struct Constant {
     
     struct ButtonType {
         static let INPUT_SCREEN_OPEN: String = "ButtonInputScreenOpen"
+        static let BUTTONS_SIMPLE: String = "ButtonSimple"
     }
     
     enum InputScreenId: Int {
         case more = 2
+        case questionsK = 4
         case dateAndNumbers = 8
         case greetings = 9
         case responses = 11
         case actions = 12
-        case questions = 13
+        case questionsC = 13
         case goodbyes = 14
         case to = 15
         case cares = 17
@@ -73,7 +75,8 @@ struct Constant {
         var buttonsTitle: String? {
             switch self {
             case .more: return "Keywords - More"
-            case .questions: return "Conversations - Questions"
+            case .questionsK: return "Keywords - Questions"
+            case .questionsC: return "Conversations - Questions"
             case .dateAndNumbers: return "Keywords - Date & Numbers"
             case .greetings: return "Conversations - Greetings"
             case .responses: return "Conversations - Responses"
