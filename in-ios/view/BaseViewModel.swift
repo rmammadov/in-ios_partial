@@ -17,4 +17,8 @@ class BaseViewModel: NSObject {
     func getColumnCount() -> Int {
         return Constant.DefaultConfig.COUNT_COLUMN_ITEMS
     }
+    
+    func getItemMargin() -> Int {
+        return 16
+    }
 }
