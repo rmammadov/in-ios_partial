@@ -18,4 +18,8 @@ extension InputScreens {
     func getInputScreen(title: String) -> InputScreen {
         return screens.filter{ ($0.translations.first?.title)! == title}.first!
     }
+    
+    func getInputScreenFor(id: Int) -> InputScreen?  {
+        return screens.first(where: { $0.id == id })
+    }
 }
