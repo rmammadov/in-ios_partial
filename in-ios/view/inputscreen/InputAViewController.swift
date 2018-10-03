@@ -149,7 +149,7 @@ extension InputAViewController {
                 guard let screenCVC = storyboard.instantiateViewController(withIdentifier: "ScreenTypeCViewController") as? ScreenTypeCViewController,
                     let inputScreen = self.viewModel.loadInputScreenItem()
                     else { return }
-                screenCVC.viewModel
+                screenCVC.viewModel.setInputScreen(inputScreen)
                 DispatchQueue.main.async {
                     self.navigationController?.pushViewController(screenCVC, animated: true)
                 }
