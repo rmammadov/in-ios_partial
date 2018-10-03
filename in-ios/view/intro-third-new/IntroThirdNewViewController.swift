@@ -13,6 +13,7 @@ private let SEGUE_IDENTIFIER_SHOW_HOME = "showHome"
 class IntroThirdNewViewController: BaseViewController {
 
     @IBOutlet weak var viewFirstStep: UIView!
+    @IBOutlet weak var viewSecondStep: UIView!
     @IBOutlet weak var viewFourthStep: UIView!
     @IBOutlet weak var viewFifthStep: UIView!
     @IBOutlet weak var btnBack: UIButton!
@@ -44,8 +45,8 @@ class IntroThirdNewViewController: BaseViewController {
     
     @IBAction func onClickBtnGetStarted(_ sender: Any) {
         viewFirstStep.isHidden = true
-        viewFourthStep.isHidden = false
-        btnForward.isHidden = false
+        btnBack.isHidden = true
+        viewSecondStep.isHidden = false
     }
     
     @IBAction func onClickBtnRedoFourthStep(_ sender: Any) {
