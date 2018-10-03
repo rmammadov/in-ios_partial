@@ -51,6 +51,8 @@ class IntroThirdNewViewController: BaseViewController {
     @IBAction func onClickBtnRedoFourthStep(_ sender: Any) {
     }
     @IBAction func onClickBtnContinueFourthStep(_ sender: Any) {
+        viewFourthStep.isHidden = true
+        viewFifthStep.isHidden = false
     }
     
     @IBAction func onClickBtnRedoFifthStep(_ sender: Any) {

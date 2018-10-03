@@ -870,9 +870,9 @@ The process will take less than 20 seconds.</string>
                     <connections>
                         <outlet property="btnBack" destination="JfW-Jk-pmL" id="KdH-7Z-dat"/>
                         <outlet property="btnForward" destination="CXz-tq-o54" id="IoS-zz-DkV"/>
-                        <outlet property="viewFifthStep" destination="CuD-Ek-LLP" id="HTm-yA-kbW"/>
+                        <outlet property="viewFifthStep" destination="P6K-wL-Dam" id="BFn-tN-J6M"/>
                         <outlet property="viewFirstStep" destination="zoc-aM-YyS" id="BsM-ht-RSl"/>
-                        <outlet property="viewFourthStep" destination="P6K-wL-Dam" id="oBR-hH-5Hc"/>
+                        <outlet property="viewFourthStep" destination="CuD-Ek-LLP" id="7e3-eg-rR1"/>
                         <segue destination="NSJ-NQ-Qye" kind="show" identifier="showHome" id="z3d-m9-Uzk"/>
                     </connections>
                 </viewController>
