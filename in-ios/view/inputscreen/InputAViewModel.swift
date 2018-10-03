@@ -112,14 +112,6 @@ class InputAViewModel: BaseViewModel {
         if countItems <= countItemsPerPage {
             return groupedItems = [items]
         } else {
-//            var pageCount: Double = Double((countItems - 2) / (countItemsPerPage - 2))
-//
-//            if pageCount.rounded() > pageCount {
-//                pageCount += pageCount.rounded()
-//            } else {
-//                pageCount = pageCount.rounded()
-//            }
-            
             var startingIndex: Int = 0
             
             while countItems > 0 {

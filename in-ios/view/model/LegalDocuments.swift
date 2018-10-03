@@ -15,7 +15,7 @@ struct LegalDocuments {
 
 extension LegalDocuments {
     
-    func getLegalDocument(title: String) -> LegalDocument {
-        return legalDocuments.filter{ ($0.translations.first?.title)! == title}.first!
+    func getLegalDocument(name: String) -> LegalDocument {
+        return legalDocuments.filter{ ($0.name) == name}.first!
     }
 }

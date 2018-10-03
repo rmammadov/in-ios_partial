@@ -10,4 +10,11 @@ import Foundation
 
 class IntroFirstModel: BaseModel {
     
+    func getLegalDocuments() -> LegalDocuments {
+        return DataManager.getLegalDocuments()
+    }
+    
+    func getLegalDocument(name: String) -> LegalDocument {
+        return DataManager.getLegalDocuments().getLegalDocument(name: name)
+    }
 }
