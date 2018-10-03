@@ -10,6 +10,12 @@
 		1FB2B43D39F330625AB42FAA /* Pods_in_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B81A848D9E4455FF68424AA1 /* Pods_in_iosTests.framework */; };
 		52A449027D84CDDD257B8A19 /* Pods_in_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FE55CD425B19FE9092FD5CB /* Pods_in_ios.framework */; };
 		E3A238980EAF1E942B02D63A /* Pods_in_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C1D52781DEEE2B40B45A6D /* Pods_in_iosUITests.framework */; };
+		E9611E942164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E8F2164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift */; };
+		E9611E952164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9611E902164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib */; };
+		E9611E962164AC950010B33C /* ScreenTypeC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9611E912164AC950010B33C /* ScreenTypeC.storyboard */; };
+		E9611E972164AC950010B33C /* ScreenTypeCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E922164AC950010B33C /* ScreenTypeCViewController.swift */; };
+		E9611E982164AC950010B33C /* ScreenTypeCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E932164AC950010B33C /* ScreenTypeCViewModel.swift */; };
+		E9611E9A2164AE2D0010B33C /* IdentifierProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E992164AE2D0010B33C /* IdentifierProtocol.swift */; };
 		F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3216B5520F4EA15008D6EFD /* HomeViewController.swift */; };
 		F32D99C621117E79007AAA8D /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D99C521117E79007AAA8D /* HomeModel.swift */; };
 		F32D99C821117E8A007AAA8D /* MenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D99C721117E8A007AAA8D /* MenuModel.swift */; };
@@ -133,6 +139,12 @@
 		A936726B0D8064569E2F0074 /* Pods-in-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-in-ios/Pods-in-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		B42F0B30A5BBAEFB8E745953 /* Pods-in-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in-iosUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-in-iosUITests/Pods-in-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B81A848D9E4455FF68424AA1 /* Pods_in_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_in_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9611E8F2164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTypeCMenuCollectionViewCell.swift; sourceTree = "<group>"; };
+		E9611E902164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScreenTypeCMenuCollectionViewCell.xib; sourceTree = "<group>"; };
+		E9611E912164AC950010B33C /* ScreenTypeC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ScreenTypeC.storyboard; sourceTree = "<group>"; };
+		E9611E922164AC950010B33C /* ScreenTypeCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTypeCViewController.swift; sourceTree = "<group>"; };
+		E9611E932164AC950010B33C /* ScreenTypeCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTypeCViewModel.swift; sourceTree = "<group>"; };
+		E9611E992164AE2D0010B33C /* IdentifierProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifierProtocol.swift; sourceTree = "<group>"; };
 		ED4FD3A654935E1287D7E3F3 /* Pods-in-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-in-iosTests/Pods-in-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F3216B5520F4EA15008D6EFD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = "in-ios/view/home/HomeViewController.swift"; sourceTree = SOURCE_ROOT; };
 		F32D99C521117E79007AAA8D /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
@@ -275,6 +287,26 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E9611E8D2164AC950010B33C /* ScreenTypeC */ = {
+			isa = PBXGroup;
+			children = (
+				E9611E8E2164AC950010B33C /* Cells */,
+				E9611E912164AC950010B33C /* ScreenTypeC.storyboard */,
+				E9611E922164AC950010B33C /* ScreenTypeCViewController.swift */,
+				E9611E932164AC950010B33C /* ScreenTypeCViewModel.swift */,
+			);
+			path = ScreenTypeC;
+			sourceTree = "<group>";
+		};
+		E9611E8E2164AC950010B33C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E9611E8F2164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift */,
+				E9611E902164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		F3283D70213013BA004B4FBE /* in-eye-gaze */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,6 +367,7 @@
 				F3E200C82135F2D500902A33 /* UIApplication+getPresentedViewController.swift */,
 				F3E200CC213664C700902A33 /* CMSampleBuffer+image.swift */,
 				F32DCED8214A41D100B3D0F8 /* INTextField.swift */,
+				E9611E992164AE2D0010B33C /* IdentifierProtocol.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -474,6 +507,7 @@
 				F32D99CE21118A09007AAA8D /* menu */,
 				F3E19CB7211D832F00ADE838 /* submenu */,
 				F3E19CA8211C3C6D00ADE838 /* inputscreen */,
+				E9611E8D2164AC950010B33C /* ScreenTypeC */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -701,11 +735,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9611E962164AC950010B33C /* ScreenTypeC.storyboard in Resources */,
 				F336588720D318CA00B18CEC /* LaunchScreen.storyboard in Resources */,
 				F3355CF521240F6D009AF602 /* TopMenuItemExpandedCollectionViewCell.xib in Resources */,
 				F39059BB210F09C800CAA292 /* MenuItemCollectionViewCell.xib in Resources */,
 				F336588420D318CA00B18CEC /* Assets.xcassets in Resources */,
 				F331EA80211303880000B4E6 /* TopMenuItemCollectionViewCell.xib in Resources */,
+				E9611E952164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib in Resources */,
 				F336588220D318C300B18CEC /* Main.storyboard in Resources */,
 				F3F8648321175BEE00B7CAA8 /* Colors.xcassets in Resources */,
 				F3B0C1CC2154BA1400E30CA1 /* GoogleService-Info.plist in Resources */,
@@ -867,6 +903,7 @@
 				F334ADC5210B3BC00056824A /* ApiRequestHandler.swift in Sources */,
 				F336587F20D318C300B18CEC /* BaseViewController.swift in Sources */,
 				F3355CEA2122BE79009AF602 /* InputScreens.swift in Sources */,
+				E9611E942164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift in Sources */,
 				F3355CED2122E88C009AF602 /* LoadingViewController.swift in Sources */,
 				F3D6D20A214CF84700A6231E /* IntroFourthModel.swift in Sources */,
 				F3E19CAE211C3D6400ADE838 /* InputAViewController.swift in Sources */,
@@ -879,6 +916,7 @@
 				F32DCEDE214A652000B3D0F8 /* IntroThirdViewModel.swift in Sources */,
 				F336587D20D318C300B18CEC /* AppDelegate.swift in Sources */,
 				F331EA7F211303880000B4E6 /* TopMenuItemCollectionViewCell.swift in Sources */,
+				E9611E9A2164AE2D0010B33C /* IdentifierProtocol.swift in Sources */,
 				F32F5B6921453E0B00558C68 /* IntroSecondModel.swift in Sources */,
 				F3355CE82121E04F009AF602 /* InputScreen.swift in Sources */,
 				F3CE902D215D3FFB00A9F3DF /* IntroSecondNewModel.swift in Sources */,
@@ -895,6 +933,7 @@
 				F3D6D20E214CF87800A6231E /* IntroFifthModel.swift in Sources */,
 				F32DCEE0214A654400B3D0F8 /* IntroThirdModel.swift in Sources */,
 				F3E19CB9211D835500ADE838 /* SubMenuViewController.swift in Sources */,
+				E9611E972164AC950010B33C /* ScreenTypeCViewController.swift in Sources */,
 				F3E97E5921422F4800379B4A /* GazeTracker.swift in Sources */,
 				F32DCEDC214A64B000B3D0F8 /* IntroThirdViewController.swift in Sources */,
 				F39059C32110473D00CAA292 /* MenuItems.swift in Sources */,
@@ -904,6 +943,7 @@
 				F3CE6920213DB318004F6756 /* IntroFirstViewController.swift in Sources */,
 				F32DCED9214A41D100B3D0F8 /* INTextField.swift in Sources */,
 				F3E19CB6211D827000ADE838 /* MenuItemCollectionViewCell.swift in Sources */,
+				E9611E982164AC950010B33C /* ScreenTypeCViewModel.swift in Sources */,
 				F3E19CAC211C3CEE00ADE838 /* HomeContainerModel.swift in Sources */,
 				F3E19CA6211B10FF00ADE838 /* HomeContainerViewController.swift in Sources */,
 				F3E19CBD211D837900ADE838 /* SubMenuModel.swift in Sources */,

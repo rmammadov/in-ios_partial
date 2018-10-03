@@ -50,6 +50,8 @@ struct Constant {
     enum InputScreenId: Int {
         case more = 2
         case questionsK = 4
+        case day = 5
+        case month = 6
         case dateAndNumbers = 8
         case greetings = 9
         case responses = 11
@@ -75,6 +77,8 @@ struct Constant {
         var buttonsTitle: String? {
             switch self {
             case .more: return "Keywords - More"
+            case .day: return "Day"
+            case .month: return "Month"
             case .questionsK: return "Keywords - Questions"
             case .questionsC: return "Conversations - Questions"
             case .dateAndNumbers: return "Keywords - Date & Numbers"
@@ -102,7 +106,7 @@ struct Constant {
         var type: String {
             switch self {
             case .dateAndNumbers:
-                return "Date & Time"
+                return InputScreen.TYPE_C
             default:
                 return InputScreen.TYPE_B
             }
@@ -112,6 +116,7 @@ struct Constant {
     struct InputScreen {
         static let TYPE_A: String = "InputScreenA"
         static let TYPE_B: String = "InputScreenB"
+        static let TYPE_C: String = "InputScreenC"
     }
     
     struct AnimationConfig {

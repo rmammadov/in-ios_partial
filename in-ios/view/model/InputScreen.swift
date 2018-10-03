@@ -10,6 +10,7 @@ import Foundation
 
 struct InputScreen: Decodable {
     
+    let id: Int
     let disableTextToSpeech: Bool
     let translations: [TranslationInputScreen]
     let buttons: [ButtonInputScreen]?
@@ -19,11 +20,14 @@ struct InputScreen: Decodable {
     let nextButton: ButtonInputScreen?
     let type: String
     let backButton: ButtonInputScreen?
+    let clearButton: ButtonInputScreen?
+    let tabs: [Tab]?
 }
 
 extension InputScreen {
     
     enum InputScreenKeys: String, CodingKey {
+        case id
         case disableTextToSpeech = "disable_text_to_speech"
         case translations = "translations"
         case buttons = "buttons"
@@ -32,11 +36,14 @@ extension InputScreen {
         case previousButton = "previous_button"
         case nextButton = "next_button"
         case backButton = "back_button"
+        case clearButton = "clear_button"
+        case tabs = "tabs"
         case type = "type"
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: InputScreenKeys.self)
+        let id: Int = try container.decode(Int.self, forKey: .id)
         let disableTextToSpeech: Bool = try container.decode(Bool.self, forKey: .disableTextToSpeech)
         let translations: [TranslationInputScreen] = try container.decode([TranslationInputScreen].self, forKey: .translations)
         let type: String = try container.decode(String.self, forKey: .type)
@@ -47,10 +54,13 @@ extension InputScreen {
         let previousButton: ButtonInputScreen? = try container.decodeIfPresent(ButtonInputScreen.self, forKey: .previousButton)
         let nextButton: ButtonInputScreen? = try container.decodeIfPresent(ButtonInputScreen.self, forKey: .nextButton)
         let backButton: ButtonInputScreen? = try container.decodeIfPresent(ButtonInputScreen.self, forKey: .backButton)
+        let clearButton: ButtonInputScreen? = try container.decodeIfPresent(ButtonInputScreen.self, forKey: .clearButton)
+        let tabs: [Tab]? = try container.decodeIfPresent([Tab].self, forKey: .tabs)
         
-        self.init(disableTextToSpeech: disableTextToSpeech, translations: translations, buttons: buttons,
+        self.init(id: id, disableTextToSpeech: disableTextToSpeech, translations: translations, buttons: buttons,
                   background: background, backgroundTransparency: backgroundTransparency,
-                  previousButton: previousButton, nextButton: nextButton, type: type, backButton: backButton)
+                  previousButton: previousButton, nextButton: nextButton, type: type, backButton: backButton,
+                  clearButton: clearButton, tabs: tabs)
     }
 }
 
@@ -88,5 +98,13 @@ struct Background: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case id, url
+    }
+}
+
+struct Tab: Decodable {
+    let panelScreenId: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case panelScreenId = "panel_screen_id"
     }
 }
