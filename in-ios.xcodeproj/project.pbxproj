@@ -50,6 +50,7 @@
 		F354B7432164C7280026F3A2 /* IntroThirdNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354B7422164C7280026F3A2 /* IntroThirdNewViewController.swift */; };
 		F354B7452164C7470026F3A2 /* IntroThirdNewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354B7442164C7470026F3A2 /* IntroThirdNewViewModel.swift */; };
 		F354B7472164C7570026F3A2 /* IntroThirdNewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354B7462164C7570026F3A2 /* IntroThirdNewModel.swift */; };
+		F354B74E2164FAFA0026F3A2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F354B7502164FAFA0026F3A2 /* Localizable.strings */; };
 		F39059BB210F09C800CAA292 /* MenuItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F39059B9210F09C800CAA292 /* MenuItemCollectionViewCell.xib */; };
 		F39059BF210F254C00CAA292 /* AnimationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059BE210F254C00CAA292 /* AnimationUtil.swift */; };
 		F39059C1210F290F00CAA292 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059C0210F290F00CAA292 /* MenuViewModel.swift */; };
@@ -183,6 +184,13 @@
 		F354B7422164C7280026F3A2 /* IntroThirdNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroThirdNewViewController.swift; sourceTree = "<group>"; };
 		F354B7442164C7470026F3A2 /* IntroThirdNewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroThirdNewViewModel.swift; sourceTree = "<group>"; };
 		F354B7462164C7570026F3A2 /* IntroThirdNewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroThirdNewModel.swift; sourceTree = "<group>"; };
+		F354B74A2164F9A10026F3A2 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		F354B74B2164F9A20026F3A2 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		F354B74C2164F9C20026F3A2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		F354B74D2164F9C20026F3A2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		F354B74F2164FAFA0026F3A2 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F354B7512164FAFF0026F3A2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F354B7522164FB030026F3A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F39059B9210F09C800CAA292 /* MenuItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		F39059BE210F254C00CAA292 /* AnimationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationUtil.swift; sourceTree = "<group>"; };
 		F39059C0210F290F00CAA292 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
@@ -413,6 +421,7 @@
 				F3F8648221175BEE00B7CAA8 /* Colors.xcassets */,
 				F336588820D318CA00B18CEC /* Info.plist */,
 				F3B0C1CB2154BA1300E30CA1 /* GoogleService-Info.plist */,
+				F354B7502164FAFA0026F3A2 /* Localizable.strings */,
 			);
 			path = "in-ios";
 			sourceTree = "<group>";
@@ -700,6 +709,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = F336587020D318C300B18CEC;
 			productRefGroup = F336587A20D318C300B18CEC /* Products */;
@@ -722,6 +732,7 @@
 				F3355CF521240F6D009AF602 /* TopMenuItemExpandedCollectionViewCell.xib in Resources */,
 				F39059BB210F09C800CAA292 /* MenuItemCollectionViewCell.xib in Resources */,
 				F336588420D318CA00B18CEC /* Assets.xcassets in Resources */,
+				F354B74E2164FAFA0026F3A2 /* Localizable.strings in Resources */,
 				F331EA80211303880000B4E6 /* TopMenuItemCollectionViewCell.xib in Resources */,
 				F336588220D318C300B18CEC /* Main.storyboard in Resources */,
 				F3F8648321175BEE00B7CAA8 /* Colors.xcassets in Resources */,
@@ -987,6 +998,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				F336588120D318C300B18CEC /* Base */,
+				F354B74A2164F9A10026F3A2 /* fr */,
+				F354B74C2164F9C20026F3A2 /* es */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -995,8 +1008,20 @@
 			isa = PBXVariantGroup;
 			children = (
 				F336588620D318CA00B18CEC /* Base */,
+				F354B74B2164F9A20026F3A2 /* fr */,
+				F354B74D2164F9C20026F3A2 /* es */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		F354B7502164FAFA0026F3A2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F354B74F2164FAFA0026F3A2 /* fr */,
+				F354B7512164FAFF0026F3A2 /* es */,
+				F354B7522164FB030026F3A2 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1006,6 +1031,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1067,6 +1093,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
