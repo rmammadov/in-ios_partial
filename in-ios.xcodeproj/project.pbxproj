@@ -47,6 +47,9 @@
 		F33658AE20D3198000B18CEC /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33658AD20D3198000B18CEC /* Constant.swift */; };
 		F33F0BCF2121B11C002E31B9 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33F0BCE2121B11C002E31B9 /* DataManager.swift */; };
 		F34B909B20D46FA100800FCD /* DisplayHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34B909A20D46FA100800FCD /* DisplayHelper.swift */; };
+		F354B7432164C7280026F3A2 /* IntroThirdNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354B7422164C7280026F3A2 /* IntroThirdNewViewController.swift */; };
+		F354B7452164C7470026F3A2 /* IntroThirdNewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354B7442164C7470026F3A2 /* IntroThirdNewViewModel.swift */; };
+		F354B7472164C7570026F3A2 /* IntroThirdNewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354B7462164C7570026F3A2 /* IntroThirdNewModel.swift */; };
 		F39059BB210F09C800CAA292 /* MenuItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F39059B9210F09C800CAA292 /* MenuItemCollectionViewCell.xib */; };
 		F39059BF210F254C00CAA292 /* AnimationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059BE210F254C00CAA292 /* AnimationUtil.swift */; };
 		F39059C1210F290F00CAA292 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059C0210F290F00CAA292 /* MenuViewModel.swift */; };
@@ -177,6 +180,9 @@
 		F33658AD20D3198000B18CEC /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		F33F0BCE2121B11C002E31B9 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		F34B909A20D46FA100800FCD /* DisplayHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayHelper.swift; sourceTree = "<group>"; };
+		F354B7422164C7280026F3A2 /* IntroThirdNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroThirdNewViewController.swift; sourceTree = "<group>"; };
+		F354B7442164C7470026F3A2 /* IntroThirdNewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroThirdNewViewModel.swift; sourceTree = "<group>"; };
+		F354B7462164C7570026F3A2 /* IntroThirdNewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroThirdNewModel.swift; sourceTree = "<group>"; };
 		F39059B9210F09C800CAA292 /* MenuItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		F39059BE210F254C00CAA292 /* AnimationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationUtil.swift; sourceTree = "<group>"; };
 		F39059C0210F290F00CAA292 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
@@ -466,6 +472,7 @@
 				F3CE691E213DB2CA004F6756 /* intro-first */,
 				F3CE9027215D3F2300A9F3DF /* intro-second-new */,
 				F32F5B6321453C7500558C68 /* intro-second */,
+				F354B7412164C6A40026F3A2 /* intro-third-new */,
 				F32DCEDA214A646E00B3D0F8 /* intro-third */,
 				F3D6D201214CF7AD00A6231E /* intro-fourth */,
 				F3D6D202214CF7BA00A6231E /* intro-fifth */,
@@ -484,6 +491,16 @@
 				F33F0BCE2121B11C002E31B9 /* DataManager.swift */,
 			);
 			path = dao;
+			sourceTree = "<group>";
+		};
+		F354B7412164C6A40026F3A2 /* intro-third-new */ = {
+			isa = PBXGroup;
+			children = (
+				F354B7422164C7280026F3A2 /* IntroThirdNewViewController.swift */,
+				F354B7442164C7470026F3A2 /* IntroThirdNewViewModel.swift */,
+				F354B7462164C7570026F3A2 /* IntroThirdNewModel.swift */,
+			);
+			path = "intro-third-new";
 			sourceTree = "<group>";
 		};
 		F3C48CC1210EE4E400742855 /* cell */ = {
@@ -869,7 +886,9 @@
 				F3355CEA2122BE79009AF602 /* InputScreens.swift in Sources */,
 				F3355CED2122E88C009AF602 /* LoadingViewController.swift in Sources */,
 				F3D6D20A214CF84700A6231E /* IntroFourthModel.swift in Sources */,
+				F354B7472164C7570026F3A2 /* IntroThirdNewModel.swift in Sources */,
 				F3E19CAE211C3D6400ADE838 /* InputAViewController.swift in Sources */,
+				F354B7452164C7470026F3A2 /* IntroThirdNewViewModel.swift in Sources */,
 				F3E19CB0211C3DA500ADE838 /* InputAViewModel.swift in Sources */,
 				F3F4148C20F5F82000CF101D /* ReachabilityManager.swift in Sources */,
 				F3DA017F2162907500D0625B /* WebviewViewModel.swift in Sources */,
@@ -919,6 +938,7 @@
 				F3D6D204214CF7F400A6231E /* IntroFourthViewController.swift in Sources */,
 				F3A41ACC2161329000D2D8D6 /* LegalDocument.swift in Sources */,
 				F3D6D20C214CF86500A6231E /* IntroFifthViewModel.swift in Sources */,
+				F354B7432164C7280026F3A2 /* IntroThirdNewViewController.swift in Sources */,
 				F33F0BCF2121B11C002E31B9 /* DataManager.swift in Sources */,
 				F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */,
 				F32D99CC21117EE8007AAA8D /* BaseModel.swift in Sources */,

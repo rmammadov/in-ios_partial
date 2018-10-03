@@ -8,8 +8,8 @@
 
 import UIKit
 
-private let SEGUE_IDENTIFIER_SHOW_GENDER_OPTIONS = "showGenderOptions"
 private let SEGUE_IDENTIFIER_SHOW_HOME = "showHome"
+private let SEGUE_IDENTIFIER_SHOW_CALIBRATION = "showCalibration"
 
 enum ISVCTextFieldTags: Int {
     case tagName = 10
@@ -136,7 +136,7 @@ extension IntroSecondNewViewController {
     
     override func onContinue() {
         super.onContinue()
-        performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_HOME, sender: self)
+        performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_CALIBRATION, sender: self)
     }
 }
 

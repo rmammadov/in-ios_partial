@@ -35,10 +35,10 @@ class IntroThirdViewController: BaseViewController {
     }
     
     @IBAction func onClickMale(_ sender: Any) {
-        performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_HOME, sender: self)
+        performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_AGE_INPUT, sender: self)
     }
     
     @IBAction func onClickFemale(_ sender: Any) {
-        performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_HOME, sender: self)
+        performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_AGE_INPUT, sender: self)
     }
 }
