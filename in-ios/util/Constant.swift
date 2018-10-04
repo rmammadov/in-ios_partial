@@ -117,6 +117,9 @@ struct Constant {
         static let TYPE_A: String = "InputScreenA"
         static let TYPE_B: String = "InputScreenB"
         static let TYPE_C: String = "InputScreenC"
+        static let TYPE_D: String = "InputScreenD"
+        static let TYPE_E: String = "InputScreenE"
+        static let TYPE_F: String = "InputScreenF"
     }
     
     struct AnimationConfig {
