@@ -10,6 +10,8 @@
 		1FB2B43D39F330625AB42FAA /* Pods_in_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B81A848D9E4455FF68424AA1 /* Pods_in_iosTests.framework */; };
 		52A449027D84CDDD257B8A19 /* Pods_in_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FE55CD425B19FE9092FD5CB /* Pods_in_ios.framework */; };
 		E3A238980EAF1E942B02D63A /* Pods_in_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C1D52781DEEE2B40B45A6D /* Pods_in_iosUITests.framework */; };
+		E9150EF8216605160023E138 /* ScreenTypeEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9150EF7216605160023E138 /* ScreenTypeEViewController.swift */; };
+		E9150EFA216606340023E138 /* ScreenTypeEViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9150EF9216606340023E138 /* ScreenTypeEViewModel.swift */; };
 		E9611E942164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E8F2164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift */; };
 		E9611E952164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9611E902164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib */; };
 		E9611E962164AC950010B33C /* ScreenTypeC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9611E912164AC950010B33C /* ScreenTypeC.storyboard */; };
@@ -143,6 +145,8 @@
 		A936726B0D8064569E2F0074 /* Pods-in-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-in-ios/Pods-in-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		B42F0B30A5BBAEFB8E745953 /* Pods-in-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in-iosUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-in-iosUITests/Pods-in-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B81A848D9E4455FF68424AA1 /* Pods_in_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_in_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9150EF7216605160023E138 /* ScreenTypeEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeEViewController.swift; sourceTree = "<group>"; };
+		E9150EF9216606340023E138 /* ScreenTypeEViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeEViewModel.swift; sourceTree = "<group>"; };
 		E9611E8F2164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTypeCMenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		E9611E902164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScreenTypeCMenuCollectionViewCell.xib; sourceTree = "<group>"; };
 		E9611E912164AC950010B33C /* ScreenTypeC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ScreenTypeC.storyboard; sourceTree = "<group>"; };
@@ -299,6 +303,15 @@
 				25BE18E2938B0416F1A1208F /* Pods-in-iosUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E9150EF62165F6E20023E138 /* ScreenTypeE */ = {
+			isa = PBXGroup;
+			children = (
+				E9150EF7216605160023E138 /* ScreenTypeEViewController.swift */,
+				E9150EF9216606340023E138 /* ScreenTypeEViewModel.swift */,
+			);
+			path = ScreenTypeE;
 			sourceTree = "<group>";
 		};
 		E9611E8D2164AC950010B33C /* ScreenTypeC */ = {
@@ -524,6 +537,7 @@
 				F3E19CB7211D832F00ADE838 /* submenu */,
 				F3E19CA8211C3C6D00ADE838 /* inputscreen */,
 				E9611E8D2164AC950010B33C /* ScreenTypeC */,
+				E9150EF62165F6E20023E138 /* ScreenTypeE */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -936,6 +950,7 @@
 				F3D6D20A214CF84700A6231E /* IntroFourthModel.swift in Sources */,
 				F354B7472164C7570026F3A2 /* IntroThirdNewModel.swift in Sources */,
 				F3E19CAE211C3D6400ADE838 /* InputAViewController.swift in Sources */,
+				E9150EF8216605160023E138 /* ScreenTypeEViewController.swift in Sources */,
 				F354B7452164C7470026F3A2 /* IntroThirdNewViewModel.swift in Sources */,
 				F3E19CB0211C3DA500ADE838 /* InputAViewModel.swift in Sources */,
 				F3F4148C20F5F82000CF101D /* ReachabilityManager.swift in Sources */,
@@ -960,6 +975,7 @@
 				F3CE902B215D3FE600A9F3DF /* IntroSeconNewViewModel.swift in Sources */,
 				F3D6D208214CF83900A6231E /* IntroFourthViewModel.swift in Sources */,
 				F3E19CAA211C3CDB00ADE838 /* HomeContainerViewModel.swift in Sources */,
+				E9150EFA216606340023E138 /* ScreenTypeEViewModel.swift in Sources */,
 				F3D6D20E214CF87800A6231E /* IntroFifthModel.swift in Sources */,
 				F32DCEE0214A654400B3D0F8 /* IntroThirdModel.swift in Sources */,
 				F3E19CB9211D835500ADE838 /* SubMenuViewController.swift in Sources */,

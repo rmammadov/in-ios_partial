@@ -13,7 +13,7 @@ class ScreenTypeCViewModel: BaseViewModel {
     
     var items = Variable<[InputScreen]>([])
     var inputScreen: InputScreen?
-    var selectedItem = Variable<[String: ButtonInputScreen]>([:])
+    var selectedItem = Variable<[Int: ButtonInputScreen]>([:])
     var selectedIndexPath = Variable<IndexPath?>(nil)
     var viewControllers: [UIViewController] = []
     
@@ -28,8 +28,7 @@ class ScreenTypeCViewModel: BaseViewModel {
     func getItemViewModelFor(indexPath: IndexPath) -> ScreenTypeCMenuCollectionViewCell.ViewModel? {
         guard getItems().count > indexPath.item else { return nil }
         let item = getItems()[indexPath.item]
-        guard let title = item.translations.first?.title else { return nil }
-        let viewModel = ScreenTypeCMenuCollectionViewCell.ViewModel(selectedTranslations: selectedItem.value[title]?.translations,
+        let viewModel = ScreenTypeCMenuCollectionViewCell.ViewModel(selectedTranslations: selectedItem.value[item.id]?.translations,
                                                                     translations: item.translations)
         return viewModel
     }
@@ -51,12 +50,30 @@ class ScreenTypeCViewModel: BaseViewModel {
             }
          })
         setItems(items: items)
-        
-        //TODO: Hardcoded screen, change this if we will have prepared Screens D, E, F and so on.
-        let storyboard = UIStoryboard(name: "ScreenTypeC", bundle: nil)
-        for i in 0..<items.count {
-            viewControllers.append(storyboard.instantiateViewController(withIdentifier: "\((i % 3) + 1)"))
+        prepareViewControllers()
+    }
+    
+    private func prepareViewControllers() {
+        for item in getItems() {
+            if let vc = loadViewControllerFor(item: item) {
+                viewControllers.append(vc)
+            }
         }
+    }
+    
+    private func loadViewControllerFor(item: InputScreen) -> UIViewController? {
+        let storyboard = UIStoryboard(name: "ScreenTypeC", bundle: nil)
+        switch item.type {
+        case Constant.InputScreen.TYPE_E:
+            if let vc = storyboard.instantiateViewController(withIdentifier: ScreenTypeEViewController.identifier) as? ScreenTypeEViewController {
+                vc.viewModel.inputScreen = item
+                vc.viewModel.delegate = self
+                return vc
+            }
+        default:
+            return UIViewController()
+        }
+        return nil
     }
     
     private func setItems(items: [InputScreen]) {
@@ -68,6 +85,21 @@ class ScreenTypeCViewModel: BaseViewModel {
             viewControllers.count > index
             else { return nil }
         return viewControllers[index]
+    }
+    
+    func speakSelectedValues() {
+        for item in items.value {
+            if let selectedValue = selectedItem.value[item.id],
+                let text = selectedValue.translations?.first?.labelTextToSpeech {
+                SpeechHelper.play(text: text, language: "en-US")
+            }
+        }
+    }
+}
+
+extension ScreenTypeCViewModel: ScreenTypeCDelegate {
+    func didSelect(button: ButtonInputScreen, onScreen: InputScreen) {
+        selectedItem.value[onScreen.id] = button
     }
 }
 

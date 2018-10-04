@@ -107,8 +107,18 @@ extension MenuViewController {
             event in
             DispatchQueue.main.async {
                 if self.viewModel.statusInput.value == InputScreenId.inputScreen0.rawValue {
-                    self.performSegue(withIdentifier: SEGUE_IDENTIFIER_INPUT, sender: self)
-                    AnimationUtil.cancelMenuSelection(imageView: self.getCellForIndexPath(indexPath: self.viewModel.getSelection())!.ivStatusIcon)
+                    guard let title = self.viewModel.getSelectedItem()?.name,
+                        let cell = self.getCellForIndexPath(indexPath: self.viewModel.getSelection())
+                        else { return }
+                    AnimationUtil.cancelMenuSelection(imageView: cell.ivStatusIcon)
+                    let inputScreen = DataManager.getInputScreens().getInputScreen(title: title)
+                    switch inputScreen.type {
+                    case Constant.InputScreen.TYPE_A:
+                        self.performSegue(withIdentifier: SEGUE_IDENTIFIER_INPUT, sender: self)
+                    case Constant.InputScreen.TYPE_C:
+                        self.openScreenTypeC(inputScreen: inputScreen)
+                    default: break
+                    }
                 }
             }
         }).disposed(by: disposeBag)
@@ -119,6 +129,15 @@ extension MenuViewController {
                 self.viewModel.onItemLoadRequest(indexPath: self.viewModel.getSelection())
             }
         }).disposed(by: disposeBag)
+    }
+    
+    private func openScreenTypeC(inputScreen: InputScreen) {
+        let storyboard = UIStoryboard(name: "ScreenTypeC", bundle: nil)
+        guard
+            let nextVC = storyboard.instantiateViewController(withIdentifier: "ScreenTypeCViewController") as? ScreenTypeCViewController
+            else { return }
+        nextVC.viewModel.inputScreen = inputScreen
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
     func getParentViewController() -> HomeViewController {
