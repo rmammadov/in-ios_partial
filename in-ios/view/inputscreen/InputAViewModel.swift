@@ -106,7 +106,7 @@ class InputAViewModel: BaseViewModel {
     }
     
     func setGroupedItems(items: [ButtonInputScreen]) {
-        let countItemsPerPage = getRowCount() * getColumnCount()
+        let countItemsPerPage = (getRowCount()) * (getColumnCount())
         var countItems = getItems().count
         
         if countItems <= countItemsPerPage {
