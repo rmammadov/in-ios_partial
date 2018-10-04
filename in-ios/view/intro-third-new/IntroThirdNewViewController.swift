@@ -23,6 +23,7 @@ class IntroThirdNewViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        setCamera()
     }
     
 
@@ -83,6 +84,10 @@ class IntroThirdNewViewController: BaseViewController {
     }
     @IBAction func onClickBtn7(_ sender: Any) {
         setDisabled(sender: sender)
+        viewSecondStep.isHidden = true
+        viewFourthStep.isHidden = false
+        btnBack.isHidden = false
+        btnForward.isHidden = false
     }
     @IBAction func onClickBtn8(_ sender: Any) {
         setDisabled(sender: sender)
@@ -111,5 +116,23 @@ extension IntroThirdNewViewController {
     override func onContinue() {
         super.onContinue()
         performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_HOME, sender: self)
+    }
+}
+
+extension IntroThirdNewViewController {
+    
+    func setCamera()
+    {
+        // TODO: should be removed and reimplemented after tests
+        let cameraManager: CameraManager = CameraManager(cameraView: self.view)
+        
+        cameraManager.askUserForCameraPermission { (status) in
+            if status {
+                cameraManager.setPrediction()
+                cameraManager.setCamera()
+                cameraManager.startSession()
+                cameraManager.shouldRespondToOrientationChanges = true
+            }
+        }
     }
 }
