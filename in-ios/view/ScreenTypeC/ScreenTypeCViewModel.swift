@@ -62,7 +62,7 @@ class ScreenTypeCViewModel: BaseViewModel {
     }
     
     private func loadViewControllerFor(item: InputScreen) -> UIViewController? {
-        let storyboard = UIStoryboard(name: "ScreenTypeC", bundle: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         switch item.type {
         case Constant.InputScreen.TYPE_E:
             if let vc = storyboard.instantiateViewController(withIdentifier: ScreenTypeEViewController.identifier) as? ScreenTypeEViewController {

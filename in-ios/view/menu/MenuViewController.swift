@@ -132,7 +132,7 @@ extension MenuViewController {
     }
     
     private func openScreenTypeC(inputScreen: InputScreen) {
-        let storyboard = UIStoryboard(name: "ScreenTypeC", bundle: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard
             let nextVC = storyboard.instantiateViewController(withIdentifier: "ScreenTypeCViewController") as? ScreenTypeCViewController
             else { return }

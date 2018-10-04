@@ -146,7 +146,7 @@ extension InputAViewController {
                     self.navigationController?.pushViewController(nextVC, animated: true)
                 }
             } else if inputStatus == InputScreenId.inputScreen1.rawValue {
-                let storyboard = UIStoryboard(name: "ScreenTypeC", bundle: nil)
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 guard let screenCVC = storyboard.instantiateViewController(withIdentifier: "ScreenTypeCViewController") as? ScreenTypeCViewController,
                     let inputScreen = self.viewModel.loadInputScreenItem()
                     else { return }
