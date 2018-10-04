@@ -35,6 +35,11 @@ class IntroThirdNewViewController: BaseViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func setDisabled(sender: Any) {
+        let btn = sender as! UIButton
+        btn.isEnabled = false
+    }
 
     @IBAction func onClickBtnBack(_ sender: Any) {
          self.navigationController?.popViewController(animated: true)
@@ -58,7 +63,46 @@ class IntroThirdNewViewController: BaseViewController {
     
     @IBAction func onClickBtnRedoFifthStep(_ sender: Any) {
     }
+    @IBAction func onClickBtn1(_ sender: Any) {
+        setDisabled(sender: sender)
+    }
+    @IBAction func onClickBtn2(_ sender: Any) {
+        setDisabled(sender: sender)
+    }
+    @IBAction func onClickBtn3(_ sender: Any) {
+        setDisabled(sender: sender)
+    }
+    @IBAction func onClickBtn4(_ sender: Any) {
+        setDisabled(sender: sender)
+    }
+    @IBAction func onClickBtn5(_ sender: Any) {
+        setDisabled(sender: sender)
+    }
+    @IBAction func onClickBtn6(_ sender: Any) {
+        setDisabled(sender: sender)
+    }
+    @IBAction func onClickBtn7(_ sender: Any) {
+        setDisabled(sender: sender)
+    }
+    @IBAction func onClickBtn8(_ sender: Any) {
+        setDisabled(sender: sender)
+    }
+    @IBAction func onClickBtn9(_ sender: Any) {
+        setDisabled(sender: sender)
+    }
+    @IBAction func onClickBtn10(_ sender: Any) {
+        setDisabled(sender: sender)
+    }
+    @IBAction func onClickBtn11(_ sender: Any) {
+        setDisabled(sender: sender)
+    }
+    @IBAction func onClickBtn12(_ sender: Any) {
+        setDisabled(sender: sender)
+    }
     
+    @IBAction func onClickBtn13(_ sender: Any) {
+        setDisabled(sender: sender)
+    }
 }
 
 
