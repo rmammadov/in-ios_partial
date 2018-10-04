@@ -10,6 +10,10 @@ import UIKit
 import RxSwift
 import Kingfisher
 
+protocol ScreenTypeCDelegate: class {
+    func didSelect(button: ButtonInputScreen, onScreen: InputScreen)
+}
+
 class ScreenTypeCViewController: BaseViewController {
     
     @IBOutlet weak var mainCollectionView: UICollectionView!
@@ -32,7 +36,11 @@ class ScreenTypeCViewController: BaseViewController {
     }
     
     @IBAction func onSpeakButtonClick(_ sender: Any) {
-        
+        viewModel.speakSelectedValues()
+    }
+    
+    @IBAction func onClearButtonClick(_ sender: Any) {
+        viewModel.selectedItem.value = [:]
     }
     
 }
@@ -112,14 +120,12 @@ extension ScreenTypeCViewController {
     }
     
     private func replaceViewController() {
-        guard let nextVC = viewModel.getSelectedViewController()
-            else { return }
+        guard let nextVC = viewModel.getSelectedViewController() else { return }
         if let childVC = children.first {
             childVC.willMove(toParent: nil)
             childVC.view.removeFromSuperview()
             childVC.removeFromParent()
         }
-        
         addChild(nextVC)
         containerView.addSubview(nextVC.view)
         nextVC.view.frame = containerView.bounds
