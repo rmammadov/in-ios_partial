@@ -29,6 +29,7 @@ class CameraManager: NSObject {
     fileprivate var cameraIsObservingDeviceOrientation = false
     fileprivate var cameraPosition = AVCaptureDevice.Position.front
     fileprivate var gazeTracker: GazeTracker?
+    fileprivate var gazeUtils = GazeUtilities()
     fileprivate var cameraView: UIView? // For the test purpose
     fileprivate weak var processingImage: UIImage?
     fileprivate var label: UILabel?
@@ -310,7 +311,7 @@ extension CameraManager: GazePredictionDelegate {
             let X = averageX.reduce(0, +)/Double(averageX.count)
             let Y = averageY.reduce(0, +)/Double(averageY.count)
             
-            let coordinates = gazeTracker.cm2pixels(gazeX: X, gazeY: Y, camX: 0, camY: 12.0, orientation: UIDevice.current.orientation)
+            let coordinates = gazeUtils.cm2pixels(gazeX: X, gazeY: Y, camX: 0, camY: 12.0, orientation: UIDevice.current.orientation)
             updatePointer(x: coordinates.gazeX, y: coordinates.gazeY)
             setPointerActive()
         }
