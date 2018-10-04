@@ -11,7 +11,7 @@ import UIKit
 private let SEGUE_IDENTIFIER_SHOW_HOME = "showHome"
 
 class IntroThirdNewViewController: BaseViewController {
-
+    
     @IBOutlet weak var viewFirstStep: UIView!
     @IBOutlet weak var viewSecondStep: UIView!
     @IBOutlet weak var viewFourthStep: UIView!
@@ -21,29 +21,30 @@ class IntroThirdNewViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         setCamera()
+        setDismissSwipeForSecondStep()
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
     
     func setDisabled(sender: Any) {
         let btn = sender as! UIButton
         btn.isEnabled = false
     }
-
+    
     @IBAction func onClickBtnBack(_ sender: Any) {
-         self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     @IBAction func onClickBtnForward(_ sender: Any) {
         onContinue()
@@ -84,10 +85,6 @@ class IntroThirdNewViewController: BaseViewController {
     }
     @IBAction func onClickBtn7(_ sender: Any) {
         setDisabled(sender: sender)
-        viewSecondStep.isHidden = true
-        viewFourthStep.isHidden = false
-        btnBack.isHidden = false
-        btnForward.isHidden = false
     }
     @IBAction func onClickBtn8(_ sender: Any) {
         setDisabled(sender: sender)
@@ -134,5 +131,17 @@ extension IntroThirdNewViewController {
                 cameraManager.shouldRespondToOrientationChanges = true
             }
         }
+    }
+    
+    func setDismissSwipeForSecondStep() {
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(IntroThirdNewViewController.swiped(_:)))
+        viewSecondStep.addGestureRecognizer(swipeGesture)
+    }
+    
+    @objc func swiped(_ gesture: UIGestureRecognizer) {
+        viewSecondStep.isHidden = true
+        viewFourthStep.isHidden = false
+        btnBack.isHidden = false
+        btnForward.isHidden = false
     }
 }
