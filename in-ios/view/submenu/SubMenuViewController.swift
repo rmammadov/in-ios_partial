@@ -129,7 +129,7 @@ extension SubMenuViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         AnimationUtil.cancelMenuSelection(imageView: self.getCellForIndexPath(indexPath: viewModel.getSelection())!.ivStatusIcon)
-        AnimationUtil.animateMenuSelection(imageView: self.getCellForIndexPath(indexPath: indexPath)!.ivStatusIcon, fingerTouch: false, tag: SubMenuViewController.TAG)
+        AnimationUtil.animateMenuSelection(imageView: self.getCellForIndexPath(indexPath: indexPath)!.ivStatusIcon, fingerTouch: true, tag: SubMenuViewController.TAG)
         self.viewModel.setSelection(indexPath: indexPath)
     }
     
