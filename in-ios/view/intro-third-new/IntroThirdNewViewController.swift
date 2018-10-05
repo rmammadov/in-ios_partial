@@ -26,7 +26,7 @@ class IntroThirdNewViewController: BaseViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-//        setCamera()
+        setCamera()
         setDismissSwipeForSecondStep()
         startCalibration()
     }
@@ -122,6 +122,13 @@ extension IntroThirdNewViewController {
 
 extension IntroThirdNewViewController {
     
+    func startFourthStep() {
+        viewSecondStep.isHidden = true
+        viewFourthStep.isHidden = false
+        btnBack.isHidden = false
+        btnForward.isHidden = false
+    }
+    
     func startCalibration() {
          continueCalibration(tag: viewModel.getTag())
     }
@@ -145,6 +152,8 @@ extension IntroThirdNewViewController {
         let tag = viewModel.getTag()
         if tag != 0 {
             continueCalibration(tag: tag)
+        } else {
+            startFourthStep()
         }
     }
     
@@ -169,9 +178,6 @@ extension IntroThirdNewViewController {
     }
     
     @objc func swiped(_ gesture: UIGestureRecognizer) {
-        viewSecondStep.isHidden = true
-        viewFourthStep.isHidden = false
-        btnBack.isHidden = false
-        btnForward.isHidden = false
+        startFourthStep()
     }
 }
