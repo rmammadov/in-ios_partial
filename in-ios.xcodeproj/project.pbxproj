@@ -17,6 +17,14 @@
 		E9611E972164AC950010B33C /* ScreenTypeCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E922164AC950010B33C /* ScreenTypeCViewController.swift */; };
 		E9611E982164AC950010B33C /* ScreenTypeCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E932164AC950010B33C /* ScreenTypeCViewModel.swift */; };
 		E9611E9A2164AE2D0010B33C /* IdentifierProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E992164AE2D0010B33C /* IdentifierProtocol.swift */; };
+		E9876E0421674F890001C626 /* GazeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E0321674F890001C626 /* GazeUtils.swift */; };
+		E9876E07216750310001C626 /* ScreenTypeFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E06216750310001C626 /* ScreenTypeFViewController.swift */; };
+		E9876E092167503E0001C626 /* ScreenTypeFViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E082167503E0001C626 /* ScreenTypeFViewModel.swift */; };
+		E9876E0B21675CE00001C626 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E0A21675CE00001C626 /* UIColorExtension.swift */; };
+		E9876E0F216765070001C626 /* ColoredButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E0D216765070001C626 /* ColoredButtonCollectionViewCell.swift */; };
+		E9876E10216765070001C626 /* ColoredButtonCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9876E0E216765070001C626 /* ColoredButtonCollectionViewCell.xib */; };
+		E9876E1321678B6B0001C626 /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E1221678B6B0001C626 /* NotificationExtension.swift */; };
+		E9876E1521679BF50001C626 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E1421679BF50001C626 /* GradientView.swift */; };
 		F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3216B5520F4EA15008D6EFD /* HomeViewController.swift */; };
 		F32D99C621117E79007AAA8D /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D99C521117E79007AAA8D /* HomeModel.swift */; };
 		F32D99C821117E8A007AAA8D /* MenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D99C721117E8A007AAA8D /* MenuModel.swift */; };
@@ -152,6 +160,14 @@
 		E9611E922164AC950010B33C /* ScreenTypeCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTypeCViewController.swift; sourceTree = "<group>"; };
 		E9611E932164AC950010B33C /* ScreenTypeCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTypeCViewModel.swift; sourceTree = "<group>"; };
 		E9611E992164AE2D0010B33C /* IdentifierProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifierProtocol.swift; sourceTree = "<group>"; };
+		E9876E0321674F890001C626 /* GazeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GazeUtils.swift; sourceTree = "<group>"; };
+		E9876E06216750310001C626 /* ScreenTypeFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeFViewController.swift; sourceTree = "<group>"; };
+		E9876E082167503E0001C626 /* ScreenTypeFViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeFViewModel.swift; sourceTree = "<group>"; };
+		E9876E0A21675CE00001C626 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		E9876E0D216765070001C626 /* ColoredButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredButtonCollectionViewCell.swift; sourceTree = "<group>"; };
+		E9876E0E216765070001C626 /* ColoredButtonCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColoredButtonCollectionViewCell.xib; sourceTree = "<group>"; };
+		E9876E1221678B6B0001C626 /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
+		E9876E1421679BF50001C626 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		ED4FD3A654935E1287D7E3F3 /* Pods-in-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-in-iosTests/Pods-in-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F3216B5520F4EA15008D6EFD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = "in-ios/view/home/HomeViewController.swift"; sourceTree = SOURCE_ROOT; };
 		F32D99C521117E79007AAA8D /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
@@ -333,9 +349,37 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		E9876E05216750110001C626 /* ScreenTypeF */ = {
+			isa = PBXGroup;
+			children = (
+				E9876E0C216764E00001C626 /* Cells */,
+				E9876E06216750310001C626 /* ScreenTypeFViewController.swift */,
+				E9876E082167503E0001C626 /* ScreenTypeFViewModel.swift */,
+			);
+			path = ScreenTypeF;
+			sourceTree = "<group>";
+		};
+		E9876E0C216764E00001C626 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E9876E0D216765070001C626 /* ColoredButtonCollectionViewCell.swift */,
+				E9876E0E216765070001C626 /* ColoredButtonCollectionViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		E9876E11216766BE0001C626 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E9876E1421679BF50001C626 /* GradientView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		F3283D70213013BA004B4FBE /* in-eye-gaze */ = {
 			isa = PBXGroup;
 			children = (
+				E9876E0321674F890001C626 /* GazeUtils.swift */,
 				F3CE691C213D70E6004F6756 /* GazeEstimator.mlmodel */,
 				F3E97E5821422F4800379B4A /* GazeTracker.swift */,
 				F3E97E5A21422F4E00379B4A /* FaceFinder.swift */,
@@ -395,6 +439,8 @@
 				F3E200CC213664C700902A33 /* CMSampleBuffer+image.swift */,
 				F32DCED8214A41D100B3D0F8 /* INTextField.swift */,
 				E9611E992164AE2D0010B33C /* IdentifierProtocol.swift */,
+				E9876E0A21675CE00001C626 /* UIColorExtension.swift */,
+				E9876E1221678B6B0001C626 /* NotificationExtension.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -515,6 +561,7 @@
 		F33658AC20D3197100B18CEC /* view */ = {
 			isa = PBXGroup;
 			children = (
+				E9876E11216766BE0001C626 /* Common */,
 				F336588020D318C300B18CEC /* Main.storyboard */,
 				F336588520D318CA00B18CEC /* LaunchScreen.storyboard */,
 				F336587E20D318C300B18CEC /* BaseViewController.swift */,
@@ -538,6 +585,7 @@
 				F3E19CA8211C3C6D00ADE838 /* inputscreen */,
 				E9611E8D2164AC950010B33C /* ScreenTypeC */,
 				E9150EF62165F6E20023E138 /* ScreenTypeE */,
+				E9876E05216750110001C626 /* ScreenTypeF */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -786,6 +834,7 @@
 				F336588220D318C300B18CEC /* Main.storyboard in Resources */,
 				F3F8648321175BEE00B7CAA8 /* Colors.xcassets in Resources */,
 				F3B0C1CC2154BA1400E30CA1 /* GoogleService-Info.plist in Resources */,
+				E9876E10216765070001C626 /* ColoredButtonCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -940,6 +989,7 @@
 				F32D99CA21117EC7007AAA8D /* BaseViewModel.swift in Sources */,
 				F34B909B20D46FA100800FCD /* DisplayHelper.swift in Sources */,
 				F334ADBE2105DA4A0056824A /* SpeechHelper.swift in Sources */,
+				E9876E0F216765070001C626 /* ColoredButtonCollectionViewCell.swift in Sources */,
 				F39059BF210F254C00CAA292 /* AnimationUtil.swift in Sources */,
 				F334ADC5210B3BC00056824A /* ApiRequestHandler.swift in Sources */,
 				F336587F20D318C300B18CEC /* BaseViewController.swift in Sources */,
@@ -950,6 +1000,7 @@
 				F354B7472164C7570026F3A2 /* IntroThirdNewModel.swift in Sources */,
 				F3E19CAE211C3D6400ADE838 /* InputAViewController.swift in Sources */,
 				E9150EF8216605160023E138 /* ScreenTypeEViewController.swift in Sources */,
+				E9876E0B21675CE00001C626 /* UIColorExtension.swift in Sources */,
 				F354B7452164C7470026F3A2 /* IntroThirdNewViewModel.swift in Sources */,
 				F3E19CB0211C3DA500ADE838 /* InputAViewModel.swift in Sources */,
 				F3F4148C20F5F82000CF101D /* ReachabilityManager.swift in Sources */,
@@ -967,7 +1018,9 @@
 				F39059C1210F290F00CAA292 /* MenuViewModel.swift in Sources */,
 				F3D6D206214CF81300A6231E /* IntroFifthViewController.swift in Sources */,
 				F334ADCA210D7F890056824A /* HomeViewModel.swift in Sources */,
+				E9876E1321678B6B0001C626 /* NotificationExtension.swift in Sources */,
 				F3C48CCB210F018200742855 /* MenuViewController.swift in Sources */,
+				E9876E07216750310001C626 /* ScreenTypeFViewController.swift in Sources */,
 				F3355CF12122E904009AF602 /* LoadingModel.swift in Sources */,
 				F32F5B6521453DCC00558C68 /* IntroSecondViewController.swift in Sources */,
 				F3E200C92135F2D500902A33 /* UIApplication+getPresentedViewController.swift in Sources */,
@@ -975,8 +1028,10 @@
 				F3D6D208214CF83900A6231E /* IntroFourthViewModel.swift in Sources */,
 				F3E19CAA211C3CDB00ADE838 /* HomeContainerViewModel.swift in Sources */,
 				E9150EFA216606340023E138 /* ScreenTypeEViewModel.swift in Sources */,
+				E9876E1521679BF50001C626 /* GradientView.swift in Sources */,
 				F3D6D20E214CF87800A6231E /* IntroFifthModel.swift in Sources */,
 				F32DCEE0214A654400B3D0F8 /* IntroThirdModel.swift in Sources */,
+				E9876E092167503E0001C626 /* ScreenTypeFViewModel.swift in Sources */,
 				F3E19CB9211D835500ADE838 /* SubMenuViewController.swift in Sources */,
 				E9611E972164AC950010B33C /* ScreenTypeCViewController.swift in Sources */,
 				F35EFA5C2167332800D99FD2 /* GazeUtils.swift in Sources */,

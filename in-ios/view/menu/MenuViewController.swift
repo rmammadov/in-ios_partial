@@ -113,9 +113,9 @@ extension MenuViewController {
                     AnimationUtil.cancelMenuSelection(imageView: cell.ivStatusIcon)
                     let inputScreen = DataManager.getInputScreens().getInputScreen(title: title)
                     switch inputScreen.type {
-                    case Constant.InputScreen.TYPE_A:
+                    case .inputScreenA:
                         self.performSegue(withIdentifier: SEGUE_IDENTIFIER_INPUT, sender: self)
-                    case Constant.InputScreen.TYPE_C:
+                    case .inputScreenC:
                         self.openScreenTypeC(inputScreen: inputScreen)
                     default: break
                     }

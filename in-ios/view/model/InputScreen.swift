@@ -6,7 +6,7 @@
 //  Copyright © 2018 com.innodemneurosciences. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct InputScreen: Decodable {
     
@@ -18,10 +18,21 @@ struct InputScreen: Decodable {
     let backgroundTransparency: Double?
     let previousButton: ButtonInputScreen?
     let nextButton: ButtonInputScreen?
-    let type: String
+    let type: InputScreenType
     let backButton: ButtonInputScreen?
     let clearButton: ButtonInputScreen?
     let tabs: [Tab]?
+    
+    enum InputScreenType: String, Decodable {
+        case inputScreenA = "InputScreenA"
+        case inputScreenB = "InputScreenB"
+        case inputScreenC = "InputScreenC"
+        case inputScreenD = "InputScreenD"
+        case inputScreenE = "InputScreenE"
+        case inputScreenF = "InputScreenF"
+        case inputScreenG = "InputScreenG"
+        case inputScreenH = "InputScreenH"
+    }
 }
 
 extension InputScreen {
@@ -46,7 +57,7 @@ extension InputScreen {
         let id: Int = try container.decode(Int.self, forKey: .id)
         let disableTextToSpeech: Bool = try container.decode(Bool.self, forKey: .disableTextToSpeech)
         let translations: [TranslationInputScreen] = try container.decode([TranslationInputScreen].self, forKey: .translations)
-        let type: String = try container.decode(String.self, forKey: .type)
+        let type: InputScreenType = try container.decode(InputScreenType.self, forKey: .type)
         
         let buttons: [ButtonInputScreen]? = try container.decodeIfPresent([ButtonInputScreen].self, forKey: .buttons)
         let background: Background? = try container.decodeIfPresent(Background.self, forKey: .background)
@@ -81,13 +92,42 @@ struct ButtonInputScreen: Decodable {
     var disableTextToSpeech: Bool?
     var icon: IconMenuItem? = nil
     var translations: [TranslationMenuItem]?
-    var type: String?
+    var type: ButtonType
+    
+    /// ButtonInputScreenOpen properties:
     var inputScreenId: Int? = nil
+    
+    /// ButtonColored properties:
+    var mainColor: UIColor?
+    var gradientColor: UIColor?
     
     enum CodingKeys: String, CodingKey {
         case disableTextToSpeech = "disable_text_to_speech"
         case inputScreenId = "input_screen_id"
+        case mainColor = "main_color"
+        case gradientColor = "gradient_color"
         case icon, translations, type
+    }
+    
+    enum ButtonType: String, Decodable {
+        case colored = "ButtonColored"
+        case simple = "ButtonSimple"
+        case inputScreenOpen = "ButtonInputScreenOpen"
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: ButtonInputScreen.CodingKeys.self)
+        self.type = try container.decode(ButtonType.self, forKey: .type)
+        self.disableTextToSpeech = try container.decodeIfPresent(Bool.self, forKey: .disableTextToSpeech)
+        self.icon = try container.decodeIfPresent(IconMenuItem.self, forKey: .icon)
+        self.translations = try container.decodeIfPresent([TranslationMenuItem].self, forKey: .translations)
+        self.inputScreenId = try container.decodeIfPresent(Int.self, forKey: .inputScreenId)
+        if let mainColorHex = try container.decodeIfPresent(String.self, forKey: .mainColor) {
+            self.mainColor = UIColor(hex: mainColorHex)
+        }
+        if let gradientColorHex = try container.decodeIfPresent(String.self, forKey: .gradientColor) {
+            self.gradientColor = UIColor(hex: gradientColorHex)
+        }
     }
 }
 

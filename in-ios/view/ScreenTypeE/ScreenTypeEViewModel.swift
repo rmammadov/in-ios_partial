@@ -19,6 +19,11 @@ class ScreenTypeEViewModel: BaseViewModel {
     private var selectedItem: ButtonInputScreen?
     private var selectedIndexPath: IndexPath?
     
+    func loadItems() {
+        guard let items = inputScreen?.buttons else { return }
+        setItems(items)
+    }
+    
     func getItems() -> [ButtonInputScreen] {
         return items
     }
@@ -104,11 +109,6 @@ class ScreenTypeEViewModel: BaseViewModel {
     
     func getNextButton() -> ButtonInputScreen? {
         return inputScreen?.nextButton
-    }
-    
-    func loadItems() {
-        guard let items = inputScreen?.buttons else { return }
-        setItems(items)
     }
     
     func onItemLoadRequest(indexPath: IndexPath) {

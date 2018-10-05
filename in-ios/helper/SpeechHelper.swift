@@ -55,9 +55,8 @@ class SpeechHelper {
     }
     
     static func volumeUp() {
-        let newValue = AVAudioSession.sharedInstance().outputVolume + 0.065
+        let newValue = AVAudioSession.sharedInstance().outputVolume + 0.0625
         let volume = newValue > 1 ? 1 : newValue
-        
         let mpVolumeView = MPVolumeView(frame: .init(origin: .zero, size: CGSize(width: 100, height: 100)))
         if let slider = mpVolumeView.subviews.first as? UISlider {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -67,7 +66,7 @@ class SpeechHelper {
     }
     
     static func volumeDown() {
-        let newValue = AVAudioSession.sharedInstance().outputVolume - 0.065
+        let newValue = AVAudioSession.sharedInstance().outputVolume - 0.0625
         let volume = newValue < 0 ? 0 : newValue
         let mpVolumeView = MPVolumeView(frame: .init(origin: .zero, size: CGSize(width: 100, height: 100)))
         if let slider = mpVolumeView.subviews.first as? UISlider {
