@@ -127,6 +127,7 @@ extension IntroThirdNewViewController {
         viewFourthStep.isHidden = false
         btnBack.isHidden = false
         btnForward.isHidden = false
+        
     }
     
     func startCalibration() {
