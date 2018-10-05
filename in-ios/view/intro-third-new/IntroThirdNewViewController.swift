@@ -130,9 +130,14 @@ extension IntroThirdNewViewController {
         if let btnCalibration = self.view.viewWithTag(tag) as? UIButton {
             btnPrevious = btnCalibration
             btnPrevious!.isHidden = false
+            Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.CALIBRATION_STEP_DURATION / 2, target: self, selector: #selector(takeScreenShot), userInfo: nil, repeats: false)
             Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.CALIBRATION_STEP_DURATION, target: self, selector: #selector(handleCalibrationStep), userInfo: nil, repeats: false)
             
         }
+    }
+    
+    @objc func takeScreenShot() {
+        guard let screenShot = UIApplication.shared.screenShot else { return }
     }
     
     @objc func handleCalibrationStep() {
