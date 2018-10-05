@@ -69,17 +69,12 @@ class InputAViewModel: BaseViewModel {
     }
     
     func getBackButtonStatus() -> Bool? {
-        return screen?.backButton != nil || screen?.type == "InputScreenB"
-//        if screen?.backButton != nil {
-//            return true
-//        } else {
-//            return false
-//        }
+        guard let screen = screen else { return false }
+        return screen.backButton != nil || screen.type == .inputScreenB
     }
     
     func getSpeakButtonStatus() -> Bool? {
         return false
-//        return !(screen?.disableTextToSpeech)!
     }
     
     func getPreviousButton() -> ButtonInputScreen? {
@@ -172,30 +167,38 @@ class InputAViewModel: BaseViewModel {
         let item = getGroupedItems()[getPage()][indexPath.row]
         self.selectedItem = item
         
-        if !(selectedItem?.disableTextToSpeech)! {
-            textToSpech(text: (selectedItem?.translations!.first?.labelTextToSpeech)!)
+        guard let selectedItem = self.selectedItem else { return }
+        
+        if !(selectedItem.disableTextToSpeech ?? true) {
+            textToSpech(text: (selectedItem.translations!.first?.labelTextToSpeech)!)
         }
         
-        if selectedItem?.translations?.first?.label == Constant.MenuConfig.PREVIOUS_ITEM_NAME {
+        if selectedItem.translations?.first?.label == Constant.MenuConfig.PREVIOUS_ITEM_NAME {
             setPage(page: getPage() - 1)
-        } else if selectedItem?.translations?.first?.label == Constant.MenuConfig.NEXT_ITEM_NAME {
+        } else if selectedItem.translations?.first?.label == Constant.MenuConfig.NEXT_ITEM_NAME {
             setPage(page: getPage() + 1)
         }
         
-        if selectedItem?.type == Constant.ButtonType.INPUT_SCREEN_OPEN,
-            let inputScreen = Constant.InputScreenId(rawValue: selectedItem?.inputScreenId ?? -1),
-            inputScreen.type == Constant.InputScreen.TYPE_B {
-            self.statusInput.value = InputScreenId.inputScreen0.rawValue
-        } else if selectedItem?.type == Constant.ButtonType.INPUT_SCREEN_OPEN,
-            let inputScreen = Constant.InputScreenId(rawValue: selectedItem?.inputScreenId ?? -1),
-            inputScreen.type == Constant.InputScreen.TYPE_C {
-            self.statusInput.value = InputScreenId.inputScreen1.rawValue
+        if selectedItem.type == ButtonInputScreen.ButtonType.inputScreenOpen,
+            let inputScreenId = selectedItem.inputScreenId,
+            let inputScreen = DataManager.getInputScreens().getInputScreenFor(id: inputScreenId) {
+            
+            switch inputScreen.type {
+            case .inputScreenB:
+                self.statusInput.value = InputScreenId.inputScreen0.rawValue
+            case .inputScreenC:
+                self.statusInput.value = InputScreenId.inputScreen1.rawValue
+            default: break
+            }
+            
         }
-        if selectedItem?.type == Constant.ButtonType.BUTTONS_SIMPLE {
-            if selectedItem?.translations?.first?.label == "Volume up" {
+        if selectedItem.type == .simple, let firstLabel = selectedItem.translations?.first?.label {
+            switch firstLabel {
+            case "Volume up":
                 SpeechHelper.volumeUp()
-            } else if selectedItem?.translations?.first?.label == "Volume down" {
+            case "Volume down":
                 SpeechHelper.volumeDown()
+            default: break
             }
         }
         
@@ -204,12 +207,9 @@ class InputAViewModel: BaseViewModel {
     
     func loadInputScreenItem() -> InputScreen? {
         guard let selectedItem = selectedItem,
-            let type = selectedItem.type,
-            let inputScreenId = selectedItem.inputScreenId,
-            let inputScreenType = Constant.InputScreenId(rawValue: inputScreenId),
-            let title = inputScreenType.buttonsTitle
+            let inputScreenId = selectedItem.inputScreenId
             else { return nil }
-        return DataManager.getInputScreens().getInputScreen(title: title)
+        return DataManager.getInputScreens().getInputScreenFor(id: inputScreenId)
     }
     
     // FIXME: Remove hardcode language type

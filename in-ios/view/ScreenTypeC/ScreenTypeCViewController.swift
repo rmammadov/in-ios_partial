@@ -41,6 +41,7 @@ class ScreenTypeCViewController: BaseViewController {
     
     @IBAction func onClearButtonClick(_ sender: Any) {
         viewModel.selectedItem.value = [:]
+        sendClearNotification()
     }
     
 }
@@ -131,6 +132,12 @@ extension ScreenTypeCViewController {
         nextVC.view.frame = containerView.bounds
         nextVC.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         nextVC.didMove(toParent: self)
+    }
+    
+    private func sendClearNotification() {
+        let userInfo = [NotificationKeys.UserInfo.ParentViewController: self]
+        let notification = Notification(name: .ScreenTypeCClear, userInfo: userInfo)
+        NotificationCenter.default.post(notification)
     }
 }
 
