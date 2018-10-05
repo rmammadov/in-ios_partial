@@ -11,33 +11,19 @@ import UIKit
 
 class IntroThirdNewModel: BaseModel {
     
-    private var tagCalibrationBtn: Int = 110
-    private var btnCalibrationPrevious: UIButton?
     private var index = 0
-    private var tags: Array = [110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122]
-    
-    func setTag(tag: Int) {
-        tagCalibrationBtn = tag
-    }
+    private var tags: Array = Constant.CalibrationConfig.CALIBRATION_TAGS
     
     func getTag() -> Int {
         var tag: Int?
-        if index < tags.count - 1 {
+        if index < tags.count {
             tag = tags[index]
-            index += 1
+            index = index + 1
         } else {
             tag = 0
             index = 0
         }
         return tag!
-    }
-    
-    func setPreviousBtn(btn: UIButton) {
-        btnCalibrationPrevious = btn
-    }
-    
-    func getPreviousBtn() -> UIButton? {
-        return btnCalibrationPrevious
     }
     
 }

@@ -129,16 +129,17 @@ extension IntroThirdNewViewController {
     func continueCalibration(tag: Int) {
         if let btnCalibration = self.view.viewWithTag(tag) as? UIButton {
             btnPrevious = btnCalibration
-            btnCalibration.isHidden = false
-            Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(handleCalibrationStep), userInfo: nil, repeats: false)
+            btnPrevious!.isHidden = false
+            Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.CALIBRATION_STEP_DURATION, target: self, selector: #selector(handleCalibrationStep), userInfo: nil, repeats: false)
             
         }
     }
     
     @objc func handleCalibrationStep() {
         btnPrevious?.isHidden = true
-        if viewModel.getTag() != 0 {
-            continueCalibration(tag: viewModel.getTag())
+        let tag = viewModel.getTag()
+        if tag != 0 {
+            continueCalibration(tag: tag)
         }
     }
     

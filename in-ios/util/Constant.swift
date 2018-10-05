@@ -127,4 +127,9 @@ struct Constant {
         static let MENU_ITEM_ANIMATION_DURATION: Double = 4.0
         static let MENU_ITEM_ANIMATION_COUNT: Float = 1.0
     }
+    
+    struct CalibrationConfig {
+        static let CALIBRATION_STEP_DURATION: Double = 4.0
+        static let CALIBRATION_TAGS: Array = [110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122]
+    }
 }

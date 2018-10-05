@@ -15,10 +15,5 @@ class IntroThirdNewViewModel: BaseViewModel {
     func getTag() -> Int {
         return model.getTag()
     }
-    
-    func getPreviousBtn() -> UIButton? {
-        return model.getPreviousBtn()
-    }
-    
 }
 
