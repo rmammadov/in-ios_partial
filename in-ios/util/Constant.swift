@@ -130,6 +130,6 @@ struct Constant {
     
     struct CalibrationConfig {
         static let CALIBRATION_STEP_DURATION: Double = 4.0
-        static let CALIBRATION_TAGS: Array = [110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122]
+        static let CALIBRATION_TAGS: Array = [114, 120, 117, 112, 118, 110, 121, 113, 122, 115, 111, 119, 116]
     }
 }
