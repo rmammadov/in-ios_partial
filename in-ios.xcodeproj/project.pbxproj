@@ -58,6 +58,7 @@
 		F354B7452164C7470026F3A2 /* IntroThirdNewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354B7442164C7470026F3A2 /* IntroThirdNewViewModel.swift */; };
 		F354B7472164C7570026F3A2 /* IntroThirdNewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354B7462164C7570026F3A2 /* IntroThirdNewModel.swift */; };
 		F354B74E2164FAFA0026F3A2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F354B7502164FAFA0026F3A2 /* Localizable.strings */; };
+		F35EFA5C2167332800D99FD2 /* GazeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35EFA5B2167332800D99FD2 /* GazeUtils.swift */; };
 		F39059BB210F09C800CAA292 /* MenuItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F39059B9210F09C800CAA292 /* MenuItemCollectionViewCell.xib */; };
 		F39059BF210F254C00CAA292 /* AnimationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059BE210F254C00CAA292 /* AnimationUtil.swift */; };
 		F39059C1210F290F00CAA292 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059C0210F290F00CAA292 /* MenuViewModel.swift */; };
@@ -79,7 +80,7 @@
 		F3D6D20A214CF84700A6231E /* IntroFourthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6D209214CF84700A6231E /* IntroFourthModel.swift */; };
 		F3D6D20C214CF86500A6231E /* IntroFifthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6D20B214CF86500A6231E /* IntroFifthViewModel.swift */; };
 		F3D6D20E214CF87800A6231E /* IntroFifthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6D20D214CF87800A6231E /* IntroFifthModel.swift */; };
-		F3D6D210214CFB7D00A6231E /* UIImage+fixedOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6D20F214CFB7C00A6231E /* UIImage+fixedOrientation.swift */; };
+		F3D6D210214CFB7D00A6231E /* UIImage+rotate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6D20F214CFB7C00A6231E /* UIImage+rotate.swift */; };
 		F3DA017D2162905200D0625B /* WebviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DA017C2162905200D0625B /* WebviewViewController.swift */; };
 		F3DA017F2162907500D0625B /* WebviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DA017E2162907500D0625B /* WebviewViewModel.swift */; };
 		F3DA0181216290BD00D0625B /* WebviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DA0180216290BD00D0625B /* WebviewModel.swift */; };
@@ -205,6 +206,7 @@
 		F354B74F2164FAFA0026F3A2 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F354B7512164FAFF0026F3A2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F354B7522164FB030026F3A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F35EFA5B2167332800D99FD2 /* GazeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GazeUtils.swift; sourceTree = "<group>"; };
 		F39059B9210F09C800CAA292 /* MenuItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		F39059BE210F254C00CAA292 /* AnimationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationUtil.swift; sourceTree = "<group>"; };
 		F39059C0210F290F00CAA292 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
@@ -226,7 +228,7 @@
 		F3D6D209214CF84700A6231E /* IntroFourthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFourthModel.swift; sourceTree = "<group>"; };
 		F3D6D20B214CF86500A6231E /* IntroFifthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFifthViewModel.swift; sourceTree = "<group>"; };
 		F3D6D20D214CF87800A6231E /* IntroFifthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFifthModel.swift; sourceTree = "<group>"; };
-		F3D6D20F214CFB7C00A6231E /* UIImage+fixedOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+fixedOrientation.swift"; sourceTree = "<group>"; };
+		F3D6D20F214CFB7C00A6231E /* UIImage+rotate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+rotate.swift"; sourceTree = "<group>"; };
 		F3DA017C2162905200D0625B /* WebviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebviewViewController.swift; sourceTree = "<group>"; };
 		F3DA017E2162907500D0625B /* WebviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebviewViewModel.swift; sourceTree = "<group>"; };
 		F3DA0180216290BD00D0625B /* WebviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebviewModel.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 				F3E97E5A21422F4E00379B4A /* FaceFinder.swift */,
 				F3E200BE2135EC5D00902A33 /* FaceFinderDelegate.swift */,
 				F3E200C12135EC5E00902A33 /* GazePredictionDelegate.swift */,
+				F35EFA5B2167332800D99FD2 /* GazeUtils.swift */,
 				F3E97E552141B5B000379B4A /* extension */,
 			);
 			path = "in-eye-gaze";
@@ -387,7 +390,7 @@
 		F331EA8321136F5C0000B4E6 /* extension */ = {
 			isa = PBXGroup;
 			children = (
-				F3D6D20F214CFB7C00A6231E /* UIImage+fixedOrientation.swift */,
+				F3D6D20F214CFB7C00A6231E /* UIImage+rotate.swift */,
 				F3E200C82135F2D500902A33 /* UIApplication+getPresentedViewController.swift */,
 				F3E200CC213664C700902A33 /* CMSampleBuffer+image.swift */,
 				F32DCED8214A41D100B3D0F8 /* INTextField.swift */,
@@ -931,7 +934,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3CE6922213DB367004F6756 /* IntroFirstViewModel.swift in Sources */,
-				F3D6D210214CFB7D00A6231E /* UIImage+fixedOrientation.swift in Sources */,
+				F3D6D210214CFB7D00A6231E /* UIImage+rotate.swift in Sources */,
 				F3E97E5B21422F4F00379B4A /* FaceFinder.swift in Sources */,
 				F3DC2DAB20F8ADBA00CC276F /* Reachability.swift in Sources */,
 				F32D99CA21117EC7007AAA8D /* BaseViewModel.swift in Sources */,
@@ -976,6 +979,7 @@
 				F32DCEE0214A654400B3D0F8 /* IntroThirdModel.swift in Sources */,
 				F3E19CB9211D835500ADE838 /* SubMenuViewController.swift in Sources */,
 				E9611E972164AC950010B33C /* ScreenTypeCViewController.swift in Sources */,
+				F35EFA5C2167332800D99FD2 /* GazeUtils.swift in Sources */,
 				F3E97E5921422F4800379B4A /* GazeTracker.swift in Sources */,
 				F32DCEDC214A64B000B3D0F8 /* IntroThirdViewController.swift in Sources */,
 				F39059C32110473D00CAA292 /* MenuItems.swift in Sources */,

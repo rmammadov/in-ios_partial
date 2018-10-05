@@ -19,12 +19,16 @@ class IntroThirdNewViewController: BaseViewController {
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var btnForward: UIButton!
     
+    private let viewModel: IntroThirdNewModel = IntroThirdNewModel()
+    var btnPrevious: UIButton?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        setCamera()
+//        setCamera()
         setDismissSwipeForSecondStep()
+        startCalibration()
     }
     
     
@@ -117,6 +121,26 @@ extension IntroThirdNewViewController {
 }
 
 extension IntroThirdNewViewController {
+    
+    func startCalibration() {
+         continueCalibration(tag: viewModel.getTag())
+    }
+    
+    func continueCalibration(tag: Int) {
+        if let btnCalibration = self.view.viewWithTag(tag) as? UIButton {
+            btnPrevious = btnCalibration
+            btnCalibration.isHidden = false
+            Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(handleCalibrationStep), userInfo: nil, repeats: false)
+            
+        }
+    }
+    
+    @objc func handleCalibrationStep() {
+        btnPrevious?.isHidden = true
+        if viewModel.getTag() != 0 {
+            continueCalibration(tag: viewModel.getTag())
+        }
+    }
     
     func setCamera()
     {

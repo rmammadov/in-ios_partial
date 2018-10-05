@@ -749,7 +749,7 @@ The process will take less than 20 seconds.</string>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yCf-jp-yXD">
                                 <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
                                 <subviews>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvh-sH-Ivz">
+                                    <button hidden="YES" opaque="NO" tag="111" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvh-sH-Ivz">
                                         <rect key="frame" x="32" y="403" width="48" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="48" id="0S6-PP-R5d"/>
@@ -761,7 +761,7 @@ The process will take less than 20 seconds.</string>
                                             <action selector="onClickBtn2:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="Eb8-Tr-l8d"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJN-6o-m7p">
+                                    <button hidden="YES" opaque="NO" tag="110" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJN-6o-m7p">
                                         <rect key="frame" x="32" y="32" width="48" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="FUZ-4K-XQb"/>
@@ -773,7 +773,7 @@ The process will take less than 20 seconds.</string>
                                             <action selector="onClickBtn1:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="N0s-dc-a7G"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7FA-VW-iHX">
+                                    <button hidden="YES" opaque="NO" tag="112" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7FA-VW-iHX">
                                         <rect key="frame" x="32" y="754" width="48" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="48" id="8Ys-q8-0pR"/>
@@ -785,7 +785,7 @@ The process will take less than 20 seconds.</string>
                                             <action selector="onClickBtn3:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="bph-Cu-6rN"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1U-ty-dCR">
+                                    <button hidden="YES" opaque="NO" tag="115" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1U-ty-dCR">
                                         <rect key="frame" x="532" y="32" width="48" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="48" id="7oQ-gE-7WO"/>
@@ -797,7 +797,7 @@ The process will take less than 20 seconds.</string>
                                             <action selector="onClickBtn6:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="rbD-mg-eJL"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FSo-hF-hX0">
+                                    <button hidden="YES" opaque="NO" tag="117" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FSo-hF-hX0">
                                         <rect key="frame" x="532" y="754" width="48" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="5PV-Pe-tOC"/>
@@ -809,7 +809,7 @@ The process will take less than 20 seconds.</string>
                                             <action selector="onClickBtn8:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="95r-DZ-l5d"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8z3-r9-xXe">
+                                    <button hidden="YES" opaque="NO" tag="120" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8z3-r9-xXe">
                                         <rect key="frame" x="1032" y="32" width="48" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="48" id="PbT-Bv-tU6"/>
@@ -821,7 +821,7 @@ The process will take less than 20 seconds.</string>
                                             <action selector="onClickBtn11:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="q4J-nd-G9N"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S91-uV-Zn2">
+                                    <button hidden="YES" opaque="NO" tag="121" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S91-uV-Zn2">
                                         <rect key="frame" x="1032" y="393" width="48" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="AYD-jo-nXD"/>
@@ -833,7 +833,7 @@ The process will take less than 20 seconds.</string>
                                             <action selector="onClickBtn12:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="tcH-3p-E7v"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YHm-GY-jcB">
+                                    <button hidden="YES" opaque="NO" tag="122" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YHm-GY-jcB">
                                         <rect key="frame" x="1032" y="754" width="48" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="48" id="Aij-tQ-Ycy"/>
@@ -848,7 +848,7 @@ The process will take less than 20 seconds.</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBr-Cf-Nts">
                                         <rect key="frame" x="278" y="208.5" width="556" height="417"/>
                                         <subviews>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uwg-hJ-wey">
+                                            <button hidden="YES" opaque="NO" tag="114" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uwg-hJ-wey">
                                                 <rect key="frame" x="16" y="353" width="48" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="3j4-V8-VXO"/>
@@ -860,7 +860,7 @@ The process will take less than 20 seconds.</string>
                                                     <action selector="onClickBtn5:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="5Ep-j9-sQa"/>
                                                 </connections>
                                             </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v9p-ZQ-duv">
+                                            <button hidden="YES" opaque="NO" tag="119" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v9p-ZQ-duv">
                                                 <rect key="frame" x="492" y="353" width="48" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="bZT-vg-8Io"/>
@@ -872,7 +872,7 @@ The process will take less than 20 seconds.</string>
                                                     <action selector="onClickBtn10:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="DR8-1E-alH"/>
                                                 </connections>
                                             </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tVC-bs-eWC">
+                                            <button hidden="YES" opaque="NO" tag="118" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tVC-bs-eWC">
                                                 <rect key="frame" x="492" y="16" width="48" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="UeG-Ut-xsD"/>
@@ -884,7 +884,7 @@ The process will take less than 20 seconds.</string>
                                                     <action selector="onClickBtn9:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="zvu-d1-tef"/>
                                                 </connections>
                                             </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VlJ-yR-2kH">
+                                            <button hidden="YES" opaque="NO" tag="116" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VlJ-yR-2kH">
                                                 <rect key="frame" x="254" y="184.5" width="48" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="8OY-8Y-4m4"/>
@@ -896,7 +896,7 @@ The process will take less than 20 seconds.</string>
                                                     <action selector="onClickBtn7:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="5mA-vC-A5H"/>
                                                 </connections>
                                             </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FE2-yS-ILz">
+                                            <button hidden="YES" opaque="NO" tag="113" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FE2-yS-ILz">
                                                 <rect key="frame" x="16" y="16" width="48" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="09f-rO-Kg7"/>

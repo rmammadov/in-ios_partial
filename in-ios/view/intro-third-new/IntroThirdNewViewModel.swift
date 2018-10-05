@@ -10,5 +10,15 @@ import UIKit
 
 class IntroThirdNewViewModel: BaseViewModel {
     
+    private let model: IntroThirdNewModel = IntroThirdNewModel()
+    
+    func getTag() -> Int {
+        return model.getTag()
+    }
+    
+    func getPreviousBtn() -> UIButton? {
+        return model.getPreviousBtn()
+    }
+    
 }
 
