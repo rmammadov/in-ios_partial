@@ -12,6 +12,9 @@
 		E3A238980EAF1E942B02D63A /* Pods_in_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C1D52781DEEE2B40B45A6D /* Pods_in_iosUITests.framework */; };
 		E9150EF8216605160023E138 /* ScreenTypeEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9150EF7216605160023E138 /* ScreenTypeEViewController.swift */; };
 		E9150EFA216606340023E138 /* ScreenTypeEViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9150EF9216606340023E138 /* ScreenTypeEViewModel.swift */; };
+		E93ACD43216B8CD700F29F54 /* ScreenTypeDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93ACD42216B8CD700F29F54 /* ScreenTypeDViewController.swift */; };
+		E93ACD46216B956700F29F54 /* BodyPartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93ACD45216B956700F29F54 /* BodyPartViewController.swift */; };
+		E93ACD48216B96E000F29F54 /* ScreenTypeDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93ACD47216B96E000F29F54 /* ScreenTypeDViewModel.swift */; };
 		E9611E942164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E8F2164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift */; };
 		E9611E952164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9611E902164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib */; };
 		E9611E972164AC950010B33C /* ScreenTypeCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E922164AC950010B33C /* ScreenTypeCViewController.swift */; };
@@ -158,6 +161,9 @@
 		B81A848D9E4455FF68424AA1 /* Pods_in_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_in_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9150EF7216605160023E138 /* ScreenTypeEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeEViewController.swift; sourceTree = "<group>"; };
 		E9150EF9216606340023E138 /* ScreenTypeEViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeEViewModel.swift; sourceTree = "<group>"; };
+		E93ACD42216B8CD700F29F54 /* ScreenTypeDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeDViewController.swift; sourceTree = "<group>"; };
+		E93ACD45216B956700F29F54 /* BodyPartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyPartViewController.swift; sourceTree = "<group>"; };
+		E93ACD47216B96E000F29F54 /* ScreenTypeDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeDViewModel.swift; sourceTree = "<group>"; };
 		E9611E8F2164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTypeCMenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		E9611E902164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScreenTypeCMenuCollectionViewCell.xib; sourceTree = "<group>"; };
 		E9611E922164AC950010B33C /* ScreenTypeCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTypeCViewController.swift; sourceTree = "<group>"; };
@@ -335,6 +341,24 @@
 				E9150EF9216606340023E138 /* ScreenTypeEViewModel.swift */,
 			);
 			path = ScreenTypeE;
+			sourceTree = "<group>";
+		};
+		E93ACD41216B8CB300F29F54 /* ScreenTypeD */ = {
+			isa = PBXGroup;
+			children = (
+				E93ACD44216B950E00F29F54 /* BodyPart */,
+				E93ACD42216B8CD700F29F54 /* ScreenTypeDViewController.swift */,
+				E93ACD47216B96E000F29F54 /* ScreenTypeDViewModel.swift */,
+			);
+			path = ScreenTypeD;
+			sourceTree = "<group>";
+		};
+		E93ACD44216B950E00F29F54 /* BodyPart */ = {
+			isa = PBXGroup;
+			children = (
+				E93ACD45216B956700F29F54 /* BodyPartViewController.swift */,
+			);
+			path = BodyPart;
 			sourceTree = "<group>";
 		};
 		E9611E8D2164AC950010B33C /* ScreenTypeC */ = {
@@ -595,6 +619,7 @@
 				F3E19CB7211D832F00ADE838 /* submenu */,
 				F3E19CA8211C3C6D00ADE838 /* inputscreen */,
 				E9611E8D2164AC950010B33C /* ScreenTypeC */,
+				E93ACD41216B8CB300F29F54 /* ScreenTypeD */,
 				E9150EF62165F6E20023E138 /* ScreenTypeE */,
 				E9876E05216750110001C626 /* ScreenTypeF */,
 			);
@@ -993,6 +1018,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E93ACD48216B96E000F29F54 /* ScreenTypeDViewModel.swift in Sources */,
 				F3CE6922213DB367004F6756 /* IntroFirstViewModel.swift in Sources */,
 				F3D6D210214CFB7D00A6231E /* UIImage+rotate.swift in Sources */,
 				F3E97E5B21422F4F00379B4A /* FaceFinder.swift in Sources */,
@@ -1034,6 +1060,7 @@
 				E9876E1321678B6B0001C626 /* NotificationExtension.swift in Sources */,
 				F3C48CCB210F018200742855 /* MenuViewController.swift in Sources */,
 				E9876E07216750310001C626 /* ScreenTypeFViewController.swift in Sources */,
+				E93ACD43216B8CD700F29F54 /* ScreenTypeDViewController.swift in Sources */,
 				F3355CF12122E904009AF602 /* LoadingModel.swift in Sources */,
 				F32F5B6521453DCC00558C68 /* IntroSecondViewController.swift in Sources */,
 				F3E200C92135F2D500902A33 /* UIApplication+getPresentedViewController.swift in Sources */,
@@ -1049,6 +1076,7 @@
 				E9611E972164AC950010B33C /* ScreenTypeCViewController.swift in Sources */,
 				F35EFA5C2167332800D99FD2 /* GazeUtils.swift in Sources */,
 				F3E97E5921422F4800379B4A /* GazeTracker.swift in Sources */,
+				E93ACD46216B956700F29F54 /* BodyPartViewController.swift in Sources */,
 				F32DCEDC214A64B000B3D0F8 /* IntroThirdViewController.swift in Sources */,
 				F39059C32110473D00CAA292 /* MenuItems.swift in Sources */,
 				F3CE6924213DB385004F6756 /* IntroFirstModel.swift in Sources */,

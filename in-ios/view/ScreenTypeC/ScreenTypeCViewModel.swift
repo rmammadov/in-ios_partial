@@ -49,6 +49,7 @@ class ScreenTypeCViewModel: BaseViewModel {
                 items.append(inputScreen)
             }
          })
+        
         setItems(items: items)
         prepareViewControllers()
     }
@@ -72,6 +73,12 @@ class ScreenTypeCViewModel: BaseViewModel {
             }
         case .inputScreenF:
             if let vc = storyboard.instantiateViewController(withIdentifier: ScreenTypeFViewController.identifier) as? ScreenTypeFViewController {
+                vc.viewModel.inputScreen = item
+                vc.viewModel.delegate = self
+                return vc
+            }
+        case .inputScreenD:
+            if let vc = storyboard.instantiateViewController(withIdentifier: ScreenTypeDViewController.identifier) as? ScreenTypeDViewController {
                 vc.viewModel.inputScreen = item
                 vc.viewModel.delegate = self
                 return vc

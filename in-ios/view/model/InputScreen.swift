@@ -113,6 +113,7 @@ struct ButtonInputScreen: Decodable {
         case colored = "ButtonColored"
         case simple = "ButtonSimple"
         case inputScreenOpen = "ButtonInputScreenOpen"
+        case imageMap = "ButtonImageMap"
     }
     
     public init(from decoder: Decoder) throws {
