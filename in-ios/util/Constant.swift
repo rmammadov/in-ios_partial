@@ -52,4 +52,9 @@ struct Constant {
         static let CALIBRATION_STEP_DURATION: Double = 4.0
         static let CALIBRATION_TAGS: Array = [114, 120, 117, 112, 118, 110, 121, 113, 122, 115, 111, 119, 116]
     }
+    
+    struct InputValidationConfig {
+        static let REGEX_NAME = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"
+        static let REGEX_GENDER = "^male$|^female$"
+    }
 }

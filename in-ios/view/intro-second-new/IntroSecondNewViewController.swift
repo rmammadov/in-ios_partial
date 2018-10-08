@@ -136,6 +136,7 @@ extension IntroSecondNewViewController {
     
     override func onContinue() {
         super.onContinue()
+        viewModel.saveData()
         performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_CALIBRATION, sender: self)
     }
 }

@@ -17,7 +17,6 @@
 		E9611E972164AC950010B33C /* ScreenTypeCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E922164AC950010B33C /* ScreenTypeCViewController.swift */; };
 		E9611E982164AC950010B33C /* ScreenTypeCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E932164AC950010B33C /* ScreenTypeCViewModel.swift */; };
 		E9611E9A2164AE2D0010B33C /* IdentifierProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E992164AE2D0010B33C /* IdentifierProtocol.swift */; };
-		E9876E0421674F890001C626 /* GazeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E0321674F890001C626 /* GazeUtils.swift */; };
 		E9876E07216750310001C626 /* ScreenTypeFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E06216750310001C626 /* ScreenTypeFViewController.swift */; };
 		E9876E092167503E0001C626 /* ScreenTypeFViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E082167503E0001C626 /* ScreenTypeFViewModel.swift */; };
 		E9876E0B21675CE00001C626 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E0A21675CE00001C626 /* UIColorExtension.swift */; };
@@ -82,6 +81,8 @@
 		F3CE9029215D3F8300A9F3DF /* IntroSecondNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE9028215D3F8300A9F3DF /* IntroSecondNewViewController.swift */; };
 		F3CE902B215D3FE600A9F3DF /* IntroSeconNewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE902A215D3FE600A9F3DF /* IntroSeconNewViewModel.swift */; };
 		F3CE902D215D3FFB00A9F3DF /* IntroSecondNewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE902C215D3FFB00A9F3DF /* IntroSecondNewModel.swift */; };
+		F3D591B9216B5E80003921CB /* InputValidationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D591B8216B5E80003921CB /* InputValidationHelper.swift */; };
+		F3D591BB216B68A1003921CB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D591BA216B68A1003921CB /* User.swift */; };
 		F3D6D204214CF7F400A6231E /* IntroFourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6D203214CF7F400A6231E /* IntroFourthViewController.swift */; };
 		F3D6D206214CF81300A6231E /* IntroFifthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6D205214CF81300A6231E /* IntroFifthViewController.swift */; };
 		F3D6D208214CF83900A6231E /* IntroFourthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6D207214CF83900A6231E /* IntroFourthViewModel.swift */; };
@@ -238,6 +239,8 @@
 		F3CE9028215D3F8300A9F3DF /* IntroSecondNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroSecondNewViewController.swift; sourceTree = "<group>"; };
 		F3CE902A215D3FE600A9F3DF /* IntroSeconNewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroSeconNewViewModel.swift; sourceTree = "<group>"; };
 		F3CE902C215D3FFB00A9F3DF /* IntroSecondNewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroSecondNewModel.swift; sourceTree = "<group>"; };
+		F3D591B8216B5E80003921CB /* InputValidationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputValidationHelper.swift; sourceTree = "<group>"; };
+		F3D591BA216B68A1003921CB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F3D6D203214CF7F400A6231E /* IntroFourthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFourthViewController.swift; sourceTree = "<group>"; };
 		F3D6D205214CF81300A6231E /* IntroFifthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFifthViewController.swift; sourceTree = "<group>"; };
 		F3D6D207214CF83900A6231E /* IntroFourthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFourthViewModel.swift; sourceTree = "<group>"; };
@@ -462,6 +465,7 @@
 				F3355CE92122BE79009AF602 /* InputScreens.swift */,
 				F3A41ACB2161329000D2D8D6 /* LegalDocument.swift */,
 				F3A41ACD216147F100D2D8D6 /* LegalDocuments.swift */,
+				F3D591BA216B68A1003921CB /* User.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -545,6 +549,7 @@
 				F334ADBB2104E7970056824A /* CameraManager.swift */,
 				F334ADBD2105DA490056824A /* SpeechHelper.swift */,
 				F334ADBF2106E86E0056824A /* NavigationHelper.swift */,
+				F3D591B8216B5E80003921CB /* InputValidationHelper.swift */,
 			);
 			path = helper;
 			sourceTree = "<group>";
@@ -1050,6 +1055,7 @@
 				F3E19CBD211D837900ADE838 /* SubMenuModel.swift in Sources */,
 				F3E200C52135EC5E00902A33 /* GazePredictionDelegate.swift in Sources */,
 				F33658AE20D3198000B18CEC /* Constant.swift in Sources */,
+				F3D591BB216B68A1003921CB /* User.swift in Sources */,
 				F3CE9029215D3F8300A9F3DF /* IntroSecondNewViewController.swift in Sources */,
 				F3DA017D2162905200D0625B /* WebviewViewController.swift in Sources */,
 				F3DA0181216290BD00D0625B /* WebviewModel.swift in Sources */,
@@ -1065,6 +1071,7 @@
 				F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */,
 				F32D99CC21117EE8007AAA8D /* BaseModel.swift in Sources */,
 				F3355CF421240F6C009AF602 /* TopMenuItemExpandedCollectionViewCell.swift in Sources */,
+				F3D591B9216B5E80003921CB /* InputValidationHelper.swift in Sources */,
 				F3E200CD213664C700902A33 /* CMSampleBuffer+image.swift in Sources */,
 				F3E200C22135EC5E00902A33 /* FaceFinderDelegate.swift in Sources */,
 				F334ADC02106E86F0056824A /* NavigationHelper.swift in Sources */,

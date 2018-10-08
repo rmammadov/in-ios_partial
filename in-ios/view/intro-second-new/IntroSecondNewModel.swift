@@ -59,4 +59,8 @@ class IntroSeconNewModel: BaseModel {
         return medicalCondition
     }
     
+    func saveData() {
+        DataManager.setUserData(user: User(name: name, gender: gender, ageGroup: ageGroup, medicalCondition: medicalCondition))
+    }
+    
 }
