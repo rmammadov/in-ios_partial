@@ -29,6 +29,8 @@ class IntroThirdNewViewController: BaseViewController {
         setCamera()
         setDismissSwipeForSecondStep()
         startCalibration()
+//        let point = CGPoint(x: self.view.frame.size.height / 2 , y: 0)
+//        self.view.hitTest(point, with: nil)
     }
     
     
@@ -127,7 +129,6 @@ extension IntroThirdNewViewController {
         viewFourthStep.isHidden = false
         btnBack.isHidden = false
         btnForward.isHidden = false
-        
     }
     
     func startCalibration() {

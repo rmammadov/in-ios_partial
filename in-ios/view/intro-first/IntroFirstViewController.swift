@@ -52,7 +52,7 @@ class IntroFirstViewController: BaseViewController {
     @IBAction func onClickBtnCheckAgreement(_ sender: Any) {
         let btn = sender as! UIButton
         btn.isSelected = !btn.isSelected
-        self.btnGetStarted.isEnabled = true
+        self.btnGetStarted.isEnabled = btn.isSelected
     }
     
     @IBAction func onClickBtnGetStarted(_ sender: Any) {

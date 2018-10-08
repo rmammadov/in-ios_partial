@@ -26,6 +26,8 @@ class DataManager {
     static fileprivate var menuItems: MenuItems?
     static fileprivate var inputScreens: InputScreens?
     static fileprivate var legalDocuments: LegalDocuments?
+    static fileprivate var user: User?
+    
     static fileprivate let requestHandler = ApiRequestHandler()
     
     static func setSubscribers() {
@@ -76,5 +78,13 @@ class DataManager {
     
     static func getLegalDocuments() -> LegalDocuments {
         return self.legalDocuments!
+    }
+    
+    static func setUserData(user: User) {
+        self.user = user
+    }
+    
+    static func getUserData() -> User? {
+        return user
     }
 }

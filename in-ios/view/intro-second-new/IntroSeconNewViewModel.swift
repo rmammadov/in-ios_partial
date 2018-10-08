@@ -56,4 +56,7 @@ class IntroSeconNewViewModel: BaseViewModel {
         return model.getMedicalCondition()
     }
     
+    func saveData() {
+        model.saveData()
+    }
 }
