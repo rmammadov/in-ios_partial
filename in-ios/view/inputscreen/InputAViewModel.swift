@@ -169,8 +169,9 @@ class InputAViewModel: BaseViewModel {
         
         guard let selectedItem = self.selectedItem else { return }
         
-        if !(selectedItem.disableTextToSpeech ?? true) {
-            textToSpech(text: (selectedItem.translations!.first?.labelTextToSpeech)!)
+        if !(selectedItem.disableTextToSpeech ?? true),
+            let textToSpeach = selectedItem.translations?.first?.labelTextToSpeech {
+            textToSpech(text: textToSpeach)
         }
         
         if selectedItem.translations?.first?.label == Constant.MenuConfig.PREVIOUS_ITEM_NAME {
@@ -194,9 +195,9 @@ class InputAViewModel: BaseViewModel {
         }
         if selectedItem.type == .simple, let firstLabel = selectedItem.translations?.first?.label {
             switch firstLabel {
-            case "Volume up":
+            case Constant.MenuConfig.VOLUME_UP:
                 SpeechHelper.volumeUp()
-            case "Volume down":
+            case Constant.MenuConfig.VOLUME_DOWN:
                 SpeechHelper.volumeDown()
             default: break
             }
