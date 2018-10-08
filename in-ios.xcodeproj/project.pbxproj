@@ -28,7 +28,6 @@
 		E9876E1321678B6B0001C626 /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E1221678B6B0001C626 /* NotificationExtension.swift */; };
 		E9876E1521679BF50001C626 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E1421679BF50001C626 /* GradientView.swift */; };
 		E9876E1B216B6ED50001C626 /* ProgressGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E1A216B6ED50001C626 /* ProgressGradientView.swift */; };
-		E9876E1D216B6EEC0001C626 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E1C216B6EEC0001C626 /* UIImageExtension.swift */; };
 		F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3216B5520F4EA15008D6EFD /* HomeViewController.swift */; };
 		F32D99C621117E79007AAA8D /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D99C521117E79007AAA8D /* HomeModel.swift */; };
 		F32D99C821117E8A007AAA8D /* MenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D99C721117E8A007AAA8D /* MenuModel.swift */; };
@@ -95,7 +94,7 @@
 		F3D6D20A214CF84700A6231E /* IntroFourthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6D209214CF84700A6231E /* IntroFourthModel.swift */; };
 		F3D6D20C214CF86500A6231E /* IntroFifthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6D20B214CF86500A6231E /* IntroFifthViewModel.swift */; };
 		F3D6D20E214CF87800A6231E /* IntroFifthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6D20D214CF87800A6231E /* IntroFifthModel.swift */; };
-		F3D6D210214CFB7D00A6231E /* UIImage+fixedOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6D20F214CFB7C00A6231E /* UIImage+fixedOrientation.swift */; };
+		F3D6D210214CFB7D00A6231E /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6D20F214CFB7C00A6231E /* UIImageExtension.swift */; };
 		F3DA017D2162905200D0625B /* WebviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DA017C2162905200D0625B /* WebviewViewController.swift */; };
 		F3DA017F2162907500D0625B /* WebviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DA017E2162907500D0625B /* WebviewViewModel.swift */; };
 		F3DA0181216290BD00D0625B /* WebviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DA0180216290BD00D0625B /* WebviewModel.swift */; };
@@ -179,7 +178,6 @@
 		E9876E1221678B6B0001C626 /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
 		E9876E1421679BF50001C626 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		E9876E1A216B6ED50001C626 /* ProgressGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressGradientView.swift; sourceTree = "<group>"; };
-		E9876E1C216B6EEC0001C626 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		ED4FD3A654935E1287D7E3F3 /* Pods-in-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-in-iosTests/Pods-in-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F3216B5520F4EA15008D6EFD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = "in-ios/view/home/HomeViewController.swift"; sourceTree = SOURCE_ROOT; };
 		F32D99C521117E79007AAA8D /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
@@ -259,7 +257,7 @@
 		F3D6D209214CF84700A6231E /* IntroFourthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFourthModel.swift; sourceTree = "<group>"; };
 		F3D6D20B214CF86500A6231E /* IntroFifthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFifthViewModel.swift; sourceTree = "<group>"; };
 		F3D6D20D214CF87800A6231E /* IntroFifthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFifthModel.swift; sourceTree = "<group>"; };
-		F3D6D20F214CFB7C00A6231E /* UIImage+fixedOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+fixedOrientation.swift"; sourceTree = "<group>"; };
+		F3D6D20F214CFB7C00A6231E /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		F3DA017C2162905200D0625B /* WebviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebviewViewController.swift; sourceTree = "<group>"; };
 		F3DA017E2162907500D0625B /* WebviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebviewViewModel.swift; sourceTree = "<group>"; };
 		F3DA0180216290BD00D0625B /* WebviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebviewModel.swift; sourceTree = "<group>"; };
@@ -468,12 +466,11 @@
 		F331EA8321136F5C0000B4E6 /* extension */ = {
 			isa = PBXGroup;
 			children = (
-				F3D6D20F214CFB7C00A6231E /* UIImage+fixedOrientation.swift */,
+				F3D6D20F214CFB7C00A6231E /* UIImageExtension.swift */,
 				F3E200C82135F2D500902A33 /* UIApplicationExtension.swift */,
 				F3E200CC213664C700902A33 /* CMSampleBufferExtension.swift */,
 				E9611E992164AE2D0010B33C /* IdentifierProtocol.swift */,
 				E9876E0A21675CE00001C626 /* UIColorExtension.swift */,
-				E9876E1C216B6EEC0001C626 /* UIImageExtension.swift */,
 				E9876E1221678B6B0001C626 /* NotificationExtension.swift */,
 				F3D591BC216B82A7003921CB /* StringExtension.swift */,
 			);
@@ -1031,7 +1028,7 @@
 			files = (
 				E93ACD48216B96E000F29F54 /* ScreenTypeDViewModel.swift in Sources */,
 				F3CE6922213DB367004F6756 /* IntroFirstViewModel.swift in Sources */,
-				F3D6D210214CFB7D00A6231E /* UIImage+fixedOrientation.swift in Sources */,
+				F3D6D210214CFB7D00A6231E /* UIImageExtension.swift in Sources */,
 				F3E97E5B21422F4F00379B4A /* FaceFinder.swift in Sources */,
 				F3DC2DAB20F8ADBA00CC276F /* Reachability.swift in Sources */,
 				F32D99CA21117EC7007AAA8D /* BaseViewModel.swift in Sources */,
@@ -1053,7 +1050,6 @@
 				F3E19CB0211C3DA500ADE838 /* InputAViewModel.swift in Sources */,
 				F3F4148C20F5F82000CF101D /* ReachabilityManager.swift in Sources */,
 				F3DA017F2162907500D0625B /* WebviewViewModel.swift in Sources */,
-				E9876E1D216B6EEC0001C626 /* UIImageExtension.swift in Sources */,
 				F334ADC8210D7A370056824A /* MenuItem.swift in Sources */,
 				F3CE691D213D70E6004F6756 /* GazeEstimator.mlmodel in Sources */,
 				E9876E1B216B6ED50001C626 /* ProgressGradientView.swift in Sources */,
