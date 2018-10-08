@@ -17,7 +17,6 @@
 		E9611E972164AC950010B33C /* ScreenTypeCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E922164AC950010B33C /* ScreenTypeCViewController.swift */; };
 		E9611E982164AC950010B33C /* ScreenTypeCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E932164AC950010B33C /* ScreenTypeCViewModel.swift */; };
 		E9611E9A2164AE2D0010B33C /* IdentifierProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E992164AE2D0010B33C /* IdentifierProtocol.swift */; };
-		E9876E0421674F890001C626 /* GazeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E0321674F890001C626 /* GazeUtils.swift */; };
 		E9876E07216750310001C626 /* ScreenTypeFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E06216750310001C626 /* ScreenTypeFViewController.swift */; };
 		E9876E092167503E0001C626 /* ScreenTypeFViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E082167503E0001C626 /* ScreenTypeFViewModel.swift */; };
 		E9876E0B21675CE00001C626 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E0A21675CE00001C626 /* UIColorExtension.swift */; };
@@ -25,6 +24,8 @@
 		E9876E10216765070001C626 /* ColoredButtonCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9876E0E216765070001C626 /* ColoredButtonCollectionViewCell.xib */; };
 		E9876E1321678B6B0001C626 /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E1221678B6B0001C626 /* NotificationExtension.swift */; };
 		E9876E1521679BF50001C626 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E1421679BF50001C626 /* GradientView.swift */; };
+		E9876E1B216B6ED50001C626 /* ProgressGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E1A216B6ED50001C626 /* ProgressGradientView.swift */; };
+		E9876E1D216B6EEC0001C626 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E1C216B6EEC0001C626 /* UIImageExtension.swift */; };
 		F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3216B5520F4EA15008D6EFD /* HomeViewController.swift */; };
 		F32D99C621117E79007AAA8D /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D99C521117E79007AAA8D /* HomeModel.swift */; };
 		F32D99C821117E8A007AAA8D /* MenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D99C721117E8A007AAA8D /* MenuModel.swift */; };
@@ -168,6 +169,8 @@
 		E9876E0E216765070001C626 /* ColoredButtonCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColoredButtonCollectionViewCell.xib; sourceTree = "<group>"; };
 		E9876E1221678B6B0001C626 /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
 		E9876E1421679BF50001C626 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		E9876E1A216B6ED50001C626 /* ProgressGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressGradientView.swift; sourceTree = "<group>"; };
+		E9876E1C216B6EEC0001C626 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		ED4FD3A654935E1287D7E3F3 /* Pods-in-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-in-iosTests/Pods-in-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F3216B5520F4EA15008D6EFD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = "in-ios/view/home/HomeViewController.swift"; sourceTree = SOURCE_ROOT; };
 		F32D99C521117E79007AAA8D /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
@@ -372,6 +375,7 @@
 			isa = PBXGroup;
 			children = (
 				E9876E1421679BF50001C626 /* GradientView.swift */,
+				E9876E1A216B6ED50001C626 /* ProgressGradientView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -440,6 +444,7 @@
 				F32DCED8214A41D100B3D0F8 /* INTextField.swift */,
 				E9611E992164AE2D0010B33C /* IdentifierProtocol.swift */,
 				E9876E0A21675CE00001C626 /* UIColorExtension.swift */,
+				E9876E1C216B6EEC0001C626 /* UIImageExtension.swift */,
 				E9876E1221678B6B0001C626 /* NotificationExtension.swift */,
 			);
 			path = extension;
@@ -1005,8 +1010,10 @@
 				F3E19CB0211C3DA500ADE838 /* InputAViewModel.swift in Sources */,
 				F3F4148C20F5F82000CF101D /* ReachabilityManager.swift in Sources */,
 				F3DA017F2162907500D0625B /* WebviewViewModel.swift in Sources */,
+				E9876E1D216B6EEC0001C626 /* UIImageExtension.swift in Sources */,
 				F334ADC8210D7A370056824A /* MenuItem.swift in Sources */,
 				F3CE691D213D70E6004F6756 /* GazeEstimator.mlmodel in Sources */,
+				E9876E1B216B6ED50001C626 /* ProgressGradientView.swift in Sources */,
 				F32D99C621117E79007AAA8D /* HomeModel.swift in Sources */,
 				F32DCEDE214A652000B3D0F8 /* IntroThirdViewModel.swift in Sources */,
 				F336587D20D318C300B18CEC /* AppDelegate.swift in Sources */,

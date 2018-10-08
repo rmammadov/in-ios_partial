@@ -35,23 +35,19 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3a-1c-bPH">
-                                <rect key="frame" x="16" y="41" width="60" height="4"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="4" id="dUa-4Y-RW3"/>
-                                </constraints>
-                            </view>
+                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JW1-lr-Mbu" customClass="ProgressGradientView" customModule="in_ios" customModuleProvider="target">
+                                <rect key="frame" x="16" y="43" width="60" height="2"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="g3a-1c-bPH" firstAttribute="trailing" secondItem="PCc-Di-eV9" secondAttribute="trailing" id="Dt6-hU-r6v"/>
                             <constraint firstAttribute="bottom" secondItem="PCc-Di-eV9" secondAttribute="bottom" constant="8" id="Dxg-ZW-wVj"/>
+                            <constraint firstAttribute="bottom" secondItem="JW1-lr-Mbu" secondAttribute="bottom" id="IE1-4U-aXR"/>
                             <constraint firstItem="PCc-Di-eV9" firstAttribute="top" secondItem="kuu-gM-lot" secondAttribute="top" constant="8" id="Qz9-hk-A4j"/>
-                            <constraint firstAttribute="bottom" secondItem="g3a-1c-bPH" secondAttribute="bottom" id="bFN-my-PM3"/>
                             <constraint firstItem="PCc-Di-eV9" firstAttribute="leading" secondItem="kuu-gM-lot" secondAttribute="leading" constant="16" id="lsH-OW-ZxC"/>
+                            <constraint firstItem="JW1-lr-Mbu" firstAttribute="leading" secondItem="PCc-Di-eV9" secondAttribute="leading" id="nYi-Rg-AjS"/>
                             <constraint firstAttribute="trailing" secondItem="PCc-Di-eV9" secondAttribute="trailing" constant="16" id="pRX-fa-IO9"/>
-                            <constraint firstItem="g3a-1c-bPH" firstAttribute="leading" secondItem="PCc-Di-eV9" secondAttribute="leading" id="xrt-qs-aok"/>
+                            <constraint firstItem="JW1-lr-Mbu" firstAttribute="trailing" secondItem="PCc-Di-eV9" secondAttribute="trailing" id="slk-Ra-WGF"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -70,7 +66,7 @@
                 <outlet property="backgroundLabelView" destination="kuu-gM-lot" id="VWI-7z-4L2"/>
                 <outlet property="colorView" destination="pEP-dN-LGE" id="9Sb-0U-pxu"/>
                 <outlet property="titleLabel" destination="PCc-Di-eV9" id="q0n-Fk-eRw"/>
-                <outlet property="underlineProgressView" destination="g3a-1c-bPH" id="J6Q-VI-q4u"/>
+                <outlet property="underlineProgressView" destination="JW1-lr-Mbu" id="WKa-ae-QCo"/>
             </connections>
             <point key="canvasLocation" x="-104" y="147.52623688155924"/>
         </collectionViewCell>

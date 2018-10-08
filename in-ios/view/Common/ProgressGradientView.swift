@@ -8,14 +8,35 @@
 
 import UIKit
 
-class ProgressGradientView: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+@IBDesignable class ProgressGradientView: UIProgressView {
+    @IBInspectable var mainColor: UIColor = .black {
+        didSet {
+            setupProgressView()
+        }
     }
-    */
-
+    @IBInspectable var gradientColor: UIColor = .blue{
+        didSet {
+            setupProgressView()
+        }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = bounds.height / 2.0
+        transform = CGAffineTransform(scaleX: -1, y: -1)
+    }
+    
+    private func setupProgressView() {
+        progressTintColor = backgroundColor
+        let gradientView = GradientView(frame: bounds)
+        gradientView.mainColor = gradientColor
+        gradientView.gradientColor = mainColor
+        let gradientImage = UIImage(view: gradientView)
+        trackImage = gradientImage
+    }
+    
+    override func setProgress(_ progress: Float, animated: Bool) {
+        let invertedValue = 1.0 - progress
+        super.setProgress(invertedValue, animated: animated)
+    }
 }
