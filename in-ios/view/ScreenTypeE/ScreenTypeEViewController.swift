@@ -34,6 +34,15 @@ class ScreenTypeEViewController: BaseViewController {
         super.viewDidDisappear(animated)
         isDisappear = true
     }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            self.collectionView.collectionViewLayout.invalidateLayout()
+            self.collectionView.reloadData()
+        }
+    }
 }
 
 extension ScreenTypeEViewController {
