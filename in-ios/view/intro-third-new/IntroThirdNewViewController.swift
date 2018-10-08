@@ -24,7 +24,7 @@ class IntroThirdNewViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        onContinue()
         // Do any additional setup after loading the view.
         setCamera()
         setDismissSwipeForSecondStep()

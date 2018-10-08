@@ -146,6 +146,10 @@ class InputAViewModel: BaseViewModel {
     }
     
     func getItemTitle() -> String? {
+        if item?.translations?.first?.label == Constant.MenuConfig.NAME_IAM_MENU_ITEM,
+            let name = DataManager.getUserData()?.name {
+            return item?.translations?.first?.label?.replacingOccurrences(of: "<first name>", with: name)
+        }
         return item?.translations!.first!.label
     }
     
@@ -169,8 +173,14 @@ class InputAViewModel: BaseViewModel {
         
         guard let selectedItem = self.selectedItem else { return }
         
-        if !(selectedItem.disableTextToSpeech ?? true) {
-            textToSpech(text: (selectedItem.translations!.first?.labelTextToSpeech)!)
+        if !(selectedItem.disableTextToSpeech ?? true),
+            let text = selectedItem.translations?.first?.labelTextToSpeech {
+            if text == Constant.MenuConfig.NAME_IAM_MENU_ITEM,
+                let name = DataManager.getUserData()?.name {
+                textToSpech(text: text.replacingOccurrences(of: "<first name>", with: name))
+            } else {
+                textToSpech(text: text)
+            }
         }
         
         if selectedItem.translations?.first?.label == Constant.MenuConfig.PREVIOUS_ITEM_NAME {
@@ -194,9 +204,9 @@ class InputAViewModel: BaseViewModel {
         }
         if selectedItem.type == .simple, let firstLabel = selectedItem.translations?.first?.label {
             switch firstLabel {
-            case "Volume up":
+            case Constant.MenuConfig.VOLUME_UP:
                 SpeechHelper.volumeUp()
-            case "Volume down":
+            case Constant.MenuConfig.VOLUME_DOWN:
                 SpeechHelper.volumeDown()
             default: break
             }

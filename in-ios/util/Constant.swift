@@ -37,10 +37,12 @@ struct Constant {
     
     struct MenuConfig {
         static let NAME_TOP_MENU_ITEM: String = "root"
-        static let NAME_IAM_MENU_ITEM: String = "I am"
+        static let NAME_IAM_MENU_ITEM: String = "I am <first name>"
         static let IAM_NOT_FOUND_INDEX: Int = 999
         static let PREVIOUS_ITEM_NAME = "Previous"
         static let NEXT_ITEM_NAME = "Next"
+        static let VOLUME_UP = "Volume up"
+        static let VOLUME_DOWN = "Volume down"
     }
     
     struct AnimationConfig {
