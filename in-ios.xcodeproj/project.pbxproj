@@ -90,7 +90,7 @@
 		F3D6D20A214CF84700A6231E /* IntroFourthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6D209214CF84700A6231E /* IntroFourthModel.swift */; };
 		F3D6D20C214CF86500A6231E /* IntroFifthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6D20B214CF86500A6231E /* IntroFifthViewModel.swift */; };
 		F3D6D20E214CF87800A6231E /* IntroFifthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6D20D214CF87800A6231E /* IntroFifthModel.swift */; };
-		F3D6D210214CFB7D00A6231E /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6D20F214CFB7C00A6231E /* UIImageExtension.swift */; };
+		F3D6D210214CFB7D00A6231E /* UIImage+fixedOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6D20F214CFB7C00A6231E /* UIImage+fixedOrientation.swift */; };
 		F3DA017D2162905200D0625B /* WebviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DA017C2162905200D0625B /* WebviewViewController.swift */; };
 		F3DA017F2162907500D0625B /* WebviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DA017E2162907500D0625B /* WebviewViewModel.swift */; };
 		F3DA0181216290BD00D0625B /* WebviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DA0180216290BD00D0625B /* WebviewModel.swift */; };
@@ -249,7 +249,7 @@
 		F3D6D209214CF84700A6231E /* IntroFourthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFourthModel.swift; sourceTree = "<group>"; };
 		F3D6D20B214CF86500A6231E /* IntroFifthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFifthViewModel.swift; sourceTree = "<group>"; };
 		F3D6D20D214CF87800A6231E /* IntroFifthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFifthModel.swift; sourceTree = "<group>"; };
-		F3D6D20F214CFB7C00A6231E /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		F3D6D20F214CFB7C00A6231E /* UIImage+fixedOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+fixedOrientation.swift"; sourceTree = "<group>"; };
 		F3DA017C2162905200D0625B /* WebviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebviewViewController.swift; sourceTree = "<group>"; };
 		F3DA017E2162907500D0625B /* WebviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebviewViewModel.swift; sourceTree = "<group>"; };
 		F3DA0180216290BD00D0625B /* WebviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebviewModel.swift; sourceTree = "<group>"; };
@@ -439,7 +439,7 @@
 		F331EA8321136F5C0000B4E6 /* extension */ = {
 			isa = PBXGroup;
 			children = (
-				F3D6D20F214CFB7C00A6231E /* UIImageExtension.swift */,
+				F3D6D20F214CFB7C00A6231E /* UIImage+fixedOrientation.swift */,
 				F3E200C82135F2D500902A33 /* UIApplicationExtension.swift */,
 				F3E200CC213664C700902A33 /* CMSampleBufferExtension.swift */,
 				E9611E992164AE2D0010B33C /* IdentifierProtocol.swift */,
@@ -999,7 +999,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3CE6922213DB367004F6756 /* IntroFirstViewModel.swift in Sources */,
-				F3D6D210214CFB7D00A6231E /* UIImageExtension.swift in Sources */,
+				F3D6D210214CFB7D00A6231E /* UIImage+fixedOrientation.swift in Sources */,
 				F3E97E5B21422F4F00379B4A /* FaceFinder.swift in Sources */,
 				F3DC2DAB20F8ADBA00CC276F /* Reachability.swift in Sources */,
 				F32D99CA21117EC7007AAA8D /* BaseViewModel.swift in Sources */,
