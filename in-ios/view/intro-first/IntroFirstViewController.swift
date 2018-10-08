@@ -77,10 +77,10 @@ extension IntroFirstViewController: UITextViewDelegate {
         attributes[.underlineColor] = UIColor.white
         attributes[.font] = UIFont(name: "Avenir Next Medium", size: 12.0)!
         
-        let attributedString = NSMutableAttributedString(string: "I agree to the Privacy Policy and Terms and Conditions", attributes: attributes)
+        let attributedString = NSMutableAttributedString(string: "agreement_text".localized(), attributes: attributes)
         
-        let rangePrivacy = attributedString.mutableString.range(of: "Privacy Policy")
-        let rangeTerms = attributedString.mutableString.range(of: "Terms and Conditions")
+        let rangePrivacy = attributedString.mutableString.range(of: "privacy_policy".localized())
+        let rangeTerms = attributedString.mutableString.range(of: "terms".localized())
         
         attributedString.addAttribute(.link, value: viewModel.getLegalDocuments().legalDocuments.first?.name as Any, range: rangePrivacy)
         attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSNumber(value: 1), range: rangePrivacy)

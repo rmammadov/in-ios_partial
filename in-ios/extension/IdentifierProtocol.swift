@@ -9,7 +9,9 @@
 import UIKit
 
 protocol Identifier {}
+
 extension Identifier {
+    
     static var identifier: String {
         return String(describing: Self.self)
     }
