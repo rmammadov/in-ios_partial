@@ -101,12 +101,16 @@ struct ButtonInputScreen: Decodable {
     var mainColor: UIColor?
     var gradientColor: UIColor?
     
+    /// ButtonImageMap properties:
+    var picture: Icon?
+    var bubbles: [Bubble]?
+    
     enum CodingKeys: String, CodingKey {
         case disableTextToSpeech = "disable_text_to_speech"
         case inputScreenId = "input_screen_id"
         case mainColor = "main_color"
         case gradientColor = "gradient_color"
-        case icon, translations, type
+        case icon, translations, type, picture, bubbles
     }
     
     enum ButtonType: String, Decodable {
@@ -129,6 +133,8 @@ struct ButtonInputScreen: Decodable {
         if let gradientColorHex = try container.decodeIfPresent(String.self, forKey: .gradientColor) {
             self.gradientColor = UIColor(hex: gradientColorHex)
         }
+        self.picture = try container.decodeIfPresent(Icon.self, forKey: .picture)
+        self.bubbles = try container.decodeIfPresent([Bubble].self, forKey: .bubbles)
     }
 }
 
@@ -147,5 +153,47 @@ struct Tab: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case panelScreenId = "panel_screen_id"
+    }
+}
+
+struct Icon: Decodable {
+    let id: Int
+    let url: URL?
+    
+    enum CodingKeys: String, CodingKey {
+        case id, url
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(Int.self, forKey: .id)
+        if let urlString = try container.decodeIfPresent(String.self, forKey: .url), let url = URL(string: urlString) {
+            self.url = url
+        } else {
+            self.url = nil
+        }
+    }
+}
+
+struct Bubble: Decodable {
+    let isDisableTextToSpeech: Bool
+    let coords: String
+    let anchorCords: String
+    let position: Int
+    let translations: [TranslationMenuItem]
+    
+    enum CodingKeys: String, CodingKey {
+        case isDisableTextToSpeech = "disable_text_to_speech"
+        case coords, position, translations
+        case anchorCords = "anchor_coords"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.isDisableTextToSpeech = try container.decode(Bool.self, forKey: .isDisableTextToSpeech)
+        self.coords = try container.decode(String.self, forKey: .coords)
+        self.anchorCords = try container.decode(String.self, forKey: .anchorCords)
+        self.position = try container.decode(Int.self, forKey: .position)
+        self.translations = try container.decode([TranslationMenuItem].self, forKey: .translations)
     }
 }

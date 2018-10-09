@@ -15,6 +15,10 @@
 		E93ACD43216B8CD700F29F54 /* ScreenTypeDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93ACD42216B8CD700F29F54 /* ScreenTypeDViewController.swift */; };
 		E93ACD46216B956700F29F54 /* BodyPartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93ACD45216B956700F29F54 /* BodyPartViewController.swift */; };
 		E93ACD48216B96E000F29F54 /* ScreenTypeDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93ACD47216B96E000F29F54 /* ScreenTypeDViewModel.swift */; };
+		E93ACD4A216CA03400F29F54 /* BodyPartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93ACD49216CA03400F29F54 /* BodyPartViewModel.swift */; };
+		E93ACD4C216CB6F500F29F54 /* UIStackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93ACD4B216CB6F500F29F54 /* UIStackViewExtension.swift */; };
+		E93ACD4F216CD16500F29F54 /* BodyPartRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93ACD4E216CD16500F29F54 /* BodyPartRowView.swift */; };
+		E93ACD51216CD16F00F29F54 /* BodyPartRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93ACD50216CD16F00F29F54 /* BodyPartRowView.xib */; };
 		E9611E942164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E8F2164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift */; };
 		E9611E952164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9611E902164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib */; };
 		E9611E972164AC950010B33C /* ScreenTypeCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E922164AC950010B33C /* ScreenTypeCViewController.swift */; };
@@ -165,6 +169,10 @@
 		E93ACD42216B8CD700F29F54 /* ScreenTypeDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeDViewController.swift; sourceTree = "<group>"; };
 		E93ACD45216B956700F29F54 /* BodyPartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyPartViewController.swift; sourceTree = "<group>"; };
 		E93ACD47216B96E000F29F54 /* ScreenTypeDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeDViewModel.swift; sourceTree = "<group>"; };
+		E93ACD49216CA03400F29F54 /* BodyPartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyPartViewModel.swift; sourceTree = "<group>"; };
+		E93ACD4B216CB6F500F29F54 /* UIStackViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewExtension.swift; sourceTree = "<group>"; };
+		E93ACD4E216CD16500F29F54 /* BodyPartRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyPartRowView.swift; sourceTree = "<group>"; };
+		E93ACD50216CD16F00F29F54 /* BodyPartRowView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BodyPartRowView.xib; sourceTree = "<group>"; };
 		E9611E8F2164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTypeCMenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		E9611E902164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScreenTypeCMenuCollectionViewCell.xib; sourceTree = "<group>"; };
 		E9611E922164AC950010B33C /* ScreenTypeCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTypeCViewController.swift; sourceTree = "<group>"; };
@@ -358,9 +366,20 @@
 		E93ACD44216B950E00F29F54 /* BodyPart */ = {
 			isa = PBXGroup;
 			children = (
+				E93ACD4D216CD13700F29F54 /* Cells */,
 				E93ACD45216B956700F29F54 /* BodyPartViewController.swift */,
+				E93ACD49216CA03400F29F54 /* BodyPartViewModel.swift */,
 			);
 			path = BodyPart;
+			sourceTree = "<group>";
+		};
+		E93ACD4D216CD13700F29F54 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E93ACD4E216CD16500F29F54 /* BodyPartRowView.swift */,
+				E93ACD50216CD16F00F29F54 /* BodyPartRowView.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		E9611E8D2164AC950010B33C /* ScreenTypeC */ = {
@@ -475,6 +494,7 @@
 				E9876E0A21675CE00001C626 /* UIColorExtension.swift */,
 				E9876E1221678B6B0001C626 /* NotificationExtension.swift */,
 				F3D591BC216B82A7003921CB /* StringExtension.swift */,
+				E93ACD4B216CB6F500F29F54 /* UIStackViewExtension.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -871,6 +891,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E93ACD51216CD16F00F29F54 /* BodyPartRowView.xib in Resources */,
 				F336588720D318CA00B18CEC /* LaunchScreen.storyboard in Resources */,
 				F3355CF521240F6D009AF602 /* TopMenuItemExpandedCollectionViewCell.xib in Resources */,
 				F39059BB210F09C800CAA292 /* MenuItemCollectionViewCell.xib in Resources */,
@@ -1032,6 +1053,7 @@
 				E93ACD48216B96E000F29F54 /* ScreenTypeDViewModel.swift in Sources */,
 				F3CE6922213DB367004F6756 /* IntroFirstViewModel.swift in Sources */,
 				F3D6D210214CFB7D00A6231E /* UIImageExtension.swift in Sources */,
+				E93ACD4A216CA03400F29F54 /* BodyPartViewModel.swift in Sources */,
 				F3E97E5B21422F4F00379B4A /* FaceFinder.swift in Sources */,
 				F3DC2DAB20F8ADBA00CC276F /* Reachability.swift in Sources */,
 				F32D99CA21117EC7007AAA8D /* BaseViewModel.swift in Sources */,
@@ -1101,6 +1123,7 @@
 				F3E19CAC211C3CEE00ADE838 /* HomeContainerModel.swift in Sources */,
 				F3E19CA6211B10FF00ADE838 /* HomeContainerViewController.swift in Sources */,
 				F3E19CBD211D837900ADE838 /* SubMenuModel.swift in Sources */,
+				E93ACD4F216CD16500F29F54 /* BodyPartRowView.swift in Sources */,
 				F3E200C52135EC5E00902A33 /* GazePredictionDelegate.swift in Sources */,
 				F33658AE20D3198000B18CEC /* Constant.swift in Sources */,
 				F3D591BB216B68A1003921CB /* User.swift in Sources */,
@@ -1108,6 +1131,7 @@
 				F3DA017D2162905200D0625B /* WebviewViewController.swift in Sources */,
 				F3DA0181216290BD00D0625B /* WebviewModel.swift in Sources */,
 				F334ADBC2104E7970056824A /* CameraManager.swift in Sources */,
+				E93ACD4C216CB6F500F29F54 /* UIStackViewExtension.swift in Sources */,
 				F3E19CB2211C3DB400ADE838 /* InputAModel.swift in Sources */,
 				F3E19CBB211D836B00ADE838 /* SubMenuViewModel.swift in Sources */,
 				F32D99C821117E8A007AAA8D /* MenuModel.swift in Sources */,
