@@ -51,7 +51,7 @@ class ApiRequestHandler {
             }
 
             if let httpResponse = response as? HTTPURLResponse {
-                if  200 > httpResponse.statusCode && httpResponse.statusCode >= 300 {
+                if  200 > httpResponse.statusCode || httpResponse.statusCode >= 300 {
                     self.status.value = RequestStatus.failed.rawValue
                 }
             }
@@ -95,7 +95,7 @@ class ApiRequestHandler {
             }
             
             if let httpResponse = response as? HTTPURLResponse {
-                if  200 > httpResponse.statusCode && httpResponse.statusCode >= 300 {
+                if  200 > httpResponse.statusCode || httpResponse.statusCode >= 300 {
                     self.status.value = RequestStatus.failed.rawValue
                 }
             }
@@ -140,7 +140,7 @@ class ApiRequestHandler {
             }
             
             if let httpResponse = response as? HTTPURLResponse {
-                if  200 > httpResponse.statusCode && httpResponse.statusCode >= 300 {
+                if  200 > httpResponse.statusCode || httpResponse.statusCode >= 300 {
                     self.status.value = RequestStatus.failed.rawValue
                 }
             }
