@@ -50,6 +50,7 @@ class ApiRequestHandler {
                 return
             }
 
+            // hanlde http response code
             if let httpResponse = response as? HTTPURLResponse {
                 if  200 > httpResponse.statusCode || httpResponse.statusCode >= 300 {
                     self.status.value = RequestStatus.failed.rawValue
@@ -94,6 +95,7 @@ class ApiRequestHandler {
                 return
             }
             
+            // hanlde http response code
             if let httpResponse = response as? HTTPURLResponse {
                 if  200 > httpResponse.statusCode || httpResponse.statusCode >= 300 {
                     self.status.value = RequestStatus.failed.rawValue
@@ -139,6 +141,7 @@ class ApiRequestHandler {
                 return
             }
             
+            // hanlde http response code
             if let httpResponse = response as? HTTPURLResponse {
                 if  200 > httpResponse.statusCode || httpResponse.statusCode >= 300 {
                     self.status.value = RequestStatus.failed.rawValue
