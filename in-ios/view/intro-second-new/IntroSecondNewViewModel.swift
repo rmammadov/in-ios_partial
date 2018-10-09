@@ -8,9 +8,9 @@
 
 import UIKit
 
-class IntroSeconNewViewModel: BaseViewModel {
+class IntroSecondNewViewModel: BaseViewModel {
 
-    let model: IntroSeconNewModel = IntroSeconNewModel()
+    let model: IntroSecondNewModel = IntroSecondNewModel()
     
     func getGenderOptions() -> Array<String> {
         return model.getGenderOptions()
@@ -24,35 +24,35 @@ class IntroSeconNewViewModel: BaseViewModel {
         return model.getMedicalConditions()
     }
     
-    func setName(name: String) {
+    func setName(name: String?) {
         model.setName(name: name)
     }
     
-    func getName() -> String {
+    func getName() -> (name: String, isValid: Bool) {
         return model.getName()
     }
     
-    func setGender(gender: String) {
-        model.setGender(gender: gender)
+    func setGender(index: Int?) {
+        model.setGender(index: index)
     }
     
-    func getGender() -> String {
+    func getGender() -> (gender: String, isValid: Bool) {
         return model.getGender()
     }
     
-    func setAgeGroup(ageGroup: String) {
-        model.setAgeGroup(ageGroup: ageGroup)
+    func setAgeGroup(index: Int?) {
+        model.setAgeGroup(index: index)
     }
     
-    func getAgeGroup() -> String  {
+    func getAgeGroup() -> (ageGroup: String, isValid: Bool)  {
         return model.getAgeGroup()
     }
     
-    func setMedicalCondition(medicalConditon: String) {
-        model.setMedicalCondition(medicalCondition: medicalConditon)
+    func setMedicalCondition(index: Int?) {
+        model.setMedicalCondition(index: index)
     }
     
-    func getMedicalCondition() -> String {
+    func getMedicalCondition() -> (medicalCondition: String, isValid: Bool) {
         return model.getMedicalCondition()
     }
     

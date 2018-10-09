@@ -10,7 +10,7 @@ import UIKit
 
 class DisplayHelper {
     
-    class func setDisplayDiming(isAlwaysOn: Bool) {
+    static func setDisplayDiming(isAlwaysOn: Bool) {
         UIApplication.shared.isIdleTimerDisabled = isAlwaysOn
     }
 }

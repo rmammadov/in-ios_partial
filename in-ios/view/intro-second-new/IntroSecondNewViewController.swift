@@ -30,7 +30,7 @@ class IntroSecondNewViewController: BaseViewController {
     private var pickerAgeGroup: UIPickerView?
     private var pickerMedicalCondition: UIPickerView?
     
-    private let viewModel: IntroSeconNewViewModel = IntroSeconNewViewModel()
+    private let viewModel: IntroSecondNewViewModel = IntroSecondNewViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,19 +103,38 @@ extension IntroSecondNewViewController {
         tfMedicalCondition.inputView = pickerMedicalCondition
     }
     
-    func setValues(tag: Int) {
+    func setValue(tag: Int,  index: Int?, value: String?) {
         switch tag {
-        case tfName.tag:
-            tfName.text = viewModel.getName()
-        case tfGender.tag:
-            tfGender.text = viewModel.getGender()
-        case tfAgeGroup.tag:
-            tfAgeGroup.text = viewModel.getAgeGroup()
-        case tfMedicalCondition.tag:
-            tfMedicalCondition.text = viewModel.getMedicalCondition()
+        case ISVCTextFieldTags.tagName.rawValue:
+            viewModel.setName(name: value)
+        case ISVCTextFieldTags.tagGender.rawValue:
+            viewModel.setGender(index: index)
+        case ISVCTextFieldTags.tagAgeGroup.rawValue:
+            viewModel.setAgeGroup(index: index)
+        case ISVCTextFieldTags.tagMedicalCondition.rawValue:
+            viewModel.setMedicalCondition(index: index)
         default:
             return
         }
+    }
+    
+    func getValues(tag: Int) {
+        switch tag {
+        case ISVCTextFieldTags.tagName.rawValue:
+            tfName.text = viewModel.getName().name
+        case ISVCTextFieldTags.tagGender.rawValue:
+            tfGender.text = viewModel.getGender().gender
+        case ISVCTextFieldTags.tagAgeGroup.rawValue:
+            tfAgeGroup.text = viewModel.getAgeGroup().ageGroup
+        case ISVCTextFieldTags.tagMedicalCondition.rawValue:
+            tfMedicalCondition.text = viewModel.getMedicalCondition().medicalCondition
+        default:
+            return
+        }
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        
     }
     
 }
@@ -123,10 +142,13 @@ extension IntroSecondNewViewController {
 extension IntroSecondNewViewController {
     
     override func textFieldDidBeginEditing(_ textField: UITextField) {
-        setValues(tag: textField.tag)
+        getValues(tag: textField.tag)
     }
     
     override func textFieldDidEndEditing(_ textField: UITextField) {
+        setValue(tag: textField.tag, index: nil, value: textField.text)
+        getValues(tag: textField.tag)
+        
         if !(tfName.text?.isEmpty)! && !(tfGender.text?.isEmpty)! && !(tfAgeGroup.text?.isEmpty)! && !(tfMedicalCondition.text?.isEmpty)! {
             btnContinue.isEnabled = true
         } else {
@@ -175,15 +197,8 @@ extension IntroSecondNewViewController: UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView.tag == ISVCTextFieldTags.tagGender.rawValue {
-            viewModel.setGender(gender: viewModel.getGenderOptions()[row])
-        } else if pickerView.tag == ISVCTextFieldTags.tagAgeGroup.rawValue {
-            viewModel.setAgeGroup(ageGroup: viewModel.getAgeGroups()[row])
-        } else {
-            viewModel.setMedicalCondition(medicalConditon: viewModel.getMedicalConditions()[row])
-        }
-        
-        setValues(tag: pickerView.tag)
+        setValue(tag: pickerView.tag, index: row, value: nil)
+        getValues(tag: pickerView.tag)
     }
     
 }

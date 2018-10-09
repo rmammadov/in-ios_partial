@@ -83,7 +83,7 @@
 		F3CE6922213DB367004F6756 /* IntroFirstViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE6921213DB367004F6756 /* IntroFirstViewModel.swift */; };
 		F3CE6924213DB385004F6756 /* IntroFirstModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE6923213DB385004F6756 /* IntroFirstModel.swift */; };
 		F3CE9029215D3F8300A9F3DF /* IntroSecondNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE9028215D3F8300A9F3DF /* IntroSecondNewViewController.swift */; };
-		F3CE902B215D3FE600A9F3DF /* IntroSeconNewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE902A215D3FE600A9F3DF /* IntroSeconNewViewModel.swift */; };
+		F3CE902B215D3FE600A9F3DF /* IntroSecondNewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE902A215D3FE600A9F3DF /* IntroSecondNewViewModel.swift */; };
 		F3CE902D215D3FFB00A9F3DF /* IntroSecondNewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE902C215D3FFB00A9F3DF /* IntroSecondNewModel.swift */; };
 		F3D591B9216B5E80003921CB /* InputValidationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D591B8216B5E80003921CB /* InputValidationHelper.swift */; };
 		F3D591BB216B68A1003921CB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D591BA216B68A1003921CB /* User.swift */; };
@@ -246,7 +246,7 @@
 		F3CE6921213DB367004F6756 /* IntroFirstViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFirstViewModel.swift; sourceTree = "<group>"; };
 		F3CE6923213DB385004F6756 /* IntroFirstModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFirstModel.swift; sourceTree = "<group>"; };
 		F3CE9028215D3F8300A9F3DF /* IntroSecondNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroSecondNewViewController.swift; sourceTree = "<group>"; };
-		F3CE902A215D3FE600A9F3DF /* IntroSeconNewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroSeconNewViewModel.swift; sourceTree = "<group>"; };
+		F3CE902A215D3FE600A9F3DF /* IntroSecondNewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroSecondNewViewModel.swift; sourceTree = "<group>"; };
 		F3CE902C215D3FFB00A9F3DF /* IntroSecondNewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroSecondNewModel.swift; sourceTree = "<group>"; };
 		F3D591B8216B5E80003921CB /* InputValidationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputValidationHelper.swift; sourceTree = "<group>"; };
 		F3D591BA216B68A1003921CB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -671,7 +671,7 @@
 			isa = PBXGroup;
 			children = (
 				F3CE9028215D3F8300A9F3DF /* IntroSecondNewViewController.swift */,
-				F3CE902A215D3FE600A9F3DF /* IntroSeconNewViewModel.swift */,
+				F3CE902A215D3FE600A9F3DF /* IntroSecondNewViewModel.swift */,
 				F3CE902C215D3FFB00A9F3DF /* IntroSecondNewModel.swift */,
 			);
 			path = "intro-second-new";
@@ -1071,7 +1071,7 @@
 				F3355CF12122E904009AF602 /* LoadingModel.swift in Sources */,
 				F32F5B6521453DCC00558C68 /* IntroSecondViewController.swift in Sources */,
 				F3E200C92135F2D500902A33 /* UIApplicationExtension.swift in Sources */,
-				F3CE902B215D3FE600A9F3DF /* IntroSeconNewViewModel.swift in Sources */,
+				F3CE902B215D3FE600A9F3DF /* IntroSecondNewViewModel.swift in Sources */,
 				F3D6D208214CF83900A6231E /* IntroFourthViewModel.swift in Sources */,
 				F3E19CAA211C3CDB00ADE838 /* HomeContainerViewModel.swift in Sources */,
 				E9150EFA216606340023E138 /* ScreenTypeEViewModel.swift in Sources */,
