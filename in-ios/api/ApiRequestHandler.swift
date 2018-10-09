@@ -50,6 +50,12 @@ class ApiRequestHandler {
                 return
             }
 
+            if let httpResponse = response as? HTTPURLResponse {
+                if  200 <= httpResponse.statusCode && httpResponse.statusCode < 300 {
+                    self.status.value = RequestStatus.failed.rawValue
+                }
+            }
+            
             // ensure there is data returned from this HTTP response
             guard let content = data else {
                 print("No data")
@@ -86,6 +92,12 @@ class ApiRequestHandler {
                 print ("error: \(error!)")
                 self.status.value = RequestStatus.failed.rawValue
                 return
+            }
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                if  200 <= httpResponse.statusCode && httpResponse.statusCode < 300 {
+                    self.status.value = RequestStatus.failed.rawValue
+                }
             }
             
             // ensure there is data returned from this HTTP response
@@ -125,6 +137,12 @@ class ApiRequestHandler {
                 print ("error: \(error!)")
                 self.status.value = RequestStatus.failed.rawValue
                 return
+            }
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                if  200 <= httpResponse.statusCode && httpResponse.statusCode < 300 {
+                    self.status.value = RequestStatus.failed.rawValue
+                }
             }
             
             // ensure there is data returned from this HTTP response
