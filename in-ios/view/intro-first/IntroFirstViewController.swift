@@ -57,6 +57,7 @@ class IntroFirstViewController: BaseViewController {
     @IBAction func onClickBtnGetStarted(_ sender: Any) {
         performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_USER_DETAILS_INPUT, sender: self)
     }
+
 }
 
 extension IntroFirstViewController {
@@ -64,6 +65,7 @@ extension IntroFirstViewController {
     func setUi() {
         setAgreement()
     }
+    
 }
 
 extension IntroFirstViewController: UITextViewDelegate {
