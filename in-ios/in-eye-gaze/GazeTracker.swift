@@ -18,7 +18,7 @@ public class GazeTracker: FaceFinderDelegate {
     var utilities: GazeUtilities = GazeUtilities()
     
     let model = GazeEstimator()
-    let EYE_RESIZE_HEIGHT: Int = 40
+    let EYE_RESIZE_HEIGHT: Int = 80
     let ILLUM_ETA: Int = 3
     let ILLUM_N: Float = 0.1
     let LAPLACE_OPERATOR: [Float] = [0.0, 1.0, 0.0,
@@ -138,17 +138,22 @@ public class GazeTracker: FaceFinderDelegate {
         }
         
 //        print("Estimating gaze @:         \(CFAbsoluteTimeGetCurrent())")
-        let pred = self.predictGaze(eyesB: eyeChannels.blueChannel, eyesG: eyeChannels.greenChannel, eyesR: eyeChannels.redChannel, illuminant: illuminant, headPose: facialFeatures)
+        guard let pred = predictGaze(eyesB: eyeChannels.blueChannel, eyesG: eyeChannels.greenChannel, eyesR: eyeChannels.redChannel, illuminant: illuminant, headPose: facialFeatures) else {
+            self.gazeEstimation = nil
+            self.calibFeatures = nil
+            return
+        }
         
-        self.gazeEstimation = pred
+        self.gazeEstimation = pred.gazeXY
+        self.calibFeatures = pred.calibFeats
 //        print("Algorithm terminating @:   \(CFAbsoluteTimeGetCurrent())")
         self.elapsedTotalTime = CFAbsoluteTimeGetCurrent() - self.startTotalTime
         print("\nTotal algorithm processing time: \(self.elapsedTotalTime) s.")
-        if pred != nil { print(pred![0], pred![1]) }
+        if self.gazeEstimation != nil { print(self.gazeEstimation![0], self.gazeEstimation![1]) }
         self.predictionDelegate?.didUpdatePrediction(status: true)
     }
     
-    private func getMainFace() {
+    func getMainFace() {
         var tempFace: VisionFace? = nil
         for face in self.detector!.faces! {
             if tempFace == nil {
@@ -162,7 +167,7 @@ public class GazeTracker: FaceFinderDelegate {
         self.mainFace = tempFace
     }
     
-    public func getFacialFeatures(width: Int, height: Int) -> MLMultiArray {
+    func getFacialFeatures(width: Int, height: Int) -> MLMultiArray {
         //        TODO: Clean up code, deal with missing features more gracefully
         var featuresX: [Double] = Array(repeating: 0.0, count: 8)
         var featuresY: [Double] = Array(repeating: 0.0, count: 8)
@@ -223,7 +228,7 @@ public class GazeTracker: FaceFinderDelegate {
     /**
      Crops square images of both eyes from the
      */
-    private func getEyes(image: UIImage) -> (leftEYe: CGImage?, rightEye: CGImage?) {
+    func getEyes(image: UIImage) -> (leftEYe: CGImage?, rightEye: CGImage?) {
         let cgImage = image.cgImage
         var leftEyePos: VisionPoint? = nil
         var rightEyePos: VisionPoint? = nil
@@ -258,7 +263,7 @@ public class GazeTracker: FaceFinderDelegate {
      - Parameter image: The image to be resized
      - Returns: The resized image
      */
-    private func resizeCGImage(image: CGImage?) -> CGImage? {
+    func resizeCGImage(image: CGImage?) -> CGImage? {
         guard let image = image else { return nil }
         guard let colorSpace = image.colorSpace else { return nil }
         guard let context = CGContext(data: nil,
@@ -274,7 +279,7 @@ public class GazeTracker: FaceFinderDelegate {
         return context.makeImage()
     }
     
-    private func concatenateEyes(leftEye: CGImage, rightEye: CGImage) -> CGImage? {
+    func concatenateEyes(leftEye: CGImage, rightEye: CGImage) -> CGImage? {
         guard let colorSpace = leftEye.colorSpace else { return nil }
         guard let context = CGContext(data: nil,
                                       width: 2 * self.EYE_RESIZE_HEIGHT,
@@ -295,7 +300,7 @@ public class GazeTracker: FaceFinderDelegate {
     /**
      Converts a CGImage into three MLMultiArrays, one for each color channel of the original image.
      */
-    private func channels2MLMultiArray(image: CGImage) -> (redChannel: MLMultiArray, greenChannel: MLMultiArray, blueChannel: MLMultiArray)? {
+    func channels2MLMultiArray(image: CGImage) -> (redChannel: MLMultiArray, greenChannel: MLMultiArray, blueChannel: MLMultiArray)? {
         
         let width = image.width
         let height = image.height
@@ -353,7 +358,7 @@ public class GazeTracker: FaceFinderDelegate {
      
      - Returns: An MLMultiArray containing three Double values, one for each color channel of the image.
      */
-    private func estimateIlluminant(image: UIImage) -> MLMultiArray?{
+    func estimateIlluminant(image: UIImage) -> MLMultiArray?{
         guard let illuminant = try? MLMultiArray(shape: [3], dataType: MLMultiArrayDataType.double) else {
             fatalError("Unexpected runtime error. MLMultiArray")
         }
@@ -515,10 +520,10 @@ public class GazeTracker: FaceFinderDelegate {
         return illuminant
     }
     
-    private func predictGaze(eyesB: MLMultiArray, eyesG: MLMultiArray, eyesR: MLMultiArray, illuminant: MLMultiArray, headPose: MLMultiArray) -> MLMultiArray? {
+    func predictGaze(eyesB: MLMultiArray, eyesG: MLMultiArray, eyesR: MLMultiArray, illuminant: MLMultiArray, headPose: MLMultiArray) -> (gazeXY: MLMultiArray?, calibFeats: MLMultiArray?)? {
         do {
-            let modelOutput = try model.prediction(input: GazeEstimatorInput(eyesB: eyesB, eyesG: eyesG, eyesR: eyesR, illum: illuminant, pose: headPose), options: self.PREDICTION_OPTIONS)
-            return modelOutput.gazeXY
+            let modelOutput = try model.prediction(input: GazeEstimatorInput(_eyesB_: eyesB, _eyesG_: eyesG, _eyesR_: eyesR, _illum_: illuminant, _pose_: headPose), options: self.PREDICTION_OPTIONS)
+            return (modelOutput.gazeXY, modelOutput.calibFeats)
         } catch {
             print(error)
             return nil
