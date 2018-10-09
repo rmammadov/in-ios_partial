@@ -65,6 +65,7 @@
 		F33658AE20D3198000B18CEC /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33658AD20D3198000B18CEC /* Constant.swift */; };
 		F33F0BCF2121B11C002E31B9 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33F0BCE2121B11C002E31B9 /* DataManager.swift */; };
 		F34B909B20D46FA100800FCD /* DisplayHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34B909A20D46FA100800FCD /* DisplayHelper.swift */; };
+		F34EE571216CCBE4009D3523 /* in-ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F34EE56F216CCBE4009D3523 /* in-ios.xcdatamodeld */; };
 		F354B7432164C7280026F3A2 /* IntroThirdNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354B7422164C7280026F3A2 /* IntroThirdNewViewController.swift */; };
 		F354B7452164C7470026F3A2 /* IntroThirdNewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354B7442164C7470026F3A2 /* IntroThirdNewViewModel.swift */; };
 		F354B7472164C7570026F3A2 /* IntroThirdNewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354B7462164C7570026F3A2 /* IntroThirdNewModel.swift */; };
@@ -222,6 +223,7 @@
 		F33658AD20D3198000B18CEC /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		F33F0BCE2121B11C002E31B9 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		F34B909A20D46FA100800FCD /* DisplayHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayHelper.swift; sourceTree = "<group>"; };
+		F34EE570216CCBE4009D3523 /* in-ios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "in-ios.xcdatamodel"; sourceTree = "<group>"; };
 		F354B7422164C7280026F3A2 /* IntroThirdNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroThirdNewViewController.swift; sourceTree = "<group>"; };
 		F354B7442164C7470026F3A2 /* IntroThirdNewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroThirdNewViewModel.swift; sourceTree = "<group>"; };
 		F354B7462164C7570026F3A2 /* IntroThirdNewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroThirdNewModel.swift; sourceTree = "<group>"; };
@@ -542,10 +544,11 @@
 				F33F0BCD2121B0E7002E31B9 /* dao */,
 				F334ADC1210B35570056824A /* api */,
 				F336587C20D318C300B18CEC /* AppDelegate.swift */,
-				F336588320D318CA00B18CEC /* Assets.xcassets */,
-				F3F8648221175BEE00B7CAA8 /* Colors.xcassets */,
+				F34EE56F216CCBE4009D3523 /* in-ios.xcdatamodeld */,
 				F336588820D318CA00B18CEC /* Info.plist */,
 				F3B0C1CB2154BA1300E30CA1 /* GoogleService-Info.plist */,
+				F336588320D318CA00B18CEC /* Assets.xcassets */,
+				F3F8648221175BEE00B7CAA8 /* Colors.xcassets */,
 				F354B7502164FAFA0026F3A2 /* Localizable.strings */,
 			);
 			path = "in-ios";
@@ -1084,6 +1087,7 @@
 				F35EFA5C2167332800D99FD2 /* GazeUtils.swift in Sources */,
 				F3D591BD216B82A7003921CB /* StringExtension.swift in Sources */,
 				F3E97E5921422F4800379B4A /* GazeTracker.swift in Sources */,
+				F34EE571216CCBE4009D3523 /* in-ios.xcdatamodeld in Sources */,
 				E93ACD46216B956700F29F54 /* BodyPartViewController.swift in Sources */,
 				F32DCEDC214A64B000B3D0F8 /* IntroThirdViewController.swift in Sources */,
 				F39059C32110473D00CAA292 /* MenuItems.swift in Sources */,
@@ -1488,6 +1492,19 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F34EE56F216CCBE4009D3523 /* in-ios.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F34EE570216CCBE4009D3523 /* in-ios.xcdatamodel */,
+			);
+			currentVersion = F34EE570216CCBE4009D3523 /* in-ios.xcdatamodel */;
+			path = "in-ios.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F336587120D318C300B18CEC /* Project object */;
 }
