@@ -17,4 +17,9 @@ class IntroFirstModel: BaseModel {
     func getLegalDocument(name: String) -> LegalDocument {
         return DataManager.getLegalDocuments().getLegalDocument(name: name)
     }
+    
+    func getAcceptationStatus() {
+        let acceptation: Acceptation = Acceptation(locale: "en", acceptedText: "test", acceptedLegalDocuments: [Document(name: "terms_of_sales")])
+        DataManager.getAcceptationStatus(acceptation: acceptation)
+    }
 }

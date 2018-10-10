@@ -42,7 +42,7 @@ class LoadingViewModel: BaseViewModel {
         if ReachabilityManager.shared.isNetworkAvailable {
             self.status.value = LoadingStatus.loading.rawValue
             DataManager.setSubscribers()
-            DataManager.loadRequiredData()
+            DataManager.startLoadRequiredData()
         } else {
             self.status.value = LoadingStatus.noInternetConnection.rawValue
         }

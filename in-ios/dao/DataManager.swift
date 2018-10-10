@@ -52,7 +52,7 @@ class DataManager {
         }).disposed(by: disposeBag)
     }
     
-    static func loadRequiredData() {
+    static func startLoadRequiredData() {
         self.loadMenuItems()
     }
     
@@ -66,6 +66,10 @@ class DataManager {
     
     static func loadInputScreens() {
         self.requestHandler.requestInputScreens()
+    }
+    
+    static func getAcceptationStatus(acceptation: Acceptation) {
+        self.requestHandler.postAcceptation(acceptation: acceptation)
     }
     
     static func getInputScreens() -> InputScreens {
@@ -87,4 +91,5 @@ class DataManager {
     static func getUserData() -> User? {
         return user
     }
+
 }

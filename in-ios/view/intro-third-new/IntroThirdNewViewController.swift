@@ -26,8 +26,6 @@ class IntroThirdNewViewController: BaseViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 //        setCamera()
-        setDismissSwipeForSecondStep()
-        startCalibration()
 //        let point = CGPoint(x: self.view.frame.size.height / 2 , y: 0)
 //        self.view.hitTest(point, with: nil)
     }
@@ -51,6 +49,7 @@ class IntroThirdNewViewController: BaseViewController {
     @IBAction func onClickBtnBack(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+    
     @IBAction func onClickBtnForward(_ sender: Any) {
         onContinue()
     }
@@ -59,10 +58,13 @@ class IntroThirdNewViewController: BaseViewController {
         viewFirstStep.isHidden = true
         btnBack.isHidden = true
         viewSecondStep.isHidden = false
+        setDismissSwipeForSecondStep()
+        startCalibration()
     }
     
     @IBAction func onClickBtnRedoFourthStep(_ sender: Any) {
     }
+    
     @IBAction func onClickBtnContinueFourthStep(_ sender: Any) {
         viewFourthStep.isHidden = true
         viewFifthStep.isHidden = false
@@ -70,39 +72,51 @@ class IntroThirdNewViewController: BaseViewController {
     
     @IBAction func onClickBtnRedoFifthStep(_ sender: Any) {
     }
+    
     @IBAction func onClickBtn1(_ sender: Any) {
         setDisabled(sender: sender)
     }
+    
     @IBAction func onClickBtn2(_ sender: Any) {
         setDisabled(sender: sender)
     }
+    
     @IBAction func onClickBtn3(_ sender: Any) {
         setDisabled(sender: sender)
     }
+    
     @IBAction func onClickBtn4(_ sender: Any) {
         setDisabled(sender: sender)
     }
+    
     @IBAction func onClickBtn5(_ sender: Any) {
         setDisabled(sender: sender)
     }
+    
     @IBAction func onClickBtn6(_ sender: Any) {
         setDisabled(sender: sender)
     }
+    
     @IBAction func onClickBtn7(_ sender: Any) {
         setDisabled(sender: sender)
     }
+    
     @IBAction func onClickBtn8(_ sender: Any) {
         setDisabled(sender: sender)
     }
+    
     @IBAction func onClickBtn9(_ sender: Any) {
         setDisabled(sender: sender)
     }
+    
     @IBAction func onClickBtn10(_ sender: Any) {
         setDisabled(sender: sender)
     }
+    
     @IBAction func onClickBtn11(_ sender: Any) {
         setDisabled(sender: sender)
     }
+    
     @IBAction func onClickBtn12(_ sender: Any) {
         setDisabled(sender: sender)
     }
@@ -110,6 +124,7 @@ class IntroThirdNewViewController: BaseViewController {
     @IBAction func onClickBtn13(_ sender: Any) {
         setDisabled(sender: sender)
     }
+    
 }
 
 
@@ -158,8 +173,7 @@ extension IntroThirdNewViewController {
         }
     }
     
-    func setCamera()
-    {
+    func setCamera() {
         // TODO: should be removed and reimplemented after tests
         let cameraManager: CameraManager = CameraManager(cameraView: self.view)
         
@@ -175,6 +189,7 @@ extension IntroThirdNewViewController {
     
     func setDismissSwipeForSecondStep() {
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(IntroThirdNewViewController.swiped(_:)))
+        swipeGesture.direction = .left
         viewSecondStep.addGestureRecognizer(swipeGesture)
     }
     

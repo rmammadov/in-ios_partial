@@ -29,4 +29,8 @@ class IntroFirstViewModel: BaseViewModel {
     func getSelectedLegalName() -> String {
         return selectedName
     }
+    
+    func getAcceptationStatus() {
+        model.getAcceptationStatus()
+    }
 }

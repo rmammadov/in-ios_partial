@@ -175,16 +175,21 @@ class ApiRequestHandler {
         return self.legalDocuments
     }
     
-    func postAcceptations(acceptation: Acceptation) {
+    func postAcceptation(acceptation: Acceptation) {
         guard let url = URL(string: Constant.Url.HOST_API_BETA + Constant.Url.URL_EXTENSION_API + Constant.Url.URL_EXTENSION_LEGAL_ACCEPTATIONS) else { return }
         
-        let jsonEncoder = JSONEncoder()
-        let jsonData = try! jsonEncoder.encode(acceptation)
+//        let jsonEncoder = JSONEncoder()
+//        let jsonData = try! jsonEncoder.encode(acceptation)
+        
+        let parameterDictionary = ["username" : "Test", "password" : "123456"]
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: parameterDictionary, options: []) else {
+            return
+        }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = jsonData
+        request.httpBody = httpBody
         
         let task = self.session.dataTask(with: request) { data, response, error in
             // ensure there is no error for this HTTP response
@@ -204,6 +209,8 @@ class ApiRequestHandler {
                 print("No data")
                 return
             }
+            
+            print(String(data: data!, encoding: String.Encoding.utf8))
             
             // serialise the data / NSData object into Dictionary [String : Any]
             guard ((try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? Array<Any>) != nil else {

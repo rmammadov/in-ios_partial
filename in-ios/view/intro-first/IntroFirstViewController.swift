@@ -52,6 +52,7 @@ class IntroFirstViewController: BaseViewController {
         let btn = sender as! UIButton
         btn.isSelected = !btn.isSelected
         self.btnGetStarted.isEnabled = btn.isSelected
+        viewModel.getAcceptationStatus()
     }
     
     @IBAction func onClickBtnGetStarted(_ sender: Any) {
