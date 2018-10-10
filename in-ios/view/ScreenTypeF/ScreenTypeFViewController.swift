@@ -140,6 +140,5 @@ extension ScreenTypeFViewController {
         if let cell = collectionView.cellForItem(at: indexPath) as? ColoredButtonCollectionViewCell {
             cell.setSelected(false)
         }
-        
     }
 }

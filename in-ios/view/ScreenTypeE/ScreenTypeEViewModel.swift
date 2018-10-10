@@ -129,7 +129,7 @@ class ScreenTypeEViewModel: BaseViewModel {
         }
         selectedItem = item
         
-        delegate?.didSelect(button: item, onScreen: self.inputScreen)
+        delegate?.didSelect(value: item, onScreen: self.inputScreen)
     }
     
     func nextPage() {
