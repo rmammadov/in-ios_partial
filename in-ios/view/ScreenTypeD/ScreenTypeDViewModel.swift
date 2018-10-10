@@ -26,6 +26,7 @@ class ScreenTypeDViewModel: BaseViewModel {
         items.forEach({ (button) in
             if let vc = storyboard.instantiateViewController(withIdentifier: BodyPartViewController.identifier) as? BodyPartViewController {
                 vc.viewModel.button = button
+                vc.viewModel.inputScreen = inputScreen
                 vc.viewModel.delegate = delegate
                 vcs.append(vc)
             }

@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol BodyPartRowDelegate: class {
+    func didSelect(_ row: BodyPartRowView, bubble: Bubble)
+}
+
 class BodyPartRowView: UIView {
     @IBOutlet var view: UIView!
     @IBOutlet weak var gradientView: GradientView!
@@ -15,6 +19,9 @@ class BodyPartRowView: UIView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var titleTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var button: UIButton!
+    
+    weak var delegate: BodyPartRowDelegate?
     
     var titleAlignment: NSTextAlignment = .right {
         didSet {
@@ -51,19 +58,16 @@ class BodyPartRowView: UIView {
         addSubview(view)
     }
     
-    private func loadFromNib() -> UIView {
-        let bundle = Bundle(for: self.classForCoder)
-        let nib = UINib(nibName: String(describing: self.classForCoder), bundle: bundle)
-        guard let view = nib.instantiate(withOwner: self, options: nil)[0] as? UIView else { fatalError("") }
-        return view
-    }
-    
     private func setupView(with bubble: Bubble) {
         titleLabel.text = bubble.translations.first?.label
     }
+
+    @IBAction func buttonTapped(_ sender: Any) {
+        guard let bubble = self.bubble else { return }
+        delegate?.didSelect(self, bubble: bubble)
+    }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
+    func setSelected(_ isSelected: Bool) {
+        gradientView.isHidden = !isSelected
     }
 }

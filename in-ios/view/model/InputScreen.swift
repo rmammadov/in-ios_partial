@@ -178,7 +178,7 @@ struct Icon: Decodable {
 struct Bubble: Decodable {
     let isDisableTextToSpeech: Bool
     let coords: String
-    let anchorCords: String
+    let anchorCords: CGPoint?
     let position: Int
     let translations: [TranslationMenuItem]
     
@@ -192,7 +192,12 @@ struct Bubble: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.isDisableTextToSpeech = try container.decode(Bool.self, forKey: .isDisableTextToSpeech)
         self.coords = try container.decode(String.self, forKey: .coords)
-        self.anchorCords = try container.decode(String.self, forKey: .anchorCords)
+        let aCoordsComp = try container.decode(String.self, forKey: .anchorCords).components(separatedBy: ",")
+        if aCoordsComp.count == 2, let x = Int(aCoordsComp[0]), let y = Int(aCoordsComp[1]) {
+            self.anchorCords = CGPoint(x: x, y: y)
+        } else {
+            self.anchorCords = nil
+        }
         self.position = try container.decode(Int.self, forKey: .position)
         self.translations = try container.decode([TranslationMenuItem].self, forKey: .translations)
     }
