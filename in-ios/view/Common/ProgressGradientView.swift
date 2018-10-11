@@ -9,12 +9,12 @@
 import UIKit
 
 @IBDesignable class ProgressGradientView: UIProgressView {
-    @IBInspectable var mainColor: UIColor = .black {
+    @IBInspectable var mainColor: UIColor = .appGradientBlue {
         didSet {
             setupProgressView()
         }
     }
-    @IBInspectable var gradientColor: UIColor = .blue{
+    @IBInspectable var gradientColor: UIColor = .appGradientViolet {
         didSet {
             setupProgressView()
         }
@@ -22,12 +22,13 @@ import UIKit
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        layer.cornerRadius = bounds.height / 2.0
         transform = CGAffineTransform(scaleX: -1, y: -1)
+        layer.cornerRadius = 5
+        layer.masksToBounds = true
     }
     
     private func setupProgressView() {
-        progressTintColor = backgroundColor
+        progressTintColor = #colorLiteral(red: 0.4196078431, green: 0.4196078431, blue: 0.4196078431, alpha: 1)
         let gradientView = GradientView(frame: bounds)
         gradientView.mainColor = gradientColor
         gradientView.gradientColor = mainColor

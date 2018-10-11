@@ -24,6 +24,9 @@
 		E9611E972164AC950010B33C /* ScreenTypeCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E922164AC950010B33C /* ScreenTypeCViewController.swift */; };
 		E9611E982164AC950010B33C /* ScreenTypeCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E932164AC950010B33C /* ScreenTypeCViewModel.swift */; };
 		E9611E9A2164AE2D0010B33C /* IdentifierProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E992164AE2D0010B33C /* IdentifierProtocol.swift */; };
+		E966261C216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E966261A216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.swift */; };
+		E966261D216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E966261B216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.xib */; };
+		E966261F216F38AA006C05B1 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E966261E216F38AA006C05B1 /* UIFontExtension.swift */; };
 		E9876E07216750310001C626 /* ScreenTypeFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E06216750310001C626 /* ScreenTypeFViewController.swift */; };
 		E9876E092167503E0001C626 /* ScreenTypeFViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E082167503E0001C626 /* ScreenTypeFViewModel.swift */; };
 		E9876E0B21675CE00001C626 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E0A21675CE00001C626 /* UIColorExtension.swift */; };
@@ -183,6 +186,9 @@
 		E9611E922164AC950010B33C /* ScreenTypeCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTypeCViewController.swift; sourceTree = "<group>"; };
 		E9611E932164AC950010B33C /* ScreenTypeCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTypeCViewModel.swift; sourceTree = "<group>"; };
 		E9611E992164AE2D0010B33C /* IdentifierProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifierProtocol.swift; sourceTree = "<group>"; };
+		E966261A216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeDCollectionViewCell.swift; sourceTree = "<group>"; };
+		E966261B216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScreenTypeDCollectionViewCell.xib; sourceTree = "<group>"; };
+		E966261E216F38AA006C05B1 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		E9876E0321674F890001C626 /* GazeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GazeUtils.swift; sourceTree = "<group>"; };
 		E9876E06216750310001C626 /* ScreenTypeFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeFViewController.swift; sourceTree = "<group>"; };
 		E9876E082167503E0001C626 /* ScreenTypeFViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeFViewModel.swift; sourceTree = "<group>"; };
@@ -366,6 +372,7 @@
 		E93ACD41216B8CB300F29F54 /* ScreenTypeD */ = {
 			isa = PBXGroup;
 			children = (
+				E9662619216F358A006C05B1 /* Cells */,
 				E93ACD44216B950E00F29F54 /* BodyPart */,
 				E93ACD42216B8CD700F29F54 /* ScreenTypeDViewController.swift */,
 				E93ACD47216B96E000F29F54 /* ScreenTypeDViewModel.swift */,
@@ -407,6 +414,15 @@
 			children = (
 				E9611E8F2164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift */,
 				E9611E902164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		E9662619216F358A006C05B1 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E966261A216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.swift */,
+				E966261B216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -508,6 +524,7 @@
 				F3D591BC216B82A7003921CB /* StringExtension.swift */,
 				E93ACD4B216CB6F500F29F54 /* UIStackViewExtension.swift */,
 				E99B8C32216DF1ED00A90EFC /* UIViewExtension.swift */,
+				E966261E216F38AA006C05B1 /* UIFontExtension.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -917,6 +934,7 @@
 				F336588220D318C300B18CEC /* Main.storyboard in Resources */,
 				F3F8648321175BEE00B7CAA8 /* Colors.xcassets in Resources */,
 				F3B0C1CC2154BA1400E30CA1 /* GoogleService-Info.plist in Resources */,
+				E966261D216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.xib in Resources */,
 				E9876E10216765070001C626 /* ColoredButtonCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1097,6 +1115,7 @@
 				F3CE691D213D70E6004F6756 /* GazeEstimator.mlmodel in Sources */,
 				E9876E1B216B6ED50001C626 /* ProgressGradientView.swift in Sources */,
 				F32D99C621117E79007AAA8D /* HomeModel.swift in Sources */,
+				E966261F216F38AA006C05B1 /* UIFontExtension.swift in Sources */,
 				F32DCEDE214A652000B3D0F8 /* IntroThirdViewModel.swift in Sources */,
 				F336587D20D318C300B18CEC /* AppDelegate.swift in Sources */,
 				F331EA7F211303880000B4E6 /* TopMenuItemCollectionViewCell.swift in Sources */,
@@ -1149,6 +1168,7 @@
 				F33658AE20D3198000B18CEC /* Constant.swift in Sources */,
 				F3CE9029215D3F8300A9F3DF /* IntroSecondNewViewController.swift in Sources */,
 				F3DA017D2162905200D0625B /* WebviewViewController.swift in Sources */,
+				E966261C216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.swift in Sources */,
 				F3DA0181216290BD00D0625B /* WebviewModel.swift in Sources */,
 				F334ADBC2104E7970056824A /* CameraManager.swift in Sources */,
 				E93ACD4C216CB6F500F29F54 /* UIStackViewExtension.swift in Sources */,
