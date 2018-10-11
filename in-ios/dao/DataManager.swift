@@ -26,7 +26,7 @@ class DataManager {
     static fileprivate var menuItems: MenuItems?
     static fileprivate var inputScreens: InputScreens?
     static fileprivate var legalDocuments: LegalDocuments?
-    static fileprivate var files: [File]?
+    static fileprivate var files: [File] = []
     static fileprivate var user: UserInfo?
     static fileprivate var profileData: ProfileData?
     
@@ -49,7 +49,8 @@ class DataManager {
                     self.status.value = DataStatus.dataLoadingCompleted.rawValue
                 } else if self.requestHandler.status.value == RequestStatus.completedFile.rawValue {
                     guard let file = self.requestHandler.getFile() else { return }
-                    self.files?.append(file)
+                    self.files.append(file)
+                    print(self.files)
                 }
             } else if self.requestHandler.status.value == RequestStatus.failed.rawValue {
                 self.status.value = DataStatus.dataLoadingFailed.rawValue
@@ -83,13 +84,15 @@ class DataManager {
     }
     
     static func postProfileData() {
-        guard let profileData = profileData else { return }
+        guard let profileData = getProfileData() else { return }
+        print(profileData)
         self.requestHandler.postProfileData(profileData: profileData)
     }
     
-    static func mapProfileData() {
-        guard let user = user else { return }
+    static func getProfileData() -> ProfileData? {
+        guard let user = user else { return nil }
         profileData = ProfileData(id: nil, data: [user], files: files)
+        return profileData
     }
     
     static func getInputScreens() -> InputScreens {

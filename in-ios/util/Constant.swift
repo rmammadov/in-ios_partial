@@ -12,8 +12,8 @@ import AVKit
 struct Constant {
     
     struct DefaultConfig {
-        static let TIMEOUT_FOR_REQUEST: Double = 15.0
-        static let TIMEOUT_FOR_RESOURCE: Double = 30.0
+        static let TIMEOUT_FOR_REQUEST: Double = 30.0
+        static let TIMEOUT_FOR_RESOURCE: Double = 60.0
         static let COUNT_ROW_ITEMS: Int = 4
         static let COUNT_COLUMN_ITEMS: Int = 5
         static let RESOLUTION_VIDEO_INPUT: AVCaptureSession.Preset = .cif352x288

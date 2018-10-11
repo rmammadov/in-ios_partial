@@ -29,4 +29,8 @@ class IntroThirdNewModel: BaseModel {
     func uploadScreenShot(image: UIImage) {
         DataManager.uploadImage(image: image)
     }
+    
+    func postProfileData() {
+        DataManager.postProfileData()
+    }
 }

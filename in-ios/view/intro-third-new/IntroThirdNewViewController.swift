@@ -170,6 +170,7 @@ extension IntroThirdNewViewController {
         if tag != 0 {
             continueCalibration(tag: tag)
         } else {
+            viewModel.postProfileData()
             startFourthStep()
         }
     }

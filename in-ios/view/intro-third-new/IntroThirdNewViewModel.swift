@@ -19,5 +19,9 @@ class IntroThirdNewViewModel: BaseViewModel {
     func uploadScreenShot(image: UIImage) {
         model.uploadScreenShot(image: image)
     }
+    
+    func postProfileData() {
+        model.postProfileData()
+    }
 }
 
