@@ -19,7 +19,7 @@ class IntroFirstModel: BaseModel {
     }
     
     func getAcceptationStatus() {
-        let acceptation: Acceptation = Acceptation(locale: "en", acceptedText: "test", acceptedLegalDocuments: [Document(name: "terms_of_sales")])
+        let acceptation: Acceptation = Acceptation(locale: "en", acceptedText: "test", acceptedLegalDocuments: [Document(name: "terms_of_sales", revision: nil)])
         DataManager.getAcceptationStatus(acceptation: acceptation)
     }
 }

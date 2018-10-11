@@ -25,5 +25,6 @@ struct Acceptation: Codable {
 struct Document: Codable {
     
     let name: String?
+    let revision: Int?
     
 }

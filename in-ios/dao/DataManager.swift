@@ -26,7 +26,9 @@ class DataManager {
     static fileprivate var menuItems: MenuItems?
     static fileprivate var inputScreens: InputScreens?
     static fileprivate var legalDocuments: LegalDocuments?
+    static fileprivate var files: [File]?
     static fileprivate var user: UserInfo?
+    static fileprivate var profileData: ProfileData?
     
     static fileprivate let requestHandler = ApiRequestHandler()
     
@@ -45,6 +47,9 @@ class DataManager {
                 } else if self.requestHandler.status.value == RequestStatus.completedLegalDocuments.rawValue {
                     self.legalDocuments = LegalDocuments(legalDocuments: self.requestHandler.getLegalDocuments())
                     self.status.value = DataStatus.dataLoadingCompleted.rawValue
+                } else if self.requestHandler.status.value == RequestStatus.completedFile.rawValue {
+                    guard let file = self.requestHandler.getFile() else { return }
+                    self.files?.append(file)
                 }
             } else if self.requestHandler.status.value == RequestStatus.failed.rawValue {
                 self.status.value = DataStatus.dataLoadingFailed.rawValue
@@ -75,6 +80,16 @@ class DataManager {
     static func uploadImage(image: UIImage) {
         guard let data: Data = image.jpegData(compressionQuality: 1.0) else { return }
         self.requestHandler.uploadFile(data: data)
+    }
+    
+    static func postProfileData() {
+        guard let profileData = profileData else { return }
+        self.requestHandler.postProfileData(profileData: profileData)
+    }
+    
+    static func mapProfileData() {
+        guard let user = user else { return }
+        profileData = ProfileData(id: nil, data: [user], files: files)
     }
     
     static func getInputScreens() -> InputScreens {

@@ -10,12 +10,15 @@ import Foundation
 
 struct ProfileData: Codable {
     
-    let data: Array<UserInfo>
-    let files: Array<File>
+    let id: Int64?
+    let data: Array<UserInfo>?
+    let files: Array<File>?
 }
 
 struct File: Codable {
     
+    let size: Int
+    let url: String
 }
 
 struct UserInfo: Codable {

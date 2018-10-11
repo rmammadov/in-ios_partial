@@ -17,6 +17,7 @@ enum RequestStatus: Int {
     case completedInputScreens = 32
     case completedLegalDocuments = 33
     case completed = 40
+    case completedFile = 50
 }
 
 // FIXME: RequestStatus should be updated to properly
@@ -31,6 +32,7 @@ class ApiRequestHandler {
     fileprivate var menuItems: Array<MenuItem> = []
     fileprivate var inputScreens: Array<InputScreen> = []
     fileprivate var legalDocuments: Array<LegalDocument> = []
+    fileprivate var file: File?
     
     init() {
         config = URLSessionConfiguration.default
@@ -246,9 +248,20 @@ class ApiRequestHandler {
                 print("Not containing JSON")
                 return
             }
+            
+            do {
+                self.file = try JSONDecoder().decode(File.self, from: content)
+                self.status.value = RequestStatus.completedFile.rawValue
+            } catch let jsonErr {
+                print("Error serializing json",  jsonErr)
+            }
         }
         
         task.resume()
+    }
+    
+    func getFile() -> File? {
+        return self.file
     }
     
     func postProfileData(profileData: ProfileData) {
