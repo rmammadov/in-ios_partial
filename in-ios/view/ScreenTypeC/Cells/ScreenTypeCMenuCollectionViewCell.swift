@@ -26,7 +26,7 @@ class ScreenTypeCMenuCollectionViewCell: UICollectionViewCell {
             }
             let font = UIFont.avenirDemiBold(size: 45)
             let string = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: font])
-            let rect = string.boundingRect(with: CGSize(width: .greatestFiniteMagnitude, height: 100.0), options: [], context: nil)
+            let rect = string.boundingRect(with: CGSize(width: .greatestFiniteMagnitude, height: 90.0), options: [], context: nil)
             return rect.width + (2.0 * ViewModel.titleMargin) + 1
         }
     }
