@@ -10,6 +10,8 @@ import Foundation
 
 class InputValidationHelper {
     
+    let shared = InputValidationHelper()
+    
     func isValidInput(Input:String, regEx: String) -> Bool {
         let RegEx = regEx
         let Test = NSPredicate(format:"SELF MATCHES %@", RegEx)

@@ -80,6 +80,7 @@
 		F39059C1210F290F00CAA292 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059C0210F290F00CAA292 /* MenuViewModel.swift */; };
 		F39059C32110473D00CAA292 /* MenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059C22110473D00CAA292 /* MenuItems.swift */; };
 		F396E464216DD82300C061CD /* Acceptation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F396E463216DD82300C061CD /* Acceptation.swift */; };
+		F396E466216EC6B200C061CD /* FileNamingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F396E465216EC6B200C061CD /* FileNamingHelper.swift */; };
 		F3A41ACC2161329000D2D8D6 /* LegalDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A41ACB2161329000D2D8D6 /* LegalDocument.swift */; };
 		F3A41ACE216147F100D2D8D6 /* LegalDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A41ACD216147F100D2D8D6 /* LegalDocuments.swift */; };
 		F3B0C1CC2154BA1400E30CA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3B0C1CB2154BA1300E30CA1 /* GoogleService-Info.plist */; };
@@ -249,6 +250,7 @@
 		F39059C0210F290F00CAA292 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		F39059C22110473D00CAA292 /* MenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItems.swift; sourceTree = "<group>"; };
 		F396E463216DD82300C061CD /* Acceptation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acceptation.swift; sourceTree = "<group>"; };
+		F396E465216EC6B200C061CD /* FileNamingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileNamingHelper.swift; sourceTree = "<group>"; };
 		F3A41ACB2161329000D2D8D6 /* LegalDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDocument.swift; sourceTree = "<group>"; };
 		F3A41ACD216147F100D2D8D6 /* LegalDocuments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDocuments.swift; sourceTree = "<group>"; };
 		F3B0C1CB2154BA1300E30CA1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -605,6 +607,7 @@
 				F334ADBD2105DA490056824A /* SpeechHelper.swift */,
 				F334ADBF2106E86E0056824A /* NavigationHelper.swift */,
 				F3D591B8216B5E80003921CB /* InputValidationHelper.swift */,
+				F396E465216EC6B200C061CD /* FileNamingHelper.swift */,
 			);
 			path = helper;
 			sourceTree = "<group>";
@@ -1067,6 +1070,7 @@
 				F334ADC5210B3BC00056824A /* ApiRequestHandler.swift in Sources */,
 				F336587F20D318C300B18CEC /* BaseViewController.swift in Sources */,
 				F3355CEA2122BE79009AF602 /* InputScreens.swift in Sources */,
+				F396E466216EC6B200C061CD /* FileNamingHelper.swift in Sources */,
 				E9611E942164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift in Sources */,
 				F3355CED2122E88C009AF602 /* LoadingViewController.swift in Sources */,
 				F3D6D20A214CF84700A6231E /* IntroFourthModel.swift in Sources */,
