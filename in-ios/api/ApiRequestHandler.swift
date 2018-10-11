@@ -250,4 +250,44 @@ class ApiRequestHandler {
         
         task.resume()
     }
+    
+    func postProfileData(profileData: ProfileData) {
+        guard let url = URL(string: Constant.Url.HOST_API_BETA + Constant.Url.URL_EXTENSION_API + Constant.Url.URL_EXTENSION_PROFILE_DATAS) else { return }
+        
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try! jsonEncoder.encode(profileData)
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            // ensure there is no error for this HTTP response
+            guard error == nil else {
+                print ("error: \(error!)")
+                return
+            }
+            
+            // hanlde http response code
+            if let httpResponse = response as? HTTPURLResponse {
+                if  200 > httpResponse.statusCode || httpResponse.statusCode >= 300 {
+                }
+            }
+            
+            // ensure there is data returned from this HTTP response
+            guard let content = data else {
+                print("No data")
+                return
+            }
+            
+            // serialise the data / NSData object into Dictionary [String : Any]
+            guard ((try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? Array<Any>) != nil else {
+                print("Not containing JSON")
+                return
+            }
+        }
+        
+        task.resume()
+    }
 }

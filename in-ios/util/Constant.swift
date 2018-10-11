@@ -28,6 +28,7 @@ struct Constant {
         static let URL_EXTENSION_LEGAL_DOCUMENTS: String = "legal-documents"
         static let URL_EXTENSION_LEGAL_ACCEPTATIONS: String = "acceptations"
         static let URL_EXTENSION_FILES: String = "files"
+        static let URL_EXTENSION_PROFILE_DATAS: String = "profile-datas"
     }
     
     struct DefaultValues {

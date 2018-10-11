@@ -10,9 +10,9 @@ import Foundation
 
 struct Acceptation: Codable {
     
-    var locale: String?
-    var acceptedText: String
-    var acceptedLegalDocuments: Array<Document>
+    let locale: String
+    let acceptedText: String
+    let acceptedLegalDocuments: Array<Document>
     
     enum CodingKeys: String, CodingKey {
         case acceptedText = "accepted_text"
@@ -24,6 +24,6 @@ struct Acceptation: Codable {
 
 struct Document: Codable {
     
-    var name: String?
+    let name: String?
     
 }

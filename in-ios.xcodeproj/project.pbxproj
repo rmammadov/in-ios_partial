@@ -83,6 +83,7 @@
 		F39059C32110473D00CAA292 /* MenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059C22110473D00CAA292 /* MenuItems.swift */; };
 		F396E464216DD82300C061CD /* Acceptation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F396E463216DD82300C061CD /* Acceptation.swift */; };
 		F396E466216EC6B200C061CD /* FileNamingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F396E465216EC6B200C061CD /* FileNamingHelper.swift */; };
+		F396E468216F249B00C061CD /* ProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F396E467216F249B00C061CD /* ProfileData.swift */; };
 		F3A41ACC2161329000D2D8D6 /* LegalDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A41ACB2161329000D2D8D6 /* LegalDocument.swift */; };
 		F3A41ACE216147F100D2D8D6 /* LegalDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A41ACD216147F100D2D8D6 /* LegalDocuments.swift */; };
 		F3B0C1CC2154BA1400E30CA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3B0C1CB2154BA1300E30CA1 /* GoogleService-Info.plist */; };
@@ -95,7 +96,6 @@
 		F3CE902B215D3FE600A9F3DF /* IntroSecondNewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE902A215D3FE600A9F3DF /* IntroSecondNewViewModel.swift */; };
 		F3CE902D215D3FFB00A9F3DF /* IntroSecondNewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE902C215D3FFB00A9F3DF /* IntroSecondNewModel.swift */; };
 		F3D591B9216B5E80003921CB /* InputValidationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D591B8216B5E80003921CB /* InputValidationHelper.swift */; };
-		F3D591BB216B68A1003921CB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D591BA216B68A1003921CB /* User.swift */; };
 		F3D591BD216B82A7003921CB /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D591BC216B82A7003921CB /* StringExtension.swift */; };
 		F3D6D204214CF7F400A6231E /* IntroFourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6D203214CF7F400A6231E /* IntroFourthViewController.swift */; };
 		F3D6D206214CF81300A6231E /* IntroFifthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6D205214CF81300A6231E /* IntroFifthViewController.swift */; };
@@ -255,6 +255,7 @@
 		F39059C22110473D00CAA292 /* MenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItems.swift; sourceTree = "<group>"; };
 		F396E463216DD82300C061CD /* Acceptation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acceptation.swift; sourceTree = "<group>"; };
 		F396E465216EC6B200C061CD /* FileNamingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileNamingHelper.swift; sourceTree = "<group>"; };
+		F396E467216F249B00C061CD /* ProfileData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileData.swift; sourceTree = "<group>"; };
 		F3A41ACB2161329000D2D8D6 /* LegalDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDocument.swift; sourceTree = "<group>"; };
 		F3A41ACD216147F100D2D8D6 /* LegalDocuments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDocuments.swift; sourceTree = "<group>"; };
 		F3B0C1CB2154BA1300E30CA1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -267,7 +268,6 @@
 		F3CE902A215D3FE600A9F3DF /* IntroSecondNewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroSecondNewViewModel.swift; sourceTree = "<group>"; };
 		F3CE902C215D3FFB00A9F3DF /* IntroSecondNewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroSecondNewModel.swift; sourceTree = "<group>"; };
 		F3D591B8216B5E80003921CB /* InputValidationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputValidationHelper.swift; sourceTree = "<group>"; };
-		F3D591BA216B68A1003921CB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F3D591BC216B82A7003921CB /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		F3D6D203214CF7F400A6231E /* IntroFourthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFourthViewController.swift; sourceTree = "<group>"; };
 		F3D6D205214CF81300A6231E /* IntroFifthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFifthViewController.swift; sourceTree = "<group>"; };
@@ -526,8 +526,8 @@
 				F3355CE92122BE79009AF602 /* InputScreens.swift */,
 				F3A41ACB2161329000D2D8D6 /* LegalDocument.swift */,
 				F3A41ACD216147F100D2D8D6 /* LegalDocuments.swift */,
-				F3D591BA216B68A1003921CB /* User.swift */,
 				F396E463216DD82300C061CD /* Acceptation.swift */,
+				F396E467216F249B00C061CD /* ProfileData.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1109,6 +1109,7 @@
 				E9876E07216750310001C626 /* ScreenTypeFViewController.swift in Sources */,
 				E93ACD43216B8CD700F29F54 /* ScreenTypeDViewController.swift in Sources */,
 				F3355CF12122E904009AF602 /* LoadingModel.swift in Sources */,
+				F396E468216F249B00C061CD /* ProfileData.swift in Sources */,
 				F32F5B6521453DCC00558C68 /* IntroSecondViewController.swift in Sources */,
 				F3E200C92135F2D500902A33 /* UIApplicationExtension.swift in Sources */,
 				F3CE902B215D3FE600A9F3DF /* IntroSecondNewViewModel.swift in Sources */,
@@ -1142,7 +1143,6 @@
 				E93ACD4F216CD16500F29F54 /* BodyPartRowView.swift in Sources */,
 				F3E200C52135EC5E00902A33 /* GazePredictionDelegate.swift in Sources */,
 				F33658AE20D3198000B18CEC /* Constant.swift in Sources */,
-				F3D591BB216B68A1003921CB /* User.swift in Sources */,
 				F3CE9029215D3F8300A9F3DF /* IntroSecondNewViewController.swift in Sources */,
 				F3DA017D2162905200D0625B /* WebviewViewController.swift in Sources */,
 				F3DA0181216290BD00D0625B /* WebviewModel.swift in Sources */,
