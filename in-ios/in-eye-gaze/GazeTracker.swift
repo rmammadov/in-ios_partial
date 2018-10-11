@@ -14,10 +14,11 @@ import CoreML
 @available(iOS 11.0, *)
 public class GazeTracker: FaceFinderDelegate {
     
-    var calibFeatures: MLMultiArray? = nil
     var utilities: GazeUtilities = GazeUtilities()
     
-    let model = GazeEstimator()
+    let generalModel = GazeEstimator()
+    let biasCorrector = BiasCorrector()
+    
     let EYE_RESIZE_HEIGHT: Int = 80
     let ILLUM_ETA: Int = 3
     let ILLUM_N: Float = 0.1
@@ -29,8 +30,10 @@ public class GazeTracker: FaceFinderDelegate {
     
     var detector: FaceFinder? = nil
     var mainFace: VisionFace? = nil
-    var gazeEstimation: MLMultiArray? = nil
     var predictionDelegate: GazePredictionDelegate? = nil
+    
+    var gazeEstimation: MLMultiArray? = nil
+    var calibFeatures: MLMultiArray? = nil
     
     var illumResizeRatio: Double = 1.0
     
@@ -144,13 +147,26 @@ public class GazeTracker: FaceFinderDelegate {
             return
         }
         
-        self.gazeEstimation = pred.gazeXY
-        self.calibFeatures = pred.calibFeats
-//        print("Algorithm terminating @:   \(CFAbsoluteTimeGetCurrent())")
-        self.elapsedTotalTime = CFAbsoluteTimeGetCurrent() - self.startTotalTime
-        print("\nTotal algorithm processing time: \(self.elapsedTotalTime) s.")
-        if self.gazeEstimation != nil { print(self.gazeEstimation![0], self.gazeEstimation![1]) }
-        self.predictionDelegate?.didUpdatePrediction(status: true)
+        if let calibFeats = pred.calibFeats {
+            guard let corrPred = correctBias(with: calibFeats) else {
+                self.gazeEstimation = nil
+                self.calibFeatures = nil
+                return
+            }
+            
+            self.gazeEstimation = corrPred.gazeXY
+            self.calibFeatures = corrPred.calibFeats
+            //        print("Algorithm terminating @:   \(CFAbsoluteTimeGetCurrent())")
+            self.elapsedTotalTime = CFAbsoluteTimeGetCurrent() - self.startTotalTime
+            print("\nTotal algorithm processing time: \(self.elapsedTotalTime) s.")
+            if self.gazeEstimation != nil { print(self.gazeEstimation![0], self.gazeEstimation![1]) }
+            self.predictionDelegate?.didUpdatePrediction(status: true)
+            
+        } else {
+            self.gazeEstimation = nil
+            self.calibFeatures = nil
+            return
+        }
     }
     
     func getMainFace() {
@@ -522,7 +538,17 @@ public class GazeTracker: FaceFinderDelegate {
     
     func predictGaze(eyesB: MLMultiArray, eyesG: MLMultiArray, eyesR: MLMultiArray, illuminant: MLMultiArray, headPose: MLMultiArray) -> (gazeXY: MLMultiArray?, calibFeats: MLMultiArray?)? {
         do {
-            let modelOutput = try model.prediction(input: GazeEstimatorInput(_eyesB_: eyesB, _eyesG_: eyesG, _eyesR_: eyesR, _illum_: illuminant, _pose_: headPose), options: self.PREDICTION_OPTIONS)
+            let modelOutput = try generalModel.prediction(input: GazeEstimatorInput(_eyesB_: eyesB, _eyesG_: eyesG, _eyesR_: eyesR, _illum_: illuminant, _pose_: headPose), options: self.PREDICTION_OPTIONS)
+            return (modelOutput.gazeXY, modelOutput.calibFeats)
+        } catch {
+            print(error)
+            return nil
+        }
+    }
+    
+    func correctBias(with inputFeats: MLMultiArray) -> (gazeXY: MLMultiArray?, calibFeats: MLMultiArray?)? {
+        do {
+            let modelOutput = try biasCorrector.prediction(input: BiasCorrectorInput(_inputFeats_: inputFeats), options: self.PREDICTION_OPTIONS)
             return (modelOutput.gazeXY, modelOutput.calibFeats)
         } catch {
             print(error)
