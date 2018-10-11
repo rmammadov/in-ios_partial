@@ -127,7 +127,6 @@ class IntroThirdNewViewController: BaseViewController {
     
 }
 
-
 extension IntroThirdNewViewController {
     
     override func onContinue() {
@@ -161,6 +160,8 @@ extension IntroThirdNewViewController {
     
     @objc func takeScreenShot() {
         guard let screenShot = UIApplication.shared.screenShot else { return }
+        viewModel.uploadScreenShot(image: screenShot)
+        print("Took screenshot")
     }
     
     @objc func handleCalibrationStep() {

@@ -72,6 +72,11 @@ class DataManager {
         self.requestHandler.postAcceptation(acceptation: acceptation)
     }
     
+    static func uploadImage(image: UIImage) {
+        guard let data: Data = image.jpegData(compressionQuality: 1.0) else { return }
+        self.requestHandler.uploadFile(data: data)
+    }
+    
     static func getInputScreens() -> InputScreens {
         return self.inputScreens!
     }

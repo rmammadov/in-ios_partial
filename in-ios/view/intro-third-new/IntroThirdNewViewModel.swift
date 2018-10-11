@@ -15,5 +15,9 @@ class IntroThirdNewViewModel: BaseViewModel {
     func getTag() -> Int {
         return model.getTag()
     }
+    
+    func uploadScreenShot(image: UIImage) {
+        model.uploadScreenShot(image: image)
+    }
 }
 
