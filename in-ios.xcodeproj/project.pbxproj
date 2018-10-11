@@ -84,6 +84,7 @@
 		F396E464216DD82300C061CD /* Acceptation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F396E463216DD82300C061CD /* Acceptation.swift */; };
 		F396E466216EC6B200C061CD /* FileNamingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F396E465216EC6B200C061CD /* FileNamingHelper.swift */; };
 		F396E468216F249B00C061CD /* ProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F396E467216F249B00C061CD /* ProfileData.swift */; };
+		F396E46A216FA61000C061CD /* BiasCorrector.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F396E469216FA60F00C061CD /* BiasCorrector.mlmodel */; };
 		F3A41ACC2161329000D2D8D6 /* LegalDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A41ACB2161329000D2D8D6 /* LegalDocument.swift */; };
 		F3A41ACE216147F100D2D8D6 /* LegalDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A41ACD216147F100D2D8D6 /* LegalDocuments.swift */; };
 		F3B0C1CC2154BA1400E30CA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3B0C1CB2154BA1300E30CA1 /* GoogleService-Info.plist */; };
@@ -256,6 +257,7 @@
 		F396E463216DD82300C061CD /* Acceptation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acceptation.swift; sourceTree = "<group>"; };
 		F396E465216EC6B200C061CD /* FileNamingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileNamingHelper.swift; sourceTree = "<group>"; };
 		F396E467216F249B00C061CD /* ProfileData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileData.swift; sourceTree = "<group>"; };
+		F396E469216FA60F00C061CD /* BiasCorrector.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = BiasCorrector.mlmodel; sourceTree = "<group>"; };
 		F3A41ACB2161329000D2D8D6 /* LegalDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDocument.swift; sourceTree = "<group>"; };
 		F3A41ACD216147F100D2D8D6 /* LegalDocuments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDocuments.swift; sourceTree = "<group>"; };
 		F3B0C1CB2154BA1300E30CA1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -442,6 +444,7 @@
 			children = (
 				E99B8C30216DE4B800A90EFC /* GazeTrackerCalibrated.swift */,
 				E9876E0321674F890001C626 /* GazeUtils.swift */,
+				F396E469216FA60F00C061CD /* BiasCorrector.mlmodel */,
 				F3CE691C213D70E6004F6756 /* GazeEstimator.mlmodel */,
 				F3E97E5821422F4800379B4A /* GazeTracker.swift */,
 				F3E97E5A21422F4E00379B4A /* FaceFinder.swift */,
@@ -1077,6 +1080,7 @@
 				F336587F20D318C300B18CEC /* BaseViewController.swift in Sources */,
 				F3355CEA2122BE79009AF602 /* InputScreens.swift in Sources */,
 				F396E466216EC6B200C061CD /* FileNamingHelper.swift in Sources */,
+				F396E46A216FA61000C061CD /* BiasCorrector.mlmodel in Sources */,
 				E9611E942164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift in Sources */,
 				F3355CED2122E88C009AF602 /* LoadingViewController.swift in Sources */,
 				F3D6D20A214CF84700A6231E /* IntroFourthModel.swift in Sources */,
