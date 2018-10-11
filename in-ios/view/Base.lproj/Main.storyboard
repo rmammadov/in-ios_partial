@@ -1754,12 +1754,13 @@ The process will take less than 20 seconds.</string>
                                 <rect key="frame" x="0.0" y="709" width="1112" height="125"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Fdt-J7-7cr">
-                                        <rect key="frame" x="306" y="0.0" width="500" height="125"/>
+                                        <rect key="frame" x="306" y="40.5" width="500" height="44"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" priority="750" constant="500" id="7KW-dT-qPp"/>
+                                            <constraint firstAttribute="height" constant="44" id="pz7-Q0-gQ8"/>
                                         </constraints>
-                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="wKc-qY-L4c">
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="wKc-qY-L4c">
                                             <size key="itemSize" width="50" height="50"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -1770,9 +1771,10 @@ The process will take less than 20 seconds.</string>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Fdt-J7-7cr" secondAttribute="bottom" id="2KI-jw-9cX"/>
-                                    <constraint firstItem="Fdt-J7-7cr" firstAttribute="top" secondItem="2nG-us-63V" secondAttribute="top" id="2Wc-wc-9ls"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Fdt-J7-7cr" secondAttribute="bottom" id="2KI-jw-9cX"/>
+                                    <constraint firstItem="Fdt-J7-7cr" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2nG-us-63V" secondAttribute="top" id="2Wc-wc-9ls"/>
                                     <constraint firstItem="Fdt-J7-7cr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2nG-us-63V" secondAttribute="leading" id="PC1-tJ-k5v"/>
+                                    <constraint firstItem="Fdt-J7-7cr" firstAttribute="centerY" secondItem="2nG-us-63V" secondAttribute="centerY" id="Wqs-DF-KI7"/>
                                     <constraint firstItem="Fdt-J7-7cr" firstAttribute="centerX" secondItem="2nG-us-63V" secondAttribute="centerX" id="i2D-mR-H7i"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Fdt-J7-7cr" secondAttribute="trailing" id="kae-7u-795"/>
                                 </constraints>

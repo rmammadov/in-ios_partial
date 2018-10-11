@@ -24,7 +24,7 @@ class ScreenTypeCMenuCollectionViewCell: UICollectionViewCell {
             } else {
                 text = translations.first?.title ?? ""
             }
-            let font = UIFont.systemFont(ofSize: 34, weight: .bold)
+            let font = UIFont.avenirDemiBold(size: 45)
             let string = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: font])
             let rect = string.boundingRect(with: CGSize(width: .greatestFiniteMagnitude, height: 100.0), options: [], context: nil)
             return rect.width + (2.0 * ViewModel.titleMargin) + 1

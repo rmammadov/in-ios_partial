@@ -9,14 +9,20 @@
 import UIKit
 import RxSwift
 
-private let nibMenuItem = "MenuItemCollectionViewCell"
-private let reuseIdentifier = "cellMenuItem"
-
 class ScreenTypeDViewController: BaseViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionViewWidth: NSLayoutConstraint!
     @IBOutlet weak var containerView: UIView!
+    
+    private var itemsWidth: [CGFloat] = [] {
+        didSet {
+            guard itemsWidth.count > 0 else { return }
+            var width: CGFloat = 0
+            itemsWidth.forEach { width += $0 }
+            collectionViewWidth.constant = width
+        }
+    }
     
     private var isDisappear: Bool = true
     let viewModel = ScreenTypeDViewModel()
@@ -69,14 +75,22 @@ extension ScreenTypeDViewController {
     }
     
     private func setupCollectionView() {
-        let cellNib = UINib(nibName: nibMenuItem, bundle: nil)
-        collectionView.register(cellNib, forCellWithReuseIdentifier: reuseIdentifier)
+        let cellNib = UINib(nibName: cellIdentifier, bundle: nil)
+        collectionView.register(cellNib, forCellWithReuseIdentifier: cellIdentifier)
         collectionView.delegate = self
         collectionView.dataSource = self
     }
     
     private func setSubscribers() {
         viewModel.getSelectedIndexPathObserver().subscribe(onNext: { [weak self] (indexPath) in
+            self?.collectionView.visibleCells.forEach({ (cell) in
+                guard let cell = cell as? ScreenTypeDCollectionViewCell else { return }
+                if indexPath != nil, self?.collectionView.indexPath(for: cell) == indexPath {
+                    cell.setSelected(true)
+                } else {
+                    cell.setSelected(false)
+                }
+            })
             guard indexPath != nil else { return }
             self?.replaceViewController()
         }).disposed(by: disposeBag)
@@ -84,18 +98,25 @@ extension ScreenTypeDViewController {
 }
 
 extension ScreenTypeDViewController: UICollectionViewDataSource {
+    var cellIdentifier: String {
+        return ScreenTypeDCollectionViewCell.identifier
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.getItems().count
+        let count = viewModel.getItems().count
+        itemsWidth = Array(repeating: 0.0, count: count)
+        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
-                                                            for: indexPath) as? MenuItemCollectionViewCell,
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier,
+                                                            for: indexPath) as? ScreenTypeDCollectionViewCell,
         let item = viewModel.getItem(for: indexPath)
             else {
-                fatalError("Cannot dequeue cell with reuseIdentifier: \(reuseIdentifier)")
+                fatalError("Cannot dequeue cell with reuseIdentifier: \(cellIdentifier)")
         }
-        cell.setCell(url: item.icon?.url, label: item.translations?.first?.label)
+        cell.setSelected(indexPath == viewModel.getSelectedIndexPath())
+        cell.setTitle(title: item.translations?.first?.label ?? "")
         return cell
     }
 }
@@ -104,15 +125,17 @@ extension ScreenTypeDViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.setSelectedIndexPath(indexPath)
     }
+    
 }
 
 extension ScreenTypeDViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width: CGFloat = 250
+        let text = viewModel.getItem(for: indexPath)?.translations?.first?.label ?? ""
+        let width: CGFloat = ScreenTypeDCollectionViewCell.cellWidth(forText: text)
         let height: CGFloat = collectionView.bounds.height
-        collectionViewWidth.constant = width * CGFloat(viewModel.getItems().count)
+        itemsWidth[indexPath.item] = width
         return CGSize(width: width, height: height)
     }
 }
