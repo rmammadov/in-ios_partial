@@ -14,13 +14,13 @@ class ScreenTypeCMenuCollectionViewCell: UICollectionViewCell {
     
     struct ViewModel {
         static private let titleMargin: CGFloat = 32.0
-        var selectedTranslations: [TranslationMenuItem]?
+        var selectedTranslations: String?
         var translations: [TranslationInputScreen]
         
         var widthForCell: CGFloat {
             var text: String = ""
             if let selectedTranslations = selectedTranslations {
-                text = selectedTranslations.first?.label ?? ""
+                text = selectedTranslations
             } else {
                 text = translations.first?.title ?? ""
             }
@@ -33,7 +33,7 @@ class ScreenTypeCMenuCollectionViewCell: UICollectionViewCell {
     
     func setViewModel(viewModel: ViewModel) {
         if let selectedTranslations = viewModel.selectedTranslations {
-            titleLabel.text = selectedTranslations.first?.label
+            titleLabel.text = selectedTranslations
             titleLabel.textColor = .white
         } else {
             titleLabel.text = viewModel.translations.first?.title

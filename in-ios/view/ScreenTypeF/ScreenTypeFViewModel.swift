@@ -46,7 +46,7 @@ class ScreenTypeFViewModel: BaseViewModel {
         guard let indexPath = indexPath else { return }
         let item = getItemAt(indexPath: indexPath)
         textToSpeech(item: item)
-        delegate?.didSelect(button: item, onScreen: inputScreen)
+        delegate?.didSelect(value: item, onScreen: inputScreen)
     }
     
     func getSelectedIndexPath() -> IndexPath? {

@@ -15,7 +15,7 @@ private let reuseIdentifier = "cellMenuItem"
 class ScreenTypeDViewController: BaseViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var collectionViewWidth: NSLayoutConstraint!
     @IBOutlet weak var containerView: UIView!
     
     private var isDisappear: Bool = true
@@ -110,14 +110,9 @@ extension ScreenTypeDViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.bounds.size.width
-        var height: CGFloat = 0
-        if view.bounds.height / CGFloat(viewModel.getRowCount() - 1) > width + 7.0 + 7.0 + 17.0 {
-            height = width + 7.0 + 7.0 + 17.0
-        } else {
-            height = view.bounds.height / CGFloat(viewModel.getRowCount() - 1)
-        }
-        collectionViewHeight.constant = height * CGFloat(viewModel.getItems().count)
+        let width: CGFloat = 250
+        let height: CGFloat = collectionView.bounds.height
+        collectionViewWidth.constant = width * CGFloat(viewModel.getItems().count)
         return CGSize(width: width, height: height)
     }
 }

@@ -13,7 +13,7 @@ class ScreenTypeCViewModel: BaseViewModel {
     
     var items = Variable<[InputScreen]>([])
     var inputScreen: InputScreen?
-    var selectedItem = Variable<[Int: ButtonInputScreen]>([:])
+    var selectedItem = Variable<[Int: Any]>([:])
     var selectedIndexPath = Variable<IndexPath?>(nil)
     var viewControllers: [UIViewController] = []
     
@@ -28,9 +28,28 @@ class ScreenTypeCViewModel: BaseViewModel {
     func getItemViewModelFor(indexPath: IndexPath) -> ScreenTypeCMenuCollectionViewCell.ViewModel? {
         guard getItems().count > indexPath.item else { return nil }
         let item = getItems()[indexPath.item]
-        let viewModel = ScreenTypeCMenuCollectionViewCell.ViewModel(selectedTranslations: selectedItem.value[item.id]?.translations,
+        var selectedText: String = ""
+        let viewModel = ScreenTypeCMenuCollectionViewCell.ViewModel(selectedTranslations: getSelectedLabel(for: item.id),
                                                                     translations: item.translations)
         return viewModel
+    }
+    
+    func getSelectedLabel(for index: Int) -> String? {
+        if let item = selectedItem.value[index] as? ButtonInputScreen, let label = item.translations?.first?.label {
+            return label
+        } else if let item = selectedItem.value[index] as? Bubble, let label = item.translations.first?.label {
+            return label
+        }
+        return nil
+    }
+    
+    func getSelectedText(for index: Int) -> String? {
+        if let item = selectedItem.value[index] as? ButtonInputScreen, let text = item.translations?.first?.labelTextToSpeech {
+            return text
+        } else if let item = selectedItem.value[index] as? Bubble, let text = item.translations.first?.labelTextToSpeech {
+            return text
+        }
+        return nil
     }
     
     func setInputScreen(_ inputScreen: InputScreen) {
@@ -102,8 +121,7 @@ class ScreenTypeCViewModel: BaseViewModel {
     
     func speakSelectedValues() {
         for item in items.value {
-            if let selectedValue = selectedItem.value[item.id],
-                let text = selectedValue.translations?.first?.labelTextToSpeech {
+            if let text = getSelectedText(for: item.id) {
                 SpeechHelper.play(text: text, language: "en-US")
             }
         }
@@ -111,8 +129,8 @@ class ScreenTypeCViewModel: BaseViewModel {
 }
 
 extension ScreenTypeCViewModel: ScreenTypeCDelegate {
-    func didSelect(button: ButtonInputScreen, onScreen: InputScreen) {
-        selectedItem.value[onScreen.id] = button
+    func didSelect(value: Any, onScreen: InputScreen) {
+        selectedItem.value[onScreen.id] = value
     }
 }
 

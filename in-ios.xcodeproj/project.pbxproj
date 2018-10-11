@@ -32,6 +32,8 @@
 		E9876E1321678B6B0001C626 /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E1221678B6B0001C626 /* NotificationExtension.swift */; };
 		E9876E1521679BF50001C626 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E1421679BF50001C626 /* GradientView.swift */; };
 		E9876E1B216B6ED50001C626 /* ProgressGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E1A216B6ED50001C626 /* ProgressGradientView.swift */; };
+		E99B8C31216DE4B800A90EFC /* GazeTrackerCalibrated.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99B8C30216DE4B800A90EFC /* GazeTrackerCalibrated.swift */; };
+		E99B8C33216DF1ED00A90EFC /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99B8C32216DF1ED00A90EFC /* UIViewExtension.swift */; };
 		F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3216B5520F4EA15008D6EFD /* HomeViewController.swift */; };
 		F32D99C621117E79007AAA8D /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D99C521117E79007AAA8D /* HomeModel.swift */; };
 		F32D99C821117E8A007AAA8D /* MenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D99C721117E8A007AAA8D /* MenuModel.swift */; };
@@ -189,6 +191,8 @@
 		E9876E1221678B6B0001C626 /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
 		E9876E1421679BF50001C626 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		E9876E1A216B6ED50001C626 /* ProgressGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressGradientView.swift; sourceTree = "<group>"; };
+		E99B8C30216DE4B800A90EFC /* GazeTrackerCalibrated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GazeTrackerCalibrated.swift; sourceTree = "<group>"; };
+		E99B8C32216DF1ED00A90EFC /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		ED4FD3A654935E1287D7E3F3 /* Pods-in-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-in-iosTests/Pods-in-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F3216B5520F4EA15008D6EFD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = "in-ios/view/home/HomeViewController.swift"; sourceTree = SOURCE_ROOT; };
 		F32D99C521117E79007AAA8D /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
@@ -436,6 +440,7 @@
 		F3283D70213013BA004B4FBE /* in-eye-gaze */ = {
 			isa = PBXGroup;
 			children = (
+				E99B8C30216DE4B800A90EFC /* GazeTrackerCalibrated.swift */,
 				E9876E0321674F890001C626 /* GazeUtils.swift */,
 				F3CE691C213D70E6004F6756 /* GazeEstimator.mlmodel */,
 				F3E97E5821422F4800379B4A /* GazeTracker.swift */,
@@ -499,6 +504,7 @@
 				E9876E1221678B6B0001C626 /* NotificationExtension.swift */,
 				F3D591BC216B82A7003921CB /* StringExtension.swift */,
 				E93ACD4B216CB6F500F29F54 /* UIStackViewExtension.swift */,
+				E99B8C32216DF1ED00A90EFC /* UIViewExtension.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -1099,6 +1105,7 @@
 				F334ADCA210D7F890056824A /* HomeViewModel.swift in Sources */,
 				E9876E1321678B6B0001C626 /* NotificationExtension.swift in Sources */,
 				F3C48CCB210F018200742855 /* MenuViewController.swift in Sources */,
+				E99B8C33216DF1ED00A90EFC /* UIViewExtension.swift in Sources */,
 				E9876E07216750310001C626 /* ScreenTypeFViewController.swift in Sources */,
 				E93ACD43216B8CD700F29F54 /* ScreenTypeDViewController.swift in Sources */,
 				F3355CF12122E904009AF602 /* LoadingModel.swift in Sources */,
@@ -1122,6 +1129,7 @@
 				F32DCEDC214A64B000B3D0F8 /* IntroThirdViewController.swift in Sources */,
 				F39059C32110473D00CAA292 /* MenuItems.swift in Sources */,
 				F3CE6924213DB385004F6756 /* IntroFirstModel.swift in Sources */,
+				E99B8C31216DE4B800A90EFC /* GazeTrackerCalibrated.swift in Sources */,
 				F3E97E5721422F3C00379B4A /* UIDevice+modelName.swift in Sources */,
 				F32F5B6721453DFB00558C68 /* IntroSecondViewModel.swift in Sources */,
 				F3CE6920213DB318004F6756 /* IntroFirstViewController.swift in Sources */,
