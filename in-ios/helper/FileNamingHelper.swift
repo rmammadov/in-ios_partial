@@ -10,8 +10,6 @@ import UIKit
 
 class FileNamingHelper {
     
-    let shared = FileNamingHelper()
-    
     func getNewFileName() -> String {
         
         return UIDevice.current.identifierForVendor!.uuidString + "_" + String(Date().timeIntervalSince1970)
