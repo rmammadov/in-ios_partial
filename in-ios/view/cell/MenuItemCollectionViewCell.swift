@@ -9,15 +9,13 @@
 import UIKit
 
 class MenuItemCollectionViewCell: UICollectionViewCell {
+    
+    public static let kLabelHeight: CGFloat = 38.5
+    public static let kLabelSpacing: CGFloat = 7
    
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var ivStatusIcon: UIImageView!
     @IBOutlet weak var ivIcon: UIImageView!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
     
     func setCell(url: String?, label: String?) {
         self.ivIcon.kf.indicatorType = .activity
@@ -28,6 +26,19 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
         }
         
         self.ivIcon.kf.indicatorType = .activity
-        self.labelTitle.text = label
+        self.labelTitle.attributedText = attrubitedTextWithoutLineSpacing(text: label ?? "")
+    }
+    
+    private func attrubitedTextWithoutLineSpacing(text: String) -> NSAttributedString {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 0.78
+        paragraphStyle.alignment = .center
+        let attrs: [NSAttributedString.Key: Any] = [
+            .paragraphStyle: paragraphStyle,
+            .font: UIFont.avenirDemiBold(size: 18),
+            .foregroundColor: UIColor.white
+        ]
+        let attrsString = NSAttributedString(string: text, attributes: attrs)
+        return attrsString
     }
 }
