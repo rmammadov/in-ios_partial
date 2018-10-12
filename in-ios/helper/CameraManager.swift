@@ -517,9 +517,9 @@ extension CameraManager {
     
     func getCalibrationFeatures() -> Array<String> {
         var arrayCalibrationFeatures: Array<String> = []
-//        for i in calibrationFeaturesSnapshoot {
-//            arrayCalibrationFeatures.append(i as String)
-//        }
+        guard let calibrationFeatures = calibrationFeaturesSnapshoot else { return [] }
+        arrayCalibrationFeatures.append("\(calibrationFeatures[0])")
+        arrayCalibrationFeatures.append("\(calibrationFeatures[1])")
         
         return arrayCalibrationFeatures
     }
