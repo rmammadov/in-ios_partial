@@ -196,7 +196,7 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
         var cellWidth = (self.collectionView.frame.size.width - marginSpace) / CGFloat(viewModel.getColumnCount())
         let cellHeight = self.collectionView.frame.size.height / CGFloat(viewModel.getRowCount())
         if cellWidth > cellHeight {
-            cellWidth = cellHeight - (7.0 + 7.0 + 17.0)
+            cellWidth = cellHeight - (MenuItemCollectionViewCell.kLabelSpacing + MenuItemCollectionViewCell.kLabelHeight)
         }
         return CGSize(width: cellWidth, height: cellHeight)
     }
@@ -208,7 +208,7 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
         var cellWidth = (self.collectionView.frame.size.width - marginSpace) / CGFloat(viewModel.getColumnCount())
         let cellHeight = self.collectionView.frame.size.height / CGFloat(viewModel.getRowCount())
         if cellWidth > cellHeight {
-            cellWidth = cellHeight - (7.0 + 7.0 + 17.0)
+            cellWidth = cellHeight - (MenuItemCollectionViewCell.kLabelSpacing + MenuItemCollectionViewCell.kLabelHeight)
             return (collectionView.frame.width - (CGFloat(viewModel.getColumnCount()) * cellWidth)) / CGFloat(viewModel.getColumnCount() - 1)
         } else {
             return 0
