@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellMenuItem" id="gTV-IL-0wX" customClass="MenuItemCollectionViewCell" customModule="in_ios" customModuleProvider="target">
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellMenuItem" id="gTV-IL-0wX" customClass="MenuItemCollectionViewCell" customModule="in_ios" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="397" height="413"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -20,40 +20,57 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_circle_gradient" translatesAutoresizingMaskIntoConstraints="NO" id="EJV-8z-gLK">
-                        <rect key="frame" x="7.5" y="0.0" width="382.5" height="382.5"/>
+                        <rect key="frame" x="14.5" y="0.0" width="368" height="368"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="EJV-8z-gLK" secondAttribute="height" id="Sin-30-SOy"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6MF-pU-T87">
-                        <rect key="frame" x="45.5" y="38.5" width="306" height="306"/>
+                        <rect key="frame" x="51.5" y="37" width="294" height="294"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="M3Q-0P-NaS">
-                        <rect key="frame" x="39.5" y="389.5" width="318" height="16.5"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GVc-xt-rGG">
+                        <rect key="frame" x="0.0" y="375" width="397" height="38"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M3Q-0P-NaS">
+                                <rect key="frame" x="-49.5" y="0.0" width="496" height="19.5"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Title">
+                                        <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <font key="NSFont" size="18" name="AvenirNext-DemiBold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineHeightMultiple="0.78000000000000003" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="16.5" id="cOL-Sd-hh8"/>
+                            <constraint firstAttribute="height" constant="38" id="390-wM-RbU"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="M3Q-0P-NaS" secondAttribute="bottom" id="CXM-4h-8zm"/>
+                            <constraint firstItem="M3Q-0P-NaS" firstAttribute="centerX" secondItem="GVc-xt-rGG" secondAttribute="centerX" id="YrS-Lw-GNv"/>
+                            <constraint firstItem="M3Q-0P-NaS" firstAttribute="width" secondItem="GVc-xt-rGG" secondAttribute="width" multiplier="1.25" id="p4C-95-oJJ"/>
+                            <constraint firstItem="M3Q-0P-NaS" firstAttribute="top" secondItem="GVc-xt-rGG" secondAttribute="top" id="xQV-ZF-WxJ"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="12"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    </view>
                 </subviews>
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="6MF-pU-T87" firstAttribute="centerY" secondItem="EJV-8z-gLK" secondAttribute="centerY" id="6n0-EC-igT"/>
-                <constraint firstItem="M3Q-0P-NaS" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="0.8" id="Aha-1d-oPJ"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="M3Q-0P-NaS" secondAttribute="bottom" constant="7" id="HEq-0v-GO5"/>
                 <constraint firstItem="EJV-8z-gLK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="JeA-oc-aXy"/>
                 <constraint firstItem="6MF-pU-T87" firstAttribute="centerX" secondItem="EJV-8z-gLK" secondAttribute="centerX" id="LqF-r6-2Md"/>
                 <constraint firstItem="EJV-8z-gLK" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="MTN-H5-efC"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EJV-8z-gLK" secondAttribute="trailing" id="MrF-ng-1A0"/>
                 <constraint firstItem="6MF-pU-T87" firstAttribute="width" secondItem="EJV-8z-gLK" secondAttribute="width" multiplier="0.8" id="POD-sP-yRW"/>
                 <constraint firstAttribute="trailing" secondItem="EJV-8z-gLK" secondAttribute="trailing" priority="750" id="eA1-8V-dzY"/>
-                <constraint firstItem="M3Q-0P-NaS" firstAttribute="top" secondItem="EJV-8z-gLK" secondAttribute="bottom" constant="7" id="egy-hu-gP8"/>
-                <constraint firstItem="M3Q-0P-NaS" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="m3l-kS-S1S"/>
+                <constraint firstAttribute="trailing" secondItem="GVc-xt-rGG" secondAttribute="trailing" id="ln6-TF-2b7"/>
                 <constraint firstItem="6MF-pU-T87" firstAttribute="height" secondItem="EJV-8z-gLK" secondAttribute="height" multiplier="0.8" id="mNy-dJ-uac"/>
+                <constraint firstItem="GVc-xt-rGG" firstAttribute="top" secondItem="EJV-8z-gLK" secondAttribute="bottom" constant="7" id="o5S-tj-hY9"/>
+                <constraint firstAttribute="bottom" secondItem="GVc-xt-rGG" secondAttribute="bottom" id="oYO-B6-r4U"/>
+                <constraint firstItem="GVc-xt-rGG" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="wJm-Ap-VC1"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="397" height="413"/>
