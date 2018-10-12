@@ -42,8 +42,10 @@ class CameraManager: NSObject {
     fileprivate var averageX: [Double] = Array(repeating: 0.0, count: Constant.DefaultConfig.GAZE_PREDICTION_AVERAGING_COUNT)
     fileprivate var averageY: [Double] = Array(repeating: 0.0, count: Constant.DefaultConfig.GAZE_PREDICTION_AVERAGING_COUNT)
     fileprivate var averagingCount: Double = 0
+    fileprivate var coordinates: (gazeX: Double, gazeY: Double) = (gazeX: 0, gazeY: 0)
     fileprivate var calibrationFeatures: MLMultiArray?
     fileprivate var calibrationFeaturesSnapshoot: MLMultiArray?
+    fileprivate var coordinatesSnapshot: (gazeX: Double, gazeY: Double)?
 
     open var cameraIsReady: Bool {
         get {
@@ -305,8 +307,6 @@ extension CameraManager: GazePredictionDelegate {
         } else {
             self.label?.text = "Values: X: \(String(describing: gazeTracker.gazeEstimation![0]))" + " Y: \(String(describing: gazeTracker.gazeEstimation![1]))"
             
-            calibrationFeatures = gazeTracker.calibFeatures
-            
             averageX.remove(at: 0)
             averageX.append(Double(truncating: gazeTracker.gazeEstimation![0]))
             
@@ -316,7 +316,8 @@ extension CameraManager: GazePredictionDelegate {
             let X = averageX.reduce(0, +)/Double(averageX.count)
             let Y = averageY.reduce(0, +)/Double(averageY.count)
             
-            let coordinates = gazeUtils.cm2pixels(gazeX: X, gazeY: Y, camX: 0, camY: 12.0, orientation: UIDevice.current.orientation)
+            calibrationFeatures = gazeTracker.calibFeatures
+            coordinates = gazeUtils.cm2pixels(gazeX: X, gazeY: Y, camX: 0, camY: 12.0, orientation: UIDevice.current.orientation)
             updatePointer(x: coordinates.gazeX, y: coordinates.gazeY)
             setPointerActive()
         }
@@ -510,19 +511,21 @@ extension CameraManager {
     
     func takeScreenShot() -> UIImage? {
         calibrationFeaturesSnapshoot = calibrationFeatures
+        coordinatesSnapshot = coordinates
         guard let screenShot = UIApplication.shared.screenShot else { return nil }
         
         return screenShot
     }
     
-    func getCalibrationFeatures() -> Array<String> {
+    func getCalibrationFeatures() -> PredictionDetail? {
         var arrayCalibrationFeatures: Array<String> = []
-        guard let calibrationFeatures = calibrationFeaturesSnapshoot else { return [] }
+        guard let coordinatesSnapshot = coordinatesSnapshot else { return nil }
+        guard let calibrationFeatures = calibrationFeaturesSnapshoot else { return nil }
         for i in 0...(calibrationFeatures.count - 1) {
             arrayCalibrationFeatures.append("\(calibrationFeatures[i])")
         }
         
-        return arrayCalibrationFeatures
+        return PredictionDetail(x: coordinatesSnapshot.gazeX, y: coordinatesSnapshot.gazeY, calibrationFeatures: arrayCalibrationFeatures)
     }
 }
 

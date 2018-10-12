@@ -27,7 +27,7 @@ class IntroThirdNewViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        setCamera()
+//        setCamera()
 //        let point = CGPoint(x: self.view.frame.size.height / 2 , y: 0)
 //        self.view.hitTest(point, with: nil)
     }
@@ -162,8 +162,8 @@ extension IntroThirdNewViewController {
     
     @objc func takeScreenShot() {
         guard let screenShot = cameraManager?.takeScreenShot() else { return }
-        guard let calibrationFeatures = cameraManager?.getCalibrationFeatures() else { return }
-        viewModel.uploadScreenShot(image: screenShot, calibrationFeatures: calibrationFeatures)
+        guard let predictionDetail = cameraManager?.getCalibrationFeatures() else { return }
+        viewModel.uploadScreenShot(image: screenShot, predictionDetail: predictionDetail)
         print("Took screenshot")
     }
     

@@ -29,5 +29,12 @@ struct UserInfo: Codable {
     let ageGroup: String
     let medicalCondition: String
     var files: Array<File>?
-    var calibrationFeatures: Array<Array<String>>?
+    var predictionDetails: Array<PredictionDetail>?
+}
+
+struct PredictionDetail: Codable {
+    
+    let x: Double
+    let y: Double
+    let calibrationFeatures: Array<String>
 }
