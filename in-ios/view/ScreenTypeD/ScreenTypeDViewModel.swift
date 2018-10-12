@@ -9,6 +9,10 @@
 import UIKit
 import RxSwift
 
+protocol ScreenTypeDDelegate: class {
+    func didSelect(value: Any, onButton button: ButtonInputScreen)
+}
+
 class ScreenTypeDViewModel: BaseViewModel {
     
     weak var delegate: ScreenTypeCDelegate?
@@ -26,8 +30,7 @@ class ScreenTypeDViewModel: BaseViewModel {
         items.forEach({ (button) in
             if let vc = storyboard.instantiateViewController(withIdentifier: BodyPartViewController.identifier) as? BodyPartViewController {
                 vc.viewModel.button = button
-                vc.viewModel.inputScreen = inputScreen
-                vc.viewModel.delegate = delegate
+                vc.viewModel.delegate = self
                 vcs.append(vc)
             }
         })
@@ -59,5 +62,17 @@ class ScreenTypeDViewModel: BaseViewModel {
     
     func getSelectedIndexPathObserver() -> Observable<IndexPath?> {
         return selectedIndexPath.asObservable()
+    }
+}
+
+extension ScreenTypeDViewModel: ScreenTypeDDelegate {
+    func didSelect(value: Any, onButton button: ButtonInputScreen) {
+        delegate?.didSelect(value: value, onScreen: inputScreen)
+        viewControllers.forEach { (viewController) in
+            guard let viewController = viewController as? BodyPartViewController,
+                viewController.viewModel.button.translations?.first?.label != button.translations?.first?.label
+                else { return }
+            viewController.viewModel.setSelectedBubble(nil)
+        }
     }
 }

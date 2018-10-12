@@ -18,7 +18,6 @@ class ColoredButtonCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        underlineProgressView.layer.cornerRadius = underlineProgressView.frame.height / 2.0
     }
     
     override func layoutSubviews() {

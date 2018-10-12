@@ -19,9 +19,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="181" height="85"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FNv-bc-lso">
-                        <rect key="frame" x="32" y="22" width="117" height="41"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FNv-bc-lso">
+                        <rect key="frame" x="8" y="24" width="165" height="49.5"/>
+                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="36"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -36,8 +36,8 @@
             </view>
             <constraints>
                 <constraint firstItem="Io4-YK-Dty" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="4Wo-Lr-cB0"/>
-                <constraint firstAttribute="trailing" secondItem="FNv-bc-lso" secondAttribute="trailing" constant="32" id="BsX-So-kTn"/>
-                <constraint firstItem="FNv-bc-lso" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="eVA-MY-Eba"/>
+                <constraint firstAttribute="trailing" secondItem="FNv-bc-lso" secondAttribute="trailing" constant="8" id="BsX-So-kTn"/>
+                <constraint firstItem="FNv-bc-lso" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" multiplier="1.15" id="eVA-MY-Eba"/>
                 <constraint firstAttribute="trailing" secondItem="Io4-YK-Dty" secondAttribute="trailing" id="mH2-rc-N1N"/>
                 <constraint firstItem="FNv-bc-lso" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="pQS-d5-4c6"/>
                 <constraint firstAttribute="bottom" secondItem="Io4-YK-Dty" secondAttribute="bottom" id="whG-lr-zge"/>
