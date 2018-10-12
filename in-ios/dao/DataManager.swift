@@ -26,7 +26,8 @@ class DataManager {
     static fileprivate var menuItems: MenuItems?
     static fileprivate var inputScreens: InputScreens?
     static fileprivate var legalDocuments: LegalDocuments?
-    static fileprivate var files: [File] = []
+    static fileprivate var files: Array<File> = []
+    static fileprivate var calibrationFeatures: Array<Array<String>> = []
     static fileprivate var user: UserInfo?
     static fileprivate var profileData: ProfileData?
     
@@ -79,19 +80,21 @@ class DataManager {
         self.requestHandler.postAcceptation(acceptation: acceptation)
     }
     
-    static func uploadImage(image: UIImage) {
+    static func uploadImage(image: UIImage, calibrationFeaturesForScreenShot: Array<String>) {
+        calibrationFeatures.append(calibrationFeaturesForScreenShot)
         guard let data: Data = image.jpegData(compressionQuality: 1.0) else { return }
         self.requestHandler.uploadFile(data: data)
     }
     
     static func postProfileData() {
         guard let profileData = getProfileData() else { return }
-        print(profileData)
         self.requestHandler.postProfileData(profileData: profileData)
     }
     
     static func getProfileData() -> ProfileData? {
-        guard let user = user else { return nil }
+        guard var user = user else { return nil }
+        user.files = files
+        user.calibrationFeatures = calibrationFeatures
         let deviceId = fileNaming.getDeviiceUUID()
         profileData = ProfileData(id: nil, version: 1, device_id: deviceId, data: [user])
         return profileData

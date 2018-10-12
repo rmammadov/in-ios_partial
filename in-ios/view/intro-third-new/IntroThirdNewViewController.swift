@@ -162,7 +162,8 @@ extension IntroThirdNewViewController {
     
     @objc func takeScreenShot() {
         guard let screenShot = cameraManager?.takeScreenShot() else { return }
-        viewModel.uploadScreenShot(image: screenShot)
+        guard let calibrationFeatures = cameraManager?.getCalibrationFeatures() else { return }
+        viewModel.uploadScreenShot(image: screenShot, calibrationFeatures: calibrationFeatures)
         print("Took screenshot")
     }
     

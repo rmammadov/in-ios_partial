@@ -43,6 +43,7 @@ class CameraManager: NSObject {
     fileprivate var averageY: [Double] = Array(repeating: 0.0, count: Constant.DefaultConfig.GAZE_PREDICTION_AVERAGING_COUNT)
     fileprivate var averagingCount: Double = 0
     fileprivate var calibrationFeatures: MLMultiArray?
+    fileprivate var calibrationFeaturesSnapshoot: MLMultiArray?
 
     open var cameraIsReady: Bool {
         get {
@@ -508,9 +509,19 @@ extension CameraManager {
 extension CameraManager {
     
     func takeScreenShot() -> UIImage? {
+        calibrationFeaturesSnapshoot = calibrationFeatures
         guard let screenShot = UIApplication.shared.screenShot else { return nil }
         
         return screenShot
+    }
+    
+    func getCalibrationFeatures() -> Array<String> {
+        var arrayCalibrationFeatures: Array<String> = []
+//        for i in calibrationFeaturesSnapshoot {
+//            arrayCalibrationFeatures.append(i as String)
+//        }
+        
+        return arrayCalibrationFeatures
     }
 }
 

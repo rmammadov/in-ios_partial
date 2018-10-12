@@ -16,8 +16,8 @@ class IntroThirdNewViewModel: BaseViewModel {
         return model.getTag()
     }
     
-    func uploadScreenShot(image: UIImage) {
-        model.uploadScreenShot(image: image)
+    func uploadScreenShot(image: UIImage, calibrationFeatures: Array<String>) {
+        model.uploadScreenShot(image: image, calibrationFeatures: calibrationFeatures)
     }
     
     func postProfileData() {
