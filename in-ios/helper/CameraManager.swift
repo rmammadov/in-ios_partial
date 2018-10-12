@@ -8,6 +8,7 @@
 
 import AVKit
 import CoreMotion
+import CoreML
 
 public enum CameraState {
     case ready, accessDenied, noDeviceFound, notDetermined
@@ -41,6 +42,7 @@ class CameraManager: NSObject {
     fileprivate var averageX: [Double] = Array(repeating: 0.0, count: Constant.DefaultConfig.GAZE_PREDICTION_AVERAGING_COUNT)
     fileprivate var averageY: [Double] = Array(repeating: 0.0, count: Constant.DefaultConfig.GAZE_PREDICTION_AVERAGING_COUNT)
     fileprivate var averagingCount: Double = 0
+    fileprivate var calibrationFeatures: MLMultiArray?
 
     open var cameraIsReady: Bool {
         get {
@@ -302,6 +304,8 @@ extension CameraManager: GazePredictionDelegate {
         } else {
             self.label?.text = "Values: X: \(String(describing: gazeTracker.gazeEstimation![0]))" + " Y: \(String(describing: gazeTracker.gazeEstimation![1]))"
             
+            calibrationFeatures = gazeTracker.calibFeatures
+            
             averageX.remove(at: 0)
             averageX.append(Double(truncating: gazeTracker.gazeEstimation![0]))
             
@@ -499,5 +503,14 @@ extension CameraManager {
         }
     }
 
+}
+
+extension CameraManager {
+    
+    func takeScreenShot() -> UIImage? {
+        guard let screenShot = UIApplication.shared.screenShot else { return nil }
+        
+        return screenShot
+    }
 }
 

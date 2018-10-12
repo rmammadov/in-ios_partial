@@ -19,6 +19,8 @@ class IntroThirdNewViewController: BaseViewController {
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var btnForward: UIButton!
     
+    var cameraManager: CameraManager?
+    
     private let viewModel: IntroThirdNewModel = IntroThirdNewModel()
     var btnPrevious: UIButton?
     
@@ -159,7 +161,7 @@ extension IntroThirdNewViewController {
     }
     
     @objc func takeScreenShot() {
-        guard let screenShot = UIApplication.shared.screenShot else { return }
+        guard let screenShot = cameraManager?.takeScreenShot() else { return }
         viewModel.uploadScreenShot(image: screenShot)
         print("Took screenshot")
     }
@@ -177,7 +179,9 @@ extension IntroThirdNewViewController {
     
     func setCamera() {
         // TODO: should be removed and reimplemented after tests
-        let cameraManager: CameraManager = CameraManager(cameraView: self.view)
+        cameraManager = CameraManager(cameraView: self.view)
+        
+        guard let cameraManager = cameraManager else { return }
         
         cameraManager.askUserForCameraPermission { (status) in
             if status {
