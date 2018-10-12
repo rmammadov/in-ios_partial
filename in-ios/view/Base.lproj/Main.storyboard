@@ -103,7 +103,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="collectionTopMenu" destination="vSO-2M-N7o" id="CP8-O9-2fY"/>
-                        <outlet property="constraintCollectionViewHeight" destination="iwl-ON-eS9" id="EOb-8F-32G"/>
+                        <outlet property="constraintCollectionViewHeight" destination="iwl-ON-eS9" id="mUs-ra-90D"/>
                         <outlet property="containerViewSubMenu" destination="iiL-Mh-1hh" id="5Kc-sz-wnE"/>
                         <outlet property="ivBackground" destination="8sU-uA-xuD" id="ygg-IQ-fju"/>
                         <outlet property="viewOpacity" destination="tRD-gu-OpP" id="GSl-bV-Qce"/>
@@ -123,7 +123,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7J2-te-iIE">
-                                <rect key="frame" x="48" y="32" width="1016" height="650"/>
+                                <rect key="frame" x="48" y="32" width="1016" height="614"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="tnq-cQ-evR">
@@ -166,7 +166,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WvS-SP-XwF">
-                                <rect key="frame" x="79" y="34.5" width="954" height="647.5"/>
+                                <rect key="frame" x="79" y="34.5" width="954" height="611.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="IOW-Vv-fPx">
                                     <size key="itemSize" width="240" height="210"/>
@@ -177,7 +177,7 @@
                                 <cells/>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5JH-bJ-GqA">
-                                <rect key="frame" x="0.0" y="292" width="63" height="134"/>
+                                <rect key="frame" x="0.0" y="274" width="63" height="134"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="5JH-bJ-GqA" secondAttribute="height" multiplier="83:176" id="Yk5-ur-Qgg"/>
                                 </constraints>
@@ -189,7 +189,7 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VXJ-98-Che">
-                                <rect key="frame" x="1049" y="292" width="63" height="134"/>
+                                <rect key="frame" x="1049" y="274" width="63" height="134"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="VXJ-98-Che" secondAttribute="height" multiplier="83:176" id="HsX-tT-MnC"/>
                                 </constraints>
@@ -278,7 +278,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fH3-UL-IDN">
-                                <rect key="frame" x="0.0" y="295.5" width="60" height="127"/>
+                                <rect key="frame" x="0.0" y="277.5" width="60" height="127"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="6d1-Gh-G2i"/>
                                     <constraint firstAttribute="width" secondItem="fH3-UL-IDN" secondAttribute="height" multiplier="83:176" id="Xn4-gY-xRx"/>
@@ -289,7 +289,7 @@
                                 </connections>
                             </button>
                             <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hvn-EK-XJK">
-                                <rect key="frame" x="65" y="52" width="982" height="630"/>
+                                <rect key="frame" x="65" y="52" width="982" height="594"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="8Xe-L6-vxs">
                                     <size key="itemSize" width="50" height="50"/>
@@ -300,7 +300,7 @@
                                 <cells/>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UIu-s7-iiK">
-                                <rect key="frame" x="1052" y="299" width="60" height="120"/>
+                                <rect key="frame" x="1052" y="281" width="60" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="UIu-s7-iiK" secondAttribute="height" multiplier="0.5" id="IIE-HA-q5C"/>
                                     <constraint firstAttribute="width" constant="60" id="uTh-F5-K2g"/>
@@ -1547,6 +1547,7 @@ The process will take less than 20 seconds.</string>
                         <outlet property="ivProgressbarContent" destination="I3H-1M-tyc" id="i8D-HG-jdk"/>
                         <outlet property="labelStatus" destination="BEl-97-I5p" id="p9f-vF-b7K"/>
                         <segue destination="3Au-hN-HZc" kind="presentation" identifier="segueIntro" id="nXY-dm-Ivv"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="segueHome" id="Qkw-AY-6BD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vev-Eu-snY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2328,6 +2329,7 @@ AAAAE90
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0sY-W2-dgh"/>
+        <segue reference="ycc-j2-1X5"/>
+        <segue reference="Qkw-AY-6BD"/>
     </inferredMetricsTieBreakers>
 </document>

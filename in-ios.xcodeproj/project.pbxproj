@@ -35,6 +35,8 @@
 		E9876E1321678B6B0001C626 /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E1221678B6B0001C626 /* NotificationExtension.swift */; };
 		E9876E1521679BF50001C626 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E1421679BF50001C626 /* GradientView.swift */; };
 		E9876E1B216B6ED50001C626 /* ProgressGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E1A216B6ED50001C626 /* ProgressGradientView.swift */; };
+		E99A8EEB2170A02D007B8E64 /* MainMenuItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E99A8EE92170A02D007B8E64 /* MainMenuItemCollectionViewCell.xib */; };
+		E99A8EEC2170A02D007B8E64 /* MainMenuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99A8EEA2170A02D007B8E64 /* MainMenuItemCollectionViewCell.swift */; };
 		E99B8C31216DE4B800A90EFC /* GazeTrackerCalibrated.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99B8C30216DE4B800A90EFC /* GazeTrackerCalibrated.swift */; };
 		E99B8C33216DF1ED00A90EFC /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99B8C32216DF1ED00A90EFC /* UIViewExtension.swift */; };
 		F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3216B5520F4EA15008D6EFD /* HomeViewController.swift */; };
@@ -198,6 +200,8 @@
 		E9876E1221678B6B0001C626 /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
 		E9876E1421679BF50001C626 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		E9876E1A216B6ED50001C626 /* ProgressGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressGradientView.swift; sourceTree = "<group>"; };
+		E99A8EE92170A02D007B8E64 /* MainMenuItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenuItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		E99A8EEA2170A02D007B8E64 /* MainMenuItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		E99B8C30216DE4B800A90EFC /* GazeTrackerCalibrated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GazeTrackerCalibrated.swift; sourceTree = "<group>"; };
 		E99B8C32216DF1ED00A90EFC /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		ED4FD3A654935E1287D7E3F3 /* Pods-in-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-in-iosTests/Pods-in-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -455,6 +459,15 @@
 			path = common;
 			sourceTree = "<group>";
 		};
+		E99A8EE421709B90007B8E64 /* MainMenuItem */ = {
+			isa = PBXGroup;
+			children = (
+				E99A8EEA2170A02D007B8E64 /* MainMenuItemCollectionViewCell.swift */,
+				E99A8EE92170A02D007B8E64 /* MainMenuItemCollectionViewCell.xib */,
+			);
+			path = MainMenuItem;
+			sourceTree = "<group>";
+		};
 		F3283D70213013BA004B4FBE /* in-eye-gaze */ = {
 			isa = PBXGroup;
 			children = (
@@ -702,6 +715,7 @@
 		F3C48CC1210EE4E400742855 /* cell */ = {
 			isa = PBXGroup;
 			children = (
+				E99A8EE421709B90007B8E64 /* MainMenuItem */,
 				F331EA7D211303880000B4E6 /* TopMenuItemCollectionViewCell.swift */,
 				F331EA7E211303880000B4E6 /* TopMenuItemCollectionViewCell.xib */,
 				F3355CF221240F6C009AF602 /* TopMenuItemExpandedCollectionViewCell.swift */,
@@ -934,6 +948,7 @@
 				F336588220D318C300B18CEC /* Main.storyboard in Resources */,
 				F3F8648321175BEE00B7CAA8 /* Colors.xcassets in Resources */,
 				F3B0C1CC2154BA1400E30CA1 /* GoogleService-Info.plist in Resources */,
+				E99A8EEB2170A02D007B8E64 /* MainMenuItemCollectionViewCell.xib in Resources */,
 				E966261D216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.xib in Resources */,
 				E9876E10216765070001C626 /* ColoredButtonCollectionViewCell.xib in Resources */,
 			);
@@ -1113,6 +1128,7 @@
 				F3DA017F2162907500D0625B /* WebviewViewModel.swift in Sources */,
 				F334ADC8210D7A370056824A /* MenuItem.swift in Sources */,
 				F3CE691D213D70E6004F6756 /* GazeEstimator.mlmodel in Sources */,
+				E99A8EEC2170A02D007B8E64 /* MainMenuItemCollectionViewCell.swift in Sources */,
 				E9876E1B216B6ED50001C626 /* ProgressGradientView.swift in Sources */,
 				F32D99C621117E79007AAA8D /* HomeModel.swift in Sources */,
 				E966261F216F38AA006C05B1 /* UIFontExtension.swift in Sources */,

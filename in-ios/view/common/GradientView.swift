@@ -21,8 +21,11 @@ import UIKit
         }
     }
     
+    var isRounded: Bool = false
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
+        layer.cornerRadius = rect.size.height / 2.0
         layer.masksToBounds = true
         var gradient: CAGradientLayer
         if let gradientLayer = layer.sublayers?.first as? CAGradientLayer {
@@ -47,6 +50,7 @@ import UIKit
         if gradient.superlayer == nil {
             layer.insertSublayer(gradient, at: 0)
         }
+        print(rect)
     }
 
 }

@@ -221,6 +221,9 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
         self.viewModel.setSelection(indexPath: indexPath)
         guard let cell = self.getCellForIndexPath(indexPath: indexPath) else { return }
         AnimationUtil.animateMenuSelection(imageView: cell.ivStatusIcon, fingerTouch: true, tag: InputAViewController.TAG)
+        if let homeVC = self.parent?.parent?.parent as? HomeViewController {
+            homeVC.viewModel.setMenuExpanded(false)
+        }
     }
     
     func getCellForIndexPath(indexPath: IndexPath) -> MenuItemCollectionViewCell? {

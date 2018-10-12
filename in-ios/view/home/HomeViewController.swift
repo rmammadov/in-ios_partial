@@ -67,6 +67,10 @@ class HomeViewController: BaseViewController {
 }
 
 extension HomeViewController {
+    
+    var cellIdentifier: String {
+        return MainMenuItemCollectionViewCell.identifier
+    }
 
     func setUi() {
         setViewModel()
@@ -80,6 +84,9 @@ extension HomeViewController {
     }
     
     func setCollectionView() {
+        
+        self.collectionTopMenu.register(UINib(nibName: cellIdentifier, bundle: nil),
+                                        forCellWithReuseIdentifier: cellIdentifier)
         self.collectionTopMenu.register(UINib.init(nibName: nibTopMenuItem, bundle: nil), forCellWithReuseIdentifier:reuseIdentifier)
         self.collectionTopMenu.register(UINib.init(nibName: nibTopMenuItemExpanded, bundle: nil), forCellWithReuseIdentifier:reuseIdentifierExpanded)
         self.collectionTopMenu.dataSource = self
@@ -96,6 +103,10 @@ extension HomeViewController {
                 }
             }
         }).disposed(by: disposeBag)
+        
+        viewModel.getMenuExpandedObservable().subscribe(onNext: { (isExpanded) in
+            self.updateTopMenu()
+        }).disposed(by: disposeBag)
     }
     
     func updateUi() {
@@ -106,13 +117,34 @@ extension HomeViewController {
     // TODO: Hardcode should be removed
     
     func updateTopMenu() {
-        if viewModel.getIsMenuExpanded(){
+        updateMainMenu()
+//        if viewModel.getIsMenuExpanded(){
+//            self.constraintCollectionViewHeight.constant = 116
+//        } else {
+//            self.constraintCollectionViewHeight.constant = 64
+//        }
+//        self.collectionTopMenu.layoutIfNeeded()
+//        self.collectionTopMenu.reloadData()
+    }
+    
+    private func updateMainMenu() {
+        if viewModel.getIsMenuExpanded() {
             self.constraintCollectionViewHeight.constant = 116
         } else {
             self.constraintCollectionViewHeight.constant = 64
         }
-        self.collectionTopMenu.layoutIfNeeded()
-        self.collectionTopMenu.reloadData()
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+            self.collectionTopMenu.collectionViewLayout.invalidateLayout()
+            self.collectionTopMenu.visibleCells.forEach({ (cell) in
+                guard let cell = cell as? MainMenuItemCollectionViewCell else { return }
+                if self.viewModel.getIsMenuExpanded() {
+                    cell.maximize(toHeight: 116)
+                } else {
+                    cell.minimize(toHeight: 64)
+                }
+            })
+        }
     }
     
     func setBackground() {
@@ -125,8 +157,7 @@ extension HomeViewController {
         ivBackground.alpha = alpha
     }
     
-    func setCamera()
-    {
+    func setCamera() {
         // TODO: should be removed and reimplemented after tests
         let cameraManager: CameraManager = CameraManager(cameraView: self.viewOpacity)
 
@@ -152,39 +183,20 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {        
         viewModel.setItem(index: indexPath.row)
         
-        if viewModel.getIsMenuExpanded() {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifierExpanded, for: indexPath as IndexPath) as! TopMenuItemExpandedCollectionViewCell
-            
-            cell.setIcon(url: viewModel.getItemIcon())
-            cell.label.text = viewModel.getItemTitle()
-            
-            if indexPath == viewModel.getTopMenuItemSelected() {
-                cell.setSelected(isSelected: true)
-            } else {
-                cell.setSelected(isSelected: false)
-            }
-            
-            return cell
-        } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! TopMenuItemCollectionViewCell
-            
-            cell.setIcon(url: viewModel.getItemIcon())
-            cell.labelPassive.text = viewModel.getItemTitle()
-            cell.labelActive.text = viewModel.getItemTitle()
-            
-            if indexPath == viewModel.getTopMenuItemSelected() {
-                cell.setSelected(isSelected: true)
-            } else {
-                cell.setSelected(isSelected: false)
-            }
-            
-            return cell
-        }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
+            as? MainMenuItemCollectionViewCell else { fatalError() }
+        let item = viewModel.getItem(for: indexPath)
+        cell.setupView(MainMenuItemCollectionViewCell.ViewModel(title: item.translations.first?.label ?? item.name,
+                                                                url: item.icon?.url))
+        viewModel.getIsMenuExpanded() ? cell.maximize(animated: false, toHeight: cell.bounds.height) : cell.minimize(animated: false, toHeight: cell.bounds.height)
+        cell.setSelected(viewModel.getTopMenuItemSelected() == indexPath)
+        return cell
     }
     
     // MARK: UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.setMenuExpanded(true)
         setTopMenuItemSelected(indexPath: indexPath)
         viewModel.onTopMenuItemSelected(indexPath: indexPath)
     }
@@ -216,30 +228,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
     }
     
-    func getCellForIndexPath(indexPath: IndexPath) -> UICollectionViewCell? {
-        var cell: UICollectionViewCell?
-        if viewModel.getIsMenuExpanded() {
-            cell = self.collectionTopMenu.cellForItem(at: indexPath) as! TopMenuItemExpandedCollectionViewCell
-        } else {
-            cell = self.collectionTopMenu.cellForItem(at: indexPath) as! TopMenuItemCollectionViewCell
-        }
-        
-        return cell
-    }
-    
     func setTopMenuItemSelected(indexPath: IndexPath) {
-        if viewModel.getIsMenuExpanded() {
-            let previousActiveCell = self.getCellForIndexPath(indexPath: viewModel.getTopMenuItemSelected())
-            as! TopMenuItemExpandedCollectionViewCell
-            previousActiveCell.setSelected(isSelected: false)
-            let currentActiveCell = self.getCellForIndexPath(indexPath: indexPath) as! TopMenuItemExpandedCollectionViewCell
-            currentActiveCell.setSelected(isSelected: true)
-        } else {
-            let previousActiveCell = self.getCellForIndexPath(indexPath: viewModel.getTopMenuItemSelected()) as! TopMenuItemCollectionViewCell
-            previousActiveCell.setSelected(isSelected: false)
-            let currentActiveCell = self.getCellForIndexPath(indexPath: indexPath) as! TopMenuItemCollectionViewCell
-            currentActiveCell.setSelected(isSelected: true)
-        }
+        guard let previousActiveCell = collectionTopMenu.cellForItem(at: viewModel.getTopMenuItemSelected()) as? MainMenuItemCollectionViewCell,
+            let currentActiveCell = collectionTopMenu.cellForItem(at: indexPath) as? MainMenuItemCollectionViewCell
+            else { return }
+        previousActiveCell.setSelected(false)
+        currentActiveCell.setSelected(true)
     }
     
     func onOrientationChanged() {
