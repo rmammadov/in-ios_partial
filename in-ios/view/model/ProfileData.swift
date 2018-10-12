@@ -11,8 +11,9 @@ import Foundation
 struct ProfileData: Codable {
     
     let id: Int64?
-    let data: Array<UserInfo>?
-    let files: Array<File>?
+    let version: Int?
+    let device_id: String?
+    let data: Array<UserInfo>
 }
 
 struct File: Codable {

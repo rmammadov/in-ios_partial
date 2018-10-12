@@ -31,6 +31,7 @@ class DataManager {
     static fileprivate var profileData: ProfileData?
     
     static fileprivate let requestHandler = ApiRequestHandler()
+    static fileprivate let fileNaming = FileNamingHelper()
     
     static func setSubscribers() {
         self.requestHandler.status.asObservable().subscribe(onNext: {
@@ -91,7 +92,8 @@ class DataManager {
     
     static func getProfileData() -> ProfileData? {
         guard let user = user else { return nil }
-        profileData = ProfileData(id: nil, data: [user], files: files)
+        let deviceId = fileNaming.getDeviiceUUID()
+        profileData = ProfileData(id: nil, version: 1, device_id: deviceId, data: [user])
         return profileData
     }
     

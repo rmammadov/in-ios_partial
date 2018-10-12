@@ -11,7 +11,10 @@ import UIKit
 class FileNamingHelper {
     
     func getNewFileName() -> String {
-        
-        return UIDevice.current.identifierForVendor!.uuidString + "_" + String(Date().timeIntervalSince1970)
+        return getDeviiceUUID() + "_" + String(Date().timeIntervalSince1970)
+    }
+    
+    func getDeviiceUUID() -> String {
+        return UIDevice.current.identifierForVendor!.uuidString
     }
 }
