@@ -34,7 +34,7 @@ struct UserInfo: Codable {
 
 struct PredictionDetail: Codable {
     
-    let x: Double
-    let y: Double
+    let cross_x: Double
+    let cross_y: Double
     let calibrationFeatures: Array<String>
 }

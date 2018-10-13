@@ -180,7 +180,7 @@ extension IntroThirdNewViewController {
     
     func setCamera() {
         // TODO: should be removed and reimplemented after tests
-        cameraManager = CameraManager(cameraView: self.view)
+        cameraManager = CameraManager(cameraView: self.view, showPreview: false, showLabel: false, showPointer: false)
         
         guard let cameraManager = cameraManager else { return }
         

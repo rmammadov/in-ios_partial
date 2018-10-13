@@ -46,6 +46,9 @@ class CameraManager: NSObject {
     fileprivate var calibrationFeatures: MLMultiArray?
     fileprivate var calibrationFeaturesSnapshoot: MLMultiArray?
     fileprivate var coordinatesSnapshot: (gazeX: Double, gazeY: Double)?
+    fileprivate var showPreview = true
+    fileprivate var showLabel = true
+    fileprivate var showPointer = true
 
     open var cameraIsReady: Bool {
         get {
@@ -85,10 +88,14 @@ class CameraManager: NSObject {
         }
     }
     
-    init(cameraView: UIView) {
+    init(cameraView: UIView, showPreview: Bool, showLabel: Bool, showPointer: Bool) {
         super.init()
         // TODO: Remove after tests
         self.cameraView = cameraView // For the test purpose
+        self.showPreview = showPreview
+        self.showLabel = showLabel
+        self.showPointer = showPointer
+        
         addPreviewLayer()
         addLabel();
         addPointer();
@@ -139,41 +146,47 @@ extension CameraManager {
     }
     
     fileprivate func addPreviewLayer() {
-        self.previewLayer = UIImageView()
-        
-        self.previewLayer?.contentMode = .scaleAspectFit
-        self.cameraView?.addSubview(self.previewLayer!)
-        
-        self.previewLayer?.translatesAutoresizingMaskIntoConstraints = false
-        self.previewLayer?.leftAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 10).isActive=true
-        self.previewLayer?.topAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -350).isActive=true
-        self.previewLayer?.rightAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 330).isActive=true
-        self.previewLayer?.bottomAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -34).isActive=true
+        if showPreview {
+            self.previewLayer = UIImageView()
+            
+            self.previewLayer?.contentMode = .scaleAspectFit
+            self.cameraView?.addSubview(self.previewLayer!)
+            
+            self.previewLayer?.translatesAutoresizingMaskIntoConstraints = false
+            self.previewLayer?.leftAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 10).isActive=true
+            self.previewLayer?.topAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -350).isActive=true
+            self.previewLayer?.rightAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 330).isActive=true
+            self.previewLayer?.bottomAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -34).isActive=true
 
-        self.cameraView?.layer.zPosition = .greatestFiniteMagnitude
+            self.cameraView?.layer.zPosition = .greatestFiniteMagnitude
+        }
     }
     
     fileprivate func addLabel() {
-        label = UILabel()
-        label?.textAlignment = .center
-        label?.textColor = .red
-        label?.font = UIFont(name:"HelveticaNeue-Bold", size: 16.0)
-        label?.text = "Coordinates"
-        self.cameraView?.addSubview(label!)
-        
-        label?.translatesAutoresizingMaskIntoConstraints = false
-        label?.leftAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 10).isActive=true
-        label?.topAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -34).isActive=true
-        label?.rightAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 330).isActive=true
-        label?.bottomAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -10).isActive=true
+        if showLabel {
+            label = UILabel()
+            label?.textAlignment = .center
+            label?.textColor = .red
+            label?.font = UIFont(name:"HelveticaNeue-Bold", size: 16.0)
+            label?.text = "Coordinates"
+            self.cameraView?.addSubview(label!)
+            
+            label?.translatesAutoresizingMaskIntoConstraints = false
+            label?.leftAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 10).isActive=true
+            label?.topAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -34).isActive=true
+            label?.rightAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 330).isActive=true
+            label?.bottomAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -10).isActive=true
+        }
 
     }
     
     fileprivate func addPointer() {
-        imagePointerRed = UIImage(named: "ic_pointer_red")
-        imagePointerYellow = UIImage(named: "ic_pointer_yellow")
-        ivPointer = UIImageView(image: imagePointerRed!)
-        ivPointer?.contentMode = .scaleAspectFill
+        if showPointer {
+            imagePointerRed = UIImage(named: "ic_pointer_red")
+            imagePointerYellow = UIImage(named: "ic_pointer_yellow")
+            ivPointer = UIImageView(image: imagePointerRed!)
+            ivPointer?.contentMode = .scaleAspectFill
+        }
     }
 
     fileprivate func setPointerActive() {
@@ -303,10 +316,10 @@ extension CameraManager: GazePredictionDelegate {
         let gazeTracker: GazeTracker = self.gazeTracker!
         if !status {
             self.label?.text = "nil"
-            setPointerPassive()
+            if showPointer {
+                setPointerPassive()
+            }
         } else {
-            self.label?.text = "Values: X: \(String(describing: gazeTracker.gazeEstimation![0]))" + " Y: \(String(describing: gazeTracker.gazeEstimation![1]))"
-            
             averageX.remove(at: 0)
             averageX.append(Double(truncating: gazeTracker.gazeEstimation![0]))
             
@@ -318,8 +331,15 @@ extension CameraManager: GazePredictionDelegate {
             
             calibrationFeatures = gazeTracker.calibFeatures
             coordinates = gazeUtils.cm2pixels(gazeX: X, gazeY: Y, camX: 0, camY: 12.0, orientation: UIDevice.current.orientation)
-            updatePointer(x: coordinates.gazeX, y: coordinates.gazeY)
-            setPointerActive()
+            
+            if showLabel {
+                self.label?.text = "Values: X: \(String(describing: gazeTracker.gazeEstimation![0]))" + " Y: \(String(describing: gazeTracker.gazeEstimation![1]))"
+            }
+            
+            if showPointer {
+                updatePointer(x: coordinates.gazeX, y: coordinates.gazeY)
+                setPointerActive()
+            }
         }
         
 //        self.isFaceDetected(status: status)
@@ -525,7 +545,7 @@ extension CameraManager {
             arrayCalibrationFeatures.append("\(calibrationFeatures[i])")
         }
         
-        return PredictionDetail(x: coordinatesSnapshot.gazeX, y: coordinatesSnapshot.gazeY, calibrationFeatures: arrayCalibrationFeatures)
+        return PredictionDetail(cross_x: coordinatesSnapshot.gazeX, cross_y: coordinatesSnapshot.gazeY, calibrationFeatures: arrayCalibrationFeatures)
     }
 }
 

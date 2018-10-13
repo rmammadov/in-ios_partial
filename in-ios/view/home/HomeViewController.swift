@@ -128,7 +128,7 @@ extension HomeViewController {
     func setCamera()
     {
         // TODO: should be removed and reimplemented after tests
-        let cameraManager: CameraManager = CameraManager(cameraView: self.viewOpacity)
+        let cameraManager: CameraManager = CameraManager(cameraView: self.viewOpacity, showPreview: false, showLabel: false, showPointer: true)
 
         cameraManager.askUserForCameraPermission { (status) in
             if status {
