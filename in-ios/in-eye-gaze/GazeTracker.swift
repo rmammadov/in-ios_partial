@@ -69,7 +69,7 @@ public class GazeTracker: FaceFinderDelegate {
      */
     public func startPrediction(scene: UIImage) {
         self.startTotalTime = CFAbsoluteTimeGetCurrent()
-//        print("Algorithm starting @:      \(CFAbsoluteTimeGetCurrent())")
+        //        print("Algorithm starting @:      \(CFAbsoluteTimeGetCurrent())")
         var rotatedImage: UIImage?
         switch scene.imageOrientation {
         case .left:
@@ -88,7 +88,7 @@ public class GazeTracker: FaceFinderDelegate {
     
     /**
      Runs the gaze estimation in the background
-    */
+     */
     public func startPredictionInBackground(scene: UIImage) {
         
         DispatchQueue.global(qos: .background).async {
@@ -97,21 +97,21 @@ public class GazeTracker: FaceFinderDelegate {
     }
     
     public func didFindFaces(status: Bool, scene: UIImage) {
-//        print("Faces found @:             \(CFAbsoluteTimeGetCurrent())")
+        //        print("Faces found @:             \(CFAbsoluteTimeGetCurrent())")
         
         if !status {
             self.predictionDelegate?.didUpdatePrediction(status: false)
             return
         }
         
-//        print("Getting main face @:       \(CFAbsoluteTimeGetCurrent())")
+        //        print("Getting main face @:       \(CFAbsoluteTimeGetCurrent())")
         getMainFace()
         
         let width = scene.cgImage!.width, height = scene.cgImage!.height
         
-//        print("Getting facial features @: \(CFAbsoluteTimeGetCurrent())")
+        //        print("Getting facial features @: \(CFAbsoluteTimeGetCurrent())")
         let facialFeatures: MLMultiArray = self.getFacialFeatures(width: width, height: height)
-//        print("Cropping eyes @:           \(CFAbsoluteTimeGetCurrent())")
+        //        print("Cropping eyes @:           \(CFAbsoluteTimeGetCurrent())")
         let eyes = self.getEyes(image: scene)
         guard let leftEye = eyes.leftEYe, let rightEye = eyes.rightEye else{
             self.gazeEstimation = nil
@@ -119,28 +119,28 @@ public class GazeTracker: FaceFinderDelegate {
             return
         }
         
-//        print("Concatenating eyes @:      \(CFAbsoluteTimeGetCurrent())")
+        //        print("Concatenating eyes @:      \(CFAbsoluteTimeGetCurrent())")
         guard let eyesImage = self.concatenateEyes(leftEye: leftEye, rightEye: rightEye) else {
             self.gazeEstimation = nil
             self.predictionDelegate?.didUpdatePrediction(status: false)
             return
         }
         
-//        print("Converting eyes @:         \(CFAbsoluteTimeGetCurrent())")
+        //        print("Converting eyes @:         \(CFAbsoluteTimeGetCurrent())")
         guard let eyeChannels = self.channels2MLMultiArray(image: eyesImage) else {
             self.gazeEstimation = nil
             self.predictionDelegate?.didUpdatePrediction(status: false)
             return
         }
         
-//        print("Estimating illuminant @:   \(CFAbsoluteTimeGetCurrent())")
+        //        print("Estimating illuminant @:   \(CFAbsoluteTimeGetCurrent())")
         guard let illuminant = self.estimateIlluminant(image: scene) else {
             self.gazeEstimation = nil
             self.predictionDelegate?.didUpdatePrediction(status: false)
             return
         }
         
-//        print("Estimating gaze @:         \(CFAbsoluteTimeGetCurrent())")
+        //        print("Estimating gaze @:         \(CFAbsoluteTimeGetCurrent())")
         guard let pred = predictGaze(eyesB: eyeChannels.blueChannel, eyesG: eyeChannels.greenChannel, eyesR: eyeChannels.redChannel, illuminant: illuminant, headPose: facialFeatures) else {
             self.gazeEstimation = nil
             self.calibFeatures = nil
@@ -229,7 +229,7 @@ public class GazeTracker: FaceFinderDelegate {
         }
         
         guard let mlFeatures = try? MLMultiArray(shape:[16], dataType:MLMultiArrayDataType.double) else {
-                fatalError("Unexpected runtime error. MLMultiArray")
+            fatalError("Unexpected runtime error. MLMultiArray")
         }
         
         for i in 0...7 {
@@ -264,11 +264,11 @@ public class GazeTracker: FaceFinderDelegate {
         let rightOrigin = CGPoint(x: (rightEyePos?.x.intValue)! - cropLen/2,
                                   y: (rightEyePos?.y.intValue)! - cropLen/2)
         
-        var leftEyeImage = cgImage?.cropping(to: CGRect(origin: leftOrigin, size: cropSize))
-        var rightEyeImage = cgImage?.cropping(to: CGRect(origin: rightOrigin, size: cropSize))
+        // Adjusted to fix the issue of nil pointer exception during gaze prediction
+        guard var leftEyeImage = cgImage?.cropping(to: CGRect(origin: leftOrigin, size: cropSize)), var rightEyeImage = cgImage?.cropping(to: CGRect(origin: rightOrigin, size: cropSize)) else { return (nil, nil)}
         
-        leftEyeImage = resizeCGImage(image: leftEyeImage!)
-        rightEyeImage = resizeCGImage(image: rightEyeImage!)
+        leftEyeImage = resizeCGImage(image: leftEyeImage)!
+        rightEyeImage = resizeCGImage(image: rightEyeImage)!
         
         return (leftEyeImage, rightEyeImage)
     }
@@ -355,7 +355,7 @@ public class GazeTracker: FaceFinderDelegate {
                 let red: Double = Double(data[offset+rOff])/255.0
                 let green: Double = Double(data[offset+gOff])/255.0
                 let blue: Double = Double(data[offset+bOff])/255.0
-
+                
                 redChannel[y * width + x] = red as NSNumber
                 greenChannel[y * width + x] = green as NSNumber
                 blueChannel[y * width + x] = blue as NSNumber
