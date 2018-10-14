@@ -147,6 +147,15 @@ public class GazeTracker: FaceFinderDelegate {
             return
         }
         
+        self.gazeEstimation = pred.gazeXY
+        self.calibFeatures = pred.calibFeats
+        self.elapsedTotalTime = CFAbsoluteTimeGetCurrent() - self.startTotalTime
+        print("\nTotal algorithm processing time: \(self.elapsedTotalTime) s.")
+        if self.gazeEstimation != nil { print(self.gazeEstimation![0], self.gazeEstimation![1]) }
+        self.predictionDelegate?.didUpdatePrediction(status: true)
+        return
+        
+        
         if let calibFeats = pred.calibFeats {
             guard let corrPred = correctBias(with: calibFeats) else {
                 self.gazeEstimation = nil
