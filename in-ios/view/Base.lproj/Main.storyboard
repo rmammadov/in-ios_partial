@@ -122,7 +122,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1112" height="748"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7J2-te-iIE">
+                            <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7J2-te-iIE">
                                 <rect key="frame" x="48" y="32" width="1016" height="650"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -165,7 +165,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1112" height="748"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WvS-SP-XwF">
+                            <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WvS-SP-XwF">
                                 <rect key="frame" x="79" y="34.5" width="954" height="647.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="IOW-Vv-fPx">
@@ -288,7 +288,7 @@
                                     <action selector="onClickBackBtn:" destination="8cA-NZ-a1n" eventType="touchUpInside" id="Gjn-Yd-wLk"/>
                                 </connections>
                             </button>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hvn-EK-XJK">
+                            <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hvn-EK-XJK">
                                 <rect key="frame" x="65" y="52" width="982" height="630"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="8Xe-L6-vxs">
@@ -1562,24 +1562,21 @@ The process will take less than 20 seconds.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7eH-TA-TIF" userLabel="Header">
-                                <rect key="frame" x="0.0" y="0.0" width="1112" height="100"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1112" height="90"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dA5-P8-3s2">
-                                        <rect key="frame" x="1066" y="35" width="30" height="30"/>
+                                        <rect key="frame" x="1066" y="30" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="dA5-P8-3s2" secondAttribute="height" multiplier="1:1" id="McE-ap-ueQ"/>
-                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="40" id="X0e-6o-oZx"/>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="45" id="X0e-6o-oZx"/>
                                         </constraints>
                                         <connections>
                                             <action selector="onClearButtonClick:" destination="7d3-Pf-WOu" eventType="touchUpInside" id="HUw-dS-NXX"/>
                                         </connections>
                                     </button>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ljj-qp-hn2">
-                                        <rect key="frame" x="306" y="0.0" width="500" height="100"/>
+                                        <rect key="frame" x="62" y="0.0" width="988" height="90"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" priority="750" constant="500" id="jdF-VK-rbV"/>
-                                        </constraints>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="jvX-xR-TRs">
                                             <size key="itemSize" width="50" height="50"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -1589,7 +1586,7 @@ The process will take less than 20 seconds.</string>
                                         <cells/>
                                     </collectionView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_gradient" translatesAutoresizingMaskIntoConstraints="NO" id="zc6-63-68k">
-                                        <rect key="frame" x="0.0" y="98" width="1112" height="2"/>
+                                        <rect key="frame" x="0.0" y="88" width="1112" height="2"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="Vho-xZ-bG6"/>
                                         </constraints>
@@ -1600,8 +1597,8 @@ The process will take less than 20 seconds.</string>
                                     <constraint firstAttribute="bottom" secondItem="Ljj-qp-hn2" secondAttribute="bottom" id="8za-xA-WJN"/>
                                     <constraint firstAttribute="bottom" secondItem="zc6-63-68k" secondAttribute="bottom" id="B1v-wu-Uc7"/>
                                     <constraint firstAttribute="trailing" secondItem="zc6-63-68k" secondAttribute="trailing" id="DO8-2m-3Ge"/>
-                                    <constraint firstAttribute="height" constant="100" id="Iyg-H3-qX5"/>
-                                    <constraint firstItem="dA5-P8-3s2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ljj-qp-hn2" secondAttribute="trailing" constant="16" id="KLX-Ou-Av6"/>
+                                    <constraint firstAttribute="height" constant="90" id="Iyg-H3-qX5"/>
+                                    <constraint firstItem="dA5-P8-3s2" firstAttribute="leading" secondItem="Ljj-qp-hn2" secondAttribute="trailing" constant="16" id="KLX-Ou-Av6"/>
                                     <constraint firstItem="zc6-63-68k" firstAttribute="leading" secondItem="7eH-TA-TIF" secondAttribute="leading" id="OOt-x2-oLt"/>
                                     <constraint firstItem="Ljj-qp-hn2" firstAttribute="top" secondItem="7eH-TA-TIF" secondAttribute="top" id="YZN-fs-6R9"/>
                                     <constraint firstAttribute="trailing" secondItem="dA5-P8-3s2" secondAttribute="trailing" constant="16" id="hdT-YQ-ER1"/>
@@ -1610,10 +1607,10 @@ The process will take less than 20 seconds.</string>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uUe-oB-s79" userLabel="LeftView">
-                                <rect key="frame" x="0.0" y="100" width="65" height="734"/>
+                                <rect key="frame" x="0.0" y="90" width="65" height="744"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGp-SE-vhd">
-                                        <rect key="frame" x="0.0" y="253.5" width="60" height="127"/>
+                                        <rect key="frame" x="0.0" y="308.5" width="60" height="127"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="wGp-SE-vhd" secondAttribute="height" multiplier="83:176" id="FN0-oh-CtC"/>
                                             <constraint firstAttribute="width" constant="60" id="h1H-jP-GXw"/>
@@ -1626,16 +1623,17 @@ The process will take less than 20 seconds.</string>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="wGp-SE-vhd" firstAttribute="centerY" secondItem="uUe-oB-s79" secondAttribute="centerY" id="5gh-2a-ciV"/>
                                     <constraint firstItem="wGp-SE-vhd" firstAttribute="leading" secondItem="uUe-oB-s79" secondAttribute="leading" id="dIL-LR-Zcz"/>
                                     <constraint firstAttribute="width" constant="65" id="fYJ-0z-2ny"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="65" id="zKr-Ng-VvZ"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="djf-SA-qOa" userLabel="RightView">
-                                <rect key="frame" x="1047" y="100" width="65" height="734"/>
+                                <rect key="frame" x="1047" y="90" width="65" height="744"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pny-74-ARZ">
-                                        <rect key="frame" x="5" y="257" width="60" height="120"/>
+                                        <rect key="frame" x="5" y="312" width="60" height="120"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="pny-74-ARZ" secondAttribute="height" multiplier="0.5" id="0Yk-EQ-taV"/>
                                             <constraint firstAttribute="width" constant="60" id="MIu-0o-G7i"/>
@@ -1649,14 +1647,15 @@ The process will take less than 20 seconds.</string>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="65" id="KZT-mj-Evu"/>
+                                    <constraint firstItem="pny-74-ARZ" firstAttribute="centerY" secondItem="djf-SA-qOa" secondAttribute="centerY" id="Oad-Ry-7ur"/>
                                     <constraint firstAttribute="trailing" secondItem="pny-74-ARZ" secondAttribute="trailing" id="WPs-4B-biO"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sGM-0m-r6H">
-                                <rect key="frame" x="65" y="100" width="982" height="734"/>
+                                <rect key="frame" x="65" y="90" width="982" height="744"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x24-Zp-YXN">
-                                        <rect key="frame" x="0.0" y="54.5" width="982" height="625.5"/>
+                                        <rect key="frame" x="0.0" y="59.5" width="982" height="625.5"/>
                                     </containerView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1682,8 +1681,6 @@ The process will take less than 20 seconds.</string>
                             <constraint firstItem="djf-SA-qOa" firstAttribute="bottom" secondItem="Qqj-JM-YbC" secondAttribute="bottom" id="b3b-CW-bsA"/>
                             <constraint firstItem="7eH-TA-TIF" firstAttribute="trailing" secondItem="Qqj-JM-YbC" secondAttribute="trailing" id="bF9-yq-geq"/>
                             <constraint firstItem="djf-SA-qOa" firstAttribute="trailing" secondItem="Qqj-JM-YbC" secondAttribute="trailing" id="dJn-y5-8HS"/>
-                            <constraint firstItem="wGp-SE-vhd" firstAttribute="centerY" secondItem="Qqj-JM-YbC" secondAttribute="centerY" id="etC-Ra-i2d"/>
-                            <constraint firstItem="pny-74-ARZ" firstAttribute="centerY" secondItem="Qqj-JM-YbC" secondAttribute="centerY" id="nYp-Wx-aVd"/>
                             <constraint firstItem="sGM-0m-r6H" firstAttribute="top" secondItem="7eH-TA-TIF" secondAttribute="bottom" id="tG9-8x-GZE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Qqj-JM-YbC"/>
@@ -1697,7 +1694,6 @@ The process will take less than 20 seconds.</string>
                         <outlet property="clearButton" destination="dA5-P8-3s2" id="mJ4-dd-e02"/>
                         <outlet property="containerView" destination="x24-Zp-YXN" id="Egr-Ug-t2A"/>
                         <outlet property="mainCollectionView" destination="Ljj-qp-hn2" id="GkR-Jr-5bc"/>
-                        <outlet property="mainCollectionViewWidth" destination="jdF-VK-rbV" id="1Bt-Mh-Deo"/>
                         <outlet property="speakButton" destination="pny-74-ARZ" id="N11-N0-F2k"/>
                     </connections>
                 </viewController>
@@ -1754,12 +1750,13 @@ The process will take less than 20 seconds.</string>
                                 <rect key="frame" x="0.0" y="709" width="1112" height="125"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Fdt-J7-7cr">
-                                        <rect key="frame" x="306" y="0.0" width="500" height="125"/>
+                                        <rect key="frame" x="306" y="40.5" width="500" height="44"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" priority="750" constant="500" id="7KW-dT-qPp"/>
+                                            <constraint firstAttribute="height" constant="44" id="pz7-Q0-gQ8"/>
                                         </constraints>
-                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="wKc-qY-L4c">
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="wKc-qY-L4c">
                                             <size key="itemSize" width="50" height="50"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -1770,9 +1767,10 @@ The process will take less than 20 seconds.</string>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Fdt-J7-7cr" secondAttribute="bottom" id="2KI-jw-9cX"/>
-                                    <constraint firstItem="Fdt-J7-7cr" firstAttribute="top" secondItem="2nG-us-63V" secondAttribute="top" id="2Wc-wc-9ls"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Fdt-J7-7cr" secondAttribute="bottom" id="2KI-jw-9cX"/>
+                                    <constraint firstItem="Fdt-J7-7cr" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2nG-us-63V" secondAttribute="top" id="2Wc-wc-9ls"/>
                                     <constraint firstItem="Fdt-J7-7cr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2nG-us-63V" secondAttribute="leading" id="PC1-tJ-k5v"/>
+                                    <constraint firstItem="Fdt-J7-7cr" firstAttribute="centerY" secondItem="2nG-us-63V" secondAttribute="centerY" id="Wqs-DF-KI7"/>
                                     <constraint firstItem="Fdt-J7-7cr" firstAttribute="centerX" secondItem="2nG-us-63V" secondAttribute="centerX" id="i2D-mR-H7i"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Fdt-J7-7cr" secondAttribute="trailing" id="kae-7u-795"/>
                                 </constraints>

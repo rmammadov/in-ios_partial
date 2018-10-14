@@ -8,6 +8,7 @@
 
 import AVKit
 import CoreMotion
+import CoreML
 
 public enum CameraState {
     case ready, accessDenied, noDeviceFound, notDetermined
@@ -41,6 +42,13 @@ class CameraManager: NSObject {
     fileprivate var averageX: [Double] = Array(repeating: 0.0, count: Constant.DefaultConfig.GAZE_PREDICTION_AVERAGING_COUNT)
     fileprivate var averageY: [Double] = Array(repeating: 0.0, count: Constant.DefaultConfig.GAZE_PREDICTION_AVERAGING_COUNT)
     fileprivate var averagingCount: Double = 0
+    fileprivate var coordinates: (gazeX: Double, gazeY: Double) = (gazeX: 0, gazeY: 0)
+    fileprivate var calibrationFeatures: MLMultiArray?
+    fileprivate var calibrationFeaturesSnapshoot: MLMultiArray?
+    fileprivate var coordinatesSnapshot: (gazeX: Double, gazeY: Double)?
+    fileprivate var showPreview = true
+    fileprivate var showLabel = true
+    fileprivate var showPointer = true
 
     open var cameraIsReady: Bool {
         get {
@@ -80,10 +88,14 @@ class CameraManager: NSObject {
         }
     }
     
-    init(cameraView: UIView) {
+    init(cameraView: UIView, showPreview: Bool, showLabel: Bool, showPointer: Bool) {
         super.init()
         // TODO: Remove after tests
         self.cameraView = cameraView // For the test purpose
+        self.showPreview = showPreview
+        self.showLabel = showLabel
+        self.showPointer = showPointer
+        
         addPreviewLayer()
         addLabel();
         addPointer();
@@ -134,41 +146,47 @@ extension CameraManager {
     }
     
     fileprivate func addPreviewLayer() {
-        self.previewLayer = UIImageView()
-        
-        self.previewLayer?.contentMode = .scaleAspectFit
-        self.cameraView?.addSubview(self.previewLayer!)
-        
-        self.previewLayer?.translatesAutoresizingMaskIntoConstraints = false
-        self.previewLayer?.leftAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 10).isActive=true
-        self.previewLayer?.topAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -350).isActive=true
-        self.previewLayer?.rightAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 330).isActive=true
-        self.previewLayer?.bottomAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -34).isActive=true
+        if showPreview {
+            self.previewLayer = UIImageView()
+            
+            self.previewLayer?.contentMode = .scaleAspectFit
+            self.cameraView?.addSubview(self.previewLayer!)
+            
+            self.previewLayer?.translatesAutoresizingMaskIntoConstraints = false
+            self.previewLayer?.leftAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 10).isActive=true
+            self.previewLayer?.topAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -350).isActive=true
+            self.previewLayer?.rightAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 330).isActive=true
+            self.previewLayer?.bottomAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -34).isActive=true
 
-        self.cameraView?.layer.zPosition = .greatestFiniteMagnitude
+            self.cameraView?.layer.zPosition = .greatestFiniteMagnitude
+        }
     }
     
     fileprivate func addLabel() {
-        label = UILabel()
-        label?.textAlignment = .center
-        label?.textColor = .red
-        label?.font = UIFont(name:"HelveticaNeue-Bold", size: 16.0)
-        label?.text = "Coordinates"
-        self.cameraView?.addSubview(label!)
-        
-        label?.translatesAutoresizingMaskIntoConstraints = false
-        label?.leftAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 10).isActive=true
-        label?.topAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -34).isActive=true
-        label?.rightAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 330).isActive=true
-        label?.bottomAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -10).isActive=true
+        if showLabel {
+            label = UILabel()
+            label?.textAlignment = .center
+            label?.textColor = .red
+            label?.font = UIFont(name:"HelveticaNeue-Bold", size: 16.0)
+            label?.text = "Coordinates"
+            self.cameraView?.addSubview(label!)
+            
+            label?.translatesAutoresizingMaskIntoConstraints = false
+            label?.leftAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 10).isActive=true
+            label?.topAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -34).isActive=true
+            label?.rightAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 330).isActive=true
+            label?.bottomAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -10).isActive=true
+        }
 
     }
     
     fileprivate func addPointer() {
-        imagePointerRed = UIImage(named: "ic_pointer_red")
-        imagePointerYellow = UIImage(named: "ic_pointer_yellow")
-        ivPointer = UIImageView(image: imagePointerRed!)
-        ivPointer?.contentMode = .scaleAspectFill
+        if showPointer {
+            imagePointerRed = UIImage(named: "ic_pointer_red")
+            imagePointerYellow = UIImage(named: "ic_pointer_yellow")
+            ivPointer = UIImageView(image: imagePointerRed!)
+            ivPointer?.contentMode = .scaleAspectFill
+        }
     }
 
     fileprivate func setPointerActive() {
@@ -298,10 +316,10 @@ extension CameraManager: GazePredictionDelegate {
         let gazeTracker: GazeTracker = self.gazeTracker!
         if !status {
             self.label?.text = "nil"
-            setPointerPassive()
+            if showPointer {
+                setPointerPassive()
+            }
         } else {
-            self.label?.text = "Values: X: \(String(describing: gazeTracker.gazeEstimation![0]))" + " Y: \(String(describing: gazeTracker.gazeEstimation![1]))"
-            
             averageX.remove(at: 0)
             averageX.append(Double(truncating: gazeTracker.gazeEstimation![0]))
             
@@ -311,9 +329,17 @@ extension CameraManager: GazePredictionDelegate {
             let X = averageX.reduce(0, +)/Double(averageX.count)
             let Y = averageY.reduce(0, +)/Double(averageY.count)
             
-            let coordinates = gazeUtils.cm2pixels(gazeX: X, gazeY: Y, camX: 0, camY: 12.0, orientation: UIDevice.current.orientation)
-            updatePointer(x: coordinates.gazeX, y: coordinates.gazeY)
-            setPointerActive()
+            calibrationFeatures = gazeTracker.calibFeatures
+            coordinates = gazeUtils.cm2pixels(gazeX: X, gazeY: Y, camX: 0, camY: 12.0, orientation: UIDevice.current.orientation)
+            
+            if showLabel {
+                self.label?.text = "Values: X: \(String(describing: gazeTracker.gazeEstimation![0]))" + " Y: \(String(describing: gazeTracker.gazeEstimation![1]))"
+            }
+            
+            if showPointer {
+                updatePointer(x: coordinates.gazeX, y: coordinates.gazeY)
+                setPointerActive()
+            }
         }
         
 //        self.isFaceDetected(status: status)
@@ -499,5 +525,27 @@ extension CameraManager {
         }
     }
 
+}
+
+extension CameraManager {
+    
+    func takeScreenShot() -> UIImage? {
+        calibrationFeaturesSnapshoot = calibrationFeatures
+        coordinatesSnapshot = coordinates
+        guard let screenShot = UIApplication.shared.screenShot else { return nil }
+        
+        return screenShot
+    }
+    
+    func getCalibrationFeatures() -> PredictionDetail? {
+        var arrayCalibrationFeatures: Array<String> = []
+        guard let coordinatesSnapshot = coordinatesSnapshot else { return nil }
+        guard let calibrationFeatures = calibrationFeaturesSnapshoot else { return nil }
+        for i in 0...(calibrationFeatures.count - 1) {
+            arrayCalibrationFeatures.append("\(calibrationFeatures[i])")
+        }
+        
+        return PredictionDetail(cross_x: coordinatesSnapshot.gazeX, cross_y: coordinatesSnapshot.gazeY, calibrationFeatures: arrayCalibrationFeatures)
+    }
 }
 

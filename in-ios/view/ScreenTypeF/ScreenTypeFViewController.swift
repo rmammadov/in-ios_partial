@@ -84,6 +84,7 @@ extension ScreenTypeFViewController: UICollectionViewDataSource {
             else { return cell }
         let cellViewModel = ColoredButtonCollectionViewCell.ViewModel(mainColor: mainColor, gradientColor: gradientColor, translations: translations)
         cell.setViewModel(cellViewModel)
+        cell.setSelected(viewModel.getSelectedIndexPath() == indexPath)
         return cell
     }
 }

@@ -11,8 +11,9 @@ import Foundation
 struct ProfileData: Codable {
     
     let id: Int64?
-    let data: Array<UserInfo>?
-    let files: Array<File>?
+    let version: Int?
+    let device_id: String?
+    let data: Array<UserInfo>
 }
 
 struct File: Codable {
@@ -27,4 +28,13 @@ struct UserInfo: Codable {
     let gender: String
     let ageGroup: String
     let medicalCondition: String
+    var files: Array<File>?
+    var predictionDetails: Array<PredictionDetail>?
+}
+
+struct PredictionDetail: Codable {
+    
+    let cross_x: Double
+    let cross_y: Double
+    let calibrationFeatures: Array<String>
 }

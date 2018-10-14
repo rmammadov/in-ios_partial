@@ -22,4 +22,5 @@ extension InputScreens {
     func getInputScreenFor(id: Int) -> InputScreen?  {
         return screens.first(where: { $0.id == id })
     }
+    
 }

@@ -27,7 +27,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E7o-AK-JMa" customClass="GradientView" customModule="in_ios" customModuleProvider="target">
-                    <rect key="frame" x="8" y="23" width="359" height="54.5"/>
+                    <rect key="frame" x="8" y="13" width="359" height="74"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
@@ -39,13 +39,13 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Body part" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fx9-HV-uhY">
-                    <rect key="frame" x="24" y="31" width="327" height="38.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                    <rect key="frame" x="24" y="21" width="327" height="58"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="32"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="SO2-7Q-g3H" customClass="ProgressGradientView" customModule="in_ios" customModuleProvider="target">
-                    <rect key="frame" x="24" y="75.5" width="327" height="2"/>
+                    <rect key="frame" x="24" y="85" width="327" height="2"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
@@ -57,7 +57,8 @@
                     </userDefinedRuntimeAttributes>
                 </progressView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdk-sV-ega">
-                    <rect key="frame" x="8" y="23" width="359" height="54.5"/>
+                    <rect key="frame" x="8" y="13" width="359" height="74"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="45"/>
                     <connections>
                         <action selector="buttonTapped:" destination="-1" eventType="touchUpInside" id="7oD-l6-r3M"/>
                     </connections>

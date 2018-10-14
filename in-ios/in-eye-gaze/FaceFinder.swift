@@ -27,8 +27,8 @@ class FaceFinder {
      */
     private func setupGMVFaceDetectorForPhoto() {
         let options = VisionFaceDetectorOptions()
-        options.landmarkType = .all
-        options.classificationType = .all
+        options.landmarkMode = .all
+        options.classificationMode = .all
         options.isTrackingEnabled = true
         
         let vision = Vision.vision()
@@ -41,7 +41,7 @@ class FaceFinder {
 //        print("Face detection start @:    \(CFAbsoluteTimeGetCurrent())")
         let visionImage = VisionImage(image: scene)
         if let detector = self.detector {
-            detector.detect(in: visionImage) { [weak self] (faces, error) in
+            detector.process(visionImage) { [weak self] (faces, error) in
                 guard let strongSelf = self else { return }
                 guard error == nil, let faces = faces, !faces.isEmpty else {
                     strongSelf.faces = nil

@@ -35,8 +35,8 @@ import UIKit
             return
         }
         gradient.frame = self.bounds
-        gradient.startPoint = CGPoint(x: 0, y: 0.5)
-        gradient.endPoint = CGPoint(x: 1, y: 0.5)
+        gradient.startPoint = CGPoint(x: 0, y: 0)
+        gradient.endPoint = CGPoint(x: 1, y: 1)
         var colors: [CGColor] = [mainColor.cgColor]
         if let gradientColor = self.gradientColor {
             colors.append(gradientColor.cgColor)

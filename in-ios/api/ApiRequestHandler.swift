@@ -32,6 +32,7 @@ class ApiRequestHandler {
     fileprivate var menuItems: Array<MenuItem> = []
     fileprivate var inputScreens: Array<InputScreen> = []
     fileprivate var legalDocuments: Array<LegalDocument> = []
+    fileprivate var acceptation: Acceptation?
     fileprivate var file: File?
     
     init() {
@@ -208,13 +209,25 @@ class ApiRequestHandler {
             }
             
             // serialise the data / NSData object into Dictionary [String : Any]
-            guard ((try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? Array<Any>) != nil else {
+            guard ((try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? Any) != nil else {
                 print("Not containing JSON")
                 return
             }
+            
+            do {
+                self.acceptation = try JSONDecoder().decode(Acceptation.self, from: content)
+                self.status.value = RequestStatus.completedFile.rawValue
+            } catch let jsonErr {
+                print("Error serializing json",  jsonErr)
+            }
+
         }
         
         task.resume()
+    }
+    
+    func getAcceptation() -> Acceptation? {
+        return self.acceptation
     }
     
     func uploadFile(data: Data) {
@@ -244,13 +257,16 @@ class ApiRequestHandler {
             }
            
             // serialise the data / NSData object into Dictionary [String : Any]
-            guard ((try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? Array<Any>) != nil else {
+            guard ((try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? Any) != nil else {
                 print("Not containing JSON")
                 return
             }
             
+            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue))
+            
             do {
                 self.file = try JSONDecoder().decode(File.self, from: content)
+                print(self.file!)
                 self.status.value = RequestStatus.completedFile.rawValue
             } catch let jsonErr {
                 print("Error serializing json",  jsonErr)
@@ -293,9 +309,10 @@ class ApiRequestHandler {
                 print("No data")
                 return
             }
+            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue))
             
             // serialise the data / NSData object into Dictionary [String : Any]
-            guard ((try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? Array<Any>) != nil else {
+            guard ((try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? Any) != nil else {
                 print("Not containing JSON")
                 return
             }

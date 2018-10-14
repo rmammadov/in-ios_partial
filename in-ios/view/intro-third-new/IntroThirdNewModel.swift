@@ -26,7 +26,11 @@ class IntroThirdNewModel: BaseModel {
         return tag!
     }
     
-    func uploadScreenShot(image: UIImage) {
-        DataManager.uploadImage(image: image)
+    func uploadScreenShot(image: UIImage, predictionDetail: PredictionDetail) {
+        DataManager.uploadImage(image: image, predictionDetail: predictionDetail)
+    }
+    
+    func postProfileData() {
+        DataManager.postProfileData()
     }
 }

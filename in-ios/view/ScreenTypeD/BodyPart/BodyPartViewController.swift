@@ -51,6 +51,7 @@ extension BodyPartViewController {
             KingfisherManager.shared.retrieveImage(with: imageUrl, options: nil, progressBlock: nil) { [weak self] (image, error, cache, url) in
                 guard let `self` = self else { return }
                 self.mainImageView.image = image
+                self.prepareArrowLines()
             }
         }
         prepareBodyPartsButtons()

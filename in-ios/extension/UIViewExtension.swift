@@ -17,7 +17,7 @@ extension UIView {
         return view
     }
     
-    func drawLine(from start: CGPoint, to end: CGPoint, color: UIColor = .white, width: CGFloat = 2) {
+    func drawLine(from start: CGPoint, to end: CGPoint, color: UIColor = .white, width: CGFloat = 1) {
         let path = UIBezierPath()
         path.move(to: start)
         path.addLine(to: end)

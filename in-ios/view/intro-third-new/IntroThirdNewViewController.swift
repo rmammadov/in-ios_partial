@@ -19,13 +19,15 @@ class IntroThirdNewViewController: BaseViewController {
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var btnForward: UIButton!
     
+    var cameraManager: CameraManager?
+    
     private let viewModel: IntroThirdNewModel = IntroThirdNewModel()
     var btnPrevious: UIButton?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-//        setCamera()
+        setCamera()
 //        let point = CGPoint(x: self.view.frame.size.height / 2 , y: 0)
 //        self.view.hitTest(point, with: nil)
     }
@@ -159,8 +161,9 @@ extension IntroThirdNewViewController {
     }
     
     @objc func takeScreenShot() {
-        guard let screenShot = UIApplication.shared.screenShot else { return }
-        viewModel.uploadScreenShot(image: screenShot)
+        guard let screenShot = cameraManager?.takeScreenShot() else { return }
+        guard let predictionDetail = cameraManager?.getCalibrationFeatures() else { return }
+        viewModel.uploadScreenShot(image: screenShot, predictionDetail: predictionDetail)
         print("Took screenshot")
     }
     
@@ -170,13 +173,16 @@ extension IntroThirdNewViewController {
         if tag != 0 {
             continueCalibration(tag: tag)
         } else {
+            viewModel.postProfileData()
             startFourthStep()
         }
     }
     
     func setCamera() {
         // TODO: should be removed and reimplemented after tests
-        let cameraManager: CameraManager = CameraManager(cameraView: self.view)
+        cameraManager = CameraManager(cameraView: self.view, showPreview: false, showLabel: false, showPointer: false)
+        
+        guard let cameraManager = cameraManager else { return }
         
         cameraManager.askUserForCameraPermission { (status) in
             if status {

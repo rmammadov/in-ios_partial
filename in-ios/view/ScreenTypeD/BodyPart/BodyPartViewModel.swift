@@ -12,8 +12,7 @@ import RxSwift
 class BodyPartViewModel: BaseViewModel {
 
     var button: ButtonInputScreen!
-    var inputScreen: InputScreen!
-    weak var delegate: ScreenTypeCDelegate?
+    weak var delegate: ScreenTypeDDelegate?
     private var items: [Bubble] = []
     private var selectedBubble = Variable<Bubble?>(nil)
     
@@ -37,7 +36,7 @@ class BodyPartViewModel: BaseViewModel {
                 let text = selectedBubble.translations.first?.labelTextToSpeech {
                 SpeechHelper.play(text: text, language: "en-US")
             }
-            delegate?.didSelect(value: selectedBubble, onScreen: inputScreen)
+            delegate?.didSelect(value: selectedBubble, onButton: button)
         }
     }
     

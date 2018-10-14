@@ -10,6 +10,14 @@ import UIKit
 
 extension UIColor {
     
+    static var appGradientBlue: UIColor {
+        return UIColor(named: "appGradientBlue")!
+    }
+    
+    static var appGradientViolet: UIColor {
+        return UIColor(named: "appGradientViolet")!
+    }
+    
     convenience init?(hex: String) {
         var string: String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         

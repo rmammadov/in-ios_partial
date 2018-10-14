@@ -26,11 +26,13 @@ class DataManager {
     static fileprivate var menuItems: MenuItems?
     static fileprivate var inputScreens: InputScreens?
     static fileprivate var legalDocuments: LegalDocuments?
-    static fileprivate var files: [File]?
+    static fileprivate var files: Array<File> = []
+    static fileprivate var predictionDetails: Array<PredictionDetail> = []
     static fileprivate var user: UserInfo?
     static fileprivate var profileData: ProfileData?
     
     static fileprivate let requestHandler = ApiRequestHandler()
+    static fileprivate let fileNaming = FileNamingHelper()
     
     static func setSubscribers() {
         self.requestHandler.status.asObservable().subscribe(onNext: {
@@ -49,7 +51,8 @@ class DataManager {
                     self.status.value = DataStatus.dataLoadingCompleted.rawValue
                 } else if self.requestHandler.status.value == RequestStatus.completedFile.rawValue {
                     guard let file = self.requestHandler.getFile() else { return }
-                    self.files?.append(file)
+                    self.files.append(file)
+                    print(self.files)
                 }
             } else if self.requestHandler.status.value == RequestStatus.failed.rawValue {
                 self.status.value = DataStatus.dataLoadingFailed.rawValue
@@ -77,19 +80,24 @@ class DataManager {
         self.requestHandler.postAcceptation(acceptation: acceptation)
     }
     
-    static func uploadImage(image: UIImage) {
+    static func uploadImage(image: UIImage, predictionDetail: PredictionDetail) {
+        predictionDetails.append(predictionDetail)
         guard let data: Data = image.jpegData(compressionQuality: 1.0) else { return }
         self.requestHandler.uploadFile(data: data)
     }
     
     static func postProfileData() {
-        guard let profileData = profileData else { return }
+        guard let profileData = getProfileData() else { return }
         self.requestHandler.postProfileData(profileData: profileData)
     }
     
-    static func mapProfileData() {
-        guard let user = user else { return }
-        profileData = ProfileData(id: nil, data: [user], files: files)
+    static func getProfileData() -> ProfileData? {
+        guard var user = user else { return nil }
+        user.files = files
+        user.predictionDetails = predictionDetails
+        let deviceId = fileNaming.getDeviiceUUID()
+        profileData = ProfileData(id: nil, version: 1, device_id: deviceId, data: [user])
+        return profileData
     }
     
     static func getInputScreens() -> InputScreens {

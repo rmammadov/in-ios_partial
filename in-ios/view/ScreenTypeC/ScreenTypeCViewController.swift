@@ -17,7 +17,6 @@ protocol ScreenTypeCDelegate: class {
 class ScreenTypeCViewController: BaseViewController {
     
     @IBOutlet weak var mainCollectionView: UICollectionView!
-    @IBOutlet weak var mainCollectionViewWidth: NSLayoutConstraint!
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var speakButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
@@ -29,6 +28,13 @@ class ScreenTypeCViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         onViewLoad()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            self?.reloadCollectionView()
+        }
     }
     
     @IBAction func onBackButtonClick(_ sender: Any) {
@@ -107,15 +113,8 @@ extension ScreenTypeCViewController {
     
     private func reloadCollectionView() {
         DispatchQueue.main.async {
+            self.mainCollectionView.collectionViewLayout.invalidateLayout()
             self.mainCollectionView.reloadData()
-            var width: CGFloat = 0
-            for i in 0..<self.viewModel.getItems().count {
-                let indexPath = IndexPath(item: i, section: 0)
-                if let cellWidth = self.viewModel.getItemViewModelFor(indexPath: indexPath)?.widthForCell {
-                    width += cellWidth
-                }
-            }
-            self.mainCollectionViewWidth.constant = width
             self.view.layoutIfNeeded()
         }
     }
@@ -171,9 +170,9 @@ extension ScreenTypeCViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let cellViewModel = viewModel.getItemViewModelFor(indexPath: indexPath)
-            else { return .zero }
-        return CGSize(width: cellViewModel.widthForCell, height: collectionView.frame.height)
+        let cellWidth = collectionView.bounds.size.width / CGFloat(viewModel.getItems().count)
+        let cellHeight = collectionView.bounds.size.height
+        return CGSize(width: cellWidth, height: cellHeight)
     }
 }
 
