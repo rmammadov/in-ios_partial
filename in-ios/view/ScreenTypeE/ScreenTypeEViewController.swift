@@ -74,7 +74,8 @@ extension ScreenTypeEViewController {
                 let indexPath = self.viewModel.getSelectedIndexPath(),
                 let cell = self.collectionView.cellForItem(at: indexPath) as? MenuItemCollectionViewCell
                 else { return }
-            AnimationUtil.cancelMenuSelection(imageView: cell.ivStatusIcon)
+            AnimationUtil.cancelAnimation(object: cell)
+//            AnimationUtil.cancelMenuSelection(imageView: cell.ivStatusIcon)
             self.viewModel.onItemLoadRequest(indexPath: indexPath)
         }).disposed(by: disposeBag)
     }
@@ -118,7 +119,8 @@ extension ScreenTypeEViewController: UICollectionViewDelegate {
         guard let cell = collectionView.cellForItem(at: indexPath) as? MenuItemCollectionViewCell
             else { return }
         viewModel.setSelectedIndexPath(indexPath)
-        AnimationUtil.animateMenuSelection(imageView: cell.ivStatusIcon, fingerTouch: true, tag: ScreenTypeEViewController.identifier)
+        AnimationUtil.animateSelection(object: cell, fingerTouch: true, tag: ScreenTypeEViewController.identifier)
+//        AnimationUtil.animateMenuSelection(imageView: cell.ivStatusIcon, fingerTouch: true, tag: ScreenTypeEViewController.identifier)
     }
     
 }

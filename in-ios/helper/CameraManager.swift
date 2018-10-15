@@ -537,7 +537,7 @@ extension CameraManager {
         return screenShot
     }
     
-    func getCalibrationFeatures() -> PredictionDetail? {
+    func getCalibrationFeatures() -> CalibrationData? {
         var arrayCalibrationFeatures: Array<String> = []
         guard let coordinatesSnapshot = coordinatesSnapshot else { return nil }
         guard let calibrationFeatures = calibrationFeaturesSnapshoot else { return nil }
@@ -545,7 +545,7 @@ extension CameraManager {
             arrayCalibrationFeatures.append("\(calibrationFeatures[i])")
         }
         
-        return PredictionDetail(cross_x: coordinatesSnapshot.gazeX, cross_y: coordinatesSnapshot.gazeY, calibrationFeatures: arrayCalibrationFeatures)
+        return CalibrationData(cross_x: coordinatesSnapshot.gazeX, cross_y: coordinatesSnapshot.gazeY, file: nil, calibrationFeatures: arrayCalibrationFeatures)
     }
 }
 

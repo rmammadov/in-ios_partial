@@ -94,7 +94,8 @@ extension MenuViewController {
                 if self.viewModel.status.value == MenuStatus.secondPhaseLoaded.rawValue {
                     self.performSegue(withIdentifier: SEGUE_IDENTIFIER_SUB_MENU, sender: self)
                     guard let cell = self.getCellForIndexPath(indexPath: self.viewModel.getSelection()) else { return }
-                    AnimationUtil.cancelMenuSelection(imageView: cell.ivStatusIcon)
+                    AnimationUtil.cancelAnimation(object: cell)
+//                    AnimationUtil.cancelMenuSelection(imageView: cell.ivStatusIcon)
                 } else {
                     // Dissmis all view controllers which overlapping main view
                     self.navigationController?.popToRootViewController(animated: true)
@@ -110,7 +111,8 @@ extension MenuViewController {
                     guard let title = self.viewModel.getSelectedItem()?.name,
                         let cell = self.getCellForIndexPath(indexPath: self.viewModel.getSelection())
                         else { return }
-                    AnimationUtil.cancelMenuSelection(imageView: cell.ivStatusIcon)
+                    AnimationUtil.cancelAnimation(object: cell)
+//                    AnimationUtil.cancelMenuSelection(imageView: cell.ivStatusIcon)
                     let inputScreen = DataManager.getInputScreens().getInputScreen(title: title)
                     switch inputScreen.type {
                     case .inputScreenA:
@@ -159,7 +161,8 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         self.viewModel.setItem(index: indexPath.row)
         cell.setCell(url: self.viewModel.getItemIcon(), label: self.viewModel.getItemTitle())
-        AnimationUtil.cancelMenuSelection(imageView: cell.ivStatusIcon)
+        cell.setSelected(false)
+//        AnimationUtil.cancelMenuSelection(imageView: cell.ivStatusIcon)
         
         return cell
     }
@@ -196,12 +199,17 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.viewModel.setSelection(indexPath: indexPath)
         guard let cell = getCellForIndexPath(indexPath: indexPath) else { return }
-        AnimationUtil.animateMenuSelection(imageView: cell.ivStatusIcon, fingerTouch: true, tag: MenuViewController.TAG)
+        AnimationUtil.animateSelection(object: cell, fingerTouch: true, tag: MenuViewController.TAG)
+//        AnimationUtil.animateMenuSelection(imageView: cell.ivStatusIcon, fingerTouch: true, tag: MenuViewController.TAG)
+        if let homeVC = self.parent?.parent?.parent as? HomeViewController {
+            homeVC.viewModel.setMenuExpanded(false)
+        }
     }
     
     func getCellForIndexPath(indexPath: IndexPath) -> MenuItemCollectionViewCell? {
-        guard let cell: MenuItemCollectionViewCell = self.collectionView.cellForItem(at: indexPath) as? MenuItemCollectionViewCell else { return nil}
-        
+        guard let cell: MenuItemCollectionViewCell =
+            self.collectionView.cellForItem(at: indexPath) as? MenuItemCollectionViewCell
+            else { return nil}
         return cell
     }
     

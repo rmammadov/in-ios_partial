@@ -35,13 +35,15 @@ class ColoredButtonCollectionViewCell: UICollectionViewCell {
         self.viewModel = viewModel
         colorView.backgroundColor = viewModel.mainColor
         titleLabel.text = viewModel.translations.first?.label
+        underlineProgressView.mainColor = viewModel.mainColor
+        underlineProgressView.gradientColor = viewModel.gradientColor
     }
     
     func setSelected(_ isSelected: Bool) {
         guard let viewModel = self.viewModel else { return }
         if isSelected {
             backgroundLabelView.mainColor = viewModel.mainColor
-            backgroundLabelView.gradientColor = viewModel.gradientColor
+            backgroundLabelView.gradientColor = viewModel.mainColor
         } else {
             backgroundLabelView.mainColor = nil
         }

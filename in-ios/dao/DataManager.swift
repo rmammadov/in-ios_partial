@@ -26,10 +26,10 @@ class DataManager {
     static fileprivate var menuItems: MenuItems?
     static fileprivate var inputScreens: InputScreens?
     static fileprivate var legalDocuments: LegalDocuments?
-    static fileprivate var files: Array<File> = []
-    static fileprivate var predictionDetails: Array<PredictionDetail> = []
+    static fileprivate var calibrationData: Array<CalibrationData> = []
     static fileprivate var user: UserInfo?
     static fileprivate var profileData: ProfileData?
+    static fileprivate var data: CalibrationData?
     
     static fileprivate let requestHandler = ApiRequestHandler()
     static fileprivate let fileNaming = FileNamingHelper()
@@ -51,8 +51,9 @@ class DataManager {
                     self.status.value = DataStatus.dataLoadingCompleted.rawValue
                 } else if self.requestHandler.status.value == RequestStatus.completedFile.rawValue {
                     guard let file = self.requestHandler.getFile() else { return }
-                    self.files.append(file)
-                    print(self.files)
+                    guard var data = self.data else { return }
+                    data.file = file
+                    calibrationData.append(data)
                 }
             } else if self.requestHandler.status.value == RequestStatus.failed.rawValue {
                 self.status.value = DataStatus.dataLoadingFailed.rawValue
@@ -80,10 +81,10 @@ class DataManager {
         self.requestHandler.postAcceptation(acceptation: acceptation)
     }
     
-    static func uploadImage(image: UIImage, predictionDetail: PredictionDetail) {
-        predictionDetails.append(predictionDetail)
-        guard let data: Data = image.jpegData(compressionQuality: 1.0) else { return }
-        self.requestHandler.uploadFile(data: data)
+    static func setCalibrationDataFor(image: UIImage, data: CalibrationData) {
+        self.data = data
+        guard let imageData: Data = image.jpegData(compressionQuality: 1.0) else { return }
+        self.requestHandler.uploadFile(data: imageData)
     }
     
     static func postProfileData() {
@@ -93,8 +94,7 @@ class DataManager {
     
     static func getProfileData() -> ProfileData? {
         guard var user = user else { return nil }
-        user.files = files
-        user.predictionDetails = predictionDetails
+        user.calibrationData = calibrationData
         let deviceId = fileNaming.getDeviiceUUID()
         profileData = ProfileData(id: nil, version: 1, device_id: deviceId, data: [user])
         return profileData

@@ -20,7 +20,6 @@ class ScreenTypeDCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        print(gradientView.bounds.height)
         gradientView.layer.cornerRadius = gradientView.bounds.height / 2.0
     }
     
