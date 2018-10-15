@@ -51,8 +51,8 @@ class DataManager {
                     self.status.value = DataStatus.dataLoadingCompleted.rawValue
                 } else if self.requestHandler.status.value == RequestStatus.completedFile.rawValue {
                     guard let file = self.requestHandler.getFile() else { return }
-                    guard let data = data else { return }
-                    self.data?.file = file
+                    guard var data = self.data else { return }
+                    data.file = file
                     calibrationData.append(data)
                 }
             } else if self.requestHandler.status.value == RequestStatus.failed.rawValue {

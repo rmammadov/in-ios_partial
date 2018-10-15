@@ -22,7 +22,6 @@ struct UserInfo: Codable {
     let gender: String
     let ageGroup: String
     let medicalCondition: String
-    var files: Array<File>?
     var calibrationData: Array<CalibrationData>?
 }
 
