@@ -1403,7 +1403,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = J5AJCLAX66;
+				DEVELOPMENT_TEAM = 954DRPZZ57;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1417,7 +1417,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.innodemneurosciences.in-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Development Provisioning";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.innodemneurosciences.in-ios";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
