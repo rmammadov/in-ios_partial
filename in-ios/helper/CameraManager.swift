@@ -331,6 +331,7 @@ extension CameraManager: GazePredictionDelegate {
             
             calibrationFeatures = gazeTracker.calibFeatures
             coordinates = gazeUtils.cm2pixels(gazeX: X, gazeY: Y, camX: 0, camY: 12.0, orientation: UIDevice.current.orientation)
+            coordinates = (X, Y) //REMOVE
             
             if showLabel {
                 self.label?.text = "Values: X: \(String(describing: gazeTracker.gazeEstimation![0]))" + " Y: \(String(describing: gazeTracker.gazeEstimation![1]))"

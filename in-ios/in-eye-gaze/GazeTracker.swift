@@ -32,7 +32,7 @@ public class GazeTracker: FaceFinderDelegate {
     var mainFace: VisionFace? = nil
     var predictionDelegate: GazePredictionDelegate? = nil
     
-    var gazeEstimation: MLMultiArray? = nil
+    var gazeEstimation: Array<NSNumber>? = nil
     var calibFeatures: MLMultiArray? = nil
     
     var illumResizeRatio: Double = 1.0
@@ -147,7 +147,11 @@ public class GazeTracker: FaceFinderDelegate {
             return
         }
         
-        self.gazeEstimation = pred.gazeXY
+        if let gazeXY = pred.gazeXY {
+            self.gazeEstimation = [gazeXY[0], gazeXY[1]]
+        } else {
+            self.gazeEstimation = nil
+        }
         self.calibFeatures = pred.calibFeats
         self.elapsedTotalTime = CFAbsoluteTimeGetCurrent() - self.startTotalTime
         print("\nTotal algorithm processing time: \(self.elapsedTotalTime) s.")
@@ -163,7 +167,11 @@ public class GazeTracker: FaceFinderDelegate {
                 return
             }
             
-            self.gazeEstimation = corrPred.gazeXY
+            if let gazeXY = pred.gazeXY {
+                self.gazeEstimation = [gazeXY[0], gazeXY[1]]
+            } else {
+                self.gazeEstimation = nil
+            }
             self.calibFeatures = corrPred.calibFeats
             //        print("Algorithm terminating @:   \(CFAbsoluteTimeGetCurrent())")
             self.elapsedTotalTime = CFAbsoluteTimeGetCurrent() - self.startTotalTime

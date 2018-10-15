@@ -13,9 +13,12 @@ import UIKit
 class GazeTrackerCalibrated: GazeTracker {
     
     var calibModel: MLModel? = nil
+    let calibModelX = CalibrationX()
+    let calibModelY = CalibrationY()
     
-    init(delegate: GazePredictionDelegate?, illumResizeRatio: Double = 1.0, modelURL: URL) {
+    init(delegate: GazePredictionDelegate?, illumResizeRatio: Double = 1.0, modelURL: URL? = nil) {
         super.init(delegate: delegate, illumResizeRatio: illumResizeRatio)
+        //Load model
     }
     
     func loadModel(at modelURL: URL) {
@@ -96,13 +99,26 @@ class GazeTrackerCalibrated: GazeTracker {
             return
         }
         
-        //TODO: Feed the prediction to the calibrated model
-        
-        self.gazeEstimation = pred.gazeXY
-        self.elapsedTotalTime = CFAbsoluteTimeGetCurrent() - self.startTotalTime
-        print("\nTotal algorithm processing time: \(self.elapsedTotalTime) s.")
-        if pred != nil { print(self.gazeEstimation![0], self.gazeEstimation![1]) }
-        self.predictionDelegate?.didUpdatePrediction(status: true)
+        if let calibFeats = pred.calibFeats {
+            do {
+                let predX = try self.calibModelX.prediction(input: CalibrationXInput(inputFeatures: calibFeats))
+                let predY = try self.calibModelY.prediction(input: CalibrationYInput(inputFeatures: calibFeats))
+                
+                self.gazeEstimation = [predX.gazeXY as NSNumber, predY.gazeXY as NSNumber]
+                self.elapsedTotalTime = CFAbsoluteTimeGetCurrent() - self.startTotalTime
+                print("\nTotal algorithm processing time: \(self.elapsedTotalTime) s.")
+                if self.gazeEstimation != nil { print(self.gazeEstimation![0], self.gazeEstimation![1]) }
+                self.predictionDelegate?.didUpdatePrediction(status: true)
+            } catch {
+                self.gazeEstimation = nil
+                self.calibFeatures = nil
+                return
+            }
+        } else {
+            self.gazeEstimation = nil
+            self.calibFeatures = nil
+            return
+        }
     }
     
 }
