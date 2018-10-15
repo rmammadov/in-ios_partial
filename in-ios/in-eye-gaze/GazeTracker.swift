@@ -35,6 +35,9 @@ public class GazeTracker: FaceFinderDelegate {
     var gazeEstimation: Array<NSNumber>? = nil
     var calibFeatures: MLMultiArray? = nil
     
+    var facialFeatures: Array<Double> = Array(repeating: 0.0, count: 16)
+    var eyeCenters: Array<Array<Double>> = [[0.0, 0.0], [0.0, 0.0]]
+    
     var illumResizeRatio: Double = 1.0
     
     var startTotalTime: Double = 0.0
@@ -205,6 +208,7 @@ public class GazeTracker: FaceFinderDelegate {
         var featuresX: [Double] = Array(repeating: 0.0, count: 8)
         var featuresY: [Double] = Array(repeating: 0.0, count: 8)
         
+        self.facialFeatures = Array(repeating: 0.0, count: 16)
         if let mouthBottom = self.mainFace?.landmark(ofType: .mouthBottom) {
             featuresX[0] = mouthBottom.position.x.doubleValue
             featuresY[0] = mouthBottom.position.y.doubleValue
@@ -250,8 +254,14 @@ public class GazeTracker: FaceFinderDelegate {
         }
         
         for i in 0...7 {
-            mlFeatures[2*i] = (featuresX[i]/Double(width)) as NSNumber
-            mlFeatures[2*i + 1] = (featuresY[i]/Double(height)) as NSNumber
+            let X = featuresX[i]/Double(width)
+            let Y = featuresY[i]/Double(height)
+            
+            self.facialFeatures[2*i] = X
+            self.facialFeatures[2*i + 1] = Y
+            
+            mlFeatures[2*i] = (X) as NSNumber
+            mlFeatures[2*i + 1] = (Y) as NSNumber
         }
         
         return mlFeatures
@@ -271,6 +281,14 @@ public class GazeTracker: FaceFinderDelegate {
         }
         if let rightEye = self.mainFace?.landmark(ofType: .rightEye) {
             rightEyePos = rightEye.position
+        }
+        
+        self.eyeCenters = [[0.0, 0.0], [0.0, 0.0]]
+        if let pos = leftEyePos {
+            self.eyeCenters[0] = [Double(truncating: pos.x), Double(truncating: pos.y)]
+        }
+        if let pos = rightEyePos {
+            self.eyeCenters[1] = [Double(truncating: pos.x), Double(truncating: pos.y)]
         }
         
         let cropLen: Int = Int(1.3*abs((rightEyePos?.x.floatValue)! - (leftEyePos?.x.floatValue)!)/2 * Float(image.scale))
