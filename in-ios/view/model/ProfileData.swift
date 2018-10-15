@@ -16,12 +16,6 @@ struct ProfileData: Codable {
     let data: Array<UserInfo>
 }
 
-struct File: Codable {
-    
-    let size: Int
-    let url: String
-}
-
 struct UserInfo: Codable {
     
     let name: String
@@ -29,12 +23,19 @@ struct UserInfo: Codable {
     let ageGroup: String
     let medicalCondition: String
     var files: Array<File>?
-    var predictionDetails: Array<PredictionDetail>?
+    var calibrationData: Array<CalibrationData>?
 }
 
-struct PredictionDetail: Codable {
+struct File: Codable {
+    
+    let size: Int
+    let url: String
+}
+
+struct CalibrationData: Codable {
     
     let cross_x: Double
     let cross_y: Double
+    var file: File?
     let calibrationFeatures: Array<String>
 }

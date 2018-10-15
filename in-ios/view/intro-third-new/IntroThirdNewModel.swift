@@ -26,8 +26,8 @@ class IntroThirdNewModel: BaseModel {
         return tag!
     }
     
-    func uploadScreenShot(image: UIImage, predictionDetail: PredictionDetail) {
-        DataManager.uploadImage(image: image, predictionDetail: predictionDetail)
+    func setCalibrationData(image: UIImage, data: CalibrationData) {
+        DataManager.setCalibrationDataFor(image: image, data: data)
     }
     
     func postProfileData() {
