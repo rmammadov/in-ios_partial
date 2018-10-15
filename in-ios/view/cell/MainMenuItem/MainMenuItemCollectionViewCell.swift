@@ -27,6 +27,17 @@ class MainMenuItemCollectionViewCell: UICollectionViewCell {
         maximize(animated: false, toHeight: bounds.height)
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if bounds.height > 100 {
+            self.maximize(toHeight: bounds.height)
+        } else {
+            self.minimize(toHeight: bounds.height)
+        }
+        print("layoutSubviews")
+        print("bounds: \(bounds)")
+    }
+    
     func setupView(_ viewModel: ViewModel) {
         bottomTitleLabel.text = viewModel.title
         rightTitleLabel.text = viewModel.title
@@ -44,7 +55,7 @@ class MainMenuItemCollectionViewCell: UICollectionViewCell {
     }
     
     func minimize(animated: Bool = true, toHeight height: CGFloat) {
-        let animationTime = animated ? 0.5 : 0.1
+        let animationTime = animated ? 0.4 : 0.1
         bottomLabelContainerHeight.isActive = true
         rightLabelContainerWidth.isActive = false
         
@@ -52,11 +63,11 @@ class MainMenuItemCollectionViewCell: UICollectionViewCell {
             guard let `self` = self else { return }
             self.layoutIfNeeded()
             self.animateCornerRadiusToSize(self.gradientCircle.bounds.size.height, duration: animationTime)
-            self.gradientCircle.setNeedsDisplay()
             self.bottomTitleLabel.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
             self.rightTitleLabel.transform = CGAffineTransform(scaleX: 1, y: 1)
         }, completion: ({ (isCompleted) in
             print("minimize isCompleted: \(isCompleted)")
+            self.gradientCircle.setNeedsDisplay()
         }))
     }
     

@@ -128,21 +128,12 @@ extension HomeViewController {
     }
     
     private func updateMainMenu() {
-        if viewModel.getIsMenuExpanded() {
-            self.constraintCollectionViewHeight.constant = 116
-        } else {
-            self.constraintCollectionViewHeight.constant = 64
-        }
+        let height: CGFloat = viewModel.getIsMenuExpanded() ? 116 : 64
+        self.constraintCollectionViewHeight.constant = height
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
-            self.collectionTopMenu.collectionViewLayout.invalidateLayout()
-            self.collectionTopMenu.visibleCells.forEach({ (cell) in
-                guard let cell = cell as? MainMenuItemCollectionViewCell else { return }
-                if self.viewModel.getIsMenuExpanded() {
-                    cell.maximize(toHeight: 116)
-                } else {
-                    cell.minimize(toHeight: 64)
-                }
+            self.collectionTopMenu.performBatchUpdates({
+                self.collectionTopMenu.collectionViewLayout.invalidateLayout()
             })
         }
     }
@@ -205,8 +196,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let cellWidth = self.collectionTopMenu.frame.size.width / 3
-        let cellHeight: CGFloat = 116
+        let cellWidth: CGFloat = collectionView.bounds.width / 3
+        let cellHeight: CGFloat = collectionView.bounds.height
         
         return CGSize(width: cellWidth, height: cellHeight)
     }
@@ -243,4 +234,3 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
     }
 }
-
