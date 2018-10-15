@@ -31,7 +31,7 @@ class HomeViewModel: BaseViewModel {
     fileprivate var topMenuItem: MenuItem?
     fileprivate var topMenuItemSelectedIndex: IndexPath = IndexPath(row: 0, section: 0)
     fileprivate var topMenuItemSelected: MenuItem?
-    fileprivate var isMenuExpanded: Bool = true
+    private var isMenuExpanded = Variable<Bool>(true)
     
     // TODO: Update this method
 
@@ -84,7 +84,15 @@ class HomeViewModel: BaseViewModel {
     }
     
     func getIsMenuExpanded() -> Bool {
-        return isMenuExpanded
+        return isMenuExpanded.value
+    }
+    
+    func getMenuExpandedObservable() -> Observable<Bool> {
+        return isMenuExpanded.asObservable()
+    }
+    
+    func setMenuExpanded(_ isExpandeed: Bool) {
+        isMenuExpanded.value = isExpandeed
     }
     
     func setBackgroundImage(url: String?) {
@@ -104,6 +112,10 @@ class HomeViewModel: BaseViewModel {
     func getBackgroundAlpha() -> CGFloat {
         guard let backgroundTransparency = backgroundTransparency else { return (100 - 0) / 100 }
         return CGFloat((100 - backgroundTransparency) / 100)
+    }
+    
+    func getItem(for indexPath: IndexPath) -> MenuItem {
+        return topMenuItems[indexPath.item]
     }
     
     // FIXME: Remove hardcode language type

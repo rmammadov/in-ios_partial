@@ -19,12 +19,16 @@
                 <rect key="frame" x="0.0" y="0.0" width="397" height="413"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_circle_gradient" translatesAutoresizingMaskIntoConstraints="NO" id="EJV-8z-gLK">
+                    <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_circle_gradient" translatesAutoresizingMaskIntoConstraints="NO" id="EJV-8z-gLK">
                         <rect key="frame" x="14.5" y="0.0" width="368" height="368"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="EJV-8z-gLK" secondAttribute="height" id="Sin-30-SOy"/>
                         </constraints>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="akr-J3-QFQ" customClass="GradientView" customModule="in_ios" customModuleProvider="target">
+                        <rect key="frame" x="14.5" y="0.0" width="368" height="368"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6MF-pU-T87">
                         <rect key="frame" x="51.5" y="37" width="294" height="294"/>
                     </imageView>
@@ -60,21 +64,26 @@
             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="6MF-pU-T87" firstAttribute="centerY" secondItem="EJV-8z-gLK" secondAttribute="centerY" id="6n0-EC-igT"/>
+                <constraint firstItem="akr-J3-QFQ" firstAttribute="centerX" secondItem="EJV-8z-gLK" secondAttribute="centerX" id="BJ1-Jr-rFQ"/>
                 <constraint firstItem="EJV-8z-gLK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="JeA-oc-aXy"/>
                 <constraint firstItem="6MF-pU-T87" firstAttribute="centerX" secondItem="EJV-8z-gLK" secondAttribute="centerX" id="LqF-r6-2Md"/>
                 <constraint firstItem="EJV-8z-gLK" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="MTN-H5-efC"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EJV-8z-gLK" secondAttribute="trailing" id="MrF-ng-1A0"/>
+                <constraint firstItem="akr-J3-QFQ" firstAttribute="height" secondItem="EJV-8z-gLK" secondAttribute="height" id="N3x-H1-K2l"/>
+                <constraint firstItem="akr-J3-QFQ" firstAttribute="width" secondItem="EJV-8z-gLK" secondAttribute="width" id="Nx0-G9-aBD"/>
                 <constraint firstItem="6MF-pU-T87" firstAttribute="width" secondItem="EJV-8z-gLK" secondAttribute="width" multiplier="0.8" id="POD-sP-yRW"/>
                 <constraint firstAttribute="trailing" secondItem="EJV-8z-gLK" secondAttribute="trailing" priority="750" id="eA1-8V-dzY"/>
                 <constraint firstAttribute="trailing" secondItem="GVc-xt-rGG" secondAttribute="trailing" id="ln6-TF-2b7"/>
                 <constraint firstItem="6MF-pU-T87" firstAttribute="height" secondItem="EJV-8z-gLK" secondAttribute="height" multiplier="0.8" id="mNy-dJ-uac"/>
                 <constraint firstItem="GVc-xt-rGG" firstAttribute="top" secondItem="EJV-8z-gLK" secondAttribute="bottom" constant="7" id="o5S-tj-hY9"/>
                 <constraint firstAttribute="bottom" secondItem="GVc-xt-rGG" secondAttribute="bottom" id="oYO-B6-r4U"/>
+                <constraint firstItem="akr-J3-QFQ" firstAttribute="centerY" secondItem="EJV-8z-gLK" secondAttribute="centerY" id="obC-Dj-B6f"/>
                 <constraint firstItem="GVc-xt-rGG" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="wJm-Ap-VC1"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="397" height="413"/>
             <connections>
+                <outlet property="gradientView" destination="akr-J3-QFQ" id="tXl-Lc-e55"/>
                 <outlet property="ivIcon" destination="6MF-pU-T87" id="dIK-Ln-BIV"/>
                 <outlet property="ivStatusIcon" destination="EJV-8z-gLK" id="tPO-EV-9hJ"/>
                 <outlet property="labelTitle" destination="M3Q-0P-NaS" id="J67-dE-vNB"/>

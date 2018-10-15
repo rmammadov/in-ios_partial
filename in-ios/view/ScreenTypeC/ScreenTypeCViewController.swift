@@ -54,6 +54,11 @@ class ScreenTypeCViewController: BaseViewController {
 
 extension ScreenTypeCViewController {
     
+    
+    func getParentViewController() -> HomeViewController? {
+        return self.parent?.parent?.parent as? HomeViewController
+    }
+    
     private func onViewLoad() {
         setupUI()
         loadViewModels()
@@ -63,6 +68,14 @@ extension ScreenTypeCViewController {
     
     private func setupUI() {
         setupClearButton()
+        setBackground()
+    }
+    
+    func setBackground() {
+        if let parentVC = getParentViewController() {
+            parentVC.viewModel.setBackgroundImage(url: viewModel.getBackground())
+            parentVC.viewModel.setBackgroundTransparency(transparency: viewModel.getBackgroundTransparency())
+        }
     }
     
     private func setupClearButton() {

@@ -74,3 +74,28 @@ class AnimationUtil {
         return tag
     }
 }
+
+//New animation util methods
+
+extension AnimationUtil {
+    static func animateSelection(object: AnimateObject, fingerTouch: Bool, tag: String) {
+        self.tag = tag
+        if fingerTouch {
+            object.setSelected(true)
+            Timer.scheduledTimer(withTimeInterval: Constant.AnimationConfig.MENU_ITEM_FINGER_TOUCH_ANIMATION_DURATION, repeats: false) { (_) in
+                self.status.value += AnimationStatus.completed.rawValue
+            }
+        } else {
+            object.animateLoading { (isCompleted) in
+                object.setSelected(true)
+                self.status.value += AnimationStatus.completed.rawValue
+            }
+        }
+    }
+    
+    static func cancelAnimation(object: AnimateObject) {
+        object.cancelAnimation()
+        object.setSelected(false)
+        self.status.value = AnimationStatus.cancled.rawValue
+    }
+}

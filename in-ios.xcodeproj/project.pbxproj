@@ -19,6 +19,7 @@
 		E93ACD4C216CB6F500F29F54 /* UIStackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93ACD4B216CB6F500F29F54 /* UIStackViewExtension.swift */; };
 		E93ACD4F216CD16500F29F54 /* BodyPartRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93ACD4E216CD16500F29F54 /* BodyPartRowView.swift */; };
 		E93ACD51216CD16F00F29F54 /* BodyPartRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93ACD50216CD16F00F29F54 /* BodyPartRowView.xib */; };
+		E94ABF722174B49D0063B8D6 /* AnimationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94ABF712174B49D0063B8D6 /* AnimationProtocol.swift */; };
 		E9611E942164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E8F2164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift */; };
 		E9611E952164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9611E902164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib */; };
 		E9611E972164AC950010B33C /* ScreenTypeCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E922164AC950010B33C /* ScreenTypeCViewController.swift */; };
@@ -35,6 +36,8 @@
 		E9876E1321678B6B0001C626 /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E1221678B6B0001C626 /* NotificationExtension.swift */; };
 		E9876E1521679BF50001C626 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E1421679BF50001C626 /* GradientView.swift */; };
 		E9876E1B216B6ED50001C626 /* ProgressGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E1A216B6ED50001C626 /* ProgressGradientView.swift */; };
+		E99A8EEB2170A02D007B8E64 /* MainMenuItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E99A8EE92170A02D007B8E64 /* MainMenuItemCollectionViewCell.xib */; };
+		E99A8EEC2170A02D007B8E64 /* MainMenuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99A8EEA2170A02D007B8E64 /* MainMenuItemCollectionViewCell.swift */; };
 		E99B8C31216DE4B800A90EFC /* GazeTrackerCalibrated.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99B8C30216DE4B800A90EFC /* GazeTrackerCalibrated.swift */; };
 		E99B8C33216DF1ED00A90EFC /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99B8C32216DF1ED00A90EFC /* UIViewExtension.swift */; };
 		F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3216B5520F4EA15008D6EFD /* HomeViewController.swift */; };
@@ -181,6 +184,7 @@
 		E93ACD4B216CB6F500F29F54 /* UIStackViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewExtension.swift; sourceTree = "<group>"; };
 		E93ACD4E216CD16500F29F54 /* BodyPartRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyPartRowView.swift; sourceTree = "<group>"; };
 		E93ACD50216CD16F00F29F54 /* BodyPartRowView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BodyPartRowView.xib; sourceTree = "<group>"; };
+		E94ABF712174B49D0063B8D6 /* AnimationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationProtocol.swift; sourceTree = "<group>"; };
 		E9611E8F2164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTypeCMenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		E9611E902164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScreenTypeCMenuCollectionViewCell.xib; sourceTree = "<group>"; };
 		E9611E922164AC950010B33C /* ScreenTypeCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTypeCViewController.swift; sourceTree = "<group>"; };
@@ -198,6 +202,8 @@
 		E9876E1221678B6B0001C626 /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
 		E9876E1421679BF50001C626 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		E9876E1A216B6ED50001C626 /* ProgressGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressGradientView.swift; sourceTree = "<group>"; };
+		E99A8EE92170A02D007B8E64 /* MainMenuItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenuItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		E99A8EEA2170A02D007B8E64 /* MainMenuItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		E99B8C30216DE4B800A90EFC /* GazeTrackerCalibrated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GazeTrackerCalibrated.swift; sourceTree = "<group>"; };
 		E99B8C32216DF1ED00A90EFC /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		ED4FD3A654935E1287D7E3F3 /* Pods-in-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-in-iosTests/Pods-in-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -455,6 +461,15 @@
 			path = common;
 			sourceTree = "<group>";
 		};
+		E99A8EE421709B90007B8E64 /* MainMenuItem */ = {
+			isa = PBXGroup;
+			children = (
+				E99A8EEA2170A02D007B8E64 /* MainMenuItemCollectionViewCell.swift */,
+				E99A8EE92170A02D007B8E64 /* MainMenuItemCollectionViewCell.xib */,
+			);
+			path = MainMenuItem;
+			sourceTree = "<group>";
+		};
 		F3283D70213013BA004B4FBE /* in-eye-gaze */ = {
 			isa = PBXGroup;
 			children = (
@@ -525,6 +540,7 @@
 				E93ACD4B216CB6F500F29F54 /* UIStackViewExtension.swift */,
 				E99B8C32216DF1ED00A90EFC /* UIViewExtension.swift */,
 				E966261E216F38AA006C05B1 /* UIFontExtension.swift */,
+				E94ABF712174B49D0063B8D6 /* AnimationProtocol.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -702,6 +718,7 @@
 		F3C48CC1210EE4E400742855 /* cell */ = {
 			isa = PBXGroup;
 			children = (
+				E99A8EE421709B90007B8E64 /* MainMenuItem */,
 				F331EA7D211303880000B4E6 /* TopMenuItemCollectionViewCell.swift */,
 				F331EA7E211303880000B4E6 /* TopMenuItemCollectionViewCell.xib */,
 				F3355CF221240F6C009AF602 /* TopMenuItemExpandedCollectionViewCell.swift */,
@@ -934,6 +951,7 @@
 				F336588220D318C300B18CEC /* Main.storyboard in Resources */,
 				F3F8648321175BEE00B7CAA8 /* Colors.xcassets in Resources */,
 				F3B0C1CC2154BA1400E30CA1 /* GoogleService-Info.plist in Resources */,
+				E99A8EEB2170A02D007B8E64 /* MainMenuItemCollectionViewCell.xib in Resources */,
 				E966261D216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.xib in Resources */,
 				E9876E10216765070001C626 /* ColoredButtonCollectionViewCell.xib in Resources */,
 			);
@@ -1113,11 +1131,13 @@
 				F3DA017F2162907500D0625B /* WebviewViewModel.swift in Sources */,
 				F334ADC8210D7A370056824A /* MenuItem.swift in Sources */,
 				F3CE691D213D70E6004F6756 /* GazeEstimator.mlmodel in Sources */,
+				E99A8EEC2170A02D007B8E64 /* MainMenuItemCollectionViewCell.swift in Sources */,
 				E9876E1B216B6ED50001C626 /* ProgressGradientView.swift in Sources */,
 				F32D99C621117E79007AAA8D /* HomeModel.swift in Sources */,
 				E966261F216F38AA006C05B1 /* UIFontExtension.swift in Sources */,
 				F32DCEDE214A652000B3D0F8 /* IntroThirdViewModel.swift in Sources */,
 				F336587D20D318C300B18CEC /* AppDelegate.swift in Sources */,
+				E94ABF722174B49D0063B8D6 /* AnimationProtocol.swift in Sources */,
 				F331EA7F211303880000B4E6 /* TopMenuItemCollectionViewCell.swift in Sources */,
 				E9611E9A2164AE2D0010B33C /* IdentifierProtocol.swift in Sources */,
 				F32F5B6921453E0B00558C68 /* IntroSecondModel.swift in Sources */,
