@@ -126,6 +126,14 @@ class ScreenTypeCViewModel: BaseViewModel {
             }
         }
     }
+    
+    func getBackground() -> String? {
+        return inputScreen?.background?.url
+    }
+    
+    func getBackgroundTransparency() -> Double? {
+        return inputScreen?.backgroundTransparency
+    }
 }
 
 extension ScreenTypeCViewModel: ScreenTypeCDelegate {

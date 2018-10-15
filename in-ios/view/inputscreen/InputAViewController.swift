@@ -127,7 +127,8 @@ extension InputAViewController {
             if self?.viewModel.status.value == InputAStatus.loaded.rawValue {
                 DispatchQueue.main.async {
                     guard let cell = self?.getCellForIndexPath(indexPath: ((self?.viewModel.getSelection())!)) else { return }
-                    AnimationUtil.cancelMenuSelection(imageView: cell.ivStatusIcon)
+                    AnimationUtil.cancelAnimation(object: cell)
+//                    AnimationUtil.cancelMenuSelection(imageView: cell.ivStatusIcon)
                     self?.updateUi()
                 }
             }
@@ -220,7 +221,8 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.viewModel.setSelection(indexPath: indexPath)
         guard let cell = self.getCellForIndexPath(indexPath: indexPath) else { return }
-        AnimationUtil.animateMenuSelection(imageView: cell.ivStatusIcon, fingerTouch: true, tag: InputAViewController.TAG)
+        AnimationUtil.animateSelection(object: cell, fingerTouch: true, tag: InputAViewController.TAG)
+//        AnimationUtil.animateMenuSelection(imageView: cell.ivStatusIcon, fingerTouch: true, tag: InputAViewController.TAG)
         if let homeVC = self.parent?.parent?.parent as? HomeViewController {
             homeVC.viewModel.setMenuExpanded(false)
         }

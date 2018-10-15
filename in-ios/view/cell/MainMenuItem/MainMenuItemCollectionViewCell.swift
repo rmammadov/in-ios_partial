@@ -24,6 +24,8 @@ class MainMenuItemCollectionViewCell: UICollectionViewCell {
         gradientCircle.mainColor = UIColor.appGradientBlue
         gradientCircle.gradientColor = UIColor.appGradientViolet
         gradientCircle.isHidden = true
+        gradientCircle.startPoint = CGPoint(x: 0, y: 0)
+        gradientCircle.endPoint = CGPoint(x: 1, y: 1)
         maximize(animated: false, toHeight: bounds.height)
     }
     
@@ -34,8 +36,6 @@ class MainMenuItemCollectionViewCell: UICollectionViewCell {
         } else {
             self.minimize(toHeight: bounds.height)
         }
-        print("layoutSubviews")
-        print("bounds: \(bounds)")
     }
     
     func setupView(_ viewModel: ViewModel) {
@@ -66,7 +66,6 @@ class MainMenuItemCollectionViewCell: UICollectionViewCell {
             self.bottomTitleLabel.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
             self.rightTitleLabel.transform = CGAffineTransform(scaleX: 1, y: 1)
         }, completion: ({ (isCompleted) in
-            print("minimize isCompleted: \(isCompleted)")
             self.gradientCircle.setNeedsDisplay()
         }))
     }
@@ -82,7 +81,6 @@ class MainMenuItemCollectionViewCell: UICollectionViewCell {
             self.bottomTitleLabel.transform = CGAffineTransform(scaleX: 1, y: 1)
             self.rightTitleLabel.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
             }, completion: ({ (isCompleted) in
-                print("maximize isCompleted: \(isCompleted)")
                 self.gradientCircle.setNeedsDisplay()
             }))
     }
