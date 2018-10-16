@@ -84,7 +84,6 @@ extension HomeViewController {
     }
     
     func setCollectionView() {
-        
         self.collectionTopMenu.register(UINib(nibName: cellIdentifier, bundle: nil),
                                         forCellWithReuseIdentifier: cellIdentifier)
         self.collectionTopMenu.register(UINib.init(nibName: nibTopMenuItem, bundle: nil), forCellWithReuseIdentifier:reuseIdentifier)

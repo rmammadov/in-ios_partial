@@ -12,8 +12,20 @@ class IntroThirdNewViewModel: BaseViewModel {
     
     private let model: IntroThirdNewModel = IntroThirdNewModel()
     
+    func nextStep() {
+        model.nextStep()
+    }
+    
+    func previousStep() {
+        model.previousStep()
+    }
+    
     func getTag() -> Int {
         return model.getTag()
+    }
+    
+    func getAnimationType() -> Int {
+        return model.getAnimationType()
     }
     
     func setCalibrationData(image: UIImage, data: CalibrationData) {

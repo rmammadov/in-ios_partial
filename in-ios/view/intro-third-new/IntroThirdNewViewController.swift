@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 private let SEGUE_IDENTIFIER_SHOW_HOME = "showHome"
 
@@ -22,11 +23,13 @@ class IntroThirdNewViewController: BaseViewController {
     var cameraManager: CameraManager?
     
     private let viewModel: IntroThirdNewModel = IntroThirdNewModel()
+    let disposeBag = DisposeBag()
     var btnPrevious: UIButton?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        setUi()
         setCamera()
 //        let point = CGPoint(x: self.view.frame.size.height / 2 , y: 0)
 //        self.view.hitTest(point, with: nil)
@@ -61,8 +64,7 @@ class IntroThirdNewViewController: BaseViewController {
         btnBack.isHidden = true
         viewSecondStep.isHidden = false
         setDismissSwipeForSecondStep()
-//        startCalibration()
-        startThirdStep()
+        nextStep()
     }
     
     @IBAction func onClickBtnRedoFourthStep(_ sender: Any) {
@@ -71,6 +73,7 @@ class IntroThirdNewViewController: BaseViewController {
     @IBAction func onClickBtnContinueFourthStep(_ sender: Any) {
         viewFourthStep.isHidden = true
         viewFifthStep.isHidden = false
+        viewModel.postProfileData()
     }
     
     @IBAction func onClickBtnRedoFifthStep(_ sender: Any) {
@@ -140,16 +143,66 @@ extension IntroThirdNewViewController {
 
 extension IntroThirdNewViewController {
     
-    func startCalibration() {
+    func setUi() {
+        setSubscribers()
+    }
+    
+    func updateUi() {
+        switch viewModel.getCalibrationStep() {
+        case CalibrationStep.first.rawValue:
+            break
+        case CalibrationStep.second.rawValue:
+            startSecondStep()
+        case CalibrationStep.third.rawValue:
+            startThirdStep()
+        case CalibrationStep.fourth.rawValue:
+            startFourthStep()
+        case CalibrationStep.fifth.rawValue:
+            break
+        default:
+            break
+        }
+    }
+    
+    func setSubscribers() {
+        AnimationUtil.status.asObservable().subscribe(onNext: {
+            event in
+            if AnimationUtil.status.value == AnimationStatus.completed.rawValue {
+                DispatchQueue.main.async {
+                    if self.viewModel.getCalibrationStep() == CalibrationStep.third.rawValue {
+                        self.handleCalibrationStep()
+                    }
+                }
+            }
+        }).disposed(by: disposeBag)
+    }
+    
+    func nextStep() {
+        viewModel.nextStep()
+        updateUi()
+    }
+    
+    func previousStep() {
+        viewModel.previousStep()
+        updateUi()
+    }
+    
+    func startSecondStep() {
          continueCalibration(tag: viewModel.getTag())
     }
     
     func continueCalibration(tag: Int) {
         if let btnCalibration = self.view.viewWithTag(tag) as? UIButton {
             btnPrevious = btnCalibration
-            btnPrevious!.isHidden = false
-            Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.CALIBRATION_STEP_DURATION / 2, target: self, selector: #selector(takeScreenShot), userInfo: nil, repeats: false)
-            Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.CALIBRATION_STEP_DURATION, target: self, selector: #selector(handleCalibrationStep), userInfo: nil, repeats: false)
+            btnPrevious?.isHidden = false
+            
+            if viewModel.getCalibrationStep() == CalibrationStep.second.rawValue {
+                Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.CALIBRATION_STEP_DURATION / 2, target: self, selector: #selector(takeScreenShot), userInfo: nil, repeats: false)
+                Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.CALIBRATION_STEP_DURATION, target: self, selector: #selector(handleCalibrationStep), userInfo: nil, repeats: false)
+            } else {
+                Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(takeScreenShot), userInfo: nil, repeats: false)
+                AnimationUtil.animateMoving(view: btnPrevious!, direction: viewModel.getAnimationType())
+            }
             
         }
     }
@@ -166,8 +219,7 @@ extension IntroThirdNewViewController {
         if tag != 0 {
             continueCalibration(tag: tag)
         } else {
-            viewModel.postProfileData()
-            startFourthStep()
+            nextStep()
         }
     }
     
@@ -195,10 +247,7 @@ extension IntroThirdNewViewController {
     
     func startThirdStep() {
         viewModel.setCalibrationStep(step: CalibrationStep.third.rawValue)
-        if let btnCalibration = self.view.viewWithTag(viewModel.getTag()) as? UIButton {
-            btnCalibration.isHidden = false
-            AnimationUtil.animateMoving(view: btnCalibration, direction: AnimationDirection.right.rawValue)
-        }
+        handleCalibrationStep()
     }
     
     func startFourthStep() {
@@ -209,6 +258,6 @@ extension IntroThirdNewViewController {
     }
     
     @objc func swiped(_ gesture: UIGestureRecognizer) {
-        startFourthStep()
+        nextStep()
     }
 }
