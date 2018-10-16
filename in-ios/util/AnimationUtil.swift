@@ -77,7 +77,7 @@ class AnimationUtil {
     
     static func animateMoving(view: UIView, direction: Int) {
         let screenWidth: CGFloat = UIScreen.main.bounds.width
-        UIView.animate(withDuration: Constant.CalibrationConfig.CALIBRATION_STEP_MOVING_ANIMATION_DURATION, animations: {
+        UIView.animate(withDuration: Constant.CalibrationConfig.MOVING_CALIBRATION_STEP_DURATION, animations: {
             switch(direction) {
             case AnimationDirection.right.rawValue:
                 view.frame.origin.x = screenWidth - view.frame.origin.x - view.frame.width

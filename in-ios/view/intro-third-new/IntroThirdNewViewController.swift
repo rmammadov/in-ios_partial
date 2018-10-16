@@ -197,10 +197,10 @@ extension IntroThirdNewViewController {
             btnPrevious?.isHidden = false
             
             if viewModel.getCalibrationStep() == CalibrationStep.second.rawValue {
-                Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.CALIBRATION_STEP_DURATION / 2, target: self, selector: #selector(takeScreenShot), userInfo: nil, repeats: false)
-                Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.CALIBRATION_STEP_DURATION, target: self, selector: #selector(handleCalibrationStep), userInfo: nil, repeats: false)
+                Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.STANDART_CALIBRATION_STEP_DATA_COLLECTION_DURATION, target: self, selector: #selector(takeScreenShot), userInfo: nil, repeats: false)
+                Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.STANDART_CALIBRATION_STEP_DURATION, target: self, selector: #selector(handleCalibrationStep), userInfo: nil, repeats: false)
             } else {
-                Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(takeScreenShot), userInfo: nil, repeats: false)
+                Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.MOVING_CALIBRATION_STEP_DATA_COLLECTION_DURATION, target: self, selector: #selector(takeScreenShot), userInfo: nil, repeats: false)
                 AnimationUtil.animateMoving(view: btnPrevious!, direction: viewModel.getAnimationType())
             }
             
