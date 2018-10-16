@@ -40,6 +40,8 @@
 		E99A8EEC2170A02D007B8E64 /* MainMenuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99A8EEA2170A02D007B8E64 /* MainMenuItemCollectionViewCell.swift */; };
 		E99B8C31216DE4B800A90EFC /* GazeTrackerCalibrated.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99B8C30216DE4B800A90EFC /* GazeTrackerCalibrated.swift */; };
 		E99B8C33216DF1ED00A90EFC /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99B8C32216DF1ED00A90EFC /* UIViewExtension.swift */; };
+		F31F275C2175AD7500C4E473 /* CalibrationX.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F31F275B2175AD7500C4E473 /* CalibrationX.mlmodel */; };
+		F31F275E2175AD7B00C4E473 /* CalibrationY.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F31F275D2175AD7B00C4E473 /* CalibrationY.mlmodel */; };
 		F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3216B5520F4EA15008D6EFD /* HomeViewController.swift */; };
 		F32D99C621117E79007AAA8D /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D99C521117E79007AAA8D /* HomeModel.swift */; };
 		F32D99C821117E8A007AAA8D /* MenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D99C721117E8A007AAA8D /* MenuModel.swift */; };
@@ -207,6 +209,8 @@
 		E99B8C30216DE4B800A90EFC /* GazeTrackerCalibrated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GazeTrackerCalibrated.swift; sourceTree = "<group>"; };
 		E99B8C32216DF1ED00A90EFC /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		ED4FD3A654935E1287D7E3F3 /* Pods-in-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-in-iosTests/Pods-in-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F31F275B2175AD7500C4E473 /* CalibrationX.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CalibrationX.mlmodel; sourceTree = "<group>"; };
+		F31F275D2175AD7B00C4E473 /* CalibrationY.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CalibrationY.mlmodel; sourceTree = "<group>"; };
 		F3216B5520F4EA15008D6EFD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = "in-ios/view/home/HomeViewController.swift"; sourceTree = SOURCE_ROOT; };
 		F32D99C521117E79007AAA8D /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		F32D99C721117E8A007AAA8D /* MenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuModel.swift; sourceTree = "<group>"; };
@@ -475,6 +479,8 @@
 			children = (
 				E99B8C30216DE4B800A90EFC /* GazeTrackerCalibrated.swift */,
 				E9876E0321674F890001C626 /* GazeUtils.swift */,
+				F31F275D2175AD7B00C4E473 /* CalibrationY.mlmodel */,
+				F31F275B2175AD7500C4E473 /* CalibrationX.mlmodel */,
 				F396E469216FA60F00C061CD /* BiasCorrector.mlmodel */,
 				F3CE691C213D70E6004F6756 /* GazeEstimator.mlmodel */,
 				F3E97E5821422F4800379B4A /* GazeTracker.swift */,
@@ -1130,11 +1136,13 @@
 				F3F4148C20F5F82000CF101D /* ReachabilityManager.swift in Sources */,
 				F3DA017F2162907500D0625B /* WebviewViewModel.swift in Sources */,
 				F334ADC8210D7A370056824A /* MenuItem.swift in Sources */,
+				F31F275E2175AD7B00C4E473 /* CalibrationY.mlmodel in Sources */,
 				F3CE691D213D70E6004F6756 /* GazeEstimator.mlmodel in Sources */,
 				E99A8EEC2170A02D007B8E64 /* MainMenuItemCollectionViewCell.swift in Sources */,
 				E9876E1B216B6ED50001C626 /* ProgressGradientView.swift in Sources */,
 				F32D99C621117E79007AAA8D /* HomeModel.swift in Sources */,
 				E966261F216F38AA006C05B1 /* UIFontExtension.swift in Sources */,
+				F31F275C2175AD7500C4E473 /* CalibrationX.mlmodel in Sources */,
 				F32DCEDE214A652000B3D0F8 /* IntroThirdViewModel.swift in Sources */,
 				F336587D20D318C300B18CEC /* AppDelegate.swift in Sources */,
 				E94ABF722174B49D0063B8D6 /* AnimationProtocol.swift in Sources */,
