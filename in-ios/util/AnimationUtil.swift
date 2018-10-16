@@ -14,6 +14,11 @@ enum AnimationStatus: Int {
     case completed = 1
 }
 
+enum AnimationDirection: Int {
+    case left = 0
+    case right = 1
+}
+
 class AnimationUtil {
     
     static var status = Variable<Int>(0)
@@ -70,6 +75,22 @@ class AnimationUtil {
         CATransaction.commit()
     }
     
+    static func animateMoving(view: UIView, direction: Int) {
+        let screenWidth: CGFloat = UIScreen.main.bounds.width
+        UIView.animate(withDuration: 4, animations: {
+            switch(direction) {
+            case AnimationDirection.right.rawValue:
+                view.frame.origin.x = screenWidth - view.frame.origin.x - view.frame.width
+            case AnimationDirection.left.rawValue:
+                view.frame.origin.x = screenWidth - (view.frame.origin.x + view.frame.width)
+            default:
+                break
+            }
+        }) { finished in
+            self.status.value += AnimationStatus.completed.rawValue
+        }
+    }
+    
     static func getTag() -> String {
         return tag
     }
@@ -78,6 +99,7 @@ class AnimationUtil {
 //New animation util methods
 
 extension AnimationUtil {
+    
     static func animateSelection(object: AnimateObject, fingerTouch: Bool, tag: String) {
         self.tag = tag
         if fingerTouch {

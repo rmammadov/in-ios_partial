@@ -55,7 +55,8 @@ struct Constant {
     
     struct CalibrationConfig {
         static let CALIBRATION_STEP_DURATION: Double = 3.0
-        static let CALIBRATION_TAGS: Array = [114, 120, 117, 112, 118, 110, 121, 113, 122, 115, 111, 119, 116]
+        static let CALIBRATION_TAGS_FIRST_STEP: Array = [114, 120, 117, 112, 118, 110, 121, 113, 122, 115, 111, 119, 116]
+        static let CALIBRATION_TAGS_SECOND_STEP: Array = [110, 122]
     }
     
     struct InputValidationConfig {

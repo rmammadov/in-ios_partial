@@ -20,6 +20,14 @@ class IntroThirdNewViewModel: BaseViewModel {
         model.setCalibrationData(image: image, data: data)
     }
     
+    func setCalibrationStep(step: Int) {
+        model.setCalibrationStep(step: step)
+    }
+    
+    func getCalibrationStep() -> Int {
+        return model.getCalibrationStep()
+    }
+    
     func postProfileData() {
         model.postProfileData()
     }

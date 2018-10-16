@@ -61,7 +61,8 @@ class IntroThirdNewViewController: BaseViewController {
         btnBack.isHidden = true
         viewSecondStep.isHidden = false
         setDismissSwipeForSecondStep()
-        startCalibration()
+//        startCalibration()
+        startThirdStep()
     }
     
     @IBAction func onClickBtnRedoFourthStep(_ sender: Any) {
@@ -139,13 +140,6 @@ extension IntroThirdNewViewController {
 
 extension IntroThirdNewViewController {
     
-    func startFourthStep() {
-        viewSecondStep.isHidden = true
-        viewFourthStep.isHidden = false
-        btnBack.isHidden = false
-        btnForward.isHidden = false
-    }
-    
     func startCalibration() {
          continueCalibration(tag: viewModel.getTag())
     }
@@ -197,6 +191,21 @@ extension IntroThirdNewViewController {
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(IntroThirdNewViewController.swiped(_:)))
         swipeGesture.direction = .left
         viewSecondStep.addGestureRecognizer(swipeGesture)
+    }
+    
+    func startThirdStep() {
+        viewModel.setCalibrationStep(step: CalibrationStep.third.rawValue)
+        if let btnCalibration = self.view.viewWithTag(viewModel.getTag()) as? UIButton {
+            btnCalibration.isHidden = false
+            AnimationUtil.animateMoving(view: btnCalibration, direction: AnimationDirection.right.rawValue)
+        }
+    }
+    
+    func startFourthStep() {
+        viewSecondStep.isHidden = true
+        viewFourthStep.isHidden = false
+        btnBack.isHidden = false
+        btnForward.isHidden = false
     }
     
     @objc func swiped(_ gesture: UIGestureRecognizer) {
