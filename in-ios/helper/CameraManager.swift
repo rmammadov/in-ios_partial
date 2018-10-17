@@ -43,9 +43,15 @@ class CameraManager: NSObject {
     fileprivate var averageY: [Double] = Array(repeating: 0.0, count: Constant.DefaultConfig.GAZE_PREDICTION_AVERAGING_COUNT)
     fileprivate var averagingCount: Double = 0
     fileprivate var coordinates: (gazeX: Double, gazeY: Double) = (gazeX: 0, gazeY: 0)
+    fileprivate var coordinatesSnapshot: (gazeX: Double, gazeY: Double)?
+    fileprivate var coordinatesPreConversion: (gazeX: Double, gazeY: Double) = (gazeX: 0, gazeY: 0)
+    fileprivate var coordinatesPreConversionSnapshot: (gazeX: Double, gazeY: Double)?
     fileprivate var calibrationFeatures: MLMultiArray?
     fileprivate var calibrationFeaturesSnapshoot: MLMultiArray?
-    fileprivate var coordinatesSnapshot: (gazeX: Double, gazeY: Double)?
+    fileprivate var facialFeatures: Array<Double>?
+    fileprivate var facialFeaturesSnapshoot: Array<Double>?
+    fileprivate var eyeCenters: Array<Array<Double>>?
+    fileprivate var eyeCentersSnapshoot: Array<Array<Double>>?
     fileprivate var showPreview = true
     fileprivate var showLabel = true
     fileprivate var showPointer = true
@@ -329,9 +335,12 @@ extension CameraManager: GazePredictionDelegate {
             let X = averageX.reduce(0, +)/Double(averageX.count)
             let Y = averageY.reduce(0, +)/Double(averageY.count)
             
-            calibrationFeatures = gazeTracker.calibFeatures
             coordinates = gazeUtils.cm2pixels(gazeX: X, gazeY: Y, camX: 0, camY: 12.0, orientation: UIDevice.current.orientation)
-            //coordinates = (X, Y) //REMOVE
+//            coordinates = (X, Y) //REMOVE
+            coordinatesPreConversion = (gazeX: X, gazeY: Y)
+            calibrationFeatures = gazeTracker.calibFeatures
+            facialFeatures = gazeTracker.facialFeatures
+            eyeCenters = gazeTracker.eyeCenters
             
             if showLabel {
                 self.label?.text = "Values: X: \(String(describing: gazeTracker.gazeEstimation![0]))" + " Y: \(String(describing: gazeTracker.gazeEstimation![1]))"
@@ -532,7 +541,10 @@ extension CameraManager {
     
     func takeScreenShot() -> UIImage? {
         calibrationFeaturesSnapshoot = calibrationFeatures
+        coordinatesPreConversionSnapshot = coordinatesPreConversion
         coordinatesSnapshot = coordinates
+        facialFeaturesSnapshoot = facialFeatures
+        eyeCentersSnapshoot = eyeCenters
         guard let screenShot = UIApplication.shared.screenShot else { return nil }
         
         return screenShot
@@ -541,12 +553,15 @@ extension CameraManager {
     func getCalibrationFeatures() -> CalibrationData? {
         var arrayCalibrationFeatures: Array<String> = []
         guard let coordinatesSnapshot = coordinatesSnapshot else { return nil }
-        guard let calibrationFeatures = calibrationFeaturesSnapshoot else { return nil }
-        for i in 0...(calibrationFeatures.count - 1) {
-            arrayCalibrationFeatures.append("\(calibrationFeatures[i])")
+        guard let coordinatesPreConversionSnapshot = coordinatesPreConversionSnapshot else { return nil }
+        guard let calibrationFeaturesSnapshoot = calibrationFeaturesSnapshoot else { return nil }
+        guard let facialFeaturesSnapshoot = facialFeaturesSnapshoot else { return nil }
+        guard let eyeCentersSnapshoot = eyeCentersSnapshoot else { return nil }
+        for i in 0...(calibrationFeaturesSnapshoot.count - 1) {
+            arrayCalibrationFeatures.append("\(calibrationFeaturesSnapshoot[i])")
         }
         
-        return CalibrationData(cross_x: coordinatesSnapshot.gazeX, cross_y: coordinatesSnapshot.gazeY, file: nil, calibrationFeatures: arrayCalibrationFeatures)
+        return CalibrationData(cross_x: coordinatesSnapshot.gazeX, cross_y: coordinatesSnapshot.gazeY, cross_x_pre_conversion: coordinatesPreConversionSnapshot.gazeX, cross_y_pre_conversion: coordinatesPreConversionSnapshot.gazeY, calibrationFeatures: arrayCalibrationFeatures, facialFeatures: facialFeaturesSnapshoot, eyeCenters: eyeCentersSnapshoot, file: nil)
     }
 }
 
