@@ -16,8 +16,6 @@
                 <outlet property="gradientView" destination="E7o-AK-JMa" id="wbc-LC-MQk"/>
                 <outlet property="progressView" destination="SO2-7Q-g3H" id="fYV-Tv-aSw"/>
                 <outlet property="titleLabel" destination="fx9-HV-uhY" id="Ubt-R6-jSt"/>
-                <outlet property="titleLeadingConstraint" destination="Y7P-lX-KCI" id="3LA-Rd-GrN"/>
-                <outlet property="titleTrailingConstraint" destination="H3h-Cf-KPK" id="9A9-OE-OGT"/>
                 <outlet property="view" destination="iN0-l3-epB" id="wk0-He-dU3"/>
             </connections>
         </placeholder>
@@ -27,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E7o-AK-JMa" customClass="GradientView" customModule="in_ios" customModuleProvider="target">
-                    <rect key="frame" x="8" y="13" width="359" height="74"/>
+                    <rect key="frame" x="4" y="4" width="367" height="92"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
@@ -38,14 +36,14 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Body part" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fx9-HV-uhY">
-                    <rect key="frame" x="24" y="21" width="327" height="58"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Body part" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fx9-HV-uhY">
+                    <rect key="frame" x="24" y="28" width="327" height="44"/>
                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="32"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="SO2-7Q-g3H" customClass="ProgressGradientView" customModule="in_ios" customModuleProvider="target">
-                    <rect key="frame" x="24" y="85" width="327" height="2"/>
+                    <rect key="frame" x="24" y="78" width="327" height="2"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
@@ -57,7 +55,7 @@
                     </userDefinedRuntimeAttributes>
                 </progressView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdk-sV-ega">
-                    <rect key="frame" x="8" y="13" width="359" height="74"/>
+                    <rect key="frame" x="4" y="4" width="367" height="92"/>
                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="45"/>
                     <connections>
                         <action selector="buttonTapped:" destination="-1" eventType="touchUpInside" id="7oD-l6-r3M"/>
@@ -67,19 +65,20 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="SO2-7Q-g3H" firstAttribute="leading" secondItem="fx9-HV-uhY" secondAttribute="leading" id="0ZX-z3-MWB"/>
-                <constraint firstItem="fx9-HV-uhY" firstAttribute="bottom" secondItem="E7o-AK-JMa" secondAttribute="bottom" constant="-8" id="1pW-tG-A56"/>
-                <constraint firstItem="kdk-sV-ega" firstAttribute="top" secondItem="E7o-AK-JMa" secondAttribute="top" id="7Qw-3B-HWI"/>
-                <constraint firstItem="kdk-sV-ega" firstAttribute="trailing" secondItem="E7o-AK-JMa" secondAttribute="trailing" id="B8N-8Z-ntY"/>
-                <constraint firstItem="kdk-sV-ega" firstAttribute="leading" secondItem="E7o-AK-JMa" secondAttribute="leading" id="DNg-1D-h2y"/>
-                <constraint firstItem="fx9-HV-uhY" firstAttribute="top" secondItem="E7o-AK-JMa" secondAttribute="top" constant="8" id="G6J-hw-Q8Z"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="E7o-AK-JMa" secondAttribute="bottom" constant="4" id="6NG-Lx-Tkz"/>
+                <constraint firstItem="E7o-AK-JMa" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="4" id="GRz-ci-Jpt"/>
                 <constraint firstItem="fx9-HV-uhY" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Gbe-02-TZx"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="fx9-HV-uhY" secondAttribute="trailing" constant="24" id="H3h-Cf-KPK"/>
-                <constraint firstItem="kdk-sV-ega" firstAttribute="bottom" secondItem="E7o-AK-JMa" secondAttribute="bottom" id="U7H-zq-QQT"/>
+                <constraint firstItem="kdk-sV-ega" firstAttribute="leading" secondItem="E7o-AK-JMa" secondAttribute="leading" id="ItS-VS-qSH"/>
+                <constraint firstItem="fx9-HV-uhY" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Jvv-bZ-QDj"/>
+                <constraint firstItem="kdk-sV-ega" firstAttribute="bottom" secondItem="E7o-AK-JMa" secondAttribute="bottom" id="O6v-Zl-cgS"/>
                 <constraint firstItem="fx9-HV-uhY" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="Y7P-lX-KCI"/>
                 <constraint firstItem="SO2-7Q-g3H" firstAttribute="trailing" secondItem="fx9-HV-uhY" secondAttribute="trailing" id="aiu-ff-JMJ"/>
-                <constraint firstItem="fx9-HV-uhY" firstAttribute="trailing" secondItem="E7o-AK-JMa" secondAttribute="trailing" constant="-16" id="cHv-1h-aMy"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="E7o-AK-JMa" secondAttribute="trailing" constant="4" id="ap6-DS-jYg"/>
+                <constraint firstItem="kdk-sV-ega" firstAttribute="trailing" secondItem="E7o-AK-JMa" secondAttribute="trailing" id="cCB-vq-Kmy"/>
                 <constraint firstItem="SO2-7Q-g3H" firstAttribute="top" secondItem="fx9-HV-uhY" secondAttribute="bottom" constant="6" id="f3n-vw-4YF"/>
-                <constraint firstItem="fx9-HV-uhY" firstAttribute="leading" secondItem="E7o-AK-JMa" secondAttribute="leading" constant="16" id="sHb-uw-Dm2"/>
+                <constraint firstItem="kdk-sV-ega" firstAttribute="top" secondItem="E7o-AK-JMa" secondAttribute="top" id="lU3-3D-xtq"/>
+                <constraint firstItem="E7o-AK-JMa" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="4" id="qjn-0Y-hbe"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>

@@ -71,7 +71,6 @@ extension BodyPartViewController {
         for (index, item) in items.enumerated() {
             frame.origin.y = CGFloat(index / 2) * itemHeight
             let row = BodyPartRowView(frame: frame)
-            row.titleAlignment = (index % 2 == 0) ? .left : .right
             row.bubble = item
             row.delegate = self
             row.heightAnchor.constraint(equalToConstant: itemHeight).isActive = true

@@ -17,18 +17,9 @@ class BodyPartRowView: UIView {
     @IBOutlet weak var gradientView: GradientView!
     @IBOutlet weak var progressView: ProgressGradientView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var titleTrailingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var titleLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var button: UIButton!
     
     weak var delegate: BodyPartRowDelegate?
-    
-    var titleAlignment: NSTextAlignment = .right {
-        didSet {
-            titleTrailingConstraint.isActive = titleAlignment == .left
-            titleLeadingConstraint.isActive = titleAlignment != .left
-        }
-    }
     
     var bubble: Bubble? {
         didSet {

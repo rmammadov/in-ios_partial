@@ -111,7 +111,7 @@ class ScreenTypeEViewModel: BaseViewModel {
         return inputScreen?.nextButton
     }
     
-    func onItemLoadRequest(indexPath: IndexPath) {
+    func onItemLoadRequest(indexPath: IndexPath) -> ButtonInputScreen {
         let item = getItemFor(indexPath: indexPath)
         
         if !(item.disableTextToSpeech ?? true), let text = item.translations?.first?.labelTextToSpeech {
@@ -120,16 +120,42 @@ class ScreenTypeEViewModel: BaseViewModel {
         
         guard item.translations?.first?.label != Constant.MenuConfig.PREVIOUS_ITEM_NAME else {
             previousPage()
-            return
+            return item
         }
         
         guard item.translations?.first?.label != Constant.MenuConfig.NEXT_ITEM_NAME else {
             nextPage()
-            return
+            return item
+        }
+        
+        guard item.type != .inputScreenOpen else {
+            return item
         }
         selectedItem = item
         
         delegate?.didSelect(value: item, onScreen: self.inputScreen)
+        return item
+    }
+    
+    func prepareViewControllerFor(item: ButtonInputScreen) -> UIViewController? {
+        guard
+            let inputScreenId = item.inputScreenId, item.type == .inputScreenOpen,
+            let inputScreen = DataManager.getInputScreens().getInputScreenFor(id: inputScreenId),
+            let viewController = UIViewController.instantiateViewController(for: inputScreen.type)
+            else { return nil }
+        switch inputScreen.type {
+        case .inputScreenA,
+             .inputScreenB:
+            guard let vc = viewController as? InputAViewController else { return nil }
+            vc.viewModel.inputScreen = inputScreen
+            return vc
+        case .inputScreenC:
+            guard let vc = viewController as? ScreenTypeCViewController else { return nil }
+            vc.viewModel.inputScreen = inputScreen
+            return vc
+        default:
+            return nil
+        }
     }
     
     func nextPage() {

@@ -31,13 +31,13 @@ class AnimationUtil {
         if fingerTouch {
             self.setMenuSelection(imageView: imageView)
             Timer.scheduledTimer(withTimeInterval: Constant.AnimationConfig.MENU_ITEM_FINGER_TOUCH_ANIMATION_DURATION, repeats: false) { (timer) in
-                self.status.value += AnimationStatus.completed.rawValue
+                self.status.value = AnimationStatus.completed.rawValue
             }
         } else {
             CATransaction.begin()
             CATransaction.setCompletionBlock({
                 self.setMenuSelection(imageView: imageView)
-                self.status.value += AnimationStatus.completed.rawValue
+                self.status.value = AnimationStatus.completed.rawValue
             })
             let rotationAnimation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
             rotationAnimation.toValue = NSNumber(value: .pi * 2.0)
@@ -105,12 +105,12 @@ extension AnimationUtil {
         if fingerTouch {
             object.setSelected(true)
             Timer.scheduledTimer(withTimeInterval: Constant.AnimationConfig.MENU_ITEM_FINGER_TOUCH_ANIMATION_DURATION, repeats: false) { (_) in
-                self.status.value += AnimationStatus.completed.rawValue
+                self.status.value = AnimationStatus.completed.rawValue
             }
         } else {
             object.animateLoading { (isCompleted) in
                 object.setSelected(true)
-                self.status.value += AnimationStatus.completed.rawValue
+                self.status.value = AnimationStatus.completed.rawValue
             }
         }
     }

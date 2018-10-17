@@ -1661,7 +1661,7 @@ The process will take less than 20 seconds.</string>
                                 <rect key="frame" x="65" y="90" width="982" height="744"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x24-Zp-YXN">
-                                        <rect key="frame" x="0.0" y="59.5" width="982" height="625.5"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="982" height="695"/>
                                     </containerView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1682,7 +1682,7 @@ The process will take less than 20 seconds.</string>
                             <constraint firstItem="sGM-0m-r6H" firstAttribute="leading" secondItem="uUe-oB-s79" secondAttribute="trailing" id="TUe-Kw-cR4"/>
                             <constraint firstItem="7eH-TA-TIF" firstAttribute="top" secondItem="DXO-Yp-ThX" secondAttribute="top" id="UZ3-4P-TNt"/>
                             <constraint firstItem="djf-SA-qOa" firstAttribute="leading" secondItem="sGM-0m-r6H" secondAttribute="trailing" id="Ud0-pM-b7M"/>
-                            <constraint firstItem="x24-Zp-YXN" firstAttribute="height" secondItem="DXO-Yp-ThX" secondAttribute="height" multiplier="3:4" id="X5C-Wg-vtX"/>
+                            <constraint firstItem="x24-Zp-YXN" firstAttribute="height" secondItem="DXO-Yp-ThX" secondAttribute="height" multiplier="5:6" id="X5C-Wg-vtX"/>
                             <constraint firstAttribute="bottomMargin" secondItem="sGM-0m-r6H" secondAttribute="bottom" id="YmP-73-gLt"/>
                             <constraint firstItem="djf-SA-qOa" firstAttribute="bottom" secondItem="Qqj-JM-YbC" secondAttribute="bottom" id="b3b-CW-bsA"/>
                             <constraint firstItem="7eH-TA-TIF" firstAttribute="trailing" secondItem="Qqj-JM-YbC" secondAttribute="trailing" id="bF9-yq-geq"/>
@@ -1856,7 +1856,7 @@ The process will take less than 20 seconds.</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="53P-BR-3L5">
                                 <rect key="frame" x="0.0" y="0.0" width="317.5" height="834"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="0fs-lH-arL">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="0fs-lH-arL">
                                         <rect key="frame" x="0.0" y="402" width="317.5" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OWU-F3-o3m">
@@ -1884,16 +1884,16 @@ The process will take less than 20 seconds.</string>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="SEC-Hi-Dsl" secondAttribute="bottom" id="4cB-mz-7n6"/>
                                     <constraint firstAttribute="trailing" secondItem="SEC-Hi-Dsl" secondAttribute="trailing" id="F4y-ZT-QBz"/>
                                     <constraint firstItem="SEC-Hi-Dsl" firstAttribute="leading" secondItem="YkC-CW-mR3" secondAttribute="leading" id="JZc-Z1-P4E"/>
-                                    <constraint firstItem="SEC-Hi-Dsl" firstAttribute="top" secondItem="YkC-CW-mR3" secondAttribute="top" id="cHr-fY-bBk"/>
-                                    <constraint firstAttribute="bottom" secondItem="SEC-Hi-Dsl" secondAttribute="bottom" id="pHg-ag-Y6m"/>
+                                    <constraint firstItem="SEC-Hi-Dsl" firstAttribute="top" secondItem="YkC-CW-mR3" secondAttribute="top" id="tJx-tP-HNj"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vd9-9y-KgK">
                                 <rect key="frame" x="794.5" y="0.0" width="317.5" height="834"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="SOi-aa-wM4">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="SOi-aa-wM4">
                                         <rect key="frame" x="0.0" y="402" width="317.5" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A9o-3I-EH2">
