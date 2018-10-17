@@ -25,6 +25,7 @@ class IntroThirdNewViewController: BaseViewController {
     private let viewModel: IntroThirdNewModel = IntroThirdNewModel()
     let disposeBag = DisposeBag()
     var btnPrevious: UIButton?
+    var timerDataCollection: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -197,10 +198,10 @@ extension IntroThirdNewViewController {
             btnPrevious?.isHidden = false
             
             if viewModel.getCalibrationStep() == CalibrationStep.second.rawValue {
-                Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.STANDART_CALIBRATION_STEP_DATA_COLLECTION_DURATION, target: self, selector: #selector(takeScreenShot), userInfo: nil, repeats: false)
+                timerDataCollection = Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.STANDART_CALIBRATION_STEP_DATA_COLLECTION_DURATION, target: self, selector: #selector(takeScreenShot), userInfo: nil, repeats: false)
                 Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.STANDART_CALIBRATION_STEP_DURATION, target: self, selector: #selector(handleCalibrationStep), userInfo: nil, repeats: false)
             } else {
-                Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.MOVING_CALIBRATION_STEP_DATA_COLLECTION_DURATION, target: self, selector: #selector(takeScreenShot), userInfo: nil, repeats: false)
+                timerDataCollection = Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.MOVING_CALIBRATION_STEP_DATA_COLLECTION_DURATION, target: self, selector: #selector(takeScreenShot), userInfo: nil, repeats: true)
                 AnimationUtil.animateMoving(view: btnPrevious!, direction: viewModel.getAnimationType())
             }
             
@@ -215,6 +216,8 @@ extension IntroThirdNewViewController {
     
     @objc func handleCalibrationStep() {
         btnPrevious?.isHidden = true
+        timerDataCollection?.invalidate()
+        timerDataCollection = nil
         let tag = viewModel.getTag()
         if tag != 0 {
             continueCalibration(tag: tag)

@@ -87,7 +87,7 @@ class AnimationUtil {
                 break
             }
         }) { finished in
-            self.status.value += AnimationStatus.completed.rawValue
+            self.status.value = AnimationStatus.completed.rawValue
         }
     }
     
