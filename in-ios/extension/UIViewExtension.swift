@@ -57,3 +57,26 @@ extension UIImageView {
         
     }
 }
+
+extension UIViewController {
+    static func instantiateViewController(for inputType: InputScreen.InputScreenType) -> UIViewController? {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        var identifier: String = ""
+        switch inputType {
+        case .inputScreenA,
+             .inputScreenB:
+            identifier = InputAViewController.identifier
+        case .inputScreenC:
+            identifier = ScreenTypeCViewController.identifier
+        case .inputScreenD:
+            identifier = ScreenTypeDViewController.identifier
+        case .inputScreenE:
+            identifier = ScreenTypeEViewController.identifier
+        case .inputScreenF:
+            identifier = ScreenTypeFViewController.identifier
+        default:
+            return nil
+        }
+        return storyboard.instantiateViewController(withIdentifier: identifier)
+    }
+}
