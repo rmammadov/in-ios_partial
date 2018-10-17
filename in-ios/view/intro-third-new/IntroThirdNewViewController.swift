@@ -25,26 +25,16 @@ class IntroThirdNewViewController: BaseViewController {
     private let viewModel: IntroThirdNewModel = IntroThirdNewModel()
     let disposeBag = DisposeBag()
     var btnPrevious: UIButton?
+    var timerDataCollection: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
         setUi()
         setCamera()
 //        let point = CGPoint(x: self.view.frame.size.height / 2 , y: 0)
 //        self.view.hitTest(point, with: nil)
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
     func setDisabled(sender: Any) {
         let btn = sender as! UIButton
@@ -197,10 +187,10 @@ extension IntroThirdNewViewController {
             btnPrevious?.isHidden = false
             
             if viewModel.getCalibrationStep() == CalibrationStep.second.rawValue {
-                Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.STANDART_CALIBRATION_STEP_DATA_COLLECTION_DURATION, target: self, selector: #selector(takeScreenShot), userInfo: nil, repeats: false)
+                timerDataCollection = Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.STANDART_CALIBRATION_STEP_DATA_COLLECTION_DURATION, target: self, selector: #selector(takeScreenShot), userInfo: nil, repeats: false)
                 Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.STANDART_CALIBRATION_STEP_DURATION, target: self, selector: #selector(handleCalibrationStep), userInfo: nil, repeats: false)
             } else {
-                Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.MOVING_CALIBRATION_STEP_DATA_COLLECTION_DURATION, target: self, selector: #selector(takeScreenShot), userInfo: nil, repeats: false)
+                timerDataCollection = Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.MOVING_CALIBRATION_STEP_DATA_COLLECTION_DURATION, target: self, selector: #selector(takeScreenShot), userInfo: nil, repeats: true)
                 AnimationUtil.animateMoving(view: btnPrevious!, direction: viewModel.getAnimationType())
             }
             
@@ -215,6 +205,8 @@ extension IntroThirdNewViewController {
     
     @objc func handleCalibrationStep() {
         btnPrevious?.isHidden = true
+        timerDataCollection?.invalidate()
+        timerDataCollection = nil
         let tag = viewModel.getTag()
         if tag != 0 {
             continueCalibration(tag: tag)
