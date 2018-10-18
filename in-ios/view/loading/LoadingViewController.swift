@@ -9,8 +9,8 @@
 import UIKit
 import RxSwift
 
-private let SEGUE_IDENTIFIER_INTRO = "segueIntro"
-private let SEGUE_IDENTIFIER_HOME = "segueHome"
+private let SEGUE_IDENTIFIER_INTRO = "showIntro"
+private let SEGUE_IDENTIFIER_HOME = "showHome"
 
 class LoadingViewController: BaseViewController {
 
@@ -90,6 +90,7 @@ extension LoadingViewController {
                 
                 case LoadingStatus.completed.rawValue:
                     self.showIntro()
+//                    self.showHome()
                 
                 default:
                     self.ivProgressbarContent.image = nil

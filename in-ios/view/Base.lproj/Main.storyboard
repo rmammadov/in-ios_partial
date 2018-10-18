@@ -1546,8 +1546,8 @@ The process will take less than 20 seconds.</string>
                         <outlet property="ivProgressbar" destination="uXg-sW-efy" id="ueh-Tr-4YT"/>
                         <outlet property="ivProgressbarContent" destination="I3H-1M-tyc" id="i8D-HG-jdk"/>
                         <outlet property="labelStatus" destination="BEl-97-I5p" id="p9f-vF-b7K"/>
-                        <segue destination="3Au-hN-HZc" kind="presentation" identifier="segueIntro" id="nXY-dm-Ivv"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="segueHome" id="Qkw-AY-6BD"/>
+                        <segue destination="3Au-hN-HZc" kind="presentation" identifier="showIntro" id="nXY-dm-Ivv"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="showHome" id="Qkw-AY-6BD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vev-Eu-snY" userLabel="First Responder" sceneMemberID="firstResponder"/>

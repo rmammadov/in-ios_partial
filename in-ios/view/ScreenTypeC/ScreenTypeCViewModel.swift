@@ -122,7 +122,7 @@ class ScreenTypeCViewModel: BaseViewModel {
     func speakSelectedValues() {
         for item in items.value {
             if let text = getSelectedText(for: item.id) {
-                SpeechHelper.play(text: text, language: "en-US")
+                SpeechHelper.play(text: text, language: Locale.current.languageCode!)
             }
         }
     }

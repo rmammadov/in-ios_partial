@@ -12,6 +12,7 @@ import Crashlytics
 private let SEGUE_IDENTIFIER_SHOW_NAME_INPUT = "showNameSurnameInput"
 private let SEGUE_IDENTIFIER_SHOW_USER_DETAILS_INPUT = "showUserDetailsInput"
 private let SEGUE_IDENTIFIER_SHOW_WEBVIEW = "showWebview"
+private let SEGUE_IDENTIFIER_SHOW_HOME = "showHome"
 
 class IntroFirstViewController: BaseViewController {
 
@@ -26,6 +27,7 @@ class IntroFirstViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_HOME, sender: self)
         setUi()
     }
 

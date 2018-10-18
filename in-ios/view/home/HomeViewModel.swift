@@ -121,6 +121,6 @@ class HomeViewModel: BaseViewModel {
     // FIXME: Remove hardcode language type
     
     func textToSpech(text: String) {
-        SpeechHelper.play(text: text, language: "en-US")
+        SpeechHelper.play(text: text, language: Locale.current.languageCode!)
     }
 }

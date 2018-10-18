@@ -18,8 +18,7 @@ class SpeechHelper {
         self.setAudioSession()
         self.handleSilentMode()
         let utterance = AVSpeechUtterance(string: text)
-        utterance.rate = 0.4
-        utterance.voice = AVSpeechSynthesisVoice(language: language)
+//        utterance.voice = AVSpeechSynthesisVoice(language: language) // Customize default voice of device
         self.synthesizer.speak(utterance)
     }
     
