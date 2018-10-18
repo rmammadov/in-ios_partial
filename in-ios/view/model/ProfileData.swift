@@ -33,8 +33,10 @@ struct File: Codable {
 
 struct CalibrationData: Codable {
     
-    let target_x: Double
-    let target_y: Double
+    var cross_x: Float?
+    var cross_y: Float?
+    let pointer_x: Double
+    let pointer_y: Double
     let prediction_x: Double
     let prediction_y: Double
     let calibrationFeatures: Array<String>

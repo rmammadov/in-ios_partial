@@ -199,7 +199,10 @@ extension IntroThirdNewViewController {
     
     @objc func takeScreenShot() {
         guard let screenShot = cameraManager?.takeScreenShot() else { return }
-        guard let calibrationDataForFrame = cameraManager?.getCalibrationFeatures() else { return }
+        guard var calibrationDataForFrame = cameraManager?.getCalibrationFeatures() else { return }
+        guard let btn = btnPrevious else { return }
+        calibrationDataForFrame.cross_x = Float((btn.layer.presentation()?.frame.origin.x)!)
+        calibrationDataForFrame.cross_y = Float((btn.layer.presentation()?.frame.origin.y)!)
         viewModel.setCalibrationData(image: screenShot, data: calibrationDataForFrame)
     }
     
