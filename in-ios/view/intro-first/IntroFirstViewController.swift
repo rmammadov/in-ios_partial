@@ -27,7 +27,6 @@ class IntroFirstViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_HOME, sender: self)
         setUi()
     }
 
