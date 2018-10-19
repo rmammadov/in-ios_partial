@@ -24,8 +24,8 @@ class IntroThirdNewViewModel: BaseViewModel {
         return model.getTag()
     }
     
-    func getAnimationType() -> Int {
-        return model.getAnimationType()
+    func getNextTag() -> Int {
+        return model.getNextTag()
     }
     
     func setCalibrationData(image: UIImage, data: CalibrationData) {
