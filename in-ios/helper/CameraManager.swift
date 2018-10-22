@@ -310,7 +310,11 @@ extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
 extension CameraManager: GazePredictionDelegate {
     
     func setPrediction() {
-        gazeTracker = GazeTrackerCalibrated(delegate: self)
+        gazeTracker = GazeTracker(delegate: self)
+    }
+    
+    func setPredictionCalibrated(xModelURL: URL, yModelURL: URL) {
+        gazeTracker = GazeTrackerCalibrated(delegate: self, xModelURL: xModelURL, yModelURL: yModelURL)
     }
     
     func predicate(frame: UIImage) {
