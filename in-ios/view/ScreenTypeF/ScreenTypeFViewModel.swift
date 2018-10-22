@@ -45,7 +45,9 @@ class ScreenTypeFViewModel: BaseViewModel {
         selectedIndex = indexPath
         guard let indexPath = indexPath else { return }
         let item = getItemAt(indexPath: indexPath)
-        textToSpeech(item: item)
+        if !(item.disableTextToSpeech ?? true) {
+            textToSpeech(item: item)
+        }
         delegate?.didSelect(value: item, onScreen: inputScreen)
     }
     
