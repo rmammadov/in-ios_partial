@@ -10,6 +10,8 @@
 		1FB2B43D39F330625AB42FAA /* Pods_in_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B81A848D9E4455FF68424AA1 /* Pods_in_iosTests.framework */; };
 		52A449027D84CDDD257B8A19 /* Pods_in_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FE55CD425B19FE9092FD5CB /* Pods_in_ios.framework */; };
 		E3A238980EAF1E942B02D63A /* Pods_in_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C1D52781DEEE2B40B45A6D /* Pods_in_iosUITests.framework */; };
+		E9019234217DE5C300212B29 /* ScreenTypeGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9019233217DE5C300212B29 /* ScreenTypeGViewController.swift */; };
+		E9019236217DE5D800212B29 /* ScreenTypeGViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9019235217DE5D800212B29 /* ScreenTypeGViewModel.swift */; };
 		E9150EF8216605160023E138 /* ScreenTypeEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9150EF7216605160023E138 /* ScreenTypeEViewController.swift */; };
 		E9150EFA216606340023E138 /* ScreenTypeEViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9150EF9216606340023E138 /* ScreenTypeEViewModel.swift */; };
 		E93ACD43216B8CD700F29F54 /* ScreenTypeDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93ACD42216B8CD700F29F54 /* ScreenTypeDViewController.swift */; };
@@ -177,6 +179,8 @@
 		A936726B0D8064569E2F0074 /* Pods-in-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-in-ios/Pods-in-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		B42F0B30A5BBAEFB8E745953 /* Pods-in-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in-iosUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-in-iosUITests/Pods-in-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B81A848D9E4455FF68424AA1 /* Pods_in_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_in_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9019233217DE5C300212B29 /* ScreenTypeGViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeGViewController.swift; sourceTree = "<group>"; };
+		E9019235217DE5D800212B29 /* ScreenTypeGViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeGViewModel.swift; sourceTree = "<group>"; };
 		E9150EF7216605160023E138 /* ScreenTypeEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeEViewController.swift; sourceTree = "<group>"; };
 		E9150EF9216606340023E138 /* ScreenTypeEViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeEViewModel.swift; sourceTree = "<group>"; };
 		E93ACD42216B8CD700F29F54 /* ScreenTypeDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeDViewController.swift; sourceTree = "<group>"; };
@@ -368,6 +372,15 @@
 				25BE18E2938B0416F1A1208F /* Pods-in-iosUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E9019232217DE58F00212B29 /* ScreenTypeG */ = {
+			isa = PBXGroup;
+			children = (
+				E9019233217DE5C300212B29 /* ScreenTypeGViewController.swift */,
+				E9019235217DE5D800212B29 /* ScreenTypeGViewModel.swift */,
+			);
+			path = ScreenTypeG;
 			sourceTree = "<group>";
 		};
 		E9150EF62165F6E20023E138 /* ScreenTypeE */ = {
@@ -699,6 +712,7 @@
 				E93ACD41216B8CB300F29F54 /* ScreenTypeD */,
 				E9150EF62165F6E20023E138 /* ScreenTypeE */,
 				E9876E05216750110001C626 /* ScreenTypeF */,
+				E9019232217DE58F00212B29 /* ScreenTypeG */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1183,6 +1197,7 @@
 				F3CE6924213DB385004F6756 /* IntroFirstModel.swift in Sources */,
 				E99B8C31216DE4B800A90EFC /* GazeTrackerCalibrated.swift in Sources */,
 				F3E97E5721422F3C00379B4A /* UIDevice+modelName.swift in Sources */,
+				E9019234217DE5C300212B29 /* ScreenTypeGViewController.swift in Sources */,
 				F32F5B6721453DFB00558C68 /* IntroSecondViewModel.swift in Sources */,
 				F3CE6920213DB318004F6756 /* IntroFirstViewController.swift in Sources */,
 				F32DCED9214A41D100B3D0F8 /* INTextField.swift in Sources */,
@@ -1196,6 +1211,7 @@
 				F33658AE20D3198000B18CEC /* Constant.swift in Sources */,
 				F3CE9029215D3F8300A9F3DF /* IntroSecondNewViewController.swift in Sources */,
 				F3DA017D2162905200D0625B /* WebviewViewController.swift in Sources */,
+				E9019236217DE5D800212B29 /* ScreenTypeGViewModel.swift in Sources */,
 				E966261C216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.swift in Sources */,
 				F3DA0181216290BD00D0625B /* WebviewModel.swift in Sources */,
 				F334ADBC2104E7970056824A /* CameraManager.swift in Sources */,

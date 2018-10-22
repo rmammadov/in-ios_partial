@@ -102,6 +102,12 @@ class ScreenTypeCViewModel: BaseViewModel {
                 vc.viewModel.delegate = self
                 return vc
             }
+        case .inputScreenG:
+            if let vc = storyboard.instantiateViewController(withIdentifier: ScreenTypeGViewController.identifier) as? ScreenTypeGViewController {
+                vc.viewModel.inputScreen = item
+                vc.viewModel.delegate = self
+                return vc
+            }
         default:
             return UIViewController()
         }
