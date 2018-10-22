@@ -41,8 +41,8 @@
                                             <constraint firstAttribute="height" constant="2" id="fak-2b-WJf"/>
                                         </constraints>
                                     </imageView>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" scrollEnabled="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vSO-2M-N7o">
-                                        <rect key="frame" x="222.5" y="0.0" width="667" height="64"/>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vSO-2M-N7o">
+                                        <rect key="frame" x="0.0" y="0.0" width="1112" height="64"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -64,7 +64,7 @@
                                     <constraint firstItem="vSO-2M-N7o" firstAttribute="top" secondItem="9Zq-RT-v6y" secondAttribute="top" id="1YJ-t6-Yy3"/>
                                     <constraint firstItem="cVS-2f-YlA" firstAttribute="leading" secondItem="9Zq-RT-v6y" secondAttribute="leading" id="S19-9y-9bK"/>
                                     <constraint firstItem="vSO-2M-N7o" firstAttribute="centerX" secondItem="9Zq-RT-v6y" secondAttribute="centerX" id="jUg-sr-J6T"/>
-                                    <constraint firstItem="vSO-2M-N7o" firstAttribute="width" secondItem="9Zq-RT-v6y" secondAttribute="width" multiplier="0.6" id="rwh-7d-fOr"/>
+                                    <constraint firstItem="vSO-2M-N7o" firstAttribute="width" secondItem="9Zq-RT-v6y" secondAttribute="width" id="rwh-7d-fOr"/>
                                     <constraint firstAttribute="bottom" secondItem="cVS-2f-YlA" secondAttribute="bottom" id="vog-9I-Qhy"/>
                                     <constraint firstItem="cVS-2f-YlA" firstAttribute="top" secondItem="vSO-2M-N7o" secondAttribute="bottom" id="zdj-rI-uLF"/>
                                 </constraints>
