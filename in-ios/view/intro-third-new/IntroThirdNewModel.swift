@@ -23,7 +23,6 @@ class IntroThirdNewModel: BaseModel {
     private var index = 0
     private var tagsCalibrationFirstStep: Array = Constant.CalibrationConfig.CALIBRATION_TAGS_FIRST_STEP
     private var tagsCalibrationSecondStep: Array = Constant.CalibrationConfig.CALIBRATION_TAGS_SECOND_STEP
-    private var animationType = AnimationDirection.right.rawValue
     
     func nextStep() {
         if calibrationStep < CalibrationStep.fifth.rawValue {
@@ -40,7 +39,8 @@ class IntroThirdNewModel: BaseModel {
     func getTag() -> Int {
         let tags = getTags()
         var tag: Int?
-        if index < tags.count {
+        
+        if index < getMaxIndex() {
             tag = tags[index]
             index += 1
         } else {
@@ -48,6 +48,10 @@ class IntroThirdNewModel: BaseModel {
             index = 0
         }
         return tag!
+    }
+    
+    func getNextTag() -> Int {
+        return getTags()[index]
     }
     
     func getTags() -> Array<Int> {
@@ -58,11 +62,11 @@ class IntroThirdNewModel: BaseModel {
         }
     }
     
-    func getAnimationType() -> Int {
-        if animationType == AnimationDirection.right.rawValue {
-            return AnimationDirection.left.rawValue
+    func getMaxIndex() -> Int {
+        if calibrationStep == CalibrationStep.third.rawValue {
+            return getTags().count - 1
         } else {
-            return AnimationDirection.right.rawValue
+            return getTags().count
         }
     }
     

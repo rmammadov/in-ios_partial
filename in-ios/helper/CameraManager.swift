@@ -337,7 +337,7 @@ extension CameraManager: GazePredictionDelegate {
             
             coordinates = gazeUtils.cm2pixels(gazeX: X, gazeY: Y, camX: 0, camY: 12.0, orientation: UIDevice.current.orientation)
 //            coordinates = (X, Y) //REMOVE
-            coordinatesPreConversion = (gazeX: X, gazeY: Y)
+            coordinatesPreConversion = (gazeX: Double(truncating: gazeTracker.gazeEstimation![0]), gazeY: Double(truncating: gazeTracker.gazeEstimation![1]))
             calibrationFeatures = gazeTracker.calibFeatures
             facialFeatures = gazeTracker.facialFeatures
             eyeCenters = gazeTracker.eyeCenters
@@ -540,9 +540,9 @@ extension CameraManager {
 extension CameraManager {
     
     func takeScreenShot() -> UIImage? {
-        calibrationFeaturesSnapshoot = calibrationFeatures
         coordinatesPreConversionSnapshot = coordinatesPreConversion
         coordinatesSnapshot = coordinates
+        calibrationFeaturesSnapshoot = calibrationFeatures
         facialFeaturesSnapshoot = facialFeatures
         eyeCentersSnapshoot = eyeCenters
         guard let screenShot = UIApplication.shared.screenShot else { return nil }
@@ -552,8 +552,8 @@ extension CameraManager {
     
     func getCalibrationFeatures() -> CalibrationData? {
         var arrayCalibrationFeatures: Array<String> = []
+           guard let coordinatesPreConversionSnapshot = coordinatesPreConversionSnapshot else { return nil }
         guard let coordinatesSnapshot = coordinatesSnapshot else { return nil }
-        guard let coordinatesPreConversionSnapshot = coordinatesPreConversionSnapshot else { return nil }
         guard let calibrationFeaturesSnapshoot = calibrationFeaturesSnapshoot else { return nil }
         guard let facialFeaturesSnapshoot = facialFeaturesSnapshoot else { return nil }
         guard let eyeCentersSnapshoot = eyeCentersSnapshoot else { return nil }
@@ -561,7 +561,7 @@ extension CameraManager {
             arrayCalibrationFeatures.append("\(calibrationFeaturesSnapshoot[i])")
         }
         
-        return CalibrationData(cross_x: coordinatesSnapshot.gazeX, cross_y: coordinatesSnapshot.gazeY, cross_x_pre_conversion: coordinatesPreConversionSnapshot.gazeX, cross_y_pre_conversion: coordinatesPreConversionSnapshot.gazeY, calibrationFeatures: arrayCalibrationFeatures, facialFeatures: facialFeaturesSnapshoot, eyeCenters: eyeCentersSnapshoot, file: nil)
+        return CalibrationData(cross_x: nil, cross_y: nil, pointer_x: coordinatesSnapshot.gazeX, pointer_y: coordinatesSnapshot.gazeY, prediction_x: coordinatesPreConversionSnapshot.gazeX, prediction_y: coordinatesPreConversionSnapshot.gazeY, calibrationFeatures: arrayCalibrationFeatures, facialFeatures: facialFeaturesSnapshoot, eyeCenters: eyeCentersSnapshoot, file: nil)
     }
 }
 

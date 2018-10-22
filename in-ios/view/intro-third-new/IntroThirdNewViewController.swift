@@ -191,7 +191,8 @@ extension IntroThirdNewViewController {
                 Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.STANDART_CALIBRATION_STEP_DURATION, target: self, selector: #selector(handleCalibrationStep), userInfo: nil, repeats: false)
             } else {
                 timerDataCollection = Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.MOVING_CALIBRATION_STEP_DATA_COLLECTION_DURATION, target: self, selector: #selector(takeScreenShot), userInfo: nil, repeats: true)
-                AnimationUtil.animateMoving(view: btnPrevious!, direction: viewModel.getAnimationType())
+                guard let nextBtn = self.view.viewWithTag(viewModel.getNextTag()) else { return }
+                AnimationUtil.animateMoving(view: btnPrevious!, moveX: nextBtn.frame.origin.x, moveY: nextBtn.frame.origin.y)
             }
             
         }
@@ -199,7 +200,10 @@ extension IntroThirdNewViewController {
     
     @objc func takeScreenShot() {
         guard let screenShot = cameraManager?.takeScreenShot() else { return }
-        guard let calibrationDataForFrame = cameraManager?.getCalibrationFeatures() else { return }
+        guard var calibrationDataForFrame = cameraManager?.getCalibrationFeatures() else { return }
+        guard let btn = btnPrevious else { return }
+        calibrationDataForFrame.cross_x = Float((btn.layer.presentation()?.frame.origin.x)!)
+        calibrationDataForFrame.cross_y = Float((btn.layer.presentation()?.frame.origin.y)!)
         viewModel.setCalibrationData(image: screenShot, data: calibrationDataForFrame)
     }
     

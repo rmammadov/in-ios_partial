@@ -14,11 +14,6 @@ enum AnimationStatus: Int {
     case completed = 1
 }
 
-enum AnimationDirection: Int {
-    case left = 0
-    case right = 1
-}
-
 class AnimationUtil {
     
     static var status = Variable<Int>(0)
@@ -75,17 +70,10 @@ class AnimationUtil {
         CATransaction.commit()
     }
     
-    static func animateMoving(view: UIView, direction: Int) {
-        let screenWidth: CGFloat = UIScreen.main.bounds.width
+    static func animateMoving(view: UIView, moveX: CGFloat, moveY: CGFloat) {
         UIView.animate(withDuration: Constant.CalibrationConfig.MOVING_CALIBRATION_STEP_DURATION, animations: {
-            switch(direction) {
-            case AnimationDirection.right.rawValue:
-                view.frame.origin.x = screenWidth - view.frame.origin.x - view.frame.width
-            case AnimationDirection.left.rawValue:
-                view.frame.origin.x = screenWidth - (view.frame.origin.x + view.frame.width)
-            default:
-                break
-            }
+            view.frame.origin.x = moveX
+            view.frame.origin.y = moveY
         }) { finished in
             self.status.value = AnimationStatus.completed.rawValue
         }

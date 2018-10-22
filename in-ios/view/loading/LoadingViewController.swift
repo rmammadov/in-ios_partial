@@ -9,8 +9,8 @@
 import UIKit
 import RxSwift
 
-private let SEGUE_IDENTIFIER_INTRO = "segueIntro"
-private let SEGUE_IDENTIFIER_HOME = "segueHome"
+private let SEGUE_IDENTIFIER_INTRO = "showIntro"
+private let SEGUE_IDENTIFIER_HOME = "showHome"
 
 class LoadingViewController: BaseViewController {
 
@@ -34,16 +34,6 @@ class LoadingViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     @IBAction func onClickBtnTryAgain(_ sender: Any) {
         self.viewModel.requestData()
@@ -90,6 +80,7 @@ extension LoadingViewController {
                 
                 case LoadingStatus.completed.rawValue:
                     self.showIntro()
+//                    self.showHome()
                 
                 default:
                     self.ivProgressbarContent.image = nil

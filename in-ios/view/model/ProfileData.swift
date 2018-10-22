@@ -33,10 +33,12 @@ struct File: Codable {
 
 struct CalibrationData: Codable {
     
-    let cross_x: Double
-    let cross_y: Double
-    let cross_x_pre_conversion: Double
-    let cross_y_pre_conversion: Double
+    var cross_x: Float?
+    var cross_y: Float?
+    let pointer_x: Double
+    let pointer_y: Double
+    let prediction_x: Double
+    let prediction_y: Double
     let calibrationFeatures: Array<String>
     let facialFeatures: Array<Double>
     let eyeCenters: Array<Array<Double>>

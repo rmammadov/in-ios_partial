@@ -115,7 +115,7 @@ class ScreenTypeEViewModel: BaseViewModel {
         let item = getItemFor(indexPath: indexPath)
         
         if !(item.disableTextToSpeech ?? true), let text = item.translations?.first?.labelTextToSpeech {
-            SpeechHelper.play(text: text, language: "en-US")
+            SpeechHelper.play(text: text, language: Locale.current.languageCode!)
         }
         
         guard item.translations?.first?.label != Constant.MenuConfig.PREVIOUS_ITEM_NAME else {
