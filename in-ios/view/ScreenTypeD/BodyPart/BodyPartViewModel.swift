@@ -14,7 +14,10 @@ class BodyPartViewModel: BaseViewModel {
     var button: ButtonInputScreen!
     weak var delegate: ScreenTypeDDelegate?
     private var items: [Bubble] = []
-    private var selectedBubble = Variable<Bubble?>(nil)
+    var newBubble: Bubble?
+    var newBodyRow: BodyPartRowView?
+    var selectedBubble: Bubble?
+    var selectedBodyRow: BodyPartRowView?
     
     func loadItems() {
         guard let bubbles = button.bubbles, bubbles.count > 0 else { return }
@@ -29,23 +32,17 @@ class BodyPartViewModel: BaseViewModel {
         return button.picture?.url
     }
     
-    func setSelectedBubble(_ bubble: Bubble?) {
-        selectedBubble.value = bubble
-        if let selectedBubble = bubble {
-            if !selectedBubble.isDisableTextToSpeech,
-                let text = selectedBubble.translations.first?.labelTextToSpeech {
-                SpeechHelper.play(text: text, language: "en-US")
-            }
-            delegate?.didSelect(value: selectedBubble, onButton: button)
+    func onSelectionComplete() {
+        guard let bubble = newBubble, let row = newBodyRow  else { return }
+        self.selectedBodyRow = row
+        self.newBodyRow = nil
+        self.selectedBubble = bubble
+        self.newBubble = nil
+        
+        if !bubble.isDisableTextToSpeech, let text = bubble.translations.first?.labelTextToSpeech {
+            SpeechHelper.play(text: text, language: "en-US")
         }
-    }
-    
-    func getSelectedBubble() -> Bubble? {
-        return selectedBubble.value
-    }
-    
-    func getSelectedBubbleObservable() -> Observable<Bubble?> {
-        return selectedBubble.asObservable()
+        delegate?.didSelect(value: bubble, onButton: button)
     }
 
 }

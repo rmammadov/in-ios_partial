@@ -117,13 +117,6 @@ extension HomeViewController {
     
     func updateTopMenu() {
         updateMainMenu()
-//        if viewModel.getIsMenuExpanded(){
-//            self.constraintCollectionViewHeight.constant = 116
-//        } else {
-//            self.constraintCollectionViewHeight.constant = 64
-//        }
-//        self.collectionTopMenu.layoutIfNeeded()
-//        self.collectionTopMenu.reloadData()
     }
     
     private func updateMainMenu() {
@@ -189,33 +182,26 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         viewModel.setMenuExpanded(true)
         setTopMenuItemSelected(indexPath: indexPath)
         viewModel.onTopMenuItemSelected(indexPath: indexPath)
+        collectionTopMenu.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
     
     // TODO: Hardcode should be removed
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let cellWidth: CGFloat = collectionView.bounds.width / 3
+        let cellWidth: CGFloat = (collectionView.bounds.width * 0.6) / 3
         let cellHeight: CGFloat = collectionView.bounds.height
         
-        return CGSize(width: cellWidth, height: cellHeight)
+        let size = CGSize(width: cellWidth, height: cellHeight)
+        return size
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let cellWidth : CGFloat = self.collectionTopMenu.frame.size.width / 3
-        
-        switch self.collectionTopMenu.numberOfItems(inSection: self.collectionTopMenu.numberOfSections - 1) {
-            case 1:
-                return UIEdgeInsets.init(top: 0, left: cellWidth, bottom: 0, right: cellWidth)
-            case 2:
-                if self.viewModel.getTopMenuItemSelected().row == 0 {
-                    return UIEdgeInsets.init(top: 0, left: cellWidth, bottom: 0, right: 0)
-                } else {
-                    return UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: cellWidth)
-                }
-            default:
-                return UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
-        }
+        let cellWidth : CGFloat = (collectionTopMenu.bounds.width * 0.6) / 3
+        let inset = (collectionTopMenu.bounds.width - cellWidth) / 2
+        return UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
     }
     
     func setTopMenuItemSelected(indexPath: IndexPath) {

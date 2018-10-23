@@ -91,14 +91,18 @@ extension AnimationUtil {
     static func animateSelection(object: AnimateObject, fingerTouch: Bool, tag: String) {
         self.tag = tag
         if fingerTouch {
-            object.setSelected(true)
-            Timer.scheduledTimer(withTimeInterval: Constant.AnimationConfig.MENU_ITEM_FINGER_TOUCH_ANIMATION_DURATION, repeats: false) { (_) in
-                self.status.value = AnimationStatus.completed.rawValue
+            object.animateLoading(duration: Constant.AnimationConfig.MENU_ITEM_FINGER_TOUCH_ANIMATION_DURATION) { (isCompleted) in
+                object.setSelected(isCompleted)
+                if isCompleted {
+                    self.status.value = AnimationStatus.completed.rawValue
+                }
             }
         } else {
-            object.animateLoading { (isCompleted) in
-                object.setSelected(true)
-                self.status.value = AnimationStatus.completed.rawValue
+            object.animateLoading(duration: Constant.AnimationConfig.MENU_ITEM_ANIMATION_DURATION) { (isCompleted) in
+                object.setSelected(isCompleted)
+                if isCompleted {
+                    self.status.value = AnimationStatus.completed.rawValue
+                }
             }
         }
     }

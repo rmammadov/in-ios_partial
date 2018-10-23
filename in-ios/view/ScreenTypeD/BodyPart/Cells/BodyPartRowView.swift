@@ -15,7 +15,7 @@ protocol BodyPartRowDelegate: class {
 class BodyPartRowView: UIView {
     @IBOutlet var view: UIView!
     @IBOutlet weak var gradientView: GradientView!
-    @IBOutlet weak var progressView: ProgressGradientView!
+    @IBOutlet weak var newProgressView: ProgressGradientView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var button: UIButton!
     
@@ -57,8 +57,26 @@ class BodyPartRowView: UIView {
         guard let bubble = self.bubble else { return }
         delegate?.didSelect(self, bubble: bubble)
     }
+}
+
+extension BodyPartRowView: AnimateObject {
+    func animateLoading(duration: CFTimeInterval, completionBlock: @escaping AnimateCompletionBlock) {
+        newProgressView.isHidden = false
+        newProgressView.startAnimation(duration: duration) { [weak self] (isCompleted) in
+            completionBlock(isCompleted)
+            if isCompleted {
+                self?.newProgressView.isHidden = true
+            }
+        }
+    }
+    
+    func cancelAnimation() {
+        newProgressView.isHidden = true
+        newProgressView.cancelAnimation()
+    }
     
     func setSelected(_ isSelected: Bool) {
         gradientView.isHidden = !isSelected
     }
+    
 }

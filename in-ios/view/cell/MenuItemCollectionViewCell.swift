@@ -59,18 +59,8 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
 }
 
 extension MenuItemCollectionViewCell: AnimateObject {
-    func animateLoading(with completionBlock: @escaping (Bool) -> Void) {
-        print("\(String(describing: self.self)): TODO: startAnimate")
-        CATransaction.setCompletionBlock({
-            completionBlock(true)
-        })
-        let rotationAnimation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
-        rotationAnimation.toValue = NSNumber(value: .pi * 2.0)
-        rotationAnimation.duration = Constant.AnimationConfig.MENU_ITEM_ANIMATION_DURATION
-        rotationAnimation.isCumulative = true
-        rotationAnimation.repeatCount = Constant.AnimationConfig.MENU_ITEM_ANIMATION_COUNT
-        gradientView.layer.add(rotationAnimation, forKey: "rotationAnimation")
-        CATransaction.commit()
+    func animateLoading(duration: CFTimeInterval, completionBlock: @escaping AnimateCompletionBlock) {
+        gradientView.startAnimation(duration: duration, completion: completionBlock)
     }
     
     func cancelAnimation() {

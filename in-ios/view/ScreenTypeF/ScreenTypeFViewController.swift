@@ -51,6 +51,7 @@ extension ScreenTypeFViewController {
         registerObservers()
         viewModel.loadItems()
         setupCollectionView()
+        setSubscribers()
     }
     
     private func setupCollectionView() {
@@ -60,6 +61,20 @@ extension ScreenTypeFViewController {
         collectionView.delegate = self
         collectionView.allowsMultipleSelection = false
         collectionView.allowsSelection = true
+    }
+    
+    private func setSubscribers() {
+        AnimationUtil.status.asObservable().subscribe(onNext: {[weak self] (status) in
+            guard let `self` = self,
+                status == AnimationStatus.completed.rawValue,
+                AnimationUtil.getTag() == self.cellIdentifier
+                else { return }
+            if let lastSelectedIndex = self.viewModel.selectedIndex,
+                let cell = self.collectionView.cellForItem(at: lastSelectedIndex) as? ColoredButtonCollectionViewCell {
+                cell.setSelected(false)
+            }
+            self.viewModel.onSelectionComplete()
+        }).disposed(by: disposeBag)
     }
 }
 
@@ -84,7 +99,7 @@ extension ScreenTypeFViewController: UICollectionViewDataSource {
             else { return cell }
         let cellViewModel = ColoredButtonCollectionViewCell.ViewModel(mainColor: mainColor, gradientColor: gradientColor, translations: translations)
         cell.setViewModel(cellViewModel)
-        cell.setSelected(viewModel.getSelectedIndexPath() == indexPath)
+        cell.setSelected(viewModel.selectedIndex == indexPath)
         return cell
     }
 }
@@ -107,14 +122,12 @@ extension ScreenTypeFViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? ColoredButtonCollectionViewCell
             else { return }
-        viewModel.setSelected(indexPath: indexPath)
-        cell.setSelected(true)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? ColoredButtonCollectionViewCell
-            else { return }
-        cell.setSelected(false)
+        if let lastIndexPath = viewModel.newSelectedIndex,
+            let lastCell = collectionView.cellForItem(at: lastIndexPath) as? ColoredButtonCollectionViewCell {
+            AnimationUtil.cancelAnimation(object: lastCell)
+        }
+        viewModel.newSelectedIndex = indexPath
+        AnimationUtil.animateSelection(object: cell, fingerTouch: true, tag: cellIdentifier)
     }
     
 }
@@ -136,8 +149,7 @@ extension ScreenTypeFViewController {
     }
     
     @objc func onParentClearSelection(notification: Notification) {
-        guard let indexPath = viewModel.getSelectedIndexPath() else { return }
-        viewModel.setSelected(indexPath: nil)
+        guard let indexPath = viewModel.selectedIndex else { return }
         if let cell = collectionView.cellForItem(at: indexPath) as? ColoredButtonCollectionViewCell {
             cell.setSelected(false)
         }

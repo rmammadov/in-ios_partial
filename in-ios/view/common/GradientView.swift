@@ -135,3 +135,54 @@ enum CircleType {
     case halfLeft
     case halfRight
 }
+
+
+//MARK: - Animations
+
+extension GradientView {
+    func startAnimation(duration: CFTimeInterval, completion: @escaping AnimateCompletionBlock) {
+        guard let mainColor = mainColor else { return }
+        let selectionLineWidth: CGFloat = 5
+        lineWidth = 1
+        let gradient = CAGradientLayer()
+        gradient.frame = bounds
+        gradient.startPoint = startPoint
+        gradient.endPoint = endPoint
+        
+        var colors: [CGColor] = [mainColor.cgColor]
+        if let gradientColor = self.gradientColor {
+            colors.append(gradientColor.cgColor)
+        } else {
+            colors.append(mainColor.cgColor)
+        }
+        gradient.colors = colors
+        
+        let radius = (bounds.width - selectionLineWidth) / 2.0
+        let center = CGPoint(x: bounds.width / 2.0, y: bounds.height / 2.0)
+        let thirdPath = UIBezierPath(arcCenter: center, radius: radius,
+                                     startAngle: 0, endAngle: CGFloat.pi * 2.0, clockwise: true)
+        
+        let maskLayer = CAShapeLayer()
+        maskLayer.fillColor = nil
+        maskLayer.strokeColor = UIColor.black.cgColor
+        maskLayer.lineWidth = selectionLineWidth
+        maskLayer.path = thirdPath.cgPath
+        gradient.mask = maskLayer
+        
+        CATransaction.begin()
+        CATransaction.setCompletionBlock {
+            gradient.removeFromSuperlayer()
+            completion(true)
+        }
+        
+        let animation = CABasicAnimation(keyPath: "strokeEnd")
+        animation.fromValue = 0
+        animation.toValue = 1
+        animation.duration = duration
+        
+        layer.addSublayer(gradient)
+        
+        maskLayer.add(animation, forKey: "LoadingAnimation")
+        CATransaction.commit()
+    }
+}

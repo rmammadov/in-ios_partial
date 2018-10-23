@@ -108,12 +108,12 @@ extension MenuViewController {
             event in
             DispatchQueue.main.async {
                 if self.viewModel.statusInput.value == InputScreenId.inputScreen0.rawValue {
-                    guard let title = self.viewModel.getSelectedItem()?.name,
-                        let cell = self.getCellForIndexPath(indexPath: self.viewModel.getSelection())
+                    guard
+                        let inputScreenId = self.viewModel.getSelectedItem()?.inputScreenId,
+                        let cell = self.getCellForIndexPath(indexPath: self.viewModel.getSelection()),
+                        let inputScreen = DataManager.getInputScreens().getInputScreenFor(id: inputScreenId)
                         else { return }
                     AnimationUtil.cancelAnimation(object: cell)
-//                    AnimationUtil.cancelMenuSelection(imageView: cell.ivStatusIcon)
-                    let inputScreen = DataManager.getInputScreens().getInputScreen(title: title)
                     switch inputScreen.type {
                     case .inputScreenA:
                         self.performSegue(withIdentifier: SEGUE_IDENTIFIER_INPUT, sender: self)

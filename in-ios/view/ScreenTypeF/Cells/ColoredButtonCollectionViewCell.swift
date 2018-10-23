@@ -35,8 +35,25 @@ class ColoredButtonCollectionViewCell: UICollectionViewCell {
         self.viewModel = viewModel
         colorView.backgroundColor = viewModel.mainColor
         titleLabel.text = viewModel.translations.first?.label
-        underlineProgressView.mainColor = viewModel.mainColor
-        underlineProgressView.gradientColor = viewModel.gradientColor
+        underlineProgressView.mainColor = viewModel.gradientColor
+        underlineProgressView.gradientColor = viewModel.mainColor
+    }
+}
+
+extension ColoredButtonCollectionViewCell: AnimateObject {
+    func animateLoading(duration: CFTimeInterval, completionBlock: @escaping AnimateCompletionBlock) {
+        underlineProgressView.isHidden = false
+        underlineProgressView.startAnimation(duration: duration) { [weak self] (isCompleted) in
+            completionBlock(isCompleted)
+            if isCompleted {
+                self?.underlineProgressView.isHidden = true
+            }
+        }
+    }
+    
+    func cancelAnimation() {
+        underlineProgressView.isHidden = true
+        underlineProgressView.cancelAnimation()
     }
     
     func setSelected(_ isSelected: Bool) {
@@ -48,5 +65,5 @@ class ColoredButtonCollectionViewCell: UICollectionViewCell {
             backgroundLabelView.mainColor = nil
         }
     }
-
+    
 }
