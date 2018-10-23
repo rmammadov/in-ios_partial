@@ -15,5 +15,31 @@ class ScreenTypeGViewModel: BaseViewModel {
     var inputScreen: InputScreen!
     private var items = [ButtonInputScreen]()
     private var selectedIndex: IndexPath?
+    private var newSelectedIndex: IndexPath?
     
+    func loadItems() {
+        guard let buttons = inputScreen.buttons else { return }
+        items = buttons
+    }
+    
+    func onSelectionComplete() {
+        guard let selectedIndex = newSelectedIndex else { return }
+        self.selectedIndex = selectedIndex
+        newSelectedIndex = nil
+        let item = getItemAt(indexPath: selectedIndex)
+        if !(item.disableTextToSpeech ?? true) {
+            textToSpeech(item: item)
+        }
+        delegate?.didSelect(value: item, onScreen: inputScreen)
+    }
+    
+    func getItemAt(indexPath: IndexPath) -> ButtonInputScreen {
+        return items[indexPath.item]
+    }
+    
+    func textToSpeech(item: ButtonInputScreen) {
+        if let text = item.translations?.first?.labelTextToSpeech {
+            SpeechHelper.play(text: text, language: Locale.current.languageCode!)
+        }
+    }
 }
