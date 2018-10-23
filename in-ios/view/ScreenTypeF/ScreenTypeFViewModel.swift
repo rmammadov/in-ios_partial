@@ -13,7 +13,8 @@ class ScreenTypeFViewModel: BaseViewModel {
     weak var delegate: ScreenTypeCDelegate?
     var inputScreen: InputScreen!
     private var items = [ButtonInputScreen]()
-    private var selectedIndex: IndexPath?
+    var selectedIndex: IndexPath?
+    var newSelectedIndex: IndexPath?
     
     func loadItems() {
         guard let items = inputScreen?.buttons else { return }
@@ -41,18 +42,15 @@ class ScreenTypeFViewModel: BaseViewModel {
         items = newOrderedItems
     }
     
-    func setSelected(indexPath: IndexPath?) {
-        selectedIndex = indexPath
-        guard let indexPath = indexPath else { return }
-        let item = getItemAt(indexPath: indexPath)
+    func onSelectionComplete() {
+        guard let selectedIndex = newSelectedIndex else { return }
+        self.selectedIndex = selectedIndex
+        newSelectedIndex = nil
+        let item = getItemAt(indexPath: selectedIndex)
         if !(item.disableTextToSpeech ?? true) {
             textToSpeech(item: item)
         }
         delegate?.didSelect(value: item, onScreen: inputScreen)
-    }
-    
-    func getSelectedIndexPath() -> IndexPath? {
-        return selectedIndex
     }
     
     func getItemAt(indexPath: IndexPath) -> ButtonInputScreen {

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,7 +15,7 @@
             <connections>
                 <outlet property="button" destination="kdk-sV-ega" id="wg9-G9-sxm"/>
                 <outlet property="gradientView" destination="E7o-AK-JMa" id="wbc-LC-MQk"/>
-                <outlet property="progressView" destination="SO2-7Q-g3H" id="fYV-Tv-aSw"/>
+                <outlet property="newProgressView" destination="LZB-UU-Mha" id="vWP-gL-AZ9"/>
                 <outlet property="titleLabel" destination="fx9-HV-uhY" id="Ubt-R6-jSt"/>
                 <outlet property="view" destination="iN0-l3-epB" id="wk0-He-dU3"/>
             </connections>
@@ -42,18 +43,24 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="SO2-7Q-g3H" customClass="ProgressGradientView" customModule="in_ios" customModuleProvider="target">
-                    <rect key="frame" x="24" y="78" width="327" height="2"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LZB-UU-Mha" customClass="NewProgressGradientView" customModule="in_ios" customModuleProvider="target">
+                    <rect key="frame" x="24" y="78" width="327" height="9"/>
+                    <color key="backgroundColor" name="appGray"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="9" id="iGe-68-ztn"/>
+                    </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
-                            <color key="value" red="0.25882352939999997" green="0.81960784310000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="value" name="appGradientViolet"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
-                            <color key="value" red="0.52156862749999999" green="0.062745098040000002" blue="0.81960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="value" name="appGradientBlue"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                            <color key="value" name="appGray"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
-                </progressView>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdk-sV-ega">
                     <rect key="frame" x="4" y="4" width="367" height="92"/>
                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="45"/>
@@ -64,7 +71,6 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="SO2-7Q-g3H" firstAttribute="leading" secondItem="fx9-HV-uhY" secondAttribute="leading" id="0ZX-z3-MWB"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="E7o-AK-JMa" secondAttribute="bottom" constant="4" id="6NG-Lx-Tkz"/>
                 <constraint firstItem="E7o-AK-JMa" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="4" id="GRz-ci-Jpt"/>
                 <constraint firstItem="fx9-HV-uhY" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Gbe-02-TZx"/>
@@ -73,12 +79,13 @@
                 <constraint firstItem="fx9-HV-uhY" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Jvv-bZ-QDj"/>
                 <constraint firstItem="kdk-sV-ega" firstAttribute="bottom" secondItem="E7o-AK-JMa" secondAttribute="bottom" id="O6v-Zl-cgS"/>
                 <constraint firstItem="fx9-HV-uhY" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="Y7P-lX-KCI"/>
-                <constraint firstItem="SO2-7Q-g3H" firstAttribute="trailing" secondItem="fx9-HV-uhY" secondAttribute="trailing" id="aiu-ff-JMJ"/>
+                <constraint firstItem="LZB-UU-Mha" firstAttribute="top" secondItem="fx9-HV-uhY" secondAttribute="bottom" constant="6" id="a1R-Ff-YcO"/>
+                <constraint firstItem="LZB-UU-Mha" firstAttribute="leading" secondItem="fx9-HV-uhY" secondAttribute="leading" id="aYX-1P-BCo"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="E7o-AK-JMa" secondAttribute="trailing" constant="4" id="ap6-DS-jYg"/>
                 <constraint firstItem="kdk-sV-ega" firstAttribute="trailing" secondItem="E7o-AK-JMa" secondAttribute="trailing" id="cCB-vq-Kmy"/>
-                <constraint firstItem="SO2-7Q-g3H" firstAttribute="top" secondItem="fx9-HV-uhY" secondAttribute="bottom" constant="6" id="f3n-vw-4YF"/>
                 <constraint firstItem="kdk-sV-ega" firstAttribute="top" secondItem="E7o-AK-JMa" secondAttribute="top" id="lU3-3D-xtq"/>
                 <constraint firstItem="E7o-AK-JMa" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="4" id="qjn-0Y-hbe"/>
+                <constraint firstItem="LZB-UU-Mha" firstAttribute="trailing" secondItem="fx9-HV-uhY" secondAttribute="trailing" id="rOC-w5-4I4"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
@@ -87,4 +94,15 @@
             <point key="canvasLocation" x="152.80000000000001" y="267.16641679160421"/>
         </view>
     </objects>
+    <resources>
+        <namedColor name="appGradientBlue">
+            <color red="0.25882352941176473" green="0.81960784313725488" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="appGradientViolet">
+            <color red="0.52156862745098043" green="0.062745098039215685" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="appGray">
+            <color red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

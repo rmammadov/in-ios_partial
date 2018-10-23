@@ -9,7 +9,7 @@
 import Foundation
 typealias AnimateCompletionBlock = ((Bool) -> Void)
 protocol AnimateObject {
-    func animateLoading(with completionBlock: @escaping AnimateCompletionBlock)
+    func animateLoading(duration: CFTimeInterval, completionBlock: @escaping AnimateCompletionBlock)
     func cancelAnimation()
     func setSelected(_ isSelected: Bool)
 }

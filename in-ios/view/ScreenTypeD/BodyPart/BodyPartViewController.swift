@@ -113,10 +113,15 @@ extension BodyPartViewController {
     }
     
     private func setSubscribers() {
-        viewModel.getSelectedBubbleObservable().subscribe(onNext: { [weak self] (bubble) in
-            guard let `self` = self else { return }
-            self.select(bubble: bubble, in: self.leftStackView)
-            self.select(bubble: bubble, in: self.rightStackView)
+        
+        AnimationUtil.status.asObservable().subscribe(onNext: { [weak self] (status) in
+            guard let `self` = self,
+                status == AnimationStatus.completed.rawValue,
+                AnimationUtil.getTag() == "BodyPartRowView"
+                else { return }
+            self.viewModel.onSelectionComplete()
+            self.select(bubble: self.viewModel.selectedBubble, in: self.leftStackView)
+            self.select(bubble: self.viewModel.selectedBubble, in: self.rightStackView)
         }).disposed(by: disposeBag)
         
         NotificationCenter.default.addObserver(self,
@@ -125,24 +130,32 @@ extension BodyPartViewController {
     }
     
     @objc func onParentClearSelection(notification: Notification) {
-        viewModel.setSelectedBubble(nil)
+        viewModel.selectedBodyRow = nil
+        viewModel.selectedBubble = nil
+        self.select(bubble: nil, in: self.leftStackView)
+        self.select(bubble: nil, in: self.rightStackView)
     }
     
     private func select(bubble: Bubble?, in stackView: UIStackView) {
         stackView.arrangedSubviews.forEach { (view) in
-            if let row = view as? BodyPartRowView {
+            guard let row = view as? BodyPartRowView
+                else { return }
                 if let bubble = bubble {
                     row.setSelected(row.bubble?.translations.first?.label == bubble.translations.first?.label)
                 } else {
                     row.setSelected(false)
                 }
-            }
         }
     }
 }
 
 extension BodyPartViewController: BodyPartRowDelegate {
     func didSelect(_ row: BodyPartRowView, bubble: Bubble) {
-        viewModel.setSelectedBubble(bubble)
+        if let row = viewModel.newBodyRow  {
+            AnimationUtil.cancelAnimation(object: row)
+        }
+        viewModel.newBubble = bubble
+        viewModel.newBodyRow = row
+        AnimationUtil.animateSelection(object: row, fingerTouch: true, tag: "BodyPartRowView")
     }
 }
