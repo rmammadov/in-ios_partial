@@ -313,6 +313,10 @@ extension CameraManager: GazePredictionDelegate {
         gazeTracker = GazeTracker(delegate: self)
     }
     
+    func setPredictionCalibrated(xModelURL: URL, yModelURL: URL) {
+        gazeTracker = GazeTrackerCalibrated(delegate: self, xModelURL: xModelURL, yModelURL: yModelURL)
+    }
+    
     func predicate(frame: UIImage) {
         guard let gazeTracker = gazeTracker else { return }
         gazeTracker.startPredictionInBackground(scene: frame)
@@ -335,8 +339,13 @@ extension CameraManager: GazePredictionDelegate {
             let X = averageX.reduce(0, +)/Double(averageX.count)
             let Y = averageY.reduce(0, +)/Double(averageY.count)
             
-            coordinates = gazeUtils.cm2pixels(gazeX: X, gazeY: Y, camX: 0, camY: 12.0, orientation: UIDevice.current.orientation)
-//            coordinates = (X, Y) //REMOVE
+            if let _ = self.gazeTracker as? GazeTrackerCalibrated {
+                coordinates = (gazeX: X, gazeY: Y)
+                print(X, Y)
+            } else {
+                print("Model not calibrated")
+                coordinates = gazeUtils.cm2pixels(gazeX: X, gazeY: Y, camX: 0, camY: 12.0, orientation: UIDevice.current.orientation)
+            }
             coordinatesPreConversion = (gazeX: Double(truncating: gazeTracker.gazeEstimation![0]), gazeY: Double(truncating: gazeTracker.gazeEstimation![1]))
             calibrationFeatures = gazeTracker.calibFeatures
             facialFeatures = gazeTracker.facialFeatures
