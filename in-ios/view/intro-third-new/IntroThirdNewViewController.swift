@@ -20,9 +20,9 @@ class IntroThirdNewViewController: BaseViewController {
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var btnForward: UIButton!
     
-    var cameraManager: CameraManager?
-    
     private let viewModel: IntroThirdNewModel = IntroThirdNewModel()
+    
+    var cameraManager: CameraManager?
     let disposeBag = DisposeBag()
     var btnPrevious: UIButton?
     var timerDataCollection: Timer?
@@ -139,15 +139,15 @@ extension IntroThirdNewViewController {
     
     func updateUi() {
         switch viewModel.getCalibrationStep() {
-        case CalibrationStep.first.rawValue:
+        case CalibrationStatus.firstStep.rawValue:
             break
-        case CalibrationStep.second.rawValue:
+        case CalibrationStatus.secondStep.rawValue:
             startSecondStep()
-        case CalibrationStep.third.rawValue:
+        case CalibrationStatus.thirdStep.rawValue:
             startThirdStep()
-        case CalibrationStep.fourth.rawValue:
+        case CalibrationStatus.fourthStep.rawValue:
             startFourthStep()
-        case CalibrationStep.fifth.rawValue:
+        case CalibrationStatus.fifthStep.rawValue:
             break
         default:
             break
@@ -159,7 +159,7 @@ extension IntroThirdNewViewController {
             event in
             if AnimationUtil.status.value == AnimationStatus.completed.rawValue {
                 DispatchQueue.main.async {
-                    if self.viewModel.getCalibrationStep() == CalibrationStep.third.rawValue {
+                    if self.viewModel.getCalibrationStep() == CalibrationStatus.thirdStep.rawValue {
                         self.handleCalibrationStep()
                     }
                 }
@@ -186,7 +186,7 @@ extension IntroThirdNewViewController {
             btnPrevious = btnCalibration
             btnPrevious?.isHidden = false
             
-            if viewModel.getCalibrationStep() == CalibrationStep.second.rawValue {
+            if viewModel.getCalibrationStep() == CalibrationStatus.secondStep.rawValue {
                 timerDataCollection = Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.STANDART_CALIBRATION_STEP_DATA_COLLECTION_DURATION, target: self, selector: #selector(takeScreenShot), userInfo: nil, repeats: false)
                 Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.STANDART_CALIBRATION_STEP_DURATION, target: self, selector: #selector(handleCalibrationStep), userInfo: nil, repeats: false)
             } else {
@@ -244,7 +244,7 @@ extension IntroThirdNewViewController {
     }
     
     func startThirdStep() {
-        viewModel.setCalibrationStep(step: CalibrationStep.third.rawValue)
+        viewModel.setCalibrationStep(step: CalibrationStatus.thirdStep.rawValue)
         handleCalibrationStep()
     }
     

@@ -10,6 +10,8 @@ import Foundation
 
 class BaseViewModel: NSObject {
     
+    let modelBase = BaseModel()
+    
     func getRowCount() -> Int {
         return Constant.DefaultConfig.COUNT_ROW_ITEMS
     }
@@ -20,5 +22,9 @@ class BaseViewModel: NSObject {
     
     func getItemMargin() -> Int {
         return 16
+    }
+    
+    func isInternetAvailable() -> Bool {
+        return modelBase.isInternetAvailable()
     }
 }

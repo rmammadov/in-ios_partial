@@ -6,32 +6,35 @@
 //  Copyright © 2018 com.innodemneurosciences. All rights reserved.
 //
 
-import Foundation
 import UIKit
+import RxSwift
 
-enum CalibrationStep: Int {
-    case first = 1
-    case second = 2
-    case third = 3
-    case fourth = 4
-    case fifth = 5
+enum CalibrationStatus: Int {
+    case firstStep = 1
+    case secondStep = 2
+    case thirdStep = 3
+    case fourthStep = 4
+    case fifthStep = 5
+    case noInternetConnection = 6
 }
 
 class IntroThirdNewModel: BaseModel {
     
-    private var calibrationStep: Int = CalibrationStep.first.rawValue
+    var status = Variable<Int>(0)
+    
+    private var calibrationStep: Int = CalibrationStatus.firstStep.rawValue
     private var index = 0
     private var tagsCalibrationFirstStep: Array = Constant.CalibrationConfig.CALIBRATION_TAGS_FIRST_STEP
     private var tagsCalibrationSecondStep: Array = Constant.CalibrationConfig.CALIBRATION_TAGS_SECOND_STEP
     
     func nextStep() {
-        if calibrationStep < CalibrationStep.fifth.rawValue {
+        if calibrationStep < CalibrationStatus.fifthStep.rawValue {
             calibrationStep += 1
         }
     }
     
     func previousStep() {
-        if calibrationStep > CalibrationStep.first.rawValue {
+        if calibrationStep > CalibrationStatus.firstStep.rawValue {
             calibrationStep -= 1
         }
     }
@@ -55,7 +58,7 @@ class IntroThirdNewModel: BaseModel {
     }
     
     func getTags() -> Array<Int> {
-        if calibrationStep == CalibrationStep.third.rawValue {
+        if calibrationStep == CalibrationStatus.thirdStep.rawValue {
             return tagsCalibrationSecondStep
         } else {
             return tagsCalibrationFirstStep
@@ -63,7 +66,7 @@ class IntroThirdNewModel: BaseModel {
     }
     
     func getMaxIndex() -> Int {
-        if calibrationStep == CalibrationStep.third.rawValue {
+        if calibrationStep == CalibrationStatus.thirdStep.rawValue {
             return getTags().count - 1
         } else {
             return getTags().count
@@ -79,10 +82,18 @@ class IntroThirdNewModel: BaseModel {
     }
     
     func setCalibrationData(image: UIImage, data: CalibrationData) {
-        DataManager.setCalibrationDataFor(image: image, data: data)
+        if ReachabilityManager.shared.isNetworkAvailable {
+            DataManager.setCalibrationDataFor(image: image, data: data)
+        } else {
+            
+        }
     }
     
     func postProfileData() {
-        DataManager.postProfileData()
+        if ReachabilityManager.shared.isNetworkAvailable {
+            DataManager.postProfileData()
+        } else {
+            
+        }
     }
 }

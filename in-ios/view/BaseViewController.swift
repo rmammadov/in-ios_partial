@@ -10,6 +10,8 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
+    let viewModelBase = BaseViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -86,6 +88,17 @@ extension BaseViewController {
     
     @objc fileprivate func dismissKeyboard (_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
+    }
+    
+    func InternetConnectionAvailable(showWarning: Bool) -> Bool {
+        if viewModelBase.isInternetAvailable() {
+            return true
+        } else {
+            if showWarning {
+                
+            }
+            return false
+        }
     }
     
 }
