@@ -12,6 +12,8 @@
 		E3A238980EAF1E942B02D63A /* Pods_in_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C1D52781DEEE2B40B45A6D /* Pods_in_iosUITests.framework */; };
 		E9019234217DE5C300212B29 /* ScreenTypeGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9019233217DE5C300212B29 /* ScreenTypeGViewController.swift */; };
 		E9019236217DE5D800212B29 /* ScreenTypeGViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9019235217DE5D800212B29 /* ScreenTypeGViewModel.swift */; };
+		E901923A217F580A00212B29 /* ScreenTypeGCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9019238217F580A00212B29 /* ScreenTypeGCollectionViewCell.swift */; };
+		E901923B217F580A00212B29 /* ScreenTypeGCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9019239217F580A00212B29 /* ScreenTypeGCollectionViewCell.xib */; };
 		E9150EF8216605160023E138 /* ScreenTypeEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9150EF7216605160023E138 /* ScreenTypeEViewController.swift */; };
 		E9150EFA216606340023E138 /* ScreenTypeEViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9150EF9216606340023E138 /* ScreenTypeEViewModel.swift */; };
 		E93ACD43216B8CD700F29F54 /* ScreenTypeDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93ACD42216B8CD700F29F54 /* ScreenTypeDViewController.swift */; };
@@ -183,6 +185,8 @@
 		B81A848D9E4455FF68424AA1 /* Pods_in_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_in_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9019233217DE5C300212B29 /* ScreenTypeGViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeGViewController.swift; sourceTree = "<group>"; };
 		E9019235217DE5D800212B29 /* ScreenTypeGViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeGViewModel.swift; sourceTree = "<group>"; };
+		E9019238217F580A00212B29 /* ScreenTypeGCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeGCollectionViewCell.swift; sourceTree = "<group>"; };
+		E9019239217F580A00212B29 /* ScreenTypeGCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScreenTypeGCollectionViewCell.xib; sourceTree = "<group>"; };
 		E9150EF7216605160023E138 /* ScreenTypeEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeEViewController.swift; sourceTree = "<group>"; };
 		E9150EF9216606340023E138 /* ScreenTypeEViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeEViewModel.swift; sourceTree = "<group>"; };
 		E93ACD42216B8CD700F29F54 /* ScreenTypeDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeDViewController.swift; sourceTree = "<group>"; };
@@ -381,10 +385,20 @@
 		E9019232217DE58F00212B29 /* ScreenTypeG */ = {
 			isa = PBXGroup;
 			children = (
+				E9019237217F57E400212B29 /* Cells */,
 				E9019233217DE5C300212B29 /* ScreenTypeGViewController.swift */,
 				E9019235217DE5D800212B29 /* ScreenTypeGViewModel.swift */,
 			);
 			path = ScreenTypeG;
+			sourceTree = "<group>";
+		};
+		E9019237217F57E400212B29 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E9019238217F580A00212B29 /* ScreenTypeGCollectionViewCell.swift */,
+				E9019239217F580A00212B29 /* ScreenTypeGCollectionViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		E9150EF62165F6E20023E138 /* ScreenTypeE */ = {
@@ -983,6 +997,7 @@
 				F331EA80211303880000B4E6 /* TopMenuItemCollectionViewCell.xib in Resources */,
 				E9611E952164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib in Resources */,
 				F336588220D318C300B18CEC /* Main.storyboard in Resources */,
+				E901923B217F580A00212B29 /* ScreenTypeGCollectionViewCell.xib in Resources */,
 				F3F8648321175BEE00B7CAA8 /* Colors.xcassets in Resources */,
 				F3B0C1CC2154BA1400E30CA1 /* GoogleService-Info.plist in Resources */,
 				E99A8EEB2170A02D007B8E64 /* MainMenuItemCollectionViewCell.xib in Resources */,
@@ -1217,6 +1232,7 @@
 				F32F5B6721453DFB00558C68 /* IntroSecondViewModel.swift in Sources */,
 				F3CE6920213DB318004F6756 /* IntroFirstViewController.swift in Sources */,
 				F32DCED9214A41D100B3D0F8 /* INTextField.swift in Sources */,
+				E901923A217F580A00212B29 /* ScreenTypeGCollectionViewCell.swift in Sources */,
 				F3E19CB6211D827000ADE838 /* MenuItemCollectionViewCell.swift in Sources */,
 				E9611E982164AC950010B33C /* ScreenTypeCViewModel.swift in Sources */,
 				F3E19CAC211C3CEE00ADE838 /* HomeContainerModel.swift in Sources */,
