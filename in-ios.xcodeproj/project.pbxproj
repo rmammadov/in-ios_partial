@@ -95,6 +95,8 @@
 		F396E46A216FA61000C061CD /* BiasCorrector.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F396E469216FA60F00C061CD /* BiasCorrector.mlmodel */; };
 		F3A41ACC2161329000D2D8D6 /* LegalDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A41ACB2161329000D2D8D6 /* LegalDocument.swift */; };
 		F3A41ACE216147F100D2D8D6 /* LegalDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A41ACD216147F100D2D8D6 /* LegalDocuments.swift */; };
+		F3A46B9E217F087800C440FF /* PersistanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46B9D217F087800C440FF /* PersistanceService.swift */; };
+		F3A46BA0217F088C00C440FF /* PersistanceDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46B9F217F088C00C440FF /* PersistanceDataHandler.swift */; };
 		F3B0C1CC2154BA1400E30CA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3B0C1CB2154BA1300E30CA1 /* GoogleService-Info.plist */; };
 		F3C48CCB210F018200742855 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C48CCA210F018200742855 /* MenuViewController.swift */; };
 		F3CE691D213D70E6004F6756 /* GazeEstimator.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F3CE691C213D70E6004F6756 /* GazeEstimator.mlmodel */; };
@@ -276,6 +278,8 @@
 		F396E469216FA60F00C061CD /* BiasCorrector.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = BiasCorrector.mlmodel; sourceTree = "<group>"; };
 		F3A41ACB2161329000D2D8D6 /* LegalDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDocument.swift; sourceTree = "<group>"; };
 		F3A41ACD216147F100D2D8D6 /* LegalDocuments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDocuments.swift; sourceTree = "<group>"; };
+		F3A46B9D217F087800C440FF /* PersistanceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceService.swift; sourceTree = "<group>"; };
+		F3A46B9F217F088C00C440FF /* PersistanceDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceDataHandler.swift; sourceTree = "<group>"; };
 		F3B0C1CB2154BA1300E30CA1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F3C48CCA210F018200742855 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		F3CE691C213D70E6004F6756 /* GazeEstimator.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = GazeEstimator.mlmodel; sourceTree = "<group>"; };
@@ -615,6 +619,7 @@
 				F33658AB20D3196C00B18CEC /* util */,
 				F33658AA20D3196500B18CEC /* helper */,
 				F33F0BCD2121B0E7002E31B9 /* dao */,
+				F3A46B9C217F084100C440FF /* persistance */,
 				F334ADC1210B35570056824A /* api */,
 				F336587C20D318C300B18CEC /* AppDelegate.swift */,
 				F34EE56F216CCBE4009D3523 /* in-ios.xcdatamodeld */,
@@ -719,6 +724,15 @@
 				F354B7462164C7570026F3A2 /* IntroThirdNewModel.swift */,
 			);
 			path = "intro-third-new";
+			sourceTree = "<group>";
+		};
+		F3A46B9C217F084100C440FF /* persistance */ = {
+			isa = PBXGroup;
+			children = (
+				F3A46B9D217F087800C440FF /* PersistanceService.swift */,
+				F3A46B9F217F088C00C440FF /* PersistanceDataHandler.swift */,
+			);
+			path = persistance;
 			sourceTree = "<group>";
 		};
 		F3C48CC1210EE4E400742855 /* cell */ = {
@@ -1126,6 +1140,7 @@
 				E9611E942164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift in Sources */,
 				F3355CED2122E88C009AF602 /* LoadingViewController.swift in Sources */,
 				F3D6D20A214CF84700A6231E /* IntroFourthModel.swift in Sources */,
+				F3A46B9E217F087800C440FF /* PersistanceService.swift in Sources */,
 				F354B7472164C7570026F3A2 /* IntroThirdNewModel.swift in Sources */,
 				F3E19CAE211C3D6400ADE838 /* InputAViewController.swift in Sources */,
 				F396E464216DD82300C061CD /* Acceptation.swift in Sources */,
@@ -1138,6 +1153,7 @@
 				F334ADC8210D7A370056824A /* MenuItem.swift in Sources */,
 				F31F275E2175AD7B00C4E473 /* CalibrationY.mlmodel in Sources */,
 				F3CE691D213D70E6004F6756 /* GazeEstimator.mlmodel in Sources */,
+				F3A46BA0217F088C00C440FF /* PersistanceDataHandler.swift in Sources */,
 				E99A8EEC2170A02D007B8E64 /* MainMenuItemCollectionViewCell.swift in Sources */,
 				E9876E1B216B6ED50001C626 /* ProgressGradientView.swift in Sources */,
 				F32D99C621117E79007AAA8D /* HomeModel.swift in Sources */,

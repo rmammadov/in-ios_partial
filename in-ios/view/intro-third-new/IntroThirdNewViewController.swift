@@ -193,6 +193,8 @@ extension IntroThirdNewViewController {
                 timerDataCollection = Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.MOVING_CALIBRATION_STEP_DATA_COLLECTION_DURATION, target: self, selector: #selector(takeScreenShot), userInfo: nil, repeats: true)
                 guard let nextBtn = self.view.viewWithTag(viewModel.getNextTag()) else { return }
                 AnimationUtil.animateMoving(view: btnPrevious!, moveX: nextBtn.frame.origin.x, moveY: nextBtn.frame.origin.y)
+                print("Tag \(tag)")
+                print("Previous tag \(viewModel.getNextTag())")
             }
             
         }
