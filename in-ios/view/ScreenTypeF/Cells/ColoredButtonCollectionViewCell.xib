@@ -46,7 +46,7 @@
                             <constraint firstAttribute="trailing" secondItem="PCc-Di-eV9" secondAttribute="trailing" constant="16" id="pRX-fa-IO9"/>
                         </constraints>
                     </view>
-                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Awk-PW-OmL" customClass="NewProgressGradientView" customModule="in_ios" customModuleProvider="target">
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Awk-PW-OmL" customClass="ProgressGradientView" customModule="in_ios" customModuleProvider="target">
                         <rect key="frame" x="76" y="66.5" width="160" height="9"/>
                         <color key="backgroundColor" name="appGray"/>
                         <constraints>

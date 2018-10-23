@@ -15,7 +15,7 @@ protocol BodyPartRowDelegate: class {
 class BodyPartRowView: UIView {
     @IBOutlet var view: UIView!
     @IBOutlet weak var gradientView: GradientView!
-    @IBOutlet weak var newProgressView: NewProgressGradientView!
+    @IBOutlet weak var newProgressView: ProgressGradientView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var button: UIButton!
     

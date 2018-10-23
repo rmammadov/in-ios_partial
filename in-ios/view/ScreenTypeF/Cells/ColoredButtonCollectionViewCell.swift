@@ -11,7 +11,7 @@ import UIKit
 class ColoredButtonCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var underlineProgressView: NewProgressGradientView!
+    @IBOutlet weak var underlineProgressView: ProgressGradientView!
     @IBOutlet weak var backgroundLabelView: GradientView!
     
     private var viewModel: ViewModel?
