@@ -192,7 +192,8 @@ extension IntroThirdNewViewController {
             } else {
                 timerDataCollection = Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.MOVING_CALIBRATION_STEP_DATA_COLLECTION_DURATION, target: self, selector: #selector(takeScreenShot), userInfo: nil, repeats: true)
                 guard let nextBtn = self.view.viewWithTag(viewModel.getNextTag()) else { return }
-                AnimationUtil.animateMoving(view: btnPrevious!, moveX: nextBtn.frame.origin.x, moveY: nextBtn.frame.origin.y)
+                let nextBtnAbsoluteFrame = nextBtn.convert((nextBtn.layer.presentation()?.bounds)!, to: self.view)
+                AnimationUtil.animateMoving(view: btnPrevious!, moveX: nextBtnAbsoluteFrame.origin.x, moveY: nextBtnAbsoluteFrame.origin.y)
                 print("Tag \(tag)")
                 print("Previous tag \(viewModel.getNextTag())")
             }
@@ -204,8 +205,9 @@ extension IntroThirdNewViewController {
         guard let screenShot = cameraManager?.takeScreenShot() else { return }
         guard var calibrationDataForFrame = cameraManager?.getCalibrationFeatures() else { return }
         guard let btn = btnPrevious else { return }
-        calibrationDataForFrame.cross_x = Float((btn.layer.presentation()?.frame.origin.x)!)
-        calibrationDataForFrame.cross_y = Float((btn.layer.presentation()?.frame.origin.y)!)
+        let btnAbsoluteFrame = btn.convert((btn.layer.presentation()?.bounds)!, to: self.view)
+        calibrationDataForFrame.cross_x = Float(btnAbsoluteFrame.origin.x)
+        calibrationDataForFrame.cross_y = Float(btnAbsoluteFrame.origin.y)
         viewModel.setCalibrationData(image: screenShot, data: calibrationDataForFrame)
     }
     
