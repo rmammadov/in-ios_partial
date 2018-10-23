@@ -43,4 +43,5 @@ struct CalibrationData: Codable {
     let facialFeatures: Array<Double>
     let eyeCenters: Array<Array<Double>>
     var file: File?
+    var deviceOrientation: String
 }
