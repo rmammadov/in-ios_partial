@@ -65,5 +65,5 @@ extension ColoredButtonCollectionViewCell: AnimateObject {
             backgroundLabelView.mainColor = nil
         }
     }
-    
+
 }
