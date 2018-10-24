@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina5_9" orientation="portrait">
+    <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -20,33 +20,52 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mo3-5i-FG9">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="778"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_logo_draft" translatesAutoresizingMaskIntoConstraints="NO" id="PcP-1C-xaa">
-                                <rect key="frame" x="105.66666666666669" y="329" width="164" height="164"/>
+                                <rect key="frame" x="430" y="312" width="164" height="164"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="164" id="7PF-aD-B28"/>
                                     <constraint firstAttribute="height" constant="164" id="VcW-Qs-ZRn"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="innodem neurosciences" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DiQ-cC-5JX">
-                                <rect key="frame" x="85" y="501" width="205" height="21.666666666666629"/>
+                                <rect key="frame" x="409.5" y="484" width="205" height="21.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FpX-j1-sWP">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_pigio_new" translatesAutoresizingMaskIntoConstraints="NO" id="azO-MU-qYy">
+                                        <rect key="frame" x="212" y="204" width="600" height="360"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="azO-MU-qYy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FpX-j1-sWP" secondAttribute="leading" id="3Lm-qD-BZw"/>
+                                    <constraint firstItem="azO-MU-qYy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="FpX-j1-sWP" secondAttribute="top" id="7sd-yI-Xam"/>
+                                    <constraint firstItem="azO-MU-qYy" firstAttribute="centerX" secondItem="FpX-j1-sWP" secondAttribute="centerX" id="SFl-N6-jNd"/>
+                                    <constraint firstItem="azO-MU-qYy" firstAttribute="centerY" secondItem="FpX-j1-sWP" secondAttribute="centerY" id="waF-yd-V5m"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="FpX-j1-sWP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3YL-yL-0aw"/>
+                            <constraint firstAttribute="bottom" secondItem="FpX-j1-sWP" secondAttribute="bottom" id="44a-W0-yiL"/>
                             <constraint firstItem="PcP-1C-xaa" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="4qO-pu-j1s"/>
                             <constraint firstItem="DiQ-cC-5JX" firstAttribute="top" secondItem="PcP-1C-xaa" secondAttribute="bottom" constant="8" id="Jri-ul-dek"/>
                             <constraint firstItem="mo3-5i-FG9" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Lmo-Pb-sja"/>
+                            <constraint firstItem="FpX-j1-sWP" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Me2-Kr-fak"/>
                             <constraint firstItem="mo3-5i-FG9" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="OZz-L6-PO9"/>
+                            <constraint firstItem="FpX-j1-sWP" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="ekW-jL-WgV"/>
                             <constraint firstItem="mo3-5i-FG9" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="f1p-cs-aE1"/>
                             <constraint firstItem="mo3-5i-FG9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="l8H-SB-aF3"/>
                             <constraint firstItem="DiQ-cC-5JX" firstAttribute="centerX" secondItem="PcP-1C-xaa" secondAttribute="centerX" id="r4n-UB-keV"/>
@@ -57,10 +76,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+            <point key="canvasLocation" x="52" y="374.6305418719212"/>
         </scene>
     </scenes>
     <resources>
         <image name="ic_logo_draft" width="400" height="400"/>
+        <image name="logo_pigio_new" width="600" height="360"/>
     </resources>
 </document>

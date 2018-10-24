@@ -543,6 +543,25 @@ extension CameraManager {
             return .portrait
         }
     }
+    
+    func deviceOreination() -> String {
+        var deviceOrientation=" "
+        
+        switch UIDevice.current.orientation{
+        case .portrait:
+            deviceOrientation = "Portrait"
+        case .portraitUpsideDown:
+            deviceOrientation = "PortraitUpsideDown"
+        case .landscapeLeft:
+            deviceOrientation = "LandscapeLeft"
+        case .landscapeRight:
+            deviceOrientation = "LandscapeRight"
+        default:
+            deviceOrientation = "Another"
+        }
+
+        return deviceOrientation
+    }
 
 }
 
@@ -570,7 +589,7 @@ extension CameraManager {
             arrayCalibrationFeatures.append("\(calibrationFeaturesSnapshoot[i])")
         }
         
-        return CalibrationData(cross_x: nil, cross_y: nil, pointer_x: coordinatesSnapshot.gazeX, pointer_y: coordinatesSnapshot.gazeY, prediction_x: coordinatesPreConversionSnapshot.gazeX, prediction_y: coordinatesPreConversionSnapshot.gazeY, calibrationFeatures: arrayCalibrationFeatures, facialFeatures: facialFeaturesSnapshoot, eyeCenters: eyeCentersSnapshoot, file: nil)
+        return CalibrationData(cross_x: nil, cross_y: nil, pointer_x: coordinatesSnapshot.gazeX, pointer_y: coordinatesSnapshot.gazeY, prediction_x: coordinatesPreConversionSnapshot.gazeX, prediction_y: coordinatesPreConversionSnapshot.gazeY, calibrationFeatures: arrayCalibrationFeatures, facialFeatures: facialFeaturesSnapshoot, eyeCenters: eyeCentersSnapshoot, file: nil, deviceOrientation: deviceOreination())
     }
 }
 

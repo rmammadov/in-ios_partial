@@ -10,4 +10,7 @@ import Foundation
 
 class BaseModel {
     
+    func isInternetAvailable() -> Bool {
+        return ReachabilityManager.shared.isNetworkAvailable
+    }
 }

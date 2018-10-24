@@ -10,6 +10,10 @@
 		1FB2B43D39F330625AB42FAA /* Pods_in_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B81A848D9E4455FF68424AA1 /* Pods_in_iosTests.framework */; };
 		52A449027D84CDDD257B8A19 /* Pods_in_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FE55CD425B19FE9092FD5CB /* Pods_in_ios.framework */; };
 		E3A238980EAF1E942B02D63A /* Pods_in_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C1D52781DEEE2B40B45A6D /* Pods_in_iosUITests.framework */; };
+		E9019234217DE5C300212B29 /* ScreenTypeGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9019233217DE5C300212B29 /* ScreenTypeGViewController.swift */; };
+		E9019236217DE5D800212B29 /* ScreenTypeGViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9019235217DE5D800212B29 /* ScreenTypeGViewModel.swift */; };
+		E901923A217F580A00212B29 /* ScreenTypeGCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9019238217F580A00212B29 /* ScreenTypeGCollectionViewCell.swift */; };
+		E901923B217F580A00212B29 /* ScreenTypeGCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9019239217F580A00212B29 /* ScreenTypeGCollectionViewCell.xib */; };
 		E9150EF8216605160023E138 /* ScreenTypeEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9150EF7216605160023E138 /* ScreenTypeEViewController.swift */; };
 		E9150EFA216606340023E138 /* ScreenTypeEViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9150EF9216606340023E138 /* ScreenTypeEViewModel.swift */; };
 		E93ACD43216B8CD700F29F54 /* ScreenTypeDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93ACD42216B8CD700F29F54 /* ScreenTypeDViewController.swift */; };
@@ -95,6 +99,8 @@
 		F396E46A216FA61000C061CD /* BiasCorrector.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F396E469216FA60F00C061CD /* BiasCorrector.mlmodel */; };
 		F3A41ACC2161329000D2D8D6 /* LegalDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A41ACB2161329000D2D8D6 /* LegalDocument.swift */; };
 		F3A41ACE216147F100D2D8D6 /* LegalDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A41ACD216147F100D2D8D6 /* LegalDocuments.swift */; };
+		F3A46B9E217F087800C440FF /* PersistanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46B9D217F087800C440FF /* PersistanceService.swift */; };
+		F3A46BA0217F088C00C440FF /* PersistanceDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46B9F217F088C00C440FF /* PersistanceDataHandler.swift */; };
 		F3B0C1CC2154BA1400E30CA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3B0C1CB2154BA1300E30CA1 /* GoogleService-Info.plist */; };
 		F3C48CCB210F018200742855 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C48CCA210F018200742855 /* MenuViewController.swift */; };
 		F3CE691D213D70E6004F6756 /* GazeEstimator.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F3CE691C213D70E6004F6756 /* GazeEstimator.mlmodel */; };
@@ -177,6 +183,10 @@
 		A936726B0D8064569E2F0074 /* Pods-in-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-in-ios/Pods-in-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		B42F0B30A5BBAEFB8E745953 /* Pods-in-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in-iosUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-in-iosUITests/Pods-in-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B81A848D9E4455FF68424AA1 /* Pods_in_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_in_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9019233217DE5C300212B29 /* ScreenTypeGViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeGViewController.swift; sourceTree = "<group>"; };
+		E9019235217DE5D800212B29 /* ScreenTypeGViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeGViewModel.swift; sourceTree = "<group>"; };
+		E9019238217F580A00212B29 /* ScreenTypeGCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeGCollectionViewCell.swift; sourceTree = "<group>"; };
+		E9019239217F580A00212B29 /* ScreenTypeGCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScreenTypeGCollectionViewCell.xib; sourceTree = "<group>"; };
 		E9150EF7216605160023E138 /* ScreenTypeEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeEViewController.swift; sourceTree = "<group>"; };
 		E9150EF9216606340023E138 /* ScreenTypeEViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeEViewModel.swift; sourceTree = "<group>"; };
 		E93ACD42216B8CD700F29F54 /* ScreenTypeDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeDViewController.swift; sourceTree = "<group>"; };
@@ -276,6 +286,8 @@
 		F396E469216FA60F00C061CD /* BiasCorrector.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = BiasCorrector.mlmodel; sourceTree = "<group>"; };
 		F3A41ACB2161329000D2D8D6 /* LegalDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDocument.swift; sourceTree = "<group>"; };
 		F3A41ACD216147F100D2D8D6 /* LegalDocuments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalDocuments.swift; sourceTree = "<group>"; };
+		F3A46B9D217F087800C440FF /* PersistanceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceService.swift; sourceTree = "<group>"; };
+		F3A46B9F217F088C00C440FF /* PersistanceDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceDataHandler.swift; sourceTree = "<group>"; };
 		F3B0C1CB2154BA1300E30CA1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F3C48CCA210F018200742855 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		F3CE691C213D70E6004F6756 /* GazeEstimator.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = GazeEstimator.mlmodel; sourceTree = "<group>"; };
@@ -368,6 +380,25 @@
 				25BE18E2938B0416F1A1208F /* Pods-in-iosUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E9019232217DE58F00212B29 /* ScreenTypeG */ = {
+			isa = PBXGroup;
+			children = (
+				E9019237217F57E400212B29 /* Cells */,
+				E9019233217DE5C300212B29 /* ScreenTypeGViewController.swift */,
+				E9019235217DE5D800212B29 /* ScreenTypeGViewModel.swift */,
+			);
+			path = ScreenTypeG;
+			sourceTree = "<group>";
+		};
+		E9019237217F57E400212B29 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E9019238217F580A00212B29 /* ScreenTypeGCollectionViewCell.swift */,
+				E9019239217F580A00212B29 /* ScreenTypeGCollectionViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		E9150EF62165F6E20023E138 /* ScreenTypeE */ = {
@@ -615,6 +646,7 @@
 				F33658AB20D3196C00B18CEC /* util */,
 				F33658AA20D3196500B18CEC /* helper */,
 				F33F0BCD2121B0E7002E31B9 /* dao */,
+				F3A46B9C217F084100C440FF /* persistance */,
 				F334ADC1210B35570056824A /* api */,
 				F336587C20D318C300B18CEC /* AppDelegate.swift */,
 				F34EE56F216CCBE4009D3523 /* in-ios.xcdatamodeld */,
@@ -699,6 +731,7 @@
 				E93ACD41216B8CB300F29F54 /* ScreenTypeD */,
 				E9150EF62165F6E20023E138 /* ScreenTypeE */,
 				E9876E05216750110001C626 /* ScreenTypeF */,
+				E9019232217DE58F00212B29 /* ScreenTypeG */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -719,6 +752,15 @@
 				F354B7462164C7570026F3A2 /* IntroThirdNewModel.swift */,
 			);
 			path = "intro-third-new";
+			sourceTree = "<group>";
+		};
+		F3A46B9C217F084100C440FF /* persistance */ = {
+			isa = PBXGroup;
+			children = (
+				F3A46B9D217F087800C440FF /* PersistanceService.swift */,
+				F3A46B9F217F088C00C440FF /* PersistanceDataHandler.swift */,
+			);
+			path = persistance;
 			sourceTree = "<group>";
 		};
 		F3C48CC1210EE4E400742855 /* cell */ = {
@@ -955,6 +997,7 @@
 				F331EA80211303880000B4E6 /* TopMenuItemCollectionViewCell.xib in Resources */,
 				E9611E952164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib in Resources */,
 				F336588220D318C300B18CEC /* Main.storyboard in Resources */,
+				E901923B217F580A00212B29 /* ScreenTypeGCollectionViewCell.xib in Resources */,
 				F3F8648321175BEE00B7CAA8 /* Colors.xcassets in Resources */,
 				F3B0C1CC2154BA1400E30CA1 /* GoogleService-Info.plist in Resources */,
 				E99A8EEB2170A02D007B8E64 /* MainMenuItemCollectionViewCell.xib in Resources */,
@@ -1126,6 +1169,7 @@
 				E9611E942164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift in Sources */,
 				F3355CED2122E88C009AF602 /* LoadingViewController.swift in Sources */,
 				F3D6D20A214CF84700A6231E /* IntroFourthModel.swift in Sources */,
+				F3A46B9E217F087800C440FF /* PersistanceService.swift in Sources */,
 				F354B7472164C7570026F3A2 /* IntroThirdNewModel.swift in Sources */,
 				F3E19CAE211C3D6400ADE838 /* InputAViewController.swift in Sources */,
 				F396E464216DD82300C061CD /* Acceptation.swift in Sources */,
@@ -1138,6 +1182,7 @@
 				F334ADC8210D7A370056824A /* MenuItem.swift in Sources */,
 				F31F275E2175AD7B00C4E473 /* CalibrationY.mlmodel in Sources */,
 				F3CE691D213D70E6004F6756 /* GazeEstimator.mlmodel in Sources */,
+				F3A46BA0217F088C00C440FF /* PersistanceDataHandler.swift in Sources */,
 				E99A8EEC2170A02D007B8E64 /* MainMenuItemCollectionViewCell.swift in Sources */,
 				E9876E1B216B6ED50001C626 /* ProgressGradientView.swift in Sources */,
 				F32D99C621117E79007AAA8D /* HomeModel.swift in Sources */,
@@ -1183,9 +1228,11 @@
 				F3CE6924213DB385004F6756 /* IntroFirstModel.swift in Sources */,
 				E99B8C31216DE4B800A90EFC /* GazeTrackerCalibrated.swift in Sources */,
 				F3E97E5721422F3C00379B4A /* UIDevice+modelName.swift in Sources */,
+				E9019234217DE5C300212B29 /* ScreenTypeGViewController.swift in Sources */,
 				F32F5B6721453DFB00558C68 /* IntroSecondViewModel.swift in Sources */,
 				F3CE6920213DB318004F6756 /* IntroFirstViewController.swift in Sources */,
 				F32DCED9214A41D100B3D0F8 /* INTextField.swift in Sources */,
+				E901923A217F580A00212B29 /* ScreenTypeGCollectionViewCell.swift in Sources */,
 				F3E19CB6211D827000ADE838 /* MenuItemCollectionViewCell.swift in Sources */,
 				E9611E982164AC950010B33C /* ScreenTypeCViewModel.swift in Sources */,
 				F3E19CAC211C3CEE00ADE838 /* HomeContainerModel.swift in Sources */,
@@ -1196,6 +1243,7 @@
 				F33658AE20D3198000B18CEC /* Constant.swift in Sources */,
 				F3CE9029215D3F8300A9F3DF /* IntroSecondNewViewController.swift in Sources */,
 				F3DA017D2162905200D0625B /* WebviewViewController.swift in Sources */,
+				E9019236217DE5D800212B29 /* ScreenTypeGViewModel.swift in Sources */,
 				E966261C216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.swift in Sources */,
 				F3DA0181216290BD00D0625B /* WebviewModel.swift in Sources */,
 				F334ADBC2104E7970056824A /* CameraManager.swift in Sources */,

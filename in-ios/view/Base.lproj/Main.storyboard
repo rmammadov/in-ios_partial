@@ -41,8 +41,8 @@
                                             <constraint firstAttribute="height" constant="2" id="fak-2b-WJf"/>
                                         </constraints>
                                     </imageView>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" scrollEnabled="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vSO-2M-N7o">
-                                        <rect key="frame" x="222.5" y="0.0" width="667" height="64"/>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vSO-2M-N7o">
+                                        <rect key="frame" x="0.0" y="0.0" width="1112" height="64"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -64,7 +64,7 @@
                                     <constraint firstItem="vSO-2M-N7o" firstAttribute="top" secondItem="9Zq-RT-v6y" secondAttribute="top" id="1YJ-t6-Yy3"/>
                                     <constraint firstItem="cVS-2f-YlA" firstAttribute="leading" secondItem="9Zq-RT-v6y" secondAttribute="leading" id="S19-9y-9bK"/>
                                     <constraint firstItem="vSO-2M-N7o" firstAttribute="centerX" secondItem="9Zq-RT-v6y" secondAttribute="centerX" id="jUg-sr-J6T"/>
-                                    <constraint firstItem="vSO-2M-N7o" firstAttribute="width" secondItem="9Zq-RT-v6y" secondAttribute="width" multiplier="0.6" id="rwh-7d-fOr"/>
+                                    <constraint firstItem="vSO-2M-N7o" firstAttribute="width" secondItem="9Zq-RT-v6y" secondAttribute="width" id="rwh-7d-fOr"/>
                                     <constraint firstAttribute="bottom" secondItem="cVS-2f-YlA" secondAttribute="bottom" id="vog-9I-Qhy"/>
                                     <constraint firstItem="cVS-2f-YlA" firstAttribute="top" secondItem="vSO-2M-N7o" secondAttribute="bottom" id="zdj-rI-uLF"/>
                                 </constraints>
@@ -1939,6 +1939,43 @@ The process will take less than 20 seconds.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PyI-rf-96k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2962.7697841726622" y="4408.6330935251799"/>
+        </scene>
+        <!--Screen TypeG View Controller-->
+        <scene sceneID="9HL-tk-htT">
+            <objects>
+                <viewController storyboardIdentifier="ScreenTypeGViewController" id="pGB-XQ-rsN" customClass="ScreenTypeGViewController" customModule="in_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="peh-Ee-nkj">
+                        <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="I1D-P6-oSw">
+                                <rect key="frame" x="0.0" y="20" width="1112" height="814"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="a0X-zS-fLd">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="I1D-P6-oSw" firstAttribute="leading" secondItem="tSa-Wc-OR7" secondAttribute="leading" id="FdW-hx-GNo"/>
+                            <constraint firstItem="tSa-Wc-OR7" firstAttribute="bottom" secondItem="I1D-P6-oSw" secondAttribute="bottom" id="Z5o-o2-e7M"/>
+                            <constraint firstItem="I1D-P6-oSw" firstAttribute="top" secondItem="tSa-Wc-OR7" secondAttribute="top" id="itj-Yq-taZ"/>
+                            <constraint firstItem="tSa-Wc-OR7" firstAttribute="trailing" secondItem="I1D-P6-oSw" secondAttribute="trailing" id="wRP-Hc-iW2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tSa-Wc-OR7"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="I1D-P6-oSw" id="KIO-qz-n1o"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5EB-dU-hHa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3654" y="3709"/>
         </scene>
     </scenes>
     <resources>

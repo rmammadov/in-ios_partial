@@ -72,7 +72,7 @@ extension ScreenTypeDViewModel: ScreenTypeDDelegate {
             guard let viewController = viewController as? BodyPartViewController,
                 viewController.viewModel.button.translations?.first?.label != button.translations?.first?.label
                 else { return }
-            viewController.viewModel.setSelectedBubble(nil)
+            viewController.viewModel.selectedBubble = nil
         }
     }
 }

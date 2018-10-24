@@ -60,7 +60,7 @@ class MenuViewModel: BaseViewModel {
         if parentMenuItem != nil {
             self.loadSubMenuItemsOf(menuItem: self.parentMenuItem!, topMenuClicked: true)
             self.status.value = MenuStatus.firstPhaseLoaded.rawValue
-            }
+        }
     }
     
     func getIAMItem() -> Int {
