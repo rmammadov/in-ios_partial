@@ -54,7 +54,10 @@ class ScreenTypeEViewModel: BaseViewModel {
     }
     
     override func getRowCount() -> Int {
-        return super.getRowCount() - 1
+        if inputScreen.type != .inputScreenH {
+            return super.getRowCount() - 1
+        }
+        return super.getRowCount()
     }
     
     private func setupGroupedItems() {

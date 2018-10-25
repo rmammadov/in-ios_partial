@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ScreenTypeHCollectionViewCell" customModule="in_ios" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9L7-nc-l8F" customClass="GradientView" customModule="in_ios" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="9L7-nc-l8F" secondAttribute="height" multiplier="1:1" id="BNk-VY-2r4"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
+                                <color key="value" name="appGradientBlue"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
+                                <color key="value" name="appGradientViolet"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dR1-4T-zOf">
+                        <rect key="frame" x="18" y="18" width="144" height="144"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="dR1-4T-zOf" firstAttribute="width" secondItem="9L7-nc-l8F" secondAttribute="width" multiplier="0.8" id="C76-Bx-1Gg"/>
+                <constraint firstItem="9L7-nc-l8F" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="LKN-XX-Hhy"/>
+                <constraint firstItem="9L7-nc-l8F" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" priority="750" id="OtB-mO-wPJ"/>
+                <constraint firstItem="dR1-4T-zOf" firstAttribute="centerX" secondItem="9L7-nc-l8F" secondAttribute="centerX" id="STA-tJ-mk2"/>
+                <constraint firstItem="9L7-nc-l8F" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Vbt-KW-z4d"/>
+                <constraint firstItem="9L7-nc-l8F" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gTV-IL-0wX" secondAttribute="top" id="YWa-bo-e10"/>
+                <constraint firstItem="dR1-4T-zOf" firstAttribute="centerY" secondItem="9L7-nc-l8F" secondAttribute="centerY" id="kOC-Rp-V2w"/>
+                <constraint firstItem="9L7-nc-l8F" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" priority="750" id="tGt-6s-i2E"/>
+                <constraint firstItem="dR1-4T-zOf" firstAttribute="height" secondItem="9L7-nc-l8F" secondAttribute="height" multiplier="0.8" id="vfz-oH-WBU"/>
+                <constraint firstItem="9L7-nc-l8F" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gTV-IL-0wX" secondAttribute="leading" id="zrz-GM-4Rt"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="177" height="209"/>
+            <connections>
+                <outlet property="gradientView" destination="9L7-nc-l8F" id="uOk-iP-yjM"/>
+                <outlet property="imageView" destination="dR1-4T-zOf" id="eN8-dW-ESK"/>
+            </connections>
+            <point key="canvasLocation" x="233.59999999999999" y="226.23688155922042"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="appGradientBlue">
+            <color red="0.25882352941176473" green="0.81960784313725488" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="appGradientViolet">
+            <color red="0.52156862745098043" green="0.062745098039215685" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

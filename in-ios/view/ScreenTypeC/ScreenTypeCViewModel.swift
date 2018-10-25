@@ -84,7 +84,7 @@ class ScreenTypeCViewModel: BaseViewModel {
     private func loadViewControllerFor(item: InputScreen) -> UIViewController? {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         switch item.type {
-        case .inputScreenE:
+        case .inputScreenE, .inputScreenH:
             if let vc = storyboard.instantiateViewController(withIdentifier: ScreenTypeEViewController.identifier) as? ScreenTypeEViewController {
                 vc.viewModel.inputScreen = item
                 vc.viewModel.delegate = self

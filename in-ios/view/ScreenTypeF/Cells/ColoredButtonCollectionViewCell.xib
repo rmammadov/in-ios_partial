@@ -45,6 +45,11 @@
                             <constraint firstItem="PCc-Di-eV9" firstAttribute="leading" secondItem="kuu-gM-lot" secondAttribute="leading" constant="16" id="lsH-OW-ZxC"/>
                             <constraint firstAttribute="trailing" secondItem="PCc-Di-eV9" secondAttribute="trailing" constant="16" id="pRX-fa-IO9"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Awk-PW-OmL" customClass="ProgressGradientView" customModule="in_ios" customModuleProvider="target">
                         <rect key="frame" x="76" y="66.5" width="160" height="9"/>
