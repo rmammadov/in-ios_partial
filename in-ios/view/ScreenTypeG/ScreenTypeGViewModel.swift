@@ -14,8 +14,8 @@ class ScreenTypeGViewModel: BaseViewModel {
     weak var delegate: ScreenTypeCDelegate?
     var inputScreen: InputScreen!
     private var items = [ButtonInputScreen]()
-    private var selectedIndex: IndexPath?
-    private var newSelectedIndex: IndexPath?
+    var selectedIndex: IndexPath?
+    var newSelectedIndex: IndexPath?
     
     func loadItems() {
         guard let buttons = inputScreen.buttons else { return }
@@ -31,6 +31,10 @@ class ScreenTypeGViewModel: BaseViewModel {
             textToSpeech(item: item)
         }
         delegate?.didSelect(value: item, onScreen: inputScreen)
+    }
+  
+    func getItems() -> [ButtonInputScreen] {
+        return items
     }
     
     func getItemAt(indexPath: IndexPath) -> ButtonInputScreen {
