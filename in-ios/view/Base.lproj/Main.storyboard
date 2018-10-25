@@ -801,11 +801,11 @@ The process will take less than 20 seconds.</string>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yCf-jp-yXD">
                                 <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
                                 <subviews>
-                                    <button hidden="YES" opaque="NO" tag="111" contentMode="scaleAspectFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvh-sH-Ivz">
-                                        <rect key="frame" x="32" y="403" width="57" height="48"/>
+                                    <button hidden="YES" opaque="NO" tag="111" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvh-sH-Ivz">
+                                        <rect key="frame" x="32" y="393" width="48" height="48"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="48" id="0S6-PP-R5d"/>
-                                            <constraint firstAttribute="height" constant="48" id="Xwt-fH-8n1"/>
+                                            <constraint firstAttribute="height" constant="48" id="OD8-oE-fNv"/>
+                                            <constraint firstAttribute="width" constant="48" id="Vdr-kT-a2y"/>
                                         </constraints>
                                         <state key="normal" image="ic_x"/>
                                         <state key="disabled" image="ic_x_blue"/>
@@ -980,12 +980,13 @@ The process will take less than 20 seconds.</string>
                                 <constraints>
                                     <constraint firstItem="dBr-Cf-Nts" firstAttribute="centerY" secondItem="yCf-jp-yXD" secondAttribute="centerY" id="2mS-SV-YqC"/>
                                     <constraint firstAttribute="trailing" secondItem="YHm-GY-jcB" secondAttribute="trailing" constant="32" id="2st-1Z-KKg"/>
+                                    <constraint firstItem="qvh-sH-Ivz" firstAttribute="centerY" secondItem="yCf-jp-yXD" secondAttribute="centerY" id="88K-co-5Vq"/>
                                     <constraint firstItem="dBr-Cf-Nts" firstAttribute="centerX" secondItem="yCf-jp-yXD" secondAttribute="centerX" id="CgR-7P-TUe"/>
                                     <constraint firstAttribute="bottom" secondItem="FSo-hF-hX0" secondAttribute="bottom" constant="32" id="FHw-rI-T31"/>
                                     <constraint firstItem="dBr-Cf-Nts" firstAttribute="width" secondItem="yCf-jp-yXD" secondAttribute="width" multiplier="0.5" id="HAq-fn-akh"/>
                                     <constraint firstItem="S91-uV-Zn2" firstAttribute="centerY" secondItem="yCf-jp-yXD" secondAttribute="centerY" id="Kf8-9p-s7m"/>
                                     <constraint firstItem="FSo-hF-hX0" firstAttribute="centerX" secondItem="yCf-jp-yXD" secondAttribute="centerX" id="L4c-he-HL2"/>
-                                    <constraint firstItem="qvh-sH-Ivz" firstAttribute="leading" secondItem="yCf-jp-yXD" secondAttribute="leading" constant="32" id="NDJ-Hx-JFV"/>
+                                    <constraint firstItem="qvh-sH-Ivz" firstAttribute="leading" secondItem="yCf-jp-yXD" secondAttribute="leading" constant="32" id="Nhk-ce-f4l"/>
                                     <constraint firstItem="8z3-r9-xXe" firstAttribute="top" secondItem="yCf-jp-yXD" secondAttribute="top" constant="32" id="PS3-07-buf"/>
                                     <constraint firstItem="L1U-ty-dCR" firstAttribute="centerX" secondItem="yCf-jp-yXD" secondAttribute="centerX" id="RaD-Ff-y0b"/>
                                     <constraint firstAttribute="trailing" secondItem="S91-uV-Zn2" secondAttribute="trailing" constant="32" id="Urb-iB-Zev"/>
@@ -1102,7 +1103,6 @@ The process will take less than 20 seconds.</string>
                         <constraints>
                             <constraint firstItem="yCf-jp-yXD" firstAttribute="leading" secondItem="YIO-iF-OmC" secondAttribute="leading" id="0ge-0P-p8Q"/>
                             <constraint firstItem="zoc-aM-YyS" firstAttribute="centerY" secondItem="vGL-72-7AW" secondAttribute="centerY" id="1kY-UO-Quz"/>
-                            <constraint firstItem="qvh-sH-Ivz" firstAttribute="centerY" secondItem="YIO-iF-OmC" secondAttribute="centerY" id="2ui-2B-D11"/>
                             <constraint firstItem="CuD-Ek-LLP" firstAttribute="centerY" secondItem="YIO-iF-OmC" secondAttribute="centerY" id="3L8-IY-Mdl"/>
                             <constraint firstItem="yCf-jp-yXD" firstAttribute="top" secondItem="Idg-it-6es" secondAttribute="top" id="4kP-xW-mRo"/>
                             <constraint firstItem="JfW-Jk-pmL" firstAttribute="width" secondItem="Idg-it-6es" secondAttribute="width" multiplier="0.057" id="7FH-ue-2dK"/>
