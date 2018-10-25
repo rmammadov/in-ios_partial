@@ -17,7 +17,10 @@ enum RequestStatus: Int {
     case completedInputScreens = 32
     case completedLegalDocuments = 33
     case completed = 40
-    case completedFile = 50
+    case completedAcceptation = 50
+    case completedFile = 60
+    case completedProfileData = 70
+    case completedCalibration = 80
 }
 
 // FIXME: RequestStatus should be updated to properly
@@ -34,6 +37,8 @@ class ApiRequestHandler {
     fileprivate var legalDocuments: Array<LegalDocument> = []
     fileprivate var acceptation: Acceptation?
     fileprivate var file: File?
+    fileprivate var profileData: ProfileData?
+    fileprivate var calibration: Calibration?
     
     init() {
         config = URLSessionConfiguration.default
@@ -216,7 +221,7 @@ class ApiRequestHandler {
             
             do {
                 self.acceptation = try JSONDecoder().decode(Acceptation.self, from: content)
-                self.status.value = RequestStatus.completedFile.rawValue
+                self.status.value = RequestStatus.completedAcceptation.rawValue
             } catch let jsonErr {
                 print("Error serializing json",  jsonErr)
             }
@@ -241,12 +246,14 @@ class ApiRequestHandler {
             // ensure there is no error for this HTTP response
             guard error == nil else {
                 print ("error: \(error!)")
+                self.status.value = RequestStatus.failed.rawValue
                 return
             }
             
             // hanlde http response code
             if let httpResponse = response as? HTTPURLResponse {
                 if  200 > httpResponse.statusCode || httpResponse.statusCode >= 300 {
+                    self.status.value = RequestStatus.failed.rawValue
                 }
             }
             
@@ -295,12 +302,14 @@ class ApiRequestHandler {
             // ensure there is no error for this HTTP response
             guard error == nil else {
                 print ("error: \(error!)")
+                self.status.value = RequestStatus.failed.rawValue
                 return
             }
             
             // hanlde http response code
             if let httpResponse = response as? HTTPURLResponse {
                 if  200 > httpResponse.statusCode || httpResponse.statusCode >= 300 {
+                    self.status.value = RequestStatus.failed.rawValue
                 }
             }
             
@@ -316,8 +325,76 @@ class ApiRequestHandler {
                 print("Not containing JSON")
                 return
             }
+            
+            do {
+                self.profileData = try JSONDecoder().decode(ProfileData.self, from: content)
+                print(self.profileData!)
+                self.status.value = RequestStatus.completedProfileData.rawValue
+            } catch let jsonErr {
+                print("Error serializing json",  jsonErr)
+            }
         }
         
         task.resume()
     }
+    
+    func getProfileData() -> ProfileData? {
+        return self.profileData
+    }
+    
+    func getCalibrations(calibrationRequest: CalibrationRequest) {
+        guard let url = URL(string: Constant.Url.HOST_API_BETA + Constant.Url.URL_EXTENSION_API + Constant.Url.URL_EXTENSION_CALIBRATIONS) else { return }
+        
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try! jsonEncoder.encode(calibrationRequest)
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            // ensure there is no error for this HTTP response
+            guard error == nil else {
+                print ("error: \(error!)")
+                self.status.value = RequestStatus.failed.rawValue
+                return
+            }
+            
+            // hanlde http response code
+            if let httpResponse = response as? HTTPURLResponse {
+                if  200 > httpResponse.statusCode || httpResponse.statusCode >= 300 {
+                    self.status.value = RequestStatus.failed.rawValue
+                }
+            }
+            
+            // ensure there is data returned from this HTTP response
+            guard let content = data else {
+                print("No data")
+                return
+            }
+            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue))
+            
+            // serialise the data / NSData object into Dictionary [String : Any]
+            guard ((try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? Any) != nil else {
+                print("Not containing JSON")
+                return
+            }
+            
+            do {
+                self.calibration = try JSONDecoder().decode(Calibration.self, from: content)
+                print(self.calibration!)
+                self.status.value = RequestStatus.completedCalibration.rawValue
+            } catch let jsonErr {
+                print("Error serializing json",  jsonErr)
+            }
+        }
+        
+        task.resume()
+    }
+    
+    func getCalibration() -> Calibration? {
+        return self.calibration
+    }
+    
 }

@@ -102,6 +102,8 @@
 		F3A46B9E217F087800C440FF /* PersistanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46B9D217F087800C440FF /* PersistanceService.swift */; };
 		F3A46BA0217F088C00C440FF /* PersistanceDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46B9F217F088C00C440FF /* PersistanceDataHandler.swift */; };
 		F3B0C1CC2154BA1400E30CA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3B0C1CB2154BA1300E30CA1 /* GoogleService-Info.plist */; };
+		F3B7FB672181F332001F5F84 /* Calibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B7FB662181F332001F5F84 /* Calibration.swift */; };
+		F3B7FB692181F613001F5F84 /* CalibrationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B7FB682181F613001F5F84 /* CalibrationRequest.swift */; };
 		F3C48CCB210F018200742855 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C48CCA210F018200742855 /* MenuViewController.swift */; };
 		F3CE691D213D70E6004F6756 /* GazeEstimator.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F3CE691C213D70E6004F6756 /* GazeEstimator.mlmodel */; };
 		F3CE6920213DB318004F6756 /* IntroFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE691F213DB318004F6756 /* IntroFirstViewController.swift */; };
@@ -289,6 +291,8 @@
 		F3A46B9D217F087800C440FF /* PersistanceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceService.swift; sourceTree = "<group>"; };
 		F3A46B9F217F088C00C440FF /* PersistanceDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceDataHandler.swift; sourceTree = "<group>"; };
 		F3B0C1CB2154BA1300E30CA1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F3B7FB662181F332001F5F84 /* Calibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calibration.swift; sourceTree = "<group>"; };
+		F3B7FB682181F613001F5F84 /* CalibrationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationRequest.swift; sourceTree = "<group>"; };
 		F3C48CCA210F018200742855 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		F3CE691C213D70E6004F6756 /* GazeEstimator.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = GazeEstimator.mlmodel; sourceTree = "<group>"; };
 		F3CE691F213DB318004F6756 /* IntroFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFirstViewController.swift; sourceTree = "<group>"; };
@@ -601,6 +605,8 @@
 				F3A41ACD216147F100D2D8D6 /* LegalDocuments.swift */,
 				F396E463216DD82300C061CD /* Acceptation.swift */,
 				F396E467216F249B00C061CD /* ProfileData.swift */,
+				F3B7FB682181F613001F5F84 /* CalibrationRequest.swift */,
+				F3B7FB662181F332001F5F84 /* Calibration.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1194,6 +1200,7 @@
 				F331EA7F211303880000B4E6 /* TopMenuItemCollectionViewCell.swift in Sources */,
 				E9611E9A2164AE2D0010B33C /* IdentifierProtocol.swift in Sources */,
 				F32F5B6921453E0B00558C68 /* IntroSecondModel.swift in Sources */,
+				F3B7FB672181F332001F5F84 /* Calibration.swift in Sources */,
 				F3355CE82121E04F009AF602 /* InputScreen.swift in Sources */,
 				F3CE902D215D3FFB00A9F3DF /* IntroSecondNewModel.swift in Sources */,
 				F39059C1210F290F00CAA292 /* MenuViewModel.swift in Sources */,
@@ -1246,6 +1253,7 @@
 				E9019236217DE5D800212B29 /* ScreenTypeGViewModel.swift in Sources */,
 				E966261C216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.swift in Sources */,
 				F3DA0181216290BD00D0625B /* WebviewModel.swift in Sources */,
+				F3B7FB692181F613001F5F84 /* CalibrationRequest.swift in Sources */,
 				F334ADBC2104E7970056824A /* CameraManager.swift in Sources */,
 				E93ACD4C216CB6F500F29F54 /* UIStackViewExtension.swift in Sources */,
 				F3E19CB2211C3DB400ADE838 /* InputAModel.swift in Sources */,

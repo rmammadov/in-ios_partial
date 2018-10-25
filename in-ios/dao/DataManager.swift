@@ -54,6 +54,9 @@ class DataManager {
                     guard var data = self.data else { return }
                     data.file = file
                     calibrationData.append(data)
+                } else if self.requestHandler.status.value == RequestStatus.completedProfileData.rawValue {
+                    guard let profileData = self.requestHandler.getProfileData() else { return }
+                    self.profileData = profileData
                 }
             } else if self.requestHandler.status.value == RequestStatus.failed.rawValue {
                 self.status.value = DataStatus.dataLoadingFailed.rawValue
