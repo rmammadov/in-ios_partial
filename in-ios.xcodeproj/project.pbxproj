@@ -32,6 +32,8 @@
 		E966261C216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E966261A216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.swift */; };
 		E966261D216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E966261B216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.xib */; };
 		E966261F216F38AA006C05B1 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E966261E216F38AA006C05B1 /* UIFontExtension.swift */; };
+		E98458EB21805C3300197CBC /* ScreenTypeHCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98458E921805C3300197CBC /* ScreenTypeHCollectionViewCell.swift */; };
+		E98458EC21805C3300197CBC /* ScreenTypeHCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98458EA21805C3300197CBC /* ScreenTypeHCollectionViewCell.xib */; };
 		E9876E07216750310001C626 /* ScreenTypeFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E06216750310001C626 /* ScreenTypeFViewController.swift */; };
 		E9876E092167503E0001C626 /* ScreenTypeFViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E082167503E0001C626 /* ScreenTypeFViewModel.swift */; };
 		E9876E0B21675CE00001C626 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E0A21675CE00001C626 /* UIColorExtension.swift */; };
@@ -207,6 +209,8 @@
 		E966261A216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeDCollectionViewCell.swift; sourceTree = "<group>"; };
 		E966261B216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScreenTypeDCollectionViewCell.xib; sourceTree = "<group>"; };
 		E966261E216F38AA006C05B1 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
+		E98458E921805C3300197CBC /* ScreenTypeHCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeHCollectionViewCell.swift; sourceTree = "<group>"; };
+		E98458EA21805C3300197CBC /* ScreenTypeHCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScreenTypeHCollectionViewCell.xib; sourceTree = "<group>"; };
 		E9876E0321674F890001C626 /* GazeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GazeUtils.swift; sourceTree = "<group>"; };
 		E9876E06216750310001C626 /* ScreenTypeFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeFViewController.swift; sourceTree = "<group>"; };
 		E9876E082167503E0001C626 /* ScreenTypeFViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeFViewModel.swift; sourceTree = "<group>"; };
@@ -468,6 +472,23 @@
 			children = (
 				E966261A216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.swift */,
 				E966261B216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		E98458E521805BD200197CBC /* ScreenTypeH */ = {
+			isa = PBXGroup;
+			children = (
+				E98458E621805BF200197CBC /* Cells */,
+			);
+			path = ScreenTypeH;
+			sourceTree = "<group>";
+		};
+		E98458E621805BF200197CBC /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E98458E921805C3300197CBC /* ScreenTypeHCollectionViewCell.swift */,
+				E98458EA21805C3300197CBC /* ScreenTypeHCollectionViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -738,6 +759,7 @@
 				E9150EF62165F6E20023E138 /* ScreenTypeE */,
 				E9876E05216750110001C626 /* ScreenTypeF */,
 				E9019232217DE58F00212B29 /* ScreenTypeG */,
+				E98458E521805BD200197CBC /* ScreenTypeH */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1003,6 +1025,7 @@
 				F331EA80211303880000B4E6 /* TopMenuItemCollectionViewCell.xib in Resources */,
 				E9611E952164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib in Resources */,
 				F336588220D318C300B18CEC /* Main.storyboard in Resources */,
+				E98458EC21805C3300197CBC /* ScreenTypeHCollectionViewCell.xib in Resources */,
 				E901923B217F580A00212B29 /* ScreenTypeGCollectionViewCell.xib in Resources */,
 				F3F8648321175BEE00B7CAA8 /* Colors.xcassets in Resources */,
 				F3B0C1CC2154BA1400E30CA1 /* GoogleService-Info.plist in Resources */,
@@ -1195,6 +1218,7 @@
 				E966261F216F38AA006C05B1 /* UIFontExtension.swift in Sources */,
 				F31F275C2175AD7500C4E473 /* CalibrationX.mlmodel in Sources */,
 				F32DCEDE214A652000B3D0F8 /* IntroThirdViewModel.swift in Sources */,
+				E98458EB21805C3300197CBC /* ScreenTypeHCollectionViewCell.swift in Sources */,
 				F336587D20D318C300B18CEC /* AppDelegate.swift in Sources */,
 				E94ABF722174B49D0063B8D6 /* AnimationProtocol.swift in Sources */,
 				F331EA7F211303880000B4E6 /* TopMenuItemCollectionViewCell.swift in Sources */,

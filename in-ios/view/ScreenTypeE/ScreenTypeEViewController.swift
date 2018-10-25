@@ -9,9 +9,6 @@
 import UIKit
 import RxSwift
 
-private let nibMenuItem = "MenuItemCollectionViewCell"
-private let reuseIdentifier = "cellMenuItem"
-
 class ScreenTypeEViewController: BaseViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
@@ -53,8 +50,8 @@ extension ScreenTypeEViewController {
     }
     
     private func setupCollectionView() {
-        let cellNib = UINib(nibName: nibMenuItem, bundle: nil)
-        collectionView.register(cellNib, forCellWithReuseIdentifier: reuseIdentifier)
+        let cellNib = UINib(nibName: cellNibName, bundle: nil)
+        collectionView.register(cellNib, forCellWithReuseIdentifier: cellIdentifier)
         collectionView.dataSource = self
         collectionView.delegate = self
     }
@@ -72,7 +69,7 @@ extension ScreenTypeEViewController {
                 status == AnimationStatus.completed.rawValue,
                 AnimationUtil.getTag() == ScreenTypeEViewController.identifier,
                 let indexPath = self.viewModel.getSelectedIndexPath(),
-                let cell = self.collectionView.cellForItem(at: indexPath) as? MenuItemCollectionViewCell
+                let cell = self.collectionView.cellForItem(at: indexPath) as? AnimateObject
                 else { return }
             AnimationUtil.cancelAnimation(object: cell)
             let item = self.viewModel.onItemLoadRequest(indexPath: indexPath)
@@ -86,15 +83,50 @@ extension ScreenTypeEViewController {
 // MARK: - UICollectionViewDataSource
 
 extension ScreenTypeEViewController: UICollectionViewDataSource {
+    var cellNibName: String {
+        switch viewModel.inputScreen.type {
+        case .inputScreenH:
+            return ScreenTypeHCollectionViewCell.identifier
+        default:
+            return "MenuItemCollectionViewCell"
+        }
+    }
+    var cellIdentifier: String {
+        switch viewModel.inputScreen.type {
+        case .inputScreenH:
+            return ScreenTypeHCollectionViewCell.identifier
+        default:
+            return "cellMenuItem"
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.getCurrentPageItems().count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        switch viewModel.inputScreen.type {
+        case .inputScreenH:
+            return prepareScreenTypeHCell(collectionView: collectionView, indexPath: indexPath)
+        default:
+            return prepareStandardItemCell(collectionView: collectionView, indexPath: indexPath)
+        }
+    }
+    
+    private func prepareScreenTypeHCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
+            as? ScreenTypeHCollectionViewCell else {
+                fatalError("Cannot dequeue cell with reuseIdentifier: \(cellIdentifier)")
+        }
+        let item = viewModel.getItemFor(indexPath: indexPath)
+        cell.setCell(url: item.icon?.url)
+        return cell
+    }
+    
+    private func prepareStandardItemCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
             as? MenuItemCollectionViewCell else {
-                fatalError("Cannot dequeue cell with reuseIdentifier: \(reuseIdentifier)")
+                fatalError("Cannot dequeue cell with reuseIdentifier: \(cellIdentifier)")
         }
         let item = viewModel.getItemFor(indexPath: indexPath)
         cell.setCell(url: item.icon?.url, label: item.translations?.first?.label)
@@ -111,14 +143,15 @@ extension ScreenTypeEViewController: UICollectionViewDelegate {
         let marginSpace = CGFloat(viewModel.getItemMargin() * (viewModel.getRowCount() - 1))
         var cellWidth = (self.collectionView.frame.size.width - marginSpace) / CGFloat(viewModel.getColumnCount())
         let cellHeight = self.collectionView.frame.size.height / CGFloat(viewModel.getRowCount())
-        if cellWidth > cellHeight {
+        if cellWidth > cellHeight,
+            viewModel.inputScreen.type != .inputScreenH {
             cellWidth = cellHeight - (MenuItemCollectionViewCell.kLabelSpacing + MenuItemCollectionViewCell.kLabelHeight)
         }
         return CGSize(width: cellWidth, height: cellHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? MenuItemCollectionViewCell
+        guard let cell = collectionView.cellForItem(at: indexPath) as? AnimateObject
             else { return }
         viewModel.setSelectedIndexPath(indexPath)
         AnimationUtil.animateSelection(object: cell, fingerTouch: true, tag: ScreenTypeEViewController.identifier)
@@ -135,7 +168,8 @@ extension ScreenTypeEViewController: UICollectionViewDelegateFlowLayout {
         let marginSpace = CGFloat(viewModel.getItemMargin() * (viewModel.getRowCount() - 1))
         var cellWidth = (self.collectionView.frame.size.width - marginSpace) / CGFloat(viewModel.getColumnCount())
         let cellHeight = self.collectionView.frame.size.height / CGFloat(viewModel.getRowCount())
-        if cellWidth > cellHeight {
+        if cellWidth > cellHeight,
+            viewModel.inputScreen.type != .inputScreenH {
             cellWidth = cellHeight - (MenuItemCollectionViewCell.kLabelSpacing + MenuItemCollectionViewCell.kLabelHeight)
             return (collectionView.frame.width - (CGFloat(viewModel.getColumnCount()) * cellWidth)) / CGFloat(viewModel.getColumnCount() - 1)
         } else {

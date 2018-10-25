@@ -14,7 +14,7 @@ class ScreenTypeGViewController: BaseViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     private var isDisappear: Bool = true
-    let viewModel = ScreenTypeFViewModel()
+    let viewModel = ScreenTypeGViewModel()
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {

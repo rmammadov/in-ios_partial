@@ -37,7 +37,7 @@ import UIKit
     }
     
     /// If lineWidth value is greater than 0 then this will be a gradient line not a full shape.
-    var lineWidth: CGFloat = 0 {
+    @IBInspectable var lineWidth: CGFloat = 1 {
         didSet {
             setNeedsDisplay()
         }
