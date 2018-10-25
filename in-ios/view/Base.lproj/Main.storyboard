@@ -746,11 +746,63 @@ The process will take less than 20 seconds.</string>
                                     <action selector="onClickBtnForward:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="GO4-Xn-67Q"/>
                                 </connections>
                             </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="av7-Tb-Ier">
+                                <rect key="frame" x="412" y="286.5" width="288" height="281"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_circle_gradient_loading" translatesAutoresizingMaskIntoConstraints="NO" id="8w0-6N-YZV">
+                                        <rect key="frame" x="112" y="16" width="64" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="64" id="cd1-9S-GZt"/>
+                                            <constraint firstAttribute="height" constant="64" id="smZ-MG-a0N"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7m-eb-G6o">
+                                        <rect key="frame" x="121" y="112" width="46" height="25"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wd3-MM-aH3">
+                                        <rect key="frame" x="16" y="201" width="256" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="64" id="2Qj-8s-24E"/>
+                                            <constraint firstAttribute="width" constant="256" id="519-QA-dHT"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
+                                        <state key="normal" title="Try Again" backgroundImage="ic_btn_get_started_enabled">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnStatus:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="5sF-nv-N2F"/>
+                                        </connections>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vmD-8W-o96">
+                                        <rect key="frame" x="128" y="33" width="32" height="30.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="vmD-8W-o96" secondAttribute="height" multiplier="64:61" id="xrZ-sU-4gr"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="8w0-6N-YZV" firstAttribute="centerX" secondItem="av7-Tb-Ier" secondAttribute="centerX" id="0g7-ht-nho"/>
+                                    <constraint firstItem="Wd3-MM-aH3" firstAttribute="top" secondItem="W7m-eb-G6o" secondAttribute="bottom" constant="64" id="3TV-ug-Ns7"/>
+                                    <constraint firstItem="8w0-6N-YZV" firstAttribute="top" secondItem="av7-Tb-Ier" secondAttribute="top" constant="16" id="8hh-Lp-6ZX"/>
+                                    <constraint firstAttribute="bottom" secondItem="Wd3-MM-aH3" secondAttribute="bottom" constant="16" id="LPc-2O-OoU"/>
+                                    <constraint firstItem="W7m-eb-G6o" firstAttribute="centerX" secondItem="av7-Tb-Ier" secondAttribute="centerX" id="NJx-8J-5Bu"/>
+                                    <constraint firstItem="Wd3-MM-aH3" firstAttribute="leading" secondItem="av7-Tb-Ier" secondAttribute="leading" constant="16" id="OZ1-vs-8K6"/>
+                                    <constraint firstItem="vmD-8W-o96" firstAttribute="width" secondItem="8w0-6N-YZV" secondAttribute="width" multiplier="0.5" id="P1d-EP-JgL"/>
+                                    <constraint firstItem="vmD-8W-o96" firstAttribute="centerY" secondItem="8w0-6N-YZV" secondAttribute="centerY" id="P7k-tL-gu6"/>
+                                    <constraint firstItem="vmD-8W-o96" firstAttribute="centerX" secondItem="8w0-6N-YZV" secondAttribute="centerX" id="TAl-0z-TeJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wd3-MM-aH3" secondAttribute="trailing" constant="16" id="aDS-Oo-EJp"/>
+                                    <constraint firstItem="W7m-eb-G6o" firstAttribute="top" secondItem="8w0-6N-YZV" secondAttribute="bottom" constant="32" id="kDq-IP-xTe"/>
+                                </constraints>
+                            </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yCf-jp-yXD">
                                 <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
                                 <subviews>
-                                    <button hidden="YES" opaque="NO" tag="111" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvh-sH-Ivz">
-                                        <rect key="frame" x="32" y="403" width="48" height="48"/>
+                                    <button hidden="YES" opaque="NO" tag="111" contentMode="scaleAspectFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvh-sH-Ivz">
+                                        <rect key="frame" x="32" y="403" width="57" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="48" id="0S6-PP-R5d"/>
                                             <constraint firstAttribute="height" constant="48" id="Xwt-fH-8n1"/>
@@ -1054,6 +1106,7 @@ The process will take less than 20 seconds.</string>
                             <constraint firstItem="CuD-Ek-LLP" firstAttribute="centerY" secondItem="YIO-iF-OmC" secondAttribute="centerY" id="3L8-IY-Mdl"/>
                             <constraint firstItem="yCf-jp-yXD" firstAttribute="top" secondItem="Idg-it-6es" secondAttribute="top" id="4kP-xW-mRo"/>
                             <constraint firstItem="JfW-Jk-pmL" firstAttribute="width" secondItem="Idg-it-6es" secondAttribute="width" multiplier="0.057" id="7FH-ue-2dK"/>
+                            <constraint firstItem="av7-Tb-Ier" firstAttribute="centerX" secondItem="YIO-iF-OmC" secondAttribute="centerX" id="89l-A3-RAk"/>
                             <constraint firstItem="vGL-72-7AW" firstAttribute="trailing" secondItem="YIO-iF-OmC" secondAttribute="trailing" id="8sb-zu-pQT"/>
                             <constraint firstAttribute="trailing" secondItem="CXz-tq-o54" secondAttribute="trailing" id="9QP-hg-74C"/>
                             <constraint firstItem="yCf-jp-yXD" firstAttribute="bottom" secondItem="YIO-iF-OmC" secondAttribute="bottom" id="BbT-dh-nZj"/>
@@ -1065,6 +1118,7 @@ The process will take less than 20 seconds.</string>
                             <constraint firstItem="JfW-Jk-pmL" firstAttribute="centerY" secondItem="YIO-iF-OmC" secondAttribute="centerY" id="clX-pJ-xZs"/>
                             <constraint firstItem="zoc-aM-YyS" firstAttribute="centerX" secondItem="vGL-72-7AW" secondAttribute="centerX" id="idc-BX-Vgx"/>
                             <constraint firstItem="P6K-wL-Dam" firstAttribute="centerY" secondItem="YIO-iF-OmC" secondAttribute="centerY" id="lib-1Y-J1r"/>
+                            <constraint firstItem="av7-Tb-Ier" firstAttribute="centerY" secondItem="YIO-iF-OmC" secondAttribute="centerY" id="m3j-00-cFB"/>
                             <constraint firstItem="vGL-72-7AW" firstAttribute="leading" secondItem="YIO-iF-OmC" secondAttribute="leading" id="sGF-wv-yoA"/>
                             <constraint firstItem="CXz-tq-o54" firstAttribute="width" secondItem="Idg-it-6es" secondAttribute="width" multiplier="0.057" id="u7Z-3l-acb"/>
                             <constraint firstItem="vGL-72-7AW" firstAttribute="top" secondItem="Idg-it-6es" secondAttribute="top" id="vT2-oH-3fY"/>
@@ -1076,10 +1130,14 @@ The process will take less than 20 seconds.</string>
                     <connections>
                         <outlet property="btnBack" destination="JfW-Jk-pmL" id="KdH-7Z-dat"/>
                         <outlet property="btnForward" destination="CXz-tq-o54" id="IoS-zz-DkV"/>
+                        <outlet property="ivProgressbar" destination="8w0-6N-YZV" id="FeX-Ru-R36"/>
+                        <outlet property="ivProgressbarContent" destination="vmD-8W-o96" id="oiq-Bt-51a"/>
+                        <outlet property="labelStatus" destination="W7m-eb-G6o" id="oAo-0b-aku"/>
                         <outlet property="viewFifthStep" destination="P6K-wL-Dam" id="BFn-tN-J6M"/>
                         <outlet property="viewFirstStep" destination="zoc-aM-YyS" id="BsM-ht-RSl"/>
                         <outlet property="viewFourthStep" destination="CuD-Ek-LLP" id="7e3-eg-rR1"/>
                         <outlet property="viewSecondStep" destination="yCf-jp-yXD" id="0Yc-q9-l5X"/>
+                        <outlet property="viewStatus" destination="av7-Tb-Ier" id="fKH-DX-KLR"/>
                         <segue destination="NSJ-NQ-Qye" kind="show" identifier="showHome" id="z3d-m9-Uzk"/>
                     </connections>
                 </viewController>
@@ -2185,6 +2243,6 @@ AAAAE90
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GUh-nT-Ig1"/>
+        <segue reference="z3d-m9-Uzk"/>
     </inferredMetricsTieBreakers>
 </document>
