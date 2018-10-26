@@ -67,6 +67,7 @@ class DataManager {
                 self.status.value = DataStatus.dataLoadingFailed.rawValue
             }
         }).disposed(by: disposeBag)
+        
     }
     
     static func startLoadRequiredData() {
