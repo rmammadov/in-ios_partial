@@ -15,5 +15,5 @@ struct CalibrationRequest: Codable {
 
 struct ProfileDataId: Codable {
     
-    let id: Int
+    let id: Int64
 }
