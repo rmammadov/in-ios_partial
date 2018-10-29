@@ -46,10 +46,11 @@ struct Constant {
         static let NEXT_ITEM_NAME = "Next"
         static let VOLUME_UP = "Volume up"
         static let VOLUME_DOWN = "Volume down"
+        static let ALL_CLEAR = "AC"
     }
     
     struct AnimationConfig {
-        static let MENU_ITEM_FINGER_TOUCH_ANIMATION_DURATION: Double = 0.5
+        static let MENU_ITEM_FINGER_TOUCH_ANIMATION_DURATION: Double = 0.1
         static let MENU_ITEM_ANIMATION_DURATION: Double = 4.0
         static let MENU_ITEM_ANIMATION_COUNT: Float = 1.0
     }
