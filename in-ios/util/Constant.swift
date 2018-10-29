@@ -17,7 +17,7 @@ struct Constant {
         static let COUNT_ROW_ITEMS: Int = 4
         static let COUNT_COLUMN_ITEMS: Int = 5
         static let RESOLUTION_VIDEO_INPUT: AVCaptureSession.Preset = .cif352x288
-        static let GAZE_PREDICTION_AVERAGING_COUNT: Int = 3
+        static let GAZE_PREDICTION_AVERAGING_COUNT: Int = 10
     }
     
     struct Url {
@@ -29,6 +29,7 @@ struct Constant {
         static let URL_EXTENSION_LEGAL_ACCEPTATIONS: String = "acceptations"
         static let URL_EXTENSION_FILES: String = "files"
         static let URL_EXTENSION_PROFILE_DATAS: String = "profile-datas"
+        static let URL_EXTENSION_CALIBRATIONS: String = "calibrations"
     }
     
     struct DefaultValues {

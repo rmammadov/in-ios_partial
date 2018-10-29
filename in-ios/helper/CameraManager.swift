@@ -30,6 +30,8 @@ class CameraManager: NSObject {
     fileprivate var cameraIsObservingDeviceOrientation = false
     fileprivate var cameraPosition = AVCaptureDevice.Position.front
     fileprivate var gazeTracker: GazeTracker?
+    fileprivate var uncalibratedGazeTracker: GazeTracker?
+    fileprivate var calibratedGazeTracker: GazeTrackerCalibrated?
     fileprivate var gazeUtils = GazeUtilities()
     fileprivate var cameraView: UIView? // For the test purpose
     fileprivate weak var processingImage: UIImage?
@@ -310,11 +312,9 @@ extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
 extension CameraManager: GazePredictionDelegate {
     
     func setPrediction() {
-        gazeTracker = GazeTracker(delegate: self)
-    }
-    
-    func setPredictionCalibrated(xModelURL: URL, yModelURL: URL) {
-        gazeTracker = GazeTrackerCalibrated(delegate: self, xModelURL: xModelURL, yModelURL: yModelURL)
+        uncalibratedGazeTracker = GazeTracker(delegate: self)
+        gazeTracker = uncalibratedGazeTracker
+        calibratedGazeTracker = GazeTrackerCalibrated(delegate: self)
     }
     
     func predicate(frame: UIImage) {

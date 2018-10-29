@@ -13,6 +13,12 @@ private let SEGUE_IDENTIFIER_SHOW_HOME = "showHome"
 
 class IntroThirdNewViewController: BaseViewController {
     
+    @IBOutlet weak var viewStatus: UIView!
+    @IBOutlet weak var labelStatus: UILabel!
+    @IBAction func btnStatus(_ sender: Any) {
+    }
+    @IBOutlet weak var ivProgressbar: UIImageView!
+    @IBOutlet weak var ivProgressbarContent: UIImageView!
     @IBOutlet weak var viewFirstStep: UIView!
     @IBOutlet weak var viewSecondStep: UIView!
     @IBOutlet weak var viewFourthStep: UIView!

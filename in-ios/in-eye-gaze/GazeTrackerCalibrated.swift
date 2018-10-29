@@ -31,76 +31,166 @@ class CalibrationInput: MLFeatureProvider {
 
 class GazeTrackerCalibrated: GazeTracker {
     
-    var PERMANENT_URL_CALIBRATION_X: URL
-    var PERMANENT_URL_CALIBRATION_Y: URL
     let SAVE_DIRECTORY = "Calibration Models"
     let fileManager = FileManager.default
+    let rootSaveDirectory: URL
+    
+    static let MODEL_MAPPING_X: String = "ModelX"
+    static let MODEL_MAPPING_Y: String = "ModelY"
+    let X_COMPILED_FILE_NAME: String = "CalibrationX.mlmodelc"
+    let Y_COMPILED_FILE_NAME: String = "CalibrationY.mlmodelc"
+    
+    let directoryMappings: [UIDeviceOrientation: String] = [UIDeviceOrientation.portrait: "Portrait",
+                                                            UIDeviceOrientation.portraitUpsideDown: "Portrait Upsaide Down",
+                                                            UIDeviceOrientation.landscapeLeft: "Landscape Left",
+                                                            UIDeviceOrientation.landscapeRight: "Landscape Right"]
+    var modelMappings: [UIDeviceOrientation: [String: MLModel?]] = [UIDeviceOrientation.portrait: [MODEL_MAPPING_X: nil, MODEL_MAPPING_Y: nil],
+                                                                     UIDeviceOrientation.portraitUpsideDown: [MODEL_MAPPING_X: nil, MODEL_MAPPING_Y: nil],
+                                                                     UIDeviceOrientation.landscapeLeft: [MODEL_MAPPING_X: nil, MODEL_MAPPING_Y: nil],
+                                                                     UIDeviceOrientation.landscapeRight: [MODEL_MAPPING_X: nil, MODEL_MAPPING_Y: nil]]
     
     var calibModelX: MLModel? = nil
     var calibModelY: MLModel? = nil
     
-    init(delegate: GazePredictionDelegate?, illumResizeRatio: Double = 1.0, xModelURL: URL, yModelURL: URL) {
+    override init(delegate: GazePredictionDelegate?, illumResizeRatio: Double = 1.0) {
         
         let appSupportDirectory = try! fileManager.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        let modelSaveDirectory: URL = appSupportDirectory.appendingPathComponent("Calibration Models", isDirectory: true)
-        PERMANENT_URL_CALIBRATION_X = modelSaveDirectory.appendingPathComponent("CalibrationX.mlmodelc")
-        PERMANENT_URL_CALIBRATION_Y = modelSaveDirectory.appendingPathComponent("CalibrationY.mlmodelc")
-        
+        rootSaveDirectory = appSupportDirectory.appendingPathComponent(SAVE_DIRECTORY, isDirectory: true)
         super.init(delegate: delegate, illumResizeRatio: illumResizeRatio)
         
-        try! fileManager.createDirectory(at: modelSaveDirectory, withIntermediateDirectories: true, attributes: nil)
-        if fileManager.fileExists(atPath: PERMANENT_URL_CALIBRATION_X.absoluteString) {
-            do {
-                self.calibModelX = try MLModel(contentsOf: PERMANENT_URL_CALIBRATION_X)
-            } catch {
-                print("Failed to load stored compiled CalibrationX model.")
+        //Check if save directory exists. If not, create it and its subfolders, and return since no calibration models can be present on the device
+        var isDir = ObjCBool(true)
+        if !fileManager.fileExists(atPath: rootSaveDirectory.absoluteString, isDirectory: &isDir) {
+            try! fileManager.createDirectory(at: rootSaveDirectory, withIntermediateDirectories: true, attributes: nil)
+            for (_, folder) in self.directoryMappings {
+                let subfolder = rootSaveDirectory.appendingPathComponent(folder, isDirectory: true)
+                try! fileManager.createDirectory(at: subfolder, withIntermediateDirectories: true, attributes: nil)
             }
+            return
         }
         
-        if fileManager.fileExists(atPath: PERMANENT_URL_CALIBRATION_Y.absoluteString) {
-            do {
-                self.calibModelY = try MLModel(contentsOf: PERMANENT_URL_CALIBRATION_Y)
-            } catch {
-                
-            }
-        }
-    }
-    
-    func loadModels(xModelURL: URL, yModelURL: URL) {
-        do {
-            let compiledURL = try MLModel.compileModel(at: xModelURL)
-            self.calibModelX = try MLModel(contentsOf: compiledURL)
-            saveModelToFile(compiledModelURL: compiledURL, isXModel: true)
-        } catch {
-            print("Failed to load CalibrationX model")
-        }
-        
-        do {
-            let compiledURL = try MLModel.compileModel(at: yModelURL)
-            self.calibModelY = try MLModel(contentsOf: compiledURL)
-            saveModelToFile(compiledModelURL: compiledURL, isXModel: false)
-        } catch {
-            print("Failed to load CalibrationY model.")
-        }
-    }
-    
-    func saveModelToFile(compiledModelURL: URL, isXModel: Bool) {
-        do {
-            if isXModel {
-                if fileManager.fileExists(atPath: PERMANENT_URL_CALIBRATION_X.absoluteString) {
-                    _ = try fileManager.replaceItemAt(PERMANENT_URL_CALIBRATION_X, withItemAt: compiledModelURL)
-                } else {
-                    try fileManager.copyItem(at: compiledModelURL, to: PERMANENT_URL_CALIBRATION_X)
+        //Load orientation-specific models
+        for (orientation, folder) in self.directoryMappings {
+            let modelXPath: URL = rootSaveDirectory.appendingPathComponent(folder, isDirectory: true).appendingPathComponent(X_COMPILED_FILE_NAME)
+            let modelYPath: URL = rootSaveDirectory.appendingPathComponent(folder, isDirectory: true).appendingPathComponent(Y_COMPILED_FILE_NAME)
+            
+            if fileManager.fileExists(atPath: modelXPath.absoluteString), fileManager.fileExists(atPath: modelYPath.absoluteString) {
+                do {
+                    self.modelMappings[orientation]![GazeTrackerCalibrated.MODEL_MAPPING_X] = try MLModel(contentsOf: modelXPath)
+                    self.modelMappings[orientation]![GazeTrackerCalibrated.MODEL_MAPPING_Y] = try MLModel(contentsOf: modelYPath)
+                } catch {
+                    self.modelMappings[orientation]![GazeTrackerCalibrated.MODEL_MAPPING_X] = nil
+                    self.modelMappings[orientation]![GazeTrackerCalibrated.MODEL_MAPPING_Y] = nil
+                    print("Failed to load models for device orientation: \(orientation)")
                 }
             } else {
-                if fileManager.fileExists(atPath: PERMANENT_URL_CALIBRATION_Y.absoluteString) {
-                    _ = try fileManager.replaceItemAt(PERMANENT_URL_CALIBRATION_Y, withItemAt: compiledModelURL)
-                } else {
-                    try fileManager.copyItem(at: compiledModelURL, to: PERMANENT_URL_CALIBRATION_Y)
-                }
+                self.modelMappings[orientation]![GazeTrackerCalibrated.MODEL_MAPPING_X] = nil
+                self.modelMappings[orientation]![GazeTrackerCalibrated.MODEL_MAPPING_Y] = nil
             }
+        }
+        
+        //Assign proper models, based on current orientation, to the models to be used for inference.
+//        let deviceOrientation: UIDeviceOrientation = UIDevice.current.orientation
+//        switch deviceOrientation {
+//        case .portrait, .portraitUpsideDown, .landscapeLeft, .landscapeRight:
+//            calibModelX = self.modelMappings[deviceOrientation]![GazeTrackerCalibrated.MODEL_MAPPING_X]!
+//            calibModelY = self.modelMappings[deviceOrientation]![GazeTrackerCalibrated.MODEL_MAPPING_Y]!
+//        default:
+//            break
+//        }
+    }
+    
+    /**
+     Updates the current models to the ones corresponding to the new device orientation.
+     
+     - parameter newOrientation: The new (current) orientation of the device.
+     - Returns: true if the new orientation exists in the orientation-to-model mapping dictionary and the corresponding models also exist. Else, returns false.
+     */
+    func setOrientation(to newOrientation: UIDeviceOrientation) -> Bool{
+        guard let mapping = modelMappings[newOrientation] else {
+            self.calibModelX = nil
+            self.calibModelY = nil
+            return false
+        }
+        guard let modelX = mapping[GazeTrackerCalibrated.MODEL_MAPPING_X], let modelY = mapping[GazeTrackerCalibrated.MODEL_MAPPING_Y] else {
+            self.calibModelX = nil
+            self.calibModelY = nil
+            return false
+        }
+        if let modelX = modelX, let modelY = modelY {
+            self.calibModelX = modelX
+            self.calibModelY = modelY
+            return true
+        } else {
+            self.calibModelX = nil
+            self.calibModelY = nil
+            return false
+        }
+    }
+    
+    /**
+     Compiles the .mlmodel files and saves them to permanent storage. Also updates the dictionary of available models.
+     
+     - parameter xModelURL: The URL to the .mlmodel file that represents the calibration model for the horizontal dimension.
+     - parameter yModelURL: The URL to the .mlmodel file that represents the calibration model for the vertical dimension.
+     - parameter orientation: The orientation of the device at the time of calibration. Can be retrived from the JSON file generated by the calibration, the same JSON file that was used to train the calibration models.
+     
+     - returns: True if the models could be loaded, compiled and saved. Else, returns false.
+     */
+    func updateWithNewModels(xModelURL: URL, yModelURL: URL, orientation: UIDeviceOrientation) -> Bool {
+        switch orientation {
+        case .portrait, .portraitUpsideDown, .landscapeLeft, .landscapeRight:
+            do {
+                let compiledXURL = try MLModel.compileModel(at: xModelURL)
+                let compiledYURL = try MLModel.compileModel(at: yModelURL)
+                let modelX = try MLModel(contentsOf: compiledXURL)
+                let modelY = try MLModel(contentsOf: compiledYURL)
+                
+                // Assign models to the proper variables
+                self.calibModelX = modelX
+                self.calibModelY = modelY
+                self.modelMappings[orientation] = [GazeTrackerCalibrated.MODEL_MAPPING_X: modelX, GazeTrackerCalibrated.MODEL_MAPPING_Y: modelY]
+                
+                //Build save path and save models
+                let saveDirectoryPath: URL = self.rootSaveDirectory.appendingPathComponent(self.directoryMappings[orientation]!)
+                let xModelSavePath: URL = saveDirectoryPath.appendingPathComponent(X_COMPILED_FILE_NAME)
+                let yModelSavePath: URL = saveDirectoryPath.appendingPathComponent(Y_COMPILED_FILE_NAME)
+                
+                if saveModelToFile(compiledModelURL: compiledXURL, destinationURL: xModelSavePath), saveModelToFile(compiledModelURL: compiledYURL, destinationURL: yModelSavePath) {
+                    return true
+                } else {
+                    return false
+                }
+                
+            } catch {
+                print("Failed to load calibration models")
+                return false
+            }
+        default:
+            print("The supplied orientation did not match any of the supported device orientations.")
+            return false
+        }
+    }
+    
+    /**
+     Saves a compiled mlmodel file to permanent storage.
+     
+     - parameter compiledModelURL: The URL to the .mlmodelc file
+     - parameter destinationURL: The path to which the model should be saved. If this file already exists, IT WILL BE OVERWRITTEN.
+     
+     - returns: True if the operation is successful, else false.
+     */
+    func saveModelToFile(compiledModelURL: URL, destinationURL: URL) -> Bool {
+        do {
+            if fileManager.fileExists(atPath: destinationURL.absoluteString) {
+                _ = try fileManager.replaceItemAt(destinationURL, withItemAt: compiledModelURL)
+            } else {
+                try fileManager.copyItem(at: compiledModelURL, to: destinationURL)
+            }
+            return true
         } catch {
             print("Error during copy: \(error.localizedDescription)")
+            return false
         }
     }
     

@@ -30,6 +30,7 @@ class DataManager {
     static fileprivate var user: UserInfo?
     static fileprivate var profileData: ProfileData?
     static fileprivate var data: CalibrationData?
+    static fileprivate var calibration: Calibration?
     
     static fileprivate let requestHandler = ApiRequestHandler()
     static fileprivate let fileNaming = FileNamingHelper()
@@ -54,11 +55,19 @@ class DataManager {
                     guard var data = self.data else { return }
                     data.file = file
                     calibrationData.append(data)
+                } else if self.requestHandler.status.value == RequestStatus.completedProfileData.rawValue {
+                    guard let profileData = self.requestHandler.getProfileData() else { return }
+                    self.profileData = profileData
+                    self.requestHandler.getCalibrations(calibrationRequest: CalibrationRequest(profile_data: ProfileDataId(id: (self.profileData?.id)!)))
+                } else if self.requestHandler.status.value == RequestStatus.completedCalibration.rawValue {
+                    guard let calibration = self.requestHandler.getCalibration() else { return }
+                    self.calibration = calibration
                 }
             } else if self.requestHandler.status.value == RequestStatus.failed.rawValue {
                 self.status.value = DataStatus.dataLoadingFailed.rawValue
             }
         }).disposed(by: disposeBag)
+        
     }
     
     static func startLoadRequiredData() {
