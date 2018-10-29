@@ -18,6 +18,8 @@ class ScreenTypeHViewModel: BaseViewModel {
     private var page = Variable<Int>(0)
     private var selectedItem: ButtonInputScreen?
     private var selectedIndexPath: IndexPath?
+    private var selectedLabels: [String] = []
+    private var selectedTextToSpeech: [String] = []
     
     func loadItems() {
         guard let items = inputScreen?.buttons else { return }
@@ -121,6 +123,11 @@ class ScreenTypeHViewModel: BaseViewModel {
             SpeechHelper.play(text: text, language: Locale.current.languageCode!)
         }
         
+        guard item.translations?.first?.label != Constant.MenuConfig.ALL_CLEAR else {
+            clearSelectedValues()
+            return item
+        }
+        
         guard item.translations?.first?.label != Constant.MenuConfig.PREVIOUS_ITEM_NAME else {
             previousPage()
             return item
@@ -135,9 +142,27 @@ class ScreenTypeHViewModel: BaseViewModel {
             return item
         }
         selectedItem = item
-        
-        delegate?.didSelect(value: item, onScreen: self.inputScreen)
+        if let translation = item.translations?.first,
+            let label = translation.label,
+            let textToSpeech = translation.labelTextToSpeech {
+            selectedLabels.append(label)
+            selectedTextToSpeech.append(textToSpeech)
+            var collectedLabel = ""
+            var collectedTextToSpeech = ""
+            selectedLabels.forEach { collectedLabel += $0 }
+            selectedTextToSpeech.forEach { collectedTextToSpeech += $0 }
+            let translation = TranslationMenuItem(locale: translation.locale ?? "en",
+                                                  label: collectedLabel,
+                                                  textToSpeech: collectedTextToSpeech)
+            delegate?.didSelect(value: translation, onScreen: inputScreen)
+        }
         return item
+    }
+    
+    func clearSelectedValues() {
+        selectedLabels = []
+        selectedTextToSpeech = []
+        delegate?.didSelect(value: nil, onScreen: inputScreen)
     }
     
     func prepareViewControllerFor(item: ButtonInputScreen) -> UIViewController? {

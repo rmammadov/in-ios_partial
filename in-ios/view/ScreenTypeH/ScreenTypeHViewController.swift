@@ -47,6 +47,7 @@ extension ScreenTypeHViewController {
         viewModel.loadItems()
         setupCollectionView()
         setSubscribers()
+        registerObservers()
     }
     
     private func setupCollectionView() {
@@ -56,7 +57,13 @@ extension ScreenTypeHViewController {
         collectionView.delegate = self
     }
     
+    func registerObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onParentClearSelection(notification:)),
+                                               name: Notification.Name.ScreenTypeCClear, object: nil)
+    }
+    
     private func setSubscribers() {
+        
         viewModel.getPageObserver().subscribe(onNext: { (_) in
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
@@ -78,6 +85,13 @@ extension ScreenTypeHViewController {
             }
         }).disposed(by: disposeBag)
     }
+    
+    @objc func onParentClearSelection(notification: Notification) {
+        viewModel.setSelectedItem(nil)
+        viewModel.setSelectedIndexPath(nil)
+        viewModel.clearSelectedValues()
+    }
+    
 }
 
 // MARK: - UICollectionViewDataSource
@@ -151,6 +165,7 @@ extension ScreenTypeHViewController: UICollectionViewDelegateFlowLayout {
             return 0
         }
     }
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {

@@ -39,6 +39,8 @@ class ScreenTypeCViewModel: BaseViewModel {
             return label
         } else if let item = selectedItem.value[index] as? Bubble, let label = item.translations.first?.label {
             return label
+        } else if let item = selectedItem.value[index] as? TranslationMenuItem, let text = item.label {
+            return text
         }
         return nil
     }
@@ -47,6 +49,8 @@ class ScreenTypeCViewModel: BaseViewModel {
         if let item = selectedItem.value[index] as? ButtonInputScreen, let text = item.translations?.first?.labelTextToSpeech {
             return text
         } else if let item = selectedItem.value[index] as? Bubble, let text = item.translations.first?.labelTextToSpeech {
+            return text
+        } else if let item = selectedItem.value[index] as? TranslationMenuItem, let text = item.labelTextToSpeech {
             return text
         }
         return nil
@@ -149,7 +153,7 @@ class ScreenTypeCViewModel: BaseViewModel {
 }
 
 extension ScreenTypeCViewModel: ScreenTypeCDelegate {
-    func didSelect(value: Any, onScreen: InputScreen) {
+    func didSelect(value: Any?, onScreen: InputScreen) {
         selectedItem.value[onScreen.id] = value
     }
 }

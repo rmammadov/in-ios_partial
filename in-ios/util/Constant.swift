@@ -46,6 +46,7 @@ struct Constant {
         static let NEXT_ITEM_NAME = "Next"
         static let VOLUME_UP = "Volume up"
         static let VOLUME_DOWN = "Volume down"
+        static let ALL_CLEAR = "AC"
     }
     
     struct AnimationConfig {
