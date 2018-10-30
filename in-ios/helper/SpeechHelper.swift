@@ -10,23 +10,31 @@ import AVFoundation
 import MediaPlayer
 
 
-class SpeechHelper {
+class SpeechHelper: NSObject {
     
-    static let synthesizer = AVSpeechSynthesizer()
+    static let shared = SpeechHelper()
     
-    static func play(text: String, language: String) {
-        self.setAudioSession()
-        self.handleSilentMode()
-        let utterance = AVSpeechUtterance(string: text)
-//        utterance.voice = AVSpeechSynthesisVoice(language: language) // Customize default voice of device
-        self.synthesizer.speak(utterance)
+    private override init() {
+        super.init()
+        synthesizer.delegate = self
+        setAudioSession()
+        handleSilentMode()
     }
     
-    static func stop() {
+    let synthesizer = AVSpeechSynthesizer()
+    
+    func play(text: String, language: String) {
+        let utterance = AVSpeechUtterance(string: text)
+//        utterance.voice = AVSpeechSynthesisVoice(language: language) // Customize default voice of device
+        synthesizer.delegate = self
+        synthesizer.speak(utterance)
+    }
+    
+    func stop() {
         self.synthesizer.stopSpeaking(at: AVSpeechBoundary.immediate)
     }
     
-    static func handleSilentMode() {
+    func handleSilentMode() {
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category(rawValue: convertFromAVAudioSessionCategory(AVAudioSession.Category.playback)), mode: .default)
         }
@@ -42,7 +50,7 @@ class SpeechHelper {
         }
     }
     
-    static func setAudioSession() {
+    func setAudioSession() {
         let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setCategory(AVAudioSession.Category(rawValue: convertFromAVAudioSessionCategory(AVAudioSession.Category.soloAmbient)), mode: .default)
@@ -53,7 +61,7 @@ class SpeechHelper {
         }
     }
     
-    static func volumeUp() {
+    func volumeUp() {
         let newValue = AVAudioSession.sharedInstance().outputVolume + 0.0625
         let volume = newValue > 1 ? 1 : newValue
         let mpVolumeView = MPVolumeView(frame: .init(origin: .zero, size: CGSize(width: 100, height: 100)))
@@ -64,7 +72,7 @@ class SpeechHelper {
         }
     }
     
-    static func volumeDown() {
+    func volumeDown() {
         let newValue = AVAudioSession.sharedInstance().outputVolume - 0.0625
         let volume = newValue < 0 ? 0 : newValue
         let mpVolumeView = MPVolumeView(frame: .init(origin: .zero, size: CGSize(width: 100, height: 100)))
@@ -79,4 +87,16 @@ class SpeechHelper {
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
 	return input.rawValue
+}
+
+
+extension SpeechHelper: AVSpeechSynthesizerDelegate {
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
+        //TODO: Disable action from gaze tracker interface when playing audio.
+        UIApplication.shared.beginIgnoringInteractionEvents() // Disable the click interface when playing audio.
+    }
+    
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        UIApplication.shared.endIgnoringInteractionEvents()
+    }
 }

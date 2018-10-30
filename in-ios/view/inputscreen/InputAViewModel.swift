@@ -205,9 +205,9 @@ class InputAViewModel: BaseViewModel {
         if selectedItem.type == .simple, let firstLabel = selectedItem.translations?.first?.label {
             switch firstLabel {
             case Constant.MenuConfig.VOLUME_UP:
-                SpeechHelper.volumeUp()
+                SpeechHelper.shared.volumeUp()
             case Constant.MenuConfig.VOLUME_DOWN:
-                SpeechHelper.volumeDown()
+                SpeechHelper.shared.volumeDown()
             default: break
             }
         }
@@ -225,6 +225,6 @@ class InputAViewModel: BaseViewModel {
     // FIXME: Remove hardcode language type
     
     func textToSpech(text: String) {
-        SpeechHelper.play(text: text, language: Locale.current.languageCode!)
+        SpeechHelper.shared.play(text: text, language: Locale.current.languageCode!)
     }
 }

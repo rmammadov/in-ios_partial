@@ -118,7 +118,9 @@ extension SubMenuViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     // FIXME: Remove the hardcode
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let cellWidth = self.collectionView.frame.size.width / CGFloat(viewModel.getColumnCount())
         let cellHeight = self.collectionView.frame.size.height / CGFloat(viewModel.getRowCount())
@@ -133,8 +135,6 @@ extension SubMenuViewController: UICollectionViewDelegate, UICollectionViewDataS
             AnimationUtil.cancelAnimation(object: cell)
             AnimationUtil.animateSelection(object: cell, fingerTouch: true, tag: SubMenuViewController.TAG)
         }
-//        AnimationUtil.cancelMenuSelection(imageView: self.getCellForIndexPath(indexPath: viewModel.getSelection())!.ivStatusIcon)
-//        AnimationUtil.animateMenuSelection(imageView: self.getCellForIndexPath(indexPath: indexPath)!.ivStatusIcon, fingerTouch: true, tag: SubMenuViewController.TAG)
         self.viewModel.setSelection(indexPath: indexPath)
     }
     
