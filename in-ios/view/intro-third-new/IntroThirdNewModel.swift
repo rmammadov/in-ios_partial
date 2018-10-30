@@ -35,6 +35,7 @@ class IntroThirdNewModel: BaseModel {
         DataManager.status.asObservable().subscribe(onNext: {
             event in
             if DataManager.status.value == DataStatus.loadingCalibrationDataCompleted.rawValue {
+                
                 self.status.value = CalibrationStatus.loadingCalibrationCompleted.rawValue
             }
         }).disposed(by: disposeBag)
