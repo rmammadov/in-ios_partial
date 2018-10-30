@@ -387,6 +387,7 @@ extension CameraManager {
         if let outputs = captureSession?.outputs {
             for output in outputs {
                 output.connection(with: AVMediaType.video)!.videoOrientation = self._videoOrientation(forDeviceOrientation: self.deviceOrientation)
+                updateOrientation()
             }
         }
     }
@@ -596,7 +597,7 @@ extension CameraManager {
         let isCalibrationSet = calibratedGazeTracker?.updateWithNewModels(xModelURL: xModelUrl, yModelURL: yModelUrl, orientation: deviceOrientation)
     }
     
-    func setOrientation() {
+    func updateOrientation() {
         let isOrientationSet = calibratedGazeTracker?.setOrientation(to: deviceOrientation)
     }
 }
