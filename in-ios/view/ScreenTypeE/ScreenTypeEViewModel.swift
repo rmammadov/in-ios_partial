@@ -117,7 +117,8 @@ class ScreenTypeEViewModel: BaseViewModel {
     func onItemLoadRequest(indexPath: IndexPath) -> ButtonInputScreen {
         let item = getItemFor(indexPath: indexPath)
         
-        if !(item.disableTextToSpeech ?? true), let text = item.translations?.first?.labelTextToSpeech {
+        let isDisableTextToSpeech = item.disableTextToSpeech ?? true
+        if !isDisableTextToSpeech, let text = item.translations?.first?.labelTextToSpeech {
             SpeechHelper.shared.play(text: text, language: Locale.current.languageCode!)
         }
         
@@ -136,7 +137,9 @@ class ScreenTypeEViewModel: BaseViewModel {
         }
         selectedItem = item
         
-        delegate?.didSelect(value: item, onScreen: self.inputScreen)
+        if isDisableTextToSpeech {
+            delegate?.didSelect(value: item, onScreen: self.inputScreen)
+        }
         return item
     }
     

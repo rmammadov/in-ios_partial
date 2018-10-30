@@ -28,10 +28,10 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kuu-gM-lot" customClass="GradientView" customModule="in_ios" customModuleProvider="target">
-                        <rect key="frame" x="60" y="5.5" width="123.5" height="75"/>
+                        <rect key="frame" x="60" y="5.5" width="282" height="75"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PCc-Di-eV9">
-                                <rect key="frame" x="16" y="8" width="91.5" height="59"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="PCc-Di-eV9">
+                                <rect key="frame" x="16" y="8" width="250" height="59"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="36"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -75,7 +75,7 @@
                 <constraint firstItem="Awk-PW-OmL" firstAttribute="leading" secondItem="PCc-Di-eV9" secondAttribute="leading" id="IwS-xZ-jpS"/>
                 <constraint firstAttribute="bottom" secondItem="pEP-dN-LGE" secondAttribute="bottom" id="PA4-Ft-W6n"/>
                 <constraint firstItem="Awk-PW-OmL" firstAttribute="bottom" secondItem="kuu-gM-lot" secondAttribute="bottom" constant="-5" id="b7c-JN-I8H"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kuu-gM-lot" secondAttribute="trailing" constant="4" id="lNO-4c-HGp"/>
+                <constraint firstAttribute="trailing" secondItem="kuu-gM-lot" secondAttribute="trailing" constant="4" id="lNO-4c-HGp"/>
                 <constraint firstItem="pEP-dN-LGE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="rXu-W7-FUX"/>
                 <constraint firstItem="kuu-gM-lot" firstAttribute="leading" secondItem="pEP-dN-LGE" secondAttribute="trailing" constant="16" id="sMd-1a-vDh"/>
             </constraints>

@@ -46,9 +46,17 @@ class ScreenTypeFViewModel: BaseViewModel {
         guard let selectedIndex = newSelectedIndex else { return }
         self.selectedIndex = selectedIndex
         newSelectedIndex = nil
-        let item = getItemAt(indexPath: selectedIndex)
+        var item = getItemAt(indexPath: selectedIndex)
         if !(item.disableTextToSpeech ?? true) {
             textToSpeech(item: item)
+        }
+        if let translations = item.translations {
+            item.translations = translations.map({ (translationItem) -> TranslationMenuItem in
+                if let textToSpeech = translationItem.labelTextToSpeech, let locale = translationItem.locale {
+                    return TranslationMenuItem(locale: locale, label: textToSpeech, textToSpeech: textToSpeech)
+                }
+                return translationItem
+            })
         }
         delegate?.didSelect(value: item, onScreen: inputScreen)
     }
