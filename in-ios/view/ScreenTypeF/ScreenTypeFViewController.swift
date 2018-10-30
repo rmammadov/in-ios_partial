@@ -69,7 +69,7 @@ extension ScreenTypeFViewController {
                 status == AnimationStatus.completed.rawValue,
                 AnimationUtil.getTag() == self.cellIdentifier
                 else { return }
-            if let lastSelectedIndex = self.viewModel.selectedIndex,
+            if let lastSelectedIndex = self.viewModel.selectedIndex, lastSelectedIndex != self.viewModel.newSelectedIndex,
                 let cell = self.collectionView.cellForItem(at: lastSelectedIndex) as? ColoredButtonCollectionViewCell {
                 cell.setSelected(false)
             }
