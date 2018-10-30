@@ -26,6 +26,7 @@
 		E94ABF722174B49D0063B8D6 /* AnimationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94ABF712174B49D0063B8D6 /* AnimationProtocol.swift */; };
 		E95021A821870E200026FB99 /* ScreenTypeHViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95021A621870E200026FB99 /* ScreenTypeHViewController.swift */; };
 		E95021A921870E200026FB99 /* ScreenTypeHViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95021A721870E200026FB99 /* ScreenTypeHViewModel.swift */; };
+		E95BA37E218857A3006D11DD /* ItemUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95BA37D218857A3006D11DD /* ItemUtil.swift */; };
 		E9611E942164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E8F2164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift */; };
 		E9611E952164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9611E902164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib */; };
 		E9611E972164AC950010B33C /* ScreenTypeCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E922164AC950010B33C /* ScreenTypeCViewController.swift */; };
@@ -205,6 +206,7 @@
 		E94ABF712174B49D0063B8D6 /* AnimationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationProtocol.swift; sourceTree = "<group>"; };
 		E95021A621870E200026FB99 /* ScreenTypeHViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTypeHViewController.swift; sourceTree = "<group>"; };
 		E95021A721870E200026FB99 /* ScreenTypeHViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTypeHViewModel.swift; sourceTree = "<group>"; };
+		E95BA37D218857A3006D11DD /* ItemUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemUtil.swift; sourceTree = "<group>"; };
 		E9611E8F2164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTypeCMenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		E9611E902164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScreenTypeCMenuCollectionViewCell.xib; sourceTree = "<group>"; };
 		E9611E922164AC950010B33C /* ScreenTypeCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTypeCViewController.swift; sourceTree = "<group>"; };
@@ -730,6 +732,7 @@
 			children = (
 				F33658AD20D3198000B18CEC /* Constant.swift */,
 				F39059BE210F254C00CAA292 /* AnimationUtil.swift */,
+				E95BA37D218857A3006D11DD /* ItemUtil.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -1210,6 +1213,7 @@
 				F396E464216DD82300C061CD /* Acceptation.swift in Sources */,
 				E9150EF8216605160023E138 /* ScreenTypeEViewController.swift in Sources */,
 				E9876E0B21675CE00001C626 /* UIColorExtension.swift in Sources */,
+				E95BA37E218857A3006D11DD /* ItemUtil.swift in Sources */,
 				F354B7452164C7470026F3A2 /* IntroThirdNewViewModel.swift in Sources */,
 				F3E19CB0211C3DA500ADE838 /* InputAViewModel.swift in Sources */,
 				E95021A921870E200026FB99 /* ScreenTypeHViewModel.swift in Sources */,
