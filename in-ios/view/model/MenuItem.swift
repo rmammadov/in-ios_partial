@@ -37,6 +37,12 @@ struct TranslationMenuItem: Decodable {
         case labelTextToSpeech = "label_text_to_speech"
         case locale, label
     }
+    
+    init(locale: String, label: String, textToSpeech: String) {
+        self.locale = locale
+        self.label = label
+        self.labelTextToSpeech = textToSpeech
+    }
 }
 
 struct IconMenuItem: Decodable {

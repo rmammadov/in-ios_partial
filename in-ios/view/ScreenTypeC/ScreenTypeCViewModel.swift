@@ -39,6 +39,8 @@ class ScreenTypeCViewModel: BaseViewModel {
             return label
         } else if let item = selectedItem.value[index] as? Bubble, let label = item.translations.first?.label {
             return label
+        } else if let item = selectedItem.value[index] as? TranslationMenuItem, let text = item.label {
+            return text
         }
         return nil
     }
@@ -47,6 +49,8 @@ class ScreenTypeCViewModel: BaseViewModel {
         if let item = selectedItem.value[index] as? ButtonInputScreen, let text = item.translations?.first?.labelTextToSpeech {
             return text
         } else if let item = selectedItem.value[index] as? Bubble, let text = item.translations.first?.labelTextToSpeech {
+            return text
+        } else if let item = selectedItem.value[index] as? TranslationMenuItem, let text = item.labelTextToSpeech {
             return text
         }
         return nil
@@ -84,7 +88,7 @@ class ScreenTypeCViewModel: BaseViewModel {
     private func loadViewControllerFor(item: InputScreen) -> UIViewController? {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         switch item.type {
-        case .inputScreenE, .inputScreenH:
+        case .inputScreenE:
             if let vc = storyboard.instantiateViewController(withIdentifier: ScreenTypeEViewController.identifier) as? ScreenTypeEViewController {
                 vc.viewModel.inputScreen = item
                 vc.viewModel.delegate = self
@@ -104,6 +108,12 @@ class ScreenTypeCViewModel: BaseViewModel {
             }
         case .inputScreenG:
             if let vc = storyboard.instantiateViewController(withIdentifier: ScreenTypeGViewController.identifier) as? ScreenTypeGViewController {
+                vc.viewModel.inputScreen = item
+                vc.viewModel.delegate = self
+                return vc
+            }
+        case .inputScreenH:
+            if let vc = storyboard.instantiateViewController(withIdentifier: ScreenTypeHViewController.identifier) as? ScreenTypeHViewController {
                 vc.viewModel.inputScreen = item
                 vc.viewModel.delegate = self
                 return vc
@@ -143,7 +153,7 @@ class ScreenTypeCViewModel: BaseViewModel {
 }
 
 extension ScreenTypeCViewModel: ScreenTypeCDelegate {
-    func didSelect(value: Any, onScreen: InputScreen) {
+    func didSelect(value: Any?, onScreen: InputScreen) {
         selectedItem.value[onScreen.id] = value
     }
 }

@@ -24,6 +24,8 @@
 		E93ACD4F216CD16500F29F54 /* BodyPartRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93ACD4E216CD16500F29F54 /* BodyPartRowView.swift */; };
 		E93ACD51216CD16F00F29F54 /* BodyPartRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93ACD50216CD16F00F29F54 /* BodyPartRowView.xib */; };
 		E94ABF722174B49D0063B8D6 /* AnimationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94ABF712174B49D0063B8D6 /* AnimationProtocol.swift */; };
+		E95021A821870E200026FB99 /* ScreenTypeHViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95021A621870E200026FB99 /* ScreenTypeHViewController.swift */; };
+		E95021A921870E200026FB99 /* ScreenTypeHViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95021A721870E200026FB99 /* ScreenTypeHViewModel.swift */; };
 		E9611E942164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E8F2164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift */; };
 		E9611E952164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9611E902164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib */; };
 		E9611E972164AC950010B33C /* ScreenTypeCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9611E922164AC950010B33C /* ScreenTypeCViewController.swift */; };
@@ -201,6 +203,8 @@
 		E93ACD4E216CD16500F29F54 /* BodyPartRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyPartRowView.swift; sourceTree = "<group>"; };
 		E93ACD50216CD16F00F29F54 /* BodyPartRowView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BodyPartRowView.xib; sourceTree = "<group>"; };
 		E94ABF712174B49D0063B8D6 /* AnimationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationProtocol.swift; sourceTree = "<group>"; };
+		E95021A621870E200026FB99 /* ScreenTypeHViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTypeHViewController.swift; sourceTree = "<group>"; };
+		E95021A721870E200026FB99 /* ScreenTypeHViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTypeHViewModel.swift; sourceTree = "<group>"; };
 		E9611E8F2164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTypeCMenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		E9611E902164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScreenTypeCMenuCollectionViewCell.xib; sourceTree = "<group>"; };
 		E9611E922164AC950010B33C /* ScreenTypeCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTypeCViewController.swift; sourceTree = "<group>"; };
@@ -480,6 +484,8 @@
 			isa = PBXGroup;
 			children = (
 				E98458E621805BF200197CBC /* Cells */,
+				E95021A621870E200026FB99 /* ScreenTypeHViewController.swift */,
+				E95021A721870E200026FB99 /* ScreenTypeHViewModel.swift */,
 			);
 			path = ScreenTypeH;
 			sourceTree = "<group>";
@@ -1206,6 +1212,7 @@
 				E9876E0B21675CE00001C626 /* UIColorExtension.swift in Sources */,
 				F354B7452164C7470026F3A2 /* IntroThirdNewViewModel.swift in Sources */,
 				F3E19CB0211C3DA500ADE838 /* InputAViewModel.swift in Sources */,
+				E95021A921870E200026FB99 /* ScreenTypeHViewModel.swift in Sources */,
 				F3F4148C20F5F82000CF101D /* ReachabilityManager.swift in Sources */,
 				F3DA017F2162907500D0625B /* WebviewViewModel.swift in Sources */,
 				F334ADC8210D7A370056824A /* MenuItem.swift in Sources */,
@@ -1263,6 +1270,7 @@
 				F32F5B6721453DFB00558C68 /* IntroSecondViewModel.swift in Sources */,
 				F3CE6920213DB318004F6756 /* IntroFirstViewController.swift in Sources */,
 				F32DCED9214A41D100B3D0F8 /* INTextField.swift in Sources */,
+				E95021A821870E200026FB99 /* ScreenTypeHViewController.swift in Sources */,
 				E901923A217F580A00212B29 /* ScreenTypeGCollectionViewCell.swift in Sources */,
 				F3E19CB6211D827000ADE838 /* MenuItemCollectionViewCell.swift in Sources */,
 				E9611E982164AC950010B33C /* ScreenTypeCViewModel.swift in Sources */,

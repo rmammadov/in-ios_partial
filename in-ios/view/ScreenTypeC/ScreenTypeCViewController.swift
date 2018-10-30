@@ -11,7 +11,7 @@ import RxSwift
 import Kingfisher
 
 protocol ScreenTypeCDelegate: class {
-    func didSelect(value: Any, onScreen: InputScreen)
+    func didSelect(value: Any?, onScreen: InputScreen)
 }
 
 class ScreenTypeCViewController: BaseViewController {
