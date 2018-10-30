@@ -22,10 +22,21 @@ class IntroThirdNewModel: BaseModel {
     
     var status = Variable<Int>(0)
     
+    let disposeBag = DisposeBag()
+    
     private var calibrationStep: Int = CalibrationStatus.firstStep.rawValue
     private var index = 0
     private var tagsCalibrationFirstStep: Array = Constant.CalibrationConfig.CALIBRATION_TAGS_FIRST_STEP
     private var tagsCalibrationSecondStep: Array = Constant.CalibrationConfig.CALIBRATION_TAGS_SECOND_STEP
+    
+    func setSubscribers() {
+        DataManager.status.asObservable().subscribe(onNext: {
+            event in
+            if DataManager.status.value == DataStatus.loadingCalibrationDataCompleted.rawValue {
+                
+            }
+        }).disposed(by: disposeBag)
+    }
     
     func nextStep() {
         if calibrationStep < CalibrationStatus.fifthStep.rawValue {

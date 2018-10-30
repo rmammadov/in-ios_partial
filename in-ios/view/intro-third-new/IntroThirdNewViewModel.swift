@@ -7,10 +7,19 @@
 //
 
 import UIKit
+import RxSwift
 
 class IntroThirdNewViewModel: BaseViewModel {
     
+    var status = Variable<Int>(0)
+    
+    let disposeBag = DisposeBag()
+    
     private let model: IntroThirdNewModel = IntroThirdNewModel()
+    
+    func setSubscribers() {
+        
+    }
     
     func nextStep() {
         model.nextStep()
