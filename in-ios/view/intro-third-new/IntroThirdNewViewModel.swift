@@ -18,7 +18,13 @@ class IntroThirdNewViewModel: BaseViewModel {
     private let model: IntroThirdNewModel = IntroThirdNewModel()
     
     func setSubscribers() {
-        
+        model.setSubscribers()
+        model.status.asObservable().subscribe(onNext: {
+            event in
+            if self.model.status.value == CalibrationStatus.loadingCalibrationCompleted.rawValue {
+                self.status.value = CalibrationStatus.loadingCalibrationCompleted.rawValue
+            }
+        }).disposed(by: disposeBag)
     }
     
     func nextStep() {
@@ -51,6 +57,14 @@ class IntroThirdNewViewModel: BaseViewModel {
     
     func postProfileData() {
         model.postProfileData()
+    }
+    
+    func getXModelUrl() -> String? {
+        return model.getXModelUrl()
+    }
+    
+    func getYModelUrl() -> String? {
+        return model.getYModelUrl()
     }
 }
 

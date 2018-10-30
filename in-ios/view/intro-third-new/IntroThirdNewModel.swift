@@ -15,7 +15,8 @@ enum CalibrationStatus: Int {
     case thirdStep = 3
     case fourthStep = 4
     case fifthStep = 5
-    case noInternetConnection = 6
+    case loadingCalibrationCompleted = 6
+    case noInternetConnection = 7
 }
 
 class IntroThirdNewModel: BaseModel {
@@ -28,12 +29,13 @@ class IntroThirdNewModel: BaseModel {
     private var index = 0
     private var tagsCalibrationFirstStep: Array = Constant.CalibrationConfig.CALIBRATION_TAGS_FIRST_STEP
     private var tagsCalibrationSecondStep: Array = Constant.CalibrationConfig.CALIBRATION_TAGS_SECOND_STEP
+    private var calibrationData: Calibration?
     
     func setSubscribers() {
         DataManager.status.asObservable().subscribe(onNext: {
             event in
             if DataManager.status.value == DataStatus.loadingCalibrationDataCompleted.rawValue {
-                
+                self.status.value = CalibrationStatus.loadingCalibrationCompleted.rawValue
             }
         }).disposed(by: disposeBag)
     }
@@ -106,5 +108,13 @@ class IntroThirdNewModel: BaseModel {
         } else {
             
         }
+    }
+    
+    func getXModelUrl() -> String? {
+        return DataManager.getXModelUrl()
+    }
+    
+    func getYModelUrl() -> String? {
+        return DataManager.getYModelUrl()
     }
 }

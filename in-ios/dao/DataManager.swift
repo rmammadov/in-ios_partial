@@ -63,6 +63,8 @@ class DataManager {
                 } else if self.requestHandler.status.value == RequestStatus.completedCalibration.rawValue {
                     guard let calibration = self.requestHandler.getCalibration() else { return }
                     self.calibration = calibration
+//                    self.requestHandler.downloadFile(url: (self.calibration?.x_model_url)!)
+                    self.status.value = DataStatus.loadingCalibrationDataCompleted.rawValue
                 }
             } else if self.requestHandler.status.value == RequestStatus.failed.rawValue {
                 self.status.value = DataStatus.dataLoadingFailed.rawValue
@@ -130,4 +132,11 @@ class DataManager {
         return user
     }
 
+    static func getXModelUrl() -> String? {
+        return self.calibration?.x_model_url
+    }
+    
+    static func getYModelUrl() -> String? {
+        return self.calibration?.y_model_url
+    }
 }

@@ -171,6 +171,15 @@ extension IntroThirdNewViewController {
                 }
             }
         }).disposed(by: disposeBag)
+        
+        viewModel.status.asObservable().subscribe(onNext: {
+            event in
+            if self.viewModel.status.value == CalibrationStatus.loadingCalibrationCompleted.rawValue {
+                guard let xModelUrl = URL(string: self.viewModel.getXModelUrl()!) else { return }
+                guard let yModelUrl = URL(string: self.viewModel.getYModelUrl()!) else { return }
+                self.cameraManager?.setModels(xModelUrl: xModelUrl, yModelUrl: yModelUrl)
+            }
+        }).disposed(by: disposeBag)
     }
     
     func nextStep() {

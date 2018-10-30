@@ -194,7 +194,7 @@ class ApiRequestHandler {
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.httpBody = jsonData
         
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        let task = self.session.dataTask(with: request) { data, response, error in
             // ensure there is no error for this HTTP response
             guard error == nil else {
                 print ("error: \(error!)")
@@ -298,7 +298,7 @@ class ApiRequestHandler {
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.httpBody = jsonData
         
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        let task = self.session.dataTask(with: request) { data, response, error in
             // ensure there is no error for this HTTP response
             guard error == nil else {
                 print ("error: \(error!)")
@@ -353,7 +353,7 @@ class ApiRequestHandler {
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.httpBody = jsonData
         
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        let task = self.session.dataTask(with: request) { data, response, error in
             // ensure there is no error for this HTTP response
             guard error == nil else {
                 print ("error: \(error!)")
@@ -395,6 +395,35 @@ class ApiRequestHandler {
     
     func getCalibration() -> Calibration? {
         return self.calibration
+    }
+    
+    func downloadFile(url: String) {
+        guard let url = URL(string: url) else { return }
+        
+        let task = self.session.downloadTask(with: url) { data, response, error in
+            // ensure there is no error for this HTTP response
+            guard error == nil else {
+                print ("error: \(error!)")
+                self.status.value = RequestStatus.failed.rawValue
+                return
+            }
+            
+            // hanlde http response code
+            if let httpResponse = response as? HTTPURLResponse {
+                if  200 > httpResponse.statusCode || httpResponse.statusCode >= 300 {
+                    self.status.value = RequestStatus.failed.rawValue
+                }
+            }
+            
+            // ensure there is data returned from this HTTP response
+            guard let content = data else {
+                print("No data")
+                return
+            }
+
+        }
+        
+        task.resume()
     }
     
 }

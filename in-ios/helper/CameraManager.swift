@@ -591,5 +591,13 @@ extension CameraManager {
         
         return CalibrationData(cross_x: nil, cross_y: nil, pointer_x: coordinatesSnapshot.gazeX, pointer_y: coordinatesSnapshot.gazeY, prediction_x: coordinatesPreConversionSnapshot.gazeX, prediction_y: coordinatesPreConversionSnapshot.gazeY, calibrationFeatures: arrayCalibrationFeatures, facialFeatures: facialFeaturesSnapshoot, eyeCenters: eyeCentersSnapshoot, file: nil, deviceOrientation: deviceOreination())
     }
+    
+    func setModels(xModelUrl: URL, yModelUrl: URL) {
+        let isCalibrationSet = calibratedGazeTracker?.updateWithNewModels(xModelURL: xModelUrl, yModelURL: yModelUrl, orientation: deviceOrientation)
+    }
+    
+    func setOrientation() {
+        let isOrientationSet = calibratedGazeTracker?.setOrientation(to: deviceOrientation)
+    }
 }
 
