@@ -16,6 +16,7 @@ enum DataStatus: Int {
     case inputScreensLoaded = 3
     case legalDocumentsLoaded = 4
     case dataLoadingCompleted = 5
+    case loadingCalibrationDataCompleted = 6
 }
 
 class DataManager {
