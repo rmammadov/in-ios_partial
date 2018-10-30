@@ -43,7 +43,7 @@ class ScreenTypeGViewModel: BaseViewModel {
     
     func textToSpeech(item: ButtonInputScreen) {
         if let text = item.translations?.first?.labelTextToSpeech {
-            SpeechHelper.play(text: text, language: Locale.current.languageCode!)
+            SpeechHelper.shared.play(text: text, language: Locale.current.languageCode!)
         }
     }
 }

@@ -42,12 +42,14 @@
             </view>
             <constraints>
                 <constraint firstItem="dR1-4T-zOf" firstAttribute="width" secondItem="9L7-nc-l8F" secondAttribute="width" multiplier="0.8" id="C76-Bx-1Gg"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="9L7-nc-l8F" secondAttribute="bottom" id="EqY-X7-gq7"/>
                 <constraint firstItem="9L7-nc-l8F" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="LKN-XX-Hhy"/>
                 <constraint firstItem="9L7-nc-l8F" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" priority="750" id="OtB-mO-wPJ"/>
                 <constraint firstItem="dR1-4T-zOf" firstAttribute="centerX" secondItem="9L7-nc-l8F" secondAttribute="centerX" id="STA-tJ-mk2"/>
                 <constraint firstItem="9L7-nc-l8F" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Vbt-KW-z4d"/>
                 <constraint firstItem="9L7-nc-l8F" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gTV-IL-0wX" secondAttribute="top" id="YWa-bo-e10"/>
                 <constraint firstItem="dR1-4T-zOf" firstAttribute="centerY" secondItem="9L7-nc-l8F" secondAttribute="centerY" id="kOC-Rp-V2w"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9L7-nc-l8F" secondAttribute="trailing" id="noI-Jv-QAt"/>
                 <constraint firstItem="9L7-nc-l8F" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" priority="750" id="tGt-6s-i2E"/>
                 <constraint firstItem="dR1-4T-zOf" firstAttribute="height" secondItem="9L7-nc-l8F" secondAttribute="height" multiplier="0.8" id="vfz-oH-WBU"/>
                 <constraint firstItem="9L7-nc-l8F" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gTV-IL-0wX" secondAttribute="leading" id="zrz-GM-4Rt"/>

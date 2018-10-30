@@ -12,7 +12,6 @@ import RxSwift
 class ScreenTypeHViewController: BaseViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    private let  kMarginBetweenItems: CGFloat = 24
     private var isDisappear: Bool = true
     let viewModel = ScreenTypeHViewModel()
     let disposeBag = DisposeBag()
@@ -131,13 +130,7 @@ extension ScreenTypeHViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let marginSpace = CGFloat(viewModel.getItemMargin() * (viewModel.getRowCount() - 1))
-        var cellWidth = (self.collectionView.frame.size.width - marginSpace) / CGFloat(viewModel.getColumnCount())
-        let cellHeight = (self.collectionView.frame.size.height / CGFloat(viewModel.getRowCount())) - kMarginBetweenItems
-        if cellWidth > cellHeight {
-            cellWidth = cellHeight
-        }
-        return CGSize(width: cellWidth, height: cellHeight)
+        return ItemUtil.shared.getItemSize(withTitle: false)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -155,20 +148,12 @@ extension ScreenTypeHViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        let marginSpace = CGFloat(viewModel.getItemMargin() * (viewModel.getRowCount() - 1))
-        var cellWidth = (self.collectionView.frame.size.width - marginSpace) / CGFloat(viewModel.getColumnCount())
-        let cellHeight = (self.collectionView.frame.size.height / CGFloat(viewModel.getRowCount())) - kMarginBetweenItems
-        if cellWidth > cellHeight {
-            cellWidth = cellHeight
-            return (collectionView.frame.width - (CGFloat(viewModel.getColumnCount()) * cellWidth)) / CGFloat(viewModel.getColumnCount() - 1)
-        } else {
-            return 0
-        }
+        let itemSize = ItemUtil.shared.getItemSize(withTitle: false)
+        return (collectionView.bounds.width - (CGFloat(viewModel.getColumnCount()) * itemSize.width)) / CGFloat(viewModel.getColumnCount() - 1)
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return kMarginBetweenItems
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        let itemSize = ItemUtil.shared.getItemSize(withTitle: false)
+        return (collectionView.bounds.height - (CGFloat(viewModel.getRowCount()) * itemSize.height)) / CGFloat(viewModel.getRowCount() - 1)
     }
 }
