@@ -28,8 +28,7 @@ class ScreenTypeCViewModel: BaseViewModel {
     func getItemViewModelFor(indexPath: IndexPath) -> ScreenTypeCMenuCollectionViewCell.ViewModel? {
         guard getItems().count > indexPath.item else { return nil }
         let item = getItems()[indexPath.item]
-        var selectedText: String = ""
-        let viewModel = ScreenTypeCMenuCollectionViewCell.ViewModel(selectedTranslations: getSelectedLabel(for: item.id),
+        let viewModel = ScreenTypeCMenuCollectionViewCell.ViewModel(selectedTranslations: getSelectedText(for: item.id),
                                                                     translations: item.translations)
         return viewModel
     }
