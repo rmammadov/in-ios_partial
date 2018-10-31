@@ -66,5 +66,9 @@ class IntroThirdNewViewModel: BaseViewModel {
     func getYModelUrl() -> String? {
         return model.getYModelUrl()
     }
+    
+    func getOreintation() -> String? {
+        return model.getOreintation()
+    }
 }
 

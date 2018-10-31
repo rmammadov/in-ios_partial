@@ -139,4 +139,8 @@ class DataManager {
     static func getYModelUrl() -> String? {
         return self.calibration?.y_model_url
     }
+    
+    static func getOrientation() -> String? {
+        return profileData?.data.first?.calibrationData?.first?.deviceOrientation
+    }
 }

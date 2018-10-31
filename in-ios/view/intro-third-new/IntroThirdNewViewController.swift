@@ -177,7 +177,10 @@ extension IntroThirdNewViewController {
             if self.viewModel.status.value == CalibrationStatus.loadingCalibrationCompleted.rawValue {
                 guard let xModelUrl = URL(string: self.viewModel.getXModelUrl()!) else { return }
                 guard let yModelUrl = URL(string: self.viewModel.getYModelUrl()!) else { return }
-                self.cameraManager?.setModels(xModelUrl: xModelUrl, yModelUrl: yModelUrl)
+                guard let oreintation = self.viewModel.getOreintation() else { return }
+                if (self.cameraManager?.setModels(xModelUrl: xModelUrl, yModelUrl: yModelUrl))! {
+                    self.cameraManager?.updateModels(xModelUrl: xModelUrl, yModelUrl: yModelUrl, oreintation: oreintation)
+                }
             }
         }).disposed(by: disposeBag)
     }

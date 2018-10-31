@@ -545,10 +545,10 @@ extension CameraManager {
         }
     }
     
-    func deviceOreination() -> String {
+    func deviceOrienation() -> String {
         var deviceOrientation=" "
         
-        switch UIDevice.current.orientation{
+        switch UIDevice.current.orientation {
         case .portrait:
             deviceOrientation = "Portrait"
         case .portraitUpsideDown:
@@ -563,7 +563,25 @@ extension CameraManager {
 
         return deviceOrientation
     }
-
+    
+    func deviceOrienation(orientation: String) -> UIDeviceOrientation {
+        var deviceOrientation: UIDeviceOrientation?
+        
+        switch orientation {
+        case "Portrait":
+            deviceOrientation = .portrait
+        case "PortraitUpsideDown":
+            deviceOrientation = .portraitUpsideDown
+        case "LandscapeLeft":
+            deviceOrientation = .landscapeLeft
+        case "LandscapeRight":
+            deviceOrientation = .landscapeRight
+        default:
+            deviceOrientation = .portrait
+        }
+        
+        return deviceOrientation!
+    }
 }
 
 extension CameraManager {
@@ -590,15 +608,27 @@ extension CameraManager {
             arrayCalibrationFeatures.append("\(calibrationFeaturesSnapshoot[i])")
         }
         
-        return CalibrationData(cross_x: nil, cross_y: nil, pointer_x: coordinatesSnapshot.gazeX, pointer_y: coordinatesSnapshot.gazeY, prediction_x: coordinatesPreConversionSnapshot.gazeX, prediction_y: coordinatesPreConversionSnapshot.gazeY, calibrationFeatures: arrayCalibrationFeatures, facialFeatures: facialFeaturesSnapshoot, eyeCenters: eyeCentersSnapshoot, file: nil, deviceOrientation: deviceOreination())
+        return CalibrationData(cross_x: nil, cross_y: nil, pointer_x: coordinatesSnapshot.gazeX, pointer_y: coordinatesSnapshot.gazeY, prediction_x: coordinatesPreConversionSnapshot.gazeX, prediction_y: coordinatesPreConversionSnapshot.gazeY, calibrationFeatures: arrayCalibrationFeatures, facialFeatures: facialFeaturesSnapshoot, eyeCenters: eyeCentersSnapshoot, file: nil, deviceOrientation: deviceOrienation())
     }
     
-    func setModels(xModelUrl: URL, yModelUrl: URL) {
-        let isCalibrationSet = calibratedGazeTracker?.updateWithNewModels(xModelURL: xModelUrl, yModelURL: yModelUrl, orientation: deviceOrientation)
+    func setModels(xModelUrl: URL, yModelUrl: URL) -> Bool {
+        return calibratedGazeTracker?.saveModelToFile(compiledModelURL: xModelUrl, destinationURL: yModelUrl)
+    }
+    
+    func updateModels(xModelUrl: URL, yModelUrl: URL, oreintation: String) {
+        guard let isCalibrationSet = calibratedGazeTracker?.updateWithNewModels(xModelURL: xModelUrl, yModelURL: yModelUrl, orientation: deviceOrienation(orientation: oreintation)) else { return }
+        
+        if isCalibrationSet {
+            updateOrientation()
+        }
     }
     
     func updateOrientation() {
-        let isOrientationSet = calibratedGazeTracker?.setOrientation(to: deviceOrientation)
+        guard let isOrientationSet = calibratedGazeTracker?.setOrientation(to: deviceOrientation) else { return }
+        
+        if isOrientationSet {
+            gazeTracker = calibratedGazeTracker
+        }
     }
 }
 
