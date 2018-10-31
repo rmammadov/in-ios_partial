@@ -52,6 +52,7 @@ class IntroThirdNewViewController: BaseViewController {
     }
     
     @IBAction func onClickBtnForward(_ sender: Any) {
+        
         onContinue()
     }
     
