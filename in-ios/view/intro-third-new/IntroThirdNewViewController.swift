@@ -143,6 +143,10 @@ extension IntroThirdNewViewController {
         setSubscribers()
     }
     
+    func setViewModel() {
+       viewModel.setSubscribers()
+    }
+    
     func updateUi() {
         switch viewModel.getCalibrationStep() {
         case CalibrationStatus.firstStep.rawValue:
@@ -178,10 +182,7 @@ extension IntroThirdNewViewController {
                 guard let xModelUrl = URL(string: self.viewModel.getXModelUrl()!) else { return }
                 guard let yModelUrl = URL(string: self.viewModel.getYModelUrl()!) else { return }
                 guard let oreintation = self.viewModel.getOreintation() else { return }
-                guard let isModelSet = self.cameraManager?.setModels(xModelUrl: xModelUrl, yModelUrl: yModelUrl) else { return }
-                if isModelSet {
-                    self.cameraManager?.updateModels(xModelUrl: xModelUrl, yModelUrl: yModelUrl, oreintation: oreintation)
-                }
+                self.cameraManager?.updateModels(xModelUrl: xModelUrl, yModelUrl: yModelUrl, oreintation: oreintation)
             }
         }).disposed(by: disposeBag)
     }
