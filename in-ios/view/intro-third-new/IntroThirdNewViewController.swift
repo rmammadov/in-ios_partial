@@ -141,6 +141,7 @@ extension IntroThirdNewViewController {
     
     func setUi() {
         setSubscribers()
+        setViewModel()
     }
     
     func setViewModel() {
@@ -214,6 +215,8 @@ extension IntroThirdNewViewController {
                 guard let nextBtn = self.view.viewWithTag(viewModel.getNextTag()) else { return }
                 let nextBtnAbsoluteFrame = nextBtn.convert((nextBtn.layer.presentation()?.bounds)!, to: self.view)
                 AnimationUtil.animateMoving(view: btnPrevious!, moveX: nextBtnAbsoluteFrame.origin.x, moveY: nextBtnAbsoluteFrame.origin.y)
+                print("Tag \(tag)")
+                print("Previous tag \(viewModel.getNextTag())")
             }
             
         }
