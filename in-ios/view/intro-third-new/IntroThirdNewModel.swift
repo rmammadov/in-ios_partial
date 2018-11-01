@@ -34,7 +34,7 @@ class IntroThirdNewModel: BaseModel {
     func setSubscribers() {
         DataManager.status.asObservable().subscribe(onNext: {
             event in
-            if DataManager.status.value == DataStatus.loadingCalibrationDataCompleted.rawValue {
+            if DataManager.status.value == DataStatus.loadingModelCompleted.rawValue {
                 self.status.value = CalibrationStatus.loadingCalibrationCompleted.rawValue
             }
         }).disposed(by: disposeBag)

@@ -17,6 +17,7 @@ enum DataStatus: Int {
     case legalDocumentsLoaded = 4
     case dataLoadingCompleted = 5
     case loadingCalibrationDataCompleted = 6
+    case loadingModelCompleted = 7
 }
 
 class DataManager {
@@ -32,6 +33,8 @@ class DataManager {
     static fileprivate var profileData: ProfileData?
     static fileprivate var data: CalibrationData?
     static fileprivate var calibration: Calibration?
+    static fileprivate var xModelUrl: String?
+    static fileprivate var yModelUrl: String?
     
     static fileprivate let requestHandler = ApiRequestHandler()
     static fileprivate let fileNaming = FileNamingHelper()
@@ -63,8 +66,22 @@ class DataManager {
                 } else if self.requestHandler.status.value == RequestStatus.completedCalibration.rawValue {
                     guard let calibration = self.requestHandler.getCalibration() else { return }
                     self.calibration = calibration
-//                    self.requestHandler.downloadFile(url: (self.calibration?.x_model_url)!)
                     self.status.value = DataStatus.loadingCalibrationDataCompleted.rawValue
+//                    self.requestHandler.downloadFile(url: (self.calibration?.x_model_url)!)
+                    guard let url_x = self.calibration?.x_model_url else { return }
+                    guard let url_y = self.calibration?.y_model_url else { return }
+                    self.requestHandler.loadFileAsync(url: url_x, completion: {(path: String?, error: Error?) in
+                        print("x_downloaded to: \(String(describing: path))")
+                        guard let path = path else { return }
+                        xModelUrl = path
+                        self.status.value = DataStatus.loadingModelCompleted.rawValue
+                    })
+                    self.requestHandler.loadFileAsync(url: url_y, completion: {(path: String?, error: Error?) in
+                        print("y_downloaded to: \(String(describing: path))")
+                        guard let path = path else { return }
+                        yModelUrl = path
+                        self.status.value = DataStatus.loadingModelCompleted.rawValue
+                    })
                 }
             } else if self.requestHandler.status.value == RequestStatus.failed.rawValue {
                 self.status.value = DataStatus.dataLoadingFailed.rawValue
@@ -133,11 +150,11 @@ class DataManager {
     }
 
     static func getXModelUrl() -> String? {
-        return self.calibration?.x_model_url
+        return xModelUrl
     }
     
     static func getYModelUrl() -> String? {
-        return self.calibration?.y_model_url
+        return yModelUrl
     }
     
     static func getOrientation() -> String? {

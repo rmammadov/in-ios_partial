@@ -52,7 +52,6 @@ class IntroThirdNewViewController: BaseViewController {
     }
     
     @IBAction func onClickBtnForward(_ sender: Any) {
-        
         onContinue()
     }
     
@@ -181,10 +180,10 @@ extension IntroThirdNewViewController {
         viewModel.status.asObservable().subscribe(onNext: {
             event in
             if self.viewModel.status.value == CalibrationStatus.loadingCalibrationCompleted.rawValue {
-                guard let xModelUrl = URL(string: self.viewModel.getXModelUrl()!) else { return }
-                guard let yModelUrl = URL(string: self.viewModel.getYModelUrl()!) else { return }
+                guard let xModelUrl = self.viewModel.getXModelUrl() else { return }
+                guard let yModelUrl = self.viewModel.getYModelUrl() else { return }
                 guard let oreintation = self.viewModel.getOreintation() else { return }
-                self.cameraManager?.updateModels(xModelUrl: xModelUrl, yModelUrl: yModelUrl, oreintation: oreintation)
+                self.cameraManager?.updateModels(xModelUrl: URL(string: xModelUrl)!, yModelUrl: URL(string: yModelUrl)!, oreintation: oreintation)
             }
         }).disposed(by: disposeBag)
     }
