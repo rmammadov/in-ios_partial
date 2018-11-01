@@ -184,6 +184,7 @@ extension IntroThirdNewViewController {
                 guard let yModelUrl = self.viewModel.getYModelUrl() else { return }
                 guard let oreintation = self.viewModel.getOreintation() else { return }
                 self.cameraManager?.updateModels(xModelUrl: URL(string: xModelUrl)!, yModelUrl: URL(string: yModelUrl)!, oreintation: oreintation)
+            
             }
         }).disposed(by: disposeBag)
     }
