@@ -271,11 +271,11 @@ class ApiRequestHandler {
                 return
             }
             
-            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue))
+//            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue))
             
             do {
                 self.file = try JSONDecoder().decode(File.self, from: content)
-                print(self.file!)
+//                print(self.file!)
                 self.status.value = RequestStatus.completedFile.rawValue
             } catch let jsonErr {
                 print("Error serializing json",  jsonErr)
@@ -320,7 +320,7 @@ class ApiRequestHandler {
                 print("No data")
                 return
             }
-            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue))
+//            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue))
             
             // serialise the data / NSData object into Dictionary [String : Any]
             guard ((try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? Any) != nil else {
@@ -330,7 +330,7 @@ class ApiRequestHandler {
             
             do {
                 self.profileData = try JSONDecoder().decode(ProfileData.self, from: content)
-                print(self.profileData!)
+//                print(self.profileData!)
                 self.status.value = RequestStatus.completedProfileData.rawValue
             } catch let jsonErr {
                 print("Error serializing json",  jsonErr)
@@ -375,7 +375,7 @@ class ApiRequestHandler {
                 print("No data")
                 return
             }
-            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue))
+//            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue))
             
             // serialise the data / NSData object into Dictionary [String : Any]
             guard ((try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? Any) != nil else {
@@ -385,7 +385,7 @@ class ApiRequestHandler {
             
             do {
                 self.calibration = try JSONDecoder().decode(Calibration.self, from: content)
-                print(self.calibration!)
+//                print(self.calibration!)
                 self.status.value = RequestStatus.completedCalibration.rawValue
             } catch let jsonErr {
                 print("Error serializing json",  jsonErr)

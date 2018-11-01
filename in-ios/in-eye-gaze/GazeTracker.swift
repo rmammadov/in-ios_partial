@@ -43,6 +43,8 @@ public class GazeTracker: FaceFinderDelegate {
     var startTotalTime: Double = 0.0
     var elapsedTotalTime: Double = 0.0
     
+    var isCalibrated: Bool = false
+    
     /**
      Initializer
      */
@@ -158,7 +160,7 @@ public class GazeTracker: FaceFinderDelegate {
         self.calibFeatures = pred.calibFeats
         self.elapsedTotalTime = CFAbsoluteTimeGetCurrent() - self.startTotalTime
 //        print("\nTotal algorithm processing time: \(self.elapsedTotalTime) s.")
-        if self.gazeEstimation != nil { print(self.gazeEstimation![0], self.gazeEstimation![1]) }
+//        if self.gazeEstimation != nil { print(self.gazeEstimation![0], self.gazeEstimation![1]) }
         self.predictionDelegate?.didUpdatePrediction(status: true)
         return
         

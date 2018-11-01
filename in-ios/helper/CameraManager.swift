@@ -312,18 +312,19 @@ extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
 extension CameraManager: GazePredictionDelegate {
     
     func setPrediction() {
-        uncalibratedGazeTracker = GazeTracker(delegate: self)
-        gazeTracker = uncalibratedGazeTracker
-        calibratedGazeTracker = GazeTrackerCalibrated(delegate: self)
+        self.uncalibratedGazeTracker = GazeTracker(delegate: self)
+        self.gazeTracker = uncalibratedGazeTracker
+        self.calibratedGazeTracker = GazeTrackerCalibrated(delegate: self)
     }
     
     func predicate(frame: UIImage) {
-        guard let gazeTracker = gazeTracker else { return }
+        guard let gazeTracker = self.gazeTracker else { return }
         gazeTracker.startPredictionInBackground(scene: frame)
     }
     
     func didUpdatePrediction(status: Bool) {
-        let gazeTracker: GazeTracker = self.gazeTracker!
+        let gazeTracker = self.gazeTracker!
+        print("Using the calibrated model: \(gazeTracker.isCalibrated)")
         if !status {
             self.label?.text = "nil"
             if showPointer {
@@ -339,11 +340,11 @@ extension CameraManager: GazePredictionDelegate {
             let X = averageX.reduce(0, +)/Double(averageX.count)
             let Y = averageY.reduce(0, +)/Double(averageY.count)
             
-            if let _ = self.gazeTracker as? GazeTrackerCalibrated {
+            if gazeTracker.isCalibrated {
                 coordinates = (gazeX: X, gazeY: Y)
-                print(X, Y)
+                print("Using calibrated model. Prediction: \(X), \(Y)")
             } else {
-                print("Model not calibrated")
+//                print("Model not calibrated")
                 coordinates = gazeUtils.cm2pixels(gazeX: X, gazeY: Y, camX: 0, camY: 12.0, orientation: UIDevice.current.orientation)
             }
             coordinatesPreConversion = (gazeX: Double(truncating: gazeTracker.gazeEstimation![0]), gazeY: Double(truncating: gazeTracker.gazeEstimation![1]))
@@ -620,10 +621,15 @@ extension CameraManager {
     }
     
     func updateOrientation() {
+        print("Setting orientation to: \(deviceOrientation.rawValue)")
         guard let isOrientationSet = calibratedGazeTracker?.setOrientation(to: deviceOrientation) else { return }
         
         if isOrientationSet {
-            gazeTracker = calibratedGazeTracker
+            self.gazeTracker = self.calibratedGazeTracker
+            print("Setting gaze tracker to use calibrated model: \(self.gazeTracker!.isCalibrated)")
+        } else {
+            self.gazeTracker = self.uncalibratedGazeTracker
+            print("Setting gaze tracker to use calibrated model: \(self.gazeTracker!.isCalibrated)")
         }
     }
 }
