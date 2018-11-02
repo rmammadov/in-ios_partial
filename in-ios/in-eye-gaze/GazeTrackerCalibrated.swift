@@ -58,6 +58,10 @@ class GazeTrackerCalibrated: GazeTracker {
         rootSaveDirectory = appSupportDirectory.appendingPathComponent(SAVE_DIRECTORY, isDirectory: true)
         super.init(delegate: delegate, illumResizeRatio: illumResizeRatio)
         
+        self.detector = FaceFinder()
+        self.detector?.delegate = self
+        self.isCalibrated = true
+        
         //Check if save directory exists. If not, create it and its subfolders, and return since no calibration models can be present on the device
         var isDir = ObjCBool(true)
         if !fileManager.fileExists(atPath: rootSaveDirectory.absoluteString, isDirectory: &isDir) {
@@ -76,28 +80,14 @@ class GazeTrackerCalibrated: GazeTracker {
             
             if fileManager.fileExists(atPath: modelXPath.absoluteString), fileManager.fileExists(atPath: modelYPath.absoluteString) {
                 do {
-                    self.modelMappings[orientation]![GazeTrackerCalibrated.MODEL_MAPPING_X] = try MLModel(contentsOf: modelXPath)
-                    self.modelMappings[orientation]![GazeTrackerCalibrated.MODEL_MAPPING_Y] = try MLModel(contentsOf: modelYPath)
+                    let modelX: MLModel = try MLModel(contentsOf: modelXPath)
+                    let modelY: MLModel = try MLModel(contentsOf: modelYPath)
+                    self.modelMappings.updateValue([GazeTrackerCalibrated.MODEL_MAPPING_X: modelX, GazeTrackerCalibrated.MODEL_MAPPING_Y: modelY], forKey: orientation)
                 } catch {
-                    self.modelMappings[orientation]![GazeTrackerCalibrated.MODEL_MAPPING_X] = nil
-                    self.modelMappings[orientation]![GazeTrackerCalibrated.MODEL_MAPPING_Y] = nil
                     print("Failed to load models for device orientation: \(orientation)")
                 }
-            } else {
-                self.modelMappings[orientation]![GazeTrackerCalibrated.MODEL_MAPPING_X] = nil
-                self.modelMappings[orientation]![GazeTrackerCalibrated.MODEL_MAPPING_Y] = nil
             }
         }
-        
-        //Assign proper models, based on current orientation, to the models to be used for inference.
-//        let deviceOrientation: UIDeviceOrientation = UIDevice.current.orientation
-//        switch deviceOrientation {
-//        case .portrait, .portraitUpsideDown, .landscapeLeft, .landscapeRight:
-//            calibModelX = self.modelMappings[deviceOrientation]![GazeTrackerCalibrated.MODEL_MAPPING_X]!
-//            calibModelY = self.modelMappings[deviceOrientation]![GazeTrackerCalibrated.MODEL_MAPPING_Y]!
-//        default:
-//            break
-//        }
     }
     
     /**
@@ -149,21 +139,27 @@ class GazeTrackerCalibrated: GazeTracker {
                 // Assign models to the proper variables
                 self.calibModelX = modelX
                 self.calibModelY = modelY
-                self.modelMappings[orientation] = [GazeTrackerCalibrated.MODEL_MAPPING_X: modelX, GazeTrackerCalibrated.MODEL_MAPPING_Y: modelY]
+                self.modelMappings.updateValue([GazeTrackerCalibrated.MODEL_MAPPING_X: modelX, GazeTrackerCalibrated.MODEL_MAPPING_Y: modelY], forKey: orientation)
                 
                 //Build save path and save models
                 let saveDirectoryPath: URL = self.rootSaveDirectory.appendingPathComponent(self.directoryMappings[orientation]!)
-                let xModelSavePath: URL = saveDirectoryPath.appendingPathComponent(X_COMPILED_FILE_NAME)
-                let yModelSavePath: URL = saveDirectoryPath.appendingPathComponent(Y_COMPILED_FILE_NAME)
+                let xModelSavePath: URL = URL(fileURLWithPath: X_COMPILED_FILE_NAME, isDirectory: false, relativeTo: saveDirectoryPath)
+                let yModelSavePath: URL = URL(fileURLWithPath: Y_COMPILED_FILE_NAME, isDirectory: false, relativeTo: saveDirectoryPath)
                 
-                if saveModelToFile(compiledModelURL: compiledXURL, destinationURL: xModelSavePath), saveModelToFile(compiledModelURL: compiledYURL, destinationURL: yModelSavePath) {
-                    return true
-                } else {
-                    return false
-                }
+//                let xModelSavePath: URL = saveDirectoryPath.appendingPathComponent(X_COMPILED_FILE_NAME)
+//                let yModelSavePath: URL = saveDirectoryPath.appendingPathComponent(Y_COMPILED_FILE_NAME)
+                
+                _ = saveModelToFile(compiledModelURL: compiledXURL, destinationURL: xModelSavePath)
+                _ = saveModelToFile(compiledModelURL: compiledYURL, destinationURL: yModelSavePath)
+                return true
+//                if saveModelToFile(compiledModelURL: compiledXURL, destinationURL: xModelSavePath), saveModelToFile(compiledModelURL: compiledYURL, destinationURL: yModelSavePath) {
+//                    return true
+//                } else {
+//                    return false
+//                }
                 
             } catch {
-                print("Failed to load calibration models")
+                print("Failed to load calibration models: \(error)")
                 return false
             }
         default:
