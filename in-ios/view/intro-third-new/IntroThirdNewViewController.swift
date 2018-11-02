@@ -250,14 +250,13 @@ extension IntroThirdNewViewController {
         cameraManager = CameraManager(cameraView: self.view, showPreview: false, showLabel: false, showPointer: false)
         guard let cameraManager = cameraManager else { return }
         
-        cameraManager.shouldRespondToOrientationChanges = true
-        
         cameraManager.askUserForCameraPermission { (status) in
             if status {
                 cameraManager.setPrediction()
                 cameraManager.setCamera()
                 cameraManager.startSession()
                 cameraManager.shouldRespondToOrientationChanges = true
+                cameraManager.updateOrientation()
             }
         }
     }

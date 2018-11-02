@@ -150,6 +150,7 @@ extension HomeViewController {
                 cameraManager.setCamera()
                 cameraManager.startSession()
                 cameraManager.shouldRespondToOrientationChanges = true
+                cameraManager.updateOrientation()
             }
         }
     }
