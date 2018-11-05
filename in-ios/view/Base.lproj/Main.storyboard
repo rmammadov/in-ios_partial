@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aOp-Hy-hFa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aOp-Hy-hFa">
     <device id="ipad10_5" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1097,6 +1097,42 @@ The process will take less than 20 seconds.</string>
                                     <constraint firstItem="Ky0-NY-3NC" firstAttribute="top" secondItem="CuD-Ek-LLP" secondAttribute="top" constant="32" id="x07-wY-U9h"/>
                                 </constraints>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rs6-Bw-527" userLabel="ViewThirdStep">
+                                <rect key="frame" x="331.5" y="300" width="449" height="234"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calibration in progress" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4X4-Vm-zq3" userLabel="Calibration in progress">
+                                        <rect key="frame" x="92.5" y="32" width="264.5" height="33"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please wait a moment when all data will be processed." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdu-Ua-O6R" userLabel="Please wait a moment when all data will be processed.">
+                                        <rect key="frame" x="0.0" y="97" width="449" height="25"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_circle_gradient_loading" translatesAutoresizingMaskIntoConstraints="NO" id="nvR-lg-DVl">
+                                        <rect key="frame" x="192.5" y="154" width="64" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="64" id="SiA-DS-zWA"/>
+                                            <constraint firstAttribute="width" constant="64" id="e4C-bz-kdT"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="4X4-Vm-zq3" firstAttribute="top" secondItem="Rs6-Bw-527" secondAttribute="top" constant="32" id="2ym-bm-fii"/>
+                                    <constraint firstAttribute="trailing" secondItem="wdu-Ua-O6R" secondAttribute="trailing" id="4G4-1E-247"/>
+                                    <constraint firstItem="nvR-lg-DVl" firstAttribute="top" secondItem="wdu-Ua-O6R" secondAttribute="bottom" constant="32" id="6mr-zC-o84"/>
+                                    <constraint firstAttribute="bottom" secondItem="nvR-lg-DVl" secondAttribute="bottom" constant="16" id="Tn6-t5-2wX"/>
+                                    <constraint firstItem="nvR-lg-DVl" firstAttribute="centerX" secondItem="Rs6-Bw-527" secondAttribute="centerX" id="b1B-ln-0sn"/>
+                                    <constraint firstItem="wdu-Ua-O6R" firstAttribute="leading" secondItem="Rs6-Bw-527" secondAttribute="leading" id="baI-ZR-cdg"/>
+                                    <constraint firstItem="wdu-Ua-O6R" firstAttribute="top" secondItem="4X4-Vm-zq3" secondAttribute="bottom" constant="32" id="gkX-Ap-HkB"/>
+                                    <constraint firstItem="4X4-Vm-zq3" firstAttribute="centerX" secondItem="Rs6-Bw-527" secondAttribute="centerX" id="okK-dQ-Z0P"/>
+                                    <constraint firstItem="wdu-Ua-O6R" firstAttribute="centerX" secondItem="Rs6-Bw-527" secondAttribute="centerX" id="tbk-wu-lmD"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="pigio_black"/>
                         <color key="tintColor" name="pigio_black"/>
@@ -1112,6 +1148,7 @@ The process will take less than 20 seconds.</string>
                             <constraint firstItem="yCf-jp-yXD" firstAttribute="bottom" secondItem="YIO-iF-OmC" secondAttribute="bottom" id="BbT-dh-nZj"/>
                             <constraint firstItem="yCf-jp-yXD" firstAttribute="trailing" secondItem="YIO-iF-OmC" secondAttribute="trailing" id="Dyq-v3-veT"/>
                             <constraint firstItem="CuD-Ek-LLP" firstAttribute="centerX" secondItem="YIO-iF-OmC" secondAttribute="centerX" id="H1n-da-WEm"/>
+                            <constraint firstItem="Rs6-Bw-527" firstAttribute="centerY" secondItem="Idg-it-6es" secondAttribute="centerY" id="HwC-Rb-Pqw"/>
                             <constraint firstItem="CXz-tq-o54" firstAttribute="centerY" secondItem="vGL-72-7AW" secondAttribute="centerY" id="JSD-TN-1Kv"/>
                             <constraint firstItem="JfW-Jk-pmL" firstAttribute="leading" secondItem="YIO-iF-OmC" secondAttribute="leading" id="KCZ-yJ-hMd"/>
                             <constraint firstItem="vGL-72-7AW" firstAttribute="bottom" secondItem="YIO-iF-OmC" secondAttribute="bottom" id="QpZ-da-Via"/>
@@ -1119,6 +1156,7 @@ The process will take less than 20 seconds.</string>
                             <constraint firstItem="zoc-aM-YyS" firstAttribute="centerX" secondItem="vGL-72-7AW" secondAttribute="centerX" id="idc-BX-Vgx"/>
                             <constraint firstItem="P6K-wL-Dam" firstAttribute="centerY" secondItem="YIO-iF-OmC" secondAttribute="centerY" id="lib-1Y-J1r"/>
                             <constraint firstItem="av7-Tb-Ier" firstAttribute="centerY" secondItem="YIO-iF-OmC" secondAttribute="centerY" id="m3j-00-cFB"/>
+                            <constraint firstItem="Rs6-Bw-527" firstAttribute="centerX" secondItem="Idg-it-6es" secondAttribute="centerX" id="pQq-Mu-9oG"/>
                             <constraint firstItem="vGL-72-7AW" firstAttribute="leading" secondItem="YIO-iF-OmC" secondAttribute="leading" id="sGF-wv-yoA"/>
                             <constraint firstItem="CXz-tq-o54" firstAttribute="width" secondItem="Idg-it-6es" secondAttribute="width" multiplier="0.057" id="u7Z-3l-acb"/>
                             <constraint firstItem="vGL-72-7AW" firstAttribute="top" secondItem="Idg-it-6es" secondAttribute="top" id="vT2-oH-3fY"/>
@@ -1130,6 +1168,7 @@ The process will take less than 20 seconds.</string>
                     <connections>
                         <outlet property="btnBack" destination="JfW-Jk-pmL" id="KdH-7Z-dat"/>
                         <outlet property="btnForward" destination="CXz-tq-o54" id="IoS-zz-DkV"/>
+                        <outlet property="calibrationInProgressView" destination="nvR-lg-DVl" id="5ct-Ln-ksJ"/>
                         <outlet property="ivProgressbar" destination="8w0-6N-YZV" id="FeX-Ru-R36"/>
                         <outlet property="ivProgressbarContent" destination="vmD-8W-o96" id="oiq-Bt-51a"/>
                         <outlet property="labelStatus" destination="W7m-eb-G6o" id="oAo-0b-aku"/>
@@ -1138,6 +1177,7 @@ The process will take less than 20 seconds.</string>
                         <outlet property="viewFourthStep" destination="CuD-Ek-LLP" id="7e3-eg-rR1"/>
                         <outlet property="viewSecondStep" destination="yCf-jp-yXD" id="0Yc-q9-l5X"/>
                         <outlet property="viewStatus" destination="av7-Tb-Ier" id="fKH-DX-KLR"/>
+                        <outlet property="viewThirdStep" destination="Rs6-Bw-527" id="Uv7-sg-znj"/>
                         <segue destination="NSJ-NQ-Qye" kind="show" identifier="showHome" id="z3d-m9-Uzk"/>
                     </connections>
                 </viewController>
@@ -2280,6 +2320,6 @@ AAAAE90
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GUh-nT-Ig1"/>
+        <segue reference="z3d-m9-Uzk"/>
     </inferredMetricsTieBreakers>
 </document>

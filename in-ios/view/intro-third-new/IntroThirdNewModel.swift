@@ -13,6 +13,7 @@ enum CalibrationStatus: Int {
     case firstStep = 1
     case secondStep = 2
     case thirdStep = 3
+    case processingStep = 8
     case fourthStep = 4
     case fifthStep = 5
     case loadingCalibrationCompleted = 6
@@ -98,7 +99,8 @@ class IntroThirdNewModel: BaseModel {
         if ReachabilityManager.shared.isNetworkAvailable {
             DataManager.setCalibrationDataFor(image: image, data: data)
         } else {
-            
+            //TODO: Handle setCalibrationData when network is unavailable
+            print("TODO: Handle setCalibrationData when network is unavailable")
         }
     }
     
@@ -106,7 +108,8 @@ class IntroThirdNewModel: BaseModel {
         if ReachabilityManager.shared.isNetworkAvailable {
             DataManager.postProfileData()
         } else {
-            
+            //TODO: Handle postProfileData when network is unavailable
+            print("TODO: Handle postProfileData when network is unavailable")
         }
     }
     
@@ -118,7 +121,7 @@ class IntroThirdNewModel: BaseModel {
         return DataManager.getYModelUrl()
     }
     
-    func getOreintation() -> String? {
+    func getOrientation() -> String? {
         return DataManager.getOrientation()
     }
 }

@@ -178,7 +178,7 @@ class GazeTrackerCalibrated: GazeTracker {
      */
     func saveModelToFile(compiledModelURL: URL, destinationURL: URL) -> Bool {
         do {
-            if fileManager.fileExists(atPath: destinationURL.absoluteString) {
+            if fileManager.fileExists(atPath: destinationURL.path) {
                 _ = try fileManager.replaceItemAt(destinationURL, withItemAt: compiledModelURL)
             } else {
                 try fileManager.copyItem(at: compiledModelURL, to: destinationURL)
