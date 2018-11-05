@@ -28,7 +28,7 @@ class IntroThirdNewViewController: BaseViewController {
     
     private let viewModel: IntroThirdNewModel = IntroThirdNewModel()
     
-    var cameraManager: CameraManager?
+    var cameraManager: CameraManager = CameraManager.shared
     let disposeBag = DisposeBag()
     var btnPrevious: UIButton?
     var timerDataCollection: Timer?
@@ -183,7 +183,7 @@ extension IntroThirdNewViewController {
                 guard let xModelUrl = self.viewModel.getXModelUrl() else { return }
                 guard let yModelUrl = self.viewModel.getYModelUrl() else { return }
                 guard let oreintation = self.viewModel.getOreintation() else { return }
-                self.cameraManager?.updateModels(xModelUrl: URL(string: xModelUrl)!, yModelUrl: URL(string: yModelUrl)!, oreintation: oreintation)
+                self.cameraManager.updateModels(xModelUrl: URL(string: xModelUrl)!, yModelUrl: URL(string: yModelUrl)!, oreintation: oreintation)
             
             }
         }).disposed(by: disposeBag)
@@ -224,8 +224,8 @@ extension IntroThirdNewViewController {
     }
     
     @objc func takeScreenShot() {
-        guard let screenShot = cameraManager?.takeScreenShot() else { return }
-        guard var calibrationDataForFrame = cameraManager?.getCalibrationFeatures() else { return }
+        guard let screenShot = cameraManager.takeScreenShot() else { return }
+        guard var calibrationDataForFrame = cameraManager.getCalibrationFeatures() else { return }
         guard let btn = btnPrevious else { return }
         let btnAbsoluteFrame = btn.convert((btn.layer.presentation()?.bounds)!, to: self.view)
         calibrationDataForFrame.cross_x = Float(btnAbsoluteFrame.origin.x)
@@ -247,17 +247,14 @@ extension IntroThirdNewViewController {
     
     func setCamera() {
         // TODO: should be removed and reimplemented after tests
-        cameraManager = CameraManager(cameraView: self.view, showPreview: false, showLabel: false, showPointer: false)
-        guard let cameraManager = cameraManager else { return }
+        cameraManager.setup(cameraView: view, showPreview: false, showLabel: false, showPointer: false)
         
         cameraManager.askUserForCameraPermission { (status) in
-            if status {
-                cameraManager.setPrediction()
-                cameraManager.setCamera()
-                cameraManager.startSession()
-                cameraManager.shouldRespondToOrientationChanges = true
-                cameraManager.updateOrientation()
-            }
+            guard status else { return }
+            self.cameraManager.setCamera()
+            self.cameraManager.startSession()
+            self.cameraManager.shouldRespondToOrientationChanges = true
+            self.cameraManager.updateOrientation()
         }
     }
     

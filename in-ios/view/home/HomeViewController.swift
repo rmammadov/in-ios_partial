@@ -142,17 +142,15 @@ extension HomeViewController {
     
     func setCamera() {
         // TODO: should be removed and reimplemented after tests
-        let cameraManager: CameraManager = CameraManager(cameraView: self.viewOpacity, showPreview: false, showLabel: false, showPointer: true)
+        let cameraManager = CameraManager.shared
+        cameraManager.setup(cameraView: viewOpacity, showPreview: false, showLabel: false, showPointer: true)
 
         cameraManager.askUserForCameraPermission { (status) in
-            if status {
-                cameraManager.setPrediction()
-                cameraManager.setCamera()
-                cameraManager.startSession()
-                cameraManager.shouldRespondToOrientationChanges = true
-                cameraManager.updateOrientation()
-                
-            }
+            guard status else { return }
+            cameraManager.setCamera()
+            cameraManager.startSession()
+            cameraManager.shouldRespondToOrientationChanges = true
+            cameraManager.updateOrientation()
         }
     }
 }
