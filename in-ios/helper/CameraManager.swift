@@ -19,6 +19,7 @@ public enum CameraOutputQuality: Int {
 }
 
 class CameraManager: NSObject {
+    typealias CalibrationOrientationHandler = ((Bool) -> Void)
     static let shared = CameraManager()
   
     open var showAccessPermissionPopupAutomatically = true
@@ -626,15 +627,20 @@ extension CameraManager {
         return CalibrationData(cross_x: nil, cross_y: nil, pointer_x: coordinatesSnapshot.gazeX, pointer_y: coordinatesSnapshot.gazeY, prediction_x: coordinatesPreConversionSnapshot.gazeX, prediction_y: coordinatesPreConversionSnapshot.gazeY, calibrationFeatures: arrayCalibrationFeatures, facialFeatures: facialFeaturesSnapshoot, eyeCenters: eyeCentersSnapshoot, file: nil, deviceOrientation: deviceOrienation())
     }
     
-    func updateModels(xModelUrl: URL, yModelUrl: URL, oreintation: String) {
-        guard let isCalibrationSet = calibratedGazeTracker?.updateWithNewModels(xModelURL: xModelUrl, yModelURL: yModelUrl, orientation: deviceOrienation(orientation: oreintation)) else { return }
+    func updateModels(xModelUrl: URL, yModelUrl: URL, orientation: String, completion: ((Bool) -> Void)? = nil) {
+        guard let isCalibrationSet = calibratedGazeTracker?.updateWithNewModels(xModelURL: xModelUrl,
+                                                                                yModelURL: yModelUrl,
+                                                                                orientation: deviceOrienation(orientation: orientation))
+            else { return }
         
         if isCalibrationSet {
-            updateOrientation()
+            updateOrientation(completion: completion)
+        } else {
+            completion?(false)
         }
     }
     
-    func updateOrientation() {
+    func updateOrientation(completion: ((Bool) -> Void)? = nil) {
         print("Setting orientation to: \(deviceOrientation.rawValue)")
         guard let isOrientationSet = calibratedGazeTracker?.setOrientation(to: deviceOrientation) else { return }
         
@@ -643,12 +649,13 @@ extension CameraManager {
             calibratedGazeTracker?.predictionDelegate = self
             self.gazeTracker = self.calibratedGazeTracker
             print("Setting gaze tracker to use calibrated model: \(self.gazeTracker!.isCalibrated)")
+            completion?(true)
         } else {
             uncalibratedGazeTracker?.predictionDelegate = self
             calibratedGazeTracker?.predictionDelegate = nil
             self.gazeTracker = self.uncalibratedGazeTracker
-            
             print("Setting gaze tracker to use calibrated model: \(self.gazeTracker!.isCalibrated)")
+            completion?(false)
         }
     }
 }
