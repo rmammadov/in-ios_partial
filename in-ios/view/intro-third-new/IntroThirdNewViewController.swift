@@ -21,6 +21,8 @@ class IntroThirdNewViewController: BaseViewController {
     @IBOutlet weak var ivProgressbarContent: UIImageView!
     @IBOutlet weak var viewFirstStep: UIView!
     @IBOutlet weak var viewSecondStep: UIView!
+    @IBOutlet weak var viewThirdStep: UIView!
+    @IBOutlet weak var calibrationInProgressView: UIImageView!
     @IBOutlet weak var viewFourthStep: UIView!
     @IBOutlet weak var viewFifthStep: UIView!
     @IBOutlet weak var btnBack: UIButton!
@@ -28,7 +30,7 @@ class IntroThirdNewViewController: BaseViewController {
     
     private let viewModel: IntroThirdNewModel = IntroThirdNewModel()
     
-    var cameraManager: CameraManager?
+    var cameraManager: CameraManager = CameraManager.shared
     let disposeBag = DisposeBag()
     var btnPrevious: UIButton?
     var timerDataCollection: Timer?
@@ -67,9 +69,7 @@ class IntroThirdNewViewController: BaseViewController {
     }
     
     @IBAction func onClickBtnContinueFourthStep(_ sender: Any) {
-        viewFourthStep.isHidden = true
-        viewFifthStep.isHidden = false
-        viewModel.postProfileData()
+        startFifthStep()
     }
     
     @IBAction func onClickBtnRedoFifthStep(_ sender: Any) {
@@ -180,10 +180,23 @@ extension IntroThirdNewViewController {
         viewModel.status.asObservable().subscribe(onNext: {
             event in
             if self.viewModel.status.value == CalibrationStatus.loadingCalibrationCompleted.rawValue {
-                guard let xModelUrl = self.viewModel.getXModelUrl() else { return }
-                guard let yModelUrl = self.viewModel.getYModelUrl() else { return }
-                guard let oreintation = self.viewModel.getOreintation() else { return }
-                self.cameraManager?.updateModels(xModelUrl: URL(string: xModelUrl)!, yModelUrl: URL(string: yModelUrl)!, oreintation: oreintation)
+                guard
+                    let xModelUrl = self.viewModel.getXModelUrl(),
+                    let yModelUrl = self.viewModel.getYModelUrl(),
+                    let orientation = self.viewModel.getOrientation()
+                    else { return }
+                self.cameraManager.updateModels(xModelUrl: URL(string: xModelUrl)!,
+                                                yModelUrl: URL(string: yModelUrl)!,
+                                                orientation: orientation,
+                                                completion: { [weak self] isSuccess in
+                                                    DispatchQueue.main.async {
+                                                        guard let `self` = self else { return }
+                                                        self.viewThirdStep.isHidden = true
+                                                        self.viewFifthStep.isHidden = false
+                                                        self.btnBack.isHidden = false
+                                                        self.btnForward.isHidden = false
+                                                    }
+                })
             
             }
         }).disposed(by: disposeBag)
@@ -224,8 +237,8 @@ extension IntroThirdNewViewController {
     }
     
     @objc func takeScreenShot() {
-        guard let screenShot = cameraManager?.takeScreenShot() else { return }
-        guard var calibrationDataForFrame = cameraManager?.getCalibrationFeatures() else { return }
+        guard let screenShot = cameraManager.takeScreenShot() else { return }
+        guard var calibrationDataForFrame = cameraManager.getCalibrationFeatures() else { return }
         guard let btn = btnPrevious else { return }
         let btnAbsoluteFrame = btn.convert((btn.layer.presentation()?.bounds)!, to: self.view)
         calibrationDataForFrame.cross_x = Float(btnAbsoluteFrame.origin.x)
@@ -247,17 +260,14 @@ extension IntroThirdNewViewController {
     
     func setCamera() {
         // TODO: should be removed and reimplemented after tests
-        cameraManager = CameraManager(cameraView: self.view, showPreview: false, showLabel: false, showPointer: false)
-        guard let cameraManager = cameraManager else { return }
+        cameraManager.setup(cameraView: view, showPreview: false, showLabel: false, showPointer: false)
         
         cameraManager.askUserForCameraPermission { (status) in
-            if status {
-                cameraManager.setPrediction()
-                cameraManager.setCamera()
-                cameraManager.startSession()
-                cameraManager.shouldRespondToOrientationChanges = true
-                cameraManager.updateOrientation()
-            }
+            guard status else { return }
+            self.cameraManager.setCamera()
+            self.cameraManager.startSession()
+            self.cameraManager.shouldRespondToOrientationChanges = true
+            self.cameraManager.updateOrientation()
         }
     }
     
@@ -272,11 +282,20 @@ extension IntroThirdNewViewController {
         handleCalibrationStep()
     }
     
+    func startNewFourthStep() {
+        AnimationUtil.animateLoading(imageView: calibrationInProgressView)
+        viewThirdStep.isHidden = false
+    }
+    
     func startFourthStep() {
         viewSecondStep.isHidden = true
         viewFourthStep.isHidden = false
-        btnBack.isHidden = false
-        btnForward.isHidden = false
+    }
+    
+    func startFifthStep() {
+        viewFourthStep.isHidden = true
+        viewModel.postProfileData()
+        startNewFourthStep()
     }
     
     @objc func swiped(_ gesture: UIGestureRecognizer) {
