@@ -191,41 +191,13 @@ class GazeTrackerCalibrated: GazeTracker {
     }
     
     override func didFindFaces(status: Bool, scene: UIImage) {
+        print("Generating inference from calibrated model.")
         if !status {
             self.predictionDelegate?.didUpdatePrediction(status: false)
             return
         }
         
-        getMainFace()
-        
-        let width = scene.cgImage!.width, height = scene.cgImage!.height
-        let facialFeatures: MLMultiArray = self.getFacialFeatures(width: width, height: height)
-        let eyes = self.getEyes(image: scene)
-        guard let leftEye = eyes.leftEYe, let rightEye = eyes.rightEye else {
-            self.gazeEstimation = nil
-            self.predictionDelegate?.didUpdatePrediction(status: false)
-            return
-        }
-        
-        guard let eyesImage = self.concatenateEyes(leftEye: leftEye, rightEye: rightEye) else {
-            self.gazeEstimation = nil
-            self.predictionDelegate?.didUpdatePrediction(status: false)
-            return
-        }
-        
-        guard let eyeChannels = self.channels2MLMultiArray(image: eyesImage) else {
-            self.gazeEstimation = nil
-            self.predictionDelegate?.didUpdatePrediction(status: false)
-            return
-        }
-        
-        guard let illuminant = self.estimateIlluminant(image: scene) else {
-            self.gazeEstimation = nil
-            self.predictionDelegate?.didUpdatePrediction(status: false)
-            return
-        }
-        
-        guard let pred = predictGaze(eyesB: eyeChannels.blueChannel, eyesG: eyeChannels.greenChannel, eyesR: eyeChannels.redChannel, illuminant: illuminant, headPose: facialFeatures) else {
+        guard let pred = predictGaze(scene: scene) else {
             self.gazeEstimation = nil
             self.calibFeatures = nil
             return
@@ -244,11 +216,13 @@ class GazeTrackerCalibrated: GazeTracker {
                 if self.gazeEstimation != nil { print("Calibrated model predictions: \(self.gazeEstimation![0]), \(self.gazeEstimation![1])") }
                 self.predictionDelegate?.didUpdatePrediction(status: true)
             } catch {
+                print("Failed to predict from calibration models: \(error)")
                 self.gazeEstimation = nil
                 self.calibFeatures = nil
                 return
             }
         } else {
+            print("General model returned nil during inference for calibration models.")
             self.gazeEstimation = nil
             self.calibFeatures = nil
             return

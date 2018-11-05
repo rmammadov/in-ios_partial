@@ -613,24 +613,25 @@ extension CameraManager {
     }
     
     func updateModels(xModelUrl: URL, yModelUrl: URL, oreintation: String) {
+        print("Updating calibrated gaze tracker with new models.")
         guard let isCalibrationSet = calibratedGazeTracker?.updateWithNewModels(xModelURL: xModelUrl, yModelURL: yModelUrl, orientation: deviceOrienation(orientation: oreintation)) else { return }
         
         if isCalibrationSet {
+            print("Update successful. Loading the new models for use.")
             updateOrientation()
         }
     }
     
     func updateOrientation() {
-        print("Setting orientation to: \(deviceOrientation.rawValue)")
+        print("Setting orientation to: \(deviceOrientation)")
         guard let isOrientationSet = calibratedGazeTracker?.setOrientation(to: deviceOrientation) else { return }
         
         if isOrientationSet {
             self.gazeTracker = self.calibratedGazeTracker
-            print("Setting gaze tracker to use calibrated model: \(self.gazeTracker!.isCalibrated)")
         } else {
             self.gazeTracker = self.uncalibratedGazeTracker
-            print("Setting gaze tracker to use calibrated model: \(self.gazeTracker!.isCalibrated)")
         }
+        print("Setting gaze tracker to use calibrated model: \(self.gazeTracker!.isCalibrated)")
     }
 }
 
