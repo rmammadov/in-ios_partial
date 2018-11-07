@@ -447,6 +447,7 @@ class ApiRequestHandler {
                     completion(destinationUrl.path, error)
                 }
             })
+            
             task.resume()
         }
         
