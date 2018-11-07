@@ -109,44 +109,8 @@ public class GazeTracker: FaceFinderDelegate {
             return
         }
         
-        //        print("Getting main face @:       \(CFAbsoluteTimeGetCurrent())")
-        getMainFace()
-        
-        let width = scene.cgImage!.width, height = scene.cgImage!.height
-        
-        //        print("Getting facial features @: \(CFAbsoluteTimeGetCurrent())")
-        let facialFeatures: MLMultiArray = self.getFacialFeatures(width: width, height: height)
-        //        print("Cropping eyes @:           \(CFAbsoluteTimeGetCurrent())")
-        let eyes = self.getEyes(image: scene)
-        guard let leftEye = eyes.leftEYe, let rightEye = eyes.rightEye else{
-            self.gazeEstimation = nil
-            self.predictionDelegate?.didUpdatePrediction(status: false)
-            return
-        }
-        
-        //        print("Concatenating eyes @:      \(CFAbsoluteTimeGetCurrent())")
-        guard let eyesImage = self.concatenateEyes(leftEye: leftEye, rightEye: rightEye) else {
-            self.gazeEstimation = nil
-            self.predictionDelegate?.didUpdatePrediction(status: false)
-            return
-        }
-        
-        //        print("Converting eyes @:         \(CFAbsoluteTimeGetCurrent())")
-        guard let eyeChannels = self.channels2MLMultiArray(image: eyesImage) else {
-            self.gazeEstimation = nil
-            self.predictionDelegate?.didUpdatePrediction(status: false)
-            return
-        }
-        
-        //        print("Estimating illuminant @:   \(CFAbsoluteTimeGetCurrent())")
-        guard let illuminant = self.estimateIlluminant(image: scene) else {
-            self.gazeEstimation = nil
-            self.predictionDelegate?.didUpdatePrediction(status: false)
-            return
-        }
-        
         //        print("Estimating gaze @:         \(CFAbsoluteTimeGetCurrent())")
-        guard let pred = predictGaze(eyesB: eyeChannels.blueChannel, eyesG: eyeChannels.greenChannel, eyesR: eyeChannels.redChannel, illuminant: illuminant, headPose: facialFeatures) else {
+        guard let pred = predictGaze(scene: scene) else {
             self.gazeEstimation = nil
             self.calibFeatures = nil
             return
@@ -163,32 +127,6 @@ public class GazeTracker: FaceFinderDelegate {
 //        if self.gazeEstimation != nil { print(self.gazeEstimation![0], self.gazeEstimation![1]) }
         self.predictionDelegate?.didUpdatePrediction(status: true)
         return
-        
-        
-        if let calibFeats = pred.calibFeats {
-            guard let corrPred = correctBias(with: calibFeats) else {
-                self.gazeEstimation = nil
-                self.calibFeatures = nil
-                return
-            }
-            
-            if let gazeXY = pred.gazeXY {
-                self.gazeEstimation = [gazeXY[0], gazeXY[1]]
-            } else {
-                self.gazeEstimation = nil
-            }
-            self.calibFeatures = corrPred.calibFeats
-            //        print("Algorithm terminating @:   \(CFAbsoluteTimeGetCurrent())")
-            self.elapsedTotalTime = CFAbsoluteTimeGetCurrent() - self.startTotalTime
-            print("\nTotal algorithm processing time: \(self.elapsedTotalTime) s.")
-            if self.gazeEstimation != nil { print(self.gazeEstimation![0], self.gazeEstimation![1]) }
-            self.predictionDelegate?.didUpdatePrediction(status: true)
-            
-        } else {
-            self.gazeEstimation = nil
-            self.calibFeatures = nil
-            return
-        }
     }
     
     func getMainFace() {
@@ -571,6 +509,45 @@ public class GazeTracker: FaceFinderDelegate {
         }
         
         return illuminant
+    }
+    
+    func predictGaze(scene: UIImage) -> (gazeXY: MLMultiArray?, calibFeats: MLMultiArray?)? {
+        getMainFace()
+        
+        let width = scene.cgImage!.width, height = scene.cgImage!.height
+        
+        //        print("Getting facial features @: \(CFAbsoluteTimeGetCurrent())")
+        let facialFeatures: MLMultiArray = self.getFacialFeatures(width: width, height: height)
+        //        print("Cropping eyes @:           \(CFAbsoluteTimeGetCurrent())")
+        let eyes = self.getEyes(image: scene)
+        guard let leftEye = eyes.leftEYe, let rightEye = eyes.rightEye else{
+            self.gazeEstimation = nil
+            self.predictionDelegate?.didUpdatePrediction(status: false)
+            return nil
+        }
+        
+        //        print("Concatenating eyes @:      \(CFAbsoluteTimeGetCurrent())")
+        guard let eyesImage = self.concatenateEyes(leftEye: leftEye, rightEye: rightEye) else {
+            self.gazeEstimation = nil
+            self.predictionDelegate?.didUpdatePrediction(status: false)
+            return nil
+        }
+        
+        //        print("Converting eyes @:         \(CFAbsoluteTimeGetCurrent())")
+        guard let eyeChannels = self.channels2MLMultiArray(image: eyesImage) else {
+            self.gazeEstimation = nil
+            self.predictionDelegate?.didUpdatePrediction(status: false)
+            return nil
+        }
+        
+        //        print("Estimating illuminant @:   \(CFAbsoluteTimeGetCurrent())")
+        guard let illuminant = self.estimateIlluminant(image: scene) else {
+            self.gazeEstimation = nil
+            self.predictionDelegate?.didUpdatePrediction(status: false)
+            return nil
+        }
+        
+        return predictGaze(eyesB: eyeChannels.blueChannel, eyesG: eyeChannels.greenChannel, eyesR: eyeChannels.redChannel, illuminant: illuminant, headPose: facialFeatures)
     }
     
     func predictGaze(eyesB: MLMultiArray, eyesG: MLMultiArray, eyesR: MLMultiArray, illuminant: MLMultiArray, headPose: MLMultiArray) -> (gazeXY: MLMultiArray?, calibFeats: MLMultiArray?)? {

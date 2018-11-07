@@ -399,11 +399,10 @@ class ApiRequestHandler {
         return self.calibration
     }
     
-    func loadFileAsync(url: String, completion: @escaping (String?, Error?) -> Void)
-    {
+    func loadFileAsync(url: String, completion: @escaping (String?, Error?) -> Void) {
         guard let url = URL(string: url) else { return }
-        
-        let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fileManager = FileManager.default
+        let documentsUrl =  fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         
         let destinationUrl = documentsUrl.appendingPathComponent(url.lastPathComponent)
         
@@ -445,10 +444,34 @@ class ApiRequestHandler {
                 }
                 else
                 {
+
+// Commented by Rahman Mammadov since this code does not check file existance locally
+                    
+//        let session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: nil)
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "GET"
+//        let task = session.dataTask (with: request, completionHandler: { data, response, error in
+//            if let error = error {
+//                print("ERROR: loadFileAsync: \(error.localizedDescription)")
+//                completion(destinationUrl.path, error)
+//                return
+//            }
+//            guard
+//                let response = response as? HTTPURLResponse,
+//                let data = data,
+//                response.statusCode == 200
+//                else {
+//
                     completion(destinationUrl.path, error)
-                }
-            })
-            task.resume()
-        }
+                    return
+            }
+            do {
+                try data.write(to: destinationUrl, options: Data.WritingOptions.atomic)
+                completion(destinationUrl.path, error)
+            } catch let error {
+                completion(destinationUrl.path, error)
+            }
+        })
+        task.resume()
     }
 }

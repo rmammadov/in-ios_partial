@@ -68,7 +68,7 @@ class IntroThirdNewViewModel: BaseViewModel {
     }
     
     func getOreintation() -> String? {
-        return model.getOreintation()
+        return model.getOrientation()
     }
 }
 

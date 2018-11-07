@@ -19,44 +19,46 @@ public enum CameraOutputQuality: Int {
 }
 
 class CameraManager: NSObject {
-
+    typealias CalibrationOrientationHandler = ((Bool) -> Void)
+    static let shared = CameraManager()
+  
     open var showAccessPermissionPopupAutomatically = true
     open var showErrorsToUsers = true
     open var captureSession: AVCaptureSession?
-    fileprivate var coreMotionManager: CMMotionManager!
-    fileprivate var sessionQueue: DispatchQueue = DispatchQueue(label: "CameraSessionQueue", attributes: [])
-    fileprivate var deviceOrientation: UIDeviceOrientation = .unknown
-    fileprivate var cameraIsSetup = false
-    fileprivate var cameraIsObservingDeviceOrientation = false
-    fileprivate var cameraPosition = AVCaptureDevice.Position.front
-    fileprivate var gazeTracker: GazeTracker?
-    fileprivate var uncalibratedGazeTracker: GazeTracker?
-    fileprivate var calibratedGazeTracker: GazeTrackerCalibrated?
-    fileprivate var gazeUtils = GazeUtilities()
-    fileprivate var cameraView: UIView? // For the test purpose
-    fileprivate weak var processingImage: UIImage?
-    fileprivate var label: UILabel?
-    fileprivate var previewLayer: UIImageView?
-    fileprivate var dataOutput: AVCaptureVideoDataOutput?
-    fileprivate var ivPointer: UIImageView?
-    fileprivate var imagePointerRed: UIImage?
-    fileprivate var imagePointerYellow: UIImage?
-    fileprivate var averageX: [Double] = Array(repeating: 0.0, count: Constant.DefaultConfig.GAZE_PREDICTION_AVERAGING_COUNT)
-    fileprivate var averageY: [Double] = Array(repeating: 0.0, count: Constant.DefaultConfig.GAZE_PREDICTION_AVERAGING_COUNT)
-    fileprivate var averagingCount: Double = 0
-    fileprivate var coordinates: (gazeX: Double, gazeY: Double) = (gazeX: 0, gazeY: 0)
-    fileprivate var coordinatesSnapshot: (gazeX: Double, gazeY: Double)?
-    fileprivate var coordinatesPreConversion: (gazeX: Double, gazeY: Double) = (gazeX: 0, gazeY: 0)
-    fileprivate var coordinatesPreConversionSnapshot: (gazeX: Double, gazeY: Double)?
-    fileprivate var calibrationFeatures: MLMultiArray?
-    fileprivate var calibrationFeaturesSnapshoot: MLMultiArray?
-    fileprivate var facialFeatures: Array<Double>?
-    fileprivate var facialFeaturesSnapshoot: Array<Double>?
-    fileprivate var eyeCenters: Array<Array<Double>>?
-    fileprivate var eyeCentersSnapshoot: Array<Array<Double>>?
-    fileprivate var showPreview = true
-    fileprivate var showLabel = true
-    fileprivate var showPointer = true
+    private var coreMotionManager: CMMotionManager!
+    private var sessionQueue: DispatchQueue = DispatchQueue(label: "CameraSessionQueue", attributes: [])
+    private var deviceOrientation: UIDeviceOrientation = .unknown
+    private var cameraIsSetup = false
+    private var cameraIsObservingDeviceOrientation = false
+    private var cameraPosition = AVCaptureDevice.Position.front
+    private var gazeTracker: GazeTracker?
+    private var uncalibratedGazeTracker: GazeTracker?
+    private var calibratedGazeTracker: GazeTrackerCalibrated?
+    private var gazeUtils = GazeUtilities()
+    private var cameraView: UIView? // For the test purpose
+    private weak var processingImage: UIImage?
+    private var label: UILabel?
+    private var previewLayer: UIImageView?
+    private var dataOutput: AVCaptureVideoDataOutput?
+    private var ivPointer: UIImageView?
+    private var imagePointerRed: UIImage?
+    private var imagePointerYellow: UIImage?
+    private var averageX: [Double] = Array(repeating: 0.0, count: Constant.DefaultConfig.GAZE_PREDICTION_AVERAGING_COUNT)
+    private var averageY: [Double] = Array(repeating: 0.0, count: Constant.DefaultConfig.GAZE_PREDICTION_AVERAGING_COUNT)
+    private var averagingCount: Double = 0
+    private var coordinates: (gazeX: Double, gazeY: Double) = (gazeX: 0, gazeY: 0)
+    private var coordinatesSnapshot: (gazeX: Double, gazeY: Double)?
+    private var coordinatesPreConversion: (gazeX: Double, gazeY: Double) = (gazeX: 0, gazeY: 0)
+    private var coordinatesPreConversionSnapshot: (gazeX: Double, gazeY: Double)?
+    private var calibrationFeatures: MLMultiArray?
+    private var calibrationFeaturesSnapshoot: MLMultiArray?
+    private var facialFeatures: Array<Double>?
+    private var facialFeaturesSnapshoot: Array<Double>?
+    private var eyeCenters: Array<Array<Double>>?
+    private var eyeCentersSnapshoot: Array<Array<Double>>?
+    private var showPreview = true
+    private var showLabel = true
+    private var showPointer = true
 
     open var cameraIsReady: Bool {
         get {
@@ -71,11 +73,11 @@ class CameraManager: NSObject {
 
     open var focusMode : AVCaptureDevice.FocusMode = .continuousAutoFocus
     
-    fileprivate lazy var mic: AVCaptureDevice? = {
+    private lazy var mic: AVCaptureDevice? = {
         return AVCaptureDevice.default(for: AVMediaType.audio)
     }()
     
-    fileprivate lazy var frontCameraDevice: AVCaptureDevice? = {
+    private lazy var frontCameraDevice: AVCaptureDevice? = {
         return AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .front)
     }()
     
@@ -95,25 +97,41 @@ class CameraManager: NSObject {
             }
         }
     }
-    
-    init(cameraView: UIView, showPreview: Bool, showLabel: Bool, showPointer: Bool) {
+  
+  
+    private override init() {
         super.init()
-        // TODO: Remove after tests
-        self.cameraView = cameraView // For the test purpose
+        setPrediction()
+    }
+    
+    public func setup(cameraView: UIView, showPreview: Bool, showLabel: Bool, showPointer: Bool) {
+        self.cameraView = cameraView
         self.showPreview = showPreview
         self.showLabel = showLabel
         self.showPointer = showPointer
-        
         addPreviewLayer()
-        addLabel();
-        addPointer();
+        addLabel()
+        addPointer()
     }
+    
+//    init(cameraView: UIView, showPreview: Bool, showLabel: Bool, showPointer: Bool) {
+//        super.init()
+//        // TODO: Remove after tests
+//        self.cameraView = cameraView // For the test purpose
+//        self.showPreview = showPreview
+//        self.showLabel = showLabel
+//        self.showPointer = showPointer
+//        
+//        addPreviewLayer()
+//        addLabel()
+//        addPointer()
+//    }
     
 }
 
 extension CameraManager {
     
-    fileprivate func canLoadCamera() -> Bool {
+    private func canLoadCamera() -> Bool {
         let currentCameraState = checkIfCameraIsAvailable()
         return currentCameraState == .ready || (currentCameraState == .notDetermined && showAccessPermissionPopupAutomatically)
     }
@@ -126,7 +144,7 @@ extension CameraManager {
         })
     }
     
-    fileprivate func checkIfCameraIsAvailable() -> CameraState {
+    private func checkIfCameraIsAvailable() -> CameraState {
         let deviceHasCamera = hasFrontCamera
         if deviceHasCamera {
             let authorizationStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
@@ -145,7 +163,7 @@ extension CameraManager {
         }
     }
     
-    fileprivate func show(_ title: String, message: String) {
+    private func show(_ title: String, message: String) {
         if showErrorsToUsers {
             DispatchQueue.main.async(execute: { () -> Void in
                 self.showErrorBlock(title, message)
@@ -153,59 +171,57 @@ extension CameraManager {
         }
     }
     
-    fileprivate func addPreviewLayer() {
-        if showPreview {
-            self.previewLayer = UIImageView()
-            
-            self.previewLayer?.contentMode = .scaleAspectFit
-            self.cameraView?.addSubview(self.previewLayer!)
-            
-            self.previewLayer?.translatesAutoresizingMaskIntoConstraints = false
-            self.previewLayer?.leftAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 10).isActive=true
-            self.previewLayer?.topAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -350).isActive=true
-            self.previewLayer?.rightAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 330).isActive=true
-            self.previewLayer?.bottomAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -34).isActive=true
+    private func addPreviewLayer() {
+        guard showPreview else { return }
+        
+        self.previewLayer = UIImageView()
+        
+        self.previewLayer?.contentMode = .scaleAspectFit
+        self.cameraView?.addSubview(self.previewLayer!)
+        
+        self.previewLayer?.translatesAutoresizingMaskIntoConstraints = false
+        self.previewLayer?.leftAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 10).isActive=true
+        self.previewLayer?.topAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -350).isActive=true
+        self.previewLayer?.rightAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 330).isActive=true
+        self.previewLayer?.bottomAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -34).isActive=true
 
-            self.cameraView?.layer.zPosition = .greatestFiniteMagnitude
-        }
+        self.cameraView?.layer.zPosition = .greatestFiniteMagnitude
     }
     
-    fileprivate func addLabel() {
-        if showLabel {
-            label = UILabel()
-            label?.textAlignment = .center
-            label?.textColor = .red
-            label?.font = UIFont(name:"HelveticaNeue-Bold", size: 16.0)
-            label?.text = "Coordinates"
-            self.cameraView?.addSubview(label!)
-            
-            label?.translatesAutoresizingMaskIntoConstraints = false
-            label?.leftAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 10).isActive=true
-            label?.topAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -34).isActive=true
-            label?.rightAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 330).isActive=true
-            label?.bottomAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -10).isActive=true
-        }
+    private func addLabel() {
+        guard showLabel else { return }
+        label = UILabel()
+        label?.textAlignment = .center
+        label?.textColor = .red
+        label?.font = UIFont(name:"HelveticaNeue-Bold", size: 16.0)
+        label?.text = "Coordinates"
+        self.cameraView?.addSubview(label!)
+        
+        label?.translatesAutoresizingMaskIntoConstraints = false
+        label?.leftAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 10).isActive=true
+        label?.topAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -34).isActive=true
+        label?.rightAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 330).isActive=true
+        label?.bottomAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -10).isActive=true
 
     }
     
-    fileprivate func addPointer() {
-        if showPointer {
-            imagePointerRed = UIImage(named: "ic_pointer_red")
-            imagePointerYellow = UIImage(named: "ic_pointer_yellow")
-            ivPointer = UIImageView(image: imagePointerRed!)
-            ivPointer?.contentMode = .scaleAspectFill
-        }
+    private func addPointer() {
+        guard showPointer else {  return }
+        imagePointerRed = UIImage(named: "ic_pointer_red")
+        imagePointerYellow = UIImage(named: "ic_pointer_yellow")
+        ivPointer = UIImageView(image: imagePointerRed!)
+        ivPointer?.contentMode = .scaleAspectFill
     }
 
-    fileprivate func setPointerActive() {
+    private func setPointerActive() {
         ivPointer?.image = imagePointerYellow
     }
 
-    fileprivate func setPointerPassive() {
+    private func setPointerPassive() {
         ivPointer?.image = imagePointerRed
     }
     
-    fileprivate func updatePointer(x: Double, y: Double) {
+    private func updatePointer(x: Double, y: Double) {
         ivPointer?.frame = CGRect(x: x, y: y, width: 50.0, height: 55.0)
         cameraView!.addSubview(ivPointer!)
     }
@@ -215,18 +231,17 @@ extension CameraManager {
 extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
 
     func setCamera() {
-        if self.canLoadCamera() {
-            self.captureSession = AVCaptureSession()
-            if let inputs = self.captureSession?.inputs as? [AVCaptureDeviceInput] {
-                for input in inputs {
-                    self.captureSession?.removeInput(input)
-                }
+        guard canLoadCamera() else { return }
+        self.captureSession = AVCaptureSession()
+        if let inputs = self.captureSession?.inputs as? [AVCaptureDeviceInput] {
+            for input in inputs {
+                self.captureSession?.removeInput(input)
             }
-            
-            guard let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: self.cameraPosition) else {return}
-            guard let input = try? AVCaptureDeviceInput(device: captureDevice) else {return}
-            self.captureSession?.addInput(input)
         }
+        
+        guard let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: self.cameraPosition) else {return}
+        guard let input = try? AVCaptureDeviceInput(device: captureDevice) else {return}
+        self.captureSession?.addInput(input)
     }
     
     func startSession() {
@@ -311,13 +326,13 @@ extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
 
 extension CameraManager: GazePredictionDelegate {
     
-    func setPrediction() {
+    private func setPrediction() {
         self.uncalibratedGazeTracker = GazeTracker(delegate: self)
-        self.gazeTracker = uncalibratedGazeTracker
         self.calibratedGazeTracker = GazeTrackerCalibrated(delegate: self)
+        self.gazeTracker = uncalibratedGazeTracker
     }
     
-    func predicate(frame: UIImage) {
+    private func predicate(frame: UIImage) {
         guard let gazeTracker = self.gazeTracker else { return }
         gazeTracker.startPredictionInBackground(scene: frame)
     }
@@ -382,7 +397,7 @@ extension CameraManager: GazePredictionDelegate {
 
 extension CameraManager {
     
-    fileprivate func _orientationChanged() {
+    private func _orientationChanged() {
         //self.validPreviewLayer?.connection?.videoOrientation = self._videoOrientation(forDeviceOrientation: self.deviceOrientation)
         
         if let outputs = captureSession?.outputs {
@@ -393,7 +408,7 @@ extension CameraManager {
         }
     }
     
-    fileprivate func _startFollowingDeviceOrientation() {
+    private func _startFollowingDeviceOrientation() {
         if shouldRespondToOrientationChanges && !cameraIsObservingDeviceOrientation {
             coreMotionManager = CMMotionManager()
             coreMotionManager.accelerometerUpdateInterval = 0.005
@@ -443,7 +458,7 @@ extension CameraManager {
     }
     
 
-    fileprivate func _imageOrientation(forDeviceOrientation deviceOrientation: UIDeviceOrientation, isMirrored: Bool) -> UIImage.Orientation {
+    private func _imageOrientation(forDeviceOrientation deviceOrientation: UIDeviceOrientation, isMirrored: Bool) -> UIImage.Orientation {
         
         switch deviceOrientation {
         case .landscapeLeft:
@@ -457,7 +472,7 @@ extension CameraManager {
         return isMirrored ? .leftMirrored : .right
     }
     
-    fileprivate func fixOrientation(withImage image: UIImage) -> UIImage {
+    private func fixOrientation(withImage image: UIImage) -> UIImage {
         guard let cgImage = image.cgImage else { return image }
         
         var isMirrored = false
@@ -479,7 +494,7 @@ extension CameraManager {
         return image
     }
      
-    fileprivate func _videoOrientation(forDeviceOrientation deviceOrientation: UIDeviceOrientation) -> AVCaptureVideoOrientation {
+    private func _videoOrientation(forDeviceOrientation deviceOrientation: UIDeviceOrientation) -> AVCaptureVideoOrientation {
         switch deviceOrientation {
         case .landscapeLeft:
             return .landscapeRight
@@ -516,7 +531,7 @@ extension CameraManager {
         }
     }
     
-    fileprivate func _videoOrientationFromStatusBarOrientation() -> AVCaptureVideoOrientation {
+    private func _videoOrientationFromStatusBarOrientation() -> AVCaptureVideoOrientation {
         
         var orientation: UIInterfaceOrientation?
         
@@ -612,24 +627,35 @@ extension CameraManager {
         return CalibrationData(cross_x: nil, cross_y: nil, pointer_x: coordinatesSnapshot.gazeX, pointer_y: coordinatesSnapshot.gazeY, prediction_x: coordinatesPreConversionSnapshot.gazeX, prediction_y: coordinatesPreConversionSnapshot.gazeY, calibrationFeatures: arrayCalibrationFeatures, facialFeatures: facialFeaturesSnapshoot, eyeCenters: eyeCentersSnapshoot, file: nil, deviceOrientation: deviceOrienation())
     }
     
-    func updateModels(xModelUrl: URL, yModelUrl: URL, oreintation: String) {
-        guard let isCalibrationSet = calibratedGazeTracker?.updateWithNewModels(xModelURL: xModelUrl, yModelURL: yModelUrl, orientation: deviceOrienation(orientation: oreintation)) else { return }
+    func updateModels(xModelUrl: URL, yModelUrl: URL, orientation: String, completion: ((Bool) -> Void)? = nil) {
+        guard let isCalibrationSet = calibratedGazeTracker?.updateWithNewModels(xModelURL: xModelUrl,
+                                                                                yModelURL: yModelUrl,
+                                                                                orientation: deviceOrienation(orientation: orientation))
+            else { return }
         
         if isCalibrationSet {
-            updateOrientation()
+            updateOrientation(completion: completion)
+        } else {
+            completion?(false)
         }
     }
     
-    func updateOrientation() {
+    func updateOrientation(completion: ((Bool) -> Void)? = nil) {
         print("Setting orientation to: \(deviceOrientation.rawValue)")
         guard let isOrientationSet = calibratedGazeTracker?.setOrientation(to: deviceOrientation) else { return }
         
         if isOrientationSet {
+            uncalibratedGazeTracker?.predictionDelegate = nil
+            calibratedGazeTracker?.predictionDelegate = self
             self.gazeTracker = self.calibratedGazeTracker
             print("Setting gaze tracker to use calibrated model: \(self.gazeTracker!.isCalibrated)")
+            completion?(true)
         } else {
+            uncalibratedGazeTracker?.predictionDelegate = self
+            calibratedGazeTracker?.predictionDelegate = nil
             self.gazeTracker = self.uncalibratedGazeTracker
             print("Setting gaze tracker to use calibrated model: \(self.gazeTracker!.isCalibrated)")
+            completion?(false)
         }
     }
 }
