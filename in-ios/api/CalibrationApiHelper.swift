@@ -31,7 +31,6 @@ class CalibrationApiHelper: NSObject {
         var mutableCalibrationData = calibrationData
         let operation = UploadFileOperation(data: imageData, completionHandler: ({ (file) in
             guard let file = file else { return }
-            print("UploadFileOperation completionBlock: \(file.url)")
             mutableCalibrationData.file = file
             self.calibrationDataArray.append(mutableCalibrationData)
         }))
@@ -39,13 +38,11 @@ class CalibrationApiHelper: NSObject {
     }
     
     func preparePostProfileOperation() {
-        let operation = NewPostProfileOperation(apiHelper: self, completionHandler: {profileData in
-            print("PostProfileData success: \(profileData != nil)")
+        let operation = PostProfileOperation(apiHelper: self, completionHandler: {profileData in
             self.profileData = profileData
             self.getCalibrations()
         })
         uploadFileQueue.operations.forEach{ operation.addDependency($0) }
-        print("preparePostProfileOperation dependenciesCount: \(operation.dependencies.count)")
         operationQueue.addOperation(operation)
     }
     
@@ -59,8 +56,7 @@ class CalibrationApiHelper: NSObject {
             return
         }
         let calibrationRequest = CalibrationRequest(profile_data: ProfileDataId(id: profileDataId))
-        let operation = NewGetCalibrationOperation(calibrationRequest: calibrationRequest, handler: { (calibration) in
-            print("NewGetCalibrationOperation completionBlock")
+        let operation = GetCalibrationOperation(calibrationRequest: calibrationRequest, handler: { (calibration) in
             guard let calibration = calibration else {
                 print("Error: calibration is nil")
                 return
@@ -72,7 +68,6 @@ class CalibrationApiHelper: NSObject {
     
     private func loadCalibrationFiles(calibration: Calibration) {
         let operationX = LoadFileOperation(url: calibration.x_model_url) { (path, error) in
-            print("LoadFileOperation.operationX completionBlock")
             if let error = error {
                 print("ERROR loadCalibrationFiles: \(error.localizedDescription)")
                 return
@@ -83,7 +78,6 @@ class CalibrationApiHelper: NSObject {
         }
         
         let operationY = LoadFileOperation(url: calibration.y_model_url) { (path, error) in
-            print("LoadFileOperation.operationY completionBlock")
             if let error = error {
                 print("ERROR loadCalibrationFiles: \(error.localizedDescription)")
                 return

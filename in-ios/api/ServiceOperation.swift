@@ -105,154 +105,6 @@ class UploadFileOperation: ConcurrentOperation {
     }
 }
 
-class PostProfileOperation: ConcurrentOperation {
-    private var task: URLSessionUploadTask?
-    
-    private let profileData: ProfileData
-    private let requestHandler: ApiRequestHandler
-    
-    
-    init(profileData: ProfileData, handler: ApiRequestHandler) {
-        self.profileData = profileData
-        self.requestHandler = handler
-        super.init()
-    }
-    
-    override func main() {
-        
-        guard !isCancelled,
-            let url = URL(string: Constant.Url.HOST_API_BETA + Constant.Url.URL_EXTENSION_API + Constant.Url.URL_EXTENSION_PROFILE_DATAS)
-            else {
-                completeOperation()
-                return
-        }
-        let config = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = Constant.DefaultConfig.TIMEOUT_FOR_REQUEST
-        config.timeoutIntervalForResource = Constant.DefaultConfig.TIMEOUT_FOR_RESOURCE
-        let session = URLSession(configuration: config)
-        
-        let jsonEncoder = JSONEncoder()
-        let jsonData = try! jsonEncoder.encode(profileData)
-        
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "POST"
-        urlRequest.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        urlRequest.httpBody = jsonData
-        
-        let task = session.dataTask(with: urlRequest) { (data, response, error) in
-            if let error = error {
-                print("ERROR: PostProfileOperation error: \(error.localizedDescription)")
-                self.requestHandler.status.value = RequestStatus.failed.rawValue
-                self.completeOperation()
-                return
-            }
-            
-            // hanlde http response code
-            if let httpResponse = response as? HTTPURLResponse {
-                if  200 > httpResponse.statusCode || httpResponse.statusCode >= 300 {
-                    self.requestHandler.status.value = RequestStatus.failed.rawValue
-                }
-            }
-            guard let content = data else {
-                print("No data")
-                self.requestHandler.status.value = RequestStatus.failed.rawValue
-                self.completeOperation()
-                return
-            }
-            guard (try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) != nil else {
-                print("Not containing JSON")
-                self.requestHandler.status.value = RequestStatus.failed.rawValue
-                self.completeOperation()
-                return
-            }
-            do {
-                self.requestHandler.profileData = try JSONDecoder().decode(ProfileData.self, from: content)
-                self.requestHandler.status.value = RequestStatus.completedProfileData.rawValue
-                self.completeOperation()
-            } catch let jsonErr {
-                self.requestHandler.status.value = RequestStatus.failed.rawValue
-                print("Error serializing json",  jsonErr)
-                self.completeOperation()
-            }
-        }
-        task.resume()
-    }
-}
-
-class GetCalibrationOperation: ConcurrentOperation {
-    private var task: URLSessionUploadTask?
-    
-    private let calibrationRequest: CalibrationRequest
-    private let requestHandler: ApiRequestHandler
-    
-    
-    init(calibrationRequest: CalibrationRequest, handler: ApiRequestHandler) {
-        self.calibrationRequest = calibrationRequest
-        self.requestHandler = handler
-        super.init()
-    }
-    
-    override func main() {
-        
-        guard !isCancelled,
-            let url = URL(string: Constant.Url.HOST_API_BETA + Constant.Url.URL_EXTENSION_API + Constant.Url.URL_EXTENSION_CALIBRATIONS)
-            else {
-                completeOperation()
-                return
-        }
-        let config = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = Constant.DefaultConfig.TIMEOUT_FOR_REQUEST
-        config.timeoutIntervalForResource = Constant.DefaultConfig.TIMEOUT_FOR_RESOURCE
-        let session = URLSession(configuration: config)
-        
-        let jsonEncoder = JSONEncoder()
-        let jsonData = try! jsonEncoder.encode(calibrationRequest)
-        
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "POST"
-        urlRequest.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        urlRequest.httpBody = jsonData
-        
-        let task = session.dataTask(with: urlRequest) { (data, response, error) in
-            if let error = error {
-                print("ERROR: GetCalibrationOperation error: \(error.localizedDescription)")
-                self.requestHandler.status.value = RequestStatus.failed.rawValue
-                self.completeOperation()
-                return
-            }
-            
-            // hanlde http response code
-            if let httpResponse = response as? HTTPURLResponse {
-                if  200 > httpResponse.statusCode || httpResponse.statusCode >= 300 {
-                    self.requestHandler.status.value = RequestStatus.failed.rawValue
-                }
-            }
-            guard let content = data else {
-                print("No data")
-                self.requestHandler.status.value = RequestStatus.failed.rawValue
-                self.completeOperation()
-                return
-            }
-            guard (try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) != nil else {
-                print("Not containing JSON")
-                self.requestHandler.status.value = RequestStatus.failed.rawValue
-                self.completeOperation()
-                return
-            }
-            do {
-                self.requestHandler.calibration = try JSONDecoder().decode(Calibration.self, from: content)
-                self.requestHandler.status.value = RequestStatus.completedCalibration.rawValue
-                self.completeOperation()
-            } catch let jsonErr {
-                self.requestHandler.status.value = RequestStatus.failed.rawValue
-                print("Error serializing json",  jsonErr)
-                self.completeOperation()
-            }
-        }
-        task.resume()
-    }
-}
-
 class LoadFileOperation: ConcurrentOperation {
     private var task: URLSessionUploadTask?
     
@@ -312,7 +164,7 @@ class LoadFileOperation: ConcurrentOperation {
     }
 }
 
-class NewPostProfileOperation: ConcurrentOperation {
+class PostProfileOperation: ConcurrentOperation {
     typealias PostProfileOperationHandler = (ProfileData?) -> Void
     
     private let calibrationApiHelper: CalibrationApiHelper
@@ -331,7 +183,9 @@ class NewPostProfileOperation: ConcurrentOperation {
                 completeOperation()
                 return
         }
-        user.calibrationData = calibrationApiHelper.getCalibrationDataArray()
+        let calibrationDataArray = calibrationApiHelper.getCalibrationDataArray()
+        user.calibrationData = calibrationDataArray
+        
         //TODO: change FileNamingHelper method to static
         let deviceId = FileNamingHelper().getDeviiceUUID()
         let profileData = ProfileData(id: nil, version: 1, device_id: deviceId, data: [user])
@@ -375,7 +229,7 @@ class NewPostProfileOperation: ConcurrentOperation {
     }
 }
 
-class NewGetCalibrationOperation: ConcurrentOperation {
+class GetCalibrationOperation: ConcurrentOperation {
     typealias GetCalibrationHandler = ((Calibration?) -> Void)
     private var task: URLSessionUploadTask?
     
