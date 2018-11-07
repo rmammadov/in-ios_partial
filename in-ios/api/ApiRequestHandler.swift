@@ -271,7 +271,7 @@ class ApiRequestHandler {
                 return
             }
             
-//            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue))
+            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue))
             
             do {
                 self.file = try JSONDecoder().decode(File.self, from: content)
@@ -320,7 +320,7 @@ class ApiRequestHandler {
                 print("No data")
                 return
             }
-//            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue))
+            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue))
             
             // serialise the data / NSData object into Dictionary [String : Any]
             guard ((try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? Any) != nil else {
@@ -375,7 +375,7 @@ class ApiRequestHandler {
                 print("No data")
                 return
             }
-//            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue))
+            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue))
             
             // serialise the data / NSData object into Dictionary [String : Any]
             guard ((try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? Any) != nil else {
@@ -385,7 +385,7 @@ class ApiRequestHandler {
             
             do {
                 self.calibration = try JSONDecoder().decode(Calibration.self, from: content)
-//                print(self.calibration!)
+                print("Calibration: \(self.calibration!)")
                 self.status.value = RequestStatus.completedCalibration.rawValue
             } catch let jsonErr {
                 print("Error serializing json",  jsonErr)
@@ -416,7 +416,7 @@ class ApiRequestHandler {
             let session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: nil)
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
-            let task = session.dataTask (with: request, completionHandler:
+            let task = session.dataTask(with: request, completionHandler:
             {
                 data, response, error in
                 if error == nil
