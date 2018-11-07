@@ -244,6 +244,52 @@ class ApiRequestHandler {
         print("Error: this method can not be executed")
 //        let uploadOperation = UploadFileOperation(data: data, handler: self)
 //        NetworkQueue.shared.addOperation(uploadOperation)
+      
+        guard let url = URL(string: Constant.Url.HOST_API_BETA + Constant.Url.URL_EXTENSION_API + Constant.Url.URL_EXTENSION_FILES) else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("Keep-Alive", forHTTPHeaderField: "Connection")
+        
+        let task = self.session.uploadTask(with: request, from: data) { data, response, error in
+            // ensure there is no error for this HTTP response
+            guard error == nil else {
+                print ("error: \(error!)")
+                self.status.value = RequestStatus.failed.rawValue
+                return
+            }
+            
+            // hanlde http response code
+            if let httpResponse = response as? HTTPURLResponse {
+                if  200 > httpResponse.statusCode || httpResponse.statusCode >= 300 {
+                    self.status.value = RequestStatus.failed.rawValue
+                }
+            }
+            
+            // ensure there is data returned from this HTTP response
+            guard let content = data else {
+                print("No data")
+                return
+            }
+           
+            // serialise the data / NSData object into Dictionary [String : Any]
+            guard ((try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? Any) != nil else {
+                print("Not containing JSON")
+                return
+            }
+            
+            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue))
+            
+            do {
+                self.file = try JSONDecoder().decode(File.self, from: content)
+//                print(self.file!)
+                self.status.value = RequestStatus.completedFile.rawValue
+            } catch let jsonErr {
+                print("Error serializing json",  jsonErr)
+            }
+        }
+        
+        task.resume()
     }
     
     func getFile() -> File? {
@@ -253,6 +299,55 @@ class ApiRequestHandler {
     func postProfileData(profileData: ProfileData) {
         let postProfileDataOperation = PostProfileOperation(profileData: profileData, handler: self)
         NetworkQueue.shared.addOperation(postProfileDataOperation)
+      
+        guard let url = URL(string: Constant.Url.HOST_API_BETA + Constant.Url.URL_EXTENSION_API + Constant.Url.URL_EXTENSION_PROFILE_DATAS) else { return }
+        
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try! jsonEncoder.encode(profileData)
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        
+        let task = self.session.dataTask(with: request) { data, response, error in
+            // ensure there is no error for this HTTP response
+            guard error == nil else {
+                print ("error: \(error!)")
+                self.status.value = RequestStatus.failed.rawValue
+                return
+            }
+            
+            // hanlde http response code
+            if let httpResponse = response as? HTTPURLResponse {
+                if  200 > httpResponse.statusCode || httpResponse.statusCode >= 300 {
+                    self.status.value = RequestStatus.failed.rawValue
+                }
+            }
+            
+            // ensure there is data returned from this HTTP response
+            guard let content = data else {
+                print("No data")
+                return
+            }
+            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue))
+            
+            // serialise the data / NSData object into Dictionary [String : Any]
+            guard ((try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? Any) != nil else {
+                print("Not containing JSON")
+                return
+            }
+            
+            do {
+                self.profileData = try JSONDecoder().decode(ProfileData.self, from: content)
+//                print(self.profileData!)
+                self.status.value = RequestStatus.completedProfileData.rawValue
+            } catch let jsonErr {
+                print("Error serializing json",  jsonErr)
+            }
+        }
+        
+        task.resume()
     }
     
     func getProfileData() -> ProfileData? {
@@ -262,6 +357,55 @@ class ApiRequestHandler {
     func getCalibrations(calibrationRequest: CalibrationRequest) {
         let operation = GetCalibrationOperation(calibrationRequest: calibrationRequest, handler: self)
         NetworkQueue.shared.addOperation(operation)
+      
+        guard let url = URL(string: Constant.Url.HOST_API_BETA + Constant.Url.URL_EXTENSION_API + Constant.Url.URL_EXTENSION_CALIBRATIONS) else { return }
+        
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try! jsonEncoder.encode(calibrationRequest)
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        
+        let task = self.session.dataTask(with: request) { data, response, error in
+            // ensure there is no error for this HTTP response
+            guard error == nil else {
+                print ("error: \(error!)")
+                self.status.value = RequestStatus.failed.rawValue
+                return
+            }
+            
+            // hanlde http response code
+            if let httpResponse = response as? HTTPURLResponse {
+                if  200 > httpResponse.statusCode || httpResponse.statusCode >= 300 {
+                    self.status.value = RequestStatus.failed.rawValue
+                }
+            }
+            
+            // ensure there is data returned from this HTTP response
+            guard let content = data else {
+                print("No data")
+                return
+            }
+            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue))
+            
+            // serialise the data / NSData object into Dictionary [String : Any]
+            guard ((try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? Any) != nil else {
+                print("Not containing JSON")
+                return
+            }
+            
+            do {
+                self.calibration = try JSONDecoder().decode(Calibration.self, from: content)
+                print("Calibration: \(self.calibration!)")
+                self.status.value = RequestStatus.completedCalibration.rawValue
+            } catch let jsonErr {
+                print("Error serializing json",  jsonErr)
+            }
+        }
+        
+        task.resume()
     }
     
     func getCalibration() -> Calibration? {
@@ -274,31 +418,78 @@ class ApiRequestHandler {
         let documentsUrl =  fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         
         let destinationUrl = documentsUrl.appendingPathComponent(url.lastPathComponent)
-
-        let session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: nil)
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        let task = session.dataTask (with: request, completionHandler: { data, response, error in
-            if let error = error {
-                print("ERROR: loadFileAsync: \(error.localizedDescription)")
-                completion(destinationUrl.path, error)
-                return
-            }
-            guard
-                let response = response as? HTTPURLResponse,
-                let data = data,
-                response.statusCode == 200
-                else {
+        
+        if FileManager().fileExists(atPath: destinationUrl.path)
+        {
+            completion(destinationUrl.path, nil)
+        }
+        else
+        {
+            let session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: nil)
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            let task = session.dataTask (with: request, completionHandler:
+            {
+                data, response, error in
+                if error == nil
+                {
+                    if let response = response as? HTTPURLResponse
+                    {
+                        if response.statusCode == 200
+                        {
+                            if let data = data
+                            {
+                                if let _ = try? data.write(to: destinationUrl, options: Data.WritingOptions.atomic)
+                                {
+                                    completion(destinationUrl.path, error)
+                                }
+                                else
+                                {
+                                    completion(destinationUrl.path, error)
+                                }
+                            }
+                            else
+                            {
+                                completion(destinationUrl.path, error)
+                            }
+                        }
+                    }
+                }
+                else
+                {
                     completion(destinationUrl.path, error)
-                    return
-            }
-            do {
-                try data.write(to: destinationUrl, options: Data.WritingOptions.atomic)
-                completion(destinationUrl.path, error)
-            } catch let error {
-                completion(destinationUrl.path, error)
-            }
-        })
-        task.resume()
+                }
+            })
+            
+            task.resume()
+        }
+        
+        // Comented by Rahman Mammadov
+        
+//        let session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: nil)
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "GET"
+//        let task = session.dataTask (with: request, completionHandler: { data, response, error in
+//            if let error = error {
+//                print("ERROR: loadFileAsync: \(error.localizedDescription)")
+//                completion(destinationUrl.path, error)
+//                return
+//            }
+//            guard
+//                let response = response as? HTTPURLResponse,
+//                let data = data,
+//                response.statusCode == 200
+//                else {
+//                    completion(destinationUrl.path, error)
+//                    return
+//            }
+//            do {
+//                try data.write(to: destinationUrl, options: Data.WritingOptions.atomic)
+//                completion(destinationUrl.path, error)
+//            } catch let error {
+//                completion(destinationUrl.path, error)
+//            }
+//        })
+//        task.resume()
     }
 }

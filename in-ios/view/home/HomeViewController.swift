@@ -152,11 +152,11 @@ extension HomeViewController {
 //        cameraManager.setup(cameraView: viewOpacity, showPreview: false, showLabel: false, showPointer: true)
 
         cameraManager.askUserForCameraPermission { (status) in
-            guard status else { return }
-            cameraManager.setCamera()
-            cameraManager.startSession()
-            cameraManager.shouldRespondToOrientationChanges = true
-            cameraManager.updateOrientation()
+        guard status else { return }
+        cameraManager.setCamera()
+        cameraManager.startSession()
+        cameraManager.shouldRespondToOrientationChanges = true
+        cameraManager.updateOrientation()
         }
     }
 }
