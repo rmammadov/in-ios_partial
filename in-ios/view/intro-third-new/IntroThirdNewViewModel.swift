@@ -43,10 +43,6 @@ class IntroThirdNewViewModel: BaseViewModel {
         return model.getNextTag()
     }
     
-    func setCalibrationData(image: UIImage, data: CalibrationData) {
-        model.setCalibrationData(image: image, data: data)
-    }
-    
     func setCalibrationStep(step: Int) {
         model.setCalibrationStep(step: step)
     }
@@ -54,11 +50,7 @@ class IntroThirdNewViewModel: BaseViewModel {
     func getCalibrationStep() -> Int {
         return model.getCalibrationStep()
     }
-    
-    func postProfileData() {
-        model.postProfileData()
-    }
-    
+
     func getXModelUrl() -> String? {
         return model.getXModelUrl()
     }

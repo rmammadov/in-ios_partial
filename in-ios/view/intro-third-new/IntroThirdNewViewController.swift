@@ -190,7 +190,6 @@ extension IntroThirdNewViewController {
         viewModel.status.asObservable().subscribe(onNext: {
             event in
             if self.viewModel.status.value == CalibrationStatus.loadingCalibrationCompleted.rawValue {
-                print("Status observer: \(self.apiHelper.getCalibrationOrientation() ?? "nil" )")
                 guard
                     let xModelUrl = self.viewModel.getXModelUrl(),
                     let yModelUrl = self.viewModel.getYModelUrl(),
