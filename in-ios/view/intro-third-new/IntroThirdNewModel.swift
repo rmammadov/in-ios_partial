@@ -35,9 +35,7 @@ class IntroThirdNewModel: BaseModel {
     func setSubscribers() {
         DataManager.status.asObservable().subscribe(onNext: {
             event in
-            print("IntroThirdNewModel DataManager.status \(DataManager.status.value) == \(DataStatus.loadingModelCompleted.rawValue)")
             if DataManager.status.value == DataStatus.loadingModelCompleted.rawValue {
-                print("IntroThirdNewModel status.value = \(CalibrationStatus.loadingCalibrationCompleted.rawValue)")
                 self.status.value = CalibrationStatus.loadingCalibrationCompleted.rawValue
             }
         }).disposed(by: disposeBag)
@@ -97,31 +95,11 @@ class IntroThirdNewModel: BaseModel {
         return calibrationStep
     }
     
-    func setCalibrationData(image: UIImage, data: CalibrationData) {
-        if ReachabilityManager.shared.isNetworkAvailable {
-            DataManager.setCalibrationDataFor(image: image, data: data)
-        } else {
-            //TODO: Handle setCalibrationData when network is unavailable
-            print("TODO: Handle setCalibrationData when network is unavailable")
-        }
-    }
-    
-    func postProfileData() {
-        if ReachabilityManager.shared.isNetworkAvailable {
-            DataManager.postProfileData()
-        } else {
-            //TODO: Handle postProfileData when network is unavailable
-            print("TODO: Handle postProfileData when network is unavailable")
-        }
-    }
-    
     func getXModelUrl() -> String? {
-        print("getXModelUrl: \(DataManager.getXModelUrl())")
         return DataManager.getXModelUrl()
     }
     
     func getYModelUrl() -> String? {
-        print("getYModelUrl: \(DataManager.getYModelUrl())")
         return DataManager.getYModelUrl()
     }
     

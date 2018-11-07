@@ -24,7 +24,6 @@
 		E93ACD4C216CB6F500F29F54 /* UIStackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93ACD4B216CB6F500F29F54 /* UIStackViewExtension.swift */; };
 		E93ACD4F216CD16500F29F54 /* BodyPartRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93ACD4E216CD16500F29F54 /* BodyPartRowView.swift */; };
 		E93ACD51216CD16F00F29F54 /* BodyPartRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93ACD50216CD16F00F29F54 /* BodyPartRowView.xib */; };
-		E94413312191D4F0002294F7 /* NetworkQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94413302191D4F0002294F7 /* NetworkQueue.swift */; };
 		E94413332191D76C002294F7 /* ServiceOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94413322191D76C002294F7 /* ServiceOperation.swift */; };
 		E94ABF722174B49D0063B8D6 /* AnimationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94ABF712174B49D0063B8D6 /* AnimationProtocol.swift */; };
 		E95021A821870E200026FB99 /* ScreenTypeHViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95021A621870E200026FB99 /* ScreenTypeHViewController.swift */; };
@@ -207,7 +206,6 @@
 		E93ACD4B216CB6F500F29F54 /* UIStackViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewExtension.swift; sourceTree = "<group>"; };
 		E93ACD4E216CD16500F29F54 /* BodyPartRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyPartRowView.swift; sourceTree = "<group>"; };
 		E93ACD50216CD16F00F29F54 /* BodyPartRowView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BodyPartRowView.xib; sourceTree = "<group>"; };
-		E94413302191D4F0002294F7 /* NetworkQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkQueue.swift; sourceTree = "<group>"; };
 		E94413322191D76C002294F7 /* ServiceOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceOperation.swift; sourceTree = "<group>"; };
 		E94ABF712174B49D0063B8D6 /* AnimationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationProtocol.swift; sourceTree = "<group>"; };
 		E95021A621870E200026FB99 /* ScreenTypeHViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTypeHViewController.swift; sourceTree = "<group>"; };
@@ -625,7 +623,6 @@
 			isa = PBXGroup;
 			children = (
 				F334ADC4210B3BC00056824A /* ApiRequestHandler.swift */,
-				E94413302191D4F0002294F7 /* NetworkQueue.swift */,
 				E94413322191D76C002294F7 /* ServiceOperation.swift */,
 				E91D196A2192DAD600408230 /* CalibrationApiHelper.swift */,
 			);
@@ -1266,7 +1263,6 @@
 				E9150EFA216606340023E138 /* ScreenTypeEViewModel.swift in Sources */,
 				E9876E1521679BF50001C626 /* GradientView.swift in Sources */,
 				F3D6D20E214CF87800A6231E /* IntroFifthModel.swift in Sources */,
-				E94413312191D4F0002294F7 /* NetworkQueue.swift in Sources */,
 				F32DCEE0214A654400B3D0F8 /* IntroThirdModel.swift in Sources */,
 				E91D196B2192DAD600408230 /* CalibrationApiHelper.swift in Sources */,
 				E9876E092167503E0001C626 /* ScreenTypeFViewModel.swift in Sources */,

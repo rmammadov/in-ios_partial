@@ -54,34 +54,6 @@ class DataManager {
                 } else if self.requestHandler.status.value == RequestStatus.completedLegalDocuments.rawValue {
                     self.legalDocuments = LegalDocuments(legalDocuments: self.requestHandler.getLegalDocuments())
                     self.status.value = DataStatus.dataLoadingCompleted.rawValue
-                } else if self.requestHandler.status.value == RequestStatus.completedFile.rawValue {
-                    guard let file = self.requestHandler.getFile() else { return }
-                    guard var data = self.data else { return }
-                    data.file = file
-                    calibrationData.append(data)
-                } else if self.requestHandler.status.value == RequestStatus.completedProfileData.rawValue {
-                    guard let profileData = self.requestHandler.getProfileData() else { return }
-                    self.profileData = profileData
-                    self.requestHandler.getCalibrations(calibrationRequest: CalibrationRequest(profile_data: ProfileDataId(id: (self.profileData?.id)!)))
-                } else if self.requestHandler.status.value == RequestStatus.completedCalibration.rawValue {
-                    guard let calibration = self.requestHandler.getCalibration() else { return }
-                    self.calibration = calibration
-                    self.status.value = DataStatus.loadingCalibrationDataCompleted.rawValue
-//                    self.requestHandler.downloadFile(url: (self.calibration?.x_model_url)!)
-                    guard let url_x = self.calibration?.x_model_url else { return }
-                    guard let url_y = self.calibration?.y_model_url else { return }
-                    self.requestHandler.loadFileAsync(url: url_x, completion: {(path: String?, error: Error?) in
-                        print("x_downloaded to: \(String(describing: path))")
-                        guard let path = path else { return }
-                        xModelUrl = path
-                        self.status.value = DataStatus.loadingModelCompleted.rawValue
-                    })
-                    self.requestHandler.loadFileAsync(url: url_y, completion: {(path: String?, error: Error?) in
-                        print("y_downloaded to: \(String(describing: path))")
-                        guard let path = path else { return }
-                        yModelUrl = path
-                        self.status.value = DataStatus.loadingModelCompleted.rawValue
-                    })
                 }
             } else if self.requestHandler.status.value == RequestStatus.failed.rawValue {
                 self.status.value = DataStatus.dataLoadingFailed.rawValue
@@ -108,25 +80,6 @@ class DataManager {
     
     static func getAcceptationStatus(acceptation: Acceptation) {
         self.requestHandler.postAcceptation(acceptation: acceptation)
-    }
-    
-    static func setCalibrationDataFor(image: UIImage, data: CalibrationData) {
-        self.data = data
-        guard let imageData: Data = image.jpegData(compressionQuality: 1.0) else { return }
-        self.requestHandler.uploadFile(data: imageData)
-    }
-    
-    static func postProfileData() {
-        guard let profileData = getProfileData() else { return }
-        self.requestHandler.postProfileData(profileData: profileData)
-    }
-    
-    static func getProfileData() -> ProfileData? {
-        guard var user = user else { return nil }
-        user.calibrationData = calibrationData
-        let deviceId = fileNaming.getDeviiceUUID()
-        profileData = ProfileData(id: nil, version: 1, device_id: deviceId, data: [user])
-        return profileData
     }
     
     static func getInputScreens() -> InputScreens {
