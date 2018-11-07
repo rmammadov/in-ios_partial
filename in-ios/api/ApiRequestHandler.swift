@@ -37,15 +37,18 @@ class ApiRequestHandler {
     fileprivate var inputScreens: Array<InputScreen> = []
     fileprivate var legalDocuments: Array<LegalDocument> = []
     fileprivate var acceptation: Acceptation?
-    fileprivate var file: File?
-    fileprivate var profileData: ProfileData?
-    fileprivate var calibration: Calibration?
+    var file: File?
+    var profileData: ProfileData?
+    var calibration: Calibration?
     fileprivate var model: MLModel?
+    
+    let networkQueue = NetworkQueue.shared
     
     init() {
         config = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = Constant.DefaultConfig.TIMEOUT_FOR_REQUEST
         config.timeoutIntervalForResource = Constant.DefaultConfig.TIMEOUT_FOR_RESOURCE
+        
         session = URLSession(configuration: config)
     }
     
@@ -238,6 +241,10 @@ class ApiRequestHandler {
     }
     
     func uploadFile(data: Data) {
+        print("Error: this method can not be executed")
+//        let uploadOperation = UploadFileOperation(data: data, handler: self)
+//        NetworkQueue.shared.addOperation(uploadOperation)
+      
         guard let url = URL(string: Constant.Url.HOST_API_BETA + Constant.Url.URL_EXTENSION_API + Constant.Url.URL_EXTENSION_FILES) else { return }
         
         var request = URLRequest(url: url)
@@ -290,6 +297,9 @@ class ApiRequestHandler {
     }
     
     func postProfileData(profileData: ProfileData) {
+        let postProfileDataOperation = PostProfileOperation(profileData: profileData, handler: self)
+        NetworkQueue.shared.addOperation(postProfileDataOperation)
+      
         guard let url = URL(string: Constant.Url.HOST_API_BETA + Constant.Url.URL_EXTENSION_API + Constant.Url.URL_EXTENSION_PROFILE_DATAS) else { return }
         
         let jsonEncoder = JSONEncoder()
@@ -345,6 +355,9 @@ class ApiRequestHandler {
     }
     
     func getCalibrations(calibrationRequest: CalibrationRequest) {
+        let operation = GetCalibrationOperation(calibrationRequest: calibrationRequest, handler: self)
+        NetworkQueue.shared.addOperation(operation)
+      
         guard let url = URL(string: Constant.Url.HOST_API_BETA + Constant.Url.URL_EXTENSION_API + Constant.Url.URL_EXTENSION_CALIBRATIONS) else { return }
         
         let jsonEncoder = JSONEncoder()

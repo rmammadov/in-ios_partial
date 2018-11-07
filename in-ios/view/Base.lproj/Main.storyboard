@@ -669,7 +669,7 @@
         <!--Intro Third New View Controller-->
         <scene sceneID="8tf-C6-Pc3">
             <objects>
-                <viewController id="YZc-Cu-yc7" customClass="IntroThirdNewViewController" customModule="in_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="IntroThirdNewViewController" id="YZc-Cu-yc7" customClass="IntroThirdNewViewController" customModule="in_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Idg-it-6es">
                         <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

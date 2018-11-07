@@ -205,11 +205,16 @@ class GazeTrackerCalibrated: GazeTracker {
         
         if let calibFeats = pred.gazeXY {
             do {
-                let predX = try self.calibModelX?.prediction(from: CalibrationInput(input: Double(truncating: calibFeats[0])))
-                let predY = try self.calibModelY?.prediction(from: CalibrationInput(input: Double(truncating: calibFeats[1])))
+                guard let predX = try self.calibModelX?.prediction(from: CalibrationInput(input: Double(truncating: calibFeats[0]))),
+                    let predY = try self.calibModelY?.prediction(from: CalibrationInput(input: Double(truncating: calibFeats[1])))
+                    else {
+                        self.gazeEstimation = nil
+                        self.calibFeatures = nil
+                        return
+                }
                 
-                self.gazeEstimation = [predX!.featureValue(for: "gazeXY")!.doubleValue as NSNumber,
-                                       predY!.featureValue(for: "gazeXY")!.doubleValue as NSNumber]
+                self.gazeEstimation = [predX.featureValue(for: "gazeXY")!.doubleValue as NSNumber,
+                                       predY.featureValue(for: "gazeXY")!.doubleValue as NSNumber]
                 self.elapsedTotalTime = CFAbsoluteTimeGetCurrent() - self.startTotalTime
                 print("\nTotal calibrated algorithm processing time: \(self.elapsedTotalTime) s.")
                 print("General model predictions: \(calibFeats[0]), \(calibFeats[1])")

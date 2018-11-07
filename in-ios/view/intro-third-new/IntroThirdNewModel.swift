@@ -35,7 +35,9 @@ class IntroThirdNewModel: BaseModel {
     func setSubscribers() {
         DataManager.status.asObservable().subscribe(onNext: {
             event in
+            print("IntroThirdNewModel DataManager.status \(DataManager.status.value) == \(DataStatus.loadingModelCompleted.rawValue)")
             if DataManager.status.value == DataStatus.loadingModelCompleted.rawValue {
+                print("IntroThirdNewModel status.value = \(CalibrationStatus.loadingCalibrationCompleted.rawValue)")
                 self.status.value = CalibrationStatus.loadingCalibrationCompleted.rawValue
             }
         }).disposed(by: disposeBag)
@@ -114,10 +116,12 @@ class IntroThirdNewModel: BaseModel {
     }
     
     func getXModelUrl() -> String? {
+        print("getXModelUrl: \(DataManager.getXModelUrl())")
         return DataManager.getXModelUrl()
     }
     
     func getYModelUrl() -> String? {
+        print("getYModelUrl: \(DataManager.getYModelUrl())")
         return DataManager.getYModelUrl()
     }
     
