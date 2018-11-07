@@ -415,7 +415,7 @@ class ApiRequestHandler {
             let session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: nil)
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
-            let task = session.dataTask(with: request, completionHandler:
+            let task = session.dataTask (with: request, completionHandler:
             {
                 data, response, error in
                 if error == nil
@@ -444,9 +444,14 @@ class ApiRequestHandler {
                 }
                 else
                 {
-
-// Commented by Rahman Mammadov since this code does not check file existance locally
-                    
+                    completion(destinationUrl.path, error)
+                }
+            })
+            task.resume()
+        }
+        
+        // Comented by Rahman Mammadov
+        
 //        let session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: nil)
 //        var request = URLRequest(url: url)
 //        request.httpMethod = "GET"
@@ -461,17 +466,16 @@ class ApiRequestHandler {
 //                let data = data,
 //                response.statusCode == 200
 //                else {
-//
-                    completion(destinationUrl.path, error)
-                    return
-            }
-            do {
-                try data.write(to: destinationUrl, options: Data.WritingOptions.atomic)
-                completion(destinationUrl.path, error)
-            } catch let error {
-                completion(destinationUrl.path, error)
-            }
-        })
-        task.resume()
+//                    completion(destinationUrl.path, error)
+//                    return
+//            }
+//            do {
+//                try data.write(to: destinationUrl, options: Data.WritingOptions.atomic)
+//                completion(destinationUrl.path, error)
+//            } catch let error {
+//                completion(destinationUrl.path, error)
+//            }
+//        })
+//        task.resume()
     }
 }
