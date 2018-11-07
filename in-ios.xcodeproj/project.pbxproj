@@ -16,6 +16,7 @@
 		E901923B217F580A00212B29 /* ScreenTypeGCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9019239217F580A00212B29 /* ScreenTypeGCollectionViewCell.xib */; };
 		E9150EF8216605160023E138 /* ScreenTypeEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9150EF7216605160023E138 /* ScreenTypeEViewController.swift */; };
 		E9150EFA216606340023E138 /* ScreenTypeEViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9150EF9216606340023E138 /* ScreenTypeEViewModel.swift */; };
+		E91D196B2192DAD600408230 /* CalibrationApiHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91D196A2192DAD600408230 /* CalibrationApiHelper.swift */; };
 		E93ACD43216B8CD700F29F54 /* ScreenTypeDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93ACD42216B8CD700F29F54 /* ScreenTypeDViewController.swift */; };
 		E93ACD46216B956700F29F54 /* BodyPartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93ACD45216B956700F29F54 /* BodyPartViewController.swift */; };
 		E93ACD48216B96E000F29F54 /* ScreenTypeDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93ACD47216B96E000F29F54 /* ScreenTypeDViewModel.swift */; };
@@ -23,6 +24,8 @@
 		E93ACD4C216CB6F500F29F54 /* UIStackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93ACD4B216CB6F500F29F54 /* UIStackViewExtension.swift */; };
 		E93ACD4F216CD16500F29F54 /* BodyPartRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93ACD4E216CD16500F29F54 /* BodyPartRowView.swift */; };
 		E93ACD51216CD16F00F29F54 /* BodyPartRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93ACD50216CD16F00F29F54 /* BodyPartRowView.xib */; };
+		E94413312191D4F0002294F7 /* NetworkQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94413302191D4F0002294F7 /* NetworkQueue.swift */; };
+		E94413332191D76C002294F7 /* ServiceOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94413322191D76C002294F7 /* ServiceOperation.swift */; };
 		E94ABF722174B49D0063B8D6 /* AnimationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94ABF712174B49D0063B8D6 /* AnimationProtocol.swift */; };
 		E95021A821870E200026FB99 /* ScreenTypeHViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95021A621870E200026FB99 /* ScreenTypeHViewController.swift */; };
 		E95021A921870E200026FB99 /* ScreenTypeHViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95021A721870E200026FB99 /* ScreenTypeHViewModel.swift */; };
@@ -196,6 +199,7 @@
 		E9019239217F580A00212B29 /* ScreenTypeGCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScreenTypeGCollectionViewCell.xib; sourceTree = "<group>"; };
 		E9150EF7216605160023E138 /* ScreenTypeEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeEViewController.swift; sourceTree = "<group>"; };
 		E9150EF9216606340023E138 /* ScreenTypeEViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeEViewModel.swift; sourceTree = "<group>"; };
+		E91D196A2192DAD600408230 /* CalibrationApiHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationApiHelper.swift; sourceTree = "<group>"; };
 		E93ACD42216B8CD700F29F54 /* ScreenTypeDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeDViewController.swift; sourceTree = "<group>"; };
 		E93ACD45216B956700F29F54 /* BodyPartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyPartViewController.swift; sourceTree = "<group>"; };
 		E93ACD47216B96E000F29F54 /* ScreenTypeDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeDViewModel.swift; sourceTree = "<group>"; };
@@ -203,6 +207,8 @@
 		E93ACD4B216CB6F500F29F54 /* UIStackViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewExtension.swift; sourceTree = "<group>"; };
 		E93ACD4E216CD16500F29F54 /* BodyPartRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyPartRowView.swift; sourceTree = "<group>"; };
 		E93ACD50216CD16F00F29F54 /* BodyPartRowView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BodyPartRowView.xib; sourceTree = "<group>"; };
+		E94413302191D4F0002294F7 /* NetworkQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkQueue.swift; sourceTree = "<group>"; };
+		E94413322191D76C002294F7 /* ServiceOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceOperation.swift; sourceTree = "<group>"; };
 		E94ABF712174B49D0063B8D6 /* AnimationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationProtocol.swift; sourceTree = "<group>"; };
 		E95021A621870E200026FB99 /* ScreenTypeHViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTypeHViewController.swift; sourceTree = "<group>"; };
 		E95021A721870E200026FB99 /* ScreenTypeHViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenTypeHViewModel.swift; sourceTree = "<group>"; };
@@ -619,6 +625,9 @@
 			isa = PBXGroup;
 			children = (
 				F334ADC4210B3BC00056824A /* ApiRequestHandler.swift */,
+				E94413302191D4F0002294F7 /* NetworkQueue.swift */,
+				E94413322191D76C002294F7 /* ServiceOperation.swift */,
+				E91D196A2192DAD600408230 /* CalibrationApiHelper.swift */,
 			);
 			path = api;
 			sourceTree = "<group>";
@@ -1198,6 +1207,7 @@
 				F34B909B20D46FA100800FCD /* DisplayHelper.swift in Sources */,
 				F334ADBE2105DA4A0056824A /* SpeechHelper.swift in Sources */,
 				E9876E0F216765070001C626 /* ColoredButtonCollectionViewCell.swift in Sources */,
+				E94413332191D76C002294F7 /* ServiceOperation.swift in Sources */,
 				F39059BF210F254C00CAA292 /* AnimationUtil.swift in Sources */,
 				F334ADC5210B3BC00056824A /* ApiRequestHandler.swift in Sources */,
 				F336587F20D318C300B18CEC /* BaseViewController.swift in Sources */,
@@ -1256,7 +1266,9 @@
 				E9150EFA216606340023E138 /* ScreenTypeEViewModel.swift in Sources */,
 				E9876E1521679BF50001C626 /* GradientView.swift in Sources */,
 				F3D6D20E214CF87800A6231E /* IntroFifthModel.swift in Sources */,
+				E94413312191D4F0002294F7 /* NetworkQueue.swift in Sources */,
 				F32DCEE0214A654400B3D0F8 /* IntroThirdModel.swift in Sources */,
+				E91D196B2192DAD600408230 /* CalibrationApiHelper.swift in Sources */,
 				E9876E092167503E0001C626 /* ScreenTypeFViewModel.swift in Sources */,
 				F3E19CB9211D835500ADE838 /* SubMenuViewController.swift in Sources */,
 				E9611E972164AC950010B33C /* ScreenTypeCViewController.swift in Sources */,

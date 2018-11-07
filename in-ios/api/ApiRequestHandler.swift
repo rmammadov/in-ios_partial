@@ -37,15 +37,18 @@ class ApiRequestHandler {
     fileprivate var inputScreens: Array<InputScreen> = []
     fileprivate var legalDocuments: Array<LegalDocument> = []
     fileprivate var acceptation: Acceptation?
-    fileprivate var file: File?
-    fileprivate var profileData: ProfileData?
-    fileprivate var calibration: Calibration?
+    var file: File?
+    var profileData: ProfileData?
+    var calibration: Calibration?
     fileprivate var model: MLModel?
+    
+    let networkQueue = NetworkQueue.shared
     
     init() {
         config = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = Constant.DefaultConfig.TIMEOUT_FOR_REQUEST
         config.timeoutIntervalForResource = Constant.DefaultConfig.TIMEOUT_FOR_RESOURCE
+        
         session = URLSession(configuration: config)
     }
     
@@ -238,51 +241,9 @@ class ApiRequestHandler {
     }
     
     func uploadFile(data: Data) {
-        guard let url = URL(string: Constant.Url.HOST_API_BETA + Constant.Url.URL_EXTENSION_API + Constant.Url.URL_EXTENSION_FILES) else { return }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("Keep-Alive", forHTTPHeaderField: "Connection")
-        
-        let task = self.session.uploadTask(with: request, from: data) { data, response, error in
-            // ensure there is no error for this HTTP response
-            guard error == nil else {
-                print ("error: \(error!)")
-                self.status.value = RequestStatus.failed.rawValue
-                return
-            }
-            
-            // hanlde http response code
-            if let httpResponse = response as? HTTPURLResponse {
-                if  200 > httpResponse.statusCode || httpResponse.statusCode >= 300 {
-                    self.status.value = RequestStatus.failed.rawValue
-                }
-            }
-            
-            // ensure there is data returned from this HTTP response
-            guard let content = data else {
-                print("No data")
-                return
-            }
-           
-            // serialise the data / NSData object into Dictionary [String : Any]
-            guard ((try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? Any) != nil else {
-                print("Not containing JSON")
-                return
-            }
-            
-//            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue))
-            
-            do {
-                self.file = try JSONDecoder().decode(File.self, from: content)
-//                print(self.file!)
-                self.status.value = RequestStatus.completedFile.rawValue
-            } catch let jsonErr {
-                print("Error serializing json",  jsonErr)
-            }
-        }
-        
-        task.resume()
+        print("Error: this method can not be executed")
+//        let uploadOperation = UploadFileOperation(data: data, handler: self)
+//        NetworkQueue.shared.addOperation(uploadOperation)
     }
     
     func getFile() -> File? {
@@ -290,54 +251,8 @@ class ApiRequestHandler {
     }
     
     func postProfileData(profileData: ProfileData) {
-        guard let url = URL(string: Constant.Url.HOST_API_BETA + Constant.Url.URL_EXTENSION_API + Constant.Url.URL_EXTENSION_PROFILE_DATAS) else { return }
-        
-        let jsonEncoder = JSONEncoder()
-        let jsonData = try! jsonEncoder.encode(profileData)
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.httpBody = jsonData
-        
-        let task = self.session.dataTask(with: request) { data, response, error in
-            // ensure there is no error for this HTTP response
-            guard error == nil else {
-                print ("error: \(error!)")
-                self.status.value = RequestStatus.failed.rawValue
-                return
-            }
-            
-            // hanlde http response code
-            if let httpResponse = response as? HTTPURLResponse {
-                if  200 > httpResponse.statusCode || httpResponse.statusCode >= 300 {
-                    self.status.value = RequestStatus.failed.rawValue
-                }
-            }
-            
-            // ensure there is data returned from this HTTP response
-            guard let content = data else {
-                print("No data")
-                return
-            }
-//            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue))
-            
-            // serialise the data / NSData object into Dictionary [String : Any]
-            guard ((try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? Any) != nil else {
-                print("Not containing JSON")
-                return
-            }
-            
-            do {
-                self.profileData = try JSONDecoder().decode(ProfileData.self, from: content)
-//                print(self.profileData!)
-                self.status.value = RequestStatus.completedProfileData.rawValue
-            } catch let jsonErr {
-                print("Error serializing json",  jsonErr)
-            }
-        }
-        
-        task.resume()
+        let postProfileDataOperation = PostProfileOperation(profileData: profileData, handler: self)
+        NetworkQueue.shared.addOperation(postProfileDataOperation)
     }
     
     func getProfileData() -> ProfileData? {
@@ -345,54 +260,8 @@ class ApiRequestHandler {
     }
     
     func getCalibrations(calibrationRequest: CalibrationRequest) {
-        guard let url = URL(string: Constant.Url.HOST_API_BETA + Constant.Url.URL_EXTENSION_API + Constant.Url.URL_EXTENSION_CALIBRATIONS) else { return }
-        
-        let jsonEncoder = JSONEncoder()
-        let jsonData = try! jsonEncoder.encode(calibrationRequest)
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.httpBody = jsonData
-        
-        let task = self.session.dataTask(with: request) { data, response, error in
-            // ensure there is no error for this HTTP response
-            guard error == nil else {
-                print ("error: \(error!)")
-                self.status.value = RequestStatus.failed.rawValue
-                return
-            }
-            
-            // hanlde http response code
-            if let httpResponse = response as? HTTPURLResponse {
-                if  200 > httpResponse.statusCode || httpResponse.statusCode >= 300 {
-                    self.status.value = RequestStatus.failed.rawValue
-                }
-            }
-            
-            // ensure there is data returned from this HTTP response
-            guard let content = data else {
-                print("No data")
-                return
-            }
-//            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue))
-            
-            // serialise the data / NSData object into Dictionary [String : Any]
-            guard ((try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? Any) != nil else {
-                print("Not containing JSON")
-                return
-            }
-            
-            do {
-                self.calibration = try JSONDecoder().decode(Calibration.self, from: content)
-//                print(self.calibration!)
-                self.status.value = RequestStatus.completedCalibration.rawValue
-            } catch let jsonErr {
-                print("Error serializing json",  jsonErr)
-            }
-        }
-        
-        task.resume()
+        let operation = GetCalibrationOperation(calibrationRequest: calibrationRequest, handler: self)
+        NetworkQueue.shared.addOperation(operation)
     }
     
     func getCalibration() -> Calibration? {

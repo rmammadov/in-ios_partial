@@ -28,6 +28,8 @@ class IntroThirdNewViewController: BaseViewController {
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var btnForward: UIButton!
     
+    private let apiHelper = CalibrationApiHelper()
+    
     private let viewModel: IntroThirdNewModel = IntroThirdNewModel()
     
     var cameraManager: CameraManager = CameraManager.shared
@@ -37,7 +39,7 @@ class IntroThirdNewViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        DataManager.status.value = 0
         setUi()
         setCamera()
 //        let point = CGPoint(x: self.view.frame.size.height / 2 , y: 0)
@@ -50,7 +52,11 @@ class IntroThirdNewViewController: BaseViewController {
     }
     
     @IBAction func onClickBtnBack(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        if let navController = navigationController {
+            navController.popViewController(animated: true)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @IBAction func onClickBtnForward(_ sender: Any) {
@@ -133,7 +139,11 @@ extension IntroThirdNewViewController {
     
     override func onContinue() {
         super.onContinue()
-        performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_HOME, sender: self)
+        if navigationController != nil {
+            performSegue(withIdentifier: SEGUE_IDENTIFIER_SHOW_HOME, sender: self)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
     }
 }
 
@@ -180,10 +190,11 @@ extension IntroThirdNewViewController {
         viewModel.status.asObservable().subscribe(onNext: {
             event in
             if self.viewModel.status.value == CalibrationStatus.loadingCalibrationCompleted.rawValue {
+                print("Status observer: \(self.apiHelper.getCalibrationOrientation() ?? "nil" )")
                 guard
                     let xModelUrl = self.viewModel.getXModelUrl(),
                     let yModelUrl = self.viewModel.getYModelUrl(),
-                    let orientation = self.viewModel.getOrientation()
+                    let orientation = self.apiHelper.getCalibrationOrientation()
                     else { return }
                 self.cameraManager.updateModels(xModelUrl: URL(string: xModelUrl)!,
                                                 yModelUrl: URL(string: yModelUrl)!,
@@ -243,7 +254,8 @@ extension IntroThirdNewViewController {
         let btnAbsoluteFrame = btn.convert((btn.layer.presentation()?.bounds)!, to: self.view)
         calibrationDataForFrame.cross_x = Float(btnAbsoluteFrame.origin.x)
         calibrationDataForFrame.cross_y = Float(btnAbsoluteFrame.origin.y)
-        viewModel.setCalibrationData(image: screenShot, data: calibrationDataForFrame)
+        apiHelper.setCalibrationDataFor(image: screenShot, data: calibrationDataForFrame)
+//        viewModel.setCalibrationData(image: screenShot, data: calibrationDataForFrame)
     }
     
     @objc func handleCalibrationStep() {
@@ -294,7 +306,8 @@ extension IntroThirdNewViewController {
     
     func startFifthStep() {
         viewFourthStep.isHidden = true
-        viewModel.postProfileData()
+        apiHelper.preparePostProfileOperation()
+//        viewModel.postProfileData()
         startNewFourthStep()
     }
     

@@ -149,8 +149,16 @@ class DataManager {
         return user
     }
 
+    static func setXModelUrl(_ url: String) {
+        self.xModelUrl = url
+    }
+    
     static func getXModelUrl() -> String? {
         return xModelUrl
+    }
+    
+    static func setYModelUrl(_ url: String) {
+        self.yModelUrl = url
     }
     
     static func getYModelUrl() -> String? {

@@ -651,8 +651,8 @@ extension CameraManager {
             print("Setting gaze tracker to use calibrated model: \(self.gazeTracker!.isCalibrated)")
             completion?(true)
         } else {
-            uncalibratedGazeTracker?.predictionDelegate = self
             calibratedGazeTracker?.predictionDelegate = nil
+            uncalibratedGazeTracker?.predictionDelegate = self
             self.gazeTracker = self.uncalibratedGazeTracker
             print("Setting gaze tracker to use calibrated model: \(self.gazeTracker!.isCalibrated)")
             completion?(false)

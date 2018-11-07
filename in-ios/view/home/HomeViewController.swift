@@ -48,6 +48,12 @@ class HomeViewController: BaseViewController {
         super.viewWillAppear(animated)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("HomeViewController.viewDidAppear")
+        CameraManager.shared.setup(cameraView: viewOpacity, showPreview: false, showLabel: false, showPointer: true)
+    }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         onOrientationChanged()
@@ -143,7 +149,7 @@ extension HomeViewController {
     func setCamera() {
         // TODO: should be removed and reimplemented after tests
         let cameraManager = CameraManager.shared
-        cameraManager.setup(cameraView: viewOpacity, showPreview: false, showLabel: false, showPointer: true)
+//        cameraManager.setup(cameraView: viewOpacity, showPreview: false, showLabel: false, showPointer: true)
 
         cameraManager.askUserForCameraPermission { (status) in
             guard status else { return }
@@ -216,6 +222,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
             self.collectionTopMenu.collectionViewLayout.invalidateLayout()
             self.collectionTopMenu.reloadData()
+            let cameraManager = CameraManager.shared
+            cameraManager.updateOrientation(completion: { [weak self] (isSuccess) in
+                guard let `self` = self, !isSuccess else { return }
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let calibrationVC = storyboard.instantiateViewController(withIdentifier: IntroThirdNewViewController.identifier)
+                self.present(calibrationVC, animated: true, completion: nil)
+            })
         }
     }
 }
