@@ -254,6 +254,8 @@ extension IntroThirdNewViewController {
         let btnAbsoluteFrame = btn.convert((btn.layer.presentation()?.bounds)!, to: self.view)
         calibrationDataForFrame.cross_x = Float(btnAbsoluteFrame.origin.x)
         calibrationDataForFrame.cross_y = Float(btnAbsoluteFrame.origin.y)
+        print("button X: \(String(describing: calibrationDataForFrame.cross_x))")
+        print("button X: \(String(describing: calibrationDataForFrame.cross_y))")
         apiHelper.setCalibrationDataFor(image: screenShot, data: calibrationDataForFrame)
 //        viewModel.setCalibrationData(image: screenShot, data: calibrationDataForFrame)
     }
