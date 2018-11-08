@@ -50,7 +50,7 @@ class BodyPartRowView: UIView {
     }
     
     private func setupView(with bubble: Bubble) {
-        titleLabel.text = bubble.translations.first?.label
+        titleLabel.text = bubble.translations.currentTranslation()?.label
     }
 
     @IBAction func buttonTapped(_ sender: Any) {

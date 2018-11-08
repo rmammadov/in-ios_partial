@@ -129,7 +129,7 @@ extension ScreenTypeEViewController: UICollectionViewDataSource {
                 fatalError("Cannot dequeue cell with reuseIdentifier: \(cellIdentifier)")
         }
         let item = viewModel.getItemFor(indexPath: indexPath)
-        cell.setCell(url: item.icon?.url, label: item.translations?.first?.label)
+        cell.setCell(url: item.icon?.url, label: item.translations?.currentTranslation()?.label)
         return cell
     }
 }

@@ -34,25 +34,36 @@ class ScreenTypeCViewModel: BaseViewModel {
     }
     
     func getSelectedLabel(for index: Int) -> String? {
-        if let item = selectedItem.value[index] as? ButtonInputScreen, let label = item.translations?.first?.label {
+        if let item = selectedItem.value[index] as? ButtonInputScreen, let label = item.translations?.currentTranslation()?.label {
             return label
-        } else if let item = selectedItem.value[index] as? Bubble, let label = item.translations.first?.label {
+        } else if let item = selectedItem.value[index] as? Bubble, let label = item.translations.currentTranslation()?.label {
             return label
-        } else if let item = selectedItem.value[index] as? TranslationMenuItem, let text = item.label {
-            return text
+        } else if let item = selectedItem.value[index] as? Translation {
+            return item.label
         }
         return nil
     }
     
     func getSelectedText(for index: Int) -> String? {
-        if let item = selectedItem.value[index] as? ButtonInputScreen, let text = item.translations?.first?.labelTextToSpeech {
+        if let item = selectedItem.value[index] as? ButtonInputScreen, let text = item.translations?.currentTranslation()?.labelTextToSpeech {
             return text
-        } else if let item = selectedItem.value[index] as? Bubble, let text = item.translations.first?.labelTextToSpeech {
+        } else if let item = selectedItem.value[index] as? Bubble, let text = item.translations.currentTranslation()?.labelTextToSpeech {
             return text
-        } else if let item = selectedItem.value[index] as? TranslationMenuItem, let text = item.labelTextToSpeech {
-            return text
+        } else if let item = selectedItem.value[index] as? Translation {
+            return item.labelTextToSpeech
         }
         return nil
+    }
+    
+    func getLocaleForSelectedText(for index: Int) -> String {
+        if let item = selectedItem.value[index] as? ButtonInputScreen, let text = item.translations?.currentTranslation()?.locale {
+            return text
+        } else if let item = selectedItem.value[index] as? Bubble, let text = item.translations.currentTranslation()?.locale {
+            return text
+        } else if let item = selectedItem.value[index] as? Translation {
+            return item.locale
+        }
+        return "en"
     }
     
     func setInputScreen(_ inputScreen: InputScreen) {
@@ -137,7 +148,7 @@ class ScreenTypeCViewModel: BaseViewModel {
     func speakSelectedValues() {
         for item in items.value {
             if let text = getSelectedText(for: item.id) {
-                SpeechHelper.shared.play(text: text, language: Locale.current.languageCode!)
+                SpeechHelper.shared.play(text: text, language: getLocaleForSelectedText(for: item.id))
             }
         }
     }

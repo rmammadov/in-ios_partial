@@ -39,8 +39,8 @@ class BodyPartViewModel: BaseViewModel {
         self.selectedBubble = bubble
         self.newBubble = nil
         
-        if !bubble.isDisableTextToSpeech, let text = bubble.translations.first?.labelTextToSpeech {
-            SpeechHelper.shared.play(text: text, language: "en-US")
+        if !bubble.isDisableTextToSpeech {
+            SpeechHelper.shared.play(translation: bubble.translations.currentTranslation())
         }
         delegate?.didSelect(value: bubble, onButton: button)
     }

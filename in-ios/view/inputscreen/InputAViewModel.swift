@@ -65,7 +65,7 @@ class InputAViewModel: BaseViewModel {
     }
     
     func getTitle() -> String? {
-        return screen?.translations[0].title
+        return screen?.translations.currentTranslation()?.label
     }
     
     func getBackButtonStatus() -> Bool? {
@@ -146,11 +146,11 @@ class InputAViewModel: BaseViewModel {
     }
     
     func getItemTitle() -> String? {
-        if item?.translations?.first?.label == Constant.MenuConfig.NAME_IAM_MENU_ITEM,
+        if item?.translations?.currentTranslation()?.label == Constant.MenuConfig.NAME_IAM_MENU_ITEM,
             let name = DataManager.getUserData()?.name {
-            return item?.translations?.first?.label?.replacingOccurrences(of: "<first name>", with: name)
+            return item?.translations?.currentTranslation()?.label.replacingOccurrences(of: "<first name>", with: name)
         }
-        return item?.translations!.first!.label
+        return item?.translations?.currentTranslation()?.label
     }
     
     func getItemIcon() -> String? {
@@ -174,12 +174,14 @@ class InputAViewModel: BaseViewModel {
         guard let selectedItem = self.selectedItem else { return }
         
         if !(selectedItem.disableTextToSpeech ?? true),
-            let text = selectedItem.translations?.first?.labelTextToSpeech {
-            if text == Constant.MenuConfig.NAME_IAM_MENU_ITEM,
-                let name = DataManager.getUserData()?.name {
-                textToSpech(text: text.replacingOccurrences(of: "<first name>", with: name))
+            let translation = selectedItem.translations?.currentTranslation() {
+            if translation.labelTextToSpeech.contains("<first name>"), let name = DataManager.getUserData()?.name {
+                let newTranslation = Translation(locale: translation.locale,
+                                                 label: translation.label,
+                                                 textToSpeech: translation.labelTextToSpeech.replacingOccurrences(of: "<first name>", with: name))
+                SpeechHelper.shared.play(translation: newTranslation)
             } else {
-                textToSpech(text: text)
+                SpeechHelper.shared.play(translation: translation)
             }
         }
         
@@ -222,9 +224,4 @@ class InputAViewModel: BaseViewModel {
         return DataManager.getInputScreens().getInputScreenFor(id: inputScreenId)
     }
     
-    // FIXME: Remove hardcode language type
-    
-    func textToSpech(text: String) {
-        SpeechHelper.shared.play(text: text, language: Locale.current.languageCode!)
-    }
 }

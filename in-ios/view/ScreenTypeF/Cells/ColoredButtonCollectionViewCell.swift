@@ -28,13 +28,13 @@ class ColoredButtonCollectionViewCell: UICollectionViewCell {
     struct ViewModel {
         let mainColor: UIColor
         let gradientColor: UIColor
-        let translations: [TranslationMenuItem]
+        let translations: [Translation]
     }
     
     func setViewModel(_ viewModel: ViewModel) {
         self.viewModel = viewModel
         colorView.backgroundColor = viewModel.mainColor
-        titleLabel.text = viewModel.translations.first?.label
+        titleLabel.text = viewModel.translations.currentTranslation()?.label
         underlineProgressView.mainColor = viewModel.gradientColor
         underlineProgressView.gradientColor = viewModel.mainColor
     }

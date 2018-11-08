@@ -50,7 +50,6 @@ class HomeViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("HomeViewController.viewDidAppear")
         CameraManager.shared.setup(cameraView: viewOpacity, showPreview: false, showLabel: false, showPointer: true)
     }
     
@@ -175,7 +174,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
             as? MainMenuItemCollectionViewCell else { fatalError() }
         let item = viewModel.getItem(for: indexPath)
-        cell.setupView(MainMenuItemCollectionViewCell.ViewModel(title: item.translations.first?.label ?? item.name,
+        cell.setupView(MainMenuItemCollectionViewCell.ViewModel(title: item.translations.currentTranslation()?.label ?? item.name,
                                                                 url: item.icon?.url))
         viewModel.getIsMenuExpanded() ? cell.maximize(animated: false, toHeight: cell.bounds.height) : cell.minimize(animated: false, toHeight: cell.bounds.height)
         cell.setSelected(viewModel.getTopMenuItemSelected() == indexPath)

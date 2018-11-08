@@ -119,8 +119,8 @@ class ScreenTypeHViewModel: BaseViewModel {
     func onItemLoadRequest(indexPath: IndexPath) -> ButtonInputScreen {
         let item = getItemFor(indexPath: indexPath)
         
-        if !(item.disableTextToSpeech ?? true), let text = item.translations?.first?.labelTextToSpeech {
-            SpeechHelper.shared.play(text: text, language: Locale.current.languageCode!)
+        if !(item.disableTextToSpeech ?? true) {
+            SpeechHelper.shared.play(translation: item.translations?.currentTranslation())
         }
         
         guard item.translations?.first?.label != Constant.MenuConfig.ALL_CLEAR else {
@@ -147,18 +147,16 @@ class ScreenTypeHViewModel: BaseViewModel {
             return item
         }
         selectedItem = item
-        if let translation = item.translations?.first,
-            let label = translation.label,
-            let textToSpeech = translation.labelTextToSpeech {
-            selectedLabels.append(label)
-            selectedTextToSpeech.append(textToSpeech)
+        if let translation = item.translations?.currentTranslation() {
+            selectedLabels.append(translation.label)
+            selectedTextToSpeech.append(translation.labelTextToSpeech)
             var collectedLabel = ""
             var collectedTextToSpeech = ""
             selectedLabels.forEach { collectedLabel += $0 }
             selectedTextToSpeech.forEach { collectedTextToSpeech += $0 }
-            let translation = TranslationMenuItem(locale: translation.locale ?? "en",
-                                                  label: collectedLabel,
-                                                  textToSpeech: collectedTextToSpeech)
+            let translation = Translation(locale: translation.locale,
+                                          label: collectedLabel,
+                                          textToSpeech: collectedTextToSpeech)
             delegate?.didSelect(value: translation, onScreen: inputScreen)
         }
         return item
@@ -183,11 +181,14 @@ class ScreenTypeHViewModel: BaseViewModel {
             } else {
                 resultString = String(result)
             }
-            let translationItem = TranslationMenuItem(locale: "en", label: resultString, textToSpeech: resultString)
+            
+            let translationItem = Translation(locale: selectedItem?.translations?.currentTranslation()?.locale ?? "en",
+                                              label: resultString,
+                                              textToSpeech: resultString)
             selectedLabels = [resultString]
             selectedTextToSpeech = [resultString]
             delegate?.didSelect(value: translationItem, onScreen: inputScreen)
-            SpeechHelper.shared.play(text: resultString, language: "en")
+            SpeechHelper.shared.play(translation: translationItem)
         } catch let error {
             print("Error: calculateCurrentValue: \(error.localizedDescription)")
             return

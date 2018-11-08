@@ -57,7 +57,7 @@ class HomeViewModel: BaseViewModel {
     }
     
     func getItemTitle() -> String? {
-        return topMenuItem?.translations[0].label
+        return topMenuItem?.translations.currentTranslation()?.label
     }
     
     func getItemIcon() -> String? {
@@ -69,7 +69,7 @@ class HomeViewModel: BaseViewModel {
         topMenuItemSelectedIndex = indexPath
         
         if !(topMenuItemSelected?.disableTextToSpeech)! {
-            textToSpech(text: (topMenuItemSelected?.translations.first?.labelTextToSpeech)!)
+            SpeechHelper.shared.play(translation: topMenuItemSelected?.translations.currentTranslation())
         }
         
         status.value = TopMenuStatus.loaded.rawValue
@@ -118,9 +118,4 @@ class HomeViewModel: BaseViewModel {
         return topMenuItems[indexPath.item]
     }
     
-    // FIXME: Remove hardcode language type
-    
-    func textToSpech(text: String) {
-        SpeechHelper.shared.play(text: text, language: Locale.current.languageCode!)
-    }
 }

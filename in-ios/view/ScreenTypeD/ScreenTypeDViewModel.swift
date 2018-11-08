@@ -70,7 +70,7 @@ extension ScreenTypeDViewModel: ScreenTypeDDelegate {
         delegate?.didSelect(value: value, onScreen: inputScreen)
         viewControllers.forEach { (viewController) in
             guard let viewController = viewController as? BodyPartViewController,
-                viewController.viewModel.button.translations?.first?.label != button.translations?.first?.label
+                viewController.viewModel.button.translations?.currentTranslation()?.label != button.translations?.currentTranslation()?.label
                 else { return }
             viewController.viewModel.selectedBubble = nil
         }

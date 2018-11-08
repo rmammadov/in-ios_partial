@@ -90,6 +90,8 @@
 		E9A6C7D62194346700EE7516 /* DecimalNumberExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7AE2194346700EE7516 /* DecimalNumberExtractor.swift */; };
 		E9A6C7D72194346700EE7516 /* TokenCharacterBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7AF2194346700EE7516 /* TokenCharacterBuffer.swift */; };
 		E9A6C7D82194346700EE7516 /* Expressionizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7B02194346700EE7516 /* Expressionizer.swift */; };
+		E9A6C7DA219448F000EE7516 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7D9219448F000EE7516 /* Translation.swift */; };
+		E9A6C7DC219449E900EE7516 /* TranslationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7DB219449E900EE7516 /* TranslationHelper.swift */; };
 		F31F275C2175AD7500C4E473 /* CalibrationX.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F31F275B2175AD7500C4E473 /* CalibrationX.mlmodel */; };
 		F31F275E2175AD7B00C4E473 /* CalibrationY.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F31F275D2175AD7B00C4E473 /* CalibrationY.mlmodel */; };
 		F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3216B5520F4EA15008D6EFD /* HomeViewController.swift */; };
@@ -312,6 +314,8 @@
 		E9A6C7AE2194346700EE7516 /* DecimalNumberExtractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecimalNumberExtractor.swift; sourceTree = "<group>"; };
 		E9A6C7AF2194346700EE7516 /* TokenCharacterBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenCharacterBuffer.swift; sourceTree = "<group>"; };
 		E9A6C7B02194346700EE7516 /* Expressionizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expressionizer.swift; sourceTree = "<group>"; };
+		E9A6C7D9219448F000EE7516 /* Translation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
+		E9A6C7DB219449E900EE7516 /* TranslationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationHelper.swift; sourceTree = "<group>"; };
 		ED4FD3A654935E1287D7E3F3 /* Pods-in-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-in-iosTests/Pods-in-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F31F275B2175AD7500C4E473 /* CalibrationX.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CalibrationX.mlmodel; sourceTree = "<group>"; };
 		F31F275D2175AD7B00C4E473 /* CalibrationY.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CalibrationY.mlmodel; sourceTree = "<group>"; };
@@ -766,6 +770,7 @@
 				F396E467216F249B00C061CD /* ProfileData.swift */,
 				F3B7FB682181F613001F5F84 /* CalibrationRequest.swift */,
 				F3B7FB662181F332001F5F84 /* Calibration.swift */,
+				E9A6C7D9219448F000EE7516 /* Translation.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -853,6 +858,7 @@
 				F334ADBF2106E86E0056824A /* NavigationHelper.swift */,
 				F3D591B8216B5E80003921CB /* InputValidationHelper.swift */,
 				F396E465216EC6B200C061CD /* FileNamingHelper.swift */,
+				E9A6C7DB219449E900EE7516 /* TranslationHelper.swift */,
 			);
 			path = helper;
 			sourceTree = "<group>";
@@ -1432,6 +1438,7 @@
 				E9019234217DE5C300212B29 /* ScreenTypeGViewController.swift in Sources */,
 				E9A6C7C72194346700EE7516 /* FunctionSet.swift in Sources */,
 				F32F5B6721453DFB00558C68 /* IntroSecondViewModel.swift in Sources */,
+				E9A6C7DC219449E900EE7516 /* TranslationHelper.swift in Sources */,
 				F3CE6920213DB318004F6756 /* IntroFirstViewController.swift in Sources */,
 				F32DCED9214A41D100B3D0F8 /* INTextField.swift in Sources */,
 				E9A6C7D32194346700EE7516 /* ExponentExtractor.swift in Sources */,
@@ -1449,6 +1456,7 @@
 				E9A6C7B12194346700EE7516 /* MathParserErrors.swift in Sources */,
 				F33658AE20D3198000B18CEC /* Constant.swift in Sources */,
 				F3CE9029215D3F8300A9F3DF /* IntroSecondNewViewController.swift in Sources */,
+				E9A6C7DA219448F000EE7516 /* Translation.swift in Sources */,
 				F3DA017D2162905200D0625B /* WebviewViewController.swift in Sources */,
 				E9019236217DE5D800212B29 /* ScreenTypeGViewModel.swift in Sources */,
 				E9A6C7BC2194346700EE7516 /* IdentifierExtractor.swift in Sources */,

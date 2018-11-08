@@ -43,7 +43,7 @@ class SubMenuViewModel: BaseViewModel {
     }
     
     func getItemTitle() -> String? {
-        return self.item?.translations[0].label
+        return self.item?.translations.currentTranslation()?.label
     }
     
     func getItemIcon() -> String? {

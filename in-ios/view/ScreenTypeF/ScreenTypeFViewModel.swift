@@ -51,11 +51,10 @@ class ScreenTypeFViewModel: BaseViewModel {
             textToSpeech(item: item)
         }
         if let translations = item.translations {
-            item.translations = translations.map({ (translationItem) -> TranslationMenuItem in
-                if let textToSpeech = translationItem.labelTextToSpeech, let locale = translationItem.locale {
-                    return TranslationMenuItem(locale: locale, label: textToSpeech, textToSpeech: textToSpeech)
-                }
-                return translationItem
+            item.translations = translations.map({ (translationItem) -> Translation in
+                return Translation(locale: translationItem.locale,
+                                   label: translationItem.labelTextToSpeech,
+                                   textToSpeech: translationItem.labelTextToSpeech)
             })
         }
         delegate?.didSelect(value: item, onScreen: inputScreen)
@@ -66,9 +65,7 @@ class ScreenTypeFViewModel: BaseViewModel {
     }
     
     func textToSpeech(item: ButtonInputScreen) {
-        if let text = item.translations?.first?.labelTextToSpeech {
-            SpeechHelper.shared.play(text: text, language: Locale.current.languageCode!)
-        }
+        SpeechHelper.shared.play(translation: item.translations?.currentTranslation())
     }
     
 }
