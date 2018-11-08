@@ -20,7 +20,7 @@ class ScreenTypeGCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupView(viewModel: ViewModel) {
-        titleLabel.text = viewModel.translations.first?.label
+        titleLabel.text = viewModel.translations.currentTranslation()?.label
     }
     
     override func layoutSubviews() {
@@ -29,7 +29,7 @@ class ScreenTypeGCollectionViewCell: UICollectionViewCell {
     }
     
     struct ViewModel {
-        let translations: [TranslationMenuItem]
+        let translations: [Translation]
     }
 
 }

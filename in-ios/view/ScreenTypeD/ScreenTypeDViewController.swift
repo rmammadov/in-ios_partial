@@ -116,7 +116,7 @@ extension ScreenTypeDViewController: UICollectionViewDataSource {
                 fatalError("Cannot dequeue cell with reuseIdentifier: \(cellIdentifier)")
         }
         cell.setSelected(indexPath == viewModel.getSelectedIndexPath())
-        cell.setTitle(title: item.translations?.first?.label ?? "")
+        cell.setTitle(title: item.translations?.currentTranslation()?.label ?? "")
         return cell
     }
 }
@@ -132,7 +132,7 @@ extension ScreenTypeDViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let text = viewModel.getItem(for: indexPath)?.translations?.first?.label ?? ""
+        let text = viewModel.getItem(for: indexPath)?.translations?.currentTranslation()?.label ?? ""
         let width: CGFloat = ScreenTypeDCollectionViewCell.cellWidth(forText: text)
         let height: CGFloat = collectionView.bounds.height
         itemsWidth[indexPath.item] = width

@@ -25,9 +25,14 @@ class SpeechHelper: NSObject {
     
     func play(text: String, language: String) {
         let utterance = AVSpeechUtterance(string: text)
-//        utterance.voice = AVSpeechSynthesisVoice(language: language) // Customize default voice of device
+        utterance.voice = AVSpeechSynthesisVoice(language: language)
         synthesizer.delegate = self
         synthesizer.speak(utterance)
+    }
+    
+    func play(translation: Translation?) {
+        guard let translation = translation else { return }
+        play(text: translation.labelTextToSpeech, language: translation.locale)
     }
     
     func stop() {

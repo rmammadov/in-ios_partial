@@ -24,7 +24,6 @@ class ItemUtil {
         if itemWidth > itemHeight {
             itemWidth = itemHeight - (withTitle ? Constant.kItemLabelSpace : 0)
         }
-        print(itemHeight)
         return CGSize(width: itemWidth, height: itemHeight)
     }
     

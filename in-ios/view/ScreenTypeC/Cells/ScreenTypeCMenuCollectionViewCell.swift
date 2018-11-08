@@ -15,14 +15,14 @@ class ScreenTypeCMenuCollectionViewCell: UICollectionViewCell {
     struct ViewModel {
         static private let titleMargin: CGFloat = 32.0
         var selectedTranslations: String?
-        var translations: [TranslationInputScreen]
+        var translations: [Translation]
         
         var widthForCell: CGFloat {
             var text: String = ""
             if let selectedTranslations = selectedTranslations {
                 text = selectedTranslations
             } else {
-                text = translations.first?.title ?? ""
+                text = translations.currentTranslation()?.label ?? ""
             }
             let font = UIFont.avenirDemiBold(size: 45)
             let string = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: font])
@@ -36,7 +36,7 @@ class ScreenTypeCMenuCollectionViewCell: UICollectionViewCell {
             titleLabel.text = selectedTranslations
             titleLabel.textColor = .white
         } else {
-            titleLabel.text = viewModel.translations.first?.title
+            titleLabel.text = viewModel.translations.currentTranslation()?.label
             titleLabel.textColor = UIColor(named: "pigio_title_gray")!
         }
     }

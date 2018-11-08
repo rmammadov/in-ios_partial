@@ -141,7 +141,7 @@ extension BodyPartViewController {
             guard let row = view as? BodyPartRowView
                 else { return }
                 if let bubble = bubble {
-                    row.setSelected(row.bubble?.translations.first?.label == bubble.translations.first?.label)
+                    row.setSelected(row.bubble?.translations.currentTranslation()?.label == bubble.translations.currentTranslation()?.label)
                 } else {
                     row.setSelected(false)
                 }

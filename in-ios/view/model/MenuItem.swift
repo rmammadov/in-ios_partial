@@ -17,31 +17,13 @@ struct MenuItem: Decodable {
     let icon: IconMenuItem?
     let inputScreenId: Int?
     let roles: Array<String>
-    let translations: [TranslationMenuItem]
+    let translations: [Translation]
     
     enum CodingKeys: String, CodingKey {
         case subMenuItemIds = "sub_menu_item_item_ids"
         case disableTextToSpeech = "disable_text_to_speech"
         case inputScreenId = "input_screen_id"
         case id, name, icon, roles, translations
-    }
-}
-
-struct TranslationMenuItem: Decodable {
-    
-    var locale: String?
-    var label: String?
-    var labelTextToSpeech: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case labelTextToSpeech = "label_text_to_speech"
-        case locale, label
-    }
-    
-    init(locale: String, label: String, textToSpeech: String) {
-        self.locale = locale
-        self.label = label
-        self.labelTextToSpeech = textToSpeech
     }
 }
 

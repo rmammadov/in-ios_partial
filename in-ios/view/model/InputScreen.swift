@@ -12,7 +12,7 @@ struct InputScreen: Decodable {
     
     let id: Int
     let disableTextToSpeech: Bool
-    let translations: [TranslationInputScreen]
+    let translations: [Translation]
     let buttons: [ButtonInputScreen]?
     let background: Background?
     let backgroundTransparency: Double?
@@ -56,7 +56,7 @@ extension InputScreen {
         let container = try decoder.container(keyedBy: InputScreenKeys.self)
         let id: Int = try container.decode(Int.self, forKey: .id)
         let disableTextToSpeech: Bool = try container.decode(Bool.self, forKey: .disableTextToSpeech)
-        let translations: [TranslationInputScreen] = try container.decode([TranslationInputScreen].self, forKey: .translations)
+        let translations: [Translation] = try container.decode([Translation].self, forKey: .translations)
         let type: InputScreenType = try container.decode(InputScreenType.self, forKey: .type)
         
         let buttons: [ButtonInputScreen]? = try container.decodeIfPresent([ButtonInputScreen].self, forKey: .buttons)
@@ -75,23 +75,11 @@ extension InputScreen {
     }
 }
 
-struct TranslationInputScreen: Decodable {
-    
-    var locale: String?
-    var title: String?
-    var titleTextToSpeech: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case titleTextToSpeech = "title_text_to_speech"
-        case locale, title
-    }
-}
-
 struct ButtonInputScreen: Decodable {
     
     var disableTextToSpeech: Bool?
     var icon: IconMenuItem? = nil
-    var translations: [TranslationMenuItem]?
+    var translations: [Translation]?
     var type: ButtonType
     
     /// ButtonInputScreenOpen properties:
@@ -125,7 +113,7 @@ struct ButtonInputScreen: Decodable {
         self.type = try container.decode(ButtonType.self, forKey: .type)
         self.disableTextToSpeech = try container.decodeIfPresent(Bool.self, forKey: .disableTextToSpeech)
         self.icon = try container.decodeIfPresent(IconMenuItem.self, forKey: .icon)
-        self.translations = try container.decodeIfPresent([TranslationMenuItem].self, forKey: .translations)
+        self.translations = try container.decodeIfPresent([Translation].self, forKey: .translations)
         self.inputScreenId = try container.decodeIfPresent(Int.self, forKey: .inputScreenId)
         if let mainColorHex = try container.decodeIfPresent(String.self, forKey: .mainColor) {
             self.mainColor = UIColor(hex: mainColorHex)
@@ -180,7 +168,7 @@ struct Bubble: Decodable {
     let coords: String
     let anchorCords: CGPoint?
     let position: Int
-    let translations: [TranslationMenuItem]
+    let translations: [Translation]
     
     enum CodingKeys: String, CodingKey {
         case isDisableTextToSpeech = "disable_text_to_speech"
@@ -199,6 +187,6 @@ struct Bubble: Decodable {
             self.anchorCords = nil
         }
         self.position = try container.decode(Int.self, forKey: .position)
-        self.translations = try container.decode([TranslationMenuItem].self, forKey: .translations)
+        self.translations = try container.decode([Translation].self, forKey: .translations)
     }
 }

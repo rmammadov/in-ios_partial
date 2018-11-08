@@ -85,7 +85,7 @@ class MenuViewModel: BaseViewModel {
                 self.statusInput.value = InputScreenId.inputScreen0.rawValue
             } else {
                 if !menuItem.disableTextToSpeech {
-                    self.textToSpech(text: menuItem.translations[0].labelTextToSpeech!)
+                    SpeechHelper.shared.play(translation: menuItem.translations.currentTranslation())
                 }
             }
         }
@@ -106,16 +106,10 @@ class MenuViewModel: BaseViewModel {
         self.selectedItem = menuItem
         
         if !(selectedItem?.disableTextToSpeech)! {
-            textToSpech(text: (selectedItem?.translations.first?.labelTextToSpeech)!)
+            SpeechHelper.shared.play(translation: selectedItem?.translations.currentTranslation())
         }
         
         self.loadSubMenuItemsOf(menuItem: menuItem, topMenuClicked: false)
-    }
-    
-    // FIXME: Remove hardcode language type
-    
-    func textToSpech(text: String) {
-        SpeechHelper.shared.play(text: text, language: Locale.current.languageCode!)
     }
     
     func setItem(index: Int) {
@@ -123,7 +117,7 @@ class MenuViewModel: BaseViewModel {
     }
     
     func getItemTitle() -> String? {
-        return self.item?.translations[0].label
+        return self.item?.translations.currentTranslation()?.label
     }
     
     func getItemIcon() -> String? {
