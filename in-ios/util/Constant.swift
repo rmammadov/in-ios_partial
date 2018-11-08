@@ -47,6 +47,7 @@ struct Constant {
         static let VOLUME_UP = "Volume up"
         static let VOLUME_DOWN = "Volume down"
         static let ALL_CLEAR = "AC"
+        static let EQUAL_SIGN = "="
     }
     
     struct AnimationConfig {

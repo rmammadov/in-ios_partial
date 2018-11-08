@@ -51,6 +51,45 @@
 		E99A8EEC2170A02D007B8E64 /* MainMenuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99A8EEA2170A02D007B8E64 /* MainMenuItemCollectionViewCell.swift */; };
 		E99B8C31216DE4B800A90EFC /* GazeTrackerCalibrated.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99B8C30216DE4B800A90EFC /* GazeTrackerCalibrated.swift */; };
 		E99B8C33216DF1ED00A90EFC /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99B8C32216DF1ED00A90EFC /* UIViewExtension.swift */; };
+		E9A6C7B12194346700EE7516 /* MathParserErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7882194346600EE7516 /* MathParserErrors.swift */; };
+		E9A6C7B22194346700EE7516 /* LocalizedNumberExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7892194346600EE7516 /* LocalizedNumberExtractor.swift */; };
+		E9A6C7B32194346700EE7516 /* VariableExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C78A2194346600EE7516 /* VariableExtractor.swift */; };
+		E9A6C7B42194346700EE7516 /* OctalNumberExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C78B2194346600EE7516 /* OctalNumberExtractor.swift */; };
+		E9A6C7B52194346700EE7516 /* SubstitutionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C78C2194346600EE7516 /* SubstitutionExtensions.swift */; };
+		E9A6C7B62194346700EE7516 /* Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C78D2194346600EE7516 /* Either.swift */; };
+		E9A6C7B72194346700EE7516 /* Evaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C78E2194346600EE7516 /* Evaluator.swift */; };
+		E9A6C7B82194346700EE7516 /* PeekingIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C78F2194346600EE7516 /* PeekingIterator.swift */; };
+		E9A6C7B92194346700EE7516 /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7902194346600EE7516 /* Expression.swift */; };
+		E9A6C7BA2194346700EE7516 /* ExpressionRewriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7912194346600EE7516 /* ExpressionRewriter.swift */; };
+		E9A6C7BB2194346700EE7516 /* RewriteRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7922194346600EE7516 /* RewriteRule.swift */; };
+		E9A6C7BC2194346700EE7516 /* IdentifierExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7942194346600EE7516 /* IdentifierExtractor.swift */; };
+		E9A6C7BD2194346700EE7516 /* Functions+Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7952194346600EE7516 /* Functions+Defaults.swift */; };
+		E9A6C7BE2194346700EE7516 /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7962194346600EE7516 /* Operator.swift */; };
+		E9A6C7BF2194346700EE7516 /* DynamicResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7972194346600EE7516 /* DynamicResolution.swift */; };
+		E9A6C7C02194346700EE7516 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7982194346600EE7516 /* Character.swift */; };
+		E9A6C7C12194346700EE7516 /* RawToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7992194346700EE7516 /* RawToken.swift */; };
+		E9A6C7C22194346700EE7516 /* OperatorExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C79A2194346700EE7516 /* OperatorExtractor.swift */; };
+		E9A6C7C32194346700EE7516 /* HexNumberExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C79B2194346700EE7516 /* HexNumberExtractor.swift */; };
+		E9A6C7C42194346700EE7516 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C79C2194346700EE7516 /* Tokenizer.swift */; };
+		E9A6C7C52194346700EE7516 /* GroupedToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C79D2194346700EE7516 /* GroupedToken.swift */; };
+		E9A6C7C62194346700EE7516 /* RewriteRule+Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C79E2194346700EE7516 /* RewriteRule+Defaults.swift */; };
+		E9A6C7C72194346700EE7516 /* FunctionSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C79F2194346700EE7516 /* FunctionSet.swift */; };
+		E9A6C7C82194346700EE7516 /* QuotedVariableExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7A02194346700EE7516 /* QuotedVariableExtractor.swift */; };
+		E9A6C7C92194346700EE7516 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7A12194346700EE7516 /* String.swift */; };
+		E9A6C7CA2194346700EE7516 /* Operator+Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7A22194346700EE7516 /* Operator+Defaults.swift */; };
+		E9A6C7CB2194346700EE7516 /* OperatorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7A32194346700EE7516 /* OperatorSet.swift */; };
+		E9A6C7CC2194346700EE7516 /* FractionNumberExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7A42194346700EE7516 /* FractionNumberExtractor.swift */; };
+		E9A6C7CD2194346700EE7516 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7A52194346700EE7516 /* Double.swift */; };
+		E9A6C7CE2194346700EE7516 /* TokenExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7A62194346700EE7516 /* TokenExtractor.swift */; };
+		E9A6C7CF2194346700EE7516 /* ResolvedToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7A72194346700EE7516 /* ResolvedToken.swift */; };
+		E9A6C7D02194346700EE7516 /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7A82194346700EE7516 /* Function.swift */; };
+		E9A6C7D12194346700EE7516 /* OperatorTokenSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7A92194346700EE7516 /* OperatorTokenSet.swift */; };
+		E9A6C7D22194346700EE7516 /* TokenGrouper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7AA2194346700EE7516 /* TokenGrouper.swift */; };
+		E9A6C7D32194346700EE7516 /* ExponentExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7AB2194346700EE7516 /* ExponentExtractor.swift */; };
+		E9A6C7D52194346700EE7516 /* TokenResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7AD2194346700EE7516 /* TokenResolver.swift */; };
+		E9A6C7D62194346700EE7516 /* DecimalNumberExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7AE2194346700EE7516 /* DecimalNumberExtractor.swift */; };
+		E9A6C7D72194346700EE7516 /* TokenCharacterBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7AF2194346700EE7516 /* TokenCharacterBuffer.swift */; };
+		E9A6C7D82194346700EE7516 /* Expressionizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7B02194346700EE7516 /* Expressionizer.swift */; };
 		F31F275C2175AD7500C4E473 /* CalibrationX.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F31F275B2175AD7500C4E473 /* CalibrationX.mlmodel */; };
 		F31F275E2175AD7B00C4E473 /* CalibrationY.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F31F275D2175AD7B00C4E473 /* CalibrationY.mlmodel */; };
 		F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3216B5520F4EA15008D6EFD /* HomeViewController.swift */; };
@@ -234,6 +273,45 @@
 		E99A8EEA2170A02D007B8E64 /* MainMenuItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		E99B8C30216DE4B800A90EFC /* GazeTrackerCalibrated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GazeTrackerCalibrated.swift; sourceTree = "<group>"; };
 		E99B8C32216DF1ED00A90EFC /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		E9A6C7882194346600EE7516 /* MathParserErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathParserErrors.swift; sourceTree = "<group>"; };
+		E9A6C7892194346600EE7516 /* LocalizedNumberExtractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedNumberExtractor.swift; sourceTree = "<group>"; };
+		E9A6C78A2194346600EE7516 /* VariableExtractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VariableExtractor.swift; sourceTree = "<group>"; };
+		E9A6C78B2194346600EE7516 /* OctalNumberExtractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OctalNumberExtractor.swift; sourceTree = "<group>"; };
+		E9A6C78C2194346600EE7516 /* SubstitutionExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubstitutionExtensions.swift; sourceTree = "<group>"; };
+		E9A6C78D2194346600EE7516 /* Either.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Either.swift; sourceTree = "<group>"; };
+		E9A6C78E2194346600EE7516 /* Evaluator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Evaluator.swift; sourceTree = "<group>"; };
+		E9A6C78F2194346600EE7516 /* PeekingIterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeekingIterator.swift; sourceTree = "<group>"; };
+		E9A6C7902194346600EE7516 /* Expression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expression.swift; sourceTree = "<group>"; };
+		E9A6C7912194346600EE7516 /* ExpressionRewriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpressionRewriter.swift; sourceTree = "<group>"; };
+		E9A6C7922194346600EE7516 /* RewriteRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewriteRule.swift; sourceTree = "<group>"; };
+		E9A6C7942194346600EE7516 /* IdentifierExtractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentifierExtractor.swift; sourceTree = "<group>"; };
+		E9A6C7952194346600EE7516 /* Functions+Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Functions+Defaults.swift"; sourceTree = "<group>"; };
+		E9A6C7962194346600EE7516 /* Operator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operator.swift; sourceTree = "<group>"; };
+		E9A6C7972194346600EE7516 /* DynamicResolution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicResolution.swift; sourceTree = "<group>"; };
+		E9A6C7982194346600EE7516 /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		E9A6C7992194346700EE7516 /* RawToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawToken.swift; sourceTree = "<group>"; };
+		E9A6C79A2194346700EE7516 /* OperatorExtractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperatorExtractor.swift; sourceTree = "<group>"; };
+		E9A6C79B2194346700EE7516 /* HexNumberExtractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexNumberExtractor.swift; sourceTree = "<group>"; };
+		E9A6C79C2194346700EE7516 /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
+		E9A6C79D2194346700EE7516 /* GroupedToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupedToken.swift; sourceTree = "<group>"; };
+		E9A6C79E2194346700EE7516 /* RewriteRule+Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RewriteRule+Defaults.swift"; sourceTree = "<group>"; };
+		E9A6C79F2194346700EE7516 /* FunctionSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionSet.swift; sourceTree = "<group>"; };
+		E9A6C7A02194346700EE7516 /* QuotedVariableExtractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotedVariableExtractor.swift; sourceTree = "<group>"; };
+		E9A6C7A12194346700EE7516 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		E9A6C7A22194346700EE7516 /* Operator+Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Operator+Defaults.swift"; sourceTree = "<group>"; };
+		E9A6C7A32194346700EE7516 /* OperatorSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperatorSet.swift; sourceTree = "<group>"; };
+		E9A6C7A42194346700EE7516 /* FractionNumberExtractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FractionNumberExtractor.swift; sourceTree = "<group>"; };
+		E9A6C7A52194346700EE7516 /* Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		E9A6C7A62194346700EE7516 /* TokenExtractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenExtractor.swift; sourceTree = "<group>"; };
+		E9A6C7A72194346700EE7516 /* ResolvedToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResolvedToken.swift; sourceTree = "<group>"; };
+		E9A6C7A82194346700EE7516 /* Function.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
+		E9A6C7A92194346700EE7516 /* OperatorTokenSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperatorTokenSet.swift; sourceTree = "<group>"; };
+		E9A6C7AA2194346700EE7516 /* TokenGrouper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenGrouper.swift; sourceTree = "<group>"; };
+		E9A6C7AB2194346700EE7516 /* ExponentExtractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExponentExtractor.swift; sourceTree = "<group>"; };
+		E9A6C7AD2194346700EE7516 /* TokenResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenResolver.swift; sourceTree = "<group>"; };
+		E9A6C7AE2194346700EE7516 /* DecimalNumberExtractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecimalNumberExtractor.swift; sourceTree = "<group>"; };
+		E9A6C7AF2194346700EE7516 /* TokenCharacterBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenCharacterBuffer.swift; sourceTree = "<group>"; };
+		E9A6C7B02194346700EE7516 /* Expressionizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expressionizer.swift; sourceTree = "<group>"; };
 		ED4FD3A654935E1287D7E3F3 /* Pods-in-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-in-iosTests/Pods-in-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F31F275B2175AD7500C4E473 /* CalibrationX.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CalibrationX.mlmodel; sourceTree = "<group>"; };
 		F31F275D2175AD7B00C4E473 /* CalibrationY.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CalibrationY.mlmodel; sourceTree = "<group>"; };
@@ -542,6 +620,52 @@
 			path = MainMenuItem;
 			sourceTree = "<group>";
 		};
+		E9A6C7872194346600EE7516 /* MathParser */ = {
+			isa = PBXGroup;
+			children = (
+				E9A6C7882194346600EE7516 /* MathParserErrors.swift */,
+				E9A6C7892194346600EE7516 /* LocalizedNumberExtractor.swift */,
+				E9A6C78A2194346600EE7516 /* VariableExtractor.swift */,
+				E9A6C78B2194346600EE7516 /* OctalNumberExtractor.swift */,
+				E9A6C78C2194346600EE7516 /* SubstitutionExtensions.swift */,
+				E9A6C78D2194346600EE7516 /* Either.swift */,
+				E9A6C78E2194346600EE7516 /* Evaluator.swift */,
+				E9A6C78F2194346600EE7516 /* PeekingIterator.swift */,
+				E9A6C7902194346600EE7516 /* Expression.swift */,
+				E9A6C7912194346600EE7516 /* ExpressionRewriter.swift */,
+				E9A6C7922194346600EE7516 /* RewriteRule.swift */,
+				E9A6C7942194346600EE7516 /* IdentifierExtractor.swift */,
+				E9A6C7952194346600EE7516 /* Functions+Defaults.swift */,
+				E9A6C7962194346600EE7516 /* Operator.swift */,
+				E9A6C7972194346600EE7516 /* DynamicResolution.swift */,
+				E9A6C7982194346600EE7516 /* Character.swift */,
+				E9A6C7992194346700EE7516 /* RawToken.swift */,
+				E9A6C79A2194346700EE7516 /* OperatorExtractor.swift */,
+				E9A6C79B2194346700EE7516 /* HexNumberExtractor.swift */,
+				E9A6C79C2194346700EE7516 /* Tokenizer.swift */,
+				E9A6C79D2194346700EE7516 /* GroupedToken.swift */,
+				E9A6C79E2194346700EE7516 /* RewriteRule+Defaults.swift */,
+				E9A6C79F2194346700EE7516 /* FunctionSet.swift */,
+				E9A6C7A02194346700EE7516 /* QuotedVariableExtractor.swift */,
+				E9A6C7A12194346700EE7516 /* String.swift */,
+				E9A6C7A22194346700EE7516 /* Operator+Defaults.swift */,
+				E9A6C7A32194346700EE7516 /* OperatorSet.swift */,
+				E9A6C7A42194346700EE7516 /* FractionNumberExtractor.swift */,
+				E9A6C7A52194346700EE7516 /* Double.swift */,
+				E9A6C7A62194346700EE7516 /* TokenExtractor.swift */,
+				E9A6C7A72194346700EE7516 /* ResolvedToken.swift */,
+				E9A6C7A82194346700EE7516 /* Function.swift */,
+				E9A6C7A92194346700EE7516 /* OperatorTokenSet.swift */,
+				E9A6C7AA2194346700EE7516 /* TokenGrouper.swift */,
+				E9A6C7AB2194346700EE7516 /* ExponentExtractor.swift */,
+				E9A6C7AD2194346700EE7516 /* TokenResolver.swift */,
+				E9A6C7AE2194346700EE7516 /* DecimalNumberExtractor.swift */,
+				E9A6C7AF2194346700EE7516 /* TokenCharacterBuffer.swift */,
+				E9A6C7B02194346700EE7516 /* Expressionizer.swift */,
+			);
+			path = MathParser;
+			sourceTree = "<group>";
+		};
 		F3283D70213013BA004B4FBE /* in-eye-gaze */ = {
 			isa = PBXGroup;
 			children = (
@@ -736,6 +860,7 @@
 		F33658AB20D3196C00B18CEC /* util */ = {
 			isa = PBXGroup;
 			children = (
+				E9A6C7872194346600EE7516 /* MathParser */,
 				F33658AD20D3198000B18CEC /* Constant.swift */,
 				F39059BE210F254C00CAA292 /* AnimationUtil.swift */,
 				E95BA37D218857A3006D11DD /* ItemUtil.swift */,
@@ -1194,12 +1319,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9A6C7D22194346700EE7516 /* TokenGrouper.swift in Sources */,
+				E9A6C7B22194346700EE7516 /* LocalizedNumberExtractor.swift in Sources */,
 				E93ACD48216B96E000F29F54 /* ScreenTypeDViewModel.swift in Sources */,
 				F3CE6922213DB367004F6756 /* IntroFirstViewModel.swift in Sources */,
 				F3D6D210214CFB7D00A6231E /* UIImageExtension.swift in Sources */,
+				E9A6C7D72194346700EE7516 /* TokenCharacterBuffer.swift in Sources */,
 				E93ACD4A216CA03400F29F54 /* BodyPartViewModel.swift in Sources */,
 				F3E97E5B21422F4F00379B4A /* FaceFinder.swift in Sources */,
+				E9A6C7C02194346700EE7516 /* Character.swift in Sources */,
+				E9A6C7B42194346700EE7516 /* OctalNumberExtractor.swift in Sources */,
 				F3DC2DAB20F8ADBA00CC276F /* Reachability.swift in Sources */,
+				E9A6C7BA2194346700EE7516 /* ExpressionRewriter.swift in Sources */,
 				F32D99CA21117EC7007AAA8D /* BaseViewModel.swift in Sources */,
 				F34B909B20D46FA100800FCD /* DisplayHelper.swift in Sources */,
 				F334ADBE2105DA4A0056824A /* SpeechHelper.swift in Sources */,
@@ -1214,6 +1345,7 @@
 				E9611E942164AC950010B33C /* ScreenTypeCMenuCollectionViewCell.swift in Sources */,
 				F3355CED2122E88C009AF602 /* LoadingViewController.swift in Sources */,
 				F3D6D20A214CF84700A6231E /* IntroFourthModel.swift in Sources */,
+				E9A6C7C12194346700EE7516 /* RawToken.swift in Sources */,
 				F3A46B9E217F087800C440FF /* PersistanceService.swift in Sources */,
 				F354B7472164C7570026F3A2 /* IntroThirdNewModel.swift in Sources */,
 				F3E19CAE211C3D6400ADE838 /* InputAViewController.swift in Sources */,
@@ -1221,22 +1353,29 @@
 				E9150EF8216605160023E138 /* ScreenTypeEViewController.swift in Sources */,
 				E9876E0B21675CE00001C626 /* UIColorExtension.swift in Sources */,
 				E95BA37E218857A3006D11DD /* ItemUtil.swift in Sources */,
+				E9A6C7CA2194346700EE7516 /* Operator+Defaults.swift in Sources */,
 				F354B7452164C7470026F3A2 /* IntroThirdNewViewModel.swift in Sources */,
 				F3E19CB0211C3DA500ADE838 /* InputAViewModel.swift in Sources */,
+				E9A6C7D82194346700EE7516 /* Expressionizer.swift in Sources */,
 				E95021A921870E200026FB99 /* ScreenTypeHViewModel.swift in Sources */,
 				F3F4148C20F5F82000CF101D /* ReachabilityManager.swift in Sources */,
+				E9A6C7C52194346700EE7516 /* GroupedToken.swift in Sources */,
 				F3DA017F2162907500D0625B /* WebviewViewModel.swift in Sources */,
 				F334ADC8210D7A370056824A /* MenuItem.swift in Sources */,
 				F31F275E2175AD7B00C4E473 /* CalibrationY.mlmodel in Sources */,
 				F3CE691D213D70E6004F6756 /* GazeEstimator.mlmodel in Sources */,
+				E9A6C7B32194346700EE7516 /* VariableExtractor.swift in Sources */,
 				F3A46BA0217F088C00C440FF /* PersistanceDataHandler.swift in Sources */,
+				E9A6C7D02194346700EE7516 /* Function.swift in Sources */,
 				E99A8EEC2170A02D007B8E64 /* MainMenuItemCollectionViewCell.swift in Sources */,
 				E9876E1B216B6ED50001C626 /* ProgressGradientView.swift in Sources */,
+				E9A6C7D52194346700EE7516 /* TokenResolver.swift in Sources */,
 				F32D99C621117E79007AAA8D /* HomeModel.swift in Sources */,
 				E966261F216F38AA006C05B1 /* UIFontExtension.swift in Sources */,
 				F31F275C2175AD7500C4E473 /* CalibrationX.mlmodel in Sources */,
 				F32DCEDE214A652000B3D0F8 /* IntroThirdViewModel.swift in Sources */,
 				E98458EB21805C3300197CBC /* ScreenTypeHCollectionViewCell.swift in Sources */,
+				E9A6C7CC2194346700EE7516 /* FractionNumberExtractor.swift in Sources */,
 				F336587D20D318C300B18CEC /* AppDelegate.swift in Sources */,
 				E94ABF722174B49D0063B8D6 /* AnimationProtocol.swift in Sources */,
 				F331EA7F211303880000B4E6 /* TopMenuItemCollectionViewCell.swift in Sources */,
@@ -1245,9 +1384,13 @@
 				F3B7FB672181F332001F5F84 /* Calibration.swift in Sources */,
 				F3355CE82121E04F009AF602 /* InputScreen.swift in Sources */,
 				F3CE902D215D3FFB00A9F3DF /* IntroSecondNewModel.swift in Sources */,
+				E9A6C7BF2194346700EE7516 /* DynamicResolution.swift in Sources */,
 				F39059C1210F290F00CAA292 /* MenuViewModel.swift in Sources */,
+				E9A6C7B82194346700EE7516 /* PeekingIterator.swift in Sources */,
 				F3D6D206214CF81300A6231E /* IntroFifthViewController.swift in Sources */,
 				F334ADCA210D7F890056824A /* HomeViewModel.swift in Sources */,
+				E9A6C7C42194346700EE7516 /* Tokenizer.swift in Sources */,
+				E9A6C7CD2194346700EE7516 /* Double.swift in Sources */,
 				E9876E1321678B6B0001C626 /* NotificationExtension.swift in Sources */,
 				F3C48CCB210F018200742855 /* MenuViewController.swift in Sources */,
 				E99B8C33216DF1ED00A90EFC /* UIViewExtension.swift in Sources */,
@@ -1257,14 +1400,19 @@
 				F396E468216F249B00C061CD /* ProfileData.swift in Sources */,
 				F32F5B6521453DCC00558C68 /* IntroSecondViewController.swift in Sources */,
 				F3E200C92135F2D500902A33 /* UIApplicationExtension.swift in Sources */,
+				E9A6C7C62194346700EE7516 /* RewriteRule+Defaults.swift in Sources */,
 				F3CE902B215D3FE600A9F3DF /* IntroSecondNewViewModel.swift in Sources */,
+				E9A6C7B62194346700EE7516 /* Either.swift in Sources */,
 				F3D6D208214CF83900A6231E /* IntroFourthViewModel.swift in Sources */,
+				E9A6C7B52194346700EE7516 /* SubstitutionExtensions.swift in Sources */,
+				E9A6C7B92194346700EE7516 /* Expression.swift in Sources */,
 				F3E19CAA211C3CDB00ADE838 /* HomeContainerViewModel.swift in Sources */,
 				E9150EFA216606340023E138 /* ScreenTypeEViewModel.swift in Sources */,
 				E9876E1521679BF50001C626 /* GradientView.swift in Sources */,
 				F3D6D20E214CF87800A6231E /* IntroFifthModel.swift in Sources */,
 				F32DCEE0214A654400B3D0F8 /* IntroThirdModel.swift in Sources */,
 				E91D196B2192DAD600408230 /* CalibrationApiHelper.swift in Sources */,
+				E9A6C7BD2194346700EE7516 /* Functions+Defaults.swift in Sources */,
 				E9876E092167503E0001C626 /* ScreenTypeFViewModel.swift in Sources */,
 				F3E19CB9211D835500ADE838 /* SubMenuViewController.swift in Sources */,
 				E9611E972164AC950010B33C /* ScreenTypeCViewController.swift in Sources */,
@@ -1275,13 +1423,18 @@
 				E93ACD46216B956700F29F54 /* BodyPartViewController.swift in Sources */,
 				F32DCEDC214A64B000B3D0F8 /* IntroThirdViewController.swift in Sources */,
 				F39059C32110473D00CAA292 /* MenuItems.swift in Sources */,
+				E9A6C7CF2194346700EE7516 /* ResolvedToken.swift in Sources */,
 				F3CE6924213DB385004F6756 /* IntroFirstModel.swift in Sources */,
 				E99B8C31216DE4B800A90EFC /* GazeTrackerCalibrated.swift in Sources */,
+				E9A6C7C82194346700EE7516 /* QuotedVariableExtractor.swift in Sources */,
 				F3E97E5721422F3C00379B4A /* UIDevice+modelName.swift in Sources */,
+				E9A6C7D62194346700EE7516 /* DecimalNumberExtractor.swift in Sources */,
 				E9019234217DE5C300212B29 /* ScreenTypeGViewController.swift in Sources */,
+				E9A6C7C72194346700EE7516 /* FunctionSet.swift in Sources */,
 				F32F5B6721453DFB00558C68 /* IntroSecondViewModel.swift in Sources */,
 				F3CE6920213DB318004F6756 /* IntroFirstViewController.swift in Sources */,
 				F32DCED9214A41D100B3D0F8 /* INTextField.swift in Sources */,
+				E9A6C7D32194346700EE7516 /* ExponentExtractor.swift in Sources */,
 				E95021A821870E200026FB99 /* ScreenTypeHViewController.swift in Sources */,
 				E901923A217F580A00212B29 /* ScreenTypeGCollectionViewCell.swift in Sources */,
 				F3E19CB6211D827000ADE838 /* MenuItemCollectionViewCell.swift in Sources */,
@@ -1290,20 +1443,27 @@
 				F3E19CA6211B10FF00ADE838 /* HomeContainerViewController.swift in Sources */,
 				F3E19CBD211D837900ADE838 /* SubMenuModel.swift in Sources */,
 				E93ACD4F216CD16500F29F54 /* BodyPartRowView.swift in Sources */,
+				E9A6C7BB2194346700EE7516 /* RewriteRule.swift in Sources */,
 				F3E200C52135EC5E00902A33 /* GazePredictionDelegate.swift in Sources */,
+				E9A6C7CB2194346700EE7516 /* OperatorSet.swift in Sources */,
+				E9A6C7B12194346700EE7516 /* MathParserErrors.swift in Sources */,
 				F33658AE20D3198000B18CEC /* Constant.swift in Sources */,
 				F3CE9029215D3F8300A9F3DF /* IntroSecondNewViewController.swift in Sources */,
 				F3DA017D2162905200D0625B /* WebviewViewController.swift in Sources */,
 				E9019236217DE5D800212B29 /* ScreenTypeGViewModel.swift in Sources */,
+				E9A6C7BC2194346700EE7516 /* IdentifierExtractor.swift in Sources */,
 				E966261C216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.swift in Sources */,
 				F3DA0181216290BD00D0625B /* WebviewModel.swift in Sources */,
+				E9A6C7CE2194346700EE7516 /* TokenExtractor.swift in Sources */,
 				F3B7FB692181F613001F5F84 /* CalibrationRequest.swift in Sources */,
 				F334ADBC2104E7970056824A /* CameraManager.swift in Sources */,
 				E93ACD4C216CB6F500F29F54 /* UIStackViewExtension.swift in Sources */,
 				F3E19CB2211C3DB400ADE838 /* InputAModel.swift in Sources */,
 				F3E19CBB211D836B00ADE838 /* SubMenuViewModel.swift in Sources */,
 				F32D99C821117E8A007AAA8D /* MenuModel.swift in Sources */,
+				E9A6C7BE2194346700EE7516 /* Operator.swift in Sources */,
 				F3D6D204214CF7F400A6231E /* IntroFourthViewController.swift in Sources */,
+				E9A6C7D12194346700EE7516 /* OperatorTokenSet.swift in Sources */,
 				F3A41ACC2161329000D2D8D6 /* LegalDocument.swift in Sources */,
 				F3D6D20C214CF86500A6231E /* IntroFifthViewModel.swift in Sources */,
 				F354B7432164C7280026F3A2 /* IntroThirdNewViewController.swift in Sources */,
@@ -1311,8 +1471,12 @@
 				F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */,
 				F32D99CC21117EE8007AAA8D /* BaseModel.swift in Sources */,
 				F3355CF421240F6C009AF602 /* TopMenuItemExpandedCollectionViewCell.swift in Sources */,
+				E9A6C7C92194346700EE7516 /* String.swift in Sources */,
 				F3D591B9216B5E80003921CB /* InputValidationHelper.swift in Sources */,
+				E9A6C7C22194346700EE7516 /* OperatorExtractor.swift in Sources */,
 				F3E200CD213664C700902A33 /* CMSampleBufferExtension.swift in Sources */,
+				E9A6C7B72194346700EE7516 /* Evaluator.swift in Sources */,
+				E9A6C7C32194346700EE7516 /* HexNumberExtractor.swift in Sources */,
 				F3E200C22135EC5E00902A33 /* FaceFinderDelegate.swift in Sources */,
 				F334ADC02106E86F0056824A /* NavigationHelper.swift in Sources */,
 				F3355CEF2122E8F3009AF602 /* LoadingViewModel.swift in Sources */,

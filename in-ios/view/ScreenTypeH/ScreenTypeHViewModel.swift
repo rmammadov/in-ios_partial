@@ -128,6 +128,11 @@ class ScreenTypeHViewModel: BaseViewModel {
             return item
         }
         
+        guard item.translations?.first?.label != Constant.MenuConfig.EQUAL_SIGN else {
+            calculateCurrentValue()
+            return item
+        }
+        
         guard item.translations?.first?.label != Constant.MenuConfig.PREVIOUS_ITEM_NAME else {
             previousPage()
             return item
@@ -163,6 +168,30 @@ class ScreenTypeHViewModel: BaseViewModel {
         selectedLabels = []
         selectedTextToSpeech = []
         delegate?.didSelect(value: nil, onScreen: inputScreen)
+    }
+    
+    private func calculateCurrentValue() {
+        var expression = ""
+        selectedLabels.forEach { expression.append($0) }
+        expression = expression.lowercased().replacingOccurrences(of: "x", with: "*")
+        expression = expression.replacingOccurrences(of: "÷", with: "/")
+        do {
+            let result = try expression.evaluate()
+            var resultString = ""
+            if result < Double(Int.max) {
+                resultString = result == Double(Int(result)) ? String(format: "%.0lf", result) : String(result)
+            } else {
+                resultString = String(result)
+            }
+            let translationItem = TranslationMenuItem(locale: "en", label: resultString, textToSpeech: resultString)
+            selectedLabels = [resultString]
+            selectedTextToSpeech = [resultString]
+            delegate?.didSelect(value: translationItem, onScreen: inputScreen)
+            SpeechHelper.shared.play(text: resultString, language: "en")
+        } catch let error {
+            print("Error: calculateCurrentValue: \(error.localizedDescription)")
+            return
+        }
     }
     
     func prepareViewControllerFor(item: ButtonInputScreen) -> UIViewController? {
