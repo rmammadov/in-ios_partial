@@ -246,18 +246,22 @@ extension IntroThirdNewViewController {
     }
     
     @objc func takeScreenShot() {
-        DispatchQueue.global(qos: .background).async {
-            guard let screenShot = self.cameraManager.takeScreenShot() else { return }
-            guard var calibrationDataForFrame = self.cameraManager.getCalibrationFeatures() else { return }
-            guard let btn = self.btnPrevious else { return }
-            let btnAbsoluteFrame = btn.convert((btn.layer.presentation()?.bounds)!, to: self.view)
-            calibrationDataForFrame.cross_x = Float(btnAbsoluteFrame.origin.x)
-            calibrationDataForFrame.cross_y = Float(btnAbsoluteFrame.origin.y)
-            print("button X: \(String(describing: btn.layer.presentation()?.frame.origin.x))")
-            print("button X: \(String(describing: btn.layer.presentation()?.frame.origin.y))")
-            self.apiHelper.setCalibrationDataFor(image: screenShot, data: calibrationDataForFrame)
-//          viewModel.setCalibrationData(image: screenShot, data: calibrationDataForFrame)
+        guard let screenShot = self.cameraManager.takeScreenShot(),
+            var calibrationDataForFrame = self.cameraManager.getCalibrationFeatures(),
+            let btn = self.btnPrevious
+            else { return }
+        var btnFrame: CGRect
+        if btn.superview != self.viewSecondStep {
+            btnFrame = btn.layer.presentation()!.convert((btn.layer.presentation()?.bounds)!, to: self.viewSecondStep.layer)
+        } else {
+            btnFrame = btn.layer.presentation()!.frame
         }
+        let crossX = Float(btnFrame.origin.x + (btnFrame.size.width / 2.0))// * Float(UIScreen.main.nativeScale)
+        let crossY = Float(btnFrame.origin.y + (btnFrame.size.height / 2.0))// * Float(UIScreen.main.nativeScale)
+        calibrationDataForFrame.cross_x = crossX
+        calibrationDataForFrame.cross_y = crossY
+        
+        apiHelper.setCalibrationDataFor(image: screenShot, data: calibrationDataForFrame)
     }
     
     @objc func handleCalibrationStep() {
