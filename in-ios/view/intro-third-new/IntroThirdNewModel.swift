@@ -28,8 +28,7 @@ class IntroThirdNewModel: BaseModel {
     
     private var calibrationStep: Int = CalibrationStatus.firstStep.rawValue
     private var index = 0
-    private var tagsCalibrationFirstStep: Array = Constant.CalibrationConfig.CALIBRATION_TAGS_FIRST_STEP
-    private var tagsCalibrationSecondStep: Array = Constant.CalibrationConfig.CALIBRATION_TAGS_SECOND_STEP
+    private var tagsCalibrationSteps = Constant.CalibrationConfig.CALIBRATION_TAGS_STEPS
     private var calibrationData: Calibration?
     
     func setSubscribers() {
@@ -72,11 +71,7 @@ class IntroThirdNewModel: BaseModel {
     }
     
     func getTags() -> Array<Int> {
-        if calibrationStep == CalibrationStatus.thirdStep.rawValue {
-            return tagsCalibrationSecondStep
-        } else {
-            return tagsCalibrationFirstStep
-        }
+        return tagsCalibrationSteps
     }
     
     func getMaxIndex() -> Int {
