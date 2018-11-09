@@ -86,7 +86,7 @@ class UploadFileOperation: ConcurrentOperation {
                 return
             }
             guard (try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) != nil else {
-                print("Not containing JSON")
+                print("Not containing JSON: \(String(data: content, encoding: .utf8) ?? "-")")
                 self.completionHandler(nil)
                 self.completeOperation()
                 return

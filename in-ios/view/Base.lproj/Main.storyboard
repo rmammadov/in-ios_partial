@@ -810,7 +810,7 @@ The process will take less than 20 seconds.</string>
                                         <state key="normal" image="ic_x"/>
                                         <state key="disabled" image="ic_x_blue"/>
                                         <connections>
-                                            <action selector="onClickBtn1:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="N0s-dc-a7G"/>
+                                            <action selector="onClickBtn:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="qiz-4J-7h1"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" tag="202" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1U-ty-dCR" userLabel="2">
@@ -822,7 +822,7 @@ The process will take less than 20 seconds.</string>
                                         <state key="normal" image="ic_x"/>
                                         <state key="disabled" image="ic_x_blue"/>
                                         <connections>
-                                            <action selector="onClickBtn6:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="rbD-mg-eJL"/>
+                                            <action selector="onClickBtn:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="yqv-Pj-HAI"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" tag="203" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8z3-r9-xXe" userLabel="3">
@@ -834,7 +834,7 @@ The process will take less than 20 seconds.</string>
                                         <state key="normal" image="ic_x"/>
                                         <state key="disabled" image="ic_x_blue"/>
                                         <connections>
-                                            <action selector="onClickBtn11:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="q4J-nd-G9N"/>
+                                            <action selector="onClickBtn:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="xSZ-Pz-ls6"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" tag="204" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FE2-yS-ILz" userLabel="4">
@@ -846,7 +846,7 @@ The process will take less than 20 seconds.</string>
                                         <state key="normal" image="ic_x"/>
                                         <state key="disabled" image="ic_x_blue"/>
                                         <connections>
-                                            <action selector="onClickBtn4:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="O93-Qy-3xN"/>
+                                            <action selector="onClickBtn:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="CbA-rL-TJX"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" tag="205" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kw5-MO-rdt" userLabel="5">
@@ -858,7 +858,7 @@ The process will take less than 20 seconds.</string>
                                         <state key="normal" image="ic_x"/>
                                         <state key="disabled" image="ic_x_blue"/>
                                         <connections>
-                                            <action selector="onClickBtn9:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="9HA-TW-Ygg"/>
+                                            <action selector="onClickBtn:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="1CL-d2-IIj"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" tag="206" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvh-sH-Ivz" userLabel="6">
@@ -870,7 +870,7 @@ The process will take less than 20 seconds.</string>
                                         <state key="normal" image="ic_x"/>
                                         <state key="disabled" image="ic_x_blue"/>
                                         <connections>
-                                            <action selector="onClickBtn2:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="Eb8-Tr-l8d"/>
+                                            <action selector="onClickBtn:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="FLu-nP-Ocf"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" tag="207" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VlJ-yR-2kH" userLabel="7">
@@ -882,7 +882,7 @@ The process will take less than 20 seconds.</string>
                                         <state key="normal" image="ic_x"/>
                                         <state key="disabled" image="ic_x_blue"/>
                                         <connections>
-                                            <action selector="onClickBtn7:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="5mA-vC-A5H"/>
+                                            <action selector="onClickBtn:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="rcQ-nS-XWu"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" tag="208" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S91-uV-Zn2" userLabel="8">
@@ -894,7 +894,7 @@ The process will take less than 20 seconds.</string>
                                         <state key="normal" image="ic_x"/>
                                         <state key="disabled" image="ic_x_blue"/>
                                         <connections>
-                                            <action selector="onClickBtn12:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="tcH-3p-E7v"/>
+                                            <action selector="onClickBtn:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="t3s-IF-hgH"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" tag="209" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v9p-ZQ-duv" userLabel="9">
@@ -906,7 +906,7 @@ The process will take less than 20 seconds.</string>
                                         <state key="normal" image="ic_x"/>
                                         <state key="disabled" image="ic_x_blue"/>
                                         <connections>
-                                            <action selector="onClickBtn10:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="DR8-1E-alH"/>
+                                            <action selector="onClickBtn:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="Kqi-j9-hiy"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" tag="210" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uwg-hJ-wey" userLabel="10">
@@ -918,7 +918,7 @@ The process will take less than 20 seconds.</string>
                                         <state key="normal" image="ic_x"/>
                                         <state key="disabled" image="ic_x_blue"/>
                                         <connections>
-                                            <action selector="onClickBtn5:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="5Ep-j9-sQa"/>
+                                            <action selector="onClickBtn:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="vRi-CC-lVF"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" tag="211" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7FA-VW-iHX" userLabel="11">
@@ -930,7 +930,7 @@ The process will take less than 20 seconds.</string>
                                         <state key="normal" image="ic_x"/>
                                         <state key="disabled" image="ic_x_blue"/>
                                         <connections>
-                                            <action selector="onClickBtn3:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="bph-Cu-6rN"/>
+                                            <action selector="onClickBtn:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="pkf-zF-TDZ"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" tag="212" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FSo-hF-hX0" userLabel="12">
@@ -942,7 +942,7 @@ The process will take less than 20 seconds.</string>
                                         <state key="normal" image="ic_x"/>
                                         <state key="disabled" image="ic_x_blue"/>
                                         <connections>
-                                            <action selector="onClickBtn8:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="95r-DZ-l5d"/>
+                                            <action selector="onClickBtn:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="exM-Vg-l44"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" tag="213" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YHm-GY-jcB" userLabel="13">
@@ -954,7 +954,7 @@ The process will take less than 20 seconds.</string>
                                         <state key="normal" image="ic_x"/>
                                         <state key="disabled" image="ic_x_blue"/>
                                         <connections>
-                                            <action selector="onClickBtn13:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="jnR-5M-sF7"/>
+                                            <action selector="onClickBtn:" destination="YZc-Cu-yc7" eventType="touchUpInside" id="tkE-S4-Ljj"/>
                                         </connections>
                                     </button>
                                 </subviews>

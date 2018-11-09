@@ -15,8 +15,7 @@ class IntroThirdNewViewController: BaseViewController {
     
     @IBOutlet weak var viewStatus: UIView!
     @IBOutlet weak var labelStatus: UILabel!
-    @IBAction func btnStatus(_ sender: Any) {
-    }
+    @IBAction func btnStatus(_ sender: Any) {}
     @IBOutlet weak var ivProgressbar: UIImageView!
     @IBOutlet weak var ivProgressbarContent: UIImageView!
     @IBOutlet weak var viewFirstStep: UIView!
@@ -81,55 +80,7 @@ class IntroThirdNewViewController: BaseViewController {
     @IBAction func onClickBtnRedoFifthStep(_ sender: Any) {
     }
     
-    @IBAction func onClickBtn1(_ sender: Any) {
-        setDisabled(sender: sender)
-    }
-    
-    @IBAction func onClickBtn2(_ sender: Any) {
-        setDisabled(sender: sender)
-    }
-    
-    @IBAction func onClickBtn3(_ sender: Any) {
-        setDisabled(sender: sender)
-    }
-    
-    @IBAction func onClickBtn4(_ sender: Any) {
-        setDisabled(sender: sender)
-    }
-    
-    @IBAction func onClickBtn5(_ sender: Any) {
-        setDisabled(sender: sender)
-    }
-    
-    @IBAction func onClickBtn6(_ sender: Any) {
-        setDisabled(sender: sender)
-    }
-    
-    @IBAction func onClickBtn7(_ sender: Any) {
-        setDisabled(sender: sender)
-    }
-    
-    @IBAction func onClickBtn8(_ sender: Any) {
-        setDisabled(sender: sender)
-    }
-    
-    @IBAction func onClickBtn9(_ sender: Any) {
-        setDisabled(sender: sender)
-    }
-    
-    @IBAction func onClickBtn10(_ sender: Any) {
-        setDisabled(sender: sender)
-    }
-    
-    @IBAction func onClickBtn11(_ sender: Any) {
-        setDisabled(sender: sender)
-    }
-    
-    @IBAction func onClickBtn12(_ sender: Any) {
-        setDisabled(sender: sender)
-    }
-    
-    @IBAction func onClickBtn13(_ sender: Any) {
+    @IBAction func onClickBtn(_ sender: Any) {
         setDisabled(sender: sender)
     }
     
@@ -222,46 +173,50 @@ extension IntroThirdNewViewController {
     }
     
     func startSecondStep() {
-         continueCalibration(tag: viewModel.getTag())
+        viewModel.nextStep()
+        continueCalibration(tag: viewModel.getTag())
     }
     
     func continueCalibration(tag: Int) {
-        if let btnCalibration = self.view.viewWithTag(tag) as? UIButton {
-            btnPrevious = btnCalibration
-            btnPrevious?.isHidden = false
-            
-            if viewModel.getCalibrationStep() == CalibrationStatus.secondStep.rawValue {
-                timerDataCollection = Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.STANDART_CALIBRATION_STEP_DATA_COLLECTION_DURATION, target: self, selector: #selector(takeScreenShot), userInfo: nil, repeats: false)
-                Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.STANDART_CALIBRATION_STEP_DURATION, target: self, selector: #selector(handleCalibrationStep), userInfo: nil, repeats: false)
-            } else {
-                timerDataCollection = Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.MOVING_CALIBRATION_STEP_DATA_COLLECTION_DURATION, target: self, selector: #selector(takeScreenShot), userInfo: nil, repeats: true)
-                guard let nextBtn = self.view.viewWithTag(viewModel.getNextTag()) else { return }
-                let nextBtnAbsoluteFrame = nextBtn.convert((nextBtn.layer.presentation()?.bounds)!, to: self.view)
-                AnimationUtil.animateMoving(view: btnPrevious!, moveX: nextBtnAbsoluteFrame.origin.x, moveY: nextBtnAbsoluteFrame.origin.y)
-                print("Tag \(tag)")
-                print("Previous tag \(viewModel.getNextTag())")
-            }
-            
-        }
+        let tag = 200 + tag
+        guard let btnCalibration = view.viewWithTag(tag) as? UIButton else { return }
+        btnPrevious = btnCalibration
+        btnPrevious?.isHidden = false
+    
+        timerDataCollection = Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.MOVING_CALIBRATION_STEP_DATA_COLLECTION_DURATION,
+                                                   target: self, selector: #selector(takeScreenShot), userInfo: nil, repeats: true)
+        
+        let nextTag = 200 + viewModel.getNextTag()
+        guard let nextBtn = self.view.viewWithTag(nextTag) else { return }
+        let nextBtnFrame = nextBtn.frame
+        AnimationUtil.animateMoving(view: btnCalibration, moveX: nextBtnFrame.origin.x, moveY: nextBtnFrame.origin.y)
+        print("Tag \(tag)")
+        print("Next tag \(nextTag)")
     }
     
     @objc func takeScreenShot() {
-        guard let screenShot = self.cameraManager.takeScreenShot(),
-            var calibrationDataForFrame = self.cameraManager.getCalibrationFeatures(),
-            let btn = self.btnPrevious
-            else { return }
-        var btnFrame: CGRect
-        if btn.superview != self.viewSecondStep {
-            btnFrame = btn.layer.presentation()!.convert((btn.layer.presentation()?.bounds)!, to: self.viewSecondStep.layer)
-        } else {
-            btnFrame = btn.layer.presentation()!.frame
+        guard let btn = self.btnPrevious else { return }
+        UIView.animate(withDuration: 0.05, animations: {
+            btn.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+        }) { (_) in
+            btn.transform = CGAffineTransform(scaleX: 1, y: 1)
+            guard let screenShot = self.cameraManager.takeScreenShot(),
+                var calibrationDataForFrame = self.cameraManager.getCalibrationFeatures()
+                else { return }
+            var btnFrame: CGRect
+            if btn.superview != self.viewSecondStep {
+                print("Should not be here")
+                btnFrame = btn.layer.presentation()!.convert((btn.layer.presentation()?.bounds)!, to: self.viewSecondStep.layer)
+            } else {
+                btnFrame = btn.layer.presentation()!.frame
+            }
+            let crossX = Float(btnFrame.origin.x + (btnFrame.size.width / 2.0))
+            let crossY = Float(btnFrame.origin.y + (btnFrame.size.height / 2.0))
+            calibrationDataForFrame.cross_x = crossX
+            calibrationDataForFrame.cross_y = crossY
+            
+            self.apiHelper.setCalibrationDataFor(image: screenShot, data: calibrationDataForFrame)
         }
-        let crossX = Float(btnFrame.origin.x + (btnFrame.size.width / 2.0))// * Float(UIScreen.main.nativeScale)
-        let crossY = Float(btnFrame.origin.y + (btnFrame.size.height / 2.0))// * Float(UIScreen.main.nativeScale)
-        calibrationDataForFrame.cross_x = crossX
-        calibrationDataForFrame.cross_y = crossY
-        
-        apiHelper.setCalibrationDataFor(image: screenShot, data: calibrationDataForFrame)
     }
     
     @objc func handleCalibrationStep() {
