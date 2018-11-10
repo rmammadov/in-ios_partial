@@ -200,22 +200,23 @@ extension IntroThirdNewViewController {
             btn.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
         }) { (_) in
             btn.transform = CGAffineTransform(scaleX: 1, y: 1)
-            guard let screenShot = self.cameraManager.takeScreenShot(),
-                var calibrationDataForFrame = self.cameraManager.getCalibrationFeatures()
-                else { return }
-            var btnFrame: CGRect
-            if btn.superview != self.viewSecondStep {
-                print("Should not be here")
-                btnFrame = btn.layer.presentation()!.convert((btn.layer.presentation()?.bounds)!, to: self.viewSecondStep.layer)
-            } else {
-                btnFrame = btn.layer.presentation()!.frame
+            guard let cameraImage = self.cameraManager.captureImage() else {
+                print("ERROR: Cannot capture image")
+                return
             }
+            guard var calibrationDataForFrame = self.cameraManager.getCalibrationFeatures() else {
+                print("ERROR: CalibrationFeatures is nil")
+                return
+            }
+            let btnFrame = btn.layer.presentation()!.frame
             let crossX = Float(btnFrame.origin.x + (btnFrame.size.width / 2.0))
             let crossY = Float(btnFrame.origin.y + (btnFrame.size.height / 2.0))
+            //            print("CrossX: \(crossX)")
+            //            print("CrossY: \(crossY)")
+//            print("ImageSize: \(cameraImage.size)")
             calibrationDataForFrame.cross_x = crossX
             calibrationDataForFrame.cross_y = crossY
-            
-            self.apiHelper.setCalibrationDataFor(image: screenShot, data: calibrationDataForFrame)
+            self.apiHelper.setCalibrationDataFor(image: cameraImage, data: calibrationDataForFrame)
         }
     }
     

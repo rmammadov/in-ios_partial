@@ -37,6 +37,7 @@ class CameraManager: NSObject {
     private var gazeUtils = GazeUtilities()
     private var cameraView: UIView? // For the test purpose
     private weak var processingImage: UIImage?
+    private var lastCapturedImage: UIImage?
     private var label: UILabel?
     private var previewLayer: UIImageView?
     private var dataOutput: AVCaptureVideoDataOutput?
@@ -113,19 +114,6 @@ class CameraManager: NSObject {
         addLabel()
         addPointer()
     }
-    
-//    init(cameraView: UIView, showPreview: Bool, showLabel: Bool, showPointer: Bool) {
-//        super.init()
-//        // TODO: Remove after tests
-//        self.cameraView = cameraView // For the test purpose
-//        self.showPreview = showPreview
-//        self.showLabel = showLabel
-//        self.showPointer = showPointer
-//        
-//        addPreviewLayer()
-//        addLabel()
-//        addPointer()
-//    }
     
 }
 
@@ -248,31 +236,20 @@ extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
         DispatchQueue.global(qos: .background).async {
             if self.captureSession != nil {
                 self.captureSession?.sessionPreset = Constant.DefaultConfig.RESOLUTION_VIDEO_INPUT
+                
                 self.captureSession?.startRunning()
 
                 self.deviceOrientation = UIDevice.current.orientation;
                 
                 let videoOrientation = self._videoOrientation(forDeviceOrientation: self.deviceOrientation);
                 
-                DispatchQueue.main.async {
-                    // TODO: Remove this after tests
-
-                    //J.V. commented this out because using hardware preview is not very useful
-                    //for verifying the image orientation sent to the gaze tracker
-                    
-                    /*
-                    self.validPreviewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession!)
-                    self.validPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
-                    
-                    self.validPreviewLayer!.connection?.videoOrientation = videoOrientation
-                    self.previewLayer?.layer.addSublayer(self.validPreviewLayer!)
-                    self.validPreviewLayer!.frame = (self.previewLayer?.frame)!
-                    */
-                }
-                
                 let dataOutput = AVCaptureVideoDataOutput()
-                dataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as AnyHashable as! String: NSNumber(value: kCVPixelFormatType_32BGRA)]
+                
+                dataOutput.videoSettings = [
+                    kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA
+                ]
                 dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "Video Queue"))
+                
                 self.captureSession?.addOutput(dataOutput)
                 dataOutput.connection(with: AVMediaType.video)?.videoOrientation = videoOrientation
                 self.dataOutput = dataOutput;
@@ -300,22 +277,22 @@ extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
     }
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        if (self.processingImage == nil) {
-            
-            guard let capturedImage = sampleBuffer.image(orientation: .up, scale: 1.0)?.rotate(radians: 0) else {return}
-//            guard let capturedImage = UIImage(named: "test_image") else {return} // Use static image to uncomment this line and comment previous
-            
-            if let cgImage = capturedImage.cgImage?.copy()
-            {
-                //must duplicate the image to avoid a retain cycle on our weak reference
-                let newImage = UIImage(cgImage: cgImage,
-                                       scale: capturedImage.scale,
-                                       orientation: capturedImage.imageOrientation)
-                
+        guard let capturedImage = sampleBuffer.image(orientation: .up, scale: 1.0)?.rotate(radians: 0) else { return }
+        if let cgImage = capturedImage.cgImage?.copy() {
+            //must duplicate the image to avoid a retain cycle on our weak reference
+            let newImage = UIImage(cgImage: cgImage,
+                                   scale: capturedImage.scale,
+                                   orientation: capturedImage.imageOrientation)
+            self.lastCapturedImage = capturedImage
+            if self.showPreview {
                 DispatchQueue.main.async {
                     self.previewLayer?.image = newImage;
                 }
             }
+        }
+        
+        if (self.processingImage == nil) {
+            
             
             self.processingImage = capturedImage //save weak reference to know when prediction is completed
             predicate(frame: capturedImage)
@@ -608,9 +585,19 @@ extension CameraManager {
         calibrationFeaturesSnapshoot = calibrationFeatures
         facialFeaturesSnapshoot = facialFeatures
         eyeCentersSnapshoot = eyeCenters
+        
         guard let screenShot = UIApplication.shared.screenShot else { return nil }
         
         return screenShot
+    }
+    
+    func captureImage() -> UIImage? {
+        coordinatesPreConversionSnapshot = coordinatesPreConversion
+        coordinatesSnapshot = coordinates
+        calibrationFeaturesSnapshoot = calibrationFeatures
+        facialFeaturesSnapshoot = facialFeatures
+        eyeCentersSnapshoot = eyeCenters
+        return lastCapturedImage
     }
     
     func getCalibrationFeatures() -> CalibrationData? {

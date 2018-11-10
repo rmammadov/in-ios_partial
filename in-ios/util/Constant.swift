@@ -16,7 +16,7 @@ struct Constant {
         static let TIMEOUT_FOR_RESOURCE: Double = 60.0
         static let COUNT_ROW_ITEMS: Int = 4
         static let COUNT_COLUMN_ITEMS: Int = 5
-        static let RESOLUTION_VIDEO_INPUT: AVCaptureSession.Preset = .cif352x288
+        static let RESOLUTION_VIDEO_INPUT: AVCaptureSession.Preset = .high
         static let GAZE_PREDICTION_AVERAGING_COUNT: Int = 10
     }
     
