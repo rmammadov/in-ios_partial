@@ -47,10 +47,12 @@ class UploadFileOperation: ConcurrentOperation {
     
     private let data: Data
     private let completionHandler: ((File?) -> Void)
+    private let session: URLSession
     
-    init(data: Data, completionHandler: @escaping ((File?) -> Void)) {
+    init(session: URLSession, data: Data, completionHandler: @escaping ((File?) -> Void)) {
         self.data = data
         self.completionHandler = completionHandler
+        self.session = session
         super.init()
     }
     
@@ -62,11 +64,7 @@ class UploadFileOperation: ConcurrentOperation {
             completeOperation()
             return
         }
-        let config = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = Constant.DefaultConfig.TIMEOUT_FOR_REQUEST
-        config.timeoutIntervalForResource = Constant.DefaultConfig.TIMEOUT_FOR_RESOURCE
         
-        let session = URLSession(configuration: config)
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("Keep-Alive", forHTTPHeaderField: "Connection")
@@ -110,10 +108,12 @@ class LoadFileOperation: ConcurrentOperation {
     
     private let url: String
     private let completionHandler: ((String?, Error?) -> Void)
+    private let session: URLSession
     
-    init(url: String,  completion: @escaping (String?, Error?) -> Void) {
+    init(session: URLSession, url: String,  completion: @escaping (String?, Error?) -> Void) {
         self.url = url
         self.completionHandler = completion
+        self.session = session
         super.init()
     }
     
@@ -128,11 +128,6 @@ class LoadFileOperation: ConcurrentOperation {
         let fileManager = FileManager.default
         let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         let destinationUrl = documentsUrl.appendingPathComponent(url.lastPathComponent)
-        
-        let config = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = Constant.DefaultConfig.TIMEOUT_FOR_REQUEST
-        config.timeoutIntervalForResource = Constant.DefaultConfig.TIMEOUT_FOR_RESOURCE
-        let session = URLSession(configuration: config)
         
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
@@ -169,10 +164,12 @@ class PostProfileOperation: ConcurrentOperation {
     
     private let calibrationApiHelper: CalibrationApiHelper
     private let completionHandler: PostProfileOperationHandler
+    private let session: URLSession
     
-    init(apiHelper: CalibrationApiHelper, completionHandler: @escaping PostProfileOperationHandler) {
+    init(session: URLSession, apiHelper: CalibrationApiHelper, completionHandler: @escaping PostProfileOperationHandler) {
         self.calibrationApiHelper = apiHelper
         self.completionHandler = completionHandler
+        self.session = session
         super.init()
     }
     
@@ -196,11 +193,6 @@ class PostProfileOperation: ConcurrentOperation {
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         urlRequest.httpBody = jsonData
-        
-        let config = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = Constant.DefaultConfig.TIMEOUT_FOR_REQUEST
-        config.timeoutIntervalForResource = Constant.DefaultConfig.TIMEOUT_FOR_RESOURCE
-        let session = URLSession(configuration: config)
         
         let task = session.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
@@ -235,11 +227,12 @@ class GetCalibrationOperation: ConcurrentOperation {
     
     private let calibrationRequest: CalibrationRequest
     private let completionHandler: GetCalibrationHandler
+    private let session: URLSession
     
-    
-    init(calibrationRequest: CalibrationRequest, handler: @escaping GetCalibrationHandler) {
+    init(session: URLSession, calibrationRequest: CalibrationRequest, handler: @escaping GetCalibrationHandler) {
         self.calibrationRequest = calibrationRequest
         self.completionHandler = handler
+        self.session = session
         super.init()
     }
     
@@ -252,10 +245,6 @@ class GetCalibrationOperation: ConcurrentOperation {
                 completeOperation()
                 return
         }
-        let config = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = Constant.DefaultConfig.TIMEOUT_FOR_REQUEST
-        config.timeoutIntervalForResource = Constant.DefaultConfig.TIMEOUT_FOR_RESOURCE
-        let session = URLSession(configuration: config)
         
         let jsonEncoder = JSONEncoder()
         let jsonData = try! jsonEncoder.encode(calibrationRequest)
