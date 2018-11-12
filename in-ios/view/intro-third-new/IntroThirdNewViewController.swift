@@ -27,6 +27,8 @@ class IntroThirdNewViewController: BaseViewController {
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var btnForward: UIButton!
     
+    private let apiHelper = CalibrationApiHelper()
+    
     private let viewModel: IntroThirdNewModel = IntroThirdNewModel()
     
     var cameraManager: CameraManager = CameraManager.shared
@@ -39,8 +41,8 @@ class IntroThirdNewViewController: BaseViewController {
         DataManager.status.value = 0
         setUi()
         setCamera()
-//        let point = CGPoint(x: self.view.frame.size.height / 2 , y: 0)
-//        self.view.hitTest(point, with: nil)
+        //        let point = CGPoint(x: self.view.frame.size.height / 2 , y: 0)
+        //        self.view.hitTest(point, with: nil)
     }
     
     func setDisabled(sender: Any) {
@@ -72,7 +74,7 @@ class IntroThirdNewViewController: BaseViewController {
     }
     
     @IBAction func onClickBtnContinueFourthStep(_ sender: Any) {
-        startFourthStep()
+        startFifthStep()
     }
     
     @IBAction func onClickBtnRedoFifthStep(_ sender: Any) {
@@ -104,7 +106,7 @@ extension IntroThirdNewViewController {
     }
     
     func setViewModel() {
-       viewModel.setSubscribers()
+        viewModel.setSubscribers()
     }
     
     func updateUi() {
@@ -142,7 +144,7 @@ extension IntroThirdNewViewController {
                 guard
                     let xModelUrl = self.viewModel.getXModelUrl(),
                     let yModelUrl = self.viewModel.getYModelUrl(),
-                    let orientation = self.viewModel.getCalibrationOrientation()
+                    let orientation = self.apiHelper.getCalibrationOrientation()
                     else { return }
                 self.cameraManager.updateModels(xModelUrl: URL(string: xModelUrl)!,
                                                 yModelUrl: URL(string: yModelUrl)!,
@@ -180,7 +182,7 @@ extension IntroThirdNewViewController {
         guard let btnCalibration = view.viewWithTag(tag) as? UIButton else { return }
         btnPrevious = btnCalibration
         btnPrevious?.isHidden = false
-    
+        
         timerDataCollection = Timer.scheduledTimer(timeInterval: Constant.CalibrationConfig.MOVING_CALIBRATION_STEP_DATA_COLLECTION_DURATION,
                                                    target: self, selector: #selector(takeScreenShot), userInfo: nil, repeats: true)
         
@@ -211,10 +213,10 @@ extension IntroThirdNewViewController {
             let crossY = Float(btnFrame.origin.y + (btnFrame.size.height / 2.0))
             //            print("CrossX: \(crossX)")
             //            print("CrossY: \(crossY)")
-//            print("ImageSize: \(cameraImage.size)")
+            //            print("ImageSize: \(cameraImage.size)")
             calibrationDataForFrame.cross_x = crossX
             calibrationDataForFrame.cross_y = crossY
-            self.viewModel.setCalibrationDataFor(image: cameraImage, data: calibrationDataForFrame)
+            self.apiHelper.setCalibrationDataFor(image: cameraImage, data: calibrationDataForFrame)
         }
     }
     
@@ -233,7 +235,7 @@ extension IntroThirdNewViewController {
     func setCamera() {
         // TODO: should be removed and reimplemented after tests
         cameraManager.setup(cameraView: view, showPreview: false, showLabel: false, showPointer: false)
-
+        
         cameraManager.askUserForCameraPermission { (status) in
             guard status else { return }
             self.cameraManager.setCamera()
@@ -254,11 +256,21 @@ extension IntroThirdNewViewController {
         handleCalibrationStep()
     }
     
-    func startFourthStep() {
-        viewFourthStep.isHidden = true
-        viewModel.postProfileData()
+    func startNewFourthStep() {
         AnimationUtil.animateLoading(imageView: calibrationInProgressView)
         viewThirdStep.isHidden = false
+    }
+    
+    func startFourthStep() {
+        viewSecondStep.isHidden = true
+        viewFourthStep.isHidden = false
+    }
+    
+    func startFifthStep() {
+        viewFourthStep.isHidden = true
+        apiHelper.preparePostProfileOperation()
+        //        viewModel.postProfileData()
+        startNewFourthStep()
     }
     
     @objc func swiped(_ gesture: UIGestureRecognizer) {
