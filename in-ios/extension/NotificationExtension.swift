@@ -10,10 +10,12 @@ import Foundation
 
 extension Notification.Name {
     public static let ScreenTypeCClear = Notification.Name("notification.name.ScreenTypeCClear")
+    public static let GazeTrackerUpdateCoordinates = Notification.Name("notification.name.GazeTrackerUpdateCoordinates")
 }
 
 struct NotificationKeys {
     struct UserInfo {
         public static let ParentViewController = "ParentViewController"
+        public static let kGazeTrackerCoordinate = "GazeTrackerUpdateCoordinates.coordinates"
     }
 }

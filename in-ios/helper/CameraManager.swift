@@ -301,6 +301,8 @@ extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
     
 }
 
+// MARK: - GazePredictionDelegate
+
 extension CameraManager: GazePredictionDelegate {
     
     private func setPrediction() {
@@ -315,7 +317,7 @@ extension CameraManager: GazePredictionDelegate {
     }
     
     func didUpdatePrediction(status: Bool) {
-        let gazeTracker = self.gazeTracker!
+        guard let gazeTracker = self.gazeTracker else { return }
         print("Using the calibrated model: \(gazeTracker.isCalibrated)")
         if !status {
             self.label?.text = "nil"
@@ -348,6 +350,9 @@ extension CameraManager: GazePredictionDelegate {
                 self.label?.text = "Values: X: \(String(describing: gazeTracker.gazeEstimation![0]))" + " Y: \(String(describing: gazeTracker.gazeEstimation![1]))"
             }
             
+            let userInfo = [NotificationKeys.UserInfo.kGazeTrackerCoordinate: CGPoint(x: coordinates.gazeX, y: coordinates.gazeY)]
+            let notification = Notification(name: Notification.Name.GazeTrackerUpdateCoordinates, object: nil, userInfo: userInfo)
+            NotificationCenter.default.post(notification)
             if showPointer {
                 updatePointer(x: coordinates.gazeX, y: coordinates.gazeY)
                 setPointerActive()
