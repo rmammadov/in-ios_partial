@@ -51,7 +51,7 @@ struct Constant {
     }
     
     struct AnimationConfig {
-        static let MENU_ITEM_FINGER_TOUCH_ANIMATION_DURATION: Double = 0.1
+        static let MENU_ITEM_FINGER_TOUCH_ANIMATION_DURATION: Double = 0.001
         static let MENU_ITEM_ANIMATION_DURATION: Double = 4.0
         static let MENU_ITEM_ANIMATION_COUNT: Float = 1.0
     }
