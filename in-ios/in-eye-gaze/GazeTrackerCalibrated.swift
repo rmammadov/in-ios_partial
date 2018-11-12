@@ -52,6 +52,14 @@ class GazeTrackerCalibrated: GazeTracker {
     var calibModelX: MLModel? = nil
     var calibModelY: MLModel? = nil
     
+    private var averageX: [Double] = Array(repeating: 0.0, count: 10)
+    private var averageY: [Double] = Array(repeating: 0.0, count: 10)
+    
+    // FOR TEST PURPOSES
+    let testModelX = CalibrationX()
+    let testModelY = CalibrationY()
+    // REMOVE FOR RELEASE
+    
     override init(delegate: GazePredictionDelegate?, illumResizeRatio: Double = 1.0) {
         
         let appSupportDirectory = try! fileManager.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -146,17 +154,9 @@ class GazeTrackerCalibrated: GazeTracker {
                 let xModelSavePath: URL = URL(fileURLWithPath: X_COMPILED_FILE_NAME, isDirectory: false, relativeTo: saveDirectoryPath)
                 let yModelSavePath: URL = URL(fileURLWithPath: Y_COMPILED_FILE_NAME, isDirectory: false, relativeTo: saveDirectoryPath)
                 
-//                let xModelSavePath: URL = saveDirectoryPath.appendingPathComponent(X_COMPILED_FILE_NAME)
-//                let yModelSavePath: URL = saveDirectoryPath.appendingPathComponent(Y_COMPILED_FILE_NAME)
-                
                 _ = saveModelToFile(compiledModelURL: compiledXURL, destinationURL: xModelSavePath)
                 _ = saveModelToFile(compiledModelURL: compiledYURL, destinationURL: yModelSavePath)
                 return true
-//                if saveModelToFile(compiledModelURL: compiledXURL, destinationURL: xModelSavePath), saveModelToFile(compiledModelURL: compiledYURL, destinationURL: yModelSavePath) {
-//                    return true
-//                } else {
-//                    return false
-//                }
                 
             } catch {
                 print("Failed to load calibration models: \(error)")
@@ -205,19 +205,32 @@ class GazeTrackerCalibrated: GazeTracker {
         
         if let calibFeats = pred.gazeXY {
             do {
-                guard let predX = try self.calibModelX?.prediction(from: CalibrationInput(input: Double(truncating: calibFeats[0]))),
-                    let predY = try self.calibModelY?.prediction(from: CalibrationInput(input: Double(truncating: calibFeats[1])))
+                averageX.remove(at: 0)
+                averageX.append(Double(truncating: calibFeats[0]))
+                
+                averageY.remove(at: 0)
+                averageY.append(Double(truncating: calibFeats[1]))
+                
+                let X = averageX.reduce(0, +)/Double(averageX.count)
+                let Y = averageY.reduce(0, +)/Double(averageY.count)
+                
+                guard let predX = try self.calibModelX?.prediction(from: CalibrationInput(input: X)),
+                    let predY = try self.calibModelY?.prediction(from: CalibrationInput(input: Y))
                     else {
                         self.gazeEstimation = nil
                         self.calibFeatures = nil
                         return
                 }
                 
+//                let predX = try self.testModelX.prediction(input: CalibrationXInput(inputFeatures: X))
+//                let predY = try self.testModelY.prediction(input: CalibrationYInput(inputFeatures: Y))
+                
                 self.gazeEstimation = [predX.featureValue(for: "gazeXY")!.doubleValue as NSNumber,
                                        predY.featureValue(for: "gazeXY")!.doubleValue as NSNumber]
                 self.elapsedTotalTime = CFAbsoluteTimeGetCurrent() - self.startTotalTime
                 print("\nTotal calibrated algorithm processing time: \(self.elapsedTotalTime) s.")
                 print("General model predictions: \(calibFeats[0]), \(calibFeats[1])")
+                print("Low-pass filtering: \(X), \(Y)")
                 if self.gazeEstimation != nil { print("Calibrated model predictions: \(self.gazeEstimation![0]), \(self.gazeEstimation![1])") }
                 self.predictionDelegate?.didUpdatePrediction(status: true)
             } catch {
