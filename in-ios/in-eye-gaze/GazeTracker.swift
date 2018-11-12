@@ -552,7 +552,7 @@ public class GazeTracker: FaceFinderDelegate {
     
     func predictGaze(eyesB: MLMultiArray, eyesG: MLMultiArray, eyesR: MLMultiArray, illuminant: MLMultiArray, headPose: MLMultiArray) -> (gazeXY: MLMultiArray?, calibFeats: MLMultiArray?)? {
         do {
-            let modelOutput = try generalModel.prediction(input: GazeEstimatorInput(eyesB: eyesB, eyesG: eyesG, eyesR: eyesR, illum: illuminant, pose: headPose), options: self.PREDICTION_OPTIONS)
+            let modelOutput = try generalModel.prediction(input: GazeEstimatorInput(_eyesB_: eyesB, _eyesG_: eyesG, _eyesR_: eyesR, _illum_: illuminant, _pose_: headPose), options: self.PREDICTION_OPTIONS)
             return (modelOutput.gazeXY, modelOutput.calibFeats)
         } catch {
             print(error)
