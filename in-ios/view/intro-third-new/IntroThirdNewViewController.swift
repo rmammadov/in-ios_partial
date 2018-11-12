@@ -276,4 +276,5 @@ extension IntroThirdNewViewController {
     @objc func swiped(_ gesture: UIGestureRecognizer) {
         nextStep()
     }
+    
 }
