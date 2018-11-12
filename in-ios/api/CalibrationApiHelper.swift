@@ -27,6 +27,7 @@ class CalibrationApiHelper: NSObject {
         super.init()
         
         self.uploadFileQueue.maxConcurrentOperationCount = 4
+        
         operationQueue.maxConcurrentOperationCount = 1
     }
     
@@ -38,6 +39,7 @@ class CalibrationApiHelper: NSObject {
     private func uploadFile(imageData: Data, calibrationData: CalibrationData) {
         var mutableCalibrationData = calibrationData
         let operation = UploadFileOperation(session: session, data: imageData, completionHandler: ({[weak self] (file) in
+            print("UploadFileOperations count: \(self?.uploadFileQueue.operationCount ?? -1)")
             guard let `self` = self, let file = file else { return }
             mutableCalibrationData.file = file
             self.calibrationDataArray.append(mutableCalibrationData)
@@ -66,6 +68,7 @@ class CalibrationApiHelper: NSObject {
         }
         let calibrationRequest = CalibrationRequest(profile_data: ProfileDataId(id: profileDataId))
         let operation = GetCalibrationOperation(session: session, calibrationRequest: calibrationRequest, handler: { [weak self] (calibration) in
+            print("GetCalibrationOperation handler")
             guard let `self` = self, let calibration = calibration else {
                 print("Error: calibration is nil")
                 return
@@ -77,6 +80,7 @@ class CalibrationApiHelper: NSObject {
     
     private func loadCalibrationFiles(calibration: Calibration) {
         let operationX = LoadFileOperation(session: session, url: calibration.x_model_url) { (path, error) in
+            print("LoadFileOperation handler")
             if let error = error {
                 print("ERROR loadCalibrationFiles: \(error.localizedDescription)")
                 return
@@ -87,6 +91,7 @@ class CalibrationApiHelper: NSObject {
         }
         
         let operationY = LoadFileOperation(session: session, url: calibration.y_model_url) { (path, error) in
+            print("LoadFileOperation handler")
             if let error = error {
                 print("ERROR loadCalibrationFiles: \(error.localizedDescription)")
                 return

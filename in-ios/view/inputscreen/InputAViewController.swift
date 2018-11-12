@@ -37,9 +37,8 @@ class InputAViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         isDisappear = false
+        registerGazeTrackerObserver()
     }
-    
-    deinit {}
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -52,6 +51,7 @@ class InputAViewController: BaseViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        unregisterGazeTrackerObserver()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -193,13 +193,6 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let marginSpace = CGFloat(viewModel.getItemMargin() * (viewModel.getRowCount() - 1))
-//        var cellWidth = (self.collectionView.frame.size.width - marginSpace) / CGFloat(viewModel.getColumnCount())
-//        let cellHeight = self.collectionView.frame.size.height / CGFloat(viewModel.getRowCount())
-//        if cellWidth > cellHeight {
-//            cellWidth = cellHeight - (MenuItemCollectionViewCell.kLabelSpacing + MenuItemCollectionViewCell.kLabelHeight)
-//        }
-//        return CGSize(width: cellWidth, height: cellHeight)
         return ItemUtil.shared.getItemSize()
     }
     
@@ -207,26 +200,13 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         let itemSize = ItemUtil.shared.getItemSize()
-//        let marginSpace = CGFloat(viewModel.getItemMargin() * (viewModel.getRowCount() - 1))
-//        var cellWidth = (self.collectionView.frame.size.width - marginSpace) / CGFloat(viewModel.getColumnCount())
-//        let cellHeight = self.collectionView.frame.size.height / CGFloat(viewModel.getRowCount())
-//        if itemSize.width > itemSize.height {
-//            cellWidth = cellHeight - (MenuItemCollectionViewCell.kLabelSpacing + MenuItemCollectionViewCell.kLabelHeight)
         return (collectionView.bounds.width - (CGFloat(viewModel.getColumnCount()) * itemSize.width)) / CGFloat(viewModel.getColumnCount() - 1)
-//        } else {
-//            return 0
-//        }
     }
     
     // MARK: UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.viewModel.setSelection(indexPath: indexPath)
-        guard let cell = self.getCellForIndexPath(indexPath: indexPath) else { return }
-        AnimationUtil.animateSelection(object: cell, fingerTouch: true, tag: InputAViewController.TAG)
-        if let homeVC = self.parent?.parent?.parent as? HomeViewController {
-            homeVC.viewModel.setMenuExpanded(false)
-        }
+        selectCellAt(indexPath: indexPath, fingerTouch: true)
     }
     
     func getCellForIndexPath(indexPath: IndexPath) -> MenuItemCollectionViewCell? {
@@ -239,6 +219,27 @@ extension InputAViewController: UICollectionViewDelegate, UICollectionViewDataSo
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
             self.collectionView.collectionViewLayout.invalidateLayout()
             self.collectionView.reloadData()
+        }
+    }
+}
+
+extension InputAViewController: GazeTrackerUpdateProtocol {
+    func gazeTrackerUpdate(coordinate: CGPoint) {
+        guard let mainView = UIApplication.shared.windows.first?.rootViewController?.view else { return }
+        let newPoint = mainView.convert(coordinate, to: self.collectionView)
+        selectCellAt(indexPath: self.collectionView.indexPathForItem(at: newPoint))
+    }
+    
+    private func selectCellAt(indexPath: IndexPath?, fingerTouch: Bool = false) {
+        guard indexPath != self.viewModel.getSelection() else { return }
+        if let lastIndexPath = self.viewModel.getSelection(), let cell = collectionView.cellForItem(at: lastIndexPath) as? AnimateObject {
+            AnimationUtil.cancelAnimation(object: cell)
+        }
+        self.viewModel.setSelection(indexPath: indexPath)
+        guard let indexPath = indexPath, let cell = self.getCellForIndexPath(indexPath: indexPath) else { return }
+        AnimationUtil.animateSelection(object: cell, fingerTouch: fingerTouch, tag: InputAViewController.TAG)
+        if let homeVC = self.parent?.parent?.parent as? HomeViewController {
+            homeVC.viewModel.setMenuExpanded(false)
         }
     }
 }

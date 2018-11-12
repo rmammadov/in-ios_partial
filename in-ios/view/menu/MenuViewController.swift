@@ -33,11 +33,16 @@ class MenuViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        registerGazeTrackerObserver()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+    }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unregisterGazeTrackerObserver()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -93,9 +98,9 @@ extension MenuViewController {
             DispatchQueue.main.async {
                 if self.viewModel.status.value == MenuStatus.secondPhaseLoaded.rawValue {
                     self.performSegue(withIdentifier: SEGUE_IDENTIFIER_SUB_MENU, sender: self)
-                    guard let cell = self.getCellForIndexPath(indexPath: self.viewModel.getSelection()) else { return }
+                    guard let indexPath = self.viewModel.getSelection(),
+                        let cell = self.getCellForIndexPath(indexPath: indexPath) else { return }
                     AnimationUtil.cancelAnimation(object: cell)
-//                    AnimationUtil.cancelMenuSelection(imageView: cell.ivStatusIcon)
                 } else {
                     // Dissmis all view controllers which overlapping main view
                     self.navigationController?.popToRootViewController(animated: true)
@@ -110,7 +115,8 @@ extension MenuViewController {
                 if self.viewModel.statusInput.value == InputScreenId.inputScreen0.rawValue {
                     guard
                         let inputScreenId = self.viewModel.getSelectedItem()?.inputScreenId,
-                        let cell = self.getCellForIndexPath(indexPath: self.viewModel.getSelection()),
+                        let indexPath = self.viewModel.getSelection(),
+                        let cell = self.getCellForIndexPath(indexPath: indexPath),
                         let inputScreen = DataManager.getInputScreens().getInputScreenFor(id: inputScreenId)
                         else { return }
                     AnimationUtil.cancelAnimation(object: cell)
@@ -185,12 +191,7 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
     // MARK: UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.viewModel.setSelection(indexPath: indexPath)
-        guard let cell = getCellForIndexPath(indexPath: indexPath) else { return }
-        AnimationUtil.animateSelection(object: cell, fingerTouch: true, tag: MenuViewController.TAG)
-        if let homeVC = self.parent?.parent?.parent as? HomeViewController {
-            homeVC.viewModel.setMenuExpanded(false)
-        }
+        selectCellAt(indexPath: indexPath, fingerTouch: true)
     }
     
     func getCellForIndexPath(indexPath: IndexPath) -> MenuItemCollectionViewCell? {
@@ -204,6 +205,30 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
             self.collectionView.collectionViewLayout.invalidateLayout()
             self.collectionView.reloadData()
+        }
+    }
+}
+
+
+extension MenuViewController: GazeTrackerUpdateProtocol {
+    func gazeTrackerUpdate(coordinate: CGPoint) {
+        guard let mainView = UIApplication.shared.windows.first?.rootViewController?.view else { return }
+        let newPoint = mainView.convert(coordinate, to: self.collectionView)
+        selectCellAt(indexPath: self.collectionView.indexPathForItem(at: newPoint))
+    }
+    
+    func selectCellAt(indexPath: IndexPath?, fingerTouch: Bool = false) {
+        guard indexPath != self.viewModel.getSelection() else {
+            return
+        }
+        if let lastIndexPath = self.viewModel.getSelection(), let cell = getCellForIndexPath(indexPath: lastIndexPath) {
+            AnimationUtil.cancelAnimation(object: cell)
+        }
+        self.viewModel.setSelection(indexPath: indexPath)
+        guard let indexPath = indexPath, let cell = getCellForIndexPath(indexPath: indexPath) else { return }
+        AnimationUtil.animateSelection(object: cell, fingerTouch: fingerTouch, tag: MenuViewController.TAG)
+        if let homeVC = self.parent?.parent?.parent as? HomeViewController {
+            homeVC.viewModel.setMenuExpanded(false)
         }
     }
 }

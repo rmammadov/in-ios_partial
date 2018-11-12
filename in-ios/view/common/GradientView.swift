@@ -49,6 +49,8 @@ import UIKit
         }
     }
     
+    private var animateCompletionBlock: AnimateCompletionBlock?
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         if isRounded {
@@ -141,6 +143,7 @@ enum CircleType {
 
 extension GradientView {
     func startAnimation(duration: CFTimeInterval, completion: @escaping AnimateCompletionBlock) {
+        self.animateCompletionBlock = completion
         guard let mainColor = mainColor else { return }
         let selectionLineWidth: CGFloat = 5
         lineWidth = 1
@@ -170,19 +173,34 @@ extension GradientView {
         gradient.mask = maskLayer
         
         CATransaction.begin()
-        CATransaction.setCompletionBlock {
-            gradient.removeFromSuperlayer()
-            completion(true)
-        }
         
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         animation.fromValue = 0
         animation.toValue = 1
         animation.duration = duration
+        animation.delegate = self
         
         layer.addSublayer(gradient)
         
         maskLayer.add(animation, forKey: "LoadingAnimation")
         CATransaction.commit()
+    }
+    
+    func cancelAnimation() {
+        layer.sublayers?.forEach({ (layer) in
+            if let animation = layer.mask?.animation(forKey: "LoadingAnimation") {
+                layer.mask?.removeAllAnimations()
+            }
+        })
+    }
+}
+
+extension GradientView: CAAnimationDelegate {
+    
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        if let gradientLayer = layer.sublayers?.last {
+            gradientLayer.removeFromSuperlayer()
+        }
+        self.animateCompletionBlock?(flag)
     }
 }

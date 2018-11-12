@@ -64,7 +64,7 @@ extension MenuItemCollectionViewCell: AnimateObject {
     }
     
     func cancelAnimation() {
-        gradientView.layer.removeAllAnimations()
+        gradientView.cancelAnimation()
     }
     
     func setSelected(_ isSelected: Bool) {

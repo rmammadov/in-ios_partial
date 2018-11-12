@@ -28,7 +28,7 @@ class InputAViewModel: BaseViewModel {
     fileprivate var groupedItems: Array<Array<ButtonInputScreen>> = []
     fileprivate var item: ButtonInputScreen?
     fileprivate var selectedItem: ButtonInputScreen?
-    fileprivate var indexSelectedItem: IndexPath = IndexPath(row: 0, section: 0)
+    fileprivate var indexSelectedItem: IndexPath?
     fileprivate var page: Int = 0
     
     func setParentMenuItem(item: MenuItem) {
@@ -157,17 +157,18 @@ class InputAViewModel: BaseViewModel {
         return item?.icon?.url
     }
     
-    func setSelection(indexPath: IndexPath) {
+    func setSelection(indexPath: IndexPath?) {
         self.indexSelectedItem = indexPath
     }
     
-    func getSelection() -> IndexPath {
+    func getSelection() -> IndexPath? {
         return indexSelectedItem
     }
     
     // FIXME: Fix and update
     
-    func onItemLoadRequest(indexPath: IndexPath) {
+    func onItemLoadRequest(indexPath: IndexPath?) {
+        guard let indexPath = indexPath else { return }
         let item = getGroupedItems()[getPage()][indexPath.row]
         self.selectedItem = item
         

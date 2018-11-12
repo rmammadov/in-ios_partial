@@ -33,7 +33,7 @@ class MenuViewModel: BaseViewModel {
     fileprivate var parentVC: HomeViewController?
     fileprivate var items: [MenuItem] = []
     fileprivate var item: MenuItem?
-    fileprivate var indexSelectedItem: IndexPath = IndexPath(row: 0, section: 0)
+    fileprivate var indexSelectedItem: IndexPath?
     fileprivate var selectedItem: MenuItem?
     
     // TODO: Change Rxsift to callbacks
@@ -101,7 +101,8 @@ class MenuViewModel: BaseViewModel {
     
     // FIXME: Fix and update
     
-    func onItemLoadRequest(indexPath: IndexPath) {
+    func onItemLoadRequest(indexPath: IndexPath?) {
+        guard let indexPath = indexPath else { return }
         let menuItem = self.getMenuItems()![indexPath.row]
         self.selectedItem = menuItem
         
@@ -124,11 +125,11 @@ class MenuViewModel: BaseViewModel {
         return self.item?.icon?.url
     }
     
-    func setSelection(indexPath: IndexPath) {
+    func setSelection(indexPath: IndexPath?) {
         self.indexSelectedItem = indexPath
     }
     
-    func getSelection() -> IndexPath {
+    func getSelection() -> IndexPath? {
         return self.indexSelectedItem
     }
     
