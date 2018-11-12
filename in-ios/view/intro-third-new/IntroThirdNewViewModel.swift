@@ -62,5 +62,17 @@ class IntroThirdNewViewModel: BaseViewModel {
     func getOreintation() -> String? {
         return model.getOrientation()
     }
+    
+    func getCalibrationOrientation() -> String? {
+        return model.getCalibrationOrientation()
+    }
+    
+    func setCalibrationDataFor(image: UIImage, data: CalibrationData) {
+        model.setCalibrationDataFor(image: image, data: data)
+    }
+    
+    func postProfileData() {
+        model.postProfileData()
+    }
 }
 

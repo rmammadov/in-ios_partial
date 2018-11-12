@@ -31,6 +31,8 @@ class IntroThirdNewModel: BaseModel {
     private var tagsCalibrationSteps = Constant.CalibrationConfig.CALIBRATION_TAGS_STEPS
     private var calibrationData: Calibration?
     
+    private let apiHelper = CalibrationApiHelper()
+    
     func setSubscribers() {
         DataManager.status.asObservable().subscribe(onNext: {
             event in
@@ -88,6 +90,18 @@ class IntroThirdNewModel: BaseModel {
     
     func getCalibrationStep() -> Int {
         return calibrationStep
+    }
+    
+    func getCalibrationOrientation() -> String? {
+        return apiHelper.getCalibrationOrientation()
+    }
+    
+    func setCalibrationDataFor(image: UIImage, data: CalibrationData) {
+        apiHelper.setCalibrationDataFor(image: image, data: data)
+    }
+    
+    func postProfileData() {
+        apiHelper.preparePostProfileOperation()
     }
     
     func getXModelUrl() -> String? {
