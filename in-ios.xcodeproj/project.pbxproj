@@ -37,6 +37,7 @@
 		E966261C216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E966261A216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.swift */; };
 		E966261D216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E966261B216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.xib */; };
 		E966261F216F38AA006C05B1 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E966261E216F38AA006C05B1 /* UIFontExtension.swift */; };
+		E981D97821998F60002B63B2 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E981D97721998F60002B63B2 /* UIViewControllerExtension.swift */; };
 		E98458EB21805C3300197CBC /* ScreenTypeHCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98458E921805C3300197CBC /* ScreenTypeHCollectionViewCell.swift */; };
 		E98458EC21805C3300197CBC /* ScreenTypeHCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98458EA21805C3300197CBC /* ScreenTypeHCollectionViewCell.xib */; };
 		E9876E07216750310001C626 /* ScreenTypeFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9876E06216750310001C626 /* ScreenTypeFViewController.swift */; };
@@ -260,6 +261,7 @@
 		E966261A216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeDCollectionViewCell.swift; sourceTree = "<group>"; };
 		E966261B216F35AD006C05B1 /* ScreenTypeDCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScreenTypeDCollectionViewCell.xib; sourceTree = "<group>"; };
 		E966261E216F38AA006C05B1 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
+		E981D97721998F60002B63B2 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		E98458E921805C3300197CBC /* ScreenTypeHCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeHCollectionViewCell.swift; sourceTree = "<group>"; };
 		E98458EA21805C3300197CBC /* ScreenTypeHCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScreenTypeHCollectionViewCell.xib; sourceTree = "<group>"; };
 		E9876E0321674F890001C626 /* GazeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GazeUtils.swift; sourceTree = "<group>"; };
@@ -743,6 +745,7 @@
 				E99B8C32216DF1ED00A90EFC /* UIViewExtension.swift */,
 				E966261E216F38AA006C05B1 /* UIFontExtension.swift */,
 				E94ABF712174B49D0063B8D6 /* AnimationProtocol.swift */,
+				E981D97721998F60002B63B2 /* UIViewControllerExtension.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -1477,6 +1480,7 @@
 				F354B7432164C7280026F3A2 /* IntroThirdNewViewController.swift in Sources */,
 				F33F0BCF2121B11C002E31B9 /* DataManager.swift in Sources */,
 				F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */,
+				E981D97821998F60002B63B2 /* UIViewControllerExtension.swift in Sources */,
 				F32D99CC21117EE8007AAA8D /* BaseModel.swift in Sources */,
 				F3355CF421240F6C009AF602 /* TopMenuItemExpandedCollectionViewCell.swift in Sources */,
 				E9A6C7C92194346700EE7516 /* String.swift in Sources */,

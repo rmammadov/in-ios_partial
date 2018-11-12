@@ -46,6 +46,7 @@ class HomeViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        registerGazeTrackerObserver()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -60,6 +61,7 @@ class HomeViewController: BaseViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        unregisterGazeTrackerObserver()
     }
 
 
@@ -151,12 +153,13 @@ extension HomeViewController {
 //        cameraManager.setup(cameraView: viewOpacity, showPreview: false, showLabel: false, showPointer: true)
 
         cameraManager.askUserForCameraPermission { (status) in
-        guard status else { return }
-        cameraManager.setCamera()
-        cameraManager.startSession()
-        cameraManager.shouldRespondToOrientationChanges = true
-        cameraManager.updateOrientation()
+            guard status else { return }
+            cameraManager.setCamera()
+            cameraManager.startSession()
+            cameraManager.shouldRespondToOrientationChanges = true
+            cameraManager.updateOrientation()
         }
+        cameraManager.updateOrientation()
     }
 }
 
@@ -229,5 +232,19 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 self.present(calibrationVC, animated: true, completion: nil)
             })
         }
+    }
+}
+
+extension HomeViewController: GazeTrackerUpdateProtocol {
+    func gazeTrackerUpdate(coordinate: CGPoint) {
+        let isInTopMenu = viewTopMenu.frame.contains(coordinate)
+        let isInContainer = containerViewSubMenu.frame.contains(coordinate)
+        if isInTopMenu {
+            viewModel.setMenuExpanded(true)
+        }
+        if isInContainer {
+            viewModel.setMenuExpanded(false)
+        }
+        updateTopMenu()
     }
 }
