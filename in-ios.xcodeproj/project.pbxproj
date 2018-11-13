@@ -611,7 +611,7 @@
 		E9876E11216766BE0001C626 /* common */ = {
 			isa = PBXGroup;
 			children = (
-				E9876E1421679BF50001C626 /* GradientView.swift */,
+				E9E3CD8E219ABFBE00B6FDFF /* GradientView */,
 				E9876E1A216B6ED50001C626 /* ProgressGradientView.swift */,
 			);
 			path = common;
@@ -670,6 +670,14 @@
 				E9A6C7B02194346700EE7516 /* Expressionizer.swift */,
 			);
 			path = MathParser;
+			sourceTree = "<group>";
+		};
+		E9E3CD8E219ABFBE00B6FDFF /* GradientView */ = {
+			isa = PBXGroup;
+			children = (
+				E9876E1421679BF50001C626 /* GradientView.swift */,
+			);
+			path = GradientView;
 			sourceTree = "<group>";
 		};
 		F3283D70213013BA004B4FBE /* in-eye-gaze */ = {

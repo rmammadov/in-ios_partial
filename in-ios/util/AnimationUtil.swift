@@ -109,7 +109,6 @@ extension AnimationUtil {
     
     static func cancelAnimation(object: AnimateObject) {
         object.cancelAnimation()
-        object.setSelected(false)
         self.status.value = AnimationStatus.cancled.rawValue
     }
 }

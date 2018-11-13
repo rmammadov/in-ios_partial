@@ -126,7 +126,9 @@ extension InputAViewController {
             event in
             if self?.viewModel.status.value == InputAStatus.loaded.rawValue {
                 DispatchQueue.main.async {
-                    guard let cell = self?.getCellForIndexPath(indexPath: ((self?.viewModel.getSelection())!)) else { return }
+                    guard let indexPath = self?.viewModel.getSelection(),
+                        let cell = self?.getCellForIndexPath(indexPath: ((self?.viewModel.getSelection())!))
+                        else { return }
                     AnimationUtil.cancelAnimation(object: cell)
 //                    AnimationUtil.cancelMenuSelection(imageView: cell.ivStatusIcon)
                     self?.updateUi()

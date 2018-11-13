@@ -120,6 +120,7 @@ extension MenuViewController {
                         let inputScreen = DataManager.getInputScreens().getInputScreenFor(id: inputScreenId)
                         else { return }
                     AnimationUtil.cancelAnimation(object: cell)
+                    self.viewModel.setSelection(indexPath: nil)
                     switch inputScreen.type {
                     case .inputScreenA:
                         self.performSegue(withIdentifier: SEGUE_IDENTIFIER_INPUT, sender: self)
@@ -134,7 +135,8 @@ extension MenuViewController {
         AnimationUtil.status.asObservable().subscribe(onNext: {
             event in
             if AnimationUtil.status.value == AnimationStatus.completed.rawValue && AnimationUtil.getTag() == MenuViewController.TAG {
-                self.viewModel.onItemLoadRequest(indexPath: self.viewModel.getSelection())
+                guard let indexPath = self.viewModel.getSelection() else { return }
+                self.viewModel.onItemLoadRequest(indexPath: indexPath)
             }
         }).disposed(by: disposeBag)
     }
