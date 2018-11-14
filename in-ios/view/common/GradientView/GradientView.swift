@@ -174,8 +174,10 @@ extension GradientView {
         maskLayer.path = thirdPath.cgPath
         gradient.mask = maskLayer
         
-        CATransaction.begin()
         originDuration = duration
+        
+        CATransaction.begin()
+        
         if let animationLayer = layer.sublayers?.first(where: { (layer) -> Bool in
             return layer.mask?.animation(forKey: "LoadingAnimation") != nil
         }), let oldAnimation = animationLayer.mask?.animation(forKey: "LoadingAnimation") as? CABasicAnimation {
