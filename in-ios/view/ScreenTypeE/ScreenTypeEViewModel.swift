@@ -18,6 +18,7 @@ class ScreenTypeEViewModel: BaseViewModel {
     private var page = Variable<Int>(0)
     private var selectedItem: ButtonInputScreen?
     private var selectedIndexPath: IndexPath?
+    private var selectionIndexPath: IndexPath?
     
     func loadItems() {
         guard let items = inputScreen?.buttons else { return }
@@ -43,6 +44,15 @@ class ScreenTypeEViewModel: BaseViewModel {
     func setSelectedItem(_ item: ButtonInputScreen?) {
         self.selectedItem = item
     }
+    
+    func getSelection() -> IndexPath? {
+        return selectionIndexPath
+    }
+    
+    func setSelection(_ indexPath: IndexPath?) {
+        selectionIndexPath = indexPath
+    }
+    
     
     func getCurrentPageItems() -> [ButtonInputScreen] {
         guard groupedItems.count > page.value else { return [] }

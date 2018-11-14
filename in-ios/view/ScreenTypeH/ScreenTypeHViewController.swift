@@ -23,11 +23,13 @@ class ScreenTypeHViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        registerGazeTrackerObserver()
         isDisappear = false
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        unregisterGazeTrackerObserver()
         isDisappear = true
     }
     
@@ -135,10 +137,7 @@ extension ScreenTypeHViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? AnimateObject
-            else { return }
-        viewModel.setSelectedIndexPath(indexPath)
-        AnimationUtil.animateSelection(object: cell, fingerTouch: true, tag: ScreenTypeHViewController.identifier)
+        selectCellAt(indexPath: indexPath, fingerTouch: true)
     }
     
 }
@@ -156,5 +155,28 @@ extension ScreenTypeHViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         let itemSize = ItemUtil.shared.getItemSize(withTitle: false)
         return (collectionView.bounds.height - (CGFloat(viewModel.getRowCount()) * itemSize.height)) / CGFloat(viewModel.getRowCount() - 1)
+    }
+}
+
+// MARK: - GazeTrackerUpdateProtocol
+
+extension ScreenTypeHViewController: GazeTrackerUpdateProtocol {
+    func gazeTrackerUpdate(coordinate: CGPoint) {
+        guard let mainView = UIApplication.shared.windows.first?.rootViewController?.view else { return }
+        let newPoint = mainView.convert(coordinate, to: self.collectionView)
+        selectCellAt(indexPath: self.collectionView.indexPathForItem(at: newPoint))
+    }
+    
+    private func selectCellAt(indexPath: IndexPath?, fingerTouch: Bool = false) {
+        guard viewModel.getSelection() != indexPath else { return }
+        if let lastSelectionIndexPath = viewModel.getSelection(),
+            let lastCell = collectionView.cellForItem(at: lastSelectionIndexPath) as? AnimateObject {
+            AnimationUtil.cancelAnimation(object: lastCell)
+        }
+        viewModel.setSelection(indexPath)
+        guard let indexPath = indexPath,
+            let cell = collectionView.cellForItem(at: indexPath) as? AnimateObject else { return }
+        viewModel.setSelectedIndexPath(indexPath)
+        AnimationUtil.animateSelection(object: cell, fingerTouch: fingerTouch, tag: ScreenTypeHViewController.identifier)
     }
 }

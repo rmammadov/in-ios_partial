@@ -159,3 +159,17 @@ extension BodyPartViewController: BodyPartRowDelegate {
         AnimationUtil.animateSelection(object: row, fingerTouch: true, tag: "BodyPartRowView")
     }
 }
+
+extension BodyPartViewController: GazeTrackerUpdateProtocol {
+    func gazeTrackerUpdate(coordinate: CGPoint) {
+        guard let mainView = UIApplication.shared.windows.first?.rootViewController?.view else { return }
+        let leftPoint = mainView.convert(coordinate, to: leftStackView)
+        let rightPoint = mainView.convert(coordinate, to: rightStackView)
+        // TODO: finish this!
+        if leftStackView.frame.contains(leftPoint) {
+            print("Contain left stackView")
+        } else if rightStackView.frame.contains(rightPoint) {
+            print("Contain right stackView")
+        }
+    }
+}

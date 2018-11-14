@@ -35,11 +35,13 @@ class ScreenTypeDViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        registerGazeTrackerObserver()
         isDisappear = false
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        unregisterGazeTrackerObserver()
         isDisappear = true
     }
     
@@ -137,5 +139,14 @@ extension ScreenTypeDViewController: UICollectionViewDelegateFlowLayout {
         let height: CGFloat = collectionView.bounds.height
         itemsWidth[indexPath.item] = width
         return CGSize(width: width, height: height)
+    }
+}
+
+extension ScreenTypeDViewController: GazeTrackerUpdateProtocol {
+    func gazeTrackerUpdate(coordinate: CGPoint) {
+        guard let mainView = UIApplication.shared.windows.first?.rootViewController?.view else { return }
+        let newPoint = mainView.convert(coordinate, to: self.collectionView)
+        guard let indexPath = collectionView.indexPathForItem(at: newPoint) else { return }
+        print("ScreenTypeD handle touch")
     }
 }

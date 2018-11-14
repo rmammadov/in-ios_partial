@@ -24,11 +24,13 @@ class ScreenTypeEViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        registerGazeTrackerObserver()
         isDisappear = false
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        unregisterGazeTrackerObserver()
         isDisappear = true
     }
     
@@ -71,6 +73,7 @@ extension ScreenTypeEViewController {
                 let indexPath = self.viewModel.getSelectedIndexPath(),
                 let cell = self.collectionView.cellForItem(at: indexPath) as? AnimateObject
                 else { return }
+            self.viewModel.setSelection(nil)
             AnimationUtil.cancelAnimation(object: cell)
             let item = self.viewModel.onItemLoadRequest(indexPath: indexPath)
             if item.type == .inputScreenOpen, let nextVC = self.viewModel.prepareViewControllerFor(item: item) {
@@ -144,10 +147,7 @@ extension ScreenTypeEViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? AnimateObject
-            else { return }
-        viewModel.setSelectedIndexPath(indexPath)
-        AnimationUtil.animateSelection(object: cell, fingerTouch: true, tag: ScreenTypeEViewController.identifier)
+        selectCellAt(indexPath: indexPath, fingerTouch: true)
     }
     
 }
@@ -162,8 +162,32 @@ extension ScreenTypeEViewController: UICollectionViewDelegateFlowLayout {
         return (collectionView.bounds.width - (CGFloat(viewModel.getColumnCount()) * itemSize.width)) / CGFloat(viewModel.getColumnCount() - 1)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         let itemSize = ItemUtil.shared.getItemSize()
         return (collectionView.bounds.height - (CGFloat(viewModel.getRowCount()) * itemSize.height)) / CGFloat(viewModel.getRowCount() - 1)
+    }
+}
+
+// MARK: - GazeTrackerUpdateProtocol
+
+extension ScreenTypeEViewController: GazeTrackerUpdateProtocol {
+    func gazeTrackerUpdate(coordinate: CGPoint) {
+        guard let mainView = UIApplication.shared.windows.first?.rootViewController?.view else { return }
+        let newPoint = mainView.convert(coordinate, to: self.collectionView)
+        selectCellAt(indexPath: self.collectionView.indexPathForItem(at: newPoint))
+    }
+    
+    private func selectCellAt(indexPath: IndexPath?, fingerTouch: Bool = false) {
+        guard viewModel.getSelection() != indexPath else { return }
+        if let lastSelectionIndexPath = viewModel.getSelection(),
+            let lastCell = collectionView.cellForItem(at: lastSelectionIndexPath) as? AnimateObject {
+            AnimationUtil.cancelAnimation(object: lastCell)
+        }
+        viewModel.setSelection(indexPath)
+        guard let indexPath = indexPath,
+            let cell = collectionView.cellForItem(at: indexPath) as? AnimateObject else { return }
+        viewModel.setSelectedIndexPath(indexPath)
+        AnimationUtil.animateSelection(object: cell, fingerTouch: fingerTouch, tag: ScreenTypeEViewController.identifier)
     }
 }
