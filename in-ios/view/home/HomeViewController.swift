@@ -128,12 +128,19 @@ extension HomeViewController {
     
     private func updateMainMenu() {
         let height: CGFloat = viewModel.getIsMenuExpanded() ? 116 : 64
+        guard self.constraintCollectionViewHeight.constant != height else { return }
         self.constraintCollectionViewHeight.constant = height
-        UIView.animate(withDuration: 0.5) {
+        unregisterGazeTrackerObserver()
+        UIView.animate(withDuration: 0.5, animations: {
             self.view.layoutIfNeeded()
             self.collectionTopMenu.performBatchUpdates({
                 self.collectionTopMenu.collectionViewLayout.invalidateLayout()
             })
+        }, completion: { (_) in
+            self.registerGazeTrackerObserver()
+        })
+        UIView.animate(withDuration: 0.5) {
+            
         }
     }
     
@@ -240,11 +247,23 @@ extension HomeViewController: GazeTrackerUpdateProtocol {
         let isInTopMenu = viewTopMenu.frame.contains(coordinate)
         let isInContainer = containerViewSubMenu.frame.contains(coordinate)
         if isInTopMenu {
-            viewModel.setMenuExpanded(true)
+            if viewModel.getIsMenuExpanded() {
+                let point = view.convert(coordinate, to: collectionTopMenu)
+                if let indexPath = collectionTopMenu.indexPathForItem(at: point) {
+                    setTopMenuItemSelected(indexPath: indexPath)
+                    viewModel.onTopMenuItemSelected(indexPath: indexPath)
+                    collectionTopMenu.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+                }
+            } else {
+                viewModel.setMenuExpanded(true)
+                updateTopMenu()
+            }
         }
         if isInContainer {
-            viewModel.setMenuExpanded(false)
+            if viewModel.getIsMenuExpanded() {
+                viewModel.setMenuExpanded(false)
+                updateTopMenu()
+            }
         }
-        updateTopMenu()
     }
 }
