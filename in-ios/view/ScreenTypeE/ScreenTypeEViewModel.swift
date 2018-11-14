@@ -53,7 +53,6 @@ class ScreenTypeEViewModel: BaseViewModel {
         selectionIndexPath = indexPath
     }
     
-    
     func getCurrentPageItems() -> [ButtonInputScreen] {
         guard groupedItems.count > page.value else { return [] }
         return groupedItems[page.value]
