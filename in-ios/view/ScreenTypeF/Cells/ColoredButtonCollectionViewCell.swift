@@ -45,14 +45,11 @@ extension ColoredButtonCollectionViewCell: AnimateObject {
         underlineProgressView.isHidden = false
         underlineProgressView.startAnimation(duration: duration) { [weak self] (isCompleted) in
             completionBlock(isCompleted)
-            if isCompleted {
-                self?.underlineProgressView.isHidden = true
-            }
+            self?.underlineProgressView.isHidden = true
         }
     }
     
     func cancelAnimation() {
-        underlineProgressView.isHidden = true
         underlineProgressView.cancelAnimation()
     }
     

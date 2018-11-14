@@ -46,7 +46,6 @@ class ScreenTypeGViewModel: BaseViewModel {
         SpeechHelper.shared.play(translation: item.translations?.currentTranslation())
     }
     
-    
     func getSelection() -> IndexPath? {
         return selectionIndexPath
     }

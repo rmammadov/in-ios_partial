@@ -122,6 +122,8 @@ extension ScreenTypeGViewController {
     }
 }
 
+// MARK: - GazeTrackerUpdateProtocol
+
 extension ScreenTypeGViewController: GazeTrackerUpdateProtocol {
     func gazeTrackerUpdate(coordinate: CGPoint) {
         guard let mainView = UIApplication.shared.windows.first?.rootViewController?.view else { return }
