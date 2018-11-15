@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aOp-Hy-hFa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aOp-Hy-hFa">
     <device id="ipad10_5" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -176,26 +176,60 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5JH-bJ-GqA">
-                                <rect key="frame" x="0.0" y="292" width="63" height="134"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5JH-bJ-GqA" customClass="GradientButton" customModule="in_ios" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="296" width="63" height="126"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="5JH-bJ-GqA" secondAttribute="height" multiplier="83:176" id="Yk5-ur-Qgg"/>
+                                    <constraint firstAttribute="width" secondItem="5JH-bJ-GqA" secondAttribute="height" multiplier="0.5" id="Yk5-ur-Qgg"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="ic_side_btn_back">
+                                <state key="normal" image="ic_side_btn_back_raw">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
+                                        <color key="value" name="appGradientBlue"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
+                                        <color key="value" name="appGradientViolet"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="circleType">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="selectionLineWidth">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="onClickBackBtn:" destination="Wb7-DE-qh2" eventType="touchUpInside" id="bPR-29-i5L"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VXJ-98-Che">
-                                <rect key="frame" x="1049" y="292" width="63" height="134"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VXJ-98-Che" customClass="GradientButton" customModule="in_ios" customModuleProvider="target">
+                                <rect key="frame" x="1049" y="296" width="63" height="126"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="VXJ-98-Che" secondAttribute="height" multiplier="83:176" id="HsX-tT-MnC"/>
+                                    <constraint firstAttribute="width" secondItem="VXJ-98-Che" secondAttribute="height" multiplier="0.5" id="HsX-tT-MnC"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="ic_side_btn_speak">
+                                <state key="normal" image="ic_side_btn_speak_raw">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
+                                        <color key="value" name="appGradientBlue"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
+                                        <color key="value" name="appGradientViolet"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="circleType">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="selectionLineWidth">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="onClickSpeakBtn:" destination="Wb7-DE-qh2" eventType="touchUpInside" id="fMf-6y-TLO"/>
                                 </connections>
@@ -277,13 +311,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="1112" height="748"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fH3-UL-IDN">
-                                <rect key="frame" x="0.0" y="295.5" width="60" height="127"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fH3-UL-IDN" customClass="GradientButton" customModule="in_ios" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="299" width="60" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="6d1-Gh-G2i"/>
-                                    <constraint firstAttribute="width" secondItem="fH3-UL-IDN" secondAttribute="height" multiplier="83:176" id="Xn4-gY-xRx"/>
+                                    <constraint firstAttribute="width" secondItem="fH3-UL-IDN" secondAttribute="height" multiplier="0.5" id="Xn4-gY-xRx"/>
                                 </constraints>
-                                <state key="normal" image="button:fH3-UL-IDN:image" backgroundImage="ic_side_btn_back"/>
+                                <state key="normal" image="button:fH3-UL-IDN:image" backgroundImage="ic_side_btn_back_raw"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
+                                        <color key="value" name="appGradientBlue"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
+                                        <color key="value" name="appGradientViolet"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="circleType">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="selectionLineWidth">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="onClickBackBtn:" destination="8cA-NZ-a1n" eventType="touchUpInside" id="Gjn-Yd-wLk"/>
                                 </connections>
@@ -299,13 +350,30 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UIu-s7-iiK">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UIu-s7-iiK" customClass="GradientButton" customModule="in_ios" customModuleProvider="target">
                                 <rect key="frame" x="1052" y="299" width="60" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="UIu-s7-iiK" secondAttribute="height" multiplier="0.5" id="IIE-HA-q5C"/>
                                     <constraint firstAttribute="width" constant="60" id="uTh-F5-K2g"/>
                                 </constraints>
-                                <state key="normal" image="button:UIu-s7-iiK:image" backgroundImage="ic_side_btn_speak"/>
+                                <state key="normal" image="button:UIu-s7-iiK:image" backgroundImage="ic_side_btn_speak_raw"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
+                                        <color key="value" name="appGradientBlue"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
+                                        <color key="value" name="appGradientViolet"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="circleType">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="selectionLineWidth">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="onClickSpeakBtn:" destination="8cA-NZ-a1n" eventType="touchUpInside" id="1eI-NN-BOc"/>
                                 </connections>
@@ -1696,14 +1764,31 @@ The process will take less than 20 seconds.</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uUe-oB-s79" userLabel="LeftView">
                                 <rect key="frame" x="0.0" y="90" width="65" height="744"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGp-SE-vhd">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGp-SE-vhd" customClass="GradientButton" customModule="in_ios" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="308.5" width="60" height="127"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="wGp-SE-vhd" secondAttribute="height" multiplier="83:176" id="FN0-oh-CtC"/>
                                             <constraint firstAttribute="width" constant="60" id="h1H-jP-GXw"/>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                        <state key="normal" backgroundImage="ic_side_btn_back"/>
+                                        <state key="normal" backgroundImage="ic_side_btn_back_raw"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
+                                                <color key="value" name="appGradientBlue"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
+                                                <color key="value" name="appGradientViolet"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="circleType">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="selectionLineWidth">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="onBackButtonClick:" destination="7d3-Pf-WOu" eventType="touchUpInside" id="vIV-gW-bnW"/>
                                         </connections>
@@ -1720,16 +1805,31 @@ The process will take less than 20 seconds.</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="djf-SA-qOa" userLabel="RightView">
                                 <rect key="frame" x="1047" y="90" width="65" height="744"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pny-74-ARZ">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pny-74-ARZ" customClass="GradientButton" customModule="in_ios" customModuleProvider="target">
                                         <rect key="frame" x="5" y="312" width="60" height="120"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="pny-74-ARZ" secondAttribute="height" multiplier="0.5" id="0Yk-EQ-taV"/>
                                             <constraint firstAttribute="width" constant="60" id="MIu-0o-G7i"/>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                        <state key="normal" backgroundImage="ic_side_btn_speak"/>
+                                        <state key="normal" backgroundImage="ic_side_btn_speak_raw"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isLeft" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="circleType">
+                                                <integer key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="selectionLineWidth">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
+                                                <color key="value" name="appGradientBlue"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
+                                                <color key="value" name="appGradientViolet"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="onSpeakButtonClick:" destination="7d3-Pf-WOu" eventType="touchUpInside" id="YB2-Jf-yKX"/>
@@ -2296,13 +2396,20 @@ AAAAE90
         <image name="ic_check_mark_unchecked" width="51" height="51"/>
         <image name="ic_circle_gradient_loading" width="145" height="145"/>
         <image name="ic_side_btn_back" width="83" height="176"/>
+        <image name="ic_side_btn_back_raw" width="88" height="175"/>
         <image name="ic_side_btn_forward" width="90" height="176"/>
-        <image name="ic_side_btn_speak" width="87" height="175"/>
+        <image name="ic_side_btn_speak_raw" width="87" height="175"/>
         <image name="ic_textfield_background" width="390" height="71"/>
         <image name="ic_textfield_background_long" width="814" height="71"/>
         <image name="ic_x" width="57" height="57"/>
         <image name="ic_x_blue" width="90" height="90"/>
         <image name="line_gradient" width="1367" height="3"/>
+        <namedColor name="appGradientBlue">
+            <color red="0.25882352941176473" green="0.81960784313725488" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="appGradientViolet">
+            <color red="0.52156862745098043" green="0.062745098039215685" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="pigio_black">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>

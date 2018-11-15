@@ -18,16 +18,34 @@ class ScreenTypeCViewController: BaseViewController {
     
     @IBOutlet weak var mainCollectionView: UICollectionView!
     @IBOutlet weak var clearButton: UIButton!
-    @IBOutlet weak var speakButton: UIButton!
-    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var speakButton: GradientButton!
+    @IBOutlet weak var backButton: GradientButton!
     @IBOutlet weak var containerView: UIView!
     
     let viewModel = ScreenTypeCViewModel()
+    private var isDisappear: Bool = true
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         onViewLoad()
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        isDisappear = false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        registerGazeTrackerObserver()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        isDisappear = true
+        unregisterGazeTrackerObserver()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -38,11 +56,13 @@ class ScreenTypeCViewController: BaseViewController {
     }
     
     @IBAction func onBackButtonClick(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        selectBackButton(isSelected: true, fingerTouch: true)
+//        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func onSpeakButtonClick(_ sender: Any) {
-        viewModel.speakSelectedValues()
+        selectSpeakButton(isSelected: true, fingerTouch: true)
+//        viewModel.speakSelectedValues()
     }
     
     @IBAction func onClearButtonClick(_ sender: Any) {
@@ -122,6 +142,19 @@ extension ScreenTypeCViewController {
                 self.replaceViewController()
             }
         }).disposed(by: disposeBag)
+        
+        AnimationUtil.status.asObservable().subscribe(onNext: { [weak self] (status) in
+            guard let `self` = self, !self.isDisappear, status == AnimationStatus.completed.rawValue else { return }
+            switch AnimationUtil.getTag() {
+            case "STC.BackButtonTag":
+                self.navigationController?.popViewController(animated: true)
+            case "STC.SpeakButtonTag":
+                self.viewModel.speakSelectedValues()
+            default:
+                break
+            }
+            self.viewModel.selectionButton = nil
+        }).disposed(by: disposeBag)
     }
     
     private func reloadCollectionView() {
@@ -192,5 +225,49 @@ extension ScreenTypeCViewController: UICollectionViewDelegateFlowLayout {
 extension ScreenTypeCViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.selectedIndexPath.value = indexPath
+    }
+}
+
+extension ScreenTypeCViewController: GazeTrackerUpdateProtocol {
+    func gazeTrackerUpdate(coordinate: CGPoint) {
+        guard let mainView = UIApplication.shared.windows.first?.rootViewController?.view else { return }
+        let newPoint = mainView.convert(coordinate, to: self.view)
+        if backButton.frame.contains(newPoint) {
+            selectBackButton(isSelected: true)
+        } else if speakButton.frame.contains(newPoint) {
+            selectSpeakButton(isSelected: true)
+        } else {
+            if let selectionButton = viewModel.selectionButton {
+                switch selectionButton {
+                case backButton:
+                    selectBackButton(isSelected: false)
+                case speakButton:
+                    selectSpeakButton(isSelected: false)
+                default: return
+                }
+            }
+        }
+    }
+    
+    func selectBackButton(isSelected: Bool, fingerTouch: Bool = false) {
+        if isSelected {
+            if viewModel.selectionButton != backButton {
+                AnimationUtil.animateSelection(object: backButton, fingerTouch: fingerTouch, tag: "STC.BackButtonTag")
+            }
+        } else {
+            AnimationUtil.cancelAnimation(object: backButton)
+        }
+        viewModel.selectionButton = isSelected ? backButton : nil
+    }
+    
+    func selectSpeakButton(isSelected: Bool, fingerTouch: Bool = false) {
+        if isSelected {
+            if viewModel.selectionButton != speakButton {
+                AnimationUtil.animateSelection(object: speakButton, fingerTouch: fingerTouch, tag: "STC.SpeakButtonTag")
+            }
+        } else {
+            AnimationUtil.cancelAnimation(object: speakButton)
+        }
+        viewModel.selectionButton = isSelected ? speakButton : nil
     }
 }
