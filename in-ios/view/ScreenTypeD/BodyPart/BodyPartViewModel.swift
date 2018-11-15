@@ -35,9 +35,9 @@ class BodyPartViewModel: BaseViewModel {
     func onSelectionComplete() {
         guard let bubble = newBubble, let row = newBodyRow  else { return }
         self.selectedBodyRow = row
-        self.newBodyRow = nil
+//        self.newBodyRow = nil
         self.selectedBubble = bubble
-        self.newBubble = nil
+//        self.newBubble = nil
         
         if !bubble.isDisableTextToSpeech {
             SpeechHelper.shared.play(translation: bubble.translations.currentTranslation())

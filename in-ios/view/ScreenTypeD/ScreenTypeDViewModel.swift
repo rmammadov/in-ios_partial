@@ -21,6 +21,7 @@ class ScreenTypeDViewModel: BaseViewModel {
     private var items: [ButtonInputScreen] = []
     private var viewControllers: [UIViewController] = []
     private var selectedIndexPath = Variable<IndexPath?>(nil)
+    private var selectionIndexPath: IndexPath?
     
     func loadItems() {
         guard let items = inputScreen.buttons, items.count > 0 else { return }
@@ -62,6 +63,14 @@ class ScreenTypeDViewModel: BaseViewModel {
     
     func getSelectedIndexPathObserver() -> Observable<IndexPath?> {
         return selectedIndexPath.asObservable()
+    }
+    
+    func getSelection() -> IndexPath? {
+        return selectionIndexPath
+    }
+    
+    func setSelection(_ indexPath: IndexPath?) {
+        selectionIndexPath = indexPath
     }
 }
 

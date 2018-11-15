@@ -29,7 +29,7 @@ extension ScreenTypeHCollectionViewCell: AnimateObject {
     }
     
     func cancelAnimation() {
-        gradientView.layer.removeAllAnimations()
+        gradientView.cancelAnimation()
     }
     
     func setSelected(_ isSelected: Bool) {

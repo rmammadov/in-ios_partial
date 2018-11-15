@@ -18,6 +18,7 @@ class ScreenTypeHViewModel: BaseViewModel {
     private var page = Variable<Int>(0)
     private var selectedItem: ButtonInputScreen?
     private var selectedIndexPath: IndexPath?
+    private var selectionIndexPath: IndexPath?
     private var selectedLabels: [String] = []
     private var selectedTextToSpeech: [String] = []
     
@@ -34,6 +35,10 @@ class ScreenTypeHViewModel: BaseViewModel {
         return selectedItem
     }
     
+    func setSelectedItem(_ item: ButtonInputScreen?) {
+        self.selectedItem = item
+    }
+    
     func setSelectedIndexPath(_ indexPath: IndexPath?) {
         self.selectedIndexPath = indexPath
     }
@@ -42,8 +47,12 @@ class ScreenTypeHViewModel: BaseViewModel {
         return selectedIndexPath
     }
     
-    func setSelectedItem(_ item: ButtonInputScreen?) {
-        self.selectedItem = item
+    func getSelection() -> IndexPath? {
+        return selectionIndexPath
+    }
+    
+    func setSelection(_ indexPath: IndexPath?) {
+        selectionIndexPath = indexPath
     }
     
     func getCurrentPageItems() -> [ButtonInputScreen] {

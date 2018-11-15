@@ -16,6 +16,7 @@ class ScreenTypeGViewModel: BaseViewModel {
     private var items = [ButtonInputScreen]()
     var selectedIndex: IndexPath?
     var newSelectedIndex: IndexPath?
+    private var selectionIndexPath: IndexPath?
     
     func loadItems() {
         guard let buttons = inputScreen.buttons else { return }
@@ -43,5 +44,13 @@ class ScreenTypeGViewModel: BaseViewModel {
     
     func textToSpeech(item: ButtonInputScreen) {
         SpeechHelper.shared.play(translation: item.translations?.currentTranslation())
+    }
+    
+    func getSelection() -> IndexPath? {
+        return selectionIndexPath
+    }
+    
+    func setSelection(_ indexPath: IndexPath?) {
+        selectionIndexPath = indexPath
     }
 }

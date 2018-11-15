@@ -9,6 +9,7 @@
 import UIKit
 
 @IBDesignable class ProgressGradientView: UIView {
+    private let kAnimation = "ProgressGradientView.Animation"
     @IBInspectable var mainColor: UIColor = .appGradientBlue {
         didSet {
             setNeedsDisplay()
@@ -21,6 +22,7 @@ import UIKit
     }
     
     private var animationCompletion: AnimateCompletionBlock?
+    private var originDuration: CFTimeInterval = 0.001
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
@@ -52,32 +54,69 @@ extension ProgressGradientView {
         
         gradient.mask = maskLayer
         
-        let animation = CABasicAnimation(keyPath: "strokeEnd")
-        animation.fromValue = 0
-        animation.toValue = 1
-        animation.duration = duration
-        animation.delegate = self
+        originDuration = duration
         
         CATransaction.begin()
-        CATransaction.setCompletionBlock {
-            gradient.removeFromSuperlayer()
-        }
-        animation.delegate = self
-        layer.addSublayer(gradient)
         
-        maskLayer.add(animation, forKey: "LoadingAnimation")
+        if let animationLayer = layer.sublayers?.first(where: { (layer) -> Bool in
+            return layer.mask?.animation(forKey: kAnimation) != nil
+        }), let oldAnimation = animationLayer.mask?.animation(forKey: kAnimation) as? CABasicAnimation {
+            let startValue = oldAnimation.fromValue as! CFTimeInterval
+            let animationTimeDuration = CACurrentMediaTime() - oldAnimation.beginTime
+            let animationValue = (((originDuration * startValue) - animationTimeDuration)) / originDuration
+            let newAnimationDuration = originDuration - ((originDuration * startValue) - animationTimeDuration)
+            let newAnimation = CABasicAnimation(keyPath: "strokeEnd")
+            newAnimation.fromValue = animationValue
+            newAnimation.toValue = 1
+            newAnimation.duration = newAnimationDuration
+            newAnimation.delegate = self
+            animationLayer.mask?.removeAllAnimations()
+            animationLayer.mask?.add(newAnimation, forKey: kAnimation)
+        } else {
+            let animation = CABasicAnimation(keyPath: "strokeEnd")
+            animation.fromValue = 0
+            animation.toValue = 1
+            animation.duration = duration
+            animation.delegate = self
+            layer.addSublayer(gradient)
+            maskLayer.add(animation, forKey: kAnimation)
+        }
+        
         CATransaction.commit()
     }
     
     func cancelAnimation() {
-        layer.sublayers?.forEach({ (layer) in
-            layer.mask?.removeAllAnimations()
-        })
+        if let animationLayer = layer.sublayers?.first(where: { (layer) -> Bool in
+            return layer.mask?.animation(forKey: kAnimation) != nil
+        }), let animation = animationLayer.mask?.animation(forKey: kAnimation) as? CABasicAnimation {
+            let animationTimeDuration = (CACurrentMediaTime() - animation.beginTime)
+            let animationValue = animationTimeDuration / originDuration
+            animationLayer.mask?.removeAllAnimations()
+            
+            CATransaction.begin()
+            
+            let animationR = CABasicAnimation(keyPath: "strokeEnd")
+            animationR.fromValue = animationValue
+            animationR.toValue = 0
+            animationR.duration = animationTimeDuration
+            animationR.delegate = self
+            (animationLayer.mask?.model()as? CAShapeLayer)?.strokeEnd = 0
+            animationLayer.mask?.add(animationR, forKey: kAnimation)
+            
+            CATransaction.commit()
+        } else {
+            animationCompletion?(false)
+        }
     }
 }
 
 extension ProgressGradientView: CAAnimationDelegate {
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        animationCompletion?(flag)
+        guard flag, let animation = anim as? CABasicAnimation else { return }
+        let animationFinishValue = animation.toValue as? Double ?? 0
+        animationCompletion?(animationFinishValue == 1)
+        if let gradientLayer = layer.sublayers?.last {
+            gradientLayer.removeFromSuperlayer()
+        }
     }
 }

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -40,16 +41,34 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3v1-1Y-mkp" customClass="ProgressGradientView" customModule="in_ios" customModuleProvider="target">
+                        <rect key="frame" x="12" y="34" width="230" height="10"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="N5E-Lx-06o"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
+                                <color key="value" name="appGradientBlue"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
+                                <color key="value" name="appGradientViolet"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                 </subviews>
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="3v1-1Y-mkp" firstAttribute="trailing" secondItem="jLr-GZ-372" secondAttribute="trailing" id="4ns-8a-EWb"/>
+                <constraint firstItem="3v1-1Y-mkp" firstAttribute="leading" secondItem="jLr-GZ-372" secondAttribute="leading" id="ExC-Wb-0EB"/>
                 <constraint firstAttribute="trailing" secondItem="jLr-GZ-372" secondAttribute="trailing" constant="12" id="FWs-3k-6gX"/>
                 <constraint firstItem="ItG-B6-oaJ" firstAttribute="centerX" secondItem="jLr-GZ-372" secondAttribute="centerX" id="Lcu-be-ukd"/>
                 <constraint firstItem="jLr-GZ-372" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="12" id="MdN-EA-dob"/>
                 <constraint firstItem="ItG-B6-oaJ" firstAttribute="leading" secondItem="jLr-GZ-372" secondAttribute="leading" constant="16" id="Pdg-fT-Ubg"/>
                 <constraint firstItem="ItG-B6-oaJ" firstAttribute="centerY" secondItem="jLr-GZ-372" secondAttribute="centerY" id="WHm-zK-Qbi"/>
                 <constraint firstItem="jLr-GZ-372" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="XEF-hx-uVg"/>
+                <constraint firstItem="3v1-1Y-mkp" firstAttribute="bottom" secondItem="jLr-GZ-372" secondAttribute="bottom" id="h5R-i3-xmE"/>
                 <constraint firstAttribute="bottom" secondItem="jLr-GZ-372" secondAttribute="bottom" id="iev-gu-DQx"/>
                 <constraint firstItem="jLr-GZ-372" firstAttribute="trailing" secondItem="ItG-B6-oaJ" secondAttribute="trailing" constant="16" id="xH7-9a-gjN"/>
             </constraints>
@@ -57,9 +76,18 @@
             <size key="customSize" width="254" height="50"/>
             <connections>
                 <outlet property="gradientView" destination="jLr-GZ-372" id="uin-JM-MZz"/>
+                <outlet property="progressGradientView" destination="3v1-1Y-mkp" id="GZU-Sr-JR3"/>
                 <outlet property="titleLabel" destination="ItG-B6-oaJ" id="6XF-5O-9Nf"/>
             </connections>
             <point key="canvasLocation" x="52.799999999999997" y="147.52623688155924"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <namedColor name="appGradientBlue">
+            <color red="0.25882352941176473" green="0.81960784313725488" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="appGradientViolet">
+            <color red="0.52156862745098043" green="0.062745098039215685" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

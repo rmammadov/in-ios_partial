@@ -39,14 +39,11 @@ extension ScreenTypeGCollectionViewCell: AnimateObject {
         progressView.isHidden = false
         progressView.startAnimation(duration: duration) { [weak self] (isCompleted) in
             completionBlock(isCompleted)
-            if isCompleted {
-                self?.progressView.isHidden = true
-            }
+            self?.progressView.isHidden = true
         }
     }
     
     func cancelAnimation() {
-        progressView.isHidden = true
         progressView.cancelAnimation()
     }
     

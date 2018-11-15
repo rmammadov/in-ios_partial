@@ -27,7 +27,13 @@ class BodyPartViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        registerGazeTrackerObserver()
         prepareArrowLines()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unregisterGazeTrackerObserver()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -151,11 +157,39 @@ extension BodyPartViewController {
 
 extension BodyPartViewController: BodyPartRowDelegate {
     func didSelect(_ row: BodyPartRowView, bubble: Bubble) {
-        if let row = viewModel.newBodyRow  {
-            AnimationUtil.cancelAnimation(object: row)
+        selectRow(row, fingerTouch: true)
+    }
+}
+
+extension BodyPartViewController: GazeTrackerUpdateProtocol {
+    func gazeTrackerUpdate(coordinate: CGPoint) {
+        guard let mainView = UIApplication.shared.windows.first?.rootViewController?.view else { return }
+        let leftPoint = mainView.convert(coordinate, to: leftStackView)
+        let rightPoint = mainView.convert(coordinate, to: rightStackView)
+        if leftStackView.frame.contains(leftPoint) {
+            if let button = leftStackView.hitTest(leftPoint, with: nil) as? UIButton,
+                let row = button.superview?.superview as? BodyPartRowView {
+                selectRow(row)
+                return
+            }
+        } else if rightStackView.frame.contains(rightPoint) {
+            if let button = rightStackView.hitTest(rightPoint, with: nil) as? UIButton,
+                let row = button.superview?.superview as? BodyPartRowView {
+                selectRow(row)
+                return
+            }
         }
-        viewModel.newBubble = bubble
+        selectRow(nil)
+    }
+    
+    func selectRow(_ row: BodyPartRowView?, fingerTouch: Bool = false) {
+        guard row != viewModel.newBodyRow else { return }
+        if let lastBodyRow = viewModel.newBodyRow {
+            AnimationUtil.cancelAnimation(object: lastBodyRow)
+        }
         viewModel.newBodyRow = row
-        AnimationUtil.animateSelection(object: row, fingerTouch: true, tag: "BodyPartRowView")
+        viewModel.newBubble = row?.bubble
+        guard let row = row, row.bubble != nil else { return }
+        AnimationUtil.animateSelection(object: row, fingerTouch: fingerTouch, tag: "BodyPartRowView")
     }
 }

@@ -35,11 +35,13 @@ class ScreenTypeDViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        registerGazeTrackerObserver()
         isDisappear = false
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        unregisterGazeTrackerObserver()
         isDisappear = true
     }
     
@@ -94,6 +96,16 @@ extension ScreenTypeDViewController {
             guard indexPath != nil else { return }
             self?.replaceViewController()
         }).disposed(by: disposeBag)
+        
+        AnimationUtil.status.asObservable().subscribe(onNext: { (status) in
+            guard !self.isDisappear,
+                status == AnimationStatus.completed.rawValue,
+                AnimationUtil.getTag() == ScreenTypeDViewController.identifier,
+                let indexPath = self.viewModel.getSelection()
+                else { return }
+            self.viewModel.setSelectedIndexPath(indexPath)
+            self.viewModel.setSelection(nil)
+        }).disposed(by: disposeBag)
     }
 }
 
@@ -123,7 +135,8 @@ extension ScreenTypeDViewController: UICollectionViewDataSource {
 
 extension ScreenTypeDViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        viewModel.setSelectedIndexPath(indexPath)
+//        viewModel.setSelectedIndexPath(indexPath)
+        selectCellAt(indexPath: indexPath, fingerTouch: true)
     }
     
 }
@@ -137,5 +150,28 @@ extension ScreenTypeDViewController: UICollectionViewDelegateFlowLayout {
         let height: CGFloat = collectionView.bounds.height
         itemsWidth[indexPath.item] = width
         return CGSize(width: width, height: height)
+    }
+}
+
+// MARK: - GazeTrackerUpdateProtocol
+
+extension ScreenTypeDViewController: GazeTrackerUpdateProtocol {
+    func gazeTrackerUpdate(coordinate: CGPoint) {
+        guard let mainView = UIApplication.shared.windows.first?.rootViewController?.view else { return }
+        let newPoint = mainView.convert(coordinate, to: self.collectionView)
+        selectCellAt(indexPath: self.collectionView.indexPathForItem(at: newPoint))
+    }
+    
+    private func selectCellAt(indexPath: IndexPath?, fingerTouch: Bool = false) {
+        guard viewModel.getSelection() != indexPath else { return }
+        if let lastSelectionIndexPath = viewModel.getSelection(),
+            let object = collectionView.cellForItem(at: lastSelectionIndexPath) as? AnimateObject {
+            AnimationUtil.cancelAnimation(object: object)
+        }
+        guard viewModel.getSelectedIndexPath() != indexPath else { return }
+        viewModel.setSelection(indexPath)
+        guard let indexPath = indexPath,
+            let cell = collectionView.cellForItem(at: indexPath) as? AnimateObject else { return }
+        AnimationUtil.animateSelection(object: cell, fingerTouch: fingerTouch, tag: ScreenTypeDViewController.identifier)
     }
 }

@@ -11,6 +11,7 @@ import UIKit
 class ScreenTypeDCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var gradientView: GradientView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var progressGradientView: ProgressGradientView!
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -34,9 +35,23 @@ class ScreenTypeDCollectionViewCell: UICollectionViewCell {
     func setTitle(title: String) {
         titleLabel.text = title
     }
+
+}
+
+extension ScreenTypeDCollectionViewCell: AnimateObject {
+    func animateLoading(duration: CFTimeInterval, completionBlock: @escaping AnimateCompletionBlock) {
+        progressGradientView.isHidden = false
+        progressGradientView.startAnimation(duration: duration) { (isCompleted) in
+            self.progressGradientView.isHidden = true
+            completionBlock(isCompleted)
+        }
+    }
+    
+    func cancelAnimation() {
+        progressGradientView.cancelAnimation()
+    }
     
     func setSelected(_ isSelected: Bool) {
         gradientView.isHidden = !isSelected
     }
-
 }

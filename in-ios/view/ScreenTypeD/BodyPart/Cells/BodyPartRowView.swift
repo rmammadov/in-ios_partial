@@ -64,14 +64,11 @@ extension BodyPartRowView: AnimateObject {
         newProgressView.isHidden = false
         newProgressView.startAnimation(duration: duration) { [weak self] (isCompleted) in
             completionBlock(isCompleted)
-            if isCompleted {
-                self?.newProgressView.isHidden = true
-            }
+            self?.newProgressView.isHidden = true
         }
     }
     
     func cancelAnimation() {
-        newProgressView.isHidden = true
         newProgressView.cancelAnimation()
     }
     
