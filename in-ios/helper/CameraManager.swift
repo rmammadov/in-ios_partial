@@ -210,6 +210,24 @@ extension CameraManager {
     }
     
     private func updatePointer(x: Double, y: Double) {
+        var x = CGFloat(x)
+        var y = CGFloat(y)
+        let minX = Constant.ItemSize.POINTER_WIDTH / 2
+        let minY = Constant.ItemSize.POINTER_HEIGHT / 2
+        guard let maxX = ivPointer?.frame.origin.x, let maxY = ivPointer?.frame.origin.y else {return}
+        
+        if maxX < x {
+            x = maxX
+        } else if x < minX {
+            x = minX
+        }
+        
+        if maxY < y {
+            y = maxY
+        } else if y < minY {
+            y = minY
+        }
+        
         ivPointer?.frame = CGRect(x: x, y: y, width: 50.0, height: 55.0)
         cameraView!.addSubview(ivPointer!)
     }
