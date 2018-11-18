@@ -36,7 +36,7 @@ class FaceFinder {
     }
     
     public func getFaces(scene: UIImage) {
-        
+
 //        print("\(scene.size)")
 //        print("Face detection start @:    \(CFAbsoluteTimeGetCurrent())")
         let visionImage = VisionImage(image: scene)

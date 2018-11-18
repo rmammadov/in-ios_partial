@@ -234,7 +234,7 @@ extension IntroThirdNewViewController {
     
     func setCamera() {
         // TODO: should be removed and reimplemented after tests
-        cameraManager.setup(cameraView: view, showPreview: false, showLabel: false, showPointer: false)
+        cameraManager.setup(parentView: view, showPreview: false, showLabel: false, showPointer: false)
         
         cameraManager.askUserForCameraPermission { (status) in
             guard status else { return }

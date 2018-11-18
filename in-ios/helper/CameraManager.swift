@@ -35,7 +35,7 @@ class CameraManager: NSObject {
     private var uncalibratedGazeTracker: GazeTracker?
     private var calibratedGazeTracker: GazeTrackerCalibrated?
     private var gazeUtils = GazeUtilities()
-    private var cameraView: UIView? // For the test purpose
+    private var parentView: UIView? // For the test purpose
     private weak var processingImage: UIImage?
     private var lastCapturedImage: UIImage?
     private var label: UILabel?
@@ -105,8 +105,8 @@ class CameraManager: NSObject {
         setPrediction()
     }
     
-    public func setup(cameraView: UIView, showPreview: Bool, showLabel: Bool, showPointer: Bool) {
-        self.cameraView = cameraView
+    public func setup(parentView: UIView, showPreview: Bool, showLabel: Bool, showPointer: Bool) {
+        self.parentView = parentView
         self.showPreview = showPreview
         self.showLabel = showLabel
         self.showPointer = showPointer
@@ -165,15 +165,15 @@ extension CameraManager {
         self.previewLayer = UIImageView()
         
         self.previewLayer?.contentMode = .scaleAspectFit
-        self.cameraView?.addSubview(self.previewLayer!)
+        self.parentView?.addSubview(self.previewLayer!)
         
         self.previewLayer?.translatesAutoresizingMaskIntoConstraints = false
-        self.previewLayer?.leftAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 10).isActive=true
-        self.previewLayer?.topAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -350).isActive=true
-        self.previewLayer?.rightAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 330).isActive=true
-        self.previewLayer?.bottomAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -34).isActive=true
+        self.previewLayer?.leftAnchor.constraint(equalTo: (self.parentView?.leftAnchor)!, constant: 10).isActive=true
+        self.previewLayer?.topAnchor.constraint(equalTo: (self.parentView?.bottomAnchor)!, constant: -350).isActive=true
+        self.previewLayer?.rightAnchor.constraint(equalTo: (self.parentView?.leftAnchor)!, constant: 330).isActive=true
+        self.previewLayer?.bottomAnchor.constraint(equalTo: (self.parentView?.bottomAnchor)!, constant: -34).isActive=true
 
-        self.cameraView?.layer.zPosition = .greatestFiniteMagnitude
+        self.parentView?.layer.zPosition = .greatestFiniteMagnitude
     }
     
     private func addLabel() {
@@ -183,13 +183,13 @@ extension CameraManager {
         label?.textColor = .red
         label?.font = UIFont(name:"HelveticaNeue-Bold", size: 16.0)
         label?.text = "Coordinates"
-        self.cameraView?.addSubview(label!)
+        self.parentView?.addSubview(label!)
         
         label?.translatesAutoresizingMaskIntoConstraints = false
-        label?.leftAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 10).isActive=true
-        label?.topAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -34).isActive=true
-        label?.rightAnchor.constraint(equalTo: (self.cameraView?.leftAnchor)!, constant: 330).isActive=true
-        label?.bottomAnchor.constraint(equalTo: (self.cameraView?.bottomAnchor)!, constant: -10).isActive=true
+        label?.leftAnchor.constraint(equalTo: (self.parentView?.leftAnchor)!, constant: 10).isActive=true
+        label?.topAnchor.constraint(equalTo: (self.parentView?.bottomAnchor)!, constant: -34).isActive=true
+        label?.rightAnchor.constraint(equalTo: (self.parentView?.leftAnchor)!, constant: 330).isActive=true
+        label?.bottomAnchor.constraint(equalTo: (self.parentView?.bottomAnchor)!, constant: -10).isActive=true
 
     }
     
@@ -212,9 +212,12 @@ extension CameraManager {
     private func updatePointer(x: Double, y: Double) {
         var x = CGFloat(x)
         var y = CGFloat(y)
-        let minX = Constant.ItemSize.POINTER_WIDTH / 2
-        let minY = Constant.ItemSize.POINTER_HEIGHT / 2
-        guard let maxX = ivPointer?.frame.origin.x, let maxY = ivPointer?.frame.origin.y else {return}
+        let minX: CGFloat = 0
+        let minY: CGFloat = 0
+        guard var maxX = parentView?.frame.size.width, var maxY = parentView?.frame.size.height else { return }
+        
+        maxX = maxX - Constant.ItemSize.POINTER_WIDTH
+        maxY = maxY - Constant.ItemSize.POINTER_HEIGHT
         
         if maxX < x {
             x = maxX
@@ -229,7 +232,7 @@ extension CameraManager {
         }
         
         ivPointer?.frame = CGRect(x: x, y: y, width: 50.0, height: 55.0)
-        cameraView!.addSubview(ivPointer!)
+        parentView!.addSubview(ivPointer!)
     }
 }
 
@@ -384,11 +387,11 @@ extension CameraManager: GazePredictionDelegate {
     func isFaceDetected(status: Bool) {
         DispatchQueue.main.async {
             if status {
-                self.cameraView?.layer.borderWidth = 10
-                self.cameraView?.layer.borderColor = UIColor.red.cgColor
+                self.parentView?.layer.borderWidth = 10
+                self.parentView?.layer.borderColor = UIColor.red.cgColor
             } else {
-                self.cameraView?.layer.borderWidth = 0
-                self.cameraView?.layer.borderColor = UIColor.black.cgColor
+                self.parentView?.layer.borderWidth = 0
+                self.parentView?.layer.borderColor = UIColor.black.cgColor
             }
         }
     }
