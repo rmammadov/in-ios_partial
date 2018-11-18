@@ -27,8 +27,6 @@ class IntroThirdNewViewController: BaseViewController {
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var btnForward: UIButton!
     
-    private let apiHelper = CalibrationApiHelper()
-    
     private let viewModel: IntroThirdNewModel = IntroThirdNewModel()
     
     var cameraManager: CameraManager = CameraManager.shared
@@ -144,7 +142,7 @@ extension IntroThirdNewViewController {
                 guard
                     let xModelUrl = self.viewModel.getXModelUrl(),
                     let yModelUrl = self.viewModel.getYModelUrl(),
-                    let orientation = self.apiHelper.getCalibrationOrientation()
+                    let orientation = self.viewModel.getCalibrationOrientation()
                     else { return }
                 self.cameraManager.updateModels(xModelUrl: URL(string: xModelUrl)!,
                                                 yModelUrl: URL(string: yModelUrl)!,
@@ -216,7 +214,7 @@ extension IntroThirdNewViewController {
             //            print("ImageSize: \(cameraImage.size)")
             calibrationDataForFrame.cross_x = crossX
             calibrationDataForFrame.cross_y = crossY
-            self.apiHelper.setCalibrationDataFor(image: cameraImage, data: calibrationDataForFrame)
+            self.viewModel.setCalibrationDataFor(image: cameraImage, data: calibrationDataForFrame)
         }
     }
     
@@ -268,7 +266,7 @@ extension IntroThirdNewViewController {
     
     func startFifthStep() {
         viewFourthStep.isHidden = true
-        apiHelper.preparePostProfileOperation()
+        viewModel.postProfileData()
         //        viewModel.postProfileData()
         startNewFourthStep()
     }
