@@ -68,14 +68,14 @@ extension LoadingViewController {
                     AnimationUtil.animateLoading(imageView: self.ivProgressbar)
                     self.ivProgressbar.image = UIImage(named: "ic_circle_gradient_fill")
                     self.ivProgressbarContent.image = UIImage(named: "ic_no_internet")
-                    self.labelStatus.text = "No internet connection!"
+                    self.labelStatus.text = "no_internet".localized
                     self.btnTryAgain.isHidden = false
                 
                 case LoadingStatus.failed.rawValue:
                     AnimationUtil.animateLoading(imageView: self.ivProgressbar)
                     self.ivProgressbar.image = UIImage(named: "ic_circle_gradient_fill")
                     self.ivProgressbarContent.image = UIImage(named: "ic_server_error")
-                    self.labelStatus.text = "Failed to connect to the server!"
+                    self.labelStatus.text = "failed_connect_server".localized
                     self.btnTryAgain.isHidden = false
                 
                 case LoadingStatus.completed.rawValue:
@@ -85,7 +85,7 @@ extension LoadingViewController {
                 default:
                     self.ivProgressbarContent.image = nil
                     AnimationUtil.animateLoading(imageView: self.ivProgressbar)
-                    self.labelStatus.text = "Loading content..."
+                    self.labelStatus.text = "loading_content".localized
                     self.btnTryAgain.isHidden = true
             }
         }
