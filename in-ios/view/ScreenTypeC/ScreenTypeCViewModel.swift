@@ -16,6 +16,7 @@ class ScreenTypeCViewModel: BaseViewModel {
     var selectedItem = Variable<[Int: Any]>([:])
     var selectedIndexPath = Variable<IndexPath?>(nil)
     var viewControllers: [UIViewController] = []
+    var selectionButton: UIButton?
     
     func getItems() -> [InputScreen] {
         return items.value

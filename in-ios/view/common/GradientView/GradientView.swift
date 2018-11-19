@@ -133,7 +133,7 @@ import UIKit
 }
 
 
-enum CircleType {
+enum CircleType: Int {
     case full
     case halfLeft
     case halfRight
@@ -183,7 +183,7 @@ extension GradientView {
         }), let oldAnimation = animationLayer.mask?.animation(forKey: "LoadingAnimation") as? CABasicAnimation {
             let startValue = oldAnimation.fromValue as! CFTimeInterval
             let animationTimeDuration = CACurrentMediaTime() - oldAnimation.beginTime
-            let animationValue = (((originDuration * startValue) - animationTimeDuration)) / originDuration
+            let animationValue = ((originDuration * startValue) - animationTimeDuration) / originDuration
             let newAnimationDuration = originDuration - ((originDuration * startValue) - animationTimeDuration)
             let newAnimation = CABasicAnimation(keyPath: "strokeEnd")
             newAnimation.fromValue = animationValue

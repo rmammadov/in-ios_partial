@@ -30,6 +30,7 @@ class InputAViewModel: BaseViewModel {
     fileprivate var selectedItem: ButtonInputScreen?
     fileprivate var indexSelectedItem: IndexPath?
     fileprivate var page: Int = 0
+    var selectionButton: UIButton?
     
     func setParentMenuItem(item: MenuItem) {
         parentMenuItem = item

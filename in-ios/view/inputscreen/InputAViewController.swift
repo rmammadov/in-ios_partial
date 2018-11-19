@@ -17,7 +17,7 @@ class InputAViewController: BaseViewController {
     private static let TAG = "InputAViewController"
     
     @IBOutlet weak var labelTitle: UILabel!
-    @IBOutlet weak var btnBack: UIButton!
+    @IBOutlet weak var btnBack: GradientButton!
     @IBOutlet weak var btnSpeak: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var backButtonLeadingConstraint: NSLayoutConstraint!
@@ -130,7 +130,6 @@ extension InputAViewController {
                         let cell = self?.getCellForIndexPath(indexPath: ((self?.viewModel.getSelection())!))
                         else { return }
                     AnimationUtil.cancelAnimation(object: cell)
-//                    AnimationUtil.cancelMenuSelection(imageView: cell.ivStatusIcon)
                     self?.updateUi()
                 }
             }
@@ -163,8 +162,13 @@ extension InputAViewController {
         AnimationUtil.status.asObservable().subscribe(onNext: {
             event in
             guard !self.isDisappear else { return }
-            if AnimationUtil.status.value == AnimationStatus.completed.rawValue && AnimationUtil.getTag() == InputAViewController.TAG {
-                self.viewModel.onItemLoadRequest(indexPath: self.viewModel.getSelection())
+            if AnimationUtil.status.value == AnimationStatus.completed.rawValue {
+                if AnimationUtil.getTag() == InputAViewController.TAG {
+                    self.viewModel.onItemLoadRequest(indexPath: self.viewModel.getSelection())
+                } else if AnimationUtil.getTag() == "InputA.BackButton" {
+                    self.viewModel.selectionButton = nil
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
         }).disposed(by: disposeBag)
         
@@ -229,7 +233,9 @@ extension InputAViewController: GazeTrackerUpdateProtocol {
     func gazeTrackerUpdate(coordinate: CGPoint) {
         guard let mainView = UIApplication.shared.windows.first?.rootViewController?.view else { return }
         let newPoint = mainView.convert(coordinate, to: self.collectionView)
+        let viewPoint = mainView.convert(coordinate, to: self.view)
         selectCellAt(indexPath: self.collectionView.indexPathForItem(at: newPoint))
+        selectBackButton(isSelected: btnBack.frame.contains(viewPoint))
     }
     
     private func selectCellAt(indexPath: IndexPath?, fingerTouch: Bool = false) {
@@ -243,6 +249,17 @@ extension InputAViewController: GazeTrackerUpdateProtocol {
         if let homeVC = self.parent?.parent?.parent as? HomeViewController {
             homeVC.viewModel.setMenuExpanded(false)
         }
+    }
+    
+    private func selectBackButton(isSelected: Bool, fingerTouch: Bool = false) {
+        if isSelected {
+            if viewModel.selectionButton != btnBack {
+                AnimationUtil.animateSelection(object: btnBack, fingerTouch: fingerTouch, tag: "InputA.BackButton")
+            }
+        } else {
+            AnimationUtil.cancelAnimation(object: btnBack)
+        }
+        viewModel.selectionButton = isSelected ? btnBack : nil
     }
 }
 
