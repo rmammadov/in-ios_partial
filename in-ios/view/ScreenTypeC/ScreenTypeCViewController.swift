@@ -17,7 +17,7 @@ protocol ScreenTypeCDelegate: class {
 class ScreenTypeCViewController: BaseViewController {
     
     @IBOutlet weak var mainCollectionView: UICollectionView!
-    @IBOutlet weak var clearButton: UIButton!
+    @IBOutlet weak var clearButton: GradientButton!
     @IBOutlet weak var speakButton: GradientButton!
     @IBOutlet weak var backButton: GradientButton!
     @IBOutlet weak var containerView: UIView!
@@ -57,19 +57,20 @@ class ScreenTypeCViewController: BaseViewController {
     
     @IBAction func onBackButtonClick(_ sender: Any) {
         selectBackButton(isSelected: true, fingerTouch: true)
-//        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func onSpeakButtonClick(_ sender: Any) {
         selectSpeakButton(isSelected: true, fingerTouch: true)
-//        viewModel.speakSelectedValues()
     }
     
     @IBAction func onClearButtonClick(_ sender: Any) {
+        selectClearButton(isSelected: true, fingerTouch: true)
+    }
+    
+    func clear() {
         viewModel.selectedItem.value = [:]
         sendClearNotification()
     }
-    
 }
 
 extension ScreenTypeCViewController {
@@ -105,6 +106,7 @@ extension ScreenTypeCViewController {
                 KingfisherManager.shared.retrieveImage(with: url, options: nil, progressBlock: nil) { [weak self] (image, error, cache, url) in
                     guard let `self` = self else { return }
                     self.clearButton.setImage(image, for: .normal)
+                    self.clearButton.setNeedsDisplay()
                 }
             }
         } else {
@@ -150,6 +152,8 @@ extension ScreenTypeCViewController {
                 self.navigationController?.popViewController(animated: true)
             case "STC.SpeakButtonTag":
                 self.viewModel.speakSelectedValues()
+            case "STC.ClearButtonTag":
+                self.clear()
             default:
                 break
             }
@@ -231,10 +235,19 @@ extension ScreenTypeCViewController: UICollectionViewDelegate {
 extension ScreenTypeCViewController: GazeTrackerUpdateProtocol {
     func gazeTrackerUpdate(coordinate: CGPoint) {
         guard let mainView = UIApplication.shared.windows.first?.rootViewController?.view else { return }
-        let newPoint = mainView.convert(coordinate, to: self.view)
-        if backButton.frame.contains(newPoint) {
+        let collectionViewPoint = mainView.convert(coordinate, to: mainCollectionView)
+        if let indexPath = mainCollectionView.indexPathForItem(at: collectionViewPoint) {
+            viewModel.selectedIndexPath.value = indexPath
+        }
+        let backPoint = mainView.convert(coordinate, to: backButton)
+        let speakPoint = mainView.convert(coordinate, to: speakButton)
+        let clearPoint = mainView.convert(coordinate, to: clearButton)
+        
+        if backButton.bounds.contains(backPoint) {
             selectBackButton(isSelected: true)
-        } else if speakButton.frame.contains(newPoint) {
+        } else if speakButton.bounds.contains(speakPoint) {
+            selectSpeakButton(isSelected: true)
+        } else if clearButton.bounds.contains(clearPoint) {
             selectSpeakButton(isSelected: true)
         } else {
             if let selectionButton = viewModel.selectionButton {
@@ -243,6 +256,8 @@ extension ScreenTypeCViewController: GazeTrackerUpdateProtocol {
                     selectBackButton(isSelected: false)
                 case speakButton:
                     selectSpeakButton(isSelected: false)
+                case clearButton:
+                    selectClearButton(isSelected: false)
                 default: return
                 }
             }
@@ -269,5 +284,16 @@ extension ScreenTypeCViewController: GazeTrackerUpdateProtocol {
             AnimationUtil.cancelAnimation(object: speakButton)
         }
         viewModel.selectionButton = isSelected ? speakButton : nil
+    }
+    
+    func selectClearButton(isSelected: Bool, fingerTouch: Bool = false) {
+        if isSelected {
+            if viewModel.selectionButton != speakButton {
+                AnimationUtil.animateSelection(object: clearButton, fingerTouch: fingerTouch, tag: "STC.ClearButtonTag")
+            }
+        } else {
+            AnimationUtil.cancelAnimation(object: clearButton)
+        }
+        viewModel.selectionButton = isSelected ? clearButton : nil
     }
 }

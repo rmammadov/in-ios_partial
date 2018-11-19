@@ -32,17 +32,15 @@ import UIKit
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
+        if let gradientLayer = layer.sublayers?.first(where: { ($0 as? CAGradientLayer) != nil } ) as? CAGradientLayer {
+            gradientLayer.removeFromSuperlayer()
+        }
         guard let gradientLayer = prepareGradientLayer(width: lineWidth) else { return }
         layer.addSublayer(gradientLayer)
     }
     
     private func prepareGradientLayer(width: CGFloat) -> CALayer? {
-        var gradient: CAGradientLayer
-        if let gradientLayer = layer.sublayers?.first as? CAGradientLayer {
-            gradient = gradientLayer
-        } else {
-            gradient = CAGradientLayer()
-        }
+        let gradient = CAGradientLayer()
         guard let mainColor = mainColor else {
             gradient.removeFromSuperlayer()
             return nil
@@ -56,7 +54,7 @@ import UIKit
         switch CircleType(rawValue: circleType) {
         case .some(CircleType.full):
             let radius = (min(bounds.width, bounds.height) - width) / 2.0
-            maskBezierPath = UIBezierPath(arcCenter: center, radius: radius,
+            maskBezierPath = UIBezierPath(arcCenter: CGPoint(x: bounds.width / 2.0, y: bounds.height / 2.0), radius: radius,
                                           startAngle: 0, endAngle: CGFloat.pi * 2.0,
                                           clockwise: true)
         case .some(CircleType.halfLeft):
