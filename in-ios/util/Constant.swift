@@ -64,6 +64,11 @@ struct Constant {
         static let CALIBRATION_TAGS_STEPS: [Int] = [1,10,5,4,9,2,8,7,11,6,12,13,3]
     }
     
+    struct ItemSize {
+        static let POINTER_HEIGHT: CGFloat = 55.0
+        static let POINTER_WIDTH: CGFloat = 50.0
+    }
+    
     struct InputValidationConfig {
         static let REGEX_NAME = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"
         static let REGEX_GENDER = "^male$|^female$"

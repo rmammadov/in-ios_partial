@@ -51,7 +51,7 @@ class HomeViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        CameraManager.shared.setup(cameraView: viewOpacity, showPreview: false, showLabel: false, showPointer: true)
+        CameraManager.shared.setup(parentView: viewOpacity, showPreview: false, showLabel: false, showPointer: true)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
