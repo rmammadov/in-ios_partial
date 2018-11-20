@@ -17,7 +17,7 @@
 "loading..." = "Loading...";
 "try_again" = "Try Again";
 "welcome" = "Welcome!";
-"loremIpsum" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam";
+"welcome_description" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam";
 "get_started" = "Get started";
 
 "personal_details" = "Personal details";
