@@ -908,7 +908,7 @@ The process will take less than 20 seconds.</string>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yCf-jp-yXD">
                                 <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
                                 <subviews>
-                                    <button hidden="YES" opaque="NO" tag="201" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJN-6o-m7p" userLabel="1">
+                                    <button opaque="NO" tag="201" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJN-6o-m7p" userLabel="1">
                                         <rect key="frame" x="32" y="32" width="48" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="FUZ-4K-XQb"/>
