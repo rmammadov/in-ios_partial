@@ -32,6 +32,11 @@ class IntroThirdNewModel: BaseModel {
     private var calibrationData: Calibration?
     
     private let apiHelper = CalibrationApiHelper()
+    weak var delegate: CalibrationRequestDelegate? {
+        didSet {
+            apiHelper.delegate = delegate
+        }
+    }
     
     func setSubscribers() {
         DataManager.status.asObservable().subscribe(onNext: {

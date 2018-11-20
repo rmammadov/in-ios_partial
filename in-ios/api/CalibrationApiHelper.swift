@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol CalibrationRequestDelegate: class {
+    func didUpdateCalibrationRequests(finishedTasks: Int, allTasks: Int, averageTimeTask: Double)
+}
+
 class CalibrationApiHelper: NSObject {
     
     private let uploadFileQueue = OperationQueue()
@@ -16,6 +20,19 @@ class CalibrationApiHelper: NSObject {
     private var calibrationDataArray: [CalibrationData] = []
     private var profileData: ProfileData?
     private let session: URLSession
+    
+    var finishedTasks: Int = 0 {
+        didSet {
+            delegate?.didUpdateCalibrationRequests(finishedTasks: finishedTasks, allTasks: allTaskCount, averageTimeTask: 0)
+        }
+    }
+    var allTaskCount: Int = 0 {
+        didSet {
+            delegate?.didUpdateCalibrationRequests(finishedTasks: finishedTasks, allTasks: allTaskCount, averageTimeTask: 0)
+        }
+    }
+    
+    weak var delegate: CalibrationRequestDelegate?
     
     override init() {
         let config = URLSessionConfiguration.default
@@ -37,10 +54,12 @@ class CalibrationApiHelper: NSObject {
     }
     
     private func uploadFile(imageData: Data, calibrationData: CalibrationData) {
+        allTaskCount += 1
         var mutableCalibrationData = calibrationData
         let operation = UploadFileOperation(session: session, data: imageData, completionHandler: ({[weak self] (file) in
             print("UploadFileOperations count: \(self?.uploadFileQueue.operationCount ?? -1)")
             guard let `self` = self, let file = file else { return }
+            self.finishedTasks += 1
             mutableCalibrationData.file = file
             self.calibrationDataArray.append(mutableCalibrationData)
         }))
@@ -48,8 +67,10 @@ class CalibrationApiHelper: NSObject {
     }
     
     func preparePostProfileOperation() {
+        allTaskCount += 1
         let operation = PostProfileOperation(session: session, apiHelper: self, completionHandler: { [weak self] profileData in
             guard let `self` = self else { return }
+            self.finishedTasks += 1
             self.profileData = profileData
             self.getCalibrations()
         })
@@ -66,6 +87,7 @@ class CalibrationApiHelper: NSObject {
             print("Error getCalibrations: profileDataId is nil")
             return
         }
+        allTaskCount += 1
         let calibrationRequest = CalibrationRequest(profile_data: ProfileDataId(id: profileDataId))
         let operation = GetCalibrationOperation(session: session, calibrationRequest: calibrationRequest, handler: { [weak self] (calibration) in
             print("GetCalibrationOperation handler")
@@ -73,14 +95,17 @@ class CalibrationApiHelper: NSObject {
                 print("Error: calibration is nil")
                 return
             }
+            self.finishedTasks += 1
             self.loadCalibrationFiles(calibration: calibration)
         })
         operationQueue.addOperation(operation)
     }
     
     private func loadCalibrationFiles(calibration: Calibration) {
+        allTaskCount += 1
         let operationX = LoadFileOperation(session: session, url: calibration.x_model_url) { (path, error) in
             print("LoadFileOperation handler")
+            self.finishedTasks += 1
             if let error = error {
                 print("ERROR loadCalibrationFiles: \(error.localizedDescription)")
                 return
@@ -89,9 +114,10 @@ class CalibrationApiHelper: NSObject {
             DataManager.setXModelUrl(path)
             DataManager.status.value = DataStatus.loadingModelCompleted.rawValue
         }
-        
+        allTaskCount += 1
         let operationY = LoadFileOperation(session: session, url: calibration.y_model_url) { (path, error) in
             print("LoadFileOperation handler")
+            self.finishedTasks += 1
             if let error = error {
                 print("ERROR loadCalibrationFiles: \(error.localizedDescription)")
                 return
