@@ -16,8 +16,8 @@
 
 "loading..." = "Loading...";
 "try_again" = "Try Again";
-"welcome" = "Welcome!";
-"loremIpsum" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam";
+"welcome" = "Welcome to Pigio";
+"loremIpsum" = "Please read the Privacy Policy and Terms and Condition before getting started";
 "get_started" = "Get started";
 
 "personal_details" = "Personal details";
