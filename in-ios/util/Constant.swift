@@ -33,9 +33,17 @@ struct Constant {
     }
     
     struct DefaultValues {
-        static let GEDNER_OPTIONS: Array<String> = ["Male", "Female"]
-        static let AGE_GROUPS: Array<String> = ["0 - 11 years old", "12 - 17 years old", "18 - 23 years old", "24 - 29 years old", "30 - 49 years old", "50 - 64 years old", "65 - 80 years old", "80 - 95 years old", "96+ years old"]
-        static let MEDICAL_CONDITIONS: Array<String> = ["None", "Stroke", "Amyotrophic Lateral Sclerosis", "Spinal Muscular Atrophy", "Multiple Sclerosis", "Guillain-Barre Syndrome", "Alzheimer’s Disease", "Alzheimer’s Disease"]
+        static let GEDNER_OPTIONS: Array<String> = [
+            "male".localized, "female".localized
+        ]
+        static let AGE_GROUPS: Array<String> = [
+            "0-11years".localized, "12-17years".localized, "18-23years".localized, "24-29years".localized, "30-49years".localized,
+            "50-64years".localized, "65-80years".localized, "80-95years".localized, "96years".localized
+        ]
+        static let MEDICAL_CONDITIONS: Array<String> = [
+            "none".localized, "stroke".localized, "amyotrophic_lateral_sclerosis".localized, "spinal_muscular_atrophy".localized,
+            "multiple_sclerosis".localized, "guillain_barre_syndrome".localized, "alzheimer_disease".localized
+        ]
     }
     
     struct MenuConfig {

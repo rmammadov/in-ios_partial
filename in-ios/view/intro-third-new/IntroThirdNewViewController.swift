@@ -65,7 +65,10 @@ class IntroThirdNewViewController: BaseViewController {
         btnBack.isHidden = true
         viewSecondStep.isHidden = false
         setDismissSwipeForSecondStep()
-        nextStep()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.nextStep()
+        }
+        
     }
     
     @IBAction func onClickBtnRedoFourthStep(_ sender: Any) {

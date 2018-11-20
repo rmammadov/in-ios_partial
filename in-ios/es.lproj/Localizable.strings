@@ -1,7 +1,58 @@
-/* 
-  Localizable.strings
-  in-ios
+/*
+ Localizable.strings
+ in-ios
+ 
+ Created by Rahman Mammadov on 10/3/18.
+ Copyright © 2018 com.innodemneurosciences. All rights reserved.
+ */
 
-  Created by Rahman Mammadov on 10/3/18.
-  Copyright © 2018 com.innodemneurosciences. All rights reserved.
-*/
+"agreement_text" = "I agree to the Privacy Policy and Terms and Conditions";
+"privacy_policy" = "Privacy Policy";
+"terms" = "Terms and Conditions";
+
+"no_internet" = "No internet connection!";
+"failed_connect_server" = "Failed to connect to the server!";
+"loading_content" = "Loading content...";
+
+"loading..." = "Loading...";
+"try_again" = "Try Again";
+"welcome" = "Welcome!";
+"loremIpsum" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam";
+"get_started" = "Get started";
+
+"personal_details" = "Personal details";
+"name" = "Name";
+"gender" = "Gender";
+"age_group?" = "Age group?";
+"medical_condition?" = "Do you have a medical condition?";
+"continue" = "Continue";
+
+"calibration_completed" = "Calibration completed";
+"recalibrate_it?" = "Would you like to recalibrate it?";
+"redo" = "Redo";
+"glance_response_activate" = "Glance at the response to acttivate it";
+"calibration_in_progress" = "Calibration in progress";
+"wait_data_processed" = "Please wait a moment when all data will be processed.";
+"calibration_your_screen" = "Calibration of your screen";
+"follow_crosses" = "Follow the crosses that appear on the screen.\nThe process will take less than 20 seconds.";
+
+"male" = "Male";
+"female" = "Female";
+
+"0-11years" = "0 - 11 years old";
+"12-17years" = "12 - 17 years old";
+"18-23years" = "18 - 23 years old";
+"24-29years" = "24 - 29 years old";
+"30-49years" = "30 - 49 years old";
+"50-64years" = "50 - 64 years old";
+"65-80years" = "65 - 80 years old";
+"80-95years" = "80 - 95 years old";
+"96years" = "96+ years old";
+
+"none" = "None";
+"stroke" = "Stroke";
+"amyotrophic_lateral_sclerosis" = "Amyotrophic Lateral Sclerosis";
+"spinal_muscular_atrophy" = "Spinal Muscular Atrophy";
+"multiple_sclerosis" = "Multiple Sclerosis";
+"guillain_barre_syndrome" = "Guillain-Barre Syndrome";
+"alzheimer_disease" = "Alzheimer’s Disease";
