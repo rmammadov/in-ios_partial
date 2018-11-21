@@ -26,7 +26,10 @@ class IntroThirdNewViewController: BaseViewController {
     @IBOutlet weak var viewFifthStep: UIView!
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var btnForward: UIButton!
-    
+    @IBOutlet weak var executedTasksLabel: UILabel!
+    @IBOutlet weak var finishedTaskLabel: UILabel!
+    @IBOutlet weak var tasksProgressView: UIProgressView!
+  
     private let viewModel: IntroThirdNewModel = IntroThirdNewModel()
     
     var cameraManager: CameraManager = CameraManager.shared
@@ -36,6 +39,7 @@ class IntroThirdNewViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.delegate = self
         DataManager.status.value = 0
         setUi()
         setCamera()
@@ -278,4 +282,20 @@ extension IntroThirdNewViewController {
         nextStep()
     }
     
+}
+
+extension IntroThirdNewViewController: CalibrationRequestDelegate {
+    func didUpdateCalibrationRequests(finishedTasks: Int, allTasks: Int, averageTimeTask: Double) {
+        DispatchQueue.main.async {
+            self.executedTasksLabel.text = "\(finishedTasks)"
+            self.finishedTaskLabel.text = "\(allTasks)"
+            var value: Float
+            if allTasks != 0 {
+                value = Float(finishedTasks) / Float(allTasks)
+            } else {
+                value = 0
+            }
+            self.tasksProgressView.setProgress(value, animated: false)
+        }
+    }
 }

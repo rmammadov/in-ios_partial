@@ -503,7 +503,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="loremIpsum"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="welcome_description"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gGO-Fr-PAF">
@@ -1096,10 +1096,10 @@ The process will take less than 20 seconds.</string>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P6K-wL-Dam" userLabel="ViewFifthStep">
-                                <rect key="frame" x="372.5" y="292" width="367" height="270"/>
+                                <rect key="frame" x="372.5" y="292.5" width="367" height="269.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calibration completed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJ4-Ws-IAj">
-                                        <rect key="frame" x="53" y="32" width="261" height="33"/>
+                                        <rect key="frame" x="53.5" y="32" width="260.5" height="33"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1108,7 +1108,7 @@ The process will take less than 20 seconds.</string>
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Would you like to recalibrate it?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uxu-te-ReR">
-                                        <rect key="frame" x="64.5" y="97" width="238" height="21"/>
+                                        <rect key="frame" x="64.5" y="97" width="238" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1117,7 +1117,7 @@ The process will take less than 20 seconds.</string>
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8I-SN-9zD">
-                                        <rect key="frame" x="144.5" y="182" width="78" height="56"/>
+                                        <rect key="frame" x="144.5" y="181.5" width="78" height="56"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="32"/>
                                         <state key="normal" title="Redo">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1142,10 +1142,10 @@ The process will take less than 20 seconds.</string>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CuD-Ek-LLP" userLabel="ViewFourthStep">
-                                <rect key="frame" x="323.5" y="241.5" width="465" height="371"/>
+                                <rect key="frame" x="324" y="241.5" width="464.5" height="371"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calibration completed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ky0-NY-3NC">
-                                        <rect key="frame" x="102" y="32" width="261" height="33"/>
+                                        <rect key="frame" x="102" y="32" width="260.5" height="33"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1154,7 +1154,7 @@ The process will take less than 20 seconds.</string>
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Would you like to recalibrate it or continue?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfO-si-Zkc">
-                                        <rect key="frame" x="52.5" y="97" width="360" height="25"/>
+                                        <rect key="frame" x="52" y="97" width="360" height="25"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1163,7 +1163,7 @@ The process will take less than 20 seconds.</string>
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Glance at the response to acttivate it" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dur-3z-m16">
-                                        <rect key="frame" x="32" y="186" width="401" height="33"/>
+                                        <rect key="frame" x="32" y="186" width="400.5" height="33"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1172,7 +1172,7 @@ The process will take less than 20 seconds.</string>
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fua-f6-ri2">
-                                        <rect key="frame" x="297" y="283" width="136" height="56"/>
+                                        <rect key="frame" x="296.5" y="283" width="136" height="56"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="32"/>
                                         <state key="normal" title="Continue">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1237,22 +1237,54 @@ The process will take less than 20 seconds.</string>
                                             <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="wait_data_processed"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_circle_gradient_loading" translatesAutoresizingMaskIntoConstraints="NO" id="nvR-lg-DVl">
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_circle_gradient_loading" translatesAutoresizingMaskIntoConstraints="NO" id="nvR-lg-DVl">
                                         <rect key="frame" x="192.5" y="154" width="64" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="SiA-DS-zWA"/>
                                             <constraint firstAttribute="width" constant="64" id="e4C-bz-kdT"/>
                                         </constraints>
                                     </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="G9w-Vw-eMD">
+                                        <rect key="frame" x="0.0" y="154" width="449" height="64"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXV-WV-VYR">
+                                                <rect key="frame" x="0.0" y="22" width="35" height="20.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="35" id="SR6-lw-1fW"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FeH-05-6Oy">
+                                                <rect key="frame" x="35" y="31" width="379" height="2"/>
+                                                <color key="progressTintColor" name="appGradientBlue"/>
+                                                <color key="trackTintColor" name="appGradientViolet"/>
+                                            </progressView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9c4-v0-g3j">
+                                                <rect key="frame" x="414" y="22" width="35" height="20.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="35" id="AtU-qY-Wxc"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="4X4-Vm-zq3" firstAttribute="top" secondItem="Rs6-Bw-527" secondAttribute="top" constant="32" id="2ym-bm-fii"/>
                                     <constraint firstAttribute="trailing" secondItem="wdu-Ua-O6R" secondAttribute="trailing" id="4G4-1E-247"/>
                                     <constraint firstItem="nvR-lg-DVl" firstAttribute="top" secondItem="wdu-Ua-O6R" secondAttribute="bottom" constant="32" id="6mr-zC-o84"/>
+                                    <constraint firstAttribute="trailing" secondItem="G9w-Vw-eMD" secondAttribute="trailing" id="E0s-rv-zEV"/>
+                                    <constraint firstItem="G9w-Vw-eMD" firstAttribute="bottom" secondItem="nvR-lg-DVl" secondAttribute="bottom" id="OjI-0s-vvs"/>
+                                    <constraint firstItem="G9w-Vw-eMD" firstAttribute="leading" secondItem="Rs6-Bw-527" secondAttribute="leading" id="R3I-f7-4Nl"/>
                                     <constraint firstAttribute="bottom" secondItem="nvR-lg-DVl" secondAttribute="bottom" constant="16" id="Tn6-t5-2wX"/>
                                     <constraint firstItem="nvR-lg-DVl" firstAttribute="centerX" secondItem="Rs6-Bw-527" secondAttribute="centerX" id="b1B-ln-0sn"/>
                                     <constraint firstItem="wdu-Ua-O6R" firstAttribute="leading" secondItem="Rs6-Bw-527" secondAttribute="leading" id="baI-ZR-cdg"/>
+                                    <constraint firstItem="G9w-Vw-eMD" firstAttribute="top" secondItem="nvR-lg-DVl" secondAttribute="top" id="bx6-Ef-QfL"/>
                                     <constraint firstItem="wdu-Ua-O6R" firstAttribute="top" secondItem="4X4-Vm-zq3" secondAttribute="bottom" constant="32" id="gkX-Ap-HkB"/>
                                     <constraint firstItem="4X4-Vm-zq3" firstAttribute="centerX" secondItem="Rs6-Bw-527" secondAttribute="centerX" id="okK-dQ-Z0P"/>
                                     <constraint firstItem="wdu-Ua-O6R" firstAttribute="centerX" secondItem="Rs6-Bw-527" secondAttribute="centerX" id="tbk-wu-lmD"/>
@@ -1294,9 +1326,12 @@ The process will take less than 20 seconds.</string>
                         <outlet property="btnBack" destination="JfW-Jk-pmL" id="KdH-7Z-dat"/>
                         <outlet property="btnForward" destination="CXz-tq-o54" id="IoS-zz-DkV"/>
                         <outlet property="calibrationInProgressView" destination="nvR-lg-DVl" id="5ct-Ln-ksJ"/>
+                        <outlet property="executedTasksLabel" destination="aXV-WV-VYR" id="uyz-7Y-VHv"/>
+                        <outlet property="finishedTaskLabel" destination="9c4-v0-g3j" id="9eD-fK-mie"/>
                         <outlet property="ivProgressbar" destination="8w0-6N-YZV" id="FeX-Ru-R36"/>
                         <outlet property="ivProgressbarContent" destination="vmD-8W-o96" id="oiq-Bt-51a"/>
                         <outlet property="labelStatus" destination="W7m-eb-G6o" id="oAo-0b-aku"/>
+                        <outlet property="tasksProgressView" destination="FeH-05-6Oy" id="YfB-LP-09G"/>
                         <outlet property="viewFifthStep" destination="P6K-wL-Dam" id="BFn-tN-J6M"/>
                         <outlet property="viewFirstStep" destination="zoc-aM-YyS" id="BsM-ht-RSl"/>
                         <outlet property="viewFourthStep" destination="CuD-Ek-LLP" id="7e3-eg-rR1"/>
