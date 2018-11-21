@@ -26,7 +26,10 @@ class CalibrationApiHelper: NSObject {
             delegate?.didUpdateCalibrationRequests(finishedTasks: finishedTasks, allTasks: allTaskCount, averageTimeTask: 0)
         }
     }
-    var allTaskCount: Int = 0 {
+    
+    /// The value is 4 because after upload file we need to execute:
+    /// PortProfileOperation, GetCalibrationOperation and two LoadFileOperation.
+    var allTaskCount: Int = 4 {
         didSet {
             delegate?.didUpdateCalibrationRequests(finishedTasks: finishedTasks, allTasks: allTaskCount, averageTimeTask: 0)
         }
@@ -67,7 +70,6 @@ class CalibrationApiHelper: NSObject {
     }
     
     func preparePostProfileOperation() {
-        allTaskCount += 1
         let operation = PostProfileOperation(session: session, apiHelper: self, completionHandler: { [weak self] profileData in
             guard let `self` = self else { return }
             self.finishedTasks += 1
@@ -87,7 +89,6 @@ class CalibrationApiHelper: NSObject {
             print("Error getCalibrations: profileDataId is nil")
             return
         }
-        allTaskCount += 1
         let calibrationRequest = CalibrationRequest(profile_data: ProfileDataId(id: profileDataId))
         let operation = GetCalibrationOperation(session: session, calibrationRequest: calibrationRequest, handler: { [weak self] (calibration) in
             print("GetCalibrationOperation handler")
@@ -102,7 +103,6 @@ class CalibrationApiHelper: NSObject {
     }
     
     private func loadCalibrationFiles(calibration: Calibration) {
-        allTaskCount += 1
         let operationX = LoadFileOperation(session: session, url: calibration.x_model_url) { (path, error) in
             print("LoadFileOperation handler")
             self.finishedTasks += 1
@@ -114,7 +114,6 @@ class CalibrationApiHelper: NSObject {
             DataManager.setXModelUrl(path)
             DataManager.status.value = DataStatus.loadingModelCompleted.rawValue
         }
-        allTaskCount += 1
         let operationY = LoadFileOperation(session: session, url: calibration.y_model_url) { (path, error) in
             print("LoadFileOperation handler")
             self.finishedTasks += 1

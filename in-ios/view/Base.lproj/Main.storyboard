@@ -1244,33 +1244,24 @@ The process will take less than 20 seconds.</string>
                                             <constraint firstAttribute="width" constant="64" id="e4C-bz-kdT"/>
                                         </constraints>
                                     </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="G9w-Vw-eMD">
-                                        <rect key="frame" x="0.0" y="154" width="449" height="64"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="G9w-Vw-eMD">
+                                        <rect key="frame" x="104.5" y="154" width="240" height="64"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXV-WV-VYR">
-                                                <rect key="frame" x="0.0" y="22" width="35" height="20.5"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="35" id="SR6-lw-1fW"/>
-                                                </constraints>
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="62"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FeH-05-6Oy">
-                                                <rect key="frame" x="35" y="31" width="379" height="2"/>
+                                                <rect key="frame" x="0.0" y="62" width="240" height="2"/>
                                                 <color key="progressTintColor" name="appGradientBlue"/>
                                                 <color key="trackTintColor" name="appGradientViolet"/>
                                             </progressView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9c4-v0-g3j">
-                                                <rect key="frame" x="414" y="22" width="35" height="20.5"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="35" id="AtU-qY-Wxc"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="240" id="Nhi-AB-KzL"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1278,9 +1269,10 @@ The process will take less than 20 seconds.</string>
                                     <constraint firstItem="4X4-Vm-zq3" firstAttribute="top" secondItem="Rs6-Bw-527" secondAttribute="top" constant="32" id="2ym-bm-fii"/>
                                     <constraint firstAttribute="trailing" secondItem="wdu-Ua-O6R" secondAttribute="trailing" id="4G4-1E-247"/>
                                     <constraint firstItem="nvR-lg-DVl" firstAttribute="top" secondItem="wdu-Ua-O6R" secondAttribute="bottom" constant="32" id="6mr-zC-o84"/>
-                                    <constraint firstAttribute="trailing" secondItem="G9w-Vw-eMD" secondAttribute="trailing" id="E0s-rv-zEV"/>
+                                    <constraint firstItem="G9w-Vw-eMD" firstAttribute="centerX" secondItem="Rs6-Bw-527" secondAttribute="centerX" id="96K-NG-kz8"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="G9w-Vw-eMD" secondAttribute="trailing" id="E0s-rv-zEV"/>
                                     <constraint firstItem="G9w-Vw-eMD" firstAttribute="bottom" secondItem="nvR-lg-DVl" secondAttribute="bottom" id="OjI-0s-vvs"/>
-                                    <constraint firstItem="G9w-Vw-eMD" firstAttribute="leading" secondItem="Rs6-Bw-527" secondAttribute="leading" id="R3I-f7-4Nl"/>
+                                    <constraint firstItem="G9w-Vw-eMD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Rs6-Bw-527" secondAttribute="leading" id="R3I-f7-4Nl"/>
                                     <constraint firstAttribute="bottom" secondItem="nvR-lg-DVl" secondAttribute="bottom" constant="16" id="Tn6-t5-2wX"/>
                                     <constraint firstItem="nvR-lg-DVl" firstAttribute="centerX" secondItem="Rs6-Bw-527" secondAttribute="centerX" id="b1B-ln-0sn"/>
                                     <constraint firstItem="wdu-Ua-O6R" firstAttribute="leading" secondItem="Rs6-Bw-527" secondAttribute="leading" id="baI-ZR-cdg"/>
@@ -1326,11 +1318,10 @@ The process will take less than 20 seconds.</string>
                         <outlet property="btnBack" destination="JfW-Jk-pmL" id="KdH-7Z-dat"/>
                         <outlet property="btnForward" destination="CXz-tq-o54" id="IoS-zz-DkV"/>
                         <outlet property="calibrationInProgressView" destination="nvR-lg-DVl" id="5ct-Ln-ksJ"/>
-                        <outlet property="executedTasksLabel" destination="aXV-WV-VYR" id="uyz-7Y-VHv"/>
-                        <outlet property="finishedTaskLabel" destination="9c4-v0-g3j" id="9eD-fK-mie"/>
                         <outlet property="ivProgressbar" destination="8w0-6N-YZV" id="FeX-Ru-R36"/>
                         <outlet property="ivProgressbarContent" destination="vmD-8W-o96" id="oiq-Bt-51a"/>
                         <outlet property="labelStatus" destination="W7m-eb-G6o" id="oAo-0b-aku"/>
+                        <outlet property="progressPercentageLabel" destination="aXV-WV-VYR" id="uyz-7Y-VHv"/>
                         <outlet property="tasksProgressView" destination="FeH-05-6Oy" id="YfB-LP-09G"/>
                         <outlet property="viewFifthStep" destination="P6K-wL-Dam" id="BFn-tN-J6M"/>
                         <outlet property="viewFirstStep" destination="zoc-aM-YyS" id="BsM-ht-RSl"/>
