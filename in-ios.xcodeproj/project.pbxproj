@@ -54,6 +54,9 @@
 		E99A8EEC2170A02D007B8E64 /* MainMenuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99A8EEA2170A02D007B8E64 /* MainMenuItemCollectionViewCell.swift */; };
 		E99B8C31216DE4B800A90EFC /* GazeTrackerCalibrated.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99B8C30216DE4B800A90EFC /* GazeTrackerCalibrated.swift */; };
 		E99B8C33216DF1ED00A90EFC /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99B8C32216DF1ED00A90EFC /* UIViewExtension.swift */; };
+		E99F51FD21A5642E002C3716 /* SettingsAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F51FC21A5642E002C3716 /* SettingsAccountViewController.swift */; };
+		E99F51FF21A570AA002C3716 /* SettingsAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F51FE21A570AA002C3716 /* SettingsAccountViewModel.swift */; };
+		E99F520121A576C1002C3716 /* SettingsAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F520021A576C1002C3716 /* SettingsAccountModel.swift */; };
 		E9A6C7B12194346700EE7516 /* MathParserErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7882194346600EE7516 /* MathParserErrors.swift */; };
 		E9A6C7B22194346700EE7516 /* LocalizedNumberExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7892194346600EE7516 /* LocalizedNumberExtractor.swift */; };
 		E9A6C7B32194346700EE7516 /* VariableExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C78A2194346600EE7516 /* VariableExtractor.swift */; };
@@ -281,6 +284,9 @@
 		E99A8EEA2170A02D007B8E64 /* MainMenuItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		E99B8C30216DE4B800A90EFC /* GazeTrackerCalibrated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GazeTrackerCalibrated.swift; sourceTree = "<group>"; };
 		E99B8C32216DF1ED00A90EFC /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		E99F51FC21A5642E002C3716 /* SettingsAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAccountViewController.swift; sourceTree = "<group>"; };
+		E99F51FE21A570AA002C3716 /* SettingsAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAccountViewModel.swift; sourceTree = "<group>"; };
+		E99F520021A576C1002C3716 /* SettingsAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAccountModel.swift; sourceTree = "<group>"; };
 		E9A6C7882194346600EE7516 /* MathParserErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathParserErrors.swift; sourceTree = "<group>"; };
 		E9A6C7892194346600EE7516 /* LocalizedNumberExtractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedNumberExtractor.swift; sourceTree = "<group>"; };
 		E9A6C78A2194346600EE7516 /* VariableExtractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VariableExtractor.swift; sourceTree = "<group>"; };
@@ -626,6 +632,32 @@
 			path = MainMenuItem;
 			sourceTree = "<group>";
 		};
+		E99F51F921A563E0002C3716 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				E99F51FA21A563EF002C3716 /* Account */,
+				E99F51FB21A563F6002C3716 /* Interface */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		E99F51FA21A563EF002C3716 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				E99F51FC21A5642E002C3716 /* SettingsAccountViewController.swift */,
+				E99F51FE21A570AA002C3716 /* SettingsAccountViewModel.swift */,
+				E99F520021A576C1002C3716 /* SettingsAccountModel.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		E99F51FB21A563F6002C3716 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
 		E9A6C7872194346600EE7516 /* MathParser */ = {
 			isa = PBXGroup;
 			children = (
@@ -919,6 +951,7 @@
 				E9876E05216750110001C626 /* ScreenTypeF */,
 				E9019232217DE58F00212B29 /* ScreenTypeG */,
 				E98458E521805BD200197CBC /* ScreenTypeH */,
+				E99F51F921A563E0002C3716 /* Settings */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1418,6 +1451,7 @@
 				E93ACD43216B8CD700F29F54 /* ScreenTypeDViewController.swift in Sources */,
 				F3355CF12122E904009AF602 /* LoadingModel.swift in Sources */,
 				F396E468216F249B00C061CD /* ProfileData.swift in Sources */,
+				E99F520121A576C1002C3716 /* SettingsAccountModel.swift in Sources */,
 				F32F5B6521453DCC00558C68 /* IntroSecondViewController.swift in Sources */,
 				F3E200C92135F2D500902A33 /* UIApplicationExtension.swift in Sources */,
 				E9A6C7C62194346700EE7516 /* RewriteRule+Defaults.swift in Sources */,
@@ -1429,6 +1463,7 @@
 				F3E19CAA211C3CDB00ADE838 /* HomeContainerViewModel.swift in Sources */,
 				E9150EFA216606340023E138 /* ScreenTypeEViewModel.swift in Sources */,
 				E9876E1521679BF50001C626 /* GradientView.swift in Sources */,
+				E99F51FD21A5642E002C3716 /* SettingsAccountViewController.swift in Sources */,
 				F3D6D20E214CF87800A6231E /* IntroFifthModel.swift in Sources */,
 				F32DCEE0214A654400B3D0F8 /* IntroThirdModel.swift in Sources */,
 				E91D196B2192DAD600408230 /* CalibrationApiHelper.swift in Sources */,
@@ -1490,6 +1525,7 @@
 				F3A41ACC2161329000D2D8D6 /* LegalDocument.swift in Sources */,
 				F3D6D20C214CF86500A6231E /* IntroFifthViewModel.swift in Sources */,
 				F354B7432164C7280026F3A2 /* IntroThirdNewViewController.swift in Sources */,
+				E99F51FF21A570AA002C3716 /* SettingsAccountViewModel.swift in Sources */,
 				F33F0BCF2121B11C002E31B9 /* DataManager.swift in Sources */,
 				F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */,
 				E981D97821998F60002B63B2 /* UIViewControllerExtension.swift in Sources */,

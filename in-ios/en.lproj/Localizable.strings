@@ -56,3 +56,5 @@
 "multiple_sclerosis" = "Multiple Sclerosis";
 "guillain_barre_syndrome" = "Guillain-Barre Syndrome";
 "alzheimer_disease" = "Alzheimer’s Disease";
+
+"save" = "Save";//
