@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14315.18" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="17G3025" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CalibrationModelsEntity" representedClassName="CalibrationModelsEntity" syncable="YES" codeGenerationType="class"/>
+    <entity name="ConfigurationsEntity" representedClassName="ConfigurationsEntity" syncable="YES" codeGenerationType="class"/>
+    <entity name="InputScreensEntity" representedClassName="InputScreensEntity" syncable="YES" codeGenerationType="class"/>
+    <entity name="LegalDocumentsEntity" representedClassName="LegalDocumentsEntity" syncable="YES" codeGenerationType="class"/>
+    <entity name="MenuItemsEntity" representedClassName="MenuItemsEntity" syncable="YES" codeGenerationType="class"/>
+    <entity name="UserProfileDataEntity" representedClassName="UserProfileDataEntity" syncable="YES" codeGenerationType="class"/>
+    <elements>
+        <element name="UserProfileDataEntity" positionX="-63" positionY="-18" width="128" height="45"/>
+        <element name="ConfigurationsEntity" positionX="-54" positionY="-9" width="128" height="45"/>
+        <element name="LegalDocumentsEntity" positionX="-36" positionY="9" width="128" height="45"/>
+        <element name="MenuItemsEntity" positionX="-18" positionY="27" width="128" height="45"/>
+        <element name="CalibrationModelsEntity" positionX="0" positionY="45" width="128" height="45"/>
+        <element name="InputScreensEntity" positionX="18" positionY="63" width="128" height="45"/>
+    </elements>
 </model>
