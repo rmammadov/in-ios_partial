@@ -109,36 +109,66 @@ extension MenuViewController {
             }
         }).disposed(by: disposeBag)
         
-        self.viewModel.statusInput.asObservable().subscribe(onNext: {
-            event in
+        self.viewModel.statusInput.asObservable().subscribe(onNext: { event in
             DispatchQueue.main.async {
-                if self.viewModel.statusInput.value == InputScreenId.inputScreen0.rawValue {
-                    guard
-                        let inputScreenId = self.viewModel.getSelectedItem()?.inputScreenId,
-                        let indexPath = self.viewModel.getSelection(),
-                        let cell = self.getCellForIndexPath(indexPath: indexPath),
-                        let inputScreen = DataManager.getInputScreens().getInputScreenFor(id: inputScreenId)
-                        else { return }
-                    AnimationUtil.cancelAnimation(object: cell)
-                    self.viewModel.setSelection(indexPath: nil)
-                    switch inputScreen.type {
-                    case .inputScreenA:
-                        self.performSegue(withIdentifier: SEGUE_IDENTIFIER_INPUT, sender: self)
-                    case .inputScreenC:
-                        self.openScreenTypeC(inputScreen: inputScreen)
-                    default: break
-                    }
+                switch event {
+                case InputScreenId.inputScreen0.rawValue:
+                    self.loadInputScreen0()
+                case InputScreenId.settingsAccount.rawValue:
+                    self.loadSettingsAccount()
+                case InputScreenId.settingsInterface.rawValue:
+                    self.loadSettingsInterface()
+                default: return
                 }
             }
         }).disposed(by: disposeBag)
         
         AnimationUtil.status.asObservable().subscribe(onNext: {
             event in
-            if AnimationUtil.status.value == AnimationStatus.completed.rawValue && AnimationUtil.getTag() == MenuViewController.TAG {
+            if AnimationUtil.status.value == AnimationStatus.completed.rawValue
+                && AnimationUtil.getTag() == MenuViewController.TAG {
                 guard let indexPath = self.viewModel.getSelection() else { return }
                 self.viewModel.onItemLoadRequest(indexPath: indexPath)
             }
         }).disposed(by: disposeBag)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(languageDidChanged(_:)), name: .LanguageChanged, object: nil)
+    }
+    
+    private func loadInputScreen0() {
+        guard
+            let inputScreenId = self.viewModel.getSelectedItem()?.inputScreenId,
+            let indexPath = self.viewModel.getSelection(),
+            let cell = self.getCellForIndexPath(indexPath: indexPath),
+            let inputScreen = DataManager.getInputScreens().getInputScreenFor(id: inputScreenId)
+            else { return }
+        AnimationUtil.cancelAnimation(object: cell)
+        self.viewModel.setSelection(indexPath: nil)
+        switch inputScreen.type {
+        case .inputScreenA:
+            self.performSegue(withIdentifier: SEGUE_IDENTIFIER_INPUT, sender: self)
+        case .inputScreenC:
+            self.openScreenTypeC(inputScreen: inputScreen)
+        default: break
+        }
+    }
+    
+    private func loadSettingsAccount() {
+        if let indexPath = viewModel.getSelection(), let cell = getCellForIndexPath(indexPath: indexPath) {
+            AnimationUtil.cancelAnimation(object: cell)
+            viewModel.setSelection(indexPath: nil)
+        }
+        guard let accountVC = storyboard?.instantiateViewController(withIdentifier: SettingsAccountViewController.identifier) as? SettingsAccountViewController else { return }
+        navigationController?.pushViewController(accountVC, animated: true)
+    }
+    
+    private func loadSettingsInterface() {
+        if let indexPath = viewModel.getSelection(), let cell = getCellForIndexPath(indexPath: indexPath) {
+            AnimationUtil.cancelAnimation(object: cell)
+            viewModel.setSelection(indexPath: nil)
+        }
+        guard let interfaceVC = storyboard?.instantiateViewController(withIdentifier: SettingsInterfaceViewController.identifier) as? SettingsInterfaceViewController else { return }
+        navigationController?.pushViewController(interfaceVC, animated: true)
     }
     
     private func openScreenTypeC(inputScreen: InputScreen) {
@@ -232,5 +262,11 @@ extension MenuViewController: GazeTrackerUpdateProtocol {
         if let homeVC = self.parent?.parent?.parent as? HomeViewController {
             homeVC.viewModel.setMenuExpanded(false)
         }
+    }
+}
+
+extension MenuViewController {
+    @objc func languageDidChanged(_ notification: Notification) {
+        collectionView.reloadData()
     }
 }

@@ -36,6 +36,7 @@ class InputAViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewModel.setSelection(indexPath: nil)
         isDisappear = false
         registerGazeTrackerObserver()
     }

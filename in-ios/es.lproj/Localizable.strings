@@ -56,3 +56,26 @@
 "multiple_sclerosis" = "Multiple Sclerosis";
 "guillain_barre_syndrome" = "Guillain-Barre Syndrome";
 "alzheimer_disease" = "Alzheimer’s Disease";
+"parkinson_disease" = "Parkinson’s disease";//
+"progressive_supranuclear" = "Progressive Supranuclear Palsy";//
+"cerebral_palsy" = "Cerebral Palsy";//
+"muscular_dystrophy" = "Muscular Dystrophy";//
+"corticobasal_degeneration" = "Corticobasal Degeneration";//
+"progressive_ataxia" = "Progressive Ataxia";//
+
+"save" = "Save";//
+"interface" = "Interface";//
+"auto_select_delay" = "Auto Select Delay";//
+"selectDelayShort" = "Short: 1 second";//
+"selectDelayMedium" = "Medium: 2.5 seconds";//
+"selectDelayLong" = "Long: 4 seconds";//
+"languages" = "Languages";//
+"languageEnglish" = "English";//
+"languageFrench" = "French";//
+"languageSpanish" = "Spanish";//
+"tileSize" = "Tile Size";//
+"tileSizeSmall" = "Small";//
+"tileSizeLarge" = "Large";//
+"sound" = "Sound";//
+"on" = "On";//
+"off" = "Off";//

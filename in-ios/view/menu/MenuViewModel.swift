@@ -19,6 +19,8 @@ enum InputScreenId: Int {
     case inputScreen0 = 10
     case inputScreen1 = 11
     case inputScreen2 = 12
+    case settingsAccount = 13
+    case settingsInterface = 14
 }
 
 class MenuViewModel: BaseViewModel {
@@ -81,12 +83,13 @@ class MenuViewModel: BaseViewModel {
                 self.setMenuItems(items: items)
             }
         } else {
-            if menuItem.inputScreenId != nil {
-                self.statusInput.value = InputScreenId.inputScreen0.rawValue
-            } else {
-                if !menuItem.disableTextToSpeech {
-                    SpeechHelper.shared.play(translation: menuItem.translations.currentTranslation())
-                }
+            switch menuItem.id {
+            case 12:
+                statusInput.value = InputScreenId.settingsInterface.rawValue
+            case 13:
+                statusInput.value = InputScreenId.settingsAccount.rawValue
+            default:
+                statusInput.value = InputScreenId.inputScreen0.rawValue
             }
         }
     }

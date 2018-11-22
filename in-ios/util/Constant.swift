@@ -41,8 +41,19 @@ struct Constant {
             "50-64years".localized, "65-80years".localized, "80-95years".localized, "96years".localized
         ]
         static let MEDICAL_CONDITIONS: Array<String> = [
-            "none".localized, "stroke".localized, "amyotrophic_lateral_sclerosis".localized, "spinal_muscular_atrophy".localized,
-            "multiple_sclerosis".localized, "guillain_barre_syndrome".localized, "alzheimer_disease".localized
+            "none".localized,
+            "stroke".localized,
+            "amyotrophic_lateral_sclerosis".localized,
+            "spinal_muscular_atrophy".localized,
+            "multiple_sclerosis".localized,
+            "guillain_barre_syndrome".localized,
+            "alzheimer_disease".localized,
+            "parkinson_disease".localized,
+            "progressive_supranuclear".localized,
+            "cerebral_palsy".localized,
+            "muscular_dystrophy".localized,
+            "corticobasal_degeneration".localized,
+            "progressive_ataxia".localized
         ]
     }
     
