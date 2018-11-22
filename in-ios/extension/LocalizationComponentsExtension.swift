@@ -10,7 +10,7 @@ import UIKit
 
 extension String {
     public var localized: String {
-        return NSLocalizedString(self, comment: "")
+        return NSLocalizedString(self, tableName: nil, bundle: SettingsHelper.shared.language.bundle, value: "", comment: "")
     }
 }
 

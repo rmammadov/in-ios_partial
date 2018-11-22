@@ -98,7 +98,7 @@ extension AnimationUtil {
                 }
             }
         } else {
-            object.animateLoading(duration: Constant.AnimationConfig.MENU_ITEM_ANIMATION_DURATION) { (isCompleted) in
+            object.animateLoading(duration: SettingsHelper.shared.autoSelectDelay.seconds) { (isCompleted) in
                 object.setSelected(isCompleted)
                 if isCompleted {
                     self.status.value = AnimationStatus.completed.rawValue

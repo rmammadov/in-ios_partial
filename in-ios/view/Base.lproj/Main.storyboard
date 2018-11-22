@@ -2122,7 +2122,6 @@ The process will take less than 20 seconds.</string>
                                         <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                                         <state key="normal" backgroundImage="ic_side_btn_speak_raw"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isLeft" value="NO"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="circleType">
                                                 <integer key="value" value="2"/>
                                             </userDefinedRuntimeAttribute>
@@ -2507,6 +2506,174 @@ The process will take less than 20 seconds.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5EB-dU-hHa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3654" y="3709"/>
+        </scene>
+        <!--Settings Interface View Controller-->
+        <scene sceneID="0iv-dR-clO">
+            <objects>
+                <viewController storyboardIdentifier="SettingsInterfaceViewController" id="0NY-0A-BPz" customClass="SettingsInterfaceViewController" customModule="in_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6FN-5q-hOD">
+                        <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dri-q7-wyS" customClass="GradientButton" customModule="in_ios" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="357" width="60" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="uYh-04-MSt"/>
+                                </constraints>
+                                <state key="normal" image="ic_side_btn_back_raw">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
+                                        <color key="value" name="appGradientBlue"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
+                                        <color key="value" name="appGradientViolet"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="circleType">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="selectionLineWidth">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="backButtonTapped:" destination="0NY-0A-BPz" eventType="touchUpInside" id="YZv-mT-8dk"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CDY-MO-aOJ">
+                                <rect key="frame" x="268" y="128.5" width="576" height="577"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interface" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X3u-Oe-YBa">
+                                        <rect key="frame" x="236" y="32" width="104" height="33"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="interface"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Languages" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wk9-Jh-l3Z" customClass="INTextField" customModule="in_ios" customModuleProvider="target">
+                                        <rect key="frame" x="32" y="129" width="512" height="48"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="PfE-Lh-u06"/>
+                                            <constraint firstAttribute="width" constant="512" id="Z0k-vy-Vpo"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next" textContentType="name"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholderLocalizationKey" value="languages"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Auto Select Delay" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pme-4U-cQ9" customClass="INTextField" customModule="in_ios" customModuleProvider="target">
+                                        <rect key="frame" x="32" y="209" width="512" height="48"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="Sj5-d1-RK2"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholderLocalizationKey" value="auto_select_delay"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tile Size" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NDQ-4f-Jo7" customClass="INTextField" customModule="in_ios" customModuleProvider="target">
+                                        <rect key="frame" x="32" y="289" width="512" height="48"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="czp-xV-qAS"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholderLocalizationKey" value="tileSize"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Sound" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h8B-Xc-YmV" customClass="INTextField" customModule="in_ios" customModuleProvider="target">
+                                        <rect key="frame" x="32" y="369" width="512" height="48"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="31C-6j-inj"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="continue" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholderLocalizationKey" value="sound"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xTB-WQ-yic">
+                                        <rect key="frame" x="160" y="481" width="256" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="256" id="6hs-Nf-hog"/>
+                                            <constraint firstAttribute="height" constant="64" id="zOc-Xw-ZAs"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
+                                        <state key="normal" title="Save" backgroundImage="ic_btn_get_started_enabled">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <state key="disabled" backgroundImage="ic_btn_get_started_disabled"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="save"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="saveButtonTapped:" destination="0NY-0A-BPz" eventType="touchUpInside" id="0pI-O2-4Ka"/>
+                                            <action selector="saveButtonTapped:" destination="CfI-QD-01V" eventType="touchUpInside" id="3kI-aI-sON"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="X3u-Oe-YBa" firstAttribute="top" secondItem="CDY-MO-aOJ" secondAttribute="top" constant="32" id="3Iw-Z5-IYM"/>
+                                    <constraint firstItem="xTB-WQ-yic" firstAttribute="top" secondItem="h8B-Xc-YmV" secondAttribute="bottom" constant="64" id="4i5-dG-pr6"/>
+                                    <constraint firstItem="h8B-Xc-YmV" firstAttribute="top" secondItem="NDQ-4f-Jo7" secondAttribute="bottom" constant="32" id="7V6-Pz-oab"/>
+                                    <constraint firstItem="NDQ-4f-Jo7" firstAttribute="trailing" secondItem="Pme-4U-cQ9" secondAttribute="trailing" id="7x9-iW-Lcq"/>
+                                    <constraint firstItem="Pme-4U-cQ9" firstAttribute="top" secondItem="Wk9-Jh-l3Z" secondAttribute="bottom" constant="32" id="84j-ly-bVq"/>
+                                    <constraint firstItem="NDQ-4f-Jo7" firstAttribute="leading" secondItem="Pme-4U-cQ9" secondAttribute="leading" id="9ZQ-qH-itO"/>
+                                    <constraint firstItem="X3u-Oe-YBa" firstAttribute="centerX" secondItem="CDY-MO-aOJ" secondAttribute="centerX" id="CF4-eN-wRm"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wk9-Jh-l3Z" secondAttribute="trailing" constant="32" id="F0D-oQ-IZh"/>
+                                    <constraint firstItem="h8B-Xc-YmV" firstAttribute="leading" secondItem="NDQ-4f-Jo7" secondAttribute="leading" id="IWo-fi-FYd"/>
+                                    <constraint firstItem="Wk9-Jh-l3Z" firstAttribute="top" secondItem="X3u-Oe-YBa" secondAttribute="bottom" constant="64" id="QKi-YF-DY5"/>
+                                    <constraint firstItem="xTB-WQ-yic" firstAttribute="centerX" secondItem="CDY-MO-aOJ" secondAttribute="centerX" id="RNf-fo-Dc2"/>
+                                    <constraint firstItem="Pme-4U-cQ9" firstAttribute="trailing" secondItem="Wk9-Jh-l3Z" secondAttribute="trailing" id="Sen-ut-4Ck"/>
+                                    <constraint firstAttribute="bottom" secondItem="xTB-WQ-yic" secondAttribute="bottom" constant="32" id="Ugu-NI-GhW"/>
+                                    <constraint firstItem="Pme-4U-cQ9" firstAttribute="leading" secondItem="Wk9-Jh-l3Z" secondAttribute="leading" id="bZQ-Ux-dUo"/>
+                                    <constraint firstItem="h8B-Xc-YmV" firstAttribute="trailing" secondItem="NDQ-4f-Jo7" secondAttribute="trailing" id="cp2-AQ-Ki8"/>
+                                    <constraint firstItem="NDQ-4f-Jo7" firstAttribute="top" secondItem="Pme-4U-cQ9" secondAttribute="bottom" constant="32" id="jcA-fq-9JL"/>
+                                    <constraint firstItem="Wk9-Jh-l3Z" firstAttribute="leading" secondItem="CDY-MO-aOJ" secondAttribute="leading" constant="32" id="ud8-Rd-Ais"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="CDY-MO-aOJ" firstAttribute="centerX" secondItem="6FN-5q-hOD" secondAttribute="centerX" id="IUB-TN-BBO"/>
+                            <constraint firstItem="CDY-MO-aOJ" firstAttribute="centerY" secondItem="6FN-5q-hOD" secondAttribute="centerY" id="PyN-JI-E7M"/>
+                            <constraint firstItem="Dri-q7-wyS" firstAttribute="width" secondItem="Dri-q7-wyS" secondAttribute="height" multiplier="0.5" id="XJb-wC-OQi"/>
+                            <constraint firstItem="Dri-q7-wyS" firstAttribute="leading" secondItem="tgd-wr-Cyj" secondAttribute="leading" id="XXL-on-OD7"/>
+                            <constraint firstItem="Dri-q7-wyS" firstAttribute="centerY" secondItem="6FN-5q-hOD" secondAttribute="centerY" id="njF-pL-got"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tgd-wr-Cyj"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="autoSelectDelayTextField" destination="Pme-4U-cQ9" id="vUf-h8-tXz"/>
+                        <outlet property="backButton" destination="Dri-q7-wyS" id="Spu-vz-Iv7"/>
+                        <outlet property="languageTextField" destination="Wk9-Jh-l3Z" id="vki-v7-wCm"/>
+                        <outlet property="saveButton" destination="xTB-WQ-yic" id="4XJ-S9-jBn"/>
+                        <outlet property="soundTextField" destination="h8B-Xc-YmV" id="eyV-UE-dEy"/>
+                        <outlet property="tileSizeTextField" destination="NDQ-4f-Jo7" id="E7L-bx-yN6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2a9-mP-FFZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2187" y="1558"/>
         </scene>
     </scenes>
     <resources>

@@ -57,6 +57,9 @@
 		E99F51FD21A5642E002C3716 /* SettingsAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F51FC21A5642E002C3716 /* SettingsAccountViewController.swift */; };
 		E99F51FF21A570AA002C3716 /* SettingsAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F51FE21A570AA002C3716 /* SettingsAccountViewModel.swift */; };
 		E99F520121A576C1002C3716 /* SettingsAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F520021A576C1002C3716 /* SettingsAccountModel.swift */; };
+		E99F520321A597AE002C3716 /* SettingsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F520221A597AE002C3716 /* SettingsHelper.swift */; };
+		E99F520521A5AA4E002C3716 /* SettingsInterfaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F520421A5AA4E002C3716 /* SettingsInterfaceViewController.swift */; };
+		E99F520721A5AAE1002C3716 /* SettingsInterfaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F520621A5AAE1002C3716 /* SettingsInterfaceViewModel.swift */; };
 		E9A6C7B12194346700EE7516 /* MathParserErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7882194346600EE7516 /* MathParserErrors.swift */; };
 		E9A6C7B22194346700EE7516 /* LocalizedNumberExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7892194346600EE7516 /* LocalizedNumberExtractor.swift */; };
 		E9A6C7B32194346700EE7516 /* VariableExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C78A2194346600EE7516 /* VariableExtractor.swift */; };
@@ -287,6 +290,9 @@
 		E99F51FC21A5642E002C3716 /* SettingsAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAccountViewController.swift; sourceTree = "<group>"; };
 		E99F51FE21A570AA002C3716 /* SettingsAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAccountViewModel.swift; sourceTree = "<group>"; };
 		E99F520021A576C1002C3716 /* SettingsAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAccountModel.swift; sourceTree = "<group>"; };
+		E99F520221A597AE002C3716 /* SettingsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHelper.swift; sourceTree = "<group>"; };
+		E99F520421A5AA4E002C3716 /* SettingsInterfaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInterfaceViewController.swift; sourceTree = "<group>"; };
+		E99F520621A5AAE1002C3716 /* SettingsInterfaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInterfaceViewModel.swift; sourceTree = "<group>"; };
 		E9A6C7882194346600EE7516 /* MathParserErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathParserErrors.swift; sourceTree = "<group>"; };
 		E9A6C7892194346600EE7516 /* LocalizedNumberExtractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedNumberExtractor.swift; sourceTree = "<group>"; };
 		E9A6C78A2194346600EE7516 /* VariableExtractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VariableExtractor.swift; sourceTree = "<group>"; };
@@ -654,6 +660,8 @@
 		E99F51FB21A563F6002C3716 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				E99F520421A5AA4E002C3716 /* SettingsInterfaceViewController.swift */,
+				E99F520621A5AAE1002C3716 /* SettingsInterfaceViewModel.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -904,6 +912,7 @@
 				F3D591B8216B5E80003921CB /* InputValidationHelper.swift */,
 				F396E465216EC6B200C061CD /* FileNamingHelper.swift */,
 				E9A6C7DB219449E900EE7516 /* TranslationHelper.swift */,
+				E99F520221A597AE002C3716 /* SettingsHelper.swift */,
 			);
 			path = helper;
 			sourceTree = "<group>";
@@ -1408,6 +1417,7 @@
 				E95BA37E218857A3006D11DD /* ItemUtil.swift in Sources */,
 				E9A6C7CA2194346700EE7516 /* Operator+Defaults.swift in Sources */,
 				F354B7452164C7470026F3A2 /* IntroThirdNewViewModel.swift in Sources */,
+				E99F520321A597AE002C3716 /* SettingsHelper.swift in Sources */,
 				F3E19CB0211C3DA500ADE838 /* InputAViewModel.swift in Sources */,
 				E9A6C7D82194346700EE7516 /* Expressionizer.swift in Sources */,
 				E95021A921870E200026FB99 /* ScreenTypeHViewModel.swift in Sources */,
@@ -1451,6 +1461,7 @@
 				E93ACD43216B8CD700F29F54 /* ScreenTypeDViewController.swift in Sources */,
 				F3355CF12122E904009AF602 /* LoadingModel.swift in Sources */,
 				F396E468216F249B00C061CD /* ProfileData.swift in Sources */,
+				E99F520521A5AA4E002C3716 /* SettingsInterfaceViewController.swift in Sources */,
 				E99F520121A576C1002C3716 /* SettingsAccountModel.swift in Sources */,
 				F32F5B6521453DCC00558C68 /* IntroSecondViewController.swift in Sources */,
 				F3E200C92135F2D500902A33 /* UIApplicationExtension.swift in Sources */,
@@ -1488,6 +1499,7 @@
 				E9A6C7C72194346700EE7516 /* FunctionSet.swift in Sources */,
 				F32F5B6721453DFB00558C68 /* IntroSecondViewModel.swift in Sources */,
 				E9A6C7DC219449E900EE7516 /* TranslationHelper.swift in Sources */,
+				E99F520721A5AAE1002C3716 /* SettingsInterfaceViewModel.swift in Sources */,
 				F3CE6920213DB318004F6756 /* IntroFirstViewController.swift in Sources */,
 				F32DCED9214A41D100B3D0F8 /* INTextField.swift in Sources */,
 				E9A6C7D32194346700EE7516 /* ExponentExtractor.swift in Sources */,

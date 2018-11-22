@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         DisplayHelper.setDisplayDiming(isAlwaysOn: true)
         ReachabilityManager.shared.startMonitoring()
+        SettingsHelper.shared.prepareDefaultValues()
+        let _ = SpeechHelper.shared
         return true
     }
 

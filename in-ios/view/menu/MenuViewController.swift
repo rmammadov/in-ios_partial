@@ -131,6 +131,8 @@ extension MenuViewController {
                 self.viewModel.onItemLoadRequest(indexPath: indexPath)
             }
         }).disposed(by: disposeBag)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(languageDidChanged(_:)), name: .LanguageChanged, object: nil)
     }
     
     private func loadInputScreen0() {
@@ -165,7 +167,8 @@ extension MenuViewController {
             AnimationUtil.cancelAnimation(object: cell)
             viewModel.setSelection(indexPath: nil)
         }
-        print("TODO: Open SettingsInterface")
+        guard let interfaceVC = storyboard?.instantiateViewController(withIdentifier: SettingsInterfaceViewController.identifier) as? SettingsInterfaceViewController else { return }
+        navigationController?.pushViewController(interfaceVC, animated: true)
     }
     
     private func openScreenTypeC(inputScreen: InputScreen) {
@@ -259,5 +262,11 @@ extension MenuViewController: GazeTrackerUpdateProtocol {
         if let homeVC = self.parent?.parent?.parent as? HomeViewController {
             homeVC.viewModel.setMenuExpanded(false)
         }
+    }
+}
+
+extension MenuViewController {
+    @objc func languageDidChanged(_ notification: Notification) {
+        collectionView.reloadData()
     }
 }

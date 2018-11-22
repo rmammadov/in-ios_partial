@@ -10,7 +10,7 @@ import Foundation
 
 extension Array where Element == Translation {
     func currentTranslation() -> Translation? {
-        if let translation = first(where: { $0.locale == Locale.current.languageCode }) {
+        if let translation = first(where: { $0.locale == SettingsHelper.shared.language.rawValue }) {
             return translation
         } else if let translation = first(where: { $0.locale == "en" }) {
             return translation

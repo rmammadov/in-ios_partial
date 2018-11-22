@@ -113,6 +113,8 @@ extension HomeViewController {
         viewModel.getMenuExpandedObservable().subscribe(onNext: { (isExpanded) in
             self.updateTopMenu()
         }).disposed(by: disposeBag)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(languageDidChanged(_:)), name: .LanguageChanged, object: nil)
     }
     
     func updateUi() {
@@ -265,5 +267,11 @@ extension HomeViewController: GazeTrackerUpdateProtocol {
                 updateTopMenu()
             }
         }
+    }
+}
+
+extension HomeViewController {
+    @objc func languageDidChanged(_ notification: Notification) {
+        collectionTopMenu.reloadData()
     }
 }

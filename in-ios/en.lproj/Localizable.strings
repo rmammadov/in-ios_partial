@@ -58,3 +58,18 @@
 "alzheimer_disease" = "Alzheimer’s Disease";
 
 "save" = "Save";//
+"interface" = "Interface";//
+"auto_select_delay" = "Auto Select Delay";//
+"selectDelayShort" = "Short: 1 second";//
+"selectDelayMedium" = "Medium: 2.5 seconds";//
+"selectDelayLong" = "Long: 4 seconds";//
+"languages" = "Languages";//
+"languageEnglish" = "English";//
+"languageFrench" = "French";//
+"languageSpanish" = "Spanish";//
+"tileSize" = "Tile Size";//
+"tileSizeSmall" = "Small";//
+"tileSizeLarge" = "Large";//
+"sound" = "Sound";//
+"on" = "On";//
+"off" = "Off";//
