@@ -216,8 +216,9 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        let itemSize = ItemUtil.shared.getItemSize()
-        return (collectionView.bounds.width - (CGFloat(viewModel.getColumnCount()) * itemSize.width)) / CGFloat(viewModel.getColumnCount() - 1)
+        let itemUtil = ItemUtil.shared
+        let itemSize = itemUtil.getItemSize()
+        return (collectionView.bounds.width - (CGFloat(itemUtil.getColumnCount()) * itemSize.width)) / CGFloat(itemUtil.getColumnCount() - 1)
     }
     
     // MARK: UICollectionViewDelegate

@@ -148,13 +148,15 @@ extension ScreenTypeHViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        let itemSize = ItemUtil.shared.getItemSize(withTitle: false)
-        return (collectionView.bounds.width - (CGFloat(viewModel.getColumnCount()) * itemSize.width)) / CGFloat(viewModel.getColumnCount() - 1)
+        let itemUtil = ItemUtil.shared
+        let itemSize = itemUtil.getItemSize(withTitle: false)
+        return (collectionView.bounds.width - (CGFloat(itemUtil.getColumnCount()) * itemSize.width)) / CGFloat(itemUtil.getColumnCount() - 1)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        let itemSize = ItemUtil.shared.getItemSize(withTitle: false)
-        return (collectionView.bounds.height - (CGFloat(viewModel.getRowCount()) * itemSize.height)) / CGFloat(viewModel.getRowCount() - 1)
+        let itemUtil = ItemUtil.shared
+        let itemSize = itemUtil.getItemSize(withTitle: false)
+        return (collectionView.bounds.height - (CGFloat(itemUtil.getRowCount()) * itemSize.height)) / CGFloat(itemUtil.getRowCount() - 1)
     }
 }
 
