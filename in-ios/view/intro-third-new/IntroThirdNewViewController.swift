@@ -26,8 +26,7 @@ class IntroThirdNewViewController: BaseViewController {
     @IBOutlet weak var viewFifthStep: UIView!
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var btnForward: UIButton!
-    @IBOutlet weak var executedTasksLabel: UILabel!
-    @IBOutlet weak var finishedTaskLabel: UILabel!
+    @IBOutlet weak var progressPercentageLabel: UILabel!
     @IBOutlet weak var tasksProgressView: UIProgressView!
   
     private let viewModel: IntroThirdNewModel = IntroThirdNewModel()
@@ -43,8 +42,6 @@ class IntroThirdNewViewController: BaseViewController {
         DataManager.status.value = 0
         setUi()
         setCamera()
-        //        let point = CGPoint(x: self.view.frame.size.height / 2 , y: 0)
-        //        self.view.hitTest(point, with: nil)
     }
     
     func setDisabled(sender: Any) {
@@ -287,14 +284,8 @@ extension IntroThirdNewViewController {
 extension IntroThirdNewViewController: CalibrationRequestDelegate {
     func didUpdateCalibrationRequests(finishedTasks: Int, allTasks: Int, averageTimeTask: Double) {
         DispatchQueue.main.async {
-            self.executedTasksLabel.text = "\(finishedTasks)"
-            self.finishedTaskLabel.text = "\(allTasks)"
-            var value: Float
-            if allTasks != 0 {
-                value = Float(finishedTasks) / Float(allTasks)
-            } else {
-                value = 0
-            }
+            let value = allTasks != 0 ? (Float(finishedTasks) / Float(allTasks)) : 0
+            self.progressPercentageLabel.text = "\(Int(value * 100.0))%"
             self.tasksProgressView.setProgress(value, animated: false)
         }
     }

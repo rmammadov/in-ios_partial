@@ -10,4 +10,7 @@ import Foundation
 
 class PersistanceDataHandler {
     
+    static func saveCoreDataChanges() {
+        PersistanceService.shared.saveContext()
+    }
 }

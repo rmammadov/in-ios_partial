@@ -24,6 +24,7 @@ class SpeechHelper: NSObject {
     let synthesizer = AVSpeechSynthesizer()
     
     func play(text: String, language: String) {
+        guard SettingsHelper.shared.isSoundEnabled else { return }
         let utterance = AVSpeechUtterance(string: text)
         utterance.voice = AVSpeechSynthesisVoice(language: language)
         synthesizer.delegate = self
