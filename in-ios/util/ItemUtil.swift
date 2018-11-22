@@ -11,6 +11,7 @@ import UIKit
 
 class ItemUtil {
     static let shared = ItemUtil()
+    private let settings = SettingsHelper.shared
     
     private init() {
     }
@@ -19,12 +20,32 @@ class ItemUtil {
         let screenSize = UIScreen.main.bounds.size
         let containerSize = CGSize(width: screenSize.width - (Constant.kLeadingMargin + Constant.kTrailingMargin),
                                    height: screenSize.height - (Constant.kTopMargin + Constant.kBottomMargin + Constant.kMenuSmallSize))
-        var itemWidth = (containerSize.width - (Constant.kItemMargin * CGFloat(Constant.Normal.kColumnCount - 1))) / CGFloat(Constant.Normal.kColumnCount)
-        let itemHeight = containerSize.height / CGFloat(Constant.Normal.kRowCount) - ((withTitle) ? 0 : Constant.kItemLabelSpace)
+        var itemWidth = (containerSize.width - (Constant.kItemMargin * CGFloat(getColumnCount() - 1))) / CGFloat(getColumnCount())
+        let itemHeight = containerSize.height / CGFloat(getRowCount()) - ((withTitle) ? 0 : Constant.kItemLabelSpace)
         if itemWidth > itemHeight {
             itemWidth = itemHeight - (withTitle ? Constant.kItemLabelSpace : 0)
         }
         return CGSize(width: itemWidth, height: itemHeight)
+    }
+    
+    func getColumnCount() -> Int {
+        let orientation = UIDevice.current.orientation
+        switch settings.tileSize {
+        case .small:
+            return orientation.isLandscape ? 7 : 5
+        case .large:
+            return orientation.isLandscape ? 5 : 4
+        }
+    }
+    
+    func getRowCount() -> Int {
+        let orientation = UIDevice.current.orientation
+        switch settings.tileSize {
+        case .small:
+            return orientation.isLandscape ? 5 : 7
+        case .large:
+            return orientation.isLandscape ? 4 : 5
+        }
     }
     
     

@@ -12,6 +12,7 @@ extension Notification.Name {
     public static let ScreenTypeCClear = Notification.Name("notification.name.ScreenTypeCClear")
     public static let GazeTrackerUpdateCoordinates = Notification.Name("notification.name.GazeTrackerUpdateCoordinates")
     public static let LanguageChanged = Notification.Name("notification.name.LanguageChanged")
+    public static let TileSizeChanged = Notification.Name("notification.name.TileSizeChanged")
 }
 
 struct NotificationKeys {
