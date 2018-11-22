@@ -16,8 +16,8 @@ public class GazeTracker: FaceFinderDelegate {
     
     var utilities: GazeUtilities = GazeUtilities()
     
-    let generalModel = GazeEstimator()
-    let biasCorrector = BiasCorrector()
+    let horizontalModel = GeneralModelHorizontal()
+    let verticalModel = GeneralModelVertical()
     
     let EYE_RESIZE_HEIGHT: Int = 80
     let ILLUM_ETA: Int = 3
@@ -511,7 +511,7 @@ public class GazeTracker: FaceFinderDelegate {
         return illuminant
     }
     
-    func predictGaze(scene: UIImage) -> (gazeXY: MLMultiArray?, calibFeats: MLMultiArray?)? {
+    func predictGaze(scene: UIImage) -> (gazeXY: Array<NSNumber>?, calibFeats: MLMultiArray?)? {
         getMainFace()
         
         let width = scene.cgImage!.width, height = scene.cgImage!.height
@@ -550,20 +550,13 @@ public class GazeTracker: FaceFinderDelegate {
         return predictGaze(eyesB: eyeChannels.blueChannel, eyesG: eyeChannels.greenChannel, eyesR: eyeChannels.redChannel, illuminant: illuminant, headPose: facialFeatures)
     }
     
-    func predictGaze(eyesB: MLMultiArray, eyesG: MLMultiArray, eyesR: MLMultiArray, illuminant: MLMultiArray, headPose: MLMultiArray) -> (gazeXY: MLMultiArray?, calibFeats: MLMultiArray?)? {
+    func predictGaze(eyesB: MLMultiArray, eyesG: MLMultiArray, eyesR: MLMultiArray, illuminant: MLMultiArray, headPose: MLMultiArray) -> (gazeXY: Array<NSNumber>?, calibFeats: MLMultiArray?)? {
         do {
-            let modelOutput = try generalModel.prediction(input: GazeEstimatorInput(_eyesB_: eyesB, _eyesG_: eyesG, _eyesR_: eyesR, _illum_: illuminant, _pose_: headPose), options: self.PREDICTION_OPTIONS)
-            return (modelOutput.gazeXY, modelOutput.calibFeats)
-        } catch {
-            print(error)
-            return nil
-        }
-    }
-    
-    func correctBias(with inputFeats: MLMultiArray) -> (gazeXY: MLMultiArray?, calibFeats: MLMultiArray?)? {
-        do {
-            let modelOutput = try biasCorrector.prediction(input: BiasCorrectorInput(_inputFeats_: inputFeats), options: self.PREDICTION_OPTIONS)
-            return (modelOutput.gazeXY, modelOutput.calibFeats)
+            let horizontalOutput = try horizontalModel.prediction(input: GeneralModelHorizontalInput(eyesB: eyesB, eyesG: eyesG, eyesR: eyesR, illum: illuminant, pose: headPose), options: self.PREDICTION_OPTIONS)
+            let verticalOutput = try verticalModel.prediction(input: GeneralModelVerticalInput(eyesB: eyesB, eyesG: eyesG, eyesR: eyesR, illum: illuminant, pose: headPose), options: self.PREDICTION_OPTIONS)
+            let prediction = [horizontalOutput.gazeXY[0] as NSNumber,
+                              verticalOutput.gazeXY[0] as NSNumber]
+            return (prediction, verticalOutput.calibFeats)
         } catch {
             print(error)
             return nil
