@@ -9,6 +9,7 @@
 import Foundation
 
 struct Translation: Decodable {
+    
     var locale: String
     var label: String
     var labelTextToSpeech: String
