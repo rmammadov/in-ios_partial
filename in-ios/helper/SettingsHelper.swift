@@ -9,6 +9,7 @@
 import Foundation
 
 class SettingsHelper {
+    
     static let shared: SettingsHelper = SettingsHelper()
     
     private let defaults = UserDefaults.standard
