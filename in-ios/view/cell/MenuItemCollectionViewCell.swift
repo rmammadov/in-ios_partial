@@ -56,6 +56,13 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
         let attrsString = NSAttributedString(string: text, attributes: attrs)
         return attrsString
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        if let layer = gradientView.layer.sublayers?.last(where: { $0.mask?.animation(forKey: "LoadingAnimation") != nil }) {
+            layer.removeFromSuperlayer()
+        }
+    }
 }
 
 extension MenuItemCollectionViewCell: AnimateObject {

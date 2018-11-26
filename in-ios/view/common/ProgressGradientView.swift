@@ -51,9 +51,7 @@ extension ProgressGradientView {
         maskLayer.strokeColor = UIColor.black.cgColor
         maskLayer.lineWidth = bounds.height
         maskLayer.path = bezier.cgPath
-        
         gradient.mask = maskLayer
-        
         originDuration = duration
         
         CATransaction.begin()
@@ -70,8 +68,8 @@ extension ProgressGradientView {
             newAnimation.toValue = 1
             newAnimation.duration = newAnimationDuration
             newAnimation.delegate = self
-            animationLayer.mask?.removeAllAnimations()
             animationLayer.mask?.add(newAnimation, forKey: kAnimation)
+            isHidden = false
         } else {
             let animation = CABasicAnimation(keyPath: "strokeEnd")
             animation.fromValue = 0
@@ -81,7 +79,6 @@ extension ProgressGradientView {
             layer.addSublayer(gradient)
             maskLayer.add(animation, forKey: kAnimation)
         }
-        
         CATransaction.commit()
     }
     
@@ -94,7 +91,6 @@ extension ProgressGradientView {
             animationLayer.mask?.removeAllAnimations()
             
             CATransaction.begin()
-            
             let animationR = CABasicAnimation(keyPath: "strokeEnd")
             animationR.fromValue = animationValue
             animationR.toValue = 0
@@ -112,6 +108,11 @@ extension ProgressGradientView {
 
 extension ProgressGradientView: CAAnimationDelegate {
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        if !flag, let basicAnimation = (anim as? CABasicAnimation), basicAnimation.toValue as? Double ?? 0 == 0 {
+            if layer.sublayers?.first(where: { $0.mask?.animationKeys() != nil }) == nil {
+                self.isHidden = true
+            }
+        }
         guard flag, let animation = anim as? CABasicAnimation else { return }
         let animationFinishValue = animation.toValue as? Double ?? 0
         animationCompletion?(animationFinishValue == 1)
