@@ -92,14 +92,12 @@ extension AnimationUtil {
         self.tag = tag
         if fingerTouch {
             object.animateLoading(duration: Constant.AnimationConfig.MENU_ITEM_FINGER_TOUCH_ANIMATION_DURATION) { (isCompleted) in
-                object.setSelected(isCompleted)
                 if isCompleted {
                     self.status.value = AnimationStatus.completed.rawValue
                 }
             }
         } else {
             object.animateLoading(duration: SettingsHelper.shared.autoSelectDelay.seconds) { (isCompleted) in
-                object.setSelected(isCompleted)
                 if isCompleted {
                     self.status.value = AnimationStatus.completed.rawValue
                 }

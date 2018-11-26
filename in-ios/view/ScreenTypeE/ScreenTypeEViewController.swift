@@ -25,6 +25,7 @@ class ScreenTypeEViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         registerGazeTrackerObserver()
+        viewModel.setSelection(nil)
         isDisappear = false
     }
     
@@ -70,13 +71,18 @@ extension ScreenTypeEViewController {
             guard
                 status == AnimationStatus.completed.rawValue,
                 AnimationUtil.getTag() == ScreenTypeEViewController.identifier,
-                let indexPath = self.viewModel.getSelectedIndexPath(),
+                let indexPath = self.viewModel.getSelection(),
                 let cell = self.collectionView.cellForItem(at: indexPath) as? AnimateObject
                 else { return }
             self.viewModel.setSelection(nil)
-            AnimationUtil.cancelAnimation(object: cell)
             let item = self.viewModel.onItemLoadRequest(indexPath: indexPath)
+            cell.setSelected(true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+                cell.setSelected(false)
+            })
             if item.type == .inputScreenOpen, let nextVC = self.viewModel.prepareViewControllerFor(item: item) {
+                self.viewModel.setSelectedItem(nil)
+                self.viewModel.setSelectedIndexPath(nil)
                 self.navigationController?.pushViewController(nextVC, animated: true)
             }
         }).disposed(by: disposeBag)
@@ -187,9 +193,10 @@ extension ScreenTypeEViewController: GazeTrackerUpdateProtocol {
             AnimationUtil.cancelAnimation(object: lastCell)
         }
         viewModel.setSelection(indexPath)
+        guard viewModel.getSelection() != nil, viewModel.getSelection() != viewModel.getSelectedIndexPath() else { return }
         guard let indexPath = indexPath,
             let cell = collectionView.cellForItem(at: indexPath) as? AnimateObject else { return }
-        viewModel.setSelectedIndexPath(indexPath)
+//        viewModel.setSelectedIndexPath(indexPath)
         AnimationUtil.animateSelection(object: cell, fingerTouch: fingerTouch, tag: ScreenTypeEViewController.identifier)
     }
 }

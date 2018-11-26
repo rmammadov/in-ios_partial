@@ -75,6 +75,10 @@ extension ScreenTypeFViewController {
                 let cell = self.collectionView.cellForItem(at: lastSelectedIndex) as? ColoredButtonCollectionViewCell {
                 cell.setSelected(false)
             }
+            if let selectedIndexPath = self.viewModel.newSelectedIndex,
+                let cell = self.collectionView.cellForItem(at: selectedIndexPath) as? ColoredButtonCollectionViewCell {
+                cell.setSelected(true)
+            }
             self.viewModel.onSelectionComplete()
         }).disposed(by: disposeBag)
     }
@@ -161,12 +165,13 @@ extension ScreenTypeFViewController: GazeTrackerUpdateProtocol {
     }
     
     private func selectCellAt(indexPath: IndexPath?, fingerTouch: Bool = false) {
-        guard viewModel.getSelection() != indexPath else { return }
+        guard viewModel.getSelection() != indexPath  else { return }
         if let lastSelectionIndexPath = viewModel.getSelection(),
             let lastCell = collectionView.cellForItem(at: lastSelectionIndexPath) as? AnimateObject {
             AnimationUtil.cancelAnimation(object: lastCell)
         }
         viewModel.setSelection(indexPath)
+        guard viewModel.getSelection() != nil, viewModel.getSelection() != viewModel.selectedIndex else { return }
         guard let indexPath = indexPath,
             let cell = collectionView.cellForItem(at: indexPath) as? ColoredButtonCollectionViewCell
             else { return }

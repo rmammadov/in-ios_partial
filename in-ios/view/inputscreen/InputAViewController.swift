@@ -123,15 +123,14 @@ extension InputAViewController {
     }
     
     func setSubscribers() {
-        self.viewModel.status.asObservable().subscribe(onNext: {[weak self]
-            event in
-            if self?.viewModel.status.value == InputAStatus.loaded.rawValue {
+        self.viewModel.status.asObservable().subscribe(onNext: {[weak self] event in
+            guard let `self` = self else { return }
+            if self.viewModel.status.value == InputAStatus.loaded.rawValue {
                 DispatchQueue.main.async {
-                    guard let indexPath = self?.viewModel.getSelection(),
-                        let cell = self?.getCellForIndexPath(indexPath: ((self?.viewModel.getSelection())!))
+                    guard let indexPath = self.viewModel.getSelection(),
+                        let cell = self.getCellForIndexPath(indexPath: indexPath)
                         else { return }
-                    AnimationUtil.cancelAnimation(object: cell)
-                    self?.updateUi()
+                    self.updateUi()
                 }
             }
         }).disposed(by: disposeBag)
@@ -165,7 +164,13 @@ extension InputAViewController {
             guard !self.isDisappear else { return }
             if AnimationUtil.status.value == AnimationStatus.completed.rawValue {
                 if AnimationUtil.getTag() == InputAViewController.TAG {
-                    self.viewModel.onItemLoadRequest(indexPath: self.viewModel.getSelection())
+                    guard let indexPath = self.viewModel.getSelection(),
+                        let cell = self.getCellForIndexPath(indexPath: indexPath) else { return }
+                    cell.setSelected(true)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+                        cell.setSelected(false)
+                    })
+                    self.viewModel.onItemLoadRequest(indexPath: indexPath)
                 } else if AnimationUtil.getTag() == "InputA.BackButton" {
                     self.viewModel.selectionButton = nil
                     self.navigationController?.popViewController(animated: true)

@@ -144,6 +144,7 @@ class ScreenTypeEViewModel: BaseViewModel {
         guard item.type != .inputScreenOpen else {
             return item
         }
+        selectedIndexPath = indexPath
         selectedItem = item
         
         if isDisableTextToSpeech {
