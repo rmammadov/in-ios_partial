@@ -35,11 +35,10 @@ class BodyPartViewController: BaseViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        unregisterGazeTrackerObserver()
         isDisappear = true
-        if let lastBodyRow = viewModel.newBodyRow {
-            AnimationUtil.cancelAnimation(object: lastBodyRow)
-        }
+        unregisterGazeTrackerObserver()
+        cancelLastSelection()
+        viewModel.newBodyRow = nil
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -199,12 +198,15 @@ extension BodyPartViewController: GazeTrackerUpdateProtocol {
     
     func selectRow(_ row: BodyPartRowView?, fingerTouch: Bool = false) {
         guard row != viewModel.newBodyRow else { return }
-        if let lastBodyRow = viewModel.newBodyRow {
-            AnimationUtil.cancelAnimation(object: lastBodyRow)
-        }
+        cancelLastSelection()
         viewModel.newBodyRow = row
         viewModel.newBubble = row?.bubble
         guard let row = row, row.bubble != nil, viewModel.newBodyRow != viewModel.selectedBodyRow else { return }
         AnimationUtil.animateSelection(object: row, fingerTouch: fingerTouch, tag: "BodyPartRowView")
+    }
+    
+    private func cancelLastSelection() {
+        guard let lastBodyRow = viewModel.newBodyRow else { return }
+        AnimationUtil.cancelAnimation(object: lastBodyRow)
     }
 }

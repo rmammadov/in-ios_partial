@@ -24,15 +24,21 @@ class ScreenTypeEViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        isDisappear = false
         registerGazeTrackerObserver()
         viewModel.setSelection(nil)
-        isDisappear = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        cancelLastSelection()
+        viewModel.setSelection(nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        unregisterGazeTrackerObserver()
         isDisappear = true
+        unregisterGazeTrackerObserver()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -188,15 +194,19 @@ extension ScreenTypeEViewController: GazeTrackerUpdateProtocol {
     
     private func selectCellAt(indexPath: IndexPath?, fingerTouch: Bool = false) {
         guard viewModel.getSelection() != indexPath else { return }
-        if let lastSelectionIndexPath = viewModel.getSelection(),
-            let lastCell = collectionView.cellForItem(at: lastSelectionIndexPath) as? AnimateObject {
-            AnimationUtil.cancelAnimation(object: lastCell)
-        }
+        cancelLastSelection()
         viewModel.setSelection(indexPath)
         guard viewModel.getSelection() != nil, viewModel.getSelection() != viewModel.getSelectedIndexPath() else { return }
         guard let indexPath = indexPath,
             let cell = collectionView.cellForItem(at: indexPath) as? AnimateObject else { return }
 //        viewModel.setSelectedIndexPath(indexPath)
         AnimationUtil.animateSelection(object: cell, fingerTouch: fingerTouch, tag: ScreenTypeEViewController.identifier)
+    }
+    
+    private func cancelLastSelection() {
+        guard let lastSelectionIndexPath = viewModel.getSelection(),
+            let lastCell = collectionView.cellForItem(at: lastSelectionIndexPath) as? AnimateObject
+            else { return }
+        AnimationUtil.cancelAnimation(object: lastCell)
     }
 }

@@ -43,6 +43,8 @@ class MenuViewController: BaseViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unregisterGazeTrackerObserver()
+        cancelLastSelection()
+        viewModel.setSelection(indexPath: nil)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -105,6 +107,7 @@ extension MenuViewController {
                     // Dissmis all view controllers which overlapping main view
                     self.navigationController?.popToRootViewController(animated: true)
                     self.collectionView.reloadData()
+                    self.viewModel.setSelection(indexPath: nil)
                 }
             }
         }).disposed(by: disposeBag)
@@ -251,17 +254,20 @@ extension MenuViewController: GazeTrackerUpdateProtocol {
     }
     
     func selectCellAt(indexPath: IndexPath?, fingerTouch: Bool = false) {
-        guard indexPath != self.viewModel.getSelection() else {
-            return
-        }
-        if let lastIndexPath = self.viewModel.getSelection(), let cell = getCellForIndexPath(indexPath: lastIndexPath) {
-            AnimationUtil.cancelAnimation(object: cell)
-        }
+        guard indexPath != self.viewModel.getSelection() else { return }
+        cancelLastSelection()
         self.viewModel.setSelection(indexPath: indexPath)
         guard let indexPath = indexPath, let cell = getCellForIndexPath(indexPath: indexPath) else { return }
         AnimationUtil.animateSelection(object: cell, fingerTouch: fingerTouch, tag: MenuViewController.TAG)
         if let homeVC = self.parent?.parent?.parent as? HomeViewController {
             homeVC.viewModel.setMenuExpanded(false)
+        }
+    }
+    
+    private func cancelLastSelection() {
+        if let lastIndexPath = self.viewModel.getSelection(),
+            let cell = getCellForIndexPath(indexPath: lastIndexPath) {
+            AnimationUtil.cancelAnimation(object: cell)
         }
     }
 }

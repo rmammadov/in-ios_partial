@@ -43,9 +43,9 @@ class AnimationUtil {
             CATransaction.commit()
         }
     }
-
+    
     static func setMenuSelection(imageView: UIImageView) {
-         imageView.image = #imageLiteral(resourceName: "ic_circle_gradient_fill")
+        imageView.image = #imageLiteral(resourceName: "ic_circle_gradient_fill")
     }
     
     static func cancelMenuSelection(imageView: UIImageView) {
@@ -56,7 +56,7 @@ class AnimationUtil {
     
     static func animateLoading(imageView: UIImageView) {
         imageView.image = #imageLiteral(resourceName: "ic_circle_gradient_loading")
-    
+        
         CATransaction.begin()
         CATransaction.setCompletionBlock({
             

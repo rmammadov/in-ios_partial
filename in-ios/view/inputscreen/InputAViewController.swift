@@ -29,8 +29,6 @@ class InputAViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         self.setUi()
     }
     
@@ -53,6 +51,9 @@ class InputAViewController: BaseViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unregisterGazeTrackerObserver()
+        cancelLastSelection()
+        viewModel.selectionButton = nil
+        viewModel.setSelection(indexPath: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -247,9 +248,7 @@ extension InputAViewController: GazeTrackerUpdateProtocol {
     
     private func selectCellAt(indexPath: IndexPath?, fingerTouch: Bool = false) {
         guard indexPath != self.viewModel.getSelection() else { return }
-        if let lastIndexPath = self.viewModel.getSelection(), let cell = collectionView.cellForItem(at: lastIndexPath) as? AnimateObject {
-            AnimationUtil.cancelAnimation(object: cell)
-        }
+        cancelLastSelection()
         self.viewModel.setSelection(indexPath: indexPath)
         guard let indexPath = indexPath, let cell = self.getCellForIndexPath(indexPath: indexPath) else { return }
         AnimationUtil.animateSelection(object: cell, fingerTouch: fingerTouch, tag: InputAViewController.TAG)
@@ -267,6 +266,16 @@ extension InputAViewController: GazeTrackerUpdateProtocol {
             AnimationUtil.cancelAnimation(object: btnBack)
         }
         viewModel.selectionButton = isSelected ? btnBack : nil
+    }
+    
+    private func cancelLastSelection() {
+        if let lastIndexPath = self.viewModel.getSelection(),
+            let cell = collectionView.cellForItem(at: lastIndexPath) as? AnimateObject {
+            AnimationUtil.cancelAnimation(object: cell)
+        }
+        if let object = viewModel.selectionButton as? AnimateObject {
+            AnimationUtil.cancelAnimation(object: object)
+        }
     }
 }
 
