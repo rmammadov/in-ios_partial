@@ -21,8 +21,6 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         prepareGradientView()
-        layer.borderColor = UIColor.white.cgColor
-        layer.borderWidth = 1.0
     }
     
     func setCell(url: String?, label: String?) {
