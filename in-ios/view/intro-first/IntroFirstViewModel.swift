@@ -18,7 +18,7 @@ class IntroFirstViewModel: BaseViewModel {
         return model.getLegalDocuments()
     }
     
-    func getLegalDocument(name: String) -> LegalDocument {
+    func getLegalDocument(name: String) -> LegalDocument? {
         return model.getLegalDocument(name: name)
     }
     

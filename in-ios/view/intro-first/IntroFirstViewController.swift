@@ -43,7 +43,7 @@ class IntroFirstViewController: BaseViewController {
         // Pass the selected object to the new view controller.
         if segue.identifier == SEGUE_IDENTIFIER_SHOW_WEBVIEW {
             let viewController = segue.destination as! WebviewViewController
-            viewController.viewModel.setHtml(string: (DataManager.getLegalDocuments().getLegalDocument(name: viewModel.getSelectedLegalName()).translations.first?.text)!)
+            viewController.viewModel.setHtml(string: (DataManager.getLegalDocuments().getLegalDocument(name: viewModel.getSelectedLegalName())?.translations.first?.text)!)
         }
     }
 
@@ -84,10 +84,10 @@ extension IntroFirstViewController: UITextViewDelegate {
         let rangePrivacy = attributedString.mutableString.range(of: "privacy_policy".localized())
         let rangeTerms = attributedString.mutableString.range(of: "terms".localized())
         
-        attributedString.addAttribute(.link, value: viewModel.getLegalDocuments().legalDocuments.first?.name as Any, range: rangePrivacy)
+        attributedString.addAttribute(.link, value: viewModel.getLegalDocuments().legalDocuments?.first?.name as Any, range: rangePrivacy)
         attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSNumber(value: 1), range: rangePrivacy)
         
-        attributedString.addAttribute(.link, value: viewModel.getLegalDocuments().legalDocuments[1].name as Any, range: rangeTerms)
+        attributedString.addAttribute(.link, value: viewModel.getLegalDocuments().legalDocuments?[1].name as Any, range: rangeTerms)
         attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSNumber(value: 1), range: rangeTerms)
         
         self.tvAgreement.attributedText = attributedString
