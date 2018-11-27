@@ -210,7 +210,7 @@ extension GradientView {
         }), let animation = animationLayer.mask?.animation(forKey: "LoadingAnimation") as? CABasicAnimation {
             let animationTimeDuration = (CACurrentMediaTime() - animation.beginTime)
             let animationValue = animationTimeDuration / originDuration
-            animationLayer.mask?.removeAllAnimations()
+//            animationLayer.mask?.removeAllAnimations()
             CATransaction.begin()
             let animationR = CABasicAnimation(keyPath: "strokeEnd")
             animationR.fromValue = animationValue
@@ -231,7 +231,8 @@ extension GradientView: CAAnimationDelegate {
     
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         if !flag, let basicAnimation = (anim as? CABasicAnimation), basicAnimation.toValue as? Double ?? 0 == 0 {
-            if layer.sublayers?.first(where: { $0.mask?.animationKeys() != nil }) == nil {
+            if layer.sublayers?.first(where: { $0.mask?.animationKeys() != nil }) == nil, layer.sublayers?.count ?? 0 > 1 {
+                print("removeFromSuperlayer")
                 layer.sublayers?.last?.removeFromSuperlayer()
             }
         }

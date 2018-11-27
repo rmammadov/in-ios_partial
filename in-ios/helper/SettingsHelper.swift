@@ -25,7 +25,7 @@ class SettingsHelper {
             autoSelectDelay = .medium
         }
         if defaults.integer(forKey: Keys.kTileSizeKey) == 0 {
-            tileSize = .small
+            tileSize = .large
         }
         
     }

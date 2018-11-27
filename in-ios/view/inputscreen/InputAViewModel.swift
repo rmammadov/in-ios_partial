@@ -215,8 +215,17 @@ class InputAViewModel: BaseViewModel {
             default: break
             }
         }
-        
+        saveUsage(item: selectedItem)
         self.status.value = InputAStatus.loaded.rawValue
+    }
+    
+    private func saveUsage(item: ButtonInputScreen) {
+        let tileContext = inputScreen?.translations.currentTranslation()?.label ?? ""
+        let locale = item.translations?.currentTranslation()?.locale ?? "en"
+        let itemType = item.type.rawValue
+        let itemId = item.id
+        let label = item.translations?.currentTranslation()?.label ?? ""
+        DatabaseWorker.shared.addUsage(locale: locale, label: label, itemType: itemType, itemId: itemId, tileContext: tileContext)
     }
     
     func loadInputScreenItem() -> InputScreen? {

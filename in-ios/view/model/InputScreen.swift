@@ -76,7 +76,7 @@ extension InputScreen {
 }
 
 struct ButtonInputScreen: Decodable {
-    
+    let id: Int
     var disableTextToSpeech: Bool?
     var icon: IconMenuItem? = nil
     var translations: [Translation]?
@@ -98,7 +98,7 @@ struct ButtonInputScreen: Decodable {
         case inputScreenId = "input_screen_id"
         case mainColor = "main_color"
         case gradientColor = "gradient_color"
-        case icon, translations, type, picture, bubbles
+        case icon, translations, type, picture, bubbles, id
     }
     
     enum ButtonType: String, Decodable {
@@ -110,6 +110,7 @@ struct ButtonInputScreen: Decodable {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: ButtonInputScreen.CodingKeys.self)
+        self.id = try container.decode(Int.self, forKey: .id)
         self.type = try container.decode(ButtonType.self, forKey: .type)
         self.disableTextToSpeech = try container.decodeIfPresent(Bool.self, forKey: .disableTextToSpeech)
         self.icon = try container.decodeIfPresent(IconMenuItem.self, forKey: .icon)
@@ -164,6 +165,7 @@ struct Icon: Decodable {
 }
 
 struct Bubble: Decodable {
+    let id: Int
     let isDisableTextToSpeech: Bool
     let coords: String
     let anchorCords: CGPoint?
@@ -172,12 +174,13 @@ struct Bubble: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case isDisableTextToSpeech = "disable_text_to_speech"
-        case coords, position, translations
+        case coords, position, translations, id
         case anchorCords = "anchor_coords"
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(Int.self, forKey: .id)
         self.isDisableTextToSpeech = try container.decode(Bool.self, forKey: .isDisableTextToSpeech)
         self.coords = try container.decode(String.self, forKey: .coords)
         let aCoordsComp = try container.decode(String.self, forKey: .anchorCords).components(separatedBy: ",")
