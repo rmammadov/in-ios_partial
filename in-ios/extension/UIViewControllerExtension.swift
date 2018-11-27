@@ -19,7 +19,14 @@ extension UIViewController {
                 print("GazeTrackerUpdate: received notification but protocol not implemented or did not found coordinate")
             return
         }
-        gazeTrackerProtocol.gazeTrackerUpdate(coordinate: coordinate)
+        gazeTrackerProtocol.gazeTrackerUpdate(coordinate: fixCoordinate(coordinate))
+    }
+    
+    private func fixCoordinate(_ coordinate: CGPoint) -> CGPoint {
+        let screenSize = UIScreen.main.bounds.size
+        let x = coordinate.x < 0 ? 0 : coordinate.x > screenSize.width ? screenSize.width : coordinate.x
+        let y = coordinate.y < 0 ? 0 : coordinate.y > screenSize.height ? screenSize.height : coordinate.y
+        return CGPoint(x: x, y: y)
     }
 }
 
