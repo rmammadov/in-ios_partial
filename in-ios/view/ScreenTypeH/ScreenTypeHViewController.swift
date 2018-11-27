@@ -86,7 +86,11 @@ extension ScreenTypeHViewController {
                 let cell = self.collectionView.cellForItem(at: indexPath) as? AnimateObject
                 else { return }
             AnimationUtil.cancelAnimation(object: cell)
-            cell.setSelected(false)
+            cell.setSelected(true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+                cell.setSelected(false)
+                self.viewModel.setSelection(nil)
+            })
             let item = self.viewModel.onItemLoadRequest(indexPath: indexPath)
             if item.type == .inputScreenOpen, let nextVC = self.viewModel.prepareViewControllerFor(item: item) {
                 self.navigationController?.pushViewController(nextVC, animated: true)
