@@ -42,6 +42,12 @@ class ScreenTypeCViewController: BaseViewController {
         registerGazeTrackerObserver()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        cancelLastSelection()
+        viewModel.selectionButton = nil
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         isDisappear = true
@@ -295,5 +301,11 @@ extension ScreenTypeCViewController: GazeTrackerUpdateProtocol {
             AnimationUtil.cancelAnimation(object: clearButton)
         }
         viewModel.selectionButton = isSelected ? clearButton : nil
+    }
+    
+    private func cancelLastSelection() {
+        if let object = viewModel.selectionButton as? AnimateObject {
+            AnimationUtil.cancelAnimation(object: object)
+        }
     }
 }

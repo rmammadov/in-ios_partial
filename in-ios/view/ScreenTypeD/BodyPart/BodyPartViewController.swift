@@ -19,6 +19,7 @@ class BodyPartViewController: BaseViewController {
     
     var viewModel = BodyPartViewModel()
     var disposeBag = DisposeBag()
+    private var isDisappear: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,13 +28,17 @@ class BodyPartViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        isDisappear = false
         registerGazeTrackerObserver()
         prepareArrowLines()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        isDisappear = true
         unregisterGazeTrackerObserver()
+        cancelLastSelection()
+        viewModel.newBodyRow = nil
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -119,9 +124,8 @@ extension BodyPartViewController {
     }
     
     private func setSubscribers() {
-        
         AnimationUtil.status.asObservable().subscribe(onNext: { [weak self] (status) in
-            guard let `self` = self,
+            guard let `self` = self, !self.isDisappear,
                 status == AnimationStatus.completed.rawValue,
                 AnimationUtil.getTag() == "BodyPartRowView"
                 else { return }
@@ -135,11 +139,21 @@ extension BodyPartViewController {
                                                name: Notification.Name.ScreenTypeCClear, object: nil)
     }
     
-    @objc func onParentClearSelection(notification: Notification) {
+    @objc private func onParentClearSelection(notification: Notification) {
+        clearSelection()
+    }
+    
+    func clearSelection() {
         viewModel.selectedBodyRow = nil
         viewModel.selectedBubble = nil
-        self.select(bubble: nil, in: self.leftStackView)
-        self.select(bubble: nil, in: self.rightStackView)
+        viewModel.newBubble = nil
+        viewModel.newBodyRow = nil
+        if let leftStackView = self.leftStackView {
+            self.select(bubble: nil, in: leftStackView)
+        }
+        if let rightStackView  = rightStackView {
+            self.select(bubble: nil, in: rightStackView)
+        }
     }
     
     private func select(bubble: Bubble?, in stackView: UIStackView) {
@@ -184,12 +198,15 @@ extension BodyPartViewController: GazeTrackerUpdateProtocol {
     
     func selectRow(_ row: BodyPartRowView?, fingerTouch: Bool = false) {
         guard row != viewModel.newBodyRow else { return }
-        if let lastBodyRow = viewModel.newBodyRow {
-            AnimationUtil.cancelAnimation(object: lastBodyRow)
-        }
+        cancelLastSelection()
         viewModel.newBodyRow = row
         viewModel.newBubble = row?.bubble
-        guard let row = row, row.bubble != nil else { return }
+        guard let row = row, row.bubble != nil, viewModel.newBodyRow != viewModel.selectedBodyRow else { return }
         AnimationUtil.animateSelection(object: row, fingerTouch: fingerTouch, tag: "BodyPartRowView")
+    }
+    
+    private func cancelLastSelection() {
+        guard let lastBodyRow = viewModel.newBodyRow else { return }
+        AnimationUtil.cancelAnimation(object: lastBodyRow)
     }
 }

@@ -21,8 +21,6 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         prepareGradientView()
-        layer.borderColor = UIColor.white.cgColor
-        layer.borderWidth = 1.0
     }
     
     func setCell(url: String?, label: String?) {
@@ -57,6 +55,13 @@ class MenuItemCollectionViewCell: UICollectionViewCell {
         ]
         let attrsString = NSAttributedString(string: text, attributes: attrs)
         return attrsString
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        if let layer = gradientView.layer.sublayers?.last(where: { $0.mask?.animation(forKey: "LoadingAnimation") != nil }) {
+            layer.removeFromSuperlayer()
+        }
     }
 }
 

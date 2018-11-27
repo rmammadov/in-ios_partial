@@ -43,9 +43,9 @@ class AnimationUtil {
             CATransaction.commit()
         }
     }
-
+    
     static func setMenuSelection(imageView: UIImageView) {
-         imageView.image = #imageLiteral(resourceName: "ic_circle_gradient_fill")
+        imageView.image = #imageLiteral(resourceName: "ic_circle_gradient_fill")
     }
     
     static func cancelMenuSelection(imageView: UIImageView) {
@@ -56,7 +56,7 @@ class AnimationUtil {
     
     static func animateLoading(imageView: UIImageView) {
         imageView.image = #imageLiteral(resourceName: "ic_circle_gradient_loading")
-    
+        
         CATransaction.begin()
         CATransaction.setCompletionBlock({
             
@@ -92,14 +92,12 @@ extension AnimationUtil {
         self.tag = tag
         if fingerTouch {
             object.animateLoading(duration: Constant.AnimationConfig.MENU_ITEM_FINGER_TOUCH_ANIMATION_DURATION) { (isCompleted) in
-                object.setSelected(isCompleted)
                 if isCompleted {
                     self.status.value = AnimationStatus.completed.rawValue
                 }
             }
         } else {
             object.animateLoading(duration: SettingsHelper.shared.autoSelectDelay.seconds) { (isCompleted) in
-                object.setSelected(isCompleted)
                 if isCompleted {
                     self.status.value = AnimationStatus.completed.rawValue
                 }

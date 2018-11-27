@@ -24,14 +24,20 @@ class ScreenTypeGViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        registerGazeTrackerObserver()
         isDisappear = false
+        registerGazeTrackerObserver()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        cancelLastSelection()
+        viewModel.setSelection(nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        unregisterGazeTrackerObserver()
         isDisappear = true
+        unregisterGazeTrackerObserver()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -68,6 +74,10 @@ extension ScreenTypeGViewController {
             if let lastSelectedIndex = self.viewModel.selectedIndex,
                 let cell = self.collectionView.cellForItem(at: lastSelectedIndex) as? ScreenTypeGCollectionViewCell {
                 cell.setSelected(false)
+            }
+            self.viewModel.selectedIndex = self.viewModel.newSelectedIndex
+            if let selectedIndex = self.viewModel.newSelectedIndex, let cell = self.collectionView.cellForItem(at: selectedIndex) as? ScreenTypeGCollectionViewCell {
+                cell.setSelected(true)
             }
             self.viewModel.onSelectionComplete()
         }).disposed(by: disposeBag)
@@ -133,15 +143,20 @@ extension ScreenTypeGViewController: GazeTrackerUpdateProtocol {
     
     private func selectCellAt(indexPath: IndexPath?, fingerTouch: Bool = false) {
         guard viewModel.getSelection() != indexPath else { return }
-        if let lastSelectionIndexPath = viewModel.getSelection(),
-            let lastCell = collectionView.cellForItem(at: lastSelectionIndexPath) as? AnimateObject {
-            AnimationUtil.cancelAnimation(object: lastCell)
-        }
+        cancelLastSelection()
         viewModel.setSelection(indexPath)
         guard let indexPath = indexPath,
-            let cell = collectionView.cellForItem(at: indexPath) as? ScreenTypeGCollectionViewCell
+            let cell = collectionView.cellForItem(at: indexPath) as? ScreenTypeGCollectionViewCell,
+            viewModel.selectedIndex != indexPath
             else { return }
         viewModel.newSelectedIndex = indexPath
         AnimationUtil.animateSelection(object: cell, fingerTouch: fingerTouch, tag: tag)
+    }
+    
+    private func cancelLastSelection() {
+        guard let lastSelectionIndexPath = viewModel.getSelection(),
+            let lastCell = collectionView.cellForItem(at: lastSelectionIndexPath) as? AnimateObject
+            else { return }
+        AnimationUtil.cancelAnimation(object: lastCell)
     }
 }
