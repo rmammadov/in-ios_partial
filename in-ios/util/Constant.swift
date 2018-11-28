@@ -30,6 +30,7 @@ struct Constant {
         static let URL_EXTENSION_FILES: String = "files"
         static let URL_EXTENSION_PROFILE_DATAS: String = "profile-datas"
         static let URL_EXTENSION_CALIBRATIONS: String = "calibrations"
+        static let URL_EXTENSION_USAGE = "usages"
     }
     
     struct DefaultValues {

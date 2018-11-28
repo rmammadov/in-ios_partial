@@ -16,6 +16,7 @@
 		E9019236217DE5D800212B29 /* ScreenTypeGViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9019235217DE5D800212B29 /* ScreenTypeGViewModel.swift */; };
 		E901923A217F580A00212B29 /* ScreenTypeGCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9019238217F580A00212B29 /* ScreenTypeGCollectionViewCell.swift */; };
 		E901923B217F580A00212B29 /* ScreenTypeGCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9019239217F580A00212B29 /* ScreenTypeGCollectionViewCell.xib */; };
+		E906114E21AE89EC00316B9B /* SyncTileUsageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = E906114D21AE89EC00316B9B /* SyncTileUsageUtil.swift */; };
 		E9150EF8216605160023E138 /* ScreenTypeEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9150EF7216605160023E138 /* ScreenTypeEViewController.swift */; };
 		E9150EFA216606340023E138 /* ScreenTypeEViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9150EF9216606340023E138 /* ScreenTypeEViewModel.swift */; };
 		E91D196B2192DAD600408230 /* CalibrationApiHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91D196A2192DAD600408230 /* CalibrationApiHelper.swift */; };
@@ -250,6 +251,7 @@
 		E9019235217DE5D800212B29 /* ScreenTypeGViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeGViewModel.swift; sourceTree = "<group>"; };
 		E9019238217F580A00212B29 /* ScreenTypeGCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeGCollectionViewCell.swift; sourceTree = "<group>"; };
 		E9019239217F580A00212B29 /* ScreenTypeGCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScreenTypeGCollectionViewCell.xib; sourceTree = "<group>"; };
+		E906114D21AE89EC00316B9B /* SyncTileUsageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncTileUsageUtil.swift; sourceTree = "<group>"; };
 		E9150EF7216605160023E138 /* ScreenTypeEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeEViewController.swift; sourceTree = "<group>"; };
 		E9150EF9216606340023E138 /* ScreenTypeEViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeEViewModel.swift; sourceTree = "<group>"; };
 		E91D196A2192DAD600408230 /* CalibrationApiHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationApiHelper.swift; sourceTree = "<group>"; };
@@ -929,6 +931,7 @@
 				F33658AD20D3198000B18CEC /* Constant.swift */,
 				F39059BE210F254C00CAA292 /* AnimationUtil.swift */,
 				E95BA37D218857A3006D11DD /* ItemUtil.swift */,
+				E906114D21AE89EC00316B9B /* SyncTileUsageUtil.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -1386,6 +1389,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E906114E21AE89EC00316B9B /* SyncTileUsageUtil.swift in Sources */,
 				E9A6C7D22194346700EE7516 /* TokenGrouper.swift in Sources */,
 				E9A6C7B22194346700EE7516 /* LocalizedNumberExtractor.swift in Sources */,
 				E93ACD48216B96E000F29F54 /* ScreenTypeDViewModel.swift in Sources */,

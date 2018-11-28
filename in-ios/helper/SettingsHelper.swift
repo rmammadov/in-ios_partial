@@ -66,11 +66,30 @@ class SettingsHelper {
         }
     }
     
+    var lastSyncDate: Date? {
+        get {
+            guard let stringDate = defaults.string(forKey: Keys.kLastSyncDate) else { return nil }
+            let formatter = DateFormatter()
+            formatter.dateFormat = "mmHHddMMyyyy"
+            return formatter.date(from: stringDate)
+        }
+        set {
+            guard let date = newValue else {
+                defaults.removeObject(forKey: Keys.kLastSyncDate)
+                return
+            }
+            let formatter = DateFormatter()
+            formatter.dateFormat = "mmHHddMMyyyy"
+            defaults.set(formatter.string(from: date), forKey: Keys.kLastSyncDate)
+        }
+    }
+    
     private struct Keys {
         static let kLanguageKey: String = "in.udf.language.key"
         static let kSelectDelayKey: String = "in.udf.selectDelay.key"
         static let kTileSizeKey: String = "in.udf.tileSize.key"
         static let kSoundKey: String = "in.udf.sound.key"
+        static let kLastSyncDate: String = "in.udf.lastSyncDate.key"
     }
 }
 

@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ReachabilityManager.shared.startMonitoring()
         SettingsHelper.shared.prepareDefaultValues()
         let _ = SpeechHelper.shared
+        SyncTileUsageUtil.shared.checkAndStartSyncIfNeeded()
         return true
     }
 

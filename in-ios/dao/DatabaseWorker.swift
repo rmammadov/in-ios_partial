@@ -44,7 +44,6 @@ class DatabaseWorker: NSObject {
                 print("ERROR: \(error.localizedDescription)")
             }
         }
-        
     }
     
     private func fetchTileUsageEntity(itemId: Int, itemType type: String, label: String,
@@ -61,5 +60,37 @@ class DatabaseWorker: NSObject {
             print("ERROR: fetchTileUsageEntity: \(error.localizedDescription)")
         }
         return nil
+    }
+    
+    func fetchAllTileUsage() -> [[String: Any]]? {
+        let context = PersistanceService.shared.backgroundManagedObjectContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: TileUsageEntity.identifier)
+        request.resultType = .dictionaryResultType
+        do {
+            guard let results = try context.fetch(request) as? [[String: Any]] else {
+                return nil
+            }
+            return results
+        } catch let error {
+            print("ERROR: cannot fetch TileUsage: \(error.localizedDescription)")
+        }
+        return nil
+    }
+    
+    func removeTileUsage(itemId: Int, itemType: String, locale: String, tileContext: String) {
+        let context = PersistanceService.shared.backgroundManagedObjectContext
+        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: TileUsageEntity.identifier)
+        let predicate = NSPredicate(format: "item_id == %d AND item_type == %@ AND locale == %@ AND context == %@",
+                                    Int64(itemId), itemType, locale, tileContext)
+        fetch.predicate = predicate
+        let request = NSBatchDeleteRequest(fetchRequest: fetch)
+        do {
+            let result = try context.execute(request) as? NSBatchDeleteResult
+            if let removedIds = result?.result as? [NSManagedObjectID] {
+                print("Successfully removed: \(removedIds.debugDescription)")
+            }
+        } catch let error {
+            print("Cannot remove TileUsage: \(error.localizedDescription)")
+        }
     }
 }
