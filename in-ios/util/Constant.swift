@@ -17,7 +17,7 @@ struct Constant {
         static let COUNT_ROW_ITEMS: Int = 4
         static let COUNT_COLUMN_ITEMS: Int = 5
         static let RESOLUTION_VIDEO_INPUT: AVCaptureSession.Preset = .high
-        static let GAZE_PREDICTION_AVERAGING_COUNT: Int = 10
+        static let GAZE_PREDICTION_AVERAGING_COUNT: Int = 3
     }
     
     struct Url {

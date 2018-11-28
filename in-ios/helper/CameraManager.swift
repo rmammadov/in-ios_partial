@@ -346,21 +346,19 @@ extension CameraManager: GazePredictionDelegate {
                 setPointerPassive()
             }
         } else {
+            averageX.remove(at: 0)
+            averageX.append(Double(truncating: gazeTracker.gazeEstimation![0]))
+            
+            averageY.remove(at: 0)
+            averageY.append(Double(truncating: gazeTracker.gazeEstimation![1]))
+            
+            let X = averageX.reduce(0, +)/Double(averageX.count)
+            let Y = averageY.reduce(0, +)/Double(averageY.count)
+            
             if gazeTracker.isCalibrated {
-                let X = Double(truncating: gazeTracker.gazeEstimation![0])
-                let Y = Double(truncating: gazeTracker.gazeEstimation![1])
-                coordinates = (gazeX: X,
-                               gazeY: Y)
+                coordinates = (gazeX: X, gazeY: Y)
                 print("Using calibrated model. Prediction: \(X), \(Y)")
             } else {
-                averageX.remove(at: 0)
-                averageX.append(Double(truncating: gazeTracker.gazeEstimation![0]))
-                
-                averageY.remove(at: 0)
-                averageY.append(Double(truncating: gazeTracker.gazeEstimation![1]))
-                
-                let X = averageX.reduce(0, +)/Double(averageX.count)
-                let Y = averageY.reduce(0, +)/Double(averageY.count)
                 coordinates = gazeUtils.cm2pixels(gazeX: X, gazeY: Y, camX: 0, camY: 12.0, orientation: UIDevice.current.orientation)
             }
             coordinatesPreConversion = (gazeX: Double(truncating: gazeTracker.gazeEstimation![0]), gazeY: Double(truncating: gazeTracker.gazeEstimation![1]))
@@ -656,6 +654,7 @@ extension CameraManager {
     
     func updateOrientation(completion: ((Bool) -> Void)? = nil) {
         print("Setting orientation to: \(deviceOrientation.rawValue)")
+        uncalibratedGazeTracker?.setGeneralOrientation(to: deviceOrientation)
         guard let isOrientationSet = calibratedGazeTracker?.setOrientation(to: deviceOrientation) else { return }
         
         if isOrientationSet {

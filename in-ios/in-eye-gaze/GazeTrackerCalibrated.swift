@@ -55,11 +55,6 @@ class GazeTrackerCalibrated: GazeTracker {
     private var averageX: [Double] = Array(repeating: 0.0, count: 10)
     private var averageY: [Double] = Array(repeating: 0.0, count: 10)
     
-    // FOR TEST PURPOSES
-    let testModelX = CalibrationX()
-    let testModelY = CalibrationY()
-    // REMOVE FOR RELEASE
-    
     override init(delegate: GazePredictionDelegate?, illumResizeRatio: Double = 1.0) {
         
         let appSupportDirectory = try! fileManager.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -105,6 +100,7 @@ class GazeTrackerCalibrated: GazeTracker {
      - Returns: true if the new orientation exists in the orientation-to-model mapping dictionary and the corresponding models also exist. Else, returns false.
      */
     func setOrientation(to newOrientation: UIDeviceOrientation) -> Bool{
+        self.setGeneralOrientation(to: newOrientation)
         guard let mapping = modelMappings[newOrientation] else {
             self.calibModelX = nil
             self.calibModelY = nil
@@ -221,9 +217,6 @@ class GazeTrackerCalibrated: GazeTracker {
                         self.calibFeatures = nil
                         return
                 }
-                
-//                let predX = try self.testModelX.prediction(input: CalibrationXInput(inputFeatures: X))
-//                let predY = try self.testModelY.prediction(input: CalibrationYInput(inputFeatures: Y))
                 
                 self.gazeEstimation = [predX.featureValue(for: "gazeXY")!.doubleValue as NSNumber,
                                        predY.featureValue(for: "gazeXY")!.doubleValue as NSNumber]
