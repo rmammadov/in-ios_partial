@@ -14,7 +14,7 @@ import CoreML
 @available(iOS 11.0, *)
 public class GazeTracker: FaceFinderDelegate {
     
-    var utilities: GazeUtilities = GazeUtilities()
+    var utilities: GazeUtils = GazeUtils()
     
     let portraitEstimator = PortraitGazeEstimator()
     let portraitUpsideDownEstimator = PortraitUpdsideDownGazeEstimator()
@@ -98,11 +98,11 @@ public class GazeTracker: FaceFinderDelegate {
         var rotatedImage: UIImage?
         switch scene.imageOrientation {
         case .left:
-            rotatedImage = GazeUtilities.rotateImage(image: scene, degrees: -90)
+            rotatedImage = GazeUtils.rotateImage(image: scene, degrees: -90)
         case .down:
-            rotatedImage = GazeUtilities.rotateImage(image: scene, degrees: 180)
+            rotatedImage = GazeUtils.rotateImage(image: scene, degrees: 180)
         case .right:
-            rotatedImage = GazeUtilities.rotateImage(image: scene, degrees: 90)
+            rotatedImage = GazeUtils.rotateImage(image: scene, degrees: 90)
         default:
             rotatedImage = scene
         }

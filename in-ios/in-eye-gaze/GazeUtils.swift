@@ -1,15 +1,16 @@
 //
-//  gazeUtils.swift
+//  GazeUtils.swift
 //  in-ios
 //
-//  Created by Alexandre Drouin-Picaro on 2018-10-04.
+//  Created by Rahman Mammadov on 11/28/18.
 //  Copyright © 2018 com.innodemneurosciences. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class GazeUtilities {
+
+class GazeUtils {
     
     //Width and height of the screen of various apple devices, in millimeters.
     let DEVICES = ["iPhone 6s":                 ["width": 58.0, "height": 100.0],
@@ -112,5 +113,4 @@ class GazeUtilities {
         
         return (pixelsX, pixelsY)
     }
-    
 }

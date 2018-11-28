@@ -34,7 +34,7 @@ class CameraManager: NSObject {
     private var gazeTracker: GazeTracker?
     private var uncalibratedGazeTracker: GazeTracker?
     private var calibratedGazeTracker: GazeTrackerCalibrated?
-    private var gazeUtils = GazeUtilities()
+    private var gazeUtils: GazeUtils = GazeUtils()
     private var parentView: UIView? // For the test purpose
     private weak var processingImage: UIImage?
     private var lastCapturedImage: UIImage?
