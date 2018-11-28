@@ -14,7 +14,7 @@ class IntroFirstModel: BaseModel {
         return DataManager.getLegalDocuments()
     }
     
-    func getLegalDocument(name: String) -> LegalDocument {
+    func getLegalDocument(name: String) -> LegalDocument? {
         return DataManager.getLegalDocuments().getLegalDocument(name: name)
     }
     

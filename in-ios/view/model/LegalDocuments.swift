@@ -10,12 +10,12 @@ import Foundation
 
 struct LegalDocuments {
     
-    let legalDocuments: [LegalDocument]
+    var legalDocuments: Array<LegalDocument>?
 }
 
 extension LegalDocuments {
     
-    func getLegalDocument(name: String) -> LegalDocument {
-        return legalDocuments.filter{ ($0.name) == name}.first!
+    func getLegalDocument(name: String) -> LegalDocument? {
+        return legalDocuments?.filter{ ($0.name) == name}.first
     }
 }

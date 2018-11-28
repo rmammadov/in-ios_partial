@@ -105,7 +105,8 @@ class MenuViewModel: BaseViewModel {
     // FIXME: Fix and update
     
     func onItemLoadRequest(indexPath: IndexPath?) {
-        guard let indexPath = indexPath else { return }
+        guard let indexPath = indexPath, self.getMenuItems()?.count ?? 0 > indexPath.row else { return }
+        
         let menuItem = self.getMenuItems()![indexPath.row]
         self.selectedItem = menuItem
         

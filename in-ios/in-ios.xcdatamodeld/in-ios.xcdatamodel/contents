@@ -1,26 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="17G3025" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="CalibrationModelsEntity" representedClassName="CalibrationModelsEntity" syncable="YES" codeGenerationType="class">
+    <entity name="CalibrationModelsEntity" representedClassName="CalibrationModelsEntity" syncable="YES">
         <attribute name="createdAt" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="xModelUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="yModelUrl" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="ConfigurationsEntity" representedClassName="ConfigurationsEntity" syncable="YES" codeGenerationType="class"/>
-    <entity name="InputScreensEntity" representedClassName="InputScreensEntity" syncable="YES" codeGenerationType="class"/>
-    <entity name="LegalDocumentsEntity" representedClassName="LegalDocumentsEntity" syncable="YES" codeGenerationType="class">
+    <entity name="ConfigurationsEntity" representedClassName="ConfigurationsEntity" syncable="YES"/>
+    <entity name="InputScreensEntity" representedClassName="InputScreensEntity" syncable="YES"/>
+    <entity name="LegalDocumentsEntity" representedClassName="LegalDocumentsEntity" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="translation" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
-    <entity name="MenuItemsEntity" representedClassName="MenuItemsEntity" syncable="YES" codeGenerationType="class"/>
-    <entity name="UserProfileDataEntity" representedClassName="UserProfileDataEntity" syncable="YES" codeGenerationType="class"/>
+    <entity name="MenuItemsEntity" representedClassName="MenuItemsEntity" syncable="YES"/>
+    <entity name="TranslationsLegalDocumentEntity" representedClassName="TranslationsLegalDocumentEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="idDocument" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="locale" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="UserProfileDataEntity" representedClassName="UserProfileDataEntity" syncable="YES"/>
     <elements>
-        <element name="UserProfileDataEntity" positionX="-63" positionY="-18" width="128" height="45"/>
+        <element name="CalibrationModelsEntity" positionX="0" positionY="45" width="128" height="120"/>
         <element name="ConfigurationsEntity" positionX="-54" positionY="-9" width="128" height="45"/>
+        <element name="InputScreensEntity" positionX="18" positionY="63" width="128" height="45"/>
         <element name="LegalDocumentsEntity" positionX="-36" positionY="9" width="128" height="75"/>
         <element name="MenuItemsEntity" positionX="-18" positionY="27" width="128" height="45"/>
-        <element name="CalibrationModelsEntity" positionX="0" positionY="45" width="128" height="120"/>
-        <element name="InputScreensEntity" positionX="18" positionY="63" width="128" height="45"/>
+        <element name="TranslationsLegalDocumentEntity" positionX="-18" positionY="54" width="128" height="120"/>
+        <element name="UserProfileDataEntity" positionX="-63" positionY="-18" width="128" height="45"/>
     </elements>
 </model>

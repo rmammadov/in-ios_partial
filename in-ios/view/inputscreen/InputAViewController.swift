@@ -29,8 +29,6 @@ class InputAViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         self.setUi()
     }
     
@@ -53,6 +51,9 @@ class InputAViewController: BaseViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unregisterGazeTrackerObserver()
+        cancelLastSelection()
+        viewModel.selectionButton = nil
+        viewModel.setSelection(indexPath: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -123,15 +124,14 @@ extension InputAViewController {
     }
     
     func setSubscribers() {
-        self.viewModel.status.asObservable().subscribe(onNext: {[weak self]
-            event in
-            if self?.viewModel.status.value == InputAStatus.loaded.rawValue {
+        self.viewModel.status.asObservable().subscribe(onNext: {[weak self] event in
+            guard let `self` = self else { return }
+            if self.viewModel.status.value == InputAStatus.loaded.rawValue {
                 DispatchQueue.main.async {
-                    guard let indexPath = self?.viewModel.getSelection(),
-                        let cell = self?.getCellForIndexPath(indexPath: ((self?.viewModel.getSelection())!))
+                    guard let indexPath = self.viewModel.getSelection(),
+                        let cell = self.getCellForIndexPath(indexPath: indexPath)
                         else { return }
-                    AnimationUtil.cancelAnimation(object: cell)
-                    self?.updateUi()
+                    self.updateUi()
                 }
             }
         }).disposed(by: disposeBag)
@@ -165,7 +165,13 @@ extension InputAViewController {
             guard !self.isDisappear else { return }
             if AnimationUtil.status.value == AnimationStatus.completed.rawValue {
                 if AnimationUtil.getTag() == InputAViewController.TAG {
-                    self.viewModel.onItemLoadRequest(indexPath: self.viewModel.getSelection())
+                    guard let indexPath = self.viewModel.getSelection(),
+                        let cell = self.getCellForIndexPath(indexPath: indexPath) else { return }
+                    cell.setSelected(true)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+                        cell.setSelected(false)
+                    })
+                    self.viewModel.onItemLoadRequest(indexPath: indexPath)
                 } else if AnimationUtil.getTag() == "InputA.BackButton" {
                     self.viewModel.selectionButton = nil
                     self.navigationController?.popViewController(animated: true)
@@ -242,9 +248,7 @@ extension InputAViewController: GazeTrackerUpdateProtocol {
     
     private func selectCellAt(indexPath: IndexPath?, fingerTouch: Bool = false) {
         guard indexPath != self.viewModel.getSelection() else { return }
-        if let lastIndexPath = self.viewModel.getSelection(), let cell = collectionView.cellForItem(at: lastIndexPath) as? AnimateObject {
-            AnimationUtil.cancelAnimation(object: cell)
-        }
+        cancelLastSelection()
         self.viewModel.setSelection(indexPath: indexPath)
         guard let indexPath = indexPath, let cell = self.getCellForIndexPath(indexPath: indexPath) else { return }
         AnimationUtil.animateSelection(object: cell, fingerTouch: fingerTouch, tag: InputAViewController.TAG)
@@ -262,6 +266,16 @@ extension InputAViewController: GazeTrackerUpdateProtocol {
             AnimationUtil.cancelAnimation(object: btnBack)
         }
         viewModel.selectionButton = isSelected ? btnBack : nil
+    }
+    
+    private func cancelLastSelection() {
+        if let lastIndexPath = self.viewModel.getSelection(),
+            let cell = collectionView.cellForItem(at: lastIndexPath) as? AnimateObject {
+            AnimationUtil.cancelAnimation(object: cell)
+        }
+        if let object = viewModel.selectionButton as? AnimateObject {
+            AnimationUtil.cancelAnimation(object: object)
+        }
     }
 }
 

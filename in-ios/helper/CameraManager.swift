@@ -339,7 +339,7 @@ extension CameraManager: GazePredictionDelegate {
     
     func didUpdatePrediction(status: Bool) {
         guard let gazeTracker = self.gazeTracker else { return }
-        print("Using the calibrated model: \(gazeTracker.isCalibrated)")
+//        print("Using the calibrated model: \(gazeTracker.isCalibrated)")
         if !status {
             self.label?.text = "nil"
             if showPointer {
