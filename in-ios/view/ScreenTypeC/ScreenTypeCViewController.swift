@@ -83,11 +83,24 @@ class ScreenTypeCViewController: BaseViewController {
     }
     
     private func speak() {
-        viewModel.speakSelectedValues()
+        if SettingsHelper.shared.isSoundEnabled {
+            viewModel.speakSelectedValues()
+        } else {
+            displaySoundDisabledAlert()
+        }
         let itemType = "SpeakButton"
         let tileContext = viewModel.inputScreen?.translations.currentTranslation()?.label ?? ""
         let locale = SettingsHelper.shared.language.rawValue
         DatabaseWorker.shared.addUsage(locale: locale, label: itemType, itemType: itemType, itemId: 0, tileContext: tileContext)
+    }
+    
+    private func displaySoundDisabledAlert() {
+        let alert = UIAlertController(title: "warning".localized, message: "soundDisabledInfo".localized, preferredStyle: .alert)
+        self.present(alert, animated: true) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                alert.dismiss(animated: true)
+            })
+        }
     }
     
     private func back() {

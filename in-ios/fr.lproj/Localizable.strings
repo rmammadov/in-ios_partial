@@ -79,3 +79,6 @@
 "sound" = "Sound";//
 "on" = "On";//
 "off" = "Off";//
+
+"warning" = "Warning";//
+"soundDisabledInfo" = "Sound is disabled";//
