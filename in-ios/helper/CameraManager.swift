@@ -27,7 +27,7 @@ class CameraManager: NSObject {
     open var captureSession: AVCaptureSession?
     private var coreMotionManager: CMMotionManager!
     private var sessionQueue: DispatchQueue = DispatchQueue(label: "CameraSessionQueue", attributes: [])
-    private var deviceOrientation: UIDeviceOrientation = .unknown
+    private var deviceOrientation: UIDeviceOrientation = UIDevice.current.orientation
     private var cameraIsSetup = false
     private var cameraIsObservingDeviceOrientation = false
     private var cameraPosition = AVCaptureDevice.Position.front
