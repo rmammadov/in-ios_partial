@@ -14,10 +14,13 @@ import CoreML
 @available(iOS 11.0, *)
 public class GazeTracker: FaceFinderDelegate {
     
-    var utilities: GazeUtilities = GazeUtilities()
+    var utilities: GazeUtils = GazeUtils()
     
-    let horizontalModel = GeneralModelHorizontal()
-    let verticalModel = GeneralModelVertical()
+    let portraitEstimator = PortraitGazeEstimator()
+    let portraitUpsideDownEstimator = PortraitUpdsideDownGazeEstimator()
+    let landscapeLeftEstimator = LandscapeLeftGazeEstimator()
+    let landscapeRightEstimator = LandscapeRightGazeEstimator()
+    var gazeEstimator: GazeEstimatorProtocol
     
     let EYE_RESIZE_HEIGHT: Int = 80
     let ILLUM_ETA: Int = 3
@@ -50,12 +53,29 @@ public class GazeTracker: FaceFinderDelegate {
      */
     init(delegate: GazePredictionDelegate?, illumResizeRatio: Double = 1.0) {
         self.detector = FaceFinder()
+        self.gazeEstimator = self.portraitEstimator
+        
         self.detector?.delegate = self
         self.predictionDelegate = delegate
         
         self.PREDICTION_OPTIONS.usesCPUOnly = true
         
         self.illumResizeRatio = illumResizeRatio
+    }
+    
+    func setGeneralOrientation(to newOrientation: UIDeviceOrientation) {
+        switch newOrientation {
+        case .portrait:
+            self.gazeEstimator = self.portraitEstimator
+        case .portraitUpsideDown:
+            self.gazeEstimator = self.portraitUpsideDownEstimator
+        case .landscapeLeft:
+            self.gazeEstimator = self.landscapeLeftEstimator
+        case .landscapeRight:
+            self.gazeEstimator = self.landscapeRightEstimator
+        default:
+            self.gazeEstimator = self.portraitEstimator
+        }
     }
     
     /**
@@ -78,11 +98,11 @@ public class GazeTracker: FaceFinderDelegate {
         var rotatedImage: UIImage?
         switch scene.imageOrientation {
         case .left:
-            rotatedImage = GazeUtilities.rotateImage(image: scene, degrees: -90)
+            rotatedImage = GazeUtils.rotateImage(image: scene, degrees: -90)
         case .down:
-            rotatedImage = GazeUtilities.rotateImage(image: scene, degrees: 180)
+            rotatedImage = GazeUtils.rotateImage(image: scene, degrees: 180)
         case .right:
-            rotatedImage = GazeUtilities.rotateImage(image: scene, degrees: 90)
+            rotatedImage = GazeUtils.rotateImage(image: scene, degrees: 90)
         default:
             rotatedImage = scene
         }
@@ -551,16 +571,7 @@ public class GazeTracker: FaceFinderDelegate {
     }
     
     func predictGaze(eyesB: MLMultiArray, eyesG: MLMultiArray, eyesR: MLMultiArray, illuminant: MLMultiArray, headPose: MLMultiArray) -> (gazeXY: Array<NSNumber>?, calibFeats: MLMultiArray?)? {
-        do {
-            let horizontalOutput = try horizontalModel.prediction(input: GeneralModelHorizontalInput(eyesB: eyesB, eyesG: eyesG, eyesR: eyesR, illum: illuminant, pose: headPose), options: self.PREDICTION_OPTIONS)
-            let verticalOutput = try verticalModel.prediction(input: GeneralModelVerticalInput(eyesB: eyesB, eyesG: eyesG, eyesR: eyesR, illum: illuminant, pose: headPose), options: self.PREDICTION_OPTIONS)
-            let prediction = [horizontalOutput.gazeXY[0] as NSNumber,
-                              verticalOutput.gazeXY[0] as NSNumber]
-            return (prediction, verticalOutput.calibFeats)
-        } catch {
-            print(error)
-            return nil
-        }
+        return self.gazeEstimator.predictGaze(eyesB: eyesB, eyesG: eyesG, eyesR: eyesR, illuminant: illuminant, headPose: headPose)
     }
     
 }
