@@ -18,6 +18,21 @@ class PersistanceService {
     var context: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
+    
+    lazy var mainManagedObjectContext: NSManagedObjectContext = {
+        let coordinator = PersistanceService.shared.persistentContainer.persistentStoreCoordinator
+        var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        managedObjectContext.persistentStoreCoordinator = coordinator
+        return managedObjectContext
+    }()
+    
+    lazy var backgroundManagedObjectContext: NSManagedObjectContext = {
+        let coordinator = PersistanceService.shared.persistentContainer.persistentStoreCoordinator
+        var managedObjectContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        managedObjectContext.persistentStoreCoordinator = coordinator
+        return managedObjectContext
+    }()
+    
     // MARK: - Core Data stack
     
     var persistentContainer: NSPersistentContainer = {

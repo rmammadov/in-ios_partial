@@ -168,7 +168,17 @@ class ScreenTypeHViewModel: BaseViewModel {
                                           textToSpeech: collectedTextToSpeech)
             delegate?.didSelect(value: translation, onScreen: inputScreen)
         }
+        saveUsage(item: item)
         return item
+    }
+    
+    private func saveUsage(item: ButtonInputScreen) {
+        let locale = item.translations?.currentTranslation()?.locale ?? "en"
+        let label = item.translations?.currentTranslation()?.label ?? ""
+        let itemType = item.type.rawValue
+        let itemId = item.id
+        let tileContext = inputScreen.translations.currentTranslation()?.label ?? ""
+        DatabaseWorker.shared.addUsage(locale: locale, label: label, itemType: itemType, itemId: itemId, tileContext: tileContext)
     }
     
     func clearSelectedValues() {

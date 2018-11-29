@@ -135,7 +135,6 @@ extension ScreenTypeDViewController: UICollectionViewDataSource {
 
 extension ScreenTypeDViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        viewModel.setSelectedIndexPath(indexPath)
         selectCellAt(indexPath: indexPath, fingerTouch: true)
     }
     

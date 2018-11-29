@@ -167,11 +167,12 @@ extension InputAViewController {
                 if AnimationUtil.getTag() == InputAViewController.TAG {
                     guard let indexPath = self.viewModel.getSelection(),
                         let cell = self.getCellForIndexPath(indexPath: indexPath) else { return }
+                    cell.cancelAnimation()
                     cell.setSelected(true)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
                         cell.setSelected(false)
+                        self.viewModel.onItemLoadRequest(indexPath: indexPath)
                     })
-                    self.viewModel.onItemLoadRequest(indexPath: indexPath)
                 } else if AnimationUtil.getTag() == "InputA.BackButton" {
                     self.viewModel.selectionButton = nil
                     self.navigationController?.popViewController(animated: true)

@@ -14,6 +14,7 @@
 		E9019236217DE5D800212B29 /* ScreenTypeGViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9019235217DE5D800212B29 /* ScreenTypeGViewModel.swift */; };
 		E901923A217F580A00212B29 /* ScreenTypeGCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9019238217F580A00212B29 /* ScreenTypeGCollectionViewCell.swift */; };
 		E901923B217F580A00212B29 /* ScreenTypeGCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9019239217F580A00212B29 /* ScreenTypeGCollectionViewCell.xib */; };
+		E906114E21AE89EC00316B9B /* SyncTileUsageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = E906114D21AE89EC00316B9B /* SyncTileUsageUtil.swift */; };
 		E9150EF8216605160023E138 /* ScreenTypeEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9150EF7216605160023E138 /* ScreenTypeEViewController.swift */; };
 		E9150EFA216606340023E138 /* ScreenTypeEViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9150EF9216606340023E138 /* ScreenTypeEViewModel.swift */; };
 		E91D196B2192DAD600408230 /* CalibrationApiHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91D196A2192DAD600408230 /* CalibrationApiHelper.swift */; };
@@ -101,6 +102,7 @@
 		E9A6C7D82194346700EE7516 /* Expressionizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7B02194346700EE7516 /* Expressionizer.swift */; };
 		E9A6C7DA219448F000EE7516 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7D9219448F000EE7516 /* Translation.swift */; };
 		E9A6C7DC219449E900EE7516 /* TranslationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6C7DB219449E900EE7516 /* TranslationHelper.swift */; };
+		E9AFAFFD21AD468600FB56B1 /* DatabaseWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AFAFFC21AD468600FB56B1 /* DatabaseWorker.swift */; };
 		F3216B5620F4EA15008D6EFD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3216B5520F4EA15008D6EFD /* HomeViewController.swift */; };
 		F32D99C621117E79007AAA8D /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D99C521117E79007AAA8D /* HomeModel.swift */; };
 		F32D99C821117E8A007AAA8D /* MenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D99C721117E8A007AAA8D /* MenuModel.swift */; };
@@ -254,6 +256,7 @@
 		E9019235217DE5D800212B29 /* ScreenTypeGViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeGViewModel.swift; sourceTree = "<group>"; };
 		E9019238217F580A00212B29 /* ScreenTypeGCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeGCollectionViewCell.swift; sourceTree = "<group>"; };
 		E9019239217F580A00212B29 /* ScreenTypeGCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScreenTypeGCollectionViewCell.xib; sourceTree = "<group>"; };
+		E906114D21AE89EC00316B9B /* SyncTileUsageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncTileUsageUtil.swift; sourceTree = "<group>"; };
 		E9150EF7216605160023E138 /* ScreenTypeEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeEViewController.swift; sourceTree = "<group>"; };
 		E9150EF9216606340023E138 /* ScreenTypeEViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTypeEViewModel.swift; sourceTree = "<group>"; };
 		E91D196A2192DAD600408230 /* CalibrationApiHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationApiHelper.swift; sourceTree = "<group>"; };
@@ -341,6 +344,7 @@
 		E9A6C7B02194346700EE7516 /* Expressionizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expressionizer.swift; sourceTree = "<group>"; };
 		E9A6C7D9219448F000EE7516 /* Translation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
 		E9A6C7DB219449E900EE7516 /* TranslationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationHelper.swift; sourceTree = "<group>"; };
+		E9AFAFFC21AD468600FB56B1 /* DatabaseWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseWorker.swift; sourceTree = "<group>"; };
 		ED4FD3A654935E1287D7E3F3 /* Pods-in-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-in-iosTests/Pods-in-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F3216B5520F4EA15008D6EFD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = "in-ios/view/home/HomeViewController.swift"; sourceTree = SOURCE_ROOT; };
 		F32D99C521117E79007AAA8D /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
@@ -936,6 +940,7 @@
 				F33658AD20D3198000B18CEC /* Constant.swift */,
 				F39059BE210F254C00CAA292 /* AnimationUtil.swift */,
 				E95BA37D218857A3006D11DD /* ItemUtil.swift */,
+				E906114D21AE89EC00316B9B /* SyncTileUsageUtil.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -981,6 +986,7 @@
 			isa = PBXGroup;
 			children = (
 				F33F0BCE2121B11C002E31B9 /* DataManager.swift */,
+				E9AFAFFC21AD468600FB56B1 /* DatabaseWorker.swift */,
 			);
 			path = dao;
 			sourceTree = "<group>";
@@ -1418,6 +1424,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E906114E21AE89EC00316B9B /* SyncTileUsageUtil.swift in Sources */,
 				E9A6C7D22194346700EE7516 /* TokenGrouper.swift in Sources */,
 				F3FBB73121AF0A7000EE7E88 /* PortraitUpdsideDownGazeEstimator.swift in Sources */,
 				F3FBB74221AF0A8200EE7E88 /* PortraitModelHorizontal.mlmodel in Sources */,
@@ -1502,6 +1509,7 @@
 				E93ACD43216B8CD700F29F54 /* ScreenTypeDViewController.swift in Sources */,
 				F3355CF12122E904009AF602 /* LoadingModel.swift in Sources */,
 				F396E468216F249B00C061CD /* ProfileData.swift in Sources */,
+				E9AFAFFD21AD468600FB56B1 /* DatabaseWorker.swift in Sources */,
 				E99F520521A5AA4E002C3716 /* SettingsInterfaceViewController.swift in Sources */,
 				E99F520121A576C1002C3716 /* SettingsAccountModel.swift in Sources */,
 				F32F5B6521453DCC00558C68 /* IntroSecondViewController.swift in Sources */,

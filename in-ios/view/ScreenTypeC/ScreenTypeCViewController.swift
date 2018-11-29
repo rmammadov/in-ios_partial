@@ -73,9 +73,42 @@ class ScreenTypeCViewController: BaseViewController {
         selectClearButton(isSelected: true, fingerTouch: true)
     }
     
-    func clear() {
+    private func clear() {
         viewModel.selectedItem.value = [:]
         sendClearNotification()
+        let itemType = "ClearButton"
+        let tileContext = viewModel.inputScreen?.translations.currentTranslation()?.label ?? ""
+        let locale = SettingsHelper.shared.language.rawValue
+        DatabaseWorker.shared.addUsage(locale: locale, label: itemType, itemType: itemType, itemId: 0, tileContext: tileContext)
+    }
+    
+    private func speak() {
+        if SettingsHelper.shared.isSoundEnabled {
+            viewModel.speakSelectedValues()
+        } else {
+            displaySoundDisabledAlert()
+        }
+        let itemType = "SpeakButton"
+        let tileContext = viewModel.inputScreen?.translations.currentTranslation()?.label ?? ""
+        let locale = SettingsHelper.shared.language.rawValue
+        DatabaseWorker.shared.addUsage(locale: locale, label: itemType, itemType: itemType, itemId: 0, tileContext: tileContext)
+    }
+    
+    private func displaySoundDisabledAlert() {
+        let alert = UIAlertController(title: "warning".localized, message: "soundDisabledInfo".localized, preferredStyle: .alert)
+        self.present(alert, animated: true) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                alert.dismiss(animated: true)
+            })
+        }
+    }
+    
+    private func back() {
+        navigationController?.popViewController(animated: true)
+        let itemType = "BackButton"
+        let tileContext = viewModel.inputScreen?.translations.currentTranslation()?.label ?? ""
+        let locale = SettingsHelper.shared.language.rawValue
+        DatabaseWorker.shared.addUsage(locale: locale, label: itemType, itemType: itemType, itemId: 0, tileContext: tileContext)
     }
 }
 
@@ -155,9 +188,9 @@ extension ScreenTypeCViewController {
             guard let `self` = self, !self.isDisappear, status == AnimationStatus.completed.rawValue else { return }
             switch AnimationUtil.getTag() {
             case "STC.BackButtonTag":
-                self.navigationController?.popViewController(animated: true)
+                self.back()
             case "STC.SpeakButtonTag":
-                self.viewModel.speakSelectedValues()
+                self.speak()
             case "STC.ClearButtonTag":
                 self.clear()
             default:

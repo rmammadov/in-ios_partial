@@ -27,6 +27,7 @@ class SettingsInterfaceViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SyncTileUsageUtil.shared.checkAndStartSyncIfNeeded()
         loadValues()
         setupUI()
     }

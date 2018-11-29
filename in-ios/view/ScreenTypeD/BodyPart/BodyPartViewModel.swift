@@ -35,14 +35,22 @@ class BodyPartViewModel: BaseViewModel {
     func onSelectionComplete() {
         guard let bubble = newBubble, let row = newBodyRow  else { return }
         self.selectedBodyRow = row
-//        self.newBodyRow = nil
         self.selectedBubble = bubble
-//        self.newBubble = nil
         
         if !bubble.isDisableTextToSpeech {
             SpeechHelper.shared.play(translation: bubble.translations.currentTranslation())
         }
         delegate?.didSelect(value: bubble, onButton: button)
+        saveUsage(bubble: bubble)
+    }
+    
+    private func saveUsage(bubble: Bubble) {
+        let locale = bubble.translations.currentTranslation()?.locale ?? "en"
+        let label = bubble.translations.currentTranslation()?.label ?? ""
+        let itemType = "Bubble"
+        let itemId = bubble.id
+        let tileContext = button.translations?.first?.label ?? ""
+        DatabaseWorker.shared.addUsage(locale: locale, label: label, itemType: itemType, itemId: itemId, tileContext: tileContext)
     }
 
 }
