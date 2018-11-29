@@ -30,6 +30,14 @@ class SettingsHelper {
         
     }
     
+    func setLastState(nameOfView: String?) {
+        defaults.set(nameOfView, forKey: Keys.kLastActiveView)
+    }
+    
+    func getLastState() -> String? {
+        return defaults.string(forKey: Keys.kLastActiveView)
+    }
+    
     var language: Language {
         get {
             return Language(rawValue: defaults.string(forKey: Keys.kLanguageKey) ?? "en") ?? .english
@@ -85,6 +93,7 @@ class SettingsHelper {
     }
     
     private struct Keys {
+        static let kLastActiveView: String = "in.udf.lastActiveView.key"
         static let kLanguageKey: String = "in.udf.language.key"
         static let kSelectDelayKey: String = "in.udf.selectDelay.key"
         static let kTileSizeKey: String = "in.udf.tileSize.key"

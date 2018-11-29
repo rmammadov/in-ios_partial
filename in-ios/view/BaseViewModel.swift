@@ -27,4 +27,5 @@ class BaseViewModel: NSObject {
     func isInternetAvailable() -> Bool {
         return modelBase.isInternetAvailable()
     }
+
 }

@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class ItemUtil {
+    
     static let shared = ItemUtil()
     private let settings = SettingsHelper.shared
     

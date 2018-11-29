@@ -47,7 +47,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        saveLastState()
         PersistanceDataHandler.saveCoreDataChanges()
+    }
+    
+    func saveLastState() {
+         SettingsHelper.shared.setLastState(nameOfView: String(describing: UIApplication.getPresentedViewController()))
+    }
+    
+    func getLastState() -> String? {
+        return SettingsHelper.shared.getLastState()
     }
 }
 
