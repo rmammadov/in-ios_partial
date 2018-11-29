@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DisplayHelper.setDisplayDiming(isAlwaysOn: true)
         ReachabilityManager.shared.startMonitoring()
         SettingsHelper.shared.prepareDefaultValues()
+        Fabric.sharedSDK().debug = true
         let _ = SpeechHelper.shared
         SyncTileUsageUtil.shared.checkAndStartSyncIfNeeded()
         return true
