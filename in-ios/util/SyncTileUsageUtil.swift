@@ -9,6 +9,7 @@
 import Foundation
 
 class SyncTileUsageUtil {
+    
     static let shared = SyncTileUsageUtil()
     
     private let session = URLSession(configuration: URLSessionConfiguration.default)

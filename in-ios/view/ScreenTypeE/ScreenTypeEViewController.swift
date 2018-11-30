@@ -24,9 +24,12 @@ class ScreenTypeEViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         isDisappear = false
         registerGazeTrackerObserver()
         viewModel.setSelection(nil)
+        
+        setLastState(view: self)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

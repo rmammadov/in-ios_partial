@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DisplayHelper.setDisplayDiming(isAlwaysOn: true)
         ReachabilityManager.shared.startMonitoring()
         SettingsHelper.shared.prepareDefaultValues()
+        Fabric.sharedSDK().debug = true
         let _ = SpeechHelper.shared
         SyncTileUsageUtil.shared.checkAndStartSyncIfNeeded()
         return true
@@ -47,6 +48,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         PersistanceDataHandler.saveCoreDataChanges()
+    }
+    
+    func getLastState() -> String? {
+        return SettingsHelper.shared.getLastState()
     }
 }
 

@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 
 class SettingsInterfaceViewController: BaseViewController {
+    
     @IBOutlet weak var languageTextField: INTextField!
     @IBOutlet weak var autoSelectDelayTextField: INTextField!
     @IBOutlet weak var tileSizeTextField: INTextField!
@@ -30,6 +31,8 @@ class SettingsInterfaceViewController: BaseViewController {
         SyncTileUsageUtil.shared.checkAndStartSyncIfNeeded()
         loadValues()
         setupUI()
+        
+        setLastState(view: self)
     }
     
     @IBAction func backButtonTapped(_ sender: Any) {

@@ -25,12 +25,6 @@ struct UserInfo: Codable {
     var calibrationData: Array<CalibrationData>?
 }
 
-struct File: Codable {
-    
-    let size: Int
-    let url: String
-}
-
 struct CalibrationData: Codable {
     
     var cross_x: Float?
@@ -44,4 +38,10 @@ struct CalibrationData: Codable {
     let eyeCenters: Array<Array<Double>>
     var file: File?
     var deviceOrientation: String
+}
+
+struct File: Codable {
+    
+    let size: Int
+    let url: String
 }

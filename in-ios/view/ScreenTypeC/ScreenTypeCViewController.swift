@@ -28,7 +28,10 @@ class ScreenTypeCViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         onViewLoad()
+        
+        setLastState(view: self)
     }
     
     

@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 
 class SettingsAccountViewController: BaseViewController {
+    
     @IBOutlet weak var nameTextField: INTextField!
     @IBOutlet weak var genderTextField: INTextField!
     @IBOutlet weak var ageTextField: INTextField!
@@ -26,6 +27,8 @@ class SettingsAccountViewController: BaseViewController {
         loadValues()
         setupUI()
         setSubscribers()
+        
+        setLastState(view: self)
     }
     
     @IBAction func backButtonTapped(_ sender: Any) {

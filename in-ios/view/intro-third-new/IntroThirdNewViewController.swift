@@ -42,6 +42,7 @@ class IntroThirdNewViewController: BaseViewController {
         DataManager.status.value = 0
         setUi()
         setCamera()
+        setLastState(view: self)
     }
     
     func setDisabled(sender: Any) {

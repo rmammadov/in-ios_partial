@@ -17,4 +17,8 @@ class FileNamingHelper {
     func getDeviiceUUID() -> String {
         return UIDevice.current.identifierForVendor!.uuidString
     }
+    
+    func getUnixTimestamp() -> Double {
+        return NSDate.timeIntervalSinceReferenceDate
+    }
 }

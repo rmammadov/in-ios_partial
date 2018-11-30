@@ -29,6 +29,7 @@ class MenuViewController: BaseViewController {
 
         // Do any additional setup after loading the view.
         self.onViewLoad()
+        setLastState(view: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {

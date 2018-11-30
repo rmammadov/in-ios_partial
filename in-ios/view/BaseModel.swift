@@ -13,4 +13,8 @@ class BaseModel {
     func isInternetAvailable() -> Bool {
         return ReachabilityManager.shared.isNetworkAvailable
     }
+    
+    func setLastState(idOfView: String) {
+        SettingsHelper.shared.setLastState(idOfView: idOfView)
+    }
 }

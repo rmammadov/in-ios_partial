@@ -19,7 +19,10 @@ class ScreenTypeGViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         onViewLoad()
+        
+        setLastState(view: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 
 class DatabaseWorker: NSObject {
+    
     static let shared = DatabaseWorker()
     private var deviceId: String {
         return FileNamingHelper().getDeviiceUUID()

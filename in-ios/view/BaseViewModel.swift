@@ -27,4 +27,8 @@ class BaseViewModel: NSObject {
     func isInternetAvailable() -> Bool {
         return modelBase.isInternetAvailable()
     }
+
+    func setLastState(idOfView: String) {
+        modelBase.setLastState(idOfView: idOfView)
+    }
 }
