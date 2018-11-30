@@ -12,16 +12,16 @@ import UIKit
 
 class CalibrationInput: MLFeatureProvider {
     
-    var input: Double
+    var input: MLMultiArray
     var featureNames: Set<String> = ["inputFeatures"]
     
-    init(input: Double) {
+    init(input: MLMultiArray) {
         self.input = input
     }
     
     func featureValue(for featureName: String) -> MLFeatureValue? {
         if featureName == "inputFeatures" {
-            return MLFeatureValue(double: input)
+            return MLFeatureValue(multiArray: self.input)
         }
         return nil
     }
@@ -51,6 +51,23 @@ class GazeTrackerCalibrated: GazeTracker {
     
     var calibModelX: MLModel? = nil
     var calibModelY: MLModel? = nil
+    
+    /**
+     START OF TEST SECTION
+     For testing purposes only.
+     Comment out before build.
+     */
+    var currentOrientation: UIDeviceOrientation = .portrait
+    
+    let portraitCalibrationX = PortraitCalibrationX()
+    let portraitCalibrationY = PortraitCalibrationY()
+    let portraitUpsideDownCalibrationX = PortraitUpsideDownCalibrationX()
+    let portraitUpsideDownCalibrationY = PortraitUpsideDownCalibrationY()
+    let landscapeLeftCalibrationX = LandscapeLeftCalibrationX()
+    let landscapeLeftCalibrationY = LandscapeLeftCalibrationY()
+    let landscapeRightCalibrationX = LandscapeRightCalibrationX()
+    let landscapeRightCalibrationY = LandscapeRightCalibrationY()
+    // END OF TEST SECTION
     
     private var averageX: [Double] = Array(repeating: 0.0, count: 10)
     private var averageY: [Double] = Array(repeating: 0.0, count: 10)
@@ -101,6 +118,7 @@ class GazeTrackerCalibrated: GazeTracker {
      */
     func setOrientation(to newOrientation: UIDeviceOrientation) -> Bool{
         self.setGeneralOrientation(to: newOrientation)
+        
         guard let mapping = modelMappings[newOrientation] else {
             self.calibModelX = nil
             self.calibModelY = nil
@@ -210,20 +228,29 @@ class GazeTrackerCalibrated: GazeTracker {
                 let X = averageX.reduce(0, +)/Double(averageX.count)
                 let Y = averageY.reduce(0, +)/Double(averageY.count)
                 
-                guard let predX = try self.calibModelX?.prediction(from: CalibrationInput(input: X)),
-                    let predY = try self.calibModelY?.prediction(from: CalibrationInput(input: Y))
+                let coordinates = self.utilities.cm2pixels(gazeX: X, gazeY: Y, camX: 0, camY: 12.0, orientation: self.orientation)
+                
+                guard let inputFeatures = try? MLMultiArray(shape: [2], dataType: MLMultiArrayDataType.double) else {
+                    fatalError("Unexpected runtime error. MLMultiArray")
+                }
+                inputFeatures[0] = coordinates.gazeX as NSNumber
+                inputFeatures[1] = coordinates.gazeY as NSNumber
+                
+                guard let predX = try self.calibModelX?.prediction(from: CalibrationInput(input: inputFeatures)),
+                    let predY = try self.calibModelY?.prediction(from: CalibrationInput(input: inputFeatures))
                     else {
                         self.gazeEstimation = nil
                         self.calibFeatures = nil
                         return
                 }
-                
+
                 self.gazeEstimation = [predX.featureValue(for: "gazeXY")!.doubleValue as NSNumber,
                                        predY.featureValue(for: "gazeXY")!.doubleValue as NSNumber]
                 self.elapsedTotalTime = CFAbsoluteTimeGetCurrent() - self.startTotalTime
                 print("\nTotal calibrated algorithm processing time: \(self.elapsedTotalTime) s.")
                 print("General model predictions: \(calibFeats[0]), \(calibFeats[1])")
                 print("Low-pass filtering: \(X), \(Y)")
+                print("Input features: \(coordinates.gazeX), \(coordinates.gazeY)")
                 if self.gazeEstimation != nil { print("Calibrated model predictions: \(self.gazeEstimation![0]), \(self.gazeEstimation![1])") }
                 self.predictionDelegate?.didUpdatePrediction(status: true)
             } catch {
