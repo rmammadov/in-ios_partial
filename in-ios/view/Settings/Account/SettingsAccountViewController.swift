@@ -27,6 +27,8 @@ class SettingsAccountViewController: BaseViewController {
         loadValues()
         setupUI()
         setSubscribers()
+        
+        setLastState(view: self)
     }
     
     @IBAction func backButtonTapped(_ sender: Any) {

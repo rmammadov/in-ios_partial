@@ -37,6 +37,7 @@ class IntroSecondNewViewController: BaseViewController {
         
         // Do any additional setup after loading the view.
         setUi()
+        setLastState(view: self)
     }
     
     /*

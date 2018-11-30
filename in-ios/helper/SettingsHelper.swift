@@ -30,8 +30,8 @@ class SettingsHelper {
         
     }
     
-    func setLastState(nameOfView: String?) {
-        defaults.set(nameOfView, forKey: Keys.kLastActiveView)
+    func setLastState(idOfView: String?) {
+        defaults.set(idOfView, forKey: Keys.kLastActiveView)
     }
     
     func getLastState() -> String? {

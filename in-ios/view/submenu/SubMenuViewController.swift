@@ -29,6 +29,7 @@ class SubMenuViewController: BaseViewController {
 
         // Do any additional setup after loading the view.
         self.setUi()
+        setLastState(view: self)
     }
 
     override func didReceiveMemoryWarning() {

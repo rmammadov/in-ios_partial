@@ -29,7 +29,10 @@ class InputAViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.setUi()
+        
+        setLastState(view: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {

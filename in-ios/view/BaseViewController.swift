@@ -43,6 +43,10 @@ extension BaseViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
+    func setLastState(view: UIViewController) {
+        guard let id = view.restorationIdentifier else { return }
+        viewModelBase.setLastState(idOfView: id)
+    }
 }
 
 extension BaseViewController {

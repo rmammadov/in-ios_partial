@@ -31,6 +31,8 @@ class SettingsInterfaceViewController: BaseViewController {
         SyncTileUsageUtil.shared.checkAndStartSyncIfNeeded()
         loadValues()
         setupUI()
+        
+        setLastState(view: self)
     }
     
     @IBAction func backButtonTapped(_ sender: Any) {

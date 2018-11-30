@@ -27,6 +27,7 @@ class IntroFirstViewController: BaseViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setUi()
+        setLastState(view: self)
     }
 
     override func didReceiveMemoryWarning() {
