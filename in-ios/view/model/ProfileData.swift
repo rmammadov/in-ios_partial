@@ -55,6 +55,7 @@ struct DeviceFeatures: Codable {
     let model: String?
     let type: String?
     let osVersion: String?
+    let screenResolution: String?
 }
 
 struct File: Codable {

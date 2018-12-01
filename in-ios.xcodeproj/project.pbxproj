@@ -145,6 +145,7 @@
 		F354B7452164C7470026F3A2 /* IntroThirdNewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354B7442164C7470026F3A2 /* IntroThirdNewViewModel.swift */; };
 		F354B7472164C7570026F3A2 /* IntroThirdNewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354B7462164C7570026F3A2 /* IntroThirdNewModel.swift */; };
 		F354B74E2164FAFA0026F3A2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F354B7502164FAFA0026F3A2 /* Localizable.strings */; };
+		F3803B9721B2BC84004D11BF /* DeviceDetailsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3803B9621B2BC84004D11BF /* DeviceDetailsHelper.swift */; };
 		F39059BB210F09C800CAA292 /* MenuItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F39059B9210F09C800CAA292 /* MenuItemCollectionViewCell.xib */; };
 		F39059BF210F254C00CAA292 /* AnimationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059BE210F254C00CAA292 /* AnimationUtil.swift */; };
 		F39059C1210F290F00CAA292 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39059C0210F290F00CAA292 /* MenuViewModel.swift */; };
@@ -396,6 +397,7 @@
 		F354B74F2164FAFA0026F3A2 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F354B7512164FAFF0026F3A2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F354B7522164FB030026F3A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F3803B9621B2BC84004D11BF /* DeviceDetailsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailsHelper.swift; sourceTree = "<group>"; };
 		F39059B9210F09C800CAA292 /* MenuItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		F39059BE210F254C00CAA292 /* AnimationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationUtil.swift; sourceTree = "<group>"; };
 		F39059C0210F290F00CAA292 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
@@ -929,6 +931,7 @@
 				F396E465216EC6B200C061CD /* FileNamingHelper.swift */,
 				E9A6C7DB219449E900EE7516 /* TranslationHelper.swift */,
 				E99F520221A597AE002C3716 /* SettingsHelper.swift */,
+				F3803B9621B2BC84004D11BF /* DeviceDetailsHelper.swift */,
 			);
 			path = helper;
 			sourceTree = "<group>";
@@ -1475,6 +1478,7 @@
 				F3F4148C20F5F82000CF101D /* ReachabilityManager.swift in Sources */,
 				E9A6C7C52194346700EE7516 /* GroupedToken.swift in Sources */,
 				F3DA017F2162907500D0625B /* WebviewViewModel.swift in Sources */,
+				F3803B9721B2BC84004D11BF /* DeviceDetailsHelper.swift in Sources */,
 				F334ADC8210D7A370056824A /* MenuItem.swift in Sources */,
 				E9A6C7B32194346700EE7516 /* VariableExtractor.swift in Sources */,
 				F3FBB74321AF0A8200EE7E88 /* GeneralModelHorizontal.mlmodel in Sources */,
