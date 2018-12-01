@@ -47,6 +47,7 @@ public class GazeTracker: FaceFinderDelegate {
     var elapsedTotalTime: Double = 0.0
     
     var isCalibrated: Bool = false
+    var orientation: UIDeviceOrientation = .portrait
     
     /**
      Initializer
@@ -64,6 +65,7 @@ public class GazeTracker: FaceFinderDelegate {
     }
     
     func setGeneralOrientation(to newOrientation: UIDeviceOrientation) {
+        self.orientation = newOrientation
         switch newOrientation {
         case .portrait:
             self.gazeEstimator = self.portraitEstimator
