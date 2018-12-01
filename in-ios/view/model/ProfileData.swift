@@ -23,6 +23,8 @@ struct UserInfo: Codable {
     let ageGroup: String
     let medicalCondition: String
     var calibrationData: Array<CalibrationData>?
+    var appSettings: AppSettins?
+    var deviceFeatures: DeviceFeatures?
 }
 
 struct CalibrationData: Codable {
@@ -38,6 +40,21 @@ struct CalibrationData: Codable {
     let eyeCenters: Array<Array<Double>>
     var file: File?
     var deviceOrientation: String
+}
+
+struct AppSettins: Codable {
+    
+    let language: String?
+    let autoSelectDelay: String?
+    let tileSize: Int?
+    let isSoundEnabled: Bool?
+}
+
+struct DeviceFeatures: Codable {
+    
+    let model: String?
+    let type: String?
+    let osVersion: String?
 }
 
 struct File: Codable {

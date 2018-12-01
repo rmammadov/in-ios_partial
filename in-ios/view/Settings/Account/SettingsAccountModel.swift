@@ -21,7 +21,9 @@ class SettingsAccountModel: BaseModel {
                                 gender: gender,
                                 ageGroup: age,
                                 medicalCondition: medicalCondition,
-                                calibrationData: self.userInfo?.calibrationData)
+                                calibrationData: self.userInfo?.calibrationData,
+                                appSettings: nil,
+                                deviceFeatures: nil)
         DataManager.setUserData(user: userInfo)
     }
     
