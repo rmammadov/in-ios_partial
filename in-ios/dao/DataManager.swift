@@ -97,16 +97,22 @@ class DataManager {
     
     static func setUserData(user: UserInfo) {
         self.user = user
-        
-        self.user?.appSettings?.language = SettingsHelper.shared.language.rawValue
-        self.user?.appSettings?.autoSelectDelay = SettingsHelper.shared.autoSelectDelay.rawValue
-        self.user?.appSettings?.tileSize = SettingsHelper.shared.tileSize.rawValue
-        self.user?.appSettings?.isSoundEnabled = SettingsHelper.shared.isSoundEnabled
-        
-        self.user?.deviceDetails?.type = deviceDetailsHelper.getDeviceType()
-        self.user?.deviceDetails?.model = deviceDetailsHelper.getDeviceModel()
-        self.user?.deviceDetails?.osVersion = deviceDetailsHelper.getScreenResolution()
-        self.user?.deviceDetails?.osVersion = deviceDetailsHelper.getOsVersion()
+        self.user?.appSettings = getAppSettings()
+        self.user?.deviceDetails = getDeviceDetails()
+    }
+    
+    static func getAppSettings() -> AppSettins {
+        return AppSettins(language: SettingsHelper.shared.language.rawValue,
+                          autoSelectDelay: SettingsHelper.shared.autoSelectDelay.rawValue,
+                          tileSize: SettingsHelper.shared.tileSize.rawValue,
+                          isSoundEnabled: SettingsHelper.shared.isSoundEnabled)
+    }
+    
+    static func getDeviceDetails() -> DeviceDetails {
+        return DeviceDetails(type: deviceDetailsHelper.getDeviceType(),
+                             model: deviceDetailsHelper.getDeviceModel(),
+                             osVersion: deviceDetailsHelper.getOsVersion(),
+                             screenResolution: deviceDetailsHelper.getScreenResolution())
     }
     
     static func getUserData() -> UserInfo? {

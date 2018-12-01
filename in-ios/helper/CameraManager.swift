@@ -636,7 +636,7 @@ extension CameraManager {
             arrayCalibrationFeatures.append("\(calibrationFeaturesSnapshoot[i])")
         }
         
-        return CalibrationData(cross_x: nil, cross_y: nil, pointer_x: coordinatesSnapshot.gazeX, pointer_y: coordinatesSnapshot.gazeY, prediction_x: coordinatesPreConversionSnapshot.gazeX, prediction_y: coordinatesPreConversionSnapshot.gazeY, calibrationFeatures: arrayCalibrationFeatures, facialFeatures: facialFeaturesSnapshoot, eyeCenters: eyeCentersSnapshoot, file: nil, deviceOrientation: deviceOrienation())
+        return CalibrationData(cross_x: nil, cross_y: nil, pointer_x: coordinatesSnapshot.gazeX, pointer_y: coordinatesSnapshot.gazeY, prediction_x: coordinatesPreConversionSnapshot.gazeX, prediction_y: coordinatesPreConversionSnapshot.gazeY, calibrationFeatures: arrayCalibrationFeatures, facialDetails: facialFeaturesSnapshoot, eyeCenters: eyeCentersSnapshoot, file: nil, deviceOrientation: deviceOrienation())
     }
     
     func updateModels(xModelUrl: URL, yModelUrl: URL, orientation: String, completion: ((Bool) -> Void)? = nil) {

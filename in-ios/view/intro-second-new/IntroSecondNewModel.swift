@@ -74,7 +74,7 @@ class IntroSecondNewModel: BaseModel {
     }
     
     func saveData() {
-        DataManager.setUserData(user: UserInfo(name: name, gender: gender, ageGroup: ageGroup, medicalCondition: medicalCondition, calibrationData: nil, appSettings: nil, deviceFeatures: nil))
+        DataManager.setUserData(user: UserInfo(name: name, gender: gender, ageGroup: ageGroup, medicalCondition: medicalCondition, calibrationData: nil, appSettings: nil, deviceDetails: nil))
     }
     
 }

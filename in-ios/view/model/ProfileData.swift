@@ -52,8 +52,8 @@ struct AppSettins: Codable {
 
 struct DeviceDetails: Codable {
     
-    var model: String?
     var type: String?
+    var model: String?
     var osVersion: String?
     var screenResolution: String?
 }

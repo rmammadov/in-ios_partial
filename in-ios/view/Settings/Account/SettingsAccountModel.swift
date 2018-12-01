@@ -23,7 +23,7 @@ class SettingsAccountModel: BaseModel {
                                 medicalCondition: medicalCondition,
                                 calibrationData: self.userInfo?.calibrationData,
                                 appSettings: nil,
-                                deviceFeatures: nil)
+                                deviceDetails: nil)
         DataManager.setUserData(user: userInfo)
     }
     
