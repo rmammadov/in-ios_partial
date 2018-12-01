@@ -38,6 +38,7 @@ class DataManager {
     
     static fileprivate let requestHandler = ApiRequestHandler()
     static fileprivate let fileNaming = FileNamingHelper()
+    static fileprivate let deviceDetailsHelper = DeviceDetailsHelper()
     
     static func setSubscribers() {
         self.requestHandler.status.asObservable().subscribe(onNext: {
@@ -96,6 +97,16 @@ class DataManager {
     
     static func setUserData(user: UserInfo) {
         self.user = user
+        
+        self.user?.appSettings?.language = SettingsHelper.shared.language.rawValue
+        self.user?.appSettings?.autoSelectDelay = SettingsHelper.shared.autoSelectDelay.rawValue
+        self.user?.appSettings?.tileSize = SettingsHelper.shared.tileSize.rawValue
+        self.user?.appSettings?.isSoundEnabled = SettingsHelper.shared.isSoundEnabled
+        
+        self.user?.deviceDetails?.type = deviceDetailsHelper.getDeviceType()
+        self.user?.deviceDetails?.model = deviceDetailsHelper.getDeviceModel()
+        self.user?.deviceDetails?.osVersion = deviceDetailsHelper.getScreenResolution()
+        self.user?.deviceDetails?.osVersion = deviceDetailsHelper.getOsVersion()
     }
     
     static func getUserData() -> UserInfo? {

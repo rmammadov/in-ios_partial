@@ -9,6 +9,7 @@
 import Foundation
 
 class ConcurrentOperation: Operation {
+    
     private var backing_executing : Bool
     override var isExecuting : Bool {
         get { return backing_executing }
