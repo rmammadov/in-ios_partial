@@ -57,16 +57,16 @@ class GazeTrackerCalibrated: GazeTracker {
      For testing purposes only.
      Comment out before build.
      */
-    var currentOrientation: UIDeviceOrientation = .portrait
-    
-    let portraitCalibrationX = PortraitCalibrationX()
-    let portraitCalibrationY = PortraitCalibrationY()
-    let portraitUpsideDownCalibrationX = PortraitUpsideDownCalibrationX()
-    let portraitUpsideDownCalibrationY = PortraitUpsideDownCalibrationY()
-    let landscapeLeftCalibrationX = LandscapeLeftCalibrationX()
-    let landscapeLeftCalibrationY = LandscapeLeftCalibrationY()
-    let landscapeRightCalibrationX = LandscapeRightCalibrationX()
-    let landscapeRightCalibrationY = LandscapeRightCalibrationY()
+//    var currentOrientation: UIDeviceOrientation = .portrait
+//    
+//    let portraitCalibrationX = PortraitCalibrationX()
+//    let portraitCalibrationY = PortraitCalibrationY()
+//    let portraitUpsideDownCalibrationX = PortraitUpsideDownCalibrationX()
+//    let portraitUpsideDownCalibrationY = PortraitUpsideDownCalibrationY()
+//    let landscapeLeftCalibrationX = LandscapeLeftCalibrationX()
+//    let landscapeLeftCalibrationY = LandscapeLeftCalibrationY()
+//    let landscapeRightCalibrationX = LandscapeRightCalibrationX()
+//    let landscapeRightCalibrationY = LandscapeRightCalibrationY()
     // END OF TEST SECTION
     
     private var averageX: [Double] = Array(repeating: 0.0, count: 10)
