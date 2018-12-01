@@ -1800,7 +1800,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 954DRPZZ57;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1816,7 +1816,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.innodemneurosciences.in-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.innodemneurosciences.in-ios";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1827,8 +1827,8 @@
 			baseConfigurationReference = 0436C1AF7675FD89B89130B1 /* Pods-in-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 954DRPZZ57;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1843,7 +1843,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.innodemneurosciences.in-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.innodemneurosciences.in-ios";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
